@@ -28,8 +28,8 @@ DL.Client.prototype.post = function(segments, data) {
   return this.request(segments, "POST", data);
 };
 
-DL.Client.prototype.get = function(segments) {
-  return this.request(segments, "GET");
+DL.Client.prototype.get = function(segments, data) {
+  return this.request(segments, "GET", data);
 };
 
 DL.Client.prototype.put = function(segments) {
@@ -41,9 +41,13 @@ DL.Client.prototype.delete = function(segments) {
 };
 
 DL.Client.prototype.request = function(segments, method, data) {
-  var deferred = when.defer();
+  var payload, deferred = when.defer();
 
-  uxhr(this.url + segments, JSON.stringify(data), {
+  if (data) {
+    payload = JSON.stringify(data);
+  }
+
+  uxhr(this.url + segments, payload, {
     method: method,
     headers: {
       'X-App-Id': this.appId,

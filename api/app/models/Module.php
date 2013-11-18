@@ -1,7 +1,7 @@
 <?php
 namespace Models;
 
-class RequestLog extends \Core\Model
+class Module extends \Core\Model
 {
 	protected $guarded = array();
 
@@ -10,5 +10,6 @@ class RequestLog extends \Core\Model
 	}
 
 }
+
 
 

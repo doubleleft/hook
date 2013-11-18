@@ -2,6 +2,8 @@
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
+date_default_timezone_set('America/Sao_Paulo');
+
 require '../vendor/autoload.php';
 require '../app/bootstrap.php';
 
@@ -22,7 +24,6 @@ $app->get('/', function() {
 	echo Models\App::all()->toJson();
 });
 
-
 /**
  * Collection routes
  */
@@ -33,7 +34,16 @@ $app->group('/collection', function () use ($app) {
 	 * GET /collection/:name
 	 */
 	$app->get('/:name', function($name) use ($app) {
-		echo Models\Collection::where('app_id', $app->key->app_id)
+		$query = Models\Collection::query();
+
+		// Apply where filters
+		if ($q = $app->request->get('q')) {
+			foreach($q as $where) {
+				$query = $query->where($where[0], $where[1], $where[2]);
+			}
+		}
+
+		echo $query->where('app_id', $app->key->app_id)
 			->where('c', $name)
 			->get()
 			->toJson();
@@ -76,7 +86,10 @@ $app->group('/collection', function () use ($app) {
 // 	// $app->add(new AuthMiddleware(/* administrator? */));
 // 	$app->get('/', function() {});
 // 	$app->post('/', function() {});
+// 	$app->get('/:id', function() {});
+// 	$app->get('/:id/modules', function() {});
 // 	$app->put('/:id', function($id) {});
+// 	$app->delete('/:id', function($id) {});
 // });
 
 $app->run();

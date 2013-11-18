@@ -18,11 +18,11 @@
 	},
 	"devDependencies": {
 		"grunt": "0.4.1",
-		"grunt-loader": "0.2.1",
 		"grunt-contrib-concat": "*",
 		"grunt-contrib-watch": "*",
 		"grunt-contrib-jshint": "*",
 		"grunt-contrib-uglify": "*",
-		"grunt-contrib-qunit": "*"
+		"grunt-contrib-qunit": "*",
+		"grunt-loader": "0.2.1"
 	}
 }

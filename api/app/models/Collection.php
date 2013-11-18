@@ -1,7 +1,7 @@
 <?php
 namespace Models;
 
-class Collection extends \Jenssegers\Mongodb\Model
+class Collection extends \Core\Model
 {
 	protected $guarded = array();
 

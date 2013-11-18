@@ -9,6 +9,7 @@
   }],
   "autoload": {
     "files": [
+      "app/core/Model.php",
       "app/middlewares/auth.php",
       "app/middlewares/log.php"
     ],

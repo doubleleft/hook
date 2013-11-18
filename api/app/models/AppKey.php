@@ -1,7 +1,7 @@
 <?php
 namespace Models;
 
-class AppKey extends \Jenssegers\Mongodb\Model
+class AppKey extends \Core\Model
 {
 	protected $guarded = array();
 

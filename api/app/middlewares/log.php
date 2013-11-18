@@ -4,7 +4,7 @@ class LogMiddleware extends \Slim\Middleware
 {
 	public function call()
 	{
-		if ($app->request->getMethod() != "OPTIONS") {
+		if (!$app->request->isOptions()) {
 			$app = $this->app;
 
 			\Models\RequestLog::create(array(

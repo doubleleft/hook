@@ -1072,8 +1072,8 @@ DL.Client.prototype.post = function(segments, data) {
   return this.request(segments, "POST", data);
 };
 
-DL.Client.prototype.get = function(segments) {
-  return this.request(segments, "GET");
+DL.Client.prototype.get = function(segments, data) {
+  return this.request(segments, "GET", data);
 };
 
 DL.Client.prototype.put = function(segments) {
@@ -1085,9 +1085,13 @@ DL.Client.prototype.delete = function(segments) {
 };
 
 DL.Client.prototype.request = function(segments, method, data) {
-  var deferred = when.defer();
+  var payload, deferred = when.defer();
 
-  uxhr(this.url + segments, JSON.stringify(data), {
+  if (data) {
+    payload = JSON.stringify(data);
+  }
+
+  uxhr(this.url + segments, payload, {
     method: method,
     headers: {
       'X-App-Id': this.appId,
@@ -1138,12 +1142,15 @@ DL.Collection.prototype.create = function(data) {
  * @method get
  */
 DL.Collection.prototype.get = function() {
-  return this.client.get('collection/' + this.name);
+  var query = (this.hasWhere()) ? {q: this.wheres} : null;
+  return this.client.get('collection/' + this.name, query);
 };
 
 /**
  * Add `where` param
- * @param {Object} where params or field name
+ * @param {Object | String} where params or field name
+ * @param {String} operation operation or value
+ * @param {String} value value
  */
 DL.Collection.prototype.where = function(objects, _operation, _value) {
   var field,
@@ -1153,7 +1160,13 @@ DL.Collection.prototype.where = function(objects, _operation, _value) {
   if (typeof(objects)==="object") {
     for (field in objects) {
       if (objects.hasOwnProperty(field)) {
-        this.addWhere(field, '=', objects[field]);
+        if (objects[field] instanceof Array) {
+          operation = objects[field][0];
+          value = objects[field][1];
+        } else {
+          value = objects[field];
+        }
+        this.addWhere(field, operation, value);
       }
     }
   } else {
@@ -1163,8 +1176,35 @@ DL.Collection.prototype.where = function(objects, _operation, _value) {
   return this;
 };
 
+/**
+ * alias for get & then
+ * @method then
+ */
+DL.Collection.prototype.then = function() {
+  var promise = this.get();
+  promise.then.apply(promise, arguments);
+  return promise;
+};
+
 DL.Collection.prototype.addWhere = function(field, operation, value) {
   this.wheres.push([field, operation, value]);
+};
+
+/**
+ * Clear collection where statements
+ * @method reset
+ */
+DL.Collection.prototype.reset = function() {
+  this.wheres = [];
+  return this;
+};
+
+/**
+ * @method hasWhere
+ * @return {Boolean}
+ */
+DL.Collection.prototype.hasWhere = function() {
+  return this.wheres.length > 0;
 };
 
 /**
