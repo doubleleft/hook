@@ -1,0 +1,4 @@
+files:
+- 'src/**.js'
+tasks:
+- default

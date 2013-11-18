@@ -1,0 +1,28 @@
+{
+	"name": "dl-api-js",
+	"title": "JavaScript Client for dl-api",
+	"description": "JavaScript client to Doubleleft API",
+	"version": "0.0.1",
+	"homepage": "http://github.com/doubleleft/dl-api",
+	"authors": [{
+		"name": "Endel Dreyer",
+		"email": "edreyer@doubleleft.com"
+	}],
+	"keywords": ["api", "dl", "rest"],
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/doubleleft/dl-api.git"
+	},
+	"bugs": {
+		"url": "https://github.com/doubleleft/dl-api/issues"
+	},
+	"devDependencies": {
+		"grunt": "0.4.1",
+		"grunt-loader": "0.2.1",
+		"grunt-contrib-concat": "*",
+		"grunt-contrib-watch": "*",
+		"grunt-contrib-jshint": "*",
+		"grunt-contrib-uglify": "*",
+		"grunt-contrib-qunit": "*"
+	}
+}

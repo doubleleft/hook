@@ -1,0 +1,11 @@
+{
+  "name": "dl-api-js",
+  "main": [
+    "./dist/build.js"
+  ],
+  "dependencies": {
+    "uxhr": "*",
+    "qunit": "*",
+    "when": "~2.6.0"
+  }
+}

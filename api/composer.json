@@ -1,0 +1,31 @@
+{
+  "name": "doubleleft/api",
+  "description": "Doubleleft backend API",
+  "keywords": ["framework", "laravel"],
+  "license": "MIT",
+  "authors": [{
+    "name": "Endel Dreyer",
+    "email": "edreyer@doubleleft.com"
+  }],
+  "autoload": {
+    "files": [
+      "app/middlewares/auth.php",
+      "app/middlewares/log.php"
+    ],
+    "psr-0": {
+      "Models\\" : "app/"
+    }
+  },
+  "require": {
+    "slim/slim": "*",
+    "illuminate/database": "*",
+    "illuminate/config": "*",
+    "jenssegers/mongodb": "*"
+  },
+  "require-dev": {
+    "mockery/mockery": "0.8.0",
+    "phpunit/phpunit": "3.7.*"
+  },
+  "minimum-stability": "stable"
+}
+
