@@ -43,6 +43,10 @@ Collection relationship:
 - PUT /api/key/:name
 - PATCH /api/key/:name
 
+**Mailing**
+
+- ?
+
 **Authentication**
 
 - GET /api/auth/:provider

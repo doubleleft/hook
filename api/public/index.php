@@ -34,7 +34,7 @@ $app->group('/collection', function () use ($app) {
 	 * GET /collection/:name
 	 */
 	$app->get('/:name', function($name) use ($app) {
-		$query = Models\Collection::query();
+		$query = Models\Collection::query()->from($name);
 
 		// Apply where filters
 		if ($q = $app->request->get('q')) {
@@ -44,7 +44,6 @@ $app->group('/collection', function () use ($app) {
 		}
 
 		echo $query->where('app_id', $app->key->app_id)
-			->where('c', $name)
 			->get()
 			->toJson();
 	});
@@ -53,7 +52,8 @@ $app->group('/collection', function () use ($app) {
 	 * GET /collection/:name/:id
 	 */
 	$app->get('/:name/:id', function($name, $id) use ($app) {
-		echo Models\Collection::where('c', $name)
+		echo Models\Collection::query()
+			->from($name)
 			->where('_id', $id)
 			->get()
 			->toJson();
@@ -63,11 +63,10 @@ $app->group('/collection', function () use ($app) {
 	 * POST /collection/:name
 	 */
 	$app->post('/:name', function($name) use ($app) {
-		$data = array_merge($app->request->post('data'), array(
+		echo Models\Collection::create(array_merge($app->request->post('data'), array(
 			'app_id' => $app->key->app_id,
-			'c' => $name
-		));
-		echo Models\Collection::create($data)->toJson();
+			'table_name' => $name
+		)))->toJson();
 	});
 
 	/**
@@ -75,7 +74,7 @@ $app->group('/collection', function () use ($app) {
 	 */
 	$app->delete('/:name/:id', function($name) use ($app) {
 		echo json_encode(array(
-			'success' => Models\Collection::where('_', $name)->delete($id)
+			'success' => Models\Collection::query()->from($name)->delete($id)
 		));
 	});
 
