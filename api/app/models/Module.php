@@ -5,7 +5,7 @@ class Module extends \Core\Model
 {
 	protected $guarded = array();
 
-	public function application() {
+	public function app() {
 		return $this->belongsTo('Models\App');
 	}
 

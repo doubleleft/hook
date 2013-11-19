@@ -10,6 +10,10 @@ class AppKey extends \Core\Model
 		static::saving(function($instance) { $instance->beforeSave(); });
 	}
 
+	public function app() {
+		return $this->belongsTo('Models\App');
+	}
+
 	public function beforeSave() {
 		$res = openssl_pkey_new(array(
 			"digest_alg" => "sha1",

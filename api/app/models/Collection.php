@@ -13,7 +13,7 @@ class Collection extends \Core\Model
 		parent::__construct($attributes);
 	}
 
-	public function application() {
+	public function app() {
 		return $this->belongsTo('Models\App');
 	}
 

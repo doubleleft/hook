@@ -4,17 +4,18 @@ class LogMiddleware extends \Slim\Middleware
 {
 	public function call()
 	{
-		if (!$app->request->isOptions()) {
-			$app = $this->app;
+		$app = $this->app;
 
+		if (!$app->request->isOptions() && $app->key) {
 			\Models\RequestLog::create(array(
 				'app_id' => $app->key->app_id,
+				'key_id' => $app->key->id,
 				'uri' => $app->request->getResourceUri(),
 				'method' => $app->request->getMethod()
 			));
-
-			$this->next->call();
 		}
+
+		$this->next->call();
 	}
 }
 

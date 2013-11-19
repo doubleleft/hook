@@ -8,6 +8,7 @@ $event_dispatcher = new Illuminate\Events\Dispatcher();
 // ------------------
 $conn = new Jenssegers\Mongodb\Connection($config['mongodb']);
 $resolver = new \Illuminate\Database\ConnectionResolver(array('default' => $conn));
+$resolver->addConnection('app', $conn);
 $resolver->setDefaultConnection('default');
 
 \Jenssegers\Mongodb\Model::setConnectionResolver($resolver);

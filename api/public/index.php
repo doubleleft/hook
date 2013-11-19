@@ -1,26 +1,20 @@
 <?php
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
-
 date_default_timezone_set('America/Sao_Paulo');
 
 require '../vendor/autoload.php';
 require '../app/bootstrap.php';
 
 $app = new \Slim\Slim();
+
+// middlewares
+$app->add(new LogMiddleware());
+$app->add(new AuthMiddleware());
+
 $app->response->headers->set('Content-type', 'application/json');
 
 $app->get('/', function() {
-	Models\App::all()->each(function($model) {
-		if ($model->name != "test") {
-			$model->delete();
-		}
-	});
-
-	if (Models\App::count() == 0) {
-		Models\App::create(array('name' => "test"));
-	}
-
 	echo Models\App::all()->toJson();
 });
 
@@ -28,7 +22,6 @@ $app->get('/', function() {
  * Collection routes
  */
 $app->group('/collection', function () use ($app) {
-	$app->add(new AuthMiddleware());
 
 	/**
 	 * GET /collection/:name
@@ -54,8 +47,7 @@ $app->group('/collection', function () use ($app) {
 	$app->get('/:name/:id', function($name, $id) use ($app) {
 		echo Models\Collection::query()
 			->from($name)
-			->where('_id', $id)
-			->get()
+			->find($id)
 			->toJson();
 	});
 
@@ -81,14 +73,36 @@ $app->group('/collection', function () use ($app) {
 });
 
 // // internals
-// $app->group('/apps', function() use ($app) {
-// 	// $app->add(new AuthMiddleware(/* administrator? */));
-// 	$app->get('/', function() {});
-// 	$app->post('/', function() {});
-// 	$app->get('/:id', function() {});
-// 	$app->get('/:id/modules', function() {});
-// 	$app->put('/:id', function($id) {});
-// 	$app->delete('/:id', function($id) {});
-// });
+$app->group('/apps', function() use ($app) {
+	$app->get('/test', function() {
+		Models\App::all()->each(function($model) {
+			if ($model->name != "test") {
+				$model->delete();
+			}
+		});
+		if (Models\App::count() == 0) {
+			Models\App::create(array('name' => "test"));
+		}
+		echo Models\App::all()->get()->toJson();
+	});
+	$app->get('/', function() {
+		echo Models\App::all()->get()->toJson();
+	});
+	$app->post('/', function() use ($app) {
+		echo Models\App::create($app->request->post('data'))->toJson();
+	});
+	$app->get('/:id', function($id) {
+		echo Models\App::find($id)->toJson();
+	});
+	$app->get('/:id/modules', function() {
+		echo Models\App::find($id)->modules->toJson();
+	});
+	$app->put('/:id', function($id) use ($app) {
+		echo Models\App::find($id)->update($app->request->post('data'))->toJson();
+	});
+	$app->delete('/:id', function($id) {
+		echo json_encode(array('success' => Models\App::query()->delete($id)));
+	});
+});
 
 $app->run();
