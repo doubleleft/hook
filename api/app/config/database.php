@@ -1,6 +1,7 @@
 <?php
 
 return array(
+
 	'mongodb' => array(
 		'driver'   => 'mongodb',
 		'host'     => 'localhost',
@@ -9,4 +10,15 @@ return array(
 		// 'password' => 'password',
 		'database' => 'dl_api'
 	),
+
+	'mysql' => array(
+		'driver'   => 'mysql',
+		'host'     => 'localhost',
+		'username' => 'root',
+		'password' => 'root',
+		'database' => 'dl_api',
+		'collation' => 'utf8_general_ci',
+		'charset' => 'utf8'
+	),
+
 );

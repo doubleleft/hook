@@ -1,8 +1,15 @@
 <?php
 namespace Core;
 
-// class User extends \Illuminate\Database\Eloquent\Model
-class Model extends \Jenssegers\Mongodb\Model
+if (\Jenssegers\Mongodb\Model::getConnectionResolver()) {
+	class MyModel extends \Jenssegers\Mongodb\Model {}
+} else {
+	class MyModel extends \Illuminate\Database\Eloquent\Model {}
+}
+
+// var_dump(\Illuminate\Database\Eloquent\Model::getConnectionResolver()->hasConnection('mongodb'));
+
+class Model extends MyModel
 {
 
 	public function freshTimestamp()
@@ -14,6 +21,5 @@ class Model extends \Jenssegers\Mongodb\Model
 	{
 		return array();
 	}
+
 }
-
-

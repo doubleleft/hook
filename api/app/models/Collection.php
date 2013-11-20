@@ -4,6 +4,7 @@ namespace Models;
 class Collection extends \Core\Model
 {
 	protected $guarded = array();
+	protected $primaryKey = '_id';
 
 	public function __construct(array $attributes = array()) {
 		if (isset($attributes['table_name'])) {

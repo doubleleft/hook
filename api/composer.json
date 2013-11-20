@@ -8,10 +8,9 @@
     "email": "edreyer@doubleleft.com"
   }],
   "autoload": {
-    "files": [
-      "app/core/Model.php",
-      "app/middlewares/auth.php",
-      "app/middlewares/log.php"
+    "classmap": [
+      "app/core",
+      "app/middlewares"
     ],
     "psr-0": {
       "Models\\" : "app/"

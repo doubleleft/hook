@@ -4,6 +4,7 @@ namespace Models;
 class App extends \Core\Model
 {
 	protected $guarded = array();
+	protected $primaryKey = '_id';
 
 	public static function boot() {
 		parent::boot();
