@@ -58,6 +58,11 @@ Collection relationship:
 - PUT /api/files/:_id
 - GET /api/files/:_id
 
+**Batch (multiple requests)**
+
+- https://developers.facebook.com/docs/graph-api/making-multiple-requests/
+
+
 Extra
 ---
 
