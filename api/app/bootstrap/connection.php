@@ -8,25 +8,22 @@ $event_dispatcher = new Illuminate\Events\Dispatcher($container);
 // ------------------
 // MongoDB connection
 // ------------------
-// $connection = new Jenssegers\Mongodb\Connection($config['mongodb']);
-// $resolver->addConnection('app', $connection);
-// $resolver->setDefaultConnection('default');
-//
-// \Jenssegers\Mongodb\Model::setConnectionResolver($resolver);
-// \Jenssegers\Mongodb\Model::setEventDispatcher($event_dispatcher);
+$connection = new Jenssegers\Mongodb\Connection($config['mongodb']);
+class_alias('\Jenssegers\Mongodb\Model', 'DLModel');
 
 // -------------
 // SQL connection
 // --------------
-$connFactory = new \Illuminate\Database\Connectors\ConnectionFactory($container);
-$connection = $connFactory->make($config['mysql']);
+// $connFactory = new \Illuminate\Database\Connectors\ConnectionFactory($container);
+// $connection = $connFactory->make($config['mysql']);
+// class_alias('\Illuminate\Database\Eloquent\Model', 'DLModel');
 
 $resolver = new \Illuminate\Database\ConnectionResolver(array('default' => $connection));
-$resolver->addConnection('default', $connection);
+$resolver->addConnection('app', $connection);
 $resolver->setDefaultConnection('default');
 
-\Illuminate\Database\Eloquent\Model::setConnectionResolver($resolver);
-\Illuminate\Database\Eloquent\Model::setEventDispatcher($event_dispatcher);
+DLModel::setConnectionResolver($resolver);
+DLModel::setEventDispatcher($event_dispatcher);
 
 // Try to migrate the database
 $builder = $connection->getSchemaBuilder();

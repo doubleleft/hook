@@ -2,7 +2,7 @@ asyncTest("Collection calls", function() {
   expect(7);
 
   var posts = client.collection('posts');
-  var past_time = Math.round(((new Date).getTime() - 1000) / 1000);
+  var past_time = Math.round(((new Date).getTime() - 2000) / 1000);
 
   //
   // Create
@@ -38,8 +38,10 @@ asyncTest("Collection calls", function() {
     posts.where({
       created_at: ['>', past_time]
     }).then(function(response) {
+      debugger;
       ok(response.length == 2, "LIST WITH where, should retrieve 2 items");
     }, function(response) {
+      debugger;
       ok(false, "LIST WITH where, should retrieve 2 items");
     });
 
