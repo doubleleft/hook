@@ -83,7 +83,7 @@ $app->group('/apps', function() use ($app) {
 		if (Models\App::count() == 0) {
 			Models\App::create(array('name' => "test"));
 		}
-		echo Models\App::all()->get()->toJson();
+		echo Models\App::all()->toJson();
 	});
 	$app->get('/', function() {
 		echo Models\App::all()->get()->toJson();
