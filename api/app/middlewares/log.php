@@ -9,7 +9,7 @@ class LogMiddleware extends \Slim\Middleware
 		if (!$app->request->isOptions() && $app->key) {
 			\Models\RequestLog::create(array(
 				'app_id' => $app->key->app_id,
-				'key_id' => $app->key->id,
+				'key_id' => $app->key->_id,
 				'uri' => $app->request->getResourceUri(),
 				'method' => $app->request->getMethod()
 			));
