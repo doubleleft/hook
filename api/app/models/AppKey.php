@@ -16,6 +16,8 @@ class AppKey extends \Core\Model
 	}
 
 	public function beforeSave() {
+		if ($this->key && $this->secret) { return; }
+
 		$res = openssl_pkey_new(array(
 			"digest_alg" => "sha1",
 			"private_key_bits" => 512,

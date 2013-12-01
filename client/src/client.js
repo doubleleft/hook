@@ -45,6 +45,10 @@ DL.Client.prototype.request = function(segments, method, data) {
 
   if (data) {
     payload = JSON.stringify(data);
+
+    if (method == "GET") {
+      payload = encodeURIComponent(method);
+    }
   }
 
   uxhr(this.url + segments, payload, {
