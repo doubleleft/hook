@@ -26,5 +26,9 @@ class App extends \Core\Model
 		return $arr;
 	}
 
+	public function storage() {
+		return new Core\Storage\File($this);
+	}
+
 }
 

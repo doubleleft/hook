@@ -21,11 +21,11 @@ class AuthMiddleware extends \Slim\Middleware
 
 			$app->response->headers->set('Content-type', 'application/json');
 
-			if (!$app->key) {
-				$app->response->setStatus(403);
-				$app->response->setBody(json_encode(array('error' => "Invalid credentials.")));
-				return;
-			}
+			// if (!$app->key && strpos($app->request->getPath(), "/apps/") === false) {
+			// 	$app->response->setStatus(403);
+			// 	$app->response->setBody(json_encode(array('error' => "Invalid credentials.")));
+			// 	return;
+			// }
 
 			//
 			// Parse incoming JSON QUERY_STRING

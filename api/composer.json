@@ -19,12 +19,17 @@
   "require": {
     "slim/slim": "*",
     "illuminate/database": "*",
+    "doctrine/dbal" : "2.*",
     "illuminate/config": "*",
+    "illuminate/cache": "*",
     "jenssegers/mongodb": "*"
   },
   "require-dev": {
     "mockery/mockery": "0.8.0",
-    "phpunit/phpunit": "3.7.*"
+    "phpunit/phpunit": "3.7.*",
+
+    "aws/aws-sdk-php": "2.*"
+
   },
   "minimum-stability": "stable"
 }

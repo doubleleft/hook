@@ -32,7 +32,7 @@ $app->group('/collection', function () use ($app) {
 		// Apply where filters
 		if ($q = $app->request->get('q')) {
 			foreach($q as $where) {
-				$query = $query->where($where[0], $where[1], $where[2]);
+				$query->where($where[0], $where[1], $where[2]);
 			}
 		}
 
@@ -72,16 +72,44 @@ $app->group('/collection', function () use ($app) {
 
 });
 
+/**
+ * File routes
+ */
+$app->group('/files', function() use($app) {
+
+	/**
+	 * GET /files/:id
+	 */
+	$app->get('/:id', function($id) {
+		return File::find($id)->toJson();
+	});
+
+	/**
+	 * POST /files/:id
+	 */
+	$app->get('/', function($id) use ($app) {
+		return File::create(array(
+			'app_id' => $app->key->app_id,
+			'file' => $app->request->file('file')
+		))->toJson();
+	});
+
+});
+
 // // internals
 $app->group('/apps', function() use ($app) {
 	$app->get('/test', function() {
-		Models\App::all()->each(function($model) {
-			if ($model->name != "test") {
-				$model->delete();
-			}
-		});
+		Models\App::truncate();
+
 		if (Models\App::count() == 0) {
-			Models\App::create(array('name' => "test"));
+			$app = Models\App::create(array(
+				'_id' => 1,
+				'name' => "test"
+			));
+			$app->keys()->create(array(
+				'key' => 'test',
+				'secret' => 'test'
+			));
 		}
 		echo Models\App::all()->toJson();
 	});

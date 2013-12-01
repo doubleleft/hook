@@ -10,7 +10,7 @@ asyncTest("Collection calls", function() {
   posts.create({title: "My awesome blog post", content: "Lorem ipsum dolor sit amet."}).then(function(response) {
     ok(response.title ==  "My awesome blog post", "CREATE");
   }, function(response) {
-    ok(false, "CREATE");
+    ok(false, "CREATE first row");
   });
 
   posts.create({string: "Another post", int: 5, float: 9.9, bool: true}).then(function(response) {
@@ -19,7 +19,7 @@ asyncTest("Collection calls", function() {
     ok(response.float == 9.9, "CREATE keep float data-type");
     ok(response.bool === true, "CREATE keep boolean data-type");
   }, function(response) {
-    ok(false, "CREATE");
+    ok(false, "CREATE with more fields");
   });
 
   //
@@ -38,10 +38,10 @@ asyncTest("Collection calls", function() {
     posts.where({
       created_at: ['>', past_time]
     }).then(function(response) {
-      debugger;
+      console.log(response);
       ok(response.length == 2, "LIST WITH where, should retrieve 2 items");
     }, function(response) {
-      debugger;
+      console.log(response);
       ok(false, "LIST WITH where, should retrieve 2 items");
     });
 

@@ -8,15 +8,15 @@ $event_dispatcher = new Illuminate\Events\Dispatcher($container);
 // ------------------
 // MongoDB connection
 // ------------------
-$connection = new Jenssegers\Mongodb\Connection($config['mongodb']);
-class_alias('\Jenssegers\Mongodb\Model', 'DLModel');
+// $connection = new Jenssegers\Mongodb\Connection($config['mongodb']);
+// class_alias('\Jenssegers\Mongodb\Model', 'DLModel');
 
 // -------------
 // SQL connection
 // --------------
-// $connFactory = new \Illuminate\Database\Connectors\ConnectionFactory($container);
-// $connection = $connFactory->make($config['mysql']);
-// class_alias('\Illuminate\Database\Eloquent\Model', 'DLModel');
+$connFactory = new \Illuminate\Database\Connectors\ConnectionFactory($container);
+$connection = $connFactory->make($config['mysql']);
+class_alias('\Illuminate\Database\Eloquent\Model', 'DLModel');
 
 $resolver = new \Illuminate\Database\ConnectionResolver(array('default' => $connection));
 $resolver->addConnection('app', $connection);
