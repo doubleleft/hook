@@ -28,26 +28,46 @@ DL.Client.prototype.post = function(segments, data) {
   return this.request(segments, "POST", data);
 };
 
+/**
+ * @method get
+ * @param {String} segments
+ * @param {Object} data
+ */
 DL.Client.prototype.get = function(segments, data) {
   return this.request(segments, "GET", data);
 };
 
-DL.Client.prototype.put = function(segments) {
-  return this.request(segments, "PUT");
+/**
+ * @method put
+ * @param {String} segments
+ * @param {Object} data
+ */
+DL.Client.prototype.put = function(segments, data) {
+  return this.request(segments, "PUT", data);
 };
 
+/**
+ * @method delete
+ * @param {String} segments
+ */
 DL.Client.prototype.delete = function(segments) {
   return this.request(segments, "DELETE");
 };
 
+/**
+ * @method request
+ * @param {String} segments
+ * @param {String} method
+ * @param {Object} data
+ */
 DL.Client.prototype.request = function(segments, method, data) {
   var payload, deferred = when.defer();
 
   if (data) {
     payload = JSON.stringify(data);
 
-    if (method == "GET") {
-      payload = encodeURIComponent(method);
+    if (method === "GET") {
+      payload = encodeURIComponent(payload);
     }
   }
 

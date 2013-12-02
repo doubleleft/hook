@@ -1,5 +1,5 @@
 asyncTest("Collection calls", function() {
-  expect(7);
+  expect(9);
 
   var posts = client.collection('posts');
   var past_time = Math.round(((new Date).getTime() - 2000) / 1000);
@@ -38,15 +38,28 @@ asyncTest("Collection calls", function() {
     posts.where({
       created_at: ['>', past_time]
     }).then(function(response) {
-      console.log(response);
       ok(response.length == 2, "LIST WITH where, should retrieve 2 items");
     }, function(response) {
-      console.log(response);
       ok(false, "LIST WITH where, should retrieve 2 items");
+    });
+
+    var i = 0;
+    posts.where({
+      created_at: ['>', past_time]
+    }).each(function(item) {
+      if (i==0) {
+        ok(item.content == "Lorem ipsum dolor sit amet.", "#each iteration 1");
+        i++;
+      } else {
+        ok(item.int == 5, "#each iteration 2");
+      }
+    }, function(response) {
+      ok(false, "#each failed")
     });
 
     start();
   }, 200);
+
 
 });
 
