@@ -2,11 +2,10 @@
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 date_default_timezone_set('America/Sao_Paulo');
-
 require '../vendor/autoload.php';
-require '../app/bootstrap.php';
 
 $app = new \Slim\Slim();
+require '../app/bootstrap.php';
 
 // middlewares
 $app->add(new LogMiddleware());
@@ -28,17 +27,18 @@ $app->group('/collection', function () use ($app) {
 	 */
 	$app->get('/:name', function($name) use ($app) {
 		$query = Models\Collection::query()->from($name);
+		$query->where('app_id', $app->key->app_id);
 
-		// Apply where filters
+		// Apply filters
 		if ($q = $app->request->get('q')) {
 			foreach($q as $where) {
 				$query->where($where[0], $where[1], $where[2]);
 			}
 		}
 
-		echo $query->where('app_id', $app->key->app_id)
-			->get()
-			->toJson();
+		// Apply pagination
+		$result = ($app->request->get('p')) ? $query->paginate() : $query->get();
+		echo $result->toJson();
 	});
 
 	/**
