@@ -6,6 +6,7 @@
   "dependencies": {
     "uxhr": "*",
     "qunit": "*",
-    "when": "~2.6.0"
+    "when": "~2.6.0",
+    "lodash": "~2.4.0"
   }
 }
