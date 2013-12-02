@@ -25,7 +25,14 @@ $resolver->setDefaultConnection('default');
 DLModel::setConnectionResolver($resolver);
 DLModel::setEventDispatcher($event_dispatcher);
 
+//
+// Setup paginator
+//
+$connection->setPaginator(new \Core\Pagination\Environment());
+
+//
 // Try to migrate the database
+//
 $builder = $connection->getSchemaBuilder();
 if (!$builder->hasTable('apps')) {
 	foreach(glob('../app/models/schema/*.php') as $file) {
