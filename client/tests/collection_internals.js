@@ -38,7 +38,7 @@ test("Collection internals", function() {
   ok(posts.ordering[1][1] == 'asc', "orderBy(), orientation asc");
 
   posts.orderBy('field2', -1);
-  ok(posts.ordering[2][0] == 'field2', "orderBy(), field asc");
+  ok(posts.ordering[2][0] == 'field2', "orderBy(), field desc");
   ok(posts.ordering[2][1] == 'desc', "orderBy(), orientation desc");
 
   posts.orderBy('field3', 'desc');
@@ -47,5 +47,5 @@ test("Collection internals", function() {
 
   posts.orderBy('field4', 'asc');
   ok(posts.ordering[4][0] == 'field4', "orderBy(), field asc");
-  ok(posts.ordering[4][1] == 'asc', "orderBy(), orientation desc");
+  ok(posts.ordering[4][1] == 'asc', "orderBy(), orientation asc");
 });
