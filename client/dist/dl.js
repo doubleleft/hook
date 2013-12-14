@@ -3,7 +3,7 @@
  * http://github.com/doubleleft/dl-api
  *
  * @copyright 2013 Doubleleft
- * @build 12/1/2013
+ * @build 12/14/2013
  */
 (function(window) {
 	//
@@ -7806,7 +7806,13 @@ define(function (require) {
   }
 }.call(this));
 
-var DL = { VERSION: "0.0.1" };
+var DL = {
+  VERSION: "0.0.1" ,
+  defaults: {
+    perPage: 50
+  }
+};
+
 window.DL = DL;
 
 /**
@@ -7913,7 +7919,80 @@ DL.Client.prototype.serialize = function(obj, prefix) {
 };
 
 /**
+ * @class DL.Iterable
+ */
+DL.Iterable = function() { };
+DL.Iterable.prototype = {
+  /**
+   * @method each
+   * @param {Function} callback
+   */
+  each : function(callback) { return this._iterate('each', callback); },
+
+  /**
+   * @method find
+   * @param {Function} callback
+   */
+  find : function(callback) { return this._iterate('find', callback); },
+
+  /**
+   * @method filter
+   * @param {Function} callback
+   */
+  filter : function(callback) { return this._iterate('filter', callback); },
+
+  /**
+   * @method max
+   * @param {Function} callback
+   */
+  max : function(callback) { return this._iterate('max', callback); },
+
+  /**
+   * @method min
+   * @param {Function} callback
+   */
+  min : function(callback) { return this._iterate('min', callback); },
+
+  /**
+   * @method every
+   * @param {Function} callback
+   */
+  every : function(callback, accumulator) { return this._iterate('every', callback); },
+
+  /**
+   * @method reject
+   * @param {Function} callback
+   */
+  reject : function(callback, accumulator) { return this._iterate('reject', callback, accumulator); },
+
+  /**
+   * @method groupBy
+   * @param {Function} callback
+   */
+  groupBy : function(callback, accumulator) { return this._iterate('groupBy', callback, accumulator); },
+
+  /**
+   * Iterate using lodash function
+   * @method _iterate
+   * @param {String} method
+   * @param {Function} callback
+   * @param {Object} argument
+   */
+  _iterate : function(method, callback, arg3) {
+    var that = this;
+
+    this.then(function(data) {
+      _[method].call(that, data, callback, arg3);
+    });
+
+    return this;
+  }
+};
+
+/**
  * @class DL.Collection
+ * @extends DL.Iterable
+ *
  * @param {DL.Client} client
  * @param {String} name
  * @constructor
@@ -7923,7 +8002,12 @@ DL.Collection = function(client, name) {
 
   this.name = name;
   this.wheres = [];
+  this.ordering = [];
 };
+
+// Inherits from DL.Iterable
+DL.Collection.prototype = new DL.Iterable();
+DL.Collection.prototype.constructor = DL.Collection;
 
 /**
  * Create a new resource
@@ -7940,19 +8024,28 @@ DL.Collection.prototype.create = function(data) {
  */
 DL.Collection.prototype.get = function(options) {
   var params = [],
-      query = (this.hasWhere()) ? {q: this.wheres} : null;
+      query = {};
 
-  // clear wheres for future calls
+  // apply wheres
+  if (this.wheres.length > 0) {
+    query.q = this.wheres;
+  }
+
+  // apply ordering
+  if (this.ordering.length > 0) {
+    query.s = this.ordering;
+  }
+
+  // clear wheres/ordering for future calls
   this.reset();
 
   if (typeof(options)!=="undefined") {
     if (options.paginate) {
-      params.push('p=1');
+      query.p = options.paginate;
     }
   }
 
-  // + "?" + params.join('&')
-  return this.client.get('collection/' + this.name , query);
+  return this.client.get('collection/' + this.name, query);
 };
 
 /**
@@ -8010,30 +8103,42 @@ DL.Collection.prototype.reset = function() {
 };
 
 /**
- * @method hasWhere
- * @return {Boolean}
+ * @method orderBy
+ * @param {String} field
+ * @param {Number|String} direction
+ * @return {DL.Collection} this
  */
-DL.Collection.prototype.hasWhere = function() {
-  return this.wheres.length > 0;
+DL.Collection.prototype.orderBy = function(field, direction) {
+  if (!direction) {
+    direction = "asc";
+  } else if (typeof(direction)==="number") {
+    direction = (parseInt(direction, 10) === -1) ? 'desc' : 'asc';
+  }
+  this.ordering.push([field, direction]);
+  return this;
 };
 
 /**
  * @method paginate
  * @return {DL.Pagination}
+ *
+ * @param {Mixed} perpage_or_callback
+ * @param {Function} callback
  */
 DL.Collection.prototype.paginate = function(perPage, callback) {
-  var that = this;
+  var pagination = new DL.Pagination(this);
 
   if (!callback) {
     callback = perPage;
-    perPage = 50;
+    perPage = DL.defaults.perPage;
   }
 
-  this.get({paginate: true}).then(function(data) {
-    callback(new DL.Pagination(that, data));
+  this.get({paginate: perPage}).then(function(data) {
+    pagination._fetchComplete(data);
+    if (callback) { callback(pagination); }
   });
 
-  return this;
+  return pagination;
 };
 
 /**
@@ -8053,71 +8158,6 @@ DL.Collection.prototype.updateAll = function(data) {
   throw new Exception("Not implemented.");
 };
 
-/**
- * @method each
- * @param {Function} callback
- */
-DL.Collection.prototype.each = function(callback) { return this._iterate('each', callback); };
-
-/**
- * @method find
- * @param {Function} callback
- */
-DL.Collection.prototype.find = function(callback) { return this._iterate('find', callback); };
-
-/**
- * @method filter
- * @param {Function} callback
- */
-DL.Collection.prototype.filter = function(callback) { return this._iterate('filter', callback); };
-
-/**
- * @method max
- * @param {Function} callback
- */
-DL.Collection.prototype.max = function(callback) { return this._iterate('max', callback); };
-
-/**
- * @method min
- * @param {Function} callback
- */
-DL.Collection.prototype.min = function(callback) { return this._iterate('min', callback); };
-
-/**
- * @method every
- * @param {Function} callback
- */
-DL.Collection.prototype.every = function(callback, accumulator) { return this._iterate('every', callback); };
-
-/**
- * @method reject
- * @param {Function} callback
- */
-DL.Collection.prototype.reject = function(callback, accumulator) { return this._iterate('reject', callback, accumulator); };
-
-/**
- * @method groupBy
- * @param {Function} callback
- */
-DL.Collection.prototype.groupBy = function(callback, accumulator) { return this._iterate('groupBy', callback, accumulator); };
-
-/**
- * Iterate using lodash function
- * @method _iterate
- * @param {String} method
- * @param {Function} callback
- * @param {Object} argument
- */
-DL.Collection.prototype._iterate = function(method, callback, arg3) {
-  var that = this;
-
-  this.then(function(data) {
-    _[method].call(that, data, callback, arg3);
-  });
-
-  return this;
-};
-
 DL.File = function(client) {
   this.client = client;
 
@@ -8133,20 +8173,76 @@ DL.File = function(client) {
  * @param {Number} perPage
  * @constructor
  */
-DL.Pagination = function(collection, response) {
-  this.collection = collection;
+DL.Pagination = function(collection) {
+  this.fetching = true;
 
+  /**
+   * @property collection
+   * @type {DL.Collection}
+   */
+  this.collection = collection;
+};
+
+DL.Pagination.prototype._fetchComplete = function(response) {
+  this.fetching = false;
+
+  /**
+   * @property total
+   * @type {Number}
+   */
   this.total = response.total;
+
+  /**
+   * @property per_page
+   * @type {Number}
+   */
   this.per_page = response.per_page;
+
+  /**
+   * @property current_page
+   * @type {Number}
+   */
   this.current_page = response.current_page;
+
+  /**
+   * @property last_page
+   * @type {Number}
+   */
   this.last_page = response.last_page;
+
+  /**
+   * @property from
+   * @type {Number}
+   */
   this.from = response.from;
+
+  /**
+   * @property to
+   * @type {Number}
+   */
   this.to = response.to;
+
+  /**
+   * @property data
+   * @type {Object}
+   */
   this.data = response.data;
 };
 
+/**
+ * @method hasNext
+ * @return {Boolean}
+ */
 DL.Pagination.prototype.hasNext = function() {
   return (this.current_page < this.to);
+};
+
+/**
+ * @method isFetching
+ * @return {Booelan}
+ */
+DL.Pagination.prototype.isFetching = function() {
+  return this.fetching;
 };
 
 DL.Pagination.prototype.then = function() {

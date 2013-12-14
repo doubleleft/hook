@@ -36,8 +36,15 @@ $app->group('/collection', function () use ($app) {
 			}
 		}
 
+		// Apply ordering
+		if ($s = $app->request->get('s')) {
+			foreach($s as $ordering) {
+				$query->orderBy(reset($ordering), end($ordering));
+			}
+		}
+
 		// Apply pagination
-		$result = ($app->request->get('p')) ? $query->paginate() : $query->get();
+		$result = ($app->request->get('p')) ? $query->paginate($app->request->get('p')) : $query->get();
 		echo $result->toJson();
 	});
 

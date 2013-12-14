@@ -14,6 +14,8 @@ javascripts:
     - 'bower_components/when/when.js'
     - 'bower_components/uxhr/uxhr.js'
     - 'bower_components/lodash/dist/lodash.js'
+    - 'bower_components/lodash/dist/lodash.js'
+    - 'src/core/*.js'
     - 'src/*.js'
     - 'src/wrap/end.js'
   dest: 'dist/dl.js'
