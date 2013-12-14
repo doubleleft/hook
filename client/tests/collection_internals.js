@@ -28,4 +28,24 @@ test("Collection internals", function() {
   ok(posts.wheres[1][0] == "created_at", "where() object, test second field");
   ok(posts.wheres[1][1] == ">", "where() object, test second operation");
   ok(posts.wheres[1][2] == past_date, "where() object, test second value");
+
+  posts.orderBy('default');
+  ok(posts.ordering[0][0] == 'default', "orderBy(), default field asc");
+  ok(posts.ordering[0][1] == 'asc', "orderBy(), default orientation asc");
+
+  posts.orderBy('field', 1);
+  ok(posts.ordering[1][0] == 'field', "orderBy(), field asc");
+  ok(posts.ordering[1][1] == 'asc', "orderBy(), orientation asc");
+
+  posts.orderBy('field2', -1);
+  ok(posts.ordering[2][0] == 'field2', "orderBy(), field asc");
+  ok(posts.ordering[2][1] == 'desc', "orderBy(), orientation desc");
+
+  posts.orderBy('field3', 'desc');
+  ok(posts.ordering[3][0] == 'field3', "orderBy(), field desc");
+  ok(posts.ordering[3][1] == 'desc', "orderBy(), orientation desc");
+
+  posts.orderBy('field4', 'asc');
+  ok(posts.ordering[4][0] == 'field4', "orderBy(), field asc");
+  ok(posts.ordering[4][1] == 'asc', "orderBy(), orientation desc");
 });
