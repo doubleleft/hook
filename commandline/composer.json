@@ -1,0 +1,21 @@
+{
+  "name": "doubleleft/dl-api-commandline",
+  "description": "Commandline Interface for dl-api",
+  "keywords": ["doubleleft", "api", "commandline"],
+  "license": "MIT",
+  "authors": [{
+    "name": "Endel Dreyer",
+    "email": "edreyer@doubleleft.com"
+  }],
+  "autoload": {
+    "classmap": [],
+    "psr-0": {}
+  },
+  "require": {
+    "symfony/console": "2.4.*"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "3.7.*",
+  },
+  "minimum-stability": "stable"
+}
