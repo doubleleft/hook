@@ -1,4 +1,4 @@
-[dl-api] javascript client
+dl-api/client - javascript client
 ===
 
 To build the client, just run:

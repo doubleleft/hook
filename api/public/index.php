@@ -1,8 +1,11 @@
 <?php
+
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 date_default_timezone_set('America/Sao_Paulo');
 require '../vendor/autoload.php';
+
+use Composer\Command\UpdateCommand;
 
 $app = new \Slim\Slim();
 require '../app/bootstrap.php';
@@ -134,6 +137,22 @@ $app->group('/apps', function() use ($app) {
 	});
 	$app->put('/:id', function($id) use ($app) {
 		echo Models\App::find($id)->update($app->request->post('data'))->toJson();
+	});
+	$app->get('/:id/composer', function($id) use ($app) {
+	// $app->post('/:id/composer', function($id) use ($app) {
+		// $composer = json_decode(file_get_contents('composer.json'));
+		// $composer['require'] = array_merge($composer['require'], $app->request->post('require'));
+		// file_put_contents('composer.json', json_encode($composer));
+
+		//Create the application and run it with the commands
+		error_reporting(E_ALL);
+		ini_set('display_errors', 1);
+
+		chdir('../');
+
+		$application = new Composer\Console\Application();
+		$application->run(new Symfony\Component\Console\Input\ArgvInput(array('update', 'willdurand/geocoder')));
+		var_dump("Finished.");
 	});
 	$app->delete('/:id', function($id) {
 		echo json_encode(array('success' => Models\App::query()->delete($id)));

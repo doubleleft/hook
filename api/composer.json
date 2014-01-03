@@ -1,7 +1,7 @@
 {
-  "name": "doubleleft/api",
+  "name": "doubleleft/dl-api",
   "description": "Doubleleft backend API",
-  "keywords": ["framework", "laravel"],
+  "keywords": ["doubleleft", "api"],
   "license": "MIT",
   "authors": [{
     "name": "Endel Dreyer",
@@ -17,9 +17,11 @@
     }
   },
   "require": {
+    "composer/composer": "*",
+    "coffeescript/coffeescript": "*",
     "slim/slim": "*",
-    "illuminate/database": "*",
     "doctrine/dbal" : "2.*",
+    "illuminate/database": "*",
     "illuminate/config": "*",
     "illuminate/cache": "*",
     "jenssegers/mongodb": "*"
@@ -27,10 +29,8 @@
   "require-dev": {
     "mockery/mockery": "0.8.0",
     "phpunit/phpunit": "3.7.*",
-
     "aws/aws-sdk-php": "2.*"
-
   },
-  "minimum-stability": "stable"
+  "bin-dir": "bin",
+  "minimum-stability": "dev"
 }
-
