@@ -3,7 +3,7 @@
 #
 #
 
-class User
+class UserObserver
   creating: ->
     # before create
 
