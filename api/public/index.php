@@ -10,7 +10,11 @@ use Composer\Command\UpdateCommand;
 $app = new \Slim\Slim();
 require '../app/bootstrap.php';
 
-// middlewares
+// Middlewares
+// Add EventSource middeware: http://en.wikipedia.org/wiki/Server-sent_events | http://www.html5rocks.com/en/tutorials/eventsource/basics/
+if ($app->request->headers->get('ACCEPT') == 'text/event-stream') {
+	$app->add(new EventSourceMiddleware());
+}
 $app->add(new LogMiddleware());
 $app->add(new AuthMiddleware());
 
@@ -48,7 +52,7 @@ $app->group('/collection', function () use ($app) {
 
 		// Apply pagination
 		$result = ($app->request->get('p')) ? $query->paginate($app->request->get('p')) : $query->get();
-		echo $result->toJson();
+		$app->data =$result;
 	});
 
 	/**
