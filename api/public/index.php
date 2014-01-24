@@ -12,13 +12,9 @@ require '../app/bootstrap.php';
 
 // Middlewares
 // Add EventSource middeware: http://en.wikipedia.org/wiki/Server-sent_events | http://www.html5rocks.com/en/tutorials/eventsource/basics/
-if ($app->request->headers->get('ACCEPT') == 'text/event-stream') {
-	$app->add(new EventSourceMiddleware());
-}
+$app->add(new ResponseTypeMiddleware());
 $app->add(new LogMiddleware());
 $app->add(new AuthMiddleware());
-
-$app->response->headers->set('Content-type', 'application/json');
 
 $app->get('/', function() {
 	echo Models\App::all()->toJson();
@@ -33,7 +29,7 @@ $app->group('/collection', function () use ($app) {
 	 * GET /collection/:name
 	 */
 	$app->get('/:name', function($name) use ($app) {
-		$query = Models\Collection::query()->from($name);
+		$query = Models\Collection::query()->from(trim($name));
 		$query->where('app_id', $app->key->app_id);
 
 		// Apply filters
@@ -51,28 +47,26 @@ $app->group('/collection', function () use ($app) {
 		}
 
 		// Apply pagination
-		$result = ($app->request->get('p')) ? $query->paginate($app->request->get('p')) : $query->get();
-		$app->data =$result;
+		$app->content = ($app->request->get('p')) ? $query->paginate($app->request->get('p')) : $query->get();
 	});
 
 	/**
 	 * GET /collection/:name/:id
 	 */
 	$app->get('/:name/:id', function($name, $id) use ($app) {
-		echo Models\Collection::query()
+		$app->content = Models\Collection::query()
 			->from($name)
-			->find($id)
-			->toJson();
+			->find($id);
 	});
 
 	/**
 	 * POST /collection/:name
 	 */
 	$app->post('/:name', function($name) use ($app) {
-		echo Models\Collection::create(array_merge($app->request->post('data'), array(
+		$app->content = Models\Collection::create(array_merge($app->request->post('data'), array(
 			'app_id' => $app->key->app_id,
 			'table_name' => $name
-		)))->toJson();
+		)));
 	});
 
 	/**
@@ -102,10 +96,10 @@ $app->group('/files', function() use($app) {
 	 * POST /files/:id
 	 */
 	$app->get('/', function($id) use ($app) {
-		return File::create(array(
+		$app->content = File::create(array(
 			'app_id' => $app->key->app_id,
 			'file' => $app->request->file('file')
-		))->toJson();
+		));
 	});
 
 });
@@ -125,22 +119,22 @@ $app->group('/apps', function() use ($app) {
 				'secret' => 'test'
 			));
 		}
-		echo Models\App::all()->toJson();
+		$app->content = Models\App::all();
 	});
-	$app->get('/', function() {
-		echo Models\App::all()->get()->toJson();
+	$app->get('/', function() use($app) {
+		$app->content = Models\App::all()->get();
 	});
 	$app->post('/', function() use ($app) {
-		echo Models\App::create($app->request->post('data'))->toJson();
+		$app->content = Models\App::create($app->request->post('data'));
 	});
 	$app->get('/:id', function($id) {
-		echo Models\App::find($id)->toJson();
+		$app->content = Models\App::find($id);
 	});
-	$app->get('/:id/modules', function() {
-		echo Models\App::find($id)->modules->toJson();
+	$app->get('/:id/modules', function() use ($app) {
+		$app->content = Models\App::find($id)->modules;
 	});
 	$app->put('/:id', function($id) use ($app) {
-		echo Models\App::find($id)->update($app->request->post('data'))->toJson();
+		$app->content = Models\App::find($id)->update($app->request->post('data'));
 	});
 	$app->get('/:id/composer', function($id) use ($app) {
 	// $app->post('/:id/composer', function($id) use ($app) {
