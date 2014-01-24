@@ -1,0 +1,27 @@
+#!/usr/bin/env php
+<?php
+require_once 'vendor/autoload.php';
+
+$cmd = new Commando\Command();
+
+// Application
+$cmd->argument()
+  ->referToAs('new <application-name>')
+  ->describedAs('Create a new application.');
+
+// Application tokens
+$cmd->argument()
+  ->referToAs('token:list')
+  ->describedAs('List all application tokens');
+$cmd->argument()
+  ->referToAs('token:create')
+  ->describedAs('Create a new access-token for application');
+
+// Application logic
+$cmd->argument()
+  ->referToAs('ext:upload')
+  ->describedAs('Upload application extensions.');
+
+if (isset($cmd[0])) {
+  echo "Not implemented.\n";
+}
