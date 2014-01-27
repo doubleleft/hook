@@ -21,4 +21,10 @@ return array(
 		'charset' => 'utf8'
 	),
 
+	'sqlite' => array(
+		'driver'   => 'sqlite',
+		'database' => __DIR__.'/../storage/database.sqlite',
+		'prefix'   => '',
+	)
+
 );
