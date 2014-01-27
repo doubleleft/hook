@@ -16,8 +16,8 @@ $app->add(new ResponseTypeMiddleware());
 $app->add(new LogMiddleware());
 $app->add(new AuthMiddleware());
 
-$app->get('/', function() {
-	echo Models\App::all()->toJson();
+$app->get('/', function() use ($app) {
+	$app->content =  Models\App::all();
 });
 
 /**
@@ -122,7 +122,7 @@ $app->group('/apps', function() use ($app) {
 		$app->content = Models\App::all();
 	});
 	$app->get('/', function() use($app) {
-		$app->content = Models\App::all()->get();
+		$app->content = Models\App::all();
 	});
 	$app->post('/', function() use ($app) {
 		$app->content = Models\App::create($app->request->post('data'));

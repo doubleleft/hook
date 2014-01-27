@@ -11,11 +11,20 @@ $event_dispatcher = new Illuminate\Events\Dispatcher($container);
 // $connection = new Jenssegers\Mongodb\Connection($config['mongodb']);
 // class_alias('\Jenssegers\Mongodb\Model', 'DLModel');
 
+
+//
+// Create SQLite database
+//
+if (isset($config['sqlite'])) {
+	touch($config['sqlite']['database']);
+}
+
 // -------------
 // SQL connection
 // --------------
 $connFactory = new \Illuminate\Database\Connectors\ConnectionFactory($container);
-$connection = $connFactory->make($config['mysql']);
+// $connection = $connFactory->make($config['mysql']);
+$connection = $connFactory->make($config['sqlite']);
 class_alias('\Illuminate\Database\Eloquent\Model', 'DLModel');
 
 $resolver = new \Illuminate\Database\ConnectionResolver(array('default' => $connection));
