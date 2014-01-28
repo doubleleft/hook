@@ -80,6 +80,34 @@ $app->group('/collection', function () use ($app) {
 
 });
 
+
+/**
+ * Key/value routes
+ */
+$app->group('/key', function() use ($app) {
+
+	/**
+	 * GET /key/:name
+	 */
+	$app->get('/:key', function($key) use ($app) {
+		$app->content = Models\KeyValue::where('app_id', $app->key->app_id)
+			->where('name', $key)
+			->first() ?: new Models\KeyValue();
+	});
+
+	/**
+	 * PUT /key/:name
+	 */
+	$app->post('/:key', function($key) use ($app) {
+		$app->content = Models\KeyValue::upsert(array(
+			'app_id' => $app->key->app_id,
+			'name' => $key,
+			'value' => $app->request->post('value')
+		));
+	});
+
+});
+
 /**
  * File routes
  */
