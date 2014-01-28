@@ -13,7 +13,7 @@ class AuthMiddleware extends \Slim\Middleware
 		// Enable Cross-Origin Resource Sharing
 		$app->response->headers->set('Access-Control-Allow-Origin', (isset($referer['host'])) ? 'http://'.$referer['host'] : '*' );
 		$app->response->headers->set('Access-Control-Allow-Credentials', 'true');
-		$app->response->headers->set('Access-Control-Allow-Method', 'GET, PUT, POST, DELETE');
+		$app->response->headers->set('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE');
 		$app->response->headers->set('Access-Control-Allow-Headers', 'x-app-id, x-app-key, content-type, user-agent, accept');
 
 		// Don't proceed on CORS requests.
@@ -27,15 +27,6 @@ class AuthMiddleware extends \Slim\Middleware
 			// 	$app->response->setBody(json_encode(array('error' => "Invalid credentials.")));
 			// 	return;
 			// }
-
-			//
-			// Parse incoming JSON QUERY_STRING
-			// OBS: that's pretty much an uggly thing, but we need data types here.
-			// Every param is string on query string (srsly?)
-			$query_string = $app->environment->offsetGet('QUERY_STRING');
-			if (strlen($query_string)>0) {
-				$app->environment->offsetSet('slim.request.query_hash', json_decode(urldecode($query_string), true));
-			}
 
 			//
 			// Parse incoming JSON data

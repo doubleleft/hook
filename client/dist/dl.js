@@ -2,8 +2,8 @@
  * dl-api-js v0.0.1
  * http://github.com/doubleleft/dl-api
  *
- * @copyright 2013 Doubleleft
- * @build 12/14/2013
+ * @copyright 2014 Doubleleft
+ * @build 1/28/2014
  */
 (function(window) {
 	//
@@ -978,6 +978,8 @@ define(function (require) {
 	}
 }(this, function () {
 
+	"use strict";
+
 	return function (url, data, options) {
 
 		data = data || '';
@@ -990,7 +992,21 @@ define(function (require) {
 			method = options.method || 'GET',
 			sync = options.sync || false,
 			req = (function() {
-				return XMLHttpRequest ? new XMLHttpRequest() : (ActiveXObject ? new ActiveXObject('Microsoft.XMLHTTP') : 0);
+
+				if (typeof 'XMLHttpRequest' !== 'undefined') {
+
+					// CORS (IE8-9)
+					if (url.indexOf('http') === 0 && typeof XDomainRequest !== 'undefined') {
+						return new XDomainRequest();
+					}
+
+					// local, CORS (other browsers)
+					return new XMLHttpRequest();
+
+				} else if (typeof 'ActiveXObject' !== 'undefined') {
+					return new ActiveXObject('Microsoft.XMLHTTP');
+				}
+
 			})();
 
 		if (!req) {
@@ -1007,41 +1023,39 @@ define(function (require) {
 		}
 
 		// set timeout
-		req.ontimeout = +options.timeout || 0;
+		if ('ontimeout' in req) {
+			req.ontimeout = +options.timeout || 0;
+		}
 
 		// listen for XHR events
-		req.onreadystatechange = function () {
-			if (req.readyState === 4) {
-
-				var response = req.responseText,
-					status = req.status;
-
-				if (status < 400) {
-					success(response);
-				} else {
-					error(response, status);
-				}
-
-				complete(response, status);
-			}
+		req.onload = function () {
+			complete(req.responseText, req.status);
+			success(req.responseText);
+		};
+		req.onerror = function () {
+			complete(req.responseText);
+			error(req.responseText, req.status);
 		};
 
-		// 1. open connection
-		req.open(method, (method==='GET' ? url+'?'+data : url), sync);
+		// open connection
+		req.open(method, (method === 'GET' && data ? url+'?'+data : url), !sync);
 
-		// 2. set headers
+		// set headers
 		for (var header in headers) {
 			req.setRequestHeader(header, headers[header]);
 		}
 
-		// 3. send it
-		req.send(method!=='GET'?data:null);
+		// send it
+		req.send(method !== 'GET' ? data : null);
+
+		return req;
 	};
 
 }));
+
 /**
  * @license
- * Lo-Dash 2.4.0 (Custom Build) <http://lodash.com/>
+ * Lo-Dash 2.4.1 (Custom Build) <http://lodash.com/>
  * Build: `lodash modern -o ./dist/lodash.js`
  * Copyright 2012-2013 The Dojo Foundation <http://dojofoundation.org/>
  * Based on Underscore.js 1.5.2 <http://underscorejs.org/LICENSE>
@@ -1518,29 +1532,30 @@ define(function (require) {
         clearTimeout = context.clearTimeout,
         floor = Math.floor,
         fnToString = Function.prototype.toString,
-        getPrototypeOf = reNative.test(getPrototypeOf = Object.getPrototypeOf) && getPrototypeOf,
+        getPrototypeOf = isNative(getPrototypeOf = Object.getPrototypeOf) && getPrototypeOf,
         hasOwnProperty = objectProto.hasOwnProperty,
         push = arrayRef.push,
         setTimeout = context.setTimeout,
-        splice = arrayRef.splice;
+        splice = arrayRef.splice,
+        unshift = arrayRef.unshift;
 
     /** Used to set meta data on functions */
     var defineProperty = (function() {
       // IE 8 only accepts DOM elements
       try {
         var o = {},
-            func = reNative.test(func = Object.defineProperty) && func,
+            func = isNative(func = Object.defineProperty) && func,
             result = func(o, o, o) && func;
       } catch(e) { }
       return result;
     }());
 
     /* Native method shortcuts for methods with the same name as other `lodash` methods */
-    var nativeCreate = reNative.test(nativeCreate = Object.create) && nativeCreate,
-        nativeIsArray = reNative.test(nativeIsArray = Array.isArray) && nativeIsArray,
+    var nativeCreate = isNative(nativeCreate = Object.create) && nativeCreate,
+        nativeIsArray = isNative(nativeIsArray = Array.isArray) && nativeIsArray,
         nativeIsFinite = context.isFinite,
         nativeIsNaN = context.isNaN,
-        nativeKeys = reNative.test(nativeKeys = Object.keys) && nativeKeys,
+        nativeKeys = isNative(nativeKeys = Object.keys) && nativeKeys,
         nativeMax = Math.max,
         nativeMin = Math.min,
         nativeParseInt = context.parseInt,
@@ -1662,7 +1677,7 @@ define(function (require) {
      * @memberOf _.support
      * @type boolean
      */
-    support.funcDecomp = !reNative.test(context.WinRTError) && reThis.test(runInContext);
+    support.funcDecomp = !isNative(context.WinRTError) && reThis.test(runInContext);
 
     /**
      * Detect if `Function#name` is supported (all but IE).
@@ -1752,7 +1767,10 @@ define(function (require) {
         // `Function#bind` spec
         // http://es5.github.io/#x15.3.4.5
         if (partialArgs) {
-          var args = partialArgs.slice();
+          // avoid `arguments` object deoptimizations by using `slice` instead
+          // of `Array.prototype.slice.call` and not assigning `arguments` to a
+          // variable as a ternary expression
+          var args = slice(partialArgs);
           push.apply(args, arguments);
         }
         // mimic the constructor's `return` behavior
@@ -1969,7 +1987,7 @@ define(function (require) {
       function bound() {
         var thisBinding = isBind ? thisArg : this;
         if (partialArgs) {
-          var args = partialArgs.slice();
+          var args = slice(partialArgs);
           push.apply(args, arguments);
         }
         if (partialRightArgs || isCurry) {
@@ -2194,51 +2212,54 @@ define(function (require) {
 
       // recursively compare objects and arrays (susceptible to call stack limits)
       if (isArr) {
+        // compare lengths to determine if a deep comparison is necessary
         length = a.length;
         size = b.length;
+        result = size == length;
 
-        // compare lengths to determine if a deep comparison is necessary
-        result = size == a.length;
-        if (!result && !isWhere) {
-          return result;
-        }
-        // deep compare the contents, ignoring non-numeric properties
-        while (size--) {
-          var index = length,
-              value = b[size];
+        if (result || isWhere) {
+          // deep compare the contents, ignoring non-numeric properties
+          while (size--) {
+            var index = length,
+                value = b[size];
 
-          if (isWhere) {
-            while (index--) {
-              if ((result = baseIsEqual(a[index], value, callback, isWhere, stackA, stackB))) {
-                break;
+            if (isWhere) {
+              while (index--) {
+                if ((result = baseIsEqual(a[index], value, callback, isWhere, stackA, stackB))) {
+                  break;
+                }
               }
+            } else if (!(result = baseIsEqual(a[size], value, callback, isWhere, stackA, stackB))) {
+              break;
             }
-          } else if (!(result = baseIsEqual(a[size], value, callback, isWhere, stackA, stackB))) {
-            break;
           }
         }
-        return result;
       }
-      // deep compare objects using `forIn`, instead of `forOwn`, to avoid `Object.keys`
-      // which, in this case, is more costly
-      forIn(b, function(value, key, b) {
-        if (hasOwnProperty.call(b, key)) {
-          // count the number of properties.
-          size++;
-          // deep compare each property value.
-          return (result = hasOwnProperty.call(a, key) && baseIsEqual(a[key], value, callback, isWhere, stackA, stackB));
-        }
-      });
-
-      if (result && !isWhere) {
-        // ensure both objects have the same number of properties
-        forIn(a, function(value, key, a) {
-          if (hasOwnProperty.call(a, key)) {
-            // `size` will be `-1` if `a` has more properties than `b`
-            return (result = --size > -1);
+      else {
+        // deep compare objects using `forIn`, instead of `forOwn`, to avoid `Object.keys`
+        // which, in this case, is more costly
+        forIn(b, function(value, key, b) {
+          if (hasOwnProperty.call(b, key)) {
+            // count the number of properties.
+            size++;
+            // deep compare each property value.
+            return (result = hasOwnProperty.call(a, key) && baseIsEqual(a[key], value, callback, isWhere, stackA, stackB));
           }
         });
+
+        if (result && !isWhere) {
+          // ensure both objects have the same number of properties
+          forIn(a, function(value, key, a) {
+            if (hasOwnProperty.call(a, key)) {
+              // `size` will be `-1` if `a` has more properties than `b`
+              return (result = --size > -1);
+            }
+          });
+        }
       }
+      stackA.pop();
+      stackB.pop();
+
       if (initedStack) {
         releaseArray(stackA);
         releaseArray(stackB);
@@ -2345,13 +2366,8 @@ define(function (require) {
 
       if (isLarge) {
         var cache = createCache(seen);
-        if (cache) {
-          indexOf = cacheIndexOf;
-          seen = cache;
-        } else {
-          isLarge = false;
-          seen = callback ? seen : (releaseArray(seen), result);
-        }
+        indexOf = cacheIndexOf;
+        seen = cache;
       }
       while (++index < length) {
         var value = array[index],
@@ -2451,8 +2467,14 @@ define(function (require) {
       }
       var bindData = func && func.__bindData__;
       if (bindData && bindData !== true) {
-        bindData = bindData.slice();
-
+        // clone `bindData`
+        bindData = slice(bindData);
+        if (bindData[2]) {
+          bindData[2] = slice(bindData[2]);
+        }
+        if (bindData[3]) {
+          bindData[3] = slice(bindData[3]);
+        }
         // set `thisBinding` is not previously bound
         if (isBind && !(bindData[1] & 1)) {
           bindData[4] = thisArg;
@@ -2471,7 +2493,7 @@ define(function (require) {
         }
         // append partial right arguments
         if (isPartialRight) {
-          push.apply(bindData[3] || (bindData[3] = []), partialRightArgs);
+          unshift.apply(bindData[3] || (bindData[3] = []), partialRightArgs);
         }
         // merge flags
         bindData[1] |= bitmask;
@@ -2504,6 +2526,17 @@ define(function (require) {
     function getIndexOf() {
       var result = (result = lodash.indexOf) === indexOf ? baseIndexOf : result;
       return result;
+    }
+
+    /**
+     * Checks if `value` is a native function.
+     *
+     * @private
+     * @param {*} value The value to check.
+     * @returns {boolean} Returns `true` if the `value` is a native function, else `false`.
+     */
+    function isNative(value) {
+      return typeof value == 'function' && reNative.test(value);
     }
 
     /**
@@ -3536,12 +3569,12 @@ define(function (require) {
      * _.isPlainObject({ 'x': 0, 'y': 0 });
      * // => true
      */
-    var isPlainObject = function(value) {
+    var isPlainObject = !getPrototypeOf ? shimIsPlainObject : function(value) {
       if (!(value && toString.call(value) == objectClass)) {
         return false;
       }
       var valueOf = value.valueOf,
-          objProto = typeof valueOf == 'function' && (objProto = getPrototypeOf(valueOf)) && getPrototypeOf(objProto);
+          objProto = isNative(valueOf) && (objProto = getPrototypeOf(valueOf)) && getPrototypeOf(objProto);
 
       return objProto
         ? (value == objProto || getPrototypeOf(value) == objProto)
@@ -6034,7 +6067,7 @@ define(function (require) {
     }
 
     /**
-     * Creates an array that is the smymetric difference of the provided arrays.
+     * Creates an array that is the symmetric difference of the provided arrays.
      * See http://en.wikipedia.org/wiki/Symmetric_difference.
      *
      * @static
@@ -7003,7 +7036,7 @@ define(function (require) {
      * _.defer(function() { console.log(_.now() - stamp); });
      * // => logs the number of milliseconds it took for the deferred function to be called
      */
-    var now = reNative.test(now = Date.now) && now || function() {
+    var now = isNative(now = Date.now) && now || function() {
       return new Date().getTime();
     };
 
@@ -7730,7 +7763,7 @@ define(function (require) {
      * @memberOf _
      * @type string
      */
-    lodash.VERSION = '2.4.0';
+    lodash.VERSION = '2.4.1';
 
     // add "Chaining" functions to the wrapper
     lodash.prototype.chain = wrapperChain;
@@ -7827,6 +7860,11 @@ DL.Client = function(options) {
   this.url = options.url || "http://dl-api.dev/";
   this.appId = options.appId;
   this.key = options.key;
+
+  /**
+   * @property {KeyValues} keys
+   */
+  this.keys = new DL.KeyValues(this);
 };
 
 /**
@@ -7881,6 +7919,7 @@ DL.Client.prototype.request = function(segments, method, data) {
   var payload, deferred = when.defer();
 
   if (data) {
+    console.log(data);
     payload = JSON.stringify(data);
 
     if (method === "GET") {
@@ -8166,6 +8205,23 @@ DL.File = function(client) {
   };
 };
 
+
+/**
+ * @class KeyValues
+ * @constructor
+ * @param {Client} client
+ */
+DL.KeyValues = function(client) {
+  this.client = client;
+};
+
+DL.KeyValues.prototype.get = function(key) {
+  return this.client.get('key/' + key);
+};
+
+DL.KeyValues.prototype.set = function(key, value) {
+  return this.client.post('key/' + key, { value: value });
+};
 
 /**
  * @class DL.Pagination

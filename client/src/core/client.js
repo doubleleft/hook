@@ -10,6 +10,11 @@ DL.Client = function(options) {
   this.url = options.url || "http://dl-api.dev/";
   this.appId = options.appId;
   this.key = options.key;
+
+  /**
+   * @property {KeyValues} keys
+   */
+  this.keys = new DL.KeyValues(this);
 };
 
 /**
@@ -64,6 +69,7 @@ DL.Client.prototype.request = function(segments, method, data) {
   var payload, deferred = when.defer();
 
   if (data) {
+    console.log(data);
     payload = JSON.stringify(data);
 
     if (method === "GET") {
