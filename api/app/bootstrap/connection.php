@@ -25,6 +25,7 @@ if (isset($config['sqlite'])) {
 $connFactory = new \Illuminate\Database\Connectors\ConnectionFactory($container);
 // $connection = $connFactory->make($config['mysql']);
 $connection = $connFactory->make($config['sqlite']);
+$connection->setFetchMode(PDO::FETCH_CLASS);
 class_alias('\Illuminate\Database\Eloquent\Model', 'DLModel');
 
 $resolver = new \Illuminate\Database\ConnectionResolver(array('default' => $connection));

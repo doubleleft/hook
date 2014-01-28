@@ -21,9 +21,9 @@
     "coffeescript/coffeescript": "*",
     "slim/slim": "*",
     "doctrine/dbal" : "2.*",
-    "illuminate/database": "*",
-    "illuminate/config": "*",
-    "illuminate/cache": "*",
+    "illuminate/database": "4.1.*",
+    "illuminate/config": "4.1.*",
+    "illuminate/cache": "4.1.*",
     "jenssegers/mongodb": "*"
   },
   "require-dev": {

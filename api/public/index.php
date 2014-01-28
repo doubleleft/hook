@@ -106,7 +106,7 @@ $app->group('/files', function() use($app) {
 
 // // internals
 $app->group('/apps', function() use ($app) {
-	$app->get('/test', function() {
+	$app->get('/test', function() use ($app) {
 		Models\App::truncate();
 
 		if (Models\App::count() == 0) {
@@ -119,6 +119,7 @@ $app->group('/apps', function() use ($app) {
 				'secret' => 'test'
 			));
 		}
+
 		$app->content = Models\App::all();
 	});
 	$app->get('/', function() use($app) {
