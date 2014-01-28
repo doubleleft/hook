@@ -36,14 +36,15 @@ class Collection extends \Core\Model
 		//
 		// TODO: Cache table structure for hasTable/hasColumn boosting
 		//
+		$table = $this->getTable();
 
 		// Collection table doesn't exists yet: CREATE TABLE
-		if (!$builder->hasTable($this->getTable())) {
+		if (!$builder->hasTable($table)) {
 
-			$builder->create($this->getTable(), function($t) use ($attributes) {
+			$builder->create($table, function($t) use ($attributes) {
 				$t->increments('_id');
 				foreach($attributes as $field => $value) {
-					$t->{gettype($value)}($field);
+					$t->{gettype($value)}($field)->nullable();
 				}
 
 				// Use timestamp instead of date for created_at/updated_at fields
@@ -54,11 +55,11 @@ class Collection extends \Core\Model
 		} else {
 
 			// Add missing fields: ALTER TABLE.
-			$builder->table($this->getTable(), function($t) use ($attributes, $builder) {
+			$builder->table($table, function($t) use ($attributes, $builder, $table) {
 				foreach($attributes as $field => $value) {
-					if (!$builder->hasColumn($this->getTable(), $field) &&
-							!$builder->hasColumn($this->getTable(), "`{$field}`")) {
-						$t->{gettype($value)}($field);
+					if (!$builder->hasColumn($table, $field) &&
+							!$builder->hasColumn($table, "`{$field}`")) {
+						$t->{gettype($value)}($field)->nullable();
 					}
 				}
 			});
