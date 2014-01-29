@@ -1,25 +1,34 @@
 asyncTest("Server-Sent Events", function() {
   expect(1);
 
-  var post_stream = client.collection('posts').stream({
+  client.collection('streaming').create({
+    name: "frango",
+    age: "20"
+  });
+
+  client.collection('posts').where('age', '>=', '30').stream({
     retry_timeout: 10,
-    open: function(e) {
-      console.log("opened: ", e);
-    },
-    error: function(e) {
-      console.log("error: ", e);
-    },
+    open: function(e) { console.log("opened: ", e); },
+    error: function(e) { console.log(e); },
     message: function(data) {
-      console.log("message: ", data);
+      ok(data.age >= 30);
     }
   });
 
   client.collection('posts').where('name', '=', 'frango').stream({
     message: function(data) {
-      console.log("frango encontrado: ", data);
+      ok(data.name == "frango");
     }
   });
 
+  client.collection('streaming').create({
+    name: "frango",
+    age: "20"
+  });
+
+  client.collection('streaming').create({
+    name: "frango",
+    age: "20"
+  });
+
 });
-
-

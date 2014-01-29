@@ -77,7 +77,9 @@ class ResponseTypeMiddleware extends \Slim\Middleware
 			$this->next->call();
 
 			$app->response->headers->set('Content-type', 'application/json');
-			$app->response->setBody( $app->content->toJson() );
+			$app->response->setBody(
+				method_exists($app->content, 'toJson') ? $app->content->toJson() : json_encode($app->content)
+			);
 		}
 
 	}

@@ -13,6 +13,8 @@ DL.Collection = function(client, name) {
   this.name = name;
   this.wheres = [];
   this.ordering = [];
+  this.limit = null;
+  this.offset = null;
 
   var custom_collections = ['users', 'files'];
   this.segments = (custom_collections.indexOf(this.name) !== -1) ? this.name : 'collection/' + this.name;
@@ -26,6 +28,7 @@ DL.Collection.prototype.constructor = DL.Collection;
  * Create a new resource
  * @method create
  * @param {Object} data
+ * @return {DL.Collection} this
  */
 DL.Collection.prototype.create = function(data) {
   return this.client.post(this.segments, { data: data });
@@ -34,6 +37,7 @@ DL.Collection.prototype.create = function(data) {
 /**
  * Get collection data, based on `where` params.
  * @method get
+ * @return {DL.Collection} this
  */
 DL.Collection.prototype.get = function(options) {
   return this.client.get(this.segments, this.buildQuery(options));
@@ -41,6 +45,14 @@ DL.Collection.prototype.get = function(options) {
 
 DL.Collection.prototype.buildQuery = function(options) {
   var query = {};
+
+  // apply limit / offset
+  if (this.limit) {
+    query.limit = this.limit;
+  }
+  if (this.offset) {
+    query.offset = this.offset;
+  }
 
   // apply wheres
   if (this.wheres.length > 0) {
@@ -69,6 +81,7 @@ DL.Collection.prototype.buildQuery = function(options) {
  * @param {Object | String} where params or field name
  * @param {String} operation operation or value
  * @param {String} value value
+ * @return {DL.Collection} this
  */
 DL.Collection.prototype.where = function(objects, _operation, _value) {
   var field,
@@ -112,6 +125,7 @@ DL.Collection.prototype.addWhere = function(field, operation, value) {
 /**
  * Clear collection where statements
  * @method reset
+ * @return {DL.Collection} this
  */
 DL.Collection.prototype.reset = function() {
   this.wheres = [];
@@ -119,18 +133,38 @@ DL.Collection.prototype.reset = function() {
 };
 
 /**
- * @method orderBy
+ * @method sort
  * @param {String} field
  * @param {Number|String} direction
  * @return {DL.Collection} this
  */
-DL.Collection.prototype.orderBy = function(field, direction) {
+DL.Collection.prototype.sort = function(field, direction) {
   if (!direction) {
     direction = "asc";
   } else if (typeof(direction)==="number") {
     direction = (parseInt(direction, 10) === -1) ? 'desc' : 'asc';
   }
   this.ordering.push([field, direction]);
+  return this;
+};
+
+/**
+ * @method limit
+ * @param {Number} int
+ * @return {DL.Collection} this
+ */
+DL.Collection.prototype.limit = function(int) {
+  this.limit = int;
+  return this;
+};
+
+/**
+ * @method offset
+ * @param {Number} int
+ * @return {DL.Collection} this
+ */
+DL.Collection.prototype.offset = function(int) {
+  this.offset = int;
   return this;
 };
 
@@ -164,6 +198,17 @@ DL.Collection.prototype.paginate = function(perPage, callback) {
   });
 
   return pagination;
+};
+
+/**
+ * Update a single collection entry
+ * @param {String} id
+ * @param {Object} data
+ * @return {DL.Collection} this
+ */
+DL.Collection.prototype.drop = function() {
+  this.client.delete(this.segments);
+  return this;
 };
 
 /**

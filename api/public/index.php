@@ -78,6 +78,14 @@ $app->group('/collection', function () use ($app) {
 		));
 	});
 
+	/**
+	 * DELETE /collection/:name
+	 */
+	$app->delete('/:name', function($name) use ($app) {
+		$coll = new Models\Collection(array('table_name' => $name));
+		$app->content = array('success' => $coll->drop());
+	});
+
 });
 
 
