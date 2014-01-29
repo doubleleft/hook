@@ -46,13 +46,18 @@ class ResponseTypeMiddleware extends \Slim\Middleware
 					$app->environment->offsetSet('slim.request.query_hash', $query_data);
 				}
 
-				$this->next->call();
+				try {
+					// Call current request
+					$this->next->call();
+				} catch (Exception $e) {
+					$app->content = array('error' => $e->getMessage());
+				}
 
 				// Multiple results
 				if (method_exists($app->content, 'each')) {
 					$app->content->each(function($data) use ($app, &$last_event_id) {
 						echo 'id: '. $data->_id . PHP_EOL;
-						echo 'data: '. $data->toJson() . PHP_EOL;
+						echo 'data: '. $this->encode_content($app->content) . PHP_EOL;
 						echo PHP_EOL;
 						ob_flush();
 						flush();
@@ -62,7 +67,7 @@ class ResponseTypeMiddleware extends \Slim\Middleware
 				} else {
 					// Single result
 					echo 'id: '. $app->content->_id . PHP_EOL;
-					echo 'data: '. $app->content->toJson() . PHP_EOL;
+					echo 'data: '. $this->encode_content($app->content) . PHP_EOL;
 					echo PHP_EOL;
 					ob_flush();
 					flush();
@@ -73,15 +78,26 @@ class ResponseTypeMiddleware extends \Slim\Middleware
 			} while (true);
 
 		} else {
-			// Call current request
-			$this->next->call();
+
+			try {
+				// Call current request
+				$this->next->call();
+			} catch (Exception $e) {
+				$app->content = array('error' => $e->getMessage());
+			}
 
 			$app->response->headers->set('Content-type', 'application/json');
-			$app->response->setBody(
-				method_exists($app->content, 'toJson') ? $app->content->toJson() : json_encode($app->content)
-			);
+			$app->response->setBody($this->encode_content($app->content));
 		}
 
+	}
+
+	protected function encode_content($content) {
+		if (method_exists($content, 'toJson')) {
+			return $content->toJson();
+		} else {
+			return json_encode($content);
+		}
 	}
 
 }
