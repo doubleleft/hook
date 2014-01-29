@@ -9,7 +9,6 @@ asyncTest("Server-Sent Events", function() {
       name: "frango",
       age: "20"
     }).then(function(data) {
-
       client.collection('streaming').where('age', '>=', '30').stream({
         retry_timeout: 10,
         open: function(e) { console.log("opened: ", e); },
@@ -24,8 +23,8 @@ asyncTest("Server-Sent Events", function() {
           ok(data.name == "frango");
         }
       });
-
     });
+
     client.collection('streaming').create({
       name: "frango",
       age: "20"

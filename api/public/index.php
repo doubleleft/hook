@@ -46,8 +46,18 @@ $app->group('/collection', function () use ($app) {
 			}
 		}
 
-		// Apply pagination
-		$app->content = ($app->request->get('p')) ? $query->paginate($app->request->get('p')) : $query->get();
+		if ($app->request->get('p')) {
+			// Apply pagination
+			$app->content = $query->paginate($app->request->get('p'));
+
+		} else if ($app->request->get('f')) {
+			// First
+			$app->content = $query->first();
+
+		} else {
+			$app->content = $query->get();
+		}
+
 	});
 
 	/**

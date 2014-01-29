@@ -8055,7 +8055,7 @@ DL.Collection = function(client, name) {
   this.limit = null;
   this.offset = null;
 
-  var custom_collections = ['users', 'files'];
+  var custom_collections = ['auth', 'files'];
   this.segments = (custom_collections.indexOf(this.name) !== -1) ? this.name : 'collection/' + this.name;
 };
 
@@ -8110,6 +8110,10 @@ DL.Collection.prototype.buildQuery = function(options) {
     if (options.paginate) {
       query.p = options.paginate;
     }
+
+    if (options.first) {
+      query.f = 1;
+    }
   }
 
   return query;
@@ -8144,6 +8148,16 @@ DL.Collection.prototype.where = function(objects, _operation, _value) {
   }
 
   return this;
+};
+
+/**
+ * alias for get & then
+ * @method then
+ */
+DL.Collection.prototype.first = function() {
+  var promise = this.get({first: true});
+  promise.then.apply(promise, arguments);
+  return promise;
 };
 
 /**
