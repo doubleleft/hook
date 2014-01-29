@@ -1,5 +1,6 @@
 asyncTest("Collection calls", function() {
   expect(9);
+  stop();
 
   var posts = client.collection('posts');
   var past_time = Math.round(((new Date).getTime() - 2000) / 1000);
@@ -50,7 +51,7 @@ asyncTest("Collection calls", function() {
       if (i==0) {
         ok(item.content == "Lorem ipsum dolor sit amet.", "#each iteration 1");
         i++;
-      } else {
+      } else if (i==1) {
         ok(item.int == 5, "#each iteration 2");
       }
     }, function(response) {
@@ -59,7 +60,6 @@ asyncTest("Collection calls", function() {
 
     start();
   }, 200);
-
 
 });
 

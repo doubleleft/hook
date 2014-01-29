@@ -4,6 +4,11 @@ require_once 'vendor/autoload.php';
 
 $cmd = new Commando\Command();
 
+foreach(glob('src/commands/*.php') as $description_file) {
+  $description = require($description_file);
+  var_dump($description);
+}
+
 // Application
 $cmd->argument()
   ->referToAs('new <application-name>')

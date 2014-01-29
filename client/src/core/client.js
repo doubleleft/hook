@@ -26,6 +26,15 @@ DL.Client.prototype.collection = function(collectionName) {
   return new DL.Collection(this, collectionName);
 };
 
+/**
+ * Get collection instance
+ * @param {String} collectionName
+ * @return {DL.Collection}
+ */
+DL.Client.prototype.collection = function(collectionName) {
+  return new DL.Collection(this, collectionName);
+};
+
 DL.Client.prototype.post = function(segments, data) {
   if (typeof(data)==="undefined") {
     data = {};

@@ -3,7 +3,7 @@
  * http://github.com/doubleleft/dl-api
  *
  * @copyright 2014 Doubleleft
- * @build 1/28/2014
+ * @build 1/29/2014
  */
 (function(window) {
 	//
@@ -7876,6 +7876,15 @@ DL.Client.prototype.collection = function(collectionName) {
   return new DL.Collection(this, collectionName);
 };
 
+/**
+ * Get collection instance
+ * @param {String} collectionName
+ * @return {DL.Collection}
+ */
+DL.Client.prototype.collection = function(collectionName) {
+  return new DL.Collection(this, collectionName);
+};
+
 DL.Client.prototype.post = function(segments, data) {
   if (typeof(data)==="undefined") {
     data = {};
@@ -8037,11 +8046,15 @@ DL.Iterable.prototype = {
  * @constructor
  */
 DL.Collection = function(client, name) {
+
   this.client = client;
 
   this.name = name;
   this.wheres = [];
   this.ordering = [];
+
+  var custom_collections = ['users', 'files'];
+  this.segments = (custom_collections.indexOf(this.name) !== -1) ? this.name : 'collection/' + this.name;
 };
 
 // Inherits from DL.Iterable
@@ -8054,7 +8067,7 @@ DL.Collection.prototype.constructor = DL.Collection;
  * @param {Object} data
  */
 DL.Collection.prototype.create = function(data) {
-  return this.client.post('collection/' + this.name, { data: data });
+  return this.client.post(this.segments, { data: data });
 };
 
 /**
@@ -8062,8 +8075,11 @@ DL.Collection.prototype.create = function(data) {
  * @method get
  */
 DL.Collection.prototype.get = function(options) {
-  var params = [],
-      query = {};
+  return this.client.get(this.segments, this.buildQuery(options));
+};
+
+DL.Collection.prototype.buildQuery = function(options) {
+  var query = {};
 
   // apply wheres
   if (this.wheres.length > 0) {
@@ -8084,7 +8100,7 @@ DL.Collection.prototype.get = function(options) {
     }
   }
 
-  return this.client.get('collection/' + this.name, query);
+  return query;
 };
 
 /**
@@ -8155,6 +8171,15 @@ DL.Collection.prototype.orderBy = function(field, direction) {
   }
   this.ordering.push([field, direction]);
   return this;
+};
+
+/**
+ * Stream
+ * @method create
+ * @param {Object} data
+ */
+DL.Collection.prototype.stream = function(bindings) {
+  return new DL.Stream(this, bindings);
 };
 
 /**
@@ -8302,6 +8327,48 @@ DL.Pagination.prototype.isFetching = function() {
 };
 
 DL.Pagination.prototype.then = function() {
+};
+
+/**
+ * @class KeyValues
+ * @constructor
+ * @param {Client} client
+ */
+DL.Stream = function(collection, options) {
+  if (!options) { options = {}; }
+
+  this.collection = collection;
+
+  // time to wait for retry, after connection closes
+  this.retry_timeout = options.retry_timeout || 5;
+  this.refresh_timeout = options.refresh_timeout || 5;
+
+  var query = this.collection.buildQuery();
+  query['X-App-Id'] = this.collection.client.appId;
+  query['X-App-Key'] = this.collection.client.key;
+  query.stream = {
+    'retry': this.retry_timeout,
+    'refreh': this.refresh_timeout
+  };
+
+  this.event_source = new EventSource(this.collection.client.url + this.collection.segments + "?" + JSON.stringify(query), {
+    withCredentials: true
+  });
+
+  // bind event source
+  for (var event in options) {
+    this.on(event, options[event]);
+  }
+};
+
+DL.Stream.prototype.on = function(event, callback) {
+  if (event == 'message') {
+    this.event_source.onmessage = function(e) {
+      callback(JSON.parse(e.data), e);
+    };
+  } else {
+    this.event_source['on' + event] = callback;
+  }
 };
 
 })(this);

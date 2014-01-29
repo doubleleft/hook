@@ -2,6 +2,8 @@
 
 class ResponseTypeMiddleware extends \Slim\Middleware
 {
+	const MAX_REFRESH_TIMEOUT = 40; // 40 seconds
+	const POOLING_DEFAULT_RETRY = 10; // 10 seconds
 
 	public function call()
 	{
@@ -11,25 +13,32 @@ class ResponseTypeMiddleware extends \Slim\Middleware
 		// Respond based on ACCEPT request header
 		if ($app->request->headers->get('ACCEPT') == 'text/event-stream') {
 
-			// Set response headers
-			$app->response->headers->set('Content-type', 'text/event-stream');
-			foreach($app->response->headers as $header => $content) {
-				header("{$header}: {$content}");
-			}
-
 			$pool_start = time();
+			$refresh_timeout = intval($app->request->get('refresh'));
+			if ($refresh_timeout > self::MAX_REFRESH_TIMEOUT) {
+				$refresh_timeout = self::MAX_REFRESH_TIMEOUT;
+			}
+			$retry_timeout = intval($app->request->get('retry', self::POOLING_DEFAULT_RETRY)) * 1000;
 			$last_event_id = $app->request->headers->get('Last-Event-ID');
 
+			echo 'retry: '. $retry_timeout . PHP_EOL;
 			do {
+
+				// Set response headers
+				$app->response->headers->set('Content-type', 'text/event-stream');
+				foreach($app->response->headers as $header => $content) {
+					header("{$header}: {$content}");
+				}
+
 				// Close EventSource connection after 4 seconds
 				// let the client re-open it if necessary
-				if ((time() - $pool_start) > 4) {
+				if ((time() - $pool_start) > 15) {
 					die();
 				}
 
 				// Append last-event-id to filtering options
 				if ($last_event_id) {
-					$query_data = $this->decode_query_string();
+					$query_data = AuthMiddleware::decode_query_string();
 					if (!isset($query_data['q'])) {
 						$query_data['q'] = array();
 					}
@@ -60,7 +69,7 @@ class ResponseTypeMiddleware extends \Slim\Middleware
 					$last_event_id = $data->content->_id;
 				}
 
-				sleep(2);
+				sleep($refresh_timeout);
 			} while (true);
 
 		} else {
@@ -71,21 +80,6 @@ class ResponseTypeMiddleware extends \Slim\Middleware
 			$app->response->setBody( $app->content->toJson() );
 		}
 
-	}
-
-	public function decode_query_string() {
-		// Parse incoming JSON QUERY_STRING
-		// OBS: that's pretty much an uggly thing, but we need data types here.
-		// Every param is string on query string (srsly?)
-		$query_string = $this->app->environment->offsetGet('QUERY_STRING');
-		$query_data = array();
-
-		if (strlen($query_string)>0) {
-			$query_data = json_decode(urldecode($query_string), true);
-			$this->app->environment->offsetSet('slim.request.query_hash', $query_data);
-		}
-
-		return $query_data;
 	}
 
 }
