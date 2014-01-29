@@ -2,7 +2,7 @@ asyncTest("Pagination", function() {
   expect(7);
 
   var posts = client.collection('posts');
-  posts.orderBy('created_at', -1);
+  posts.sort('created_at', -1);
 
   posts.paginate(function(pagination) {
     ok(pagination.isFetching() == false, "is fetching");
