@@ -1,7 +1,8 @@
 {
-  "name": "dl-api-js",
+  "name": "dl-api",
   "main": [
-    "./dist/build.js"
+    "./dist/dl.js",
+    "./dist/dl.min.js"
   ],
   "dependencies": {
     "uxhr": "*",

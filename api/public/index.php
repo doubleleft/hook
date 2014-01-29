@@ -70,15 +70,6 @@ $app->group('/collection', function () use ($app) {
 	});
 
 	/**
-	 * GET /collection/:name/:id
-	 */
-	$app->get('/:name/:id', function($name, $id) use ($app) {
-		$app->content = Models\Collection::query()
-			->from($name)
-			->find($id);
-	});
-
-	/**
 	 * POST /collection/:name
 	 */
 	$app->post('/:name', function($name) use ($app) {
@@ -89,20 +80,41 @@ $app->group('/collection', function () use ($app) {
 	});
 
 	/**
+	 * DELETE /collection/:name
+	 */
+	$app->delete('/:name', function($name) use ($app) {
+		$coll = new Models\Collection(array('table_name' => $name));
+		$app->content = array('success' => $coll->drop());
+	});
+
+	/**
+	 * GET /collection/:name/:id
+	 */
+	$app->get('/:name/:id', function($name, $id) use ($app) {
+		$app->content = Models\Collection::query()
+			->from($name)
+			->find($id);
+	});
+
+	/**
+	 * POST /collection/:name/:id
+	 */
+	$app->post('/:name/:id', function($name, $id) use ($app) {
+		$app->content = array(
+			'success' => (Models\Collection::query()
+				->from($name)
+				->where('_id', '=', $id)
+				->update($app->request->post('data')) === 1)
+		);
+	});
+
+	/**
 	 * DELETE /collection/:name/:id
 	 */
 	$app->delete('/:name/:id', function($name) use ($app) {
 		echo json_encode(array(
 			'success' => Models\Collection::query()->from($name)->delete($id)
 		));
-	});
-
-	/**
-	 * DELETE /collection/:name
-	 */
-	$app->delete('/:name', function($name) use ($app) {
-		$coll = new Models\Collection(array('table_name' => $name));
-		$app->content = array('success' => $coll->drop());
 	});
 
 });

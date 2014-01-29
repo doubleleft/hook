@@ -20,6 +20,7 @@ class ResponseTypeMiddleware extends \Slim\Middleware
 			}
 			$retry_timeout = intval($app->request->get('retry', self::POOLING_DEFAULT_RETRY)) * 1000;
 			$last_event_id = $app->request->headers->get('Last-Event-ID');
+			$from_now = $app->request->get('from_now');
 
 			echo 'retry: '. $retry_timeout . PHP_EOL;
 			do {
@@ -37,13 +38,22 @@ class ResponseTypeMiddleware extends \Slim\Middleware
 				}
 
 				// Append last-event-id to filtering options
-				if ($last_event_id) {
+				if ($last_event_id || $from_now) {
 					$query_data = AuthMiddleware::decode_query_string();
 					if (!isset($query_data['q'])) {
 						$query_data['q'] = array();
 					}
-					array_push($query_data['q'], array('_id', '>', $last_event_id));
+
+					if ($last_event_id) {
+						array_push($query_data['q'], array('_id', '>', $last_event_id));
+					}
+
+					if ($from_now) {
+						array_push($query_data['q'], array('updated_at', '>=', $pool_start));
+					}
+
 					$app->environment->offsetSet('slim.request.query_hash', $query_data);
+
 				}
 
 				try {

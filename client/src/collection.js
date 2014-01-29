@@ -10,7 +10,7 @@ DL.Collection = function(client, name) {
 
   this.client = client;
 
-  this.name = name;
+  this.name = this._validateName(name);
   this.wheres = [];
   this.ordering = [];
   this.limit = null;
@@ -237,11 +237,11 @@ DL.Collection.prototype.drop = function() {
 
 /**
  * Update a single collection entry
- * @param {String} id
+ * @param {Number | String} _id
  * @param {Object} data
  */
-DL.Collection.prototype.update = function(id, data) {
-  throw new Exception("Not implemented.");
+DL.Collection.prototype.update = function(_id, data) {
+  return this.client.post(this.segments + '/' + _id, { data: data });
 };
 
 /**
@@ -249,5 +249,15 @@ DL.Collection.prototype.update = function(id, data) {
  * @param {Object} data
  */
 DL.Collection.prototype.updateAll = function(data) {
-  throw new Exception("Not implemented.");
+  throw new Error("Not implemented.");
+};
+
+DL.Collection.prototype._validateName = function(name) {
+  var regexp = /^[a-z]+$/;
+
+  if (!regexp.test(name)) {
+    throw new Error("Invalid name: " + name);
+  }
+
+  return name;
 };
