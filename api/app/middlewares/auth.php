@@ -3,6 +3,23 @@
 class AuthMiddleware extends \Slim\Middleware
 {
 
+	public static function decode_query_string() {
+		$app = Slim\Slim::getInstance();
+
+		// Parse incoming JSON QUERY_STRING
+		// OBS: that's pretty much an uggly thing, but we need data types here.
+		// Every param is string on query string (srsly?)
+		$query_string = $app->environment->offsetGet('QUERY_STRING');
+		$query_data = array();
+
+		if (strlen($query_string)>0) {
+			$query_data = json_decode(urldecode($query_string), true);
+			$app->environment->offsetSet('slim.request.query_hash', $query_data);
+		}
+
+		return $query_data;
+	}
+
 	public function call()
 	{
 		// The Slim application
@@ -15,6 +32,8 @@ class AuthMiddleware extends \Slim\Middleware
 		$app->response->headers->set('Access-Control-Allow-Credentials', 'true');
 		$app->response->headers->set('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE');
 		$app->response->headers->set('Access-Control-Allow-Headers', 'x-app-id, x-app-key, content-type, user-agent, accept');
+
+		self::decode_query_string();
 
 		// Don't proceed on CORS requests.
 		if (!$app->request->isOptions()) {

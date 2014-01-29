@@ -7,11 +7,15 @@
  * @constructor
  */
 DL.Collection = function(client, name) {
+
   this.client = client;
 
   this.name = name;
   this.wheres = [];
   this.ordering = [];
+
+  var custom_collections = ['users', 'files'];
+  this.segments = (custom_collections.indexOf(this.name) !== -1) ? this.name : 'collection/' + this.name;
 };
 
 // Inherits from DL.Iterable
@@ -24,7 +28,7 @@ DL.Collection.prototype.constructor = DL.Collection;
  * @param {Object} data
  */
 DL.Collection.prototype.create = function(data) {
-  return this.client.post('collection/' + this.name, { data: data });
+  return this.client.post(this.segments, { data: data });
 };
 
 /**
@@ -32,8 +36,11 @@ DL.Collection.prototype.create = function(data) {
  * @method get
  */
 DL.Collection.prototype.get = function(options) {
-  var params = [],
-      query = {};
+  return this.client.get(this.segments, this.buildQuery(options));
+};
+
+DL.Collection.prototype.buildQuery = function(options) {
+  var query = {};
 
   // apply wheres
   if (this.wheres.length > 0) {
@@ -54,7 +61,7 @@ DL.Collection.prototype.get = function(options) {
     }
   }
 
-  return this.client.get('collection/' + this.name, query);
+  return query;
 };
 
 /**
@@ -125,6 +132,15 @@ DL.Collection.prototype.orderBy = function(field, direction) {
   }
   this.ordering.push([field, direction]);
   return this;
+};
+
+/**
+ * Stream
+ * @method create
+ * @param {Object} data
+ */
+DL.Collection.prototype.stream = function(bindings) {
+  return new DL.Stream(this, bindings);
 };
 
 /**
