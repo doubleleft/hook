@@ -8245,6 +8245,16 @@ DL.Collection.prototype.paginate = function(perPage, callback) {
  * @param {Object} data
  * @return {DL.Collection} this
  */
+DL.Collection.prototype.count = function() {
+  return this.client.get(this.segments + "/count");
+};
+
+/**
+ * Update a single collection entry
+ * @param {String} id
+ * @param {Object} data
+ * @return {DL.Collection} this
+ */
 DL.Collection.prototype.drop = function() {
   this.client.delete(this.segments);
   return this;

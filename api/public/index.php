@@ -51,6 +51,15 @@ $app->group('/collection', function () use ($app) {
 	});
 
 	/**
+	 * GET /collection/:name/count
+	 */
+	$app->get('/:name/count', function($name) use ($app) {
+		$app->content = Models\Collection::query()
+			->from($name)
+			->count();
+	});
+
+	/**
 	 * GET /collection/:name/:id
 	 */
 	$app->get('/:name/:id', function($name, $id) use ($app) {
