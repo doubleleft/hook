@@ -1,0 +1,10 @@
+compile:
+  name: '<%= bower_file.name %>'
+  description: '<%= bower_file.description %>'
+  version: '<%= bower_file.version %>'
+  url: '<%= bower_file.homepage %>'
+  nocode: 'true'
+  themedir: 'yuidoc-theme'
+  options:
+    paths: 'src/'
+    outdir: 'docs'
