@@ -1,6 +1,6 @@
 <?php
 
-return array('users' => function($t) {
+return array('auth' => function($t) {
 	$t->increments('_id');
 	$t->string('email');
 	$t->string('password');

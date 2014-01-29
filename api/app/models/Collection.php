@@ -68,4 +68,10 @@ class Collection extends \Core\Model
 
 	}
 
+	public function drop() {
+		$conn = $this->getConnectionResolver()->connection();
+		$builder = $conn->getSchemaBuilder();
+		return $builder->dropIfExists( $this->getTable() );
+	}
+
 }
