@@ -53,7 +53,6 @@ class ResponseTypeMiddleware extends \Slim\Middleware
 					}
 
 					$app->environment->offsetSet('slim.request.query_hash', $query_data);
-
 				}
 
 				try {
@@ -65,9 +64,10 @@ class ResponseTypeMiddleware extends \Slim\Middleware
 
 				// Multiple results
 				if (method_exists($app->content, 'each')) {
-					$app->content->each(function($data) use ($app, &$last_event_id) {
+					$self = $this;
+					$app->content->each(function($data) use ($app, &$last_event_id, &$self) {
 						echo 'id: '. $data->_id . PHP_EOL;
-						echo 'data: '. $this->encode_content($app->content) . PHP_EOL;
+						echo 'data: '. $self->encode_content($app->content) . PHP_EOL;
 						echo PHP_EOL;
 						ob_flush();
 						flush();
@@ -102,7 +102,7 @@ class ResponseTypeMiddleware extends \Slim\Middleware
 
 	}
 
-	protected function encode_content($content) {
+	public function encode_content($content) {
 		if (method_exists($content, 'toJson')) {
 			return $content->toJson();
 		} else {
