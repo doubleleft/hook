@@ -1,0 +1,3 @@
+[submodule "client/yuidoc-theme"]
+	path = client/yuidoc-theme
+	url = git@github.com:terryweiss/docstrap.git

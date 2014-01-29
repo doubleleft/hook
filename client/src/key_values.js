@@ -1,7 +1,7 @@
 /**
- * @class KeyValues
+ * @class DL.KeyValues
  * @constructor
- * @param {Client} client
+ * @param {DL.Client} client
  */
 DL.KeyValues = function(client) {
   this.client = client;

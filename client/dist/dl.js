@@ -7849,7 +7849,7 @@ var DL = {
 window.DL = DL;
 
 /**
- * @class Client
+ * @class DL.Client
  * @constructor
  * @param {Object} options
  *   @param {String} appId
@@ -7928,7 +7928,6 @@ DL.Client.prototype.request = function(segments, method, data) {
   var payload, deferred = when.defer();
 
   if (data) {
-    console.log(data);
     payload = JSON.stringify(data);
 
     if (method === "GET") {
@@ -8311,9 +8310,9 @@ DL.File = function(client) {
 
 
 /**
- * @class KeyValues
+ * @class DL.KeyValues
  * @constructor
- * @param {Client} client
+ * @param {DL.Client} client
  */
 DL.KeyValues = function(client) {
   this.client = client;

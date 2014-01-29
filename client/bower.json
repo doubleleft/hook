@@ -1,5 +1,8 @@
 {
   "name": "dl-api",
+  "description": "Doubleleft API javascript client.",
+  "version": "0.1",
+  "homepage": "https://github.com/doubleleft/dl-api/client",
   "main": [
     "./dist/dl.js",
     "./dist/dl.min.js"

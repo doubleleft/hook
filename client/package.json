@@ -18,6 +18,7 @@
 	},
 	"devDependencies": {
 		"grunt": "0.4.1",
+		"grunt-contrib-yuidoc": "*",
 		"grunt-contrib-concat": "*",
 		"grunt-contrib-watch": "*",
 		"grunt-contrib-jshint": "*",
