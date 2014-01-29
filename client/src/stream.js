@@ -11,10 +11,12 @@ DL.Stream = function(collection, options) {
   // time to wait for retry, after connection closes
   this.retry_timeout = options.retry_timeout || 5;
   this.refresh_timeout = options.refresh_timeout || 5;
+  this.from_now = options.from_now || false;
 
   var query = this.collection.buildQuery();
   query['X-App-Id'] = this.collection.client.appId;
   query['X-App-Key'] = this.collection.client.key;
+  query.from_now = this.from_now;
   query.stream = {
     'retry': this.retry_timeout,
     'refreh': this.refresh_timeout
