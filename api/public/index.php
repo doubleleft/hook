@@ -12,8 +12,8 @@ require '../app/bootstrap.php';
 
 // Middlewares
 // Add EventSource middeware: http://en.wikipedia.org/wiki/Server-sent_events | http://www.html5rocks.com/en/tutorials/eventsource/basics/
-$app->add(new ResponseTypeMiddleware());
 $app->add(new LogMiddleware());
+$app->add(new ResponseTypeMiddleware());
 $app->add(new AuthMiddleware());
 
 $app->get('/', function() use ($app) {

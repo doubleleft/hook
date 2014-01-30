@@ -112,8 +112,8 @@ DL.Collection.prototype.where = function(objects, _operation, _value) {
 };
 
 /**
- * alias for get & then
- * @method then
+ * Get first element
+ * @method first
  */
 DL.Collection.prototype.first = function() {
   var promise = this.get({first: true});
@@ -122,7 +122,7 @@ DL.Collection.prototype.first = function() {
 };
 
 /**
- * alias for get & then
+ * Alias for get & then
  * @method then
  */
 DL.Collection.prototype.then = function() {
@@ -231,8 +231,7 @@ DL.Collection.prototype.count = function() {
  * @return {DL.Collection} this
  */
 DL.Collection.prototype.drop = function() {
-  this.client.delete(this.segments);
-  return this;
+  return this.client.delete(this.segments);
 };
 
 /**
