@@ -2,9 +2,9 @@
  * @class DL.Client
  * @constructor
  * @param {Object} options
- *   @param {String} appId
- *   @param {String} key
- *   @param {String} url DL base url
+ *   @param {String} options.appId
+ *   @param {String} options.key
+ *   @param {String} options.url default: http://dl-api.dev
  */
 DL.Client = function(options) {
   this.url = options.url || "http://dl-api.dev/";

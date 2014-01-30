@@ -1,0 +1,46 @@
+#!/usr/bin/env php
+<?php
+
+if (PHP_SAPI !== 'cli') {
+  echo 'Warning: dl-api should be invoked via the CLI version of PHP, not the ' . PHP_SAPI.' SAPI' . PHP_EOL;
+}
+
+$VERSION = '1.0.0rc1';
+
+require_once __DIR__ . '/../vendor/autoload.php';
+Guzzle\Http\StaticClient::mount();
+
+echo "..." . PHP_EOL ;
+
+$cli = new Commando\Command();
+$commands = array();
+
+foreach(glob('src/commands/*.php') as $file) {
+  $command = require($file);
+  $commands[ $command['command'] ] = $command;
+
+  $cli->argument()
+    ->referToAs($command['command'])
+    ->describedAs($command['description']);
+}
+
+$cli->option('app')
+  ->describedAs('Application name');
+
+$cli->option('version')
+  ->describedAs('Show CLI version.')
+  ->boolean();
+
+// show cli version
+if ($cli['version']) {
+  die("dl-api: v" . $VERSION . PHP_EOL);
+}
+
+if (isset($cli[0])) {
+  if (isset($commands[$cli[0]])) {
+    $command = $commands[$cli[0]];
+    $command['run']($cli);
+  } else {
+    echo "Command not found." . PHP_EOL;
+  }
+}
