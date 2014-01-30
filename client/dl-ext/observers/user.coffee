@@ -5,6 +5,12 @@
 # <?php
 # User::observe(new UserObserver);
 #
+# --------------------------------
+#
+# require.json
+# {
+#   "swiftmailer/swiftmailer" : "*"
+# }
 
 class UserObserver
   creating: ->

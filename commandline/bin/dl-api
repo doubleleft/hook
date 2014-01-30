@@ -15,9 +15,9 @@ echo "..." . PHP_EOL ;
 $cli = new Commando\Command();
 $commands = array();
 
-foreach(glob('src/commands/*.php') as $file) {
+foreach(glob(__DIR__ . '/../src/commands/*.php') as $file) {
   $command = require($file);
-  $commands[ $command['command'] ] = $command;
+  $commands[ $command['arg0'] ] = $command;
 
   $cli->argument()
     ->referToAs($command['command'])
