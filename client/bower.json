@@ -7,6 +7,16 @@
     "./dist/dl.js",
     "./dist/dl.min.js"
   ],
+  "ignore": [
+    "src",
+    "dl-ext",
+    "docs",
+    "grunt",
+    "tests",
+    "yuidoc-theme",
+    "node_modules",
+    "bower_components"
+  ],
   "dependencies": {
     "uxhr": "*",
     "qunit": "*",
