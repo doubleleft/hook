@@ -79,12 +79,12 @@ class ResponseTypeMiddleware extends \Slim\Middleware
 					// Single result
 					if ($app->content instanceof stdClass) {
 						echo 'id: '. $app->content->_id . PHP_EOL;
+						$last_event_id = $data->content->_id;
 					}
 					echo 'data: '. $this->encode_content($app->content) . PHP_EOL;
 					echo PHP_EOL;
 					ob_flush();
 					flush();
-					$last_event_id = $data->content->_id;
 				}
 
 				sleep($refresh_timeout);

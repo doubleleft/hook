@@ -29,7 +29,7 @@ $app->group('/collection', function () use ($app) {
 	 * GET /collection/:name
 	 */
 	$app->get('/:name', function($name) use ($app) {
-		$query = Models\Collection::query()->from(trim($name));
+		$query = Models\Collection::query()->from($name);
 		$query->where('app_id', $app->key->app_id);
 
 		// Apply filters
@@ -201,7 +201,6 @@ $app->group('/apps', function() use ($app) {
 	});
 
 	$app->post('/', function() use ($app) {
-		file_put_contents('php://stderr', json_encode($app->request->post()));
 		$app->content = Models\App::create($app->request->post('app'));
 	});
 
@@ -214,7 +213,23 @@ $app->group('/apps', function() use ($app) {
 	});
 
 	$app->post('/:name/modules', function($name) use ($app) {
-		$app->content = Models\App::where('name', $name)->first()->modules;
+		$response = null;
+		$data = $app->request->post('module');
+
+		$_app = Models\App::where('name', $name)->first();
+		$data['app_id'] = $_app->_id;
+
+		$module = Models\Module::where('app_id', $data['app_id'])
+			->where('name', $data['name'])
+			->first();
+
+		if ($module) {
+			$response = $module->update($data);
+		} else {
+			$response = Models\Module::create($data);
+		}
+
+		$app->content = $response;
 	});
 
 	$app->put('/:name', function($id) use ($app) {
