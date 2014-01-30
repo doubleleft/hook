@@ -1,6 +1,7 @@
 <?php
 
 return array(
+	'arg0'    => 'modules:list',
 	'command' => 'modules:list',
 	'description' => 'List all application modules',
 	'run' => function($args) {

@@ -1,6 +1,7 @@
 <?php
 
 return array(
+	'arg0'    => 'modules:upload',
 	'command' => 'modules:upload',
 	'description' => 'Upload a module to application',
 	'run' => function($args) {
@@ -11,8 +12,10 @@ return array(
 
 		$client = new Client\Client();
 
-		foreach(glob('dl-ext/**') as $module) {
-			var_dump($module);
+		foreach(Client\Utils::glob('dl-ext/**') as $module) {
+			if (is_file($module)) {
+				echo "Uploading: '{$module}'" . PHP_EOL;
+			}
 		}
 
 		// foreach()

@@ -201,7 +201,8 @@ $app->group('/apps', function() use ($app) {
 	});
 
 	$app->post('/', function() use ($app) {
-		$app->content = Models\App::create($app->request->post('data'));
+		file_put_contents('php://stderr', json_encode($app->request->post()));
+		$app->content = Models\App::create($app->request->post('app'));
 	});
 
 	$app->get('/:name', function($id) {
@@ -209,6 +210,10 @@ $app->group('/apps', function() use ($app) {
 	});
 
 	$app->get('/:name/modules', function($name) use ($app) {
+		$app->content = Models\App::where('name', $name)->first()->modules;
+	});
+
+	$app->post('/:name/modules', function($name) use ($app) {
 		$app->content = Models\App::where('name', $name)->first()->modules;
 	});
 

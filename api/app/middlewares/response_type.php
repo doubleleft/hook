@@ -13,7 +13,7 @@ class ResponseTypeMiddleware extends \Slim\Middleware
 		// Respond based on ACCEPT request header
 		if ($app->request->headers->get('ACCEPT') == 'text/event-stream') {
 
-			$pool_start = time();
+			$pool_start = $app->request->headers->get('X-Time') ?: time();
 			$refresh_timeout = intval($app->request->get('refresh'));
 			if ($refresh_timeout > self::MAX_REFRESH_TIMEOUT) {
 				$refresh_timeout = self::MAX_REFRESH_TIMEOUT;
@@ -26,6 +26,7 @@ class ResponseTypeMiddleware extends \Slim\Middleware
 
 				// Set response headers
 				$app->response->headers->set('Content-type', 'text/event-stream');
+				// $app->response->headers->set('Connection', 'Keep-Alive');
 				foreach($app->response->headers as $header => $content) {
 					header("{$header}: {$content}");
 				}
