@@ -15,7 +15,7 @@ return array(
 			foreach($app->keys as $key) {
 				echo "\tkey: " . $key->key . PHP_EOL;
 			}
-			echo "}" . PHP_EOL;
+			echo "}" . PHP_EOL . PHP_EOL;
 		}
 
 	}
