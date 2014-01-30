@@ -46,14 +46,20 @@ $app->group('/collection', function () use ($app) {
 			}
 		}
 
+		// limit / offset
+		if ($offset = $app->request->get('offset')) {
+			$query = $query->skip($offset);
+		}
+		if ($limit = $app->request->get('limit')) {
+			$query = $query->take($limit);
+		}
+
 		if ($app->request->get('p')) {
 			// Apply pagination
 			$app->content = $query->paginate($app->request->get('p'));
-
 		} else if ($app->request->get('f')) {
 			// First
 			$app->content = $query->first();
-
 		} else {
 			$app->content = $query->get();
 		}

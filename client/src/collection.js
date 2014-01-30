@@ -13,8 +13,8 @@ DL.Collection = function(client, name) {
   this.name = this._validateName(name);
   this.wheres = [];
   this.ordering = [];
-  this.limit = null;
-  this.offset = null;
+  this._limit = null;
+  this._offset = null;
 
   var custom_collections = ['auth', 'files'];
   this.segments = (custom_collections.indexOf(this.name) !== -1) ? this.name : 'collection/' + this.name;
@@ -47,12 +47,8 @@ DL.Collection.prototype.buildQuery = function(options) {
   var query = {};
 
   // apply limit / offset
-  if (this.limit) {
-    query.limit = this.limit;
-  }
-  if (this.offset) {
-    query.offset = this.offset;
-  }
+  if (this._limit !== null) { query.limit = this._limit; }
+  if (this._offset !== null) { query.offset = this._offset; }
 
   // apply wheres
   if (this.wheres.length > 0) {
@@ -168,7 +164,7 @@ DL.Collection.prototype.sort = function(field, direction) {
  * @return {DL.Collection} this
  */
 DL.Collection.prototype.limit = function(int) {
-  this.limit = int;
+  this._limit = int;
   return this;
 };
 
@@ -178,7 +174,7 @@ DL.Collection.prototype.limit = function(int) {
  * @return {DL.Collection} this
  */
 DL.Collection.prototype.offset = function(int) {
-  this.offset = int;
+  this._offset = int;
   return this;
 };
 
