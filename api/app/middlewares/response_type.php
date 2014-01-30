@@ -22,7 +22,6 @@ class ResponseTypeMiddleware extends \Slim\Middleware
 			$last_event_id = $app->request->headers->get('Last-Event-ID');
 			$from_now = $app->request->get('from_now');
 
-			echo 'retry: '. $retry_timeout . PHP_EOL;
 			do {
 
 				// Set response headers
@@ -30,6 +29,7 @@ class ResponseTypeMiddleware extends \Slim\Middleware
 				foreach($app->response->headers as $header => $content) {
 					header("{$header}: {$content}");
 				}
+				echo 'retry: '. $retry_timeout . PHP_EOL;
 
 				// Close EventSource connection after 4 seconds
 				// let the client re-open it if necessary
@@ -67,7 +67,7 @@ class ResponseTypeMiddleware extends \Slim\Middleware
 					$self = $this;
 					$app->content->each(function($data) use ($app, &$last_event_id, &$self) {
 						echo 'id: '. $data->_id . PHP_EOL;
-						echo 'data: '. $self->encode_content($app->content) . PHP_EOL;
+						echo 'data: '. $self->encode_content($data) . PHP_EOL;
 						echo PHP_EOL;
 						ob_flush();
 						flush();
@@ -76,7 +76,9 @@ class ResponseTypeMiddleware extends \Slim\Middleware
 
 				} else {
 					// Single result
-					echo 'id: '. $app->content->_id . PHP_EOL;
+					if ($app->content instanceof stdClass) {
+						echo 'id: '. $app->content->_id . PHP_EOL;
+					}
 					echo 'data: '. $this->encode_content($app->content) . PHP_EOL;
 					echo PHP_EOL;
 					ob_flush();

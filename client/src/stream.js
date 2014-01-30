@@ -1,5 +1,5 @@
 /**
- * @class KeyValues
+ * @class DL.KeyValues
  * @constructor
  * @param {Client} client
  */
@@ -27,17 +27,44 @@ DL.Stream = function(collection, options) {
   });
 
   // bind event source
-  for (var event in options) {
-    this.on(event, options[event]);
+  if (typeof(options)==="function") {
+    this.on('message', options);
+  } else {
+    for (var event in options) {
+      this.on(event, options[event]);
+    }
   }
 };
 
+/**
+ * Register event handler
+ * @method on
+ * @param {String} event
+ * @param {Function} callback
+ * @return {Stream} this
+ */
 DL.Stream.prototype.on = function(event, callback) {
+  var that = this;
+
   if (event == 'message') {
     this.event_source.onmessage = function(e) {
-      callback(JSON.parse(e.data), e);
+      callback.apply(that, [JSON.parse(e.data), e]);
     };
   } else {
-    this.event_source['on' + event] = callback;
+    this.event_source['on' + event] = function(e) {
+      callback.apply(that, [e]);
+    };
   }
+
+  return this;
+};
+
+/**
+ * Close streaming connection
+ * @method close
+ * @return {Stream} this
+ */
+DL.Stream.prototype.close = function() {
+  this.event_source.close();
+  return this;
 };
