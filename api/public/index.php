@@ -195,38 +195,42 @@ $app->group('/apps', function() use ($app) {
 
 		$app->content = Models\App::all();
 	});
+
 	$app->get('/', function() use($app) {
 		$app->content = Models\App::all();
 	});
+
 	$app->post('/', function() use ($app) {
 		$app->content = Models\App::create($app->request->post('data'));
 	});
-	$app->get('/:id', function($id) {
+
+	$app->get('/:name', function($id) {
 		$app->content = Models\App::find($id);
 	});
-	$app->get('/:id/modules', function() use ($app) {
-		$app->content = Models\App::find($id)->modules;
+
+	$app->get('/:name/modules', function($name) use ($app) {
+		$app->content = Models\App::where('name', $name)->first()->modules;
 	});
-	$app->put('/:id', function($id) use ($app) {
+
+	$app->put('/:name', function($id) use ($app) {
 		$app->content = Models\App::find($id)->update($app->request->post('data'));
 	});
-	$app->get('/:id/composer', function($id) use ($app) {
+
+	$app->get('/:name/composer', function($id) use ($app) {
 	// $app->post('/:id/composer', function($id) use ($app) {
 		// $composer = json_decode(file_get_contents('composer.json'));
 		// $composer['require'] = array_merge($composer['require'], $app->request->post('require'));
 		// file_put_contents('composer.json', json_encode($composer));
-
 		//Create the application and run it with the commands
 		error_reporting(E_ALL);
 		ini_set('display_errors', 1);
-
 		chdir('../');
-
 		$application = new Composer\Console\Application();
 		$application->run(new Symfony\Component\Console\Input\ArgvInput(array('update', 'willdurand/geocoder')));
 		var_dump("Finished.");
 	});
-	$app->delete('/:id', function($id) {
+
+	$app->delete('/:name', function($id) {
 		echo json_encode(array('success' => Models\App::query()->delete($id)));
 	});
 });

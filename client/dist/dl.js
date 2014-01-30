@@ -7852,9 +7852,9 @@ window.DL = DL;
  * @class DL.Client
  * @constructor
  * @param {Object} options
- *   @param {String} appId
- *   @param {String} key
- *   @param {String} url DL base url
+ *   @param {String} options.appId
+ *   @param {String} options.key
+ *   @param {String} options.url default: http://dl-api.dev
  */
 DL.Client = function(options) {
   this.url = options.url || "http://dl-api.dev/";
@@ -8051,8 +8051,8 @@ DL.Collection = function(client, name) {
   this.name = this._validateName(name);
   this.wheres = [];
   this.ordering = [];
-  this.limit = null;
-  this.offset = null;
+  this._limit = null;
+  this._offset = null;
 
   var custom_collections = ['auth', 'files'];
   this.segments = (custom_collections.indexOf(this.name) !== -1) ? this.name : 'collection/' + this.name;
@@ -8085,12 +8085,8 @@ DL.Collection.prototype.buildQuery = function(options) {
   var query = {};
 
   // apply limit / offset
-  if (this.limit) {
-    query.limit = this.limit;
-  }
-  if (this.offset) {
-    query.offset = this.offset;
-  }
+  if (this._limit !== null) { query.limit = this._limit; }
+  if (this._offset !== null) { query.offset = this._offset; }
 
   // apply wheres
   if (this.wheres.length > 0) {
@@ -8206,7 +8202,7 @@ DL.Collection.prototype.sort = function(field, direction) {
  * @return {DL.Collection} this
  */
 DL.Collection.prototype.limit = function(int) {
-  this.limit = int;
+  this._limit = int;
   return this;
 };
 
@@ -8216,7 +8212,7 @@ DL.Collection.prototype.limit = function(int) {
  * @return {DL.Collection} this
  */
 DL.Collection.prototype.offset = function(int) {
-  this.offset = int;
+  this._offset = int;
   return this;
 };
 
@@ -8317,8 +8313,18 @@ DL.KeyValues = function(client) {
   this.client = client;
 };
 
-DL.KeyValues.prototype.get = function(key) {
-  return this.client.get('key/' + key);
+/**
+ * @method get
+ * @param {String} key
+ * @param {Function} callback
+ * @return {Promise}
+ */
+DL.KeyValues.prototype.get = function(key, callback) {
+  var promise = this.client.get('key/' + key);
+  if (callback) {
+    promise.then.apply(promise, [callback]);
+  }
+  return promise;
 };
 
 DL.KeyValues.prototype.set = function(key, value) {

@@ -9,13 +9,17 @@
   }],
   "autoload": {
     "classmap": [],
-    "psr-0": {}
+    "psr-0": {
+      "Client\\" : "src/"
+    }
   },
   "require": {
-    "nategood/commando": "*"
+    "nategood/commando": "*",
+    "guzzle/guzzle": "*"
   },
   "require-dev": {
     "phpunit/phpunit": "3.7.*"
   },
-  "minimum-stability": "stable"
+  "bin": ["bin/dl-api"],
+  "minimum-stability": "dev"
 }
