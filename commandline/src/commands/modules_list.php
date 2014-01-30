@@ -15,7 +15,8 @@ return array(
 
 		if ($modules) {
 			foreach ($modules as $module) {
-				echo "Module: '{$module['name']}.'" . PHP_EOL;
+				$num_lines = substr_count($module->code, "\n");
+				echo "Module: '{$module->name}' (LoC: {$num_lines})" . PHP_EOL;
 			}
 		} else {
 			echo "No modules found for: '{$args['app']}'." . PHP_EOL;

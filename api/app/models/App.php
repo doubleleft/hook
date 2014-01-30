@@ -15,6 +15,10 @@ class App extends \Core\Model
 		return $this->hasMany('Models\AppKey', 'app_id');
 	}
 
+	public function modules() {
+		return $this->hasMany('Models\Module', 'app_id');
+	}
+
 	public function afterSave()
 	{
 		$this->keys()->create(array());
