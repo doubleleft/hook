@@ -213,23 +213,17 @@ $app->group('/apps', function() use ($app) {
 	});
 
 	$app->post('/:name/modules', function($name) use ($app) {
-		$response = null;
 		$data = $app->request->post('module');
 
 		$_app = Models\App::where('name', $name)->first();
 		$data['app_id'] = $_app->_id;
 
+		// try to retrieve existing module for this app
 		$module = Models\Module::where('app_id', $data['app_id'])
 			->where('name', $data['name'])
 			->first();
 
-		if ($module) {
-			$response = $module->update($data);
-		} else {
-			$response = Models\Module::create($data);
-		}
-
-		$app->content = $response;
+		$app->content = ($module) ? $module->update($data) : Models\Module::create($data);
 	});
 
 	$app->put('/:name', function($id) use ($app) {
