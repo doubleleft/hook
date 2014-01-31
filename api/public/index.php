@@ -32,6 +32,15 @@ $app->group('/collection', function () use ($app) {
 		$query = Models\Collection::query()->from($name);
 		$query->where('app_id', $app->key->app_id);
 
+		$module = Models\Module::where('app_id', $app->key->app_id)->
+			where('type', 'observers')->
+			where('name', "{$name}.php")->
+			first();
+
+		if ($module) {
+			eval($module->code);
+		}
+
 		// Apply filters
 		if ($q = $app->request->get('q')) {
 			foreach($q as $where) {
@@ -117,7 +126,7 @@ $app->group('/collection', function () use ($app) {
 	/**
 	 * DELETE /collection/:name/:id
 	 */
-	$app->delete('/:name/:id', function($name) use ($app) {
+	$app->delete('/:name/:id', function($name, $id) use ($app) {
 		echo json_encode(array(
 			'success' => Models\Collection::query()->from($name)->delete($id)
 		));
@@ -224,6 +233,14 @@ $app->group('/apps', function() use ($app) {
 			->first();
 
 		$app->content = ($module) ? $module->update($data) : Models\Module::create($data);
+	});
+
+	$app->delete('/:name/modules/:module', function($name, $module_name) use ($app) {
+		$_app = Models\App::where('name', $name)->first();
+		$deleted = Models\Module::where('app_id', $_app->_id)->
+			where('name', $module_name)->
+			delete();
+		$app->content = array('success' => $deleted);
 	});
 
 	$app->put('/:name', function($id) use ($app) {

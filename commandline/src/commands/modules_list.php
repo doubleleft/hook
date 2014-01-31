@@ -14,9 +14,9 @@ return array(
 		$modules = $client->get("apps/{$args['app']}/modules");
 
 		if ($modules) {
+			echo "Modules: " . PHP_EOL;
 			foreach ($modules as $module) {
-				$num_lines = substr_count($module->code, "\n");
-				echo "Module: '{$module->name}' (LoC: {$num_lines})" . PHP_EOL;
+				echo "\t'{$module->name}' ({$module->type}) - LoC: " . substr_count($module->code, "\n") . PHP_EOL;
 			}
 		} else {
 			echo "No modules found for: '{$args['app']}'." . PHP_EOL;
