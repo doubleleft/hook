@@ -20,7 +20,13 @@ class Client {
 	}
 
 	protected function parse($response) {
-		return json_decode($response->getBody());
+		$data = json_decode($response->getBody());
+
+		if (isset($data->error)) {
+			die("Error: " . $data->error . PHP_EOL);
+		}
+
+		return $data;
 	}
 
 }
