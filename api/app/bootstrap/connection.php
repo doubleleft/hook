@@ -12,7 +12,7 @@ if (isset($config['mongodb'])) {
 	$connection = new Jenssegers\Mongodb\Connection($config['mongodb']);
 	class_alias('\Jenssegers\Mongodb\Model', 'DLModel');
 
-} else if ($config) {
+} else {
 
 	//
 	// Create SQLite database

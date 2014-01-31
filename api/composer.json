@@ -23,8 +23,7 @@
     "illuminate/database": "4.1.*",
     "illuminate/config": "4.1.*",
     "illuminate/cache": "4.1.*",
-    "jenssegers/mongodb": "*",
-    "swiftmailer/swiftmailer" : "*"
+    "jenssegers/mongodb": "*"
   },
   "require-dev": {
     "mockery/mockery": "0.8.0",
