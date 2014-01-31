@@ -9,6 +9,10 @@ class Client {
 		return $this->parse(\Guzzle::get($this->root_url . $segments));
 	}
 
+	public function delete($segments) {
+		return $this->parse(\Guzzle::delete($this->root_url . $segments));
+	}
+
 	public function post($segments, $data = array()) {
 		return $this->parse(\Guzzle::post($this->root_url . $segments, array(
 			'body' => $data
@@ -16,7 +20,13 @@ class Client {
 	}
 
 	protected function parse($response) {
-		return json_decode($response->getBody());
+		$data = json_decode($response->getBody());
+
+		if (isset($data->error)) {
+			die("Error: " . $data->error . PHP_EOL);
+		}
+
+		return $data;
 	}
 
 }

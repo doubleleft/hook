@@ -211,23 +211,31 @@ DL.Collection.prototype.paginate = function(perPage, callback) {
 };
 
 /**
- * Update a single collection entry
- * @param {String} id
- * @param {Object} data
- * @return {DL.Collection} this
+ * Count the number of items on this collection
+ * @param {Function} callback [optional]
+ * @return {Promise} this
  */
 DL.Collection.prototype.count = function() {
-  return this.client.get(this.segments + "/count");
+  var promise = this.client.get(this.segments + "/count");
+  promise.then.apply(promise, arguments);
+  return promise;
 };
 
 /**
- * Update a single collection entry
- * @param {String} id
- * @param {Object} data
- * @return {DL.Collection} this
+ * Drop entire collection
+ * @return {Promise}
  */
 DL.Collection.prototype.drop = function() {
   return this.client.delete(this.segments);
+};
+
+/**
+ * Remove a single row by id
+ * @param {String} id
+ * @return {Promise}
+ */
+DL.Collection.prototype.delete = function(_id) {
+  return this.client.delete(this.segments + '/' + _id);
 };
 
 /**
