@@ -11,6 +11,7 @@ class ResponseTypeMiddleware extends \Slim\Middleware
 		$app = $this->app;
 
 		// Respond based on ACCEPT request header
+		// Add EventSource middeware: http://en.wikipedia.org/wiki/Server-sent_events | http://www.html5rocks.com/en/tutorials/eventsource/basics/
 		if ($app->request->headers->get('ACCEPT') == 'text/event-stream') {
 
 			$pool_start = $app->request->headers->get('X-Time') ?: time();

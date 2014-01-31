@@ -16,7 +16,7 @@ DL.Collection = function(client, name) {
   this._limit = null;
   this._offset = null;
 
-  var custom_collections = ['auth', 'files'];
+  var custom_collections = ['files'];
   this.segments = (custom_collections.indexOf(this.name) !== -1) ? this.name : 'collection/' + this.name;
 };
 

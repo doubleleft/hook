@@ -11,7 +11,6 @@ $app = new \Slim\Slim();
 require '../app/bootstrap.php';
 
 // Middlewares
-// Add EventSource middeware: http://en.wikipedia.org/wiki/Server-sent_events | http://www.html5rocks.com/en/tutorials/eventsource/basics/
 $app->add(new LogMiddleware());
 $app->add(new ResponseTypeMiddleware());
 $app->add(new AuthMiddleware());
@@ -130,6 +129,17 @@ $app->group('/collection', function () use ($app) {
 		$app->content = array('success' => Models\Collection::query()->from($name)->where('_id', $id)->delete());
 	});
 
+});
+
+/**
+ * Authentication
+ */
+$app->group('/auth', function() use ($app) {
+	$app->post('/:provider/:access_token', function($provider, $access_token) use ($app) {
+		$user = Auth\Provider::get($provider)->getUserData($access_token);
+		// $app->content = $user;
+		$app->content = Models\Auth::create($user);
+	});
 });
 
 

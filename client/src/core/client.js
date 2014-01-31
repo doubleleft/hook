@@ -27,6 +27,15 @@ DL.Client.prototype.collection = function(collectionName) {
 };
 
 /**
+ * Get authentication object
+ * @param {String} provider
+ * @return {DL.Auth}
+ */
+DL.Client.prototype.auth = function(provider) {
+  return new DL.Auth(this, provider);
+};
+
+/**
  * Get collection instance
  * @param {String} collectionName
  * @return {DL.Collection}
