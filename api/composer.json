@@ -18,7 +18,6 @@
   },
   "require": {
     "composer/composer": "*",
-    "coffeescript/coffeescript": "*",
     "slim/slim": "*",
     "doctrine/dbal" : "2.*",
     "illuminate/database": "4.1.*",
