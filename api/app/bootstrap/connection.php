@@ -8,25 +8,28 @@ $event_dispatcher = new Illuminate\Events\Dispatcher($container);
 // ------------------
 // MongoDB connection
 // ------------------
-// $connection = new Jenssegers\Mongodb\Connection($config['mongodb']);
-// class_alias('\Jenssegers\Mongodb\Model', 'DLModel');
+if (isset($config['mongodb'])) {
+	$connection = new Jenssegers\Mongodb\Connection($config['mongodb']);
+	class_alias('\Jenssegers\Mongodb\Model', 'DLModel');
 
+} else if ($config) {
 
-//
-// Create SQLite database
-//
-if (isset($config['sqlite'])) {
-	touch($config['sqlite']['database']);
+	//
+	// Create SQLite database
+	//
+	if (isset($config['sqlite'])) {
+		touch($config['sqlite']['database']);
+	}
+
+	// -------------
+	// SQL connection
+	// --------------
+	$connFactory = new \Illuminate\Database\Connectors\ConnectionFactory($container);
+	$connection = $connFactory->make(current($config));
+
+	$connection->setFetchMode(PDO::FETCH_CLASS);
+	class_alias('\Illuminate\Database\Eloquent\Model', 'DLModel');
 }
-
-// -------------
-// SQL connection
-// --------------
-$connFactory = new \Illuminate\Database\Connectors\ConnectionFactory($container);
-// $connection = $connFactory->make($config['mysql']);
-$connection = $connFactory->make($config['sqlite']);
-$connection->setFetchMode(PDO::FETCH_CLASS);
-class_alias('\Illuminate\Database\Eloquent\Model', 'DLModel');
 
 $resolver = new \Illuminate\Database\ConnectionResolver(array('default' => $connection));
 $resolver->addConnection('app', $connection);
@@ -40,13 +43,16 @@ DLModel::setEventDispatcher($event_dispatcher);
 //
 $connection->setPaginator(new \Core\Pagination\Environment());
 
+
 //
 // Try to migrate the database
 //
-$builder = $connection->getSchemaBuilder();
-if (!$builder->hasTable('apps')) {
-	foreach(glob('../app/models/schema/*.php') as $file) {
-		$migration = require($file);
-		$builder->create(key($migration), current($migration));
+if (preg_match('/sql|postgres/', $connection->getDriverName())) {
+	$builder = $connection->getSchemaBuilder();
+	if (!$builder->hasTable('apps')) {
+		foreach(glob('../app/models/schema/*.php') as $file) {
+			$migration = require($file);
+			$builder->create(key($migration), current($migration));
+		}
 	}
 }
