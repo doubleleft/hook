@@ -3,7 +3,7 @@
  * http://github.com/doubleleft/dl-api
  *
  * @copyright 2014 Doubleleft
- * @build 1/30/2014
+ * @build 1/31/2014
  */
 (function(window) {
 	//
@@ -8259,13 +8259,21 @@ DL.Collection.prototype.count = function() {
 };
 
 /**
- * Update a single collection entry
- * @param {String} id
- * @param {Object} data
- * @return {DL.Collection} this
+ * Drop entire collection
+ * @return {Promise}
  */
 DL.Collection.prototype.drop = function() {
   return this.client.delete(this.segments);
+};
+
+/**
+ * Remove a single row by id
+ * @param {String} id
+ * @return {Promise}
+ */
+DL.Collection.prototype.delete = function(_id) {
+  console.log(this.segments + '/' + _id);
+  return this.client.delete(this.segments + '/' + _id);
 };
 
 /**
