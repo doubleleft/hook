@@ -32,15 +32,6 @@ $app->group('/collection', function () use ($app) {
 		$query = Models\Collection::query()->from($name);
 		$query->where('app_id', $app->key->app_id);
 
-		$module = Models\Module::where('app_id', $app->key->app_id)->
-			where('type', 'observers')->
-			where('name', "{$name}.php")->
-			first();
-
-		if ($module) {
-			eval($module->code);
-		}
-
 		// Apply filters
 		if ($q = $app->request->get('q')) {
 			foreach($q as $where) {
@@ -88,6 +79,15 @@ $app->group('/collection', function () use ($app) {
 	 * POST /collection/:name
 	 */
 	$app->post('/:name', function($name) use ($app) {
+		// $module = Models\Module::where('app_id', $app->key->app_id)->
+		// 	where('type', 'observers')->
+		// 	where('name', "{$name}.php")->
+		// 	first();
+    //
+		// if ($module) {
+		// 	eval($module->code);
+		// }
+
 		$app->content = Models\Collection::create(array_merge($app->request->post('data'), array(
 			'app_id' => $app->key->app_id,
 			'table_name' => $name
@@ -127,9 +127,7 @@ $app->group('/collection', function () use ($app) {
 	 * DELETE /collection/:name/:id
 	 */
 	$app->delete('/:name/:id', function($name, $id) use ($app) {
-		echo json_encode(array(
-			'success' => Models\Collection::query()->from($name)->where('_id', $id)->delete()
-		));
+		$app->content = array('success' => Models\Collection::query()->from($name)->where('_id', $id)->delete());
 	});
 
 });
@@ -218,7 +216,12 @@ $app->group('/apps', function() use ($app) {
 	});
 
 	$app->get('/:name/modules', function($name) use ($app) {
-		$app->content = Models\App::where('name', $name)->first()->modules;
+		$_app = Models\App::where('name', $name)->first();
+		if (!$_app) {
+			$app->content = array('error' => 'App not found.');
+		} else {
+			$app->content = $_app->modules;
+		}
 	});
 
 	$app->post('/:name/modules', function($name) use ($app) {
