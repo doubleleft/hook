@@ -1,5 +1,0 @@
-javascripts:
-  files:
-    'dist/dl.min.js': <%= concat.javascripts.dest %>
-  options:
-    preserveComments: 'some'
