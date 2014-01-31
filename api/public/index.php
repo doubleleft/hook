@@ -128,7 +128,7 @@ $app->group('/collection', function () use ($app) {
 	 */
 	$app->delete('/:name/:id', function($name, $id) use ($app) {
 		echo json_encode(array(
-			'success' => Models\Collection::query()->from($name)->delete($id)
+			'success' => Models\Collection::query()->from($name)->where('_id', $id)->delete()
 		));
 	});
 

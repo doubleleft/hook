@@ -8272,7 +8272,6 @@ DL.Collection.prototype.drop = function() {
  * @return {Promise}
  */
 DL.Collection.prototype.delete = function(_id) {
-  console.log(this.segments + '/' + _id);
   return this.client.delete(this.segments + '/' + _id);
 };
 
