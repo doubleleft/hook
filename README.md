@@ -20,6 +20,8 @@ API
 
 Every API request should be sent with `X-Application-Id` and `X-Application-Key` headers.
 
+`App-id + app-key` =  identification of the project.
+
 **Collections**
 
 - GET /api/collection/:name
@@ -28,14 +30,6 @@ Every API request should be sent with `X-Application-Id` and `X-Application-Key`
 - PUT /api/collection/:name/:_id
 - PATCH /api/collection/:name/:_id
 
-Collection relationship:
-
-- GET /api/collection/:name/:_id/:relation
-- POST /api/collection/:name/:_id/:relation
-- GET /api/collection/:name/:_id/:relation/:_id
-- PUT /api/collection/:name/:_id/:relation/:_id
-- PATCH /api/collection/:name/:_id/:relation/:_id
-
 **Key/Value storage**
 
 - GET /api/key/:name
@@ -43,14 +37,22 @@ Collection relationship:
 - PUT /api/key/:name
 - PATCH /api/key/:name
 
-**Mailing**
-
-- ?
-- https://www.parse.com/docs/cloud_modules_guide#mailgun
+# Yet to be done...
+---
 
 **Authentication**
 
 - GET /api/auth/:provider
+
+
+** Collection relationship **
+
+- GET /api/collection/:name/:_id/:relation
+- POST /api/collection/:name/:_id/:relation
+- GET /api/collection/:name/:_id/:relation/:_id
+- PUT /api/collection/:name/:_id/:relation/:_id
+- PATCH /api/collection/:name/:_id/:relation/:_id
+
 
 **Files**
 
@@ -58,6 +60,11 @@ Collection relationship:
 - POST /api/files
 - PUT /api/files/:_id
 - GET /api/files/:_id
+
+**Mailing**
+
+- ?
+- https://www.parse.com/docs/cloud_modules_guide#mailgun
 
 **Batch (multiple requests)**
 
