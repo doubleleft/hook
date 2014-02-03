@@ -11,4 +11,14 @@ class Auth extends Collection
 		return $this->belongsTo('Models\App');
 	}
 
+	public function tokens() {
+		return $this->hasMany('Models\AuthToken', 'auth_id');
+	}
+
+	public function generate_token() {
+		return $this->tokens()->create(array(
+			'app_id' => $this->app_id
+		));
+	}
+
 }
