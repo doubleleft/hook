@@ -61,7 +61,7 @@ class ResponseTypeMiddleware extends \Slim\Middleware
 					// Call current request
 					$this->next->call();
 				} catch (Exception $e) {
-					$app->content = array('error' => $e->getMessage());
+					$app->content = $this->handle_error_response($e);;
 				}
 
 				// Multiple results
@@ -97,7 +97,7 @@ class ResponseTypeMiddleware extends \Slim\Middleware
 				// Call current request
 				$this->next->call();
 			} catch (Exception $e) {
-				$app->content = array('error' => $e->getMessage());
+				$app->content = $this->handle_error_response($e);;
 			}
 
 			$app->response->headers->set('Content-type', 'application/json');
@@ -111,6 +111,16 @@ class ResponseTypeMiddleware extends \Slim\Middleware
 			return $content->toJson();
 		} else {
 			return json_encode($content);
+		}
+	}
+
+	protected function handle_error_response($e) {
+		// Allow queries with tables that doesn't exist yet (SQLite3)
+		if (strpos($e->getMessage(), 'no such table') !== false) {
+			return array();
+
+		} else {
+			return array('error' => $e->getMessage());
 		}
 	}
 
