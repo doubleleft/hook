@@ -1,8 +1,8 @@
 <?php
 
 return array(
-	'arg0'    => 'modules:remove',
-	'command' => 'modules:remove',
+	'arg0'    => 'module:remove',
+	'command' => 'module:remove',
 	'description' => 'Remove a module from application',
 	'run' => function($args) {
 		$app = (isset($args['app'])) ? $args['app'] : false;

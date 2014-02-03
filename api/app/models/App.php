@@ -19,6 +19,10 @@ class App extends \Core\Model
 		return $this->hasMany('Models\Module', 'app_id');
 	}
 
+	public function configs() {
+		return $this->hasMany('Models\AppConfig', 'app_id');
+	}
+
 	public function afterSave()
 	{
 		$this->keys()->create(array());

@@ -135,10 +135,16 @@ $app->group('/collection', function () use ($app) {
  * Authentication
  */
 $app->group('/auth', function() use ($app) {
-	$app->post('/:provider/:access_token', function($provider, $access_token) use ($app) {
-		$user = Auth\Provider::get($provider)->getUserData($access_token);
-		// $app->content = $user;
-		$app->content = Models\Auth::create($user);
+	$app->post('/facebook/:access_token', function($access_token) use ($app) {
+		$provider = new Auth\Providers\Facebook();
+		$user = $provider->getUserData($access_token);
+
+		$auth = Models\Auth::where('facebook_id', $user['id'])->first();
+		if (!$auth) {
+			$auth = Models\Auth::create($user);
+		}
+
+		$app->content = $auth;
 	});
 });
 
@@ -223,6 +229,32 @@ $app->group('/apps', function() use ($app) {
 
 	$app->get('/:name', function($id) {
 		$app->content = Models\App::find($id);
+	});
+
+	$app->get('/:name/configs', function($name) use ($app) {
+		$_app = Models\App::where('name', $name)->first();
+		$app->content = $_app->configs;
+	});
+
+	$app->post('/:name/configs', function($name) use ($app) {
+		$_app = Models\App::where('name', $name)->first();
+		foreach($app->request->post('configs', array()) as $config) {
+			$existing = $_app->configs()->where('name', $config['name'])->first();
+			if ($existing) {
+				$existing->update($config);
+			} else {
+				$_app->configs()->create($config);
+			}
+		}
+		$app->content = array('success' => true);
+	});
+
+	$app->delete('/:name/configs/:config', function($name, $config) use ($app) {
+		$_app = Models\App::where('name', $name)->first();
+		$config = Models\AppConfig::where('app_id', $_app->_id)->
+			where('name', $config)->
+			first();
+		$app->content = array('success' => $config->delete());
 	});
 
 	$app->get('/:name/modules', function($name) use ($app) {

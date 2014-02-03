@@ -1,8 +1,8 @@
 <?php
 
 return array(
-	'arg0'    => 'modules:upload',
-	'command' => 'modules:upload',
+	'arg0'    => 'module:upload',
+	'command' => 'module:upload',
 	'description' => 'Upload a module to application',
 	'run' => function($args) {
 
