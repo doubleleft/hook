@@ -44,7 +44,10 @@ class Collection extends \Core\Model
 			$builder->create($table, function($t) use ($attributes) {
 				$t->increments('_id');
 				foreach($attributes as $field => $value) {
-					$t->{gettype($value)}($field)->nullable();
+					$datatype = gettype($value);
+					if ($datatype !== 'array') {
+						$t->{gettype($value)}($field)->nullable();
+					}
 				}
 
 				// Use timestamp instead of date for created_at/updated_at fields
@@ -55,11 +58,15 @@ class Collection extends \Core\Model
 		} else {
 
 			// Add missing fields: ALTER TABLE.
+			// TODO: DRY
 			$builder->table($table, function($t) use ($attributes, $builder, $table) {
 				foreach($attributes as $field => $value) {
 					if (!$builder->hasColumn($table, $field) &&
 							!$builder->hasColumn($table, "`{$field}`")) {
-						$t->{gettype($value)}($field)->nullable();
+						$datatype = gettype($value);
+						if ($datatype !== 'array') {
+							$t->{gettype($value)}($field)->nullable();
+						}
 					}
 				}
 			});
