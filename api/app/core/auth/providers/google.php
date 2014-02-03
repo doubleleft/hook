@@ -1,6 +1,7 @@
 <?php
 namespace Auth\Providers;
 
-class Twitter extends Base {
+class Google extends Base {
 }
+
 

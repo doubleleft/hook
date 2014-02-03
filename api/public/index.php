@@ -135,25 +135,8 @@ $app->group('/collection', function () use ($app) {
  * Authentication
  */
 $app->group('/auth', function() use ($app) {
-	$app->post('/facebook', function() use ($app) {
-		$provider = new Auth\Providers\Facebook();
-		$auth_data = $provider->getUserData($app->request->post('accessToken'));
-		$auth_data['app_id'] = $app->key->app_id;
-		$user = null;
-
-		try {
-			$user = Models\Auth::where('facebook_id', $auth_data['facebook_id'])
-				->where('app_id', $auth_data['app_id'])
-				->first();
-		} catch (Exception $e) {
-			// auth table may not exists here
-		}
-
-		if (!$user) {
-			$user = Models\Auth::create($auth_data);
-		}
-
-		$app->content = $user;
+	$app->post('/:provider', function($provider_name) use ($app) {
+		$app->content = Auth\Provider::get($provider_name)->register($app->request->post());
 	});
 });
 

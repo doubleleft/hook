@@ -23,7 +23,10 @@
     "illuminate/database": "4.1.*",
     "illuminate/config": "4.1.*",
     "illuminate/cache": "4.1.*",
-    "jenssegers/mongodb": "*"
+    "jenssegers/mongodb": "*",
+    "dropbox/dropbox-sdk": "1.1.*",
+    "aws/aws-sdk-php": "2.5.*",
+    "swiftmailer/swiftmailer": "5.0.*"
   },
   "require-dev": {
     "mockery/mockery": "0.8.0",
