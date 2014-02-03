@@ -116,15 +116,15 @@ class ResponseTypeMiddleware extends \Slim\Middleware
 
 	protected function handle_error_response($e, $app) {
 		// Allow queries with tables that doesn't exist yet (SQLite3)
-		// if (strpos($e->getMessage(), 'no such table') !== false) {
-		// 	return array();
-    //
-		// } else {
+		if (strpos($e->getMessage(), 'no such table') !== false) {
+			return array();
+
+		} else {
 			// Internal Server Error
 			$app->response->setStatus(500);
 
 			return array('error' => $e->getMessage());
-		// }
+		}
 	}
 
 }
