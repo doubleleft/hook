@@ -13,8 +13,15 @@ class Facebook extends Base {
 		unset($data['id']);
 
 		if (isset($data['education'])) { $data['education'] = $data['education'][0]['type']; }
-		if (isset($data['languages'])) { $data['languages'] = $data['languages'][0]['name']; }
-		unset($data['work']);
+
+		$unusual_fields = array('work', 'languages', 'hometown', 'location', 'sports', 'favorite_teams', 'favorite_athletes');
+		foreach($unusual_fields as $field) {
+			unset($data[$field]);
+
+			// if (isset($data[$field])) {
+			// 	$data[$field] = $data[$field][0]['name'];
+			// }
+		}
 
 		return $this->findOrRegister('facebook_id', $data);
 	}
