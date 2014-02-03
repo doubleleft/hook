@@ -17,8 +17,6 @@ class Facebook {
 		if (isset($data['languages'])) { $data['languages'] = $data['languages'][0]['name']; }
 		unset($data['work']);
 
-		var_dump($data);
-
 		return $data;
 	}
 
