@@ -1,8 +1,8 @@
 <?php
 
 return array(
-	'arg0'    => 'app:list',
-	'command' => 'app:list',
+	'arg0'    => 'apps',
+	'command' => 'apps',
 	'description' => 'List all applications',
 	'run' => function($args) {
 
