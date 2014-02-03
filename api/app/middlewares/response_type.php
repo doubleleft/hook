@@ -41,7 +41,7 @@ class ResponseTypeMiddleware extends \Slim\Middleware
 
 				// Append last-event-id to filtering options
 				if ($last_event_id || $from_now) {
-					$query_data = AuthMiddleware::decode_query_string();
+					$query_data = AppAuthMiddleware::decode_query_string();
 					if (!isset($query_data['q'])) {
 						$query_data['q'] = array();
 					}
@@ -61,7 +61,7 @@ class ResponseTypeMiddleware extends \Slim\Middleware
 					// Call current request
 					$this->next->call();
 				} catch (Exception $e) {
-					$app->content = $this->handle_error_response($e);;
+					$app->content = $this->handle_error_response($e, $app);
 				}
 
 				// Multiple results
@@ -97,7 +97,7 @@ class ResponseTypeMiddleware extends \Slim\Middleware
 				// Call current request
 				$this->next->call();
 			} catch (Exception $e) {
-				$app->content = $this->handle_error_response($e);;
+				$app->content = $this->handle_error_response($e, $app);
 			}
 
 			$app->response->headers->set('Content-type', 'application/json');
@@ -114,14 +114,17 @@ class ResponseTypeMiddleware extends \Slim\Middleware
 		}
 	}
 
-	protected function handle_error_response($e) {
+	protected function handle_error_response($e, $app) {
 		// Allow queries with tables that doesn't exist yet (SQLite3)
-		if (strpos($e->getMessage(), 'no such table') !== false) {
-			return array();
+		// if (strpos($e->getMessage(), 'no such table') !== false) {
+		// 	return array();
+    //
+		// } else {
+			// Internal Server Error
+			$app->response->setStatus(500);
 
-		} else {
 			return array('error' => $e->getMessage());
-		}
+		// }
 	}
 
 }

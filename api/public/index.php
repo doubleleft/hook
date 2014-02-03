@@ -13,7 +13,7 @@ require '../app/bootstrap.php';
 // Middlewares
 $app->add(new LogMiddleware());
 $app->add(new ResponseTypeMiddleware());
-$app->add(new AuthMiddleware());
+$app->add(new AppAuthMiddleware());
 
 $app->get('/', function() use ($app) {
 	$app->content =  Models\App::all();
@@ -135,16 +135,25 @@ $app->group('/collection', function () use ($app) {
  * Authentication
  */
 $app->group('/auth', function() use ($app) {
-	$app->post('/facebook/:access_token', function($access_token) use ($app) {
+	$app->post('/facebook', function() use ($app) {
 		$provider = new Auth\Providers\Facebook();
-		$user = $provider->getUserData($access_token);
+		$auth_data = $provider->getUserData($app->request->post('accessToken'));
+		$auth_data['app_id'] = $app->key->app_id;
+		$user = null;
 
-		$auth = Models\Auth::where('facebook_id', $user['id'])->first();
-		if (!$auth) {
-			$auth = Models\Auth::create($user);
+		try {
+			$user = Models\Auth::where('facebook_id', $auth_data['facebook_id'])
+				->where('app_id', $auth_data['app_id'])
+				->first();
+		} catch (Exception $e) {
+			// auth table may not exists here
 		}
 
-		$app->content = $auth;
+		if (!$user) {
+			$user = Models\Auth::create($auth_data);
+		}
+
+		$app->content = $user;
 	});
 });
 

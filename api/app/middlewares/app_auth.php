@@ -1,6 +1,6 @@
 <?php
 
-class AuthMiddleware extends \Slim\Middleware
+class AppAuthMiddleware extends \Slim\Middleware
 {
 
 	public static function decode_query_string() {
