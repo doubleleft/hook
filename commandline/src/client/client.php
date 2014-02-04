@@ -3,7 +3,7 @@
 namespace Client;
 
 class Client {
-	var $root_url = 'http://dl-api.dev/api/public/index.php/';
+	var $root_url = 'http://dl-api.dev/api/index.php/';
 
 	public function get($segments) {
 		return $this->parse(\Guzzle::get($this->root_url . $segments));
