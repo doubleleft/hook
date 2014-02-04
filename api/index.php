@@ -85,14 +85,20 @@ $app->group('/collection', function () use ($app) {
 	 * POST /collection/:name
 	 */
 	$app->post('/:name', function($name) use ($app) {
-		// $module = models\Module::where('app_id', $app->key->app_id)->
-		// 	where('type', 'observers')->
-		// 	where('name', "{$name}.php")->
-		// 	first();
-    //
-		// if ($module) {
-		// 	eval($module->code);
-		// }
+		$module = models\Module::where('app_id', $app->key->app_id)->
+			where('type', 'observers')->
+			where('name', "{$name}.php")->
+			first();
+
+		if ($module) {
+			eval(substr($module->code, 5));
+			$klass = ucfirst($name);
+			if (class_exists($klass)) {
+				models\Collection::observe(new $klass);
+			} else {
+				throw new Exception("Module '{$name}.php' must define a class named '{$klass}'.");
+			}
+		}
 
 		$app->content = models\Collection::create(array_merge($app->request->post('data'), array(
 			'app_id' => $app->key->app_id,
