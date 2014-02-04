@@ -37,7 +37,7 @@ class AppAuthMiddleware extends \Slim\Middleware
 
 		// Don't proceed on CORS requests.
 		if (!$app->request->isOptions()) {
-			$app->key = Models\AppKey::where('app_id', $app->request->headers->get('X-App-Id') ?: $app->request->get('X-App-Id'))
+			$app->key = models\AppKey::where('app_id', $app->request->headers->get('X-App-Id') ?: $app->request->get('X-App-Id'))
 				->where('key', $app->request->headers->get('X-App-Key') ?: $app->request->get('X-App-Key'))
 				->first();
 

@@ -1,5 +1,5 @@
 <?php
-namespace Models;
+namespace models;
 
 class AuthToken extends \Core\Model{
 
@@ -14,11 +14,11 @@ class AuthToken extends \Core\Model{
 	}
 
 	public function app() {
-		return $this->belongsTo('Models\App');
+		return $this->belongsTo('models\App');
 	}
 
 	public function auth() {
-		return $this->belongsTo('Models\Auth');
+		return $this->belongsTo('models\Auth');
 	}
 
 	public function beforeSave() {

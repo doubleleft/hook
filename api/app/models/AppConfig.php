@@ -1,6 +1,5 @@
 <?php
-
-namespace Models;
+namespace models;
 
 class AppConfig extends \Core\Model
 {
@@ -8,7 +7,7 @@ class AppConfig extends \Core\Model
 	protected $primaryKey = '_id';
 
 	public function app() {
-		return $this->belongsTo('Models\App');
+		return $this->belongsTo('models\App');
 	}
 
 }

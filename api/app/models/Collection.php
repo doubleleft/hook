@@ -1,5 +1,5 @@
 <?php
-namespace Models;
+namespace models;
 
 class Collection extends \Core\Model
 {
@@ -19,7 +19,7 @@ class Collection extends \Core\Model
 	}
 
 	public function app() {
-		return $this->belongsTo('Models\App');
+		return $this->belongsTo('models\App');
 	}
 
 	public function beforeSave() {

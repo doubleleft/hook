@@ -13,7 +13,7 @@
       "app/middlewares"
     ],
     "psr-0": {
-      "Models\\" : "app/"
+      "models\\" : "app/"
     }
   },
   "require": {

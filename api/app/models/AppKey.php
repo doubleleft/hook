@@ -1,5 +1,5 @@
 <?php
-namespace Models;
+namespace models;
 
 class AppKey extends \Core\Model
 {
@@ -12,7 +12,7 @@ class AppKey extends \Core\Model
 	}
 
 	public function app() {
-		return $this->belongsTo('Models\App');
+		return $this->belongsTo('models\App');
 	}
 
 	public function beforeSave() {

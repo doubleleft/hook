@@ -19,7 +19,7 @@ $app->add(new ResponseTypeMiddleware());
 $app->add(new AppAuthMiddleware());
 
 $app->get('/', function() use ($app) {
-	$app->content =  Models\App::all();
+	$app->content = models\App::all();
 });
 
 /**
@@ -31,7 +31,7 @@ $app->group('/collection', function () use ($app) {
 	 * GET /collection/:name
 	 */
 	$app->get('/:name', function($name) use ($app) {
-		$query = Models\Collection::query()->from($name);
+		$query = models\Collection::query()->from($name);
 		$query->where('app_id', $app->key->app_id);
 
 		// Apply filters
@@ -72,7 +72,7 @@ $app->group('/collection', function () use ($app) {
 	 * GET /collection/:name/count
 	 */
 	$app->get('/:name/count', function($name) use ($app) {
-		$app->content = Models\Collection::query()
+		$app->content = models\Collection::query()
 			->from($name)
 			->count();
 	});
@@ -81,7 +81,7 @@ $app->group('/collection', function () use ($app) {
 	 * POST /collection/:name
 	 */
 	$app->post('/:name', function($name) use ($app) {
-		// $module = Models\Module::where('app_id', $app->key->app_id)->
+		// $module = models\Module::where('app_id', $app->key->app_id)->
 		// 	where('type', 'observers')->
 		// 	where('name', "{$name}.php")->
 		// 	first();
@@ -90,7 +90,7 @@ $app->group('/collection', function () use ($app) {
 		// 	eval($module->code);
 		// }
 
-		$app->content = Models\Collection::create(array_merge($app->request->post('data'), array(
+		$app->content = models\Collection::create(array_merge($app->request->post('data'), array(
 			'app_id' => $app->key->app_id,
 			'table_name' => $name
 		)));
@@ -100,7 +100,7 @@ $app->group('/collection', function () use ($app) {
 	 * DELETE /collection/:name
 	 */
 	$app->delete('/:name', function($name) use ($app) {
-		$coll = new Models\Collection(array('table_name' => $name));
+		$coll = new models\Collection(array('table_name' => $name));
 		$app->content = array('success' => $coll->drop());
 	});
 
@@ -108,7 +108,7 @@ $app->group('/collection', function () use ($app) {
 	 * GET /collection/:name/:id
 	 */
 	$app->get('/:name/:id', function($name, $id) use ($app) {
-		$app->content = Models\Collection::query()
+		$app->content = models\Collection::query()
 			->from($name)
 			->find($id);
 	});
@@ -118,7 +118,7 @@ $app->group('/collection', function () use ($app) {
 	 */
 	$app->post('/:name/:id', function($name, $id) use ($app) {
 		$app->content = array(
-			'success' => (Models\Collection::query()
+			'success' => (models\Collection::query()
 				->from($name)
 				->where('_id', '=', $id)
 				->update($app->request->post('data')) === 1)
@@ -129,7 +129,7 @@ $app->group('/collection', function () use ($app) {
 	 * DELETE /collection/:name/:id
 	 */
 	$app->delete('/:name/:id', function($name, $id) use ($app) {
-		$app->content = array('success' => Models\Collection::query()->from($name)->where('_id', $id)->delete());
+		$app->content = array('success' => models\Collection::query()->from($name)->where('_id', $id)->delete());
 	});
 
 });
@@ -155,16 +155,16 @@ $app->group('/key', function() use ($app) {
 	 * GET /key/:name
 	 */
 	$app->get('/:key', function($key) use ($app) {
-		$app->content = Models\KeyValue::where('app_id', $app->key->app_id)
+		$app->content = models\KeyValue::where('app_id', $app->key->app_id)
 			->where('name', $key)
-			->first() ?: new Models\KeyValue();
+			->first() ?: new models\KeyValue();
 	});
 
 	/**
 	 * PUT /key/:name
 	 */
 	$app->post('/:key', function($key) use ($app) {
-		$app->content = Models\KeyValue::upsert(array(
+		$app->content = models\KeyValue::upsert(array(
 			'app_id' => $app->key->app_id,
 			'name' => $key,
 			'value' => $app->request->post('value')
@@ -200,10 +200,10 @@ $app->group('/files', function() use($app) {
 // // internals
 $app->group('/apps', function() use ($app) {
 	$app->get('/test', function() use ($app) {
-		Models\App::truncate();
+		models\App::truncate();
 
-		if (Models\App::count() == 0) {
-			$app = Models\App::create(array(
+		if (models\App::count() == 0) {
+			$app = models\App::create(array(
 				'_id' => 1,
 				'name' => "test"
 			));
@@ -213,28 +213,28 @@ $app->group('/apps', function() use ($app) {
 			));
 		}
 
-		$app->content = Models\App::all();
+		$app->content = models\App::all();
 	});
 
 	$app->get('/', function() use($app) {
-		$app->content = Models\App::all();
+		$app->content = models\App::all();
 	});
 
 	$app->post('/', function() use ($app) {
-		$app->content = Models\App::create($app->request->post('app'));
+		$app->content = models\App::create($app->request->post('app'));
 	});
 
 	$app->get('/:name', function($id) {
-		$app->content = Models\App::find($id);
+		$app->content = models\App::find($id);
 	});
 
 	$app->get('/:name/configs', function($name) use ($app) {
-		$_app = Models\App::where('name', $name)->first();
+		$_app = models\App::where('name', $name)->first();
 		$app->content = $_app->configs;
 	});
 
 	$app->post('/:name/configs', function($name) use ($app) {
-		$_app = Models\App::where('name', $name)->first();
+		$_app = models\App::where('name', $name)->first();
 		foreach($app->request->post('configs', array()) as $config) {
 			$existing = $_app->configs()->where('name', $config['name'])->first();
 			if ($existing) {
@@ -247,15 +247,15 @@ $app->group('/apps', function() use ($app) {
 	});
 
 	$app->delete('/:name/configs/:config', function($name, $config) use ($app) {
-		$_app = Models\App::where('name', $name)->first();
-		$config = Models\AppConfig::where('app_id', $_app->_id)->
+		$_app = models\App::where('name', $name)->first();
+		$config = models\AppConfig::where('app_id', $_app->_id)->
 			where('name', $config)->
 			first();
 		$app->content = array('success' => $config->delete());
 	});
 
 	$app->get('/:name/modules', function($name) use ($app) {
-		$_app = Models\App::where('name', $name)->first();
+		$_app = models\App::where('name', $name)->first();
 		if (!$_app) {
 			$app->content = array('error' => 'App not found.');
 		} else {
@@ -266,27 +266,27 @@ $app->group('/apps', function() use ($app) {
 	$app->post('/:name/modules', function($name) use ($app) {
 		$data = $app->request->post('module');
 
-		$_app = Models\App::where('name', $name)->first();
+		$_app = models\App::where('name', $name)->first();
 		$data['app_id'] = $_app->_id;
 
 		// try to retrieve existing module for this app
-		$module = Models\Module::where('app_id', $data['app_id'])
+		$module = models\Module::where('app_id', $data['app_id'])
 			->where('name', $data['name'])
 			->first();
 
-		$app->content = ($module) ? $module->update($data) : Models\Module::create($data);
+		$app->content = ($module) ? $module->update($data) : models\Module::create($data);
 	});
 
 	$app->delete('/:name/modules/:module', function($name, $module_name) use ($app) {
-		$_app = Models\App::where('name', $name)->first();
-		$deleted = Models\Module::where('app_id', $_app->_id)->
+		$_app = models\App::where('name', $name)->first();
+		$deleted = models\Module::where('app_id', $_app->_id)->
 			where('name', $module_name)->
 			delete();
 		$app->content = array('success' => $deleted);
 	});
 
 	$app->put('/:name', function($id) use ($app) {
-		$app->content = Models\App::find($id)->update($app->request->post('data'));
+		$app->content = models\App::find($id)->update($app->request->post('data'));
 	});
 
 	$app->get('/:name/composer', function($id) use ($app) {
@@ -304,7 +304,7 @@ $app->group('/apps', function() use ($app) {
 	});
 
 	$app->delete('/:name', function($id) {
-		echo json_encode(array('success' => Models\App::query()->delete($id)));
+		echo json_encode(array('success' => models\App::query()->delete($id)));
 	});
 });
 

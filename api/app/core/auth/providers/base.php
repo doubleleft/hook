@@ -12,14 +12,14 @@ class Base {
 		$user = null;
 
 		try {
-			$user = \Models\Auth::where($key_field, $data[$key_field])
+			$user = \models\Auth::where($key_field, $data[$key_field])
 				->where('app_id', $data['app_id'])
 				->first();
 		} catch (\Illuminate\Database\QueryException $e) {
 		}
 
 		if (!$user) {
-			$user = \Models\Auth::create($data);
+			$user = \models\Auth::create($data);
 		}
 
 		$data = $user->toArray();
