@@ -96,7 +96,7 @@ $app->group('/collection', function () use ($app) {
 			if (class_exists($klass)) {
 				models\Collection::observe(new $klass);
 			} else {
-				throw new Exception("Module '{$name}.php' must define a class named '{$klass}'.");
+				throw new MethodFailureException("Module '{$name}.php' must define a class named '{$klass}'.");
 			}
 		}
 
@@ -106,7 +106,7 @@ $app->group('/collection', function () use ($app) {
 		)));
 
 		if (!$model->save()) {
-			throw new ErrorException("Can't save '{$name}'.");
+			throw new ForbiddenException("Can't save '{$name}'.");
 		}
 
 		$app->content = $model;

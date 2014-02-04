@@ -122,8 +122,10 @@ class ResponseTypeMiddleware extends \Slim\Middleware
 			return array();
 
 		} else {
-			// Internal Server Error
-			$app->response->setStatus(500);
+			// Exception has code 0 by default, it should send 500 through http
+			$code = (!$e->getCode()) ? 500 : $e->getCode();
+			$app->response->setStatus($code);
+
 			return array('error' => $message);
 		}
 	}
