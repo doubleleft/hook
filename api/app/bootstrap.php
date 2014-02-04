@@ -1,2 +1,2 @@
 <?php
-require 'bootstrap/connection.php';
+require __DIR__ . '/bootstrap/connection.php';

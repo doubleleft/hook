@@ -1,6 +1,5 @@
 <?php
-
-$config = require('config/database.php');
+$config = require(__DIR__ . '/../config/database.php');
 
 $container = new Illuminate\Container\Container();
 $event_dispatcher = new Illuminate\Events\Dispatcher($container);
@@ -50,7 +49,7 @@ $connection->setPaginator(new \Core\Pagination\Environment());
 if (preg_match('/sql|postgres/', $connection->getDriverName())) {
 	$builder = $connection->getSchemaBuilder();
 	if (!$builder->hasTable('apps')) {
-		foreach(glob('../app/models/schema/*.php') as $file) {
+		foreach(glob(__DIR__ . '/../models/schema/*.php') as $file) {
 			$migration = require($file);
 			$builder->create(key($migration), current($migration));
 		}
