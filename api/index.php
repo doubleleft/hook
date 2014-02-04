@@ -48,6 +48,13 @@ $app->group('/collection', function () use ($app) {
 			}
 		}
 
+		// Apply group
+		if ($group = $app->request->get('g')) {
+			foreach($group as $field) {
+				$query = $query->groupBy($field);
+			}
+		}
+
 		// limit / offset
 		if ($offset = $app->request->get('offset')) {
 			$query = $query->skip($offset);
@@ -56,25 +63,22 @@ $app->group('/collection', function () use ($app) {
 			$query = $query->take($limit);
 		}
 
-		if ($app->request->get('p')) {
+		if ($aggr = $app->request->get('aggr')) {
+			// Aggregate count/max/min/avg/sum methods
+			$app->content = $query->{$aggr['method']}($aggr['field']);
+
+		} else if ($app->request->get('p')) {
 			// Apply pagination
 			$app->content = $query->paginate($app->request->get('p'));
+
 		} else if ($app->request->get('f')) {
 			// First
 			$app->content = $query->first();
+
 		} else {
 			$app->content = $query->get();
 		}
 
-	});
-
-	/**
-	 * GET /collection/:name/count
-	 */
-	$app->get('/:name/count', function($name) use ($app) {
-		$app->content = models\Collection::query()
-			->from($name)
-			->count();
 	});
 
 	/**
@@ -89,6 +93,28 @@ $app->group('/collection', function () use ($app) {
 		// if ($module) {
 		// 	eval($module->code);
 		// }
+
+		$app->content = models\Collection::create(array_merge($app->request->post('data'), array(
+			'app_id' => $app->key->app_id,
+			'table_name' => $name
+		)));
+	});
+
+	/**
+	 * PUT /collection/:name
+	 */
+	$app->put('/:name', function($name) use ($app) {
+		$query = models\Collection::query()->from($name);
+		$query->where('app_id', $app->key->app_id);
+
+		// Apply filters
+		if ($q = $app->request->get('q')) {
+			foreach($q as $where) {
+				$query->where($where[0], $where[1], $where[2]);
+			}
+		}
+
+		$query->update();
 
 		$app->content = models\Collection::create(array_merge($app->request->post('data'), array(
 			'app_id' => $app->key->app_id,
@@ -131,6 +157,14 @@ $app->group('/collection', function () use ($app) {
 	$app->delete('/:name/:id', function($name, $id) use ($app) {
 		$app->content = array('success' => models\Collection::query()->from($name)->where('_id', $id)->delete());
 	});
+
+	/**
+	 * Nested collections
+	 */
+	// $app->get('/:name/:id', function($name, $id) use ($app) {
+	// 	$app->content = array('success' => models\Collection::query()->from($name)->where('_id', $id)->delete());
+	// });
+
 
 });
 
