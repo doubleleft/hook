@@ -1,5 +1,5 @@
 <?php
-namespace Models;
+namespace models;
 
 class App extends \Core\Model
 {
@@ -12,15 +12,15 @@ class App extends \Core\Model
 	}
 
 	public function keys() {
-		return $this->hasMany('Models\AppKey', 'app_id');
+		return $this->hasMany('models\AppKey', 'app_id');
 	}
 
 	public function modules() {
-		return $this->hasMany('Models\Module', 'app_id');
+		return $this->hasMany('models\Module', 'app_id');
 	}
 
 	public function configs() {
-		return $this->hasMany('Models\AppConfig', 'app_id');
+		return $this->hasMany('models\AppConfig', 'app_id');
 	}
 
 	public function afterSave()

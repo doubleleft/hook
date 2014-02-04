@@ -1,5 +1,5 @@
 <?php
-namespace Models;
+namespace models;
 
 class KeyValue extends \Core\Model
 {

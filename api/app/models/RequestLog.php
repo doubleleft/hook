@@ -1,16 +1,15 @@
 <?php
-namespace Models;
+namespace models;
 
-class Module extends \Core\Model
+class RequestLog extends \Core\Model
 {
 	protected $guarded = array();
 	protected $primaryKey = '_id';
 
 	public function app() {
-		return $this->belongsTo('Models\App');
+		return $this->belongsTo('models\App');
 	}
 
 }
-
 
 

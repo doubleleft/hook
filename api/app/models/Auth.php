@@ -1,5 +1,5 @@
 <?php
-namespace Models;
+namespace models;
 
 class Auth extends Collection
 {
@@ -8,11 +8,11 @@ class Auth extends Collection
 	protected $table = 'auth';
 
 	public function app() {
-		return $this->belongsTo('Models\App');
+		return $this->belongsTo('models\App');
 	}
 
 	public function tokens() {
-		return $this->hasMany('Models\AuthToken', 'auth_id');
+		return $this->hasMany('models\AuthToken', 'auth_id');
 	}
 
 	public function generate_token() {
