@@ -15,6 +15,7 @@ $app->add(new LogMiddleware());
 $app->add(new ResponseTypeMiddleware());
 $app->add(new AppAuthMiddleware());
 
+require '../app/models/App.php';
 $app->get('/', function() use ($app) {
 	$app->content =  Models\App::all();
 });
