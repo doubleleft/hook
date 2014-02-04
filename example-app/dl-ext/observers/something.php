@@ -1,17 +1,17 @@
 <?php
 
 /**
- * Custom observer for: {collection}
+ * Custom observer for: something
  */
 
-class {name} {
+class Something {
 
 	public function creating($data) {
 		// before create
 
-		// if ($data->some_data == "invalid") {
-		//   return false;
-		// }
+		if ($data->some_data == "invalid") {
+		  return false;
+		}
 	}
 
 	public function created($data) {

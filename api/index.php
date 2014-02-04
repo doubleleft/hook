@@ -100,10 +100,16 @@ $app->group('/collection', function () use ($app) {
 			}
 		}
 
-		$app->content = models\Collection::create(array_merge($app->request->post('data'), array(
+		$model = new models\Collection(array_merge($app->request->post('data'), array(
 			'app_id' => $app->key->app_id,
 			'table_name' => $name
 		)));
+
+		if (!$model->save()) {
+			throw new ErrorException("Can't save '{$name}'.");
+		}
+
+		$app->content = $model;
 	});
 
 	/**
