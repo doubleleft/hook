@@ -1,6 +1,5 @@
 <?php
 
-require 'models/AppKey.php';
 class AppAuthMiddleware extends \Slim\Middleware
 {
 

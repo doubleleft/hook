@@ -1,21 +1,23 @@
 <?php
-
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 date_default_timezone_set('America/Sao_Paulo');
-require 'api/vendor/autoload.php';
 
+require __DIR__ . '/vendor/autoload.php';
 use Composer\Command\UpdateCommand;
 
-$app = new \Slim\Slim();
-require 'api/app/bootstrap.php';
+$app = new \Slim\Slim(array(
+	// 'cookies.encrypt' => true,
+	// 'cookies.lifetime' => '8 hours',
+	// 'cookies.path' => '/',
+));
+require __DIR__ . '/app/bootstrap.php';
 
 // Middlewares
 $app->add(new LogMiddleware());
 $app->add(new ResponseTypeMiddleware());
 $app->add(new AppAuthMiddleware());
 
-require 'api/app/models/App.php';
 $app->get('/', function() use ($app) {
 	$app->content =  Models\App::all();
 });
@@ -137,7 +139,9 @@ $app->group('/collection', function () use ($app) {
  */
 $app->group('/auth', function() use ($app) {
 	$app->post('/:provider', function($provider_name) use ($app) {
-		$app->content = Auth\Provider::get($provider_name)->register($app->request->post());
+		$userdata = Auth\Provider::get($provider_name)->register($app->request->post());
+		// $userdata['token']['token']
+		$app->content = $userdata;
 	});
 });
 
