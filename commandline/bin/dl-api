@@ -41,6 +41,7 @@ if (isset($cli[0])) {
     $command = $commands[$cli[0]];
     $command['run']($cli);
   } else {
-    echo "Command not found." . PHP_EOL;
+    $cli->printHelp();
+    echo "Command '{$cli[0]}' not found." . PHP_EOL;
   }
 }

@@ -14,6 +14,7 @@ return array(
 
 		$template = file_get_contents(__DIR__ . '/../templates/observer.php');
 		$template = preg_replace('/{name}/', ucfirst($args[1]), $template);
+		$template = preg_replace('/{collection}/', $args[1], $template);
 		file_put_contents($dest_file, $template);
 
 		echo "Observer created at '{$dest_file}'." . PHP_EOL;
