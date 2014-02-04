@@ -3,19 +3,19 @@
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 date_default_timezone_set('America/Sao_Paulo');
-require '../vendor/autoload.php';
+require 'api/vendor/autoload.php';
 
 use Composer\Command\UpdateCommand;
 
 $app = new \Slim\Slim();
-require '../app/bootstrap.php';
+require 'api/app/bootstrap.php';
 
 // Middlewares
 $app->add(new LogMiddleware());
 $app->add(new ResponseTypeMiddleware());
 $app->add(new AppAuthMiddleware());
 
-require '../app/models/App.php';
+require 'api/app/models/App.php';
 $app->get('/', function() use ($app) {
 	$app->content =  Models\App::all();
 });
