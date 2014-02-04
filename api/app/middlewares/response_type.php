@@ -115,15 +115,16 @@ class ResponseTypeMiddleware extends \Slim\Middleware
 	}
 
 	protected function handle_error_response($e, $app) {
+		$message = $e->getMessage();
+
 		// Allow queries with tables that doesn't exist yet (SQLite3)
-		if (strpos($e->getMessage(), 'no such table') !== false) {
+		if (strpos($message, "no such table") !== false || strpos($message, "table or view not found") !== false) {
 			return array();
 
 		} else {
 			// Internal Server Error
 			$app->response->setStatus(500);
-
-			return array('error' => $e->getMessage());
+			return array('error' => $message);
 		}
 	}
 
