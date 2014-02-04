@@ -1,6 +1,6 @@
 <?php
 
-$config = require('../app/config/database.php');
+$config = require('config/database.php');
 
 $container = new Illuminate\Container\Container();
 $event_dispatcher = new Illuminate\Events\Dispatcher($container);
