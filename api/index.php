@@ -8,8 +8,8 @@ use Composer\Command\UpdateCommand;
 
 $app = new \Slim\Slim(array(
 	// 'cookies.encrypt' => true,
-	'cookies.lifetime' => '8 hours',
-	'cookies.path' => '/',
+	// 'cookies.lifetime' => '8 hours',
+	// 'cookies.path' => '/',
 ));
 require __DIR__ . '/app/bootstrap.php';
 
@@ -91,7 +91,7 @@ $app->group('/collection', function () use ($app) {
 			first();
 
 		if ($module) {
-			eval(substr($module->code, 5));
+			eval(substr($module->code, 5)); // remove '<?php' for eval
 			$klass = ucfirst($name);
 			if (class_exists($klass)) {
 				models\Collection::observe(new $klass);
@@ -120,18 +120,20 @@ $app->group('/collection', function () use ($app) {
 		$query->where('app_id', $app->key->app_id);
 
 		// Apply filters
-		if ($q = $app->request->get('q')) {
+		if ($q = $app->request->post('q')) {
 			foreach($q as $where) {
 				$query->where($where[0], $where[1], $where[2]);
 			}
 		}
 
-		$query->update();
+		if ($operation = $app->request->post('op')) {
+			// Operations: increment/decrement
+			$app->content = $query->{$operation['method']}($operation['field'], $operation['value']);
+		} else {
 
-		$app->content = models\Collection::create(array_merge($app->request->post('data'), array(
-			'app_id' => $app->key->app_id,
-			'table_name' => $name
-		)));
+			// Raw update
+			$app->content = $query->update($app->request->post('d'));
+		}
 	});
 
 	/**
@@ -191,13 +193,6 @@ $app->group('/auth', function() use ($app) {
 	$app->post('/:provider', function($provider_name) use ($app) {
 		$userdata = Auth\Provider::get($provider_name)->register($app->request->post());
 		$app->content = $userdata;
-	});
-
-	/**
-	 * GET /auth/logout
-	 */
-	$app->get('/logout', function($provider_name) use ($app) {
-		$app->content = array('success' => $app->deleteCookie('token'));
 	});
 });
 
