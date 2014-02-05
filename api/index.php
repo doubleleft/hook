@@ -8,8 +8,8 @@ use Composer\Command\UpdateCommand;
 
 $app = new \Slim\Slim(array(
 	// 'cookies.encrypt' => true,
-	// 'cookies.lifetime' => '8 hours',
-	// 'cookies.path' => '/',
+	'cookies.lifetime' => '8 hours',
+	'cookies.path' => '/',
 ));
 require __DIR__ . '/app/bootstrap.php';
 
@@ -184,10 +184,20 @@ $app->group('/collection', function () use ($app) {
  * Authentication
  */
 $app->group('/auth', function() use ($app) {
+	/**
+	 * POST /auth/facebook
+	 * POST /auth/email
+	 */
 	$app->post('/:provider', function($provider_name) use ($app) {
 		$userdata = Auth\Provider::get($provider_name)->register($app->request->post());
-		// $userdata['token']['token']
 		$app->content = $userdata;
+	});
+
+	/**
+	 * GET /auth/logout
+	 */
+	$app->get('/logout', function($provider_name) use ($app) {
+		$app->content = array('success' => $app->deleteCookie('token'));
 	});
 });
 
