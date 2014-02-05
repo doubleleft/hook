@@ -11,11 +11,18 @@ return array(
 		}
 
 		$client = new Client\Client();
-		$client->post('apps', array(
-			'app' => array(
-				'name' => $args[1]
-			)
+		$app = $client->post('apps', array(
+			'app' => array('name' => $args[1])
 		));
+
+		echo "App: {$app->name}" . PHP_EOL;
+		echo "Access tokens:" . PHP_EOL;
+		echo "{" . PHP_EOL;
+		echo "\tappId: {$app->_id}" . PHP_EOL;
+		foreach($app->keys as $key) {
+			echo "\tkey: " . $key->key . PHP_EOL;
+		}
+		echo "}" . PHP_EOL . PHP_EOL;
 
 	}
 );

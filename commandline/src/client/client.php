@@ -3,7 +3,8 @@
 namespace Client;
 
 class Client {
-	var $root_url = 'http://dl-api.dev/api/index.php/';
+	var $root_url = 'http://dl-api.ddll.co/';
+	// var $root_url = 'http://dl-api.dev/api/index.php/';
 
 	public function get($segments) {
 		return $this->parse(\Guzzle::get($this->root_url . $segments));
@@ -15,7 +16,7 @@ class Client {
 
 	public function post($segments, $data = array()) {
 		return $this->parse(\Guzzle::post($this->root_url . $segments, array(
-			'body' => $data
+			'body' => json_encode($data)
 		)));
 	}
 
@@ -23,7 +24,8 @@ class Client {
 		$data = json_decode($response->getBody());
 
 		if (isset($data->error)) {
-			die("Error: " . $data->error . PHP_EOL);
+			$url = parse_url($this->root_url);
+			die("{$url['host']} responded with error: '" . $data->error . "'" . PHP_EOL);
 		}
 
 		return $data;
