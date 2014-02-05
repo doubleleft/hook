@@ -50,7 +50,6 @@ class AppAuthMiddleware extends \Slim\Middleware
 			//
 			// Parse incoming JSON data
 			if ($app->request->isPost() || $app->request->isPut()) {
-				// $input_data = file_get_contents('php://input');
 				$input_data = $app->environment->offsetGet('slim.input');
 				$app->environment->offsetSet('slim.request.form_hash', json_decode($input_data, true));
 			}
