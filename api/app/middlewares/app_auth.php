@@ -31,7 +31,7 @@ class AppAuthMiddleware extends \Slim\Middleware
 		$app->response->headers->set('Access-Control-Allow-Origin', (isset($referer['host'])) ? 'http://'.$referer['host'] : '*' );
 		$app->response->headers->set('Access-Control-Allow-Credentials', 'true');
 		$app->response->headers->set('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE');
-		$app->response->headers->set('Access-Control-Allow-Headers', 'x-app-id, x-app-key, content-type, user-agent, accept');
+		$app->response->headers->set('Access-Control-Allow-Headers', 'x-app-id, x-app-key, x-auth-token, content-type, user-agent, accept');
 
 		self::decode_query_string();
 
@@ -50,7 +50,8 @@ class AppAuthMiddleware extends \Slim\Middleware
 			//
 			// Parse incoming JSON data
 			if ($app->request->isPost() || $app->request->isPut()) {
-				$input_data = file_get_contents('php://input');
+				// $input_data = file_get_contents('php://input');
+				$input_data = $app->environment->offsetGet('slim.input');
 				$app->environment->offsetSet('slim.request.form_hash', json_decode($input_data, true));
 			}
 
