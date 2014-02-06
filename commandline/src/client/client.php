@@ -3,9 +3,9 @@
 namespace Client;
 
 class Client {
-	var $root_url = 'http://dl-api.ddll.co/';
+	// var $root_url = 'http://dl-api.ddll.co/';
 	// var $root_url = 'http://api.2d.cx';
-	// var $root_url = 'http://dl-api.dev/api/index.php/';
+	var $root_url = 'http://dl-api.dev/api/index.php/';
 
 	public function get($segments) {
 		return $this->parse(\Guzzle::get($this->root_url . $segments));

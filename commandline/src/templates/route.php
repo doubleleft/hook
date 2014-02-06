@@ -1,12 +1,10 @@
 <?php
-$app = Slim\Slim::getInstance();
-
 /**
  * {method_uppercase} {path}
  */
-$app->{method}('{path}', function({arguments}) {
+$app->{method}('{path}', function({arguments}) use ($app) {
 	//
 	// do something
 	//
-	$this->content = array('success' => true);
+	$app->content = array('success' => true);
 });

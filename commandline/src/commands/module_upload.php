@@ -11,7 +11,7 @@ return array(
 		}
 
 		$app = $args['app'];
-		$module_types = array('observers');
+		$module_types = array('observers', 'routes', 'templates');
 
 		$client = new Client\Client();
 		foreach(Client\Utils::glob('dl-ext/**') as $module) {

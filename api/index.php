@@ -21,6 +21,11 @@ $app->add(new AppMiddleware());
 // Attach authentication
 $app->add(new AuthMiddleware());
 
+// Evaluate custom routes
+if (!$app->request->isOptions()) {
+}
+
+
 $app->get('/', function() use ($app) {
 	$app->content = models\App::all();
 });
@@ -94,13 +99,7 @@ $app->group('/collection', function () use ($app) {
 			first();
 
 		if ($module) {
-			eval(substr($module->code, 5)); // remove '<?php' for eval
-			$klass = ucfirst($name);
-			if (class_exists($klass)) {
-				models\Collection::observe(new $klass);
-			} else {
-				throw new MethodFailureException("Module '{$name}.php' must define a class named '{$klass}'.");
-			}
+			$module->evaluate();
 		}
 
 		$model = new models\Collection(array_merge($app->request->post('data'), array(
@@ -232,6 +231,7 @@ $app->group('/key', function() use ($app) {
  * File API
  */
 $app->group('/files', function() use($app) {
+
 
 	/**
 	 * GET /files/:id
