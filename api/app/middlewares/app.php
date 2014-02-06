@@ -41,6 +41,12 @@ class AppMiddleware extends \Slim\Middleware
 				->where('key', $app->request->headers->get('X-App-Key') ?: $app->request->get('X-App-Key'))
 				->first();
 
+			if ($custom_routes = models\Module::where('app_id', $app->key->app_id)->where('type', 'routes')->get()) {
+				foreach($custom_routes as $custom_route) {
+					$custom_route->evaluate();
+				}
+			}
+
 			//
 			// Parse incoming JSON data
 			if ($app->request->isPost() || $app->request->isPut()) {
