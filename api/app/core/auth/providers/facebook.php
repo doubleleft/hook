@@ -3,7 +3,12 @@ namespace Auth\Providers;
 
 class Facebook extends Base {
 
-	public function register($data) {
+	public function authenticate($data) {
+		// validate accessToken
+		if (!isset($data['accessToken'])) {
+			throw new \Exception(__CLASS__ . ": you must provide user 'accessToken'.");
+		}
+
 		$client = new \Guzzle\Http\Client("https://graph.facebook.com");
 		$response = $client->get("/me?access_token={$data['accessToken']}")->send();
 		$data = json_decode($response->getBody(), true);
@@ -12,18 +17,22 @@ class Facebook extends Base {
 		$data['facebook_id'] = $data['id'];
 		unset($data['id']);
 
-		if (isset($data['education'])) { $data['education'] = $data['education'][0]['type']; }
-
-		$unusual_fields = array('work', 'languages', 'hometown', 'location', 'sports', 'favorite_teams', 'favorite_athletes');
+		// don't fill unusual fields
+		$unusual_fields = array('work', 'languages', 'hometown', 'location', 'sports', 'favorite_teams', 'favorite_athletes', 'education');
 		foreach($unusual_fields as $field) {
 			unset($data[$field]);
-
-			// if (isset($data[$field])) {
-			// 	$data[$field] = $data[$field][0]['name'];
-			// }
 		}
 
-		return $this->findOrRegister('facebook_id', $data);
+		$user = null;
+		try {
+			$user = $this->find('facebook_id', $data);
+		} catch (\Illuminate\Database\QueryException $e) {}
+
+		if (!$user) {
+			$user = \models\Auth::create($data);
+		}
+
+		return $user->dataWithToken();
 	}
 
 }

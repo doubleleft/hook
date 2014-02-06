@@ -21,4 +21,11 @@ class Auth extends Collection
 		));
 	}
 
+	public function dataWithToken() {
+		$data = $this->toArray();
+		$data['token'] = $this->generate_token()->toArray();
+		return $data;
+	}
+
+
 }
