@@ -183,7 +183,7 @@ $app->group('/collection', function () use ($app) {
 });
 
 /**
- * Authentication
+ * Authentication API
  */
 $app->group('/auth', function() use ($app) {
 	/**
@@ -191,8 +191,9 @@ $app->group('/auth', function() use ($app) {
 	 * POST /auth/email
 	 */
 	$app->post('/:provider', function($provider_name) use ($app) {
-		$userdata = Auth\Provider::get($provider_name)->register($app->request->post());
-		$app->content = $userdata;
+		$data = $app->request->post();
+		$data['app_id'] = $app->key->app_id;
+		$app->content = Auth\Provider::get($provider_name)->authenticate($data);
 	});
 });
 

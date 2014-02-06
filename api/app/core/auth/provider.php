@@ -8,7 +8,8 @@ class Provider {
 	static $list = array(
 		'facebook' => 'Auth\\Providers\\Facebook',
 		'twitter' => 'Auth\\Providers\\Twitter',
-		'email' => 'Auth\\Providers\\Email'
+		'email' => 'Auth\\Providers\\Email',
+		'google' => 'Auth\\Providers\\Google'
 	);
 
 	public static function get($name) {
