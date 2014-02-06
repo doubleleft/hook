@@ -5,9 +5,11 @@ return array(
 	'command' => 'generate:observer <collection-name>',
 	'description' => 'Generate observer class for collection events.',
 	'run' => function($args) use ($commands) {
+
 		if (!isset($args[1])) {
 			die("'collection-name' is required.");
 		}
+
 		$dest = 'dl-ext/observers/';
 		$dest_file = $dest . $args[1] . '.php';
 		@mkdir($dest, 0777, true);
