@@ -4,6 +4,8 @@ namespace Auth\Providers;
 class Facebook extends Base {
 
 	public function authenticate($data) {
+		$app_id = $data['app_id'];
+
 		// validate accessToken
 		if (!isset($data['accessToken'])) {
 			throw new \Exception(__CLASS__ . ": you must provide user 'accessToken'.");
@@ -14,6 +16,7 @@ class Facebook extends Base {
 		$data = json_decode($response->getBody(), true);
 
 		// rename 'facebook_id' field
+		$data['app_id'] = $app_id;
 		$data['facebook_id'] = $data['id'];
 		unset($data['id']);
 
