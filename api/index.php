@@ -16,7 +16,10 @@ require __DIR__ . '/app/bootstrap.php';
 // Middlewares
 $app->add(new LogMiddleware());
 $app->add(new ResponseTypeMiddleware());
-$app->add(new AppAuthMiddleware());
+$app->add(new AppMiddleware());
+
+// Attach authentication
+$app->add(new AuthMiddleware());
 
 $app->get('/', function() use ($app) {
 	$app->content = models\App::all();
