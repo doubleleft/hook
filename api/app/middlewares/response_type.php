@@ -21,16 +21,24 @@ class ResponseTypeMiddleware extends \Slim\Middleware
 			}
 			$retry_timeout = intval($app->request->get('retry', self::POOLING_DEFAULT_RETRY)) * 1000;
 			$last_event_id = $app->request->headers->get('Last-Event-ID');
-			$from_now = $app->request->get('from_now');
+
+			// Get last collection event id when 'only_new' option is set
+			if ($app->request->get('only_new')) {
+				$last_event_id = models\Collection::query()
+					->from(basename($app->request->getResourceUri()))
+					->orderBy('_id', 'desc')
+					->first()
+					->_id;
+			}
+
+			// Set response headers
+			$app->response->headers->set('Content-type', 'text/event-stream');
+			// $app->response->headers->set('Connection', 'Keep-Alive');
+			foreach($app->response->headers as $header => $content) {
+				header("{$header}: {$content}");
+			}
 
 			do {
-
-				// Set response headers
-				$app->response->headers->set('Content-type', 'text/event-stream');
-				// $app->response->headers->set('Connection', 'Keep-Alive');
-				foreach($app->response->headers as $header => $content) {
-					header("{$header}: {$content}");
-				}
 				echo 'retry: '. $retry_timeout . PHP_EOL;
 
 				// Close EventSource connection after 4 seconds
@@ -40,18 +48,14 @@ class ResponseTypeMiddleware extends \Slim\Middleware
 				}
 
 				// Append last-event-id to filtering options
-				if ($last_event_id || $from_now) {
-					$query_data = AppAuthMiddleware::decode_query_string();
+				if ($last_event_id) {
+					$query_data = AppMiddleware::decode_query_string();
 					if (!isset($query_data['q'])) {
 						$query_data['q'] = array();
 					}
 
 					if ($last_event_id) {
 						array_push($query_data['q'], array('_id', '>', $last_event_id));
-					}
-
-					if ($from_now) {
-						array_push($query_data['q'], array('updated_at', '>=', $pool_start));
 					}
 
 					$app->environment->offsetSet('slim.request.query_hash', $query_data);

@@ -1,6 +1,6 @@
 <?php
 
-class AppAuthMiddleware extends \Slim\Middleware
+class AppMiddleware extends \Slim\Middleware
 {
 
 	public static function decode_query_string() {
@@ -40,12 +40,6 @@ class AppAuthMiddleware extends \Slim\Middleware
 			$app->key = models\AppKey::where('app_id', $app->request->headers->get('X-App-Id') ?: $app->request->get('X-App-Id'))
 				->where('key', $app->request->headers->get('X-App-Key') ?: $app->request->get('X-App-Key'))
 				->first();
-
-			// if (!$app->key && strpos($app->request->getPath(), "/apps/") === false) {
-			// 	$app->response->setStatus(403);
-			// 	$app->response->setBody(json_encode(array('error' => "Invalid credentials.")));
-			// 	return;
-			// }
 
 			//
 			// Parse incoming JSON data

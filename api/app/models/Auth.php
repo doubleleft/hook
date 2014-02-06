@@ -27,5 +27,4 @@ class Auth extends Collection
 		return $data;
 	}
 
-
 }

@@ -25,6 +25,7 @@ class AuthToken extends \Core\Model{
 		$this->expire_at = time() + (static::EXPIRATION * 60 * 60);
 		$this->created_at = time();
 		$this->token = md5(uniqid(rand(), true));
+		// $this->level = 1;
 	}
 
 }

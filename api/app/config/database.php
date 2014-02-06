@@ -11,20 +11,20 @@ return array(
 	// 	'database' => 'dl_api'
 	// ),
 
-	// 'mysql' => array(
-	// 	'driver'   => 'mysql',
-	// 	'host'     => 'localhost',
-	// 	'username' => 'root',
-	// 	'password' => 'root',
-	// 	'database' => 'dl_api',
-	// 	'collation' => 'utf8_general_ci',
-	// 	'charset' => 'utf8'
-	// ),
+	'mysql' => array(
+		'driver'   => 'mysql',
+		'host'     => 'localhost',
+		'username' => 'root',
+		'password' => 'root',
+		'database' => 'dl-api',
+		'collation' => 'utf8_general_ci',
+		'charset' => 'utf8'
+	),
 
-	'sqlite' => array(
-		'driver'   => 'sqlite',
-		'database' => __DIR__ . '/../storage/database.sqlite',
-		'prefix'   => '',
-	)
+	// 'sqlite' => array(
+	// 	'driver'   => 'sqlite',
+	// 	'database' => __DIR__ . '/../storage/database.sqlite',
+	// 	'prefix'   => '',
+	// )
 
 );
