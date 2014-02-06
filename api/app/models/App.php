@@ -8,6 +8,7 @@ class App extends \Core\Model
 
 	public static function boot() {
 		parent::boot();
+		static::saving(function($instance) { $instance->beforeSave(); });
 		static::saved(function($instance) { $instance->afterSave(); });
 	}
 
@@ -21,6 +22,10 @@ class App extends \Core\Model
 
 	public function configs() {
 		return $this->hasMany('models\AppConfig', 'app_id');
+	}
+
+	public function beforeSave() {
+		// $this->
 	}
 
 	public function afterSave()

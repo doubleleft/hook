@@ -229,7 +229,7 @@ $app->group('/key', function() use ($app) {
 });
 
 /**
- * File routes
+ * File API
  */
 $app->group('/files', function() use($app) {
 
@@ -241,12 +241,12 @@ $app->group('/files', function() use($app) {
 	});
 
 	/**
-	 * POST /files/:id
+	 * POST /files
 	 */
-	$app->get('/', function($id) use ($app) {
+	$app->post('(/:provider)', function($provider = 'filesystem') use ($app) {
 		$app->content = File::create(array(
 			'app_id' => $app->key->app_id,
-			'file' => $app->request->file('file')
+			'file' => Storage\Provider::get($provider)->upload($app->request->file('file'))
 		));
 	});
 

@@ -1,37 +1,59 @@
 <?php
 
+/**
+ * Custom observer for: users
+ */
+
 class Users {
 
-	public function creating() {
-		file_put_contents('php://stderr', 'creating...');
+	public function creating($data) {
+		// before create
+
+		if ($data->age < 12) {
+			Mail::send(array(
+				'to' => $data->email,
+				'template' => 'under-12.html',
+				'data' => $data->toArray()
+			));
+		  return false;
+		}
 	}
 
-	public function created() {
-		file_put_contents('php://stderr', 'created...');
+	public function created($data) {
+		// after create
+		// Utils::send_mail();
 	}
 
-	public function updating() {
+	public function updating($data) {
+		// before update
 	}
 
-	public function updated() {
+	public function updated($data) {
+		// after update
 	}
 
-	public function saving() {
+	public function saving($data) {
+		// before save
 	}
 
-	public function saved() {
+	public function saved($data) {
+		// after save
 	}
 
-	public function deleting() {
+	public function deleting($data) {
+		// before delete
 	}
 
-	public function deleted() {
+	public function deleted($data) {
+		// after delete
 	}
 
-	public function restoring() {
+	public function restoring($data) {
+		// before restore (soft-delete)
 	}
 
-	public function restored() {
+	public function restored($data) {
+		// after restore
 	}
 
 }
