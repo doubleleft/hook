@@ -2,7 +2,7 @@
 
 return array(
 	'arg0'    => 'module:remove',
-	'command' => 'module:remove',
+	'command' => 'module:remove <module-name>',
 	'description' => 'Remove a module from application',
 	'run' => function($args) {
 		$app = (isset($args['app'])) ? $args['app'] : false;
@@ -13,7 +13,7 @@ return array(
 		}
 
 		if (!$module) {
-			die("Error: module name is required." . PHP_EOL);
+			die("Error: 'module-name' is required." . PHP_EOL);
 		}
 
 		$client = new Client\Client();
