@@ -197,6 +197,16 @@ $app->group('/auth', function() use ($app) {
 		$data['app_id'] = $app->key->app_id;
 		$app->content = Auth\Provider::get($provider_name)->authenticate($data);
 	});
+
+	/**
+	 * POST /auth/facebook/check
+	 * POST /auth/email/check
+	 */
+	$app->post('/:provider/check', function($provider_name) use ($app) {
+		$data = $app->request->post();
+		$data['app_id'] = $app->key->app_id;
+		$app->content = Auth\Provider::get($provider_name)->check($data);
+	});
 });
 
 
