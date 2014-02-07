@@ -4,7 +4,24 @@ namespace Auth\Providers;
 class Email extends Base {
 
 	public function authenticate($data) {
-		$user = null;
+		$user = $this->findExistingUser($data);
+
+		if (!$user) {
+			$user = \models\Auth::create($data);
+		}
+
+		return $user->dataWithToken();
+	}
+
+	public function check($data) {
+		$userdata = null;
+		if ($user = $this->findExistingUser($data)) {
+			$userdata = $user->dataWithToken();
+		}
+		return $userdata;
+	}
+
+	protected function findExistingUser($data) {
 
 		// validate email address
 		if (!isset($data['email']) || !filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
@@ -16,6 +33,8 @@ class Email extends Base {
 			throw new \Exception(__CLASS__ . ": you must provide a password.");
 		}
 
+		$user = null;
+
 		try {
 			$user = $this->find('email', $data);
 			if ($user && $user->password != $data['password']) {
@@ -23,11 +42,7 @@ class Email extends Base {
 			}
 		} catch (\Illuminate\Database\QueryException $e) {}
 
-		if (!$user) {
-			$user = \models\Auth::create($data);
-		}
-
-		return $user->dataWithToken();
+		return $user;
 	}
 
 }
