@@ -199,10 +199,10 @@ $app->group('/auth', function() use ($app) {
 	});
 
 	/**
-	 * POST /auth/facebook/check
-	 * POST /auth/email/check
+	 * POST /auth/facebook/verify
+	 * POST /auth/email/verify
 	 */
-	$app->post('/:provider/check', function($provider_name) use ($app) {
+	$app->post('/:provider/verify', function($provider_name) use ($app) {
 		$data = $app->request->post();
 		$data['app_id'] = $app->key->app_id;
 		$app->content = Auth\Provider::get($provider_name)->check($data);
