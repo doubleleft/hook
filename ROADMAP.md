@@ -1,26 +1,7 @@
 dl-api
 ===
 
-**Draft implementation**
-
-Take a look at the planned features below.
-
-Web Interface
----
-
-Features:
-
-- create a new project
-- handle api keys (per environment: production/development/testing)
-- data viewer/administration per environment
-- request analysis (middleware to track it)
-
-API
----
-
-Every API request should be sent with `X-Application-Id` and `X-Application-Key` headers.
-
-`App-id + app-key` =  identification of the project.
+Every API request should be sent with `X-App-Id` and `X-App-Key` headers, which is the credentials for the project.
 
 **Collections**
 
@@ -37,12 +18,13 @@ Every API request should be sent with `X-Application-Id` and `X-Application-Key`
 - PUT /api/key/:name
 - PATCH /api/key/:name
 
-# Yet to be done...
----
 
 **Authentication**
 
 - GET /api/auth/:provider
+
+# Yet to be done...
+---
 
 
 ** Collection relationship **
@@ -70,6 +52,10 @@ Every API request should be sent with `X-Application-Id` and `X-Application-Key`
 
 - https://developers.facebook.com/docs/graph-api/making-multiple-requests/
 
+**Run under IIS / [Phalenger](https://github.com/DEVSENSE/Phalanger)**
+
+- http://stackoverflow.com/questions/7178514/php-flush-stopped-flushing-in-iis7-5
+
 
 Extra
 ---
@@ -79,6 +65,6 @@ Extra
 - Queueing
 - Background tasks
 
-**Cache**
+**Cache Layer**
 
 - ?
