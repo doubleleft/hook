@@ -23,7 +23,7 @@ class Module extends \Core\Model
 				eval(substr($this->code, 5)); // remove '<?php' for eval
 
 				if (class_exists($klass)) {
-					models\Collection::observe(new $klass);
+					Collection::observe(new $klass);
 				} else {
 					throw new MethodFailureException("Module '{$name}.php' must define a class named '{$klass}'.");
 				}
