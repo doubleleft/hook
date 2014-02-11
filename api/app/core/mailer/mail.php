@@ -1,5 +1,7 @@
 <?php
 
+namespace Mailer;
+
 class Mail {
 
 	public static function send($options = array()) {
@@ -12,7 +14,7 @@ class Mail {
 		}
 
 		$app = \Slim\Slim::getInstance();
-		// $app->
+		$app->config('mail')
 	}
 
 }

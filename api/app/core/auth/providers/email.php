@@ -5,20 +5,29 @@ class Email extends Base {
 
 	public function authenticate($data) {
 		$user = $this->findExistingUser($data);
-
 		if (!$user) {
 			$user = \models\Auth::create($data);
 		}
-
 		return $user->dataWithToken();
 	}
 
-	public function check($data) {
+	public function verify($data) {
 		$userdata = null;
 		if ($user = $this->findExistingUser($data)) {
 			$userdata = $user->dataWithToken();
 		}
 		return $userdata;
+	}
+
+	public function forgot_password($data) {
+		$user = $this->findExistingUser($data);
+		if (!$user) {
+			throw new \ForbiddenException(__CLASS__ . ": user not found.");
+		}
+		// $sent = Mailer\Mail::send()
+	}
+
+	public function reset_password($data) {
 	}
 
 	protected function findExistingUser($data) {

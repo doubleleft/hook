@@ -24,7 +24,7 @@ class Facebook extends Base {
 		return $user->dataWithToken();
 	}
 
-	public function check($data) {
+	public function verify($data) {
 		$userdata = null;
 		if ($user = $this->find('facebook_id', $this->requestFacebookGraph($data))) {
 			$userdata = $user->dataWithToken();

@@ -192,20 +192,10 @@ $app->group('/auth', function() use ($app) {
 	 * POST /auth/facebook
 	 * POST /auth/email
 	 */
-	$app->post('/:provider', function($provider_name) use ($app) {
+	$app->post('/:provider(/:method)', function($provider_name, $method = 'authenticate') use ($app) {
 		$data = $app->request->post();
 		$data['app_id'] = $app->key->app_id;
-		$app->content = Auth\Provider::get($provider_name)->authenticate($data);
-	});
-
-	/**
-	 * POST /auth/facebook/verify
-	 * POST /auth/email/verify
-	 */
-	$app->post('/:provider/verify', function($provider_name) use ($app) {
-		$data = $app->request->post();
-		$data['app_id'] = $app->key->app_id;
-		$app->content = Auth\Provider::get($provider_name)->check($data);
+		$app->content = Auth\Provider::get($provider_name)->{$method}($data);
 	});
 });
 
@@ -253,7 +243,7 @@ $app->group('/files', function() use($app) {
 	/**
 	 * POST /files
 	 */
-	$app->post('(/:provider)', function($provider = 'filesystem') use ($app) {
+	$app->post('/:provider', function($provider = 'filesystem') use ($app) {
 		$app->content = File::create(array(
 			'app_id' => $app->key->app_id,
 			'file' => Storage\Provider::get($provider)->upload($app->request->file('file'))
