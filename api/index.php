@@ -45,7 +45,12 @@ $app->group('/collection', function () use ($app) {
 		// Apply filters
 		if ($q = $app->request->get('q')) {
 			foreach($q as $where) {
-				$query->where($where[0], $where[1], $where[2]);
+				if (preg_match('/^[a-z_]+$/', $where[1]) !== 0) {
+					$method = 'where' . ucfirst(Illuminate\Support\Str::camel($where[1]));
+					$query->{$method}($where[0], $where[2]);
+				} else {
+					$query->where($where[0], $where[1], $where[2]);
+				}
 			}
 		}
 
@@ -122,9 +127,15 @@ $app->group('/collection', function () use ($app) {
 		$query->where('app_id', $app->key->app_id);
 
 		// Apply filters
+		// FIXME: DRY with GET
 		if ($q = $app->request->post('q')) {
 			foreach($q as $where) {
-				$query->where($where[0], $where[1], $where[2]);
+				if (preg_match('/^[a-z_]+$/', $where[1]) !== 0) {
+					$method = 'where' . ucfirst(Illuminate\Support\Str::camel($where[1]));
+					$query->{$method}($where[0], $where[2]);
+				} else {
+					$query->where($where[0], $where[1], $where[2]);
+				}
 			}
 		}
 
