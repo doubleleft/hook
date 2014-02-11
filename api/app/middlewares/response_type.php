@@ -23,13 +23,14 @@ class ResponseTypeMiddleware extends \Slim\Middleware
 			$last_event_id = $app->request->headers->get('Last-Event-ID');
 
 			// Get last collection event id when 'only_new' option is set
-			if ($app->request->get('only_new')) {
-				$last_event_id = models\Collection::query()
-					->from(basename($app->request->getResourceUri()))
-					->orderBy('_id', 'desc')
-					->first()
-					->_id;
-			}
+			// if ($app->request->get('only_new')) {
+			// 	$last_event_id = models\Collection::query()
+			// 		->from(basename($app->request->getResourceUri()))
+			// 		->orderBy('_id', 'desc')
+			// 		// ->offset(1)
+			// 		->first()
+			// 		->_id;
+			// }
 
 			// Set response headers
 			$app->response->headers->set('Content-type', 'text/event-stream');
@@ -127,7 +128,7 @@ class ResponseTypeMiddleware extends \Slim\Middleware
 
 		} else {
 			// Exception has code 0 by default, it should send 500 through http
-			$code = (!$e->getCode()) ? 500 : $e->getCode();
+			$code = intval($e->getCode()) ?: 500;
 			$app->response->setStatus($code);
 
 			return array('error' => $message);
