@@ -120,15 +120,15 @@ class ResponseTypeMiddleware extends \Slim\Middleware
 	}
 
 	protected function handle_error_response($e, $app) {
-		$message = $e->getMessage();
+		$message = strtolower($e->getMessage());
 
 		// Log stack-trace
 		$trace = $e->getTrace();
-
 		file_put_contents('php://stderr', "[[ dl-api: error ]] " . $message . PHP_EOL . $e->getTraceAsString() . PHP_EOL);
 
-		// Allow queries with tables that doesn't exist yet (SQLite3)
-		if (strpos($message, "no such table") !== false || strpos($message, "table or view not found") !== false) {
+		if (strpos($message, "column not found") !== false ||        // mysql
+				strpos($message, "no such table") !== false ||           // mysql
+				strpos($message, "table or view not found") !== false) { // sqlite
 			return array();
 
 		} else {
