@@ -10,7 +10,7 @@ return array(
 			die("Error: '--app' option is required" . PHP_EOL);
 		}
 
-		$client = new Client\Client();
+		$client = new client\client();
 		$configs = $client->get("apps/{$args['app']}/configs");
 
 		if ($configs) {
