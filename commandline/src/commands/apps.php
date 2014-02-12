@@ -6,7 +6,7 @@ return array(
 	'description' => 'List all applications',
 	'run' => function($args) {
 
-		$client = new client\client();
+		$client = new Client\Client();
 		foreach($client->get('apps') as $app) {
 			echo "App: {$app->name}" . PHP_EOL;
 			echo "Access tokens:" . PHP_EOL;

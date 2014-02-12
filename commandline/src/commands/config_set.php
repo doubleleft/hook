@@ -21,7 +21,7 @@ return array(
 			}
 		}
 
-		$client = new client\client();
+		$client = new Client\Client();
 		$configs = $client->post("apps/{$args['app']}/configs", array(
 			'configs' => $configs_to_add
 		));

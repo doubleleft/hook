@@ -16,7 +16,7 @@ return array(
 			die("Error: 'module-name' is required." . PHP_EOL);
 		}
 
-		$client = new client\client();
+		$client = new Client\Client();
 		$response = $client->delete('apps/'.$app.'/modules/'.$module);
 
 		if ($response->success) {
