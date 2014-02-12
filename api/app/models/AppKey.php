@@ -38,7 +38,7 @@ class AppKey extends \Core\Model
 		//		'dmq1'
 		//		'iqmp'
 
-		$this->key    = base64_encode($public_key['rsa']['dmq1']);
-		$this->secret = base64_encode($public_key['rsa']['iqmp']);
+		$this->key    = md5($public_key['rsa']['dmq1']);
+		$this->secret = md5($public_key['rsa']['iqmp']);
 	}
 }

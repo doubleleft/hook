@@ -47,7 +47,7 @@ class AppMiddleware extends \Slim\Middleware
 						$custom_route->evaluate();
 					}
 				}
-			} else {
+			} else if (!preg_match('/apps/', $app->request->getResourceUri())) {
 				throw new ForbiddenException("invalid application credentials");
 			}
 
