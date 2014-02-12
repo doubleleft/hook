@@ -13,8 +13,8 @@ return array(
 		$app = $args['app'];
 		$module_types = array('observers', 'routes', 'templates');
 
-		$client = new client\client();
-		foreach(client\utils::glob('dl-ext/**') as $module) {
+		$client = new Client\Client();
+		foreach(Client\Utils::glob('dl-ext/**') as $module) {
 
 			if (is_file($module)) {
 				$module_type = basename(dirname($module));

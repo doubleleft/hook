@@ -10,7 +10,7 @@ return array(
 			die("Error: '--app' option is required" . PHP_EOL);
 		}
 
-		$client = new client\client();
+		$client = new Client\Client();
 		$key = $client->post("apps/{$args['app']}/keys");
 
 		echo "App: {$args['app']}" . PHP_EOL;

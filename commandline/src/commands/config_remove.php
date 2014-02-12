@@ -16,7 +16,7 @@ return array(
 			die("Error: you must provide a config name to remove.");
 		}
 
-		$client = new client\client();
+		$client = new Client\Client();
 		$configs = $client->delete("apps/{$args['app']}/configs/" . $config);
 
 		if ($configs && $configs->success) {
