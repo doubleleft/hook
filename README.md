@@ -8,7 +8,7 @@ Database preferences are located on `app/config/database`. Currently supporting 
 
 You must apply write permissions on app/storage directory: `chmod -R 777 app/storage`.
 
-Enter 'api' directory and run `sudo composer install`
+Enter 'api' directory on this repository and run `sudo composer install`.
 
 Commandline client
 ---
