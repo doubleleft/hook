@@ -10,7 +10,7 @@ return array(
 			die("'application-name' is required.");
 		}
 
-		$client = new Client\Client();
+		$client = new client\client();
 		$app = $client->post('apps', array(
 			'app' => array('name' => $args[1])
 		));
