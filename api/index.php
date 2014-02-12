@@ -25,9 +25,20 @@ $app->add(new AuthMiddleware());
 if (!$app->request->isOptions()) {
 }
 
-
 $app->get('/', function() use ($app) {
 	$app->content = models\App::all();
+});
+
+/**
+ * Misc system utilities
+ */
+$app->group('/system', function() use ($app) {
+	/**
+	 * GET /system/time
+	 */
+	$app->get('/time', function() use ($app) {
+		$app->content = time();
+	});
 });
 
 /**
@@ -192,7 +203,6 @@ $app->group('/collection', function () use ($app) {
 	// 	$app->content = array('success' => models\Collection::query()->from($name)->where('_id', $id)->delete());
 	// });
 
-
 });
 
 /**
@@ -243,7 +253,6 @@ $app->group('/key', function() use ($app) {
  */
 $app->group('/files', function() use($app) {
 
-
 	/**
 	 * GET /files/:id
 	 */
@@ -263,7 +272,9 @@ $app->group('/files', function() use($app) {
 
 });
 
-// // internals
+/**
+ * Internals
+ */
 $app->group('/apps', function() use ($app) {
 	$app->get('/test', function() use ($app) {
 		models\App::truncate();
