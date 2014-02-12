@@ -124,7 +124,8 @@ class ResponseTypeMiddleware extends \Slim\Middleware
 
 		// Log stack-trace
 		$trace = $e->getTrace();
-		file_put_contents('php://stderr', "[[ dl-api: error ]] " . $message . PHP_EOL . $trace[0]['file'].':'.$trace[0]['line'] . PHP_EOL);
+
+		file_put_contents('php://stderr', "[[ dl-api: error ]] " . $message . PHP_EOL . $e->getTraceAsString() . PHP_EOL);
 
 		// Allow queries with tables that doesn't exist yet (SQLite3)
 		if (strpos($message, "no such table") !== false || strpos($message, "table or view not found") !== false) {
