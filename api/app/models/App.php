@@ -8,8 +8,8 @@ class App extends \Core\Model
 
 	public static function boot() {
 		parent::boot();
-		static::saving(function($instance) { $instance->beforeSave(); });
-		static::saved(function($instance) { $instance->afterSave(); });
+		static::creating(function($instance) { $instance->beforeCreate(); });
+		// static::saved(function($instance) { $instance->afterSave(); });
 	}
 
 	public function keys() {
@@ -24,14 +24,17 @@ class App extends \Core\Model
 		return $this->hasMany('models\AppConfig', 'app_id');
 	}
 
-	public function beforeSave() {
-		// $this->
+	public function generate_key() {
+		return $this->keys()->create(array());
 	}
 
-	public function afterSave()
-	{
-		$this->keys()->create(array());
+	public function beforeCreate() {
+		$this->generate_key();
 	}
+
+	// public function afterSave()
+	// {
+	// }
 
 	public function toArray() {
 		$arr = parent::toArray();

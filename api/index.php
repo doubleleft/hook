@@ -301,8 +301,13 @@ $app->group('/apps', function() use ($app) {
 		$app->content = models\App::create($app->request->post('app'));
 	});
 
-	$app->get('/:name', function($id) {
+	$app->get('/:name', function($id) use ($app) {
 		$app->content = models\App::find($id);
+	});
+
+	$app->post('/:name/keys', function($name) use ($app) {
+		$_app = models\App::where('name', $name)->first();
+		$app->content = $_app->generate_key();
 	});
 
 	$app->get('/:name/configs', function($name) use ($app) {

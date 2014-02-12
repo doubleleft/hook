@@ -31,9 +31,17 @@ $cli->option('version')
   ->describedAs('Show CLI version.')
   ->boolean();
 
+$cli->option('json')
+  ->describedAs('JSON output. Useful to automate/integrate CLI workflow.')
+  ->boolean();
+
 // show cli version
 if ($cli['version']) {
   die("dl-api: v" . $VERSION . PHP_EOL);
+}
+
+if ($cli['json']) {
+  echo "WARNING: JSON output not working yet." . PHP_EOL;
 }
 
 if (isset($cli[0])) {
