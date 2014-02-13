@@ -8,7 +8,7 @@ class App extends \Core\Model
 
 	public static function boot() {
 		parent::boot();
-		static::creating(function($instance) { $instance->beforeCreate(); });
+		static::created(function($instance) { $instance->afterCreate(); });
 		// static::saved(function($instance) { $instance->afterSave(); });
 	}
 
@@ -28,7 +28,7 @@ class App extends \Core\Model
 		return $this->keys()->create(array());
 	}
 
-	public function beforeCreate() {
+	public function afterCreate() {
 		$this->generate_key();
 	}
 
