@@ -17,16 +17,15 @@
     }
   },
   "require": {
-    "composer/composer": "*",
-    "slim/slim": "*",
+    "slim/slim": "2.4.*",
     "doctrine/dbal" : "2.*",
     "illuminate/database": "4.1.*",
     "illuminate/config": "4.1.*",
     "illuminate/cache": "4.1.*",
-    "jenssegers/mongodb": "*",
+    "swiftmailer/swiftmailer": "5.0.*",
+    "jenssegers/mongodb": "1.1.*",
     "dropbox/dropbox-sdk": "1.1.*",
-    "aws/aws-sdk-php": "2.5.*",
-    "swiftmailer/swiftmailer": "5.0.*"
+    "aws/aws-sdk-php": "2.5.*"
   },
   "require-dev": {
     "mockery/mockery": "0.8.0",
