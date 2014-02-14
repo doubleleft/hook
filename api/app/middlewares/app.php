@@ -42,13 +42,13 @@ class AppMiddleware extends \Slim\Middleware
 				->first();
 
 			if ($app->key) {
-				if ($custom_routes = models\Module::where('app_id', $app->key->app_id)->where('type', 'routes')->get()) {
+				if ($custom_routes = models\Module::currentApp()->where('type', models\Module::TYPE_ROUTE)->get()) {
 					foreach($custom_routes as $custom_route) {
-						$custom_route->evaluate();
+						$custom_route->compile();
 					}
 				}
 			} else if (!preg_match('/apps/', $app->request->getResourceUri())) {
-				throw new ForbiddenException("invalid application credentials");
+				// throw new ForbiddenException("invalid application credentials");
 			}
 
 			//

@@ -11,8 +11,12 @@ class Base {
 		throw new \Exception("'verify' not implemented on this provider.");
 	}
 
-	public function forgot_password($data) {
-		throw new \Exception("'forgot_password' not implemented on this provider.");
+	public function forgotPassword($data) {
+		throw new \Exception("'forgotPassword' not implemented on this provider.");
+	}
+
+	public function resetPassword($data) {
+		throw new \Exception("'resetPassword' not implemented on this provider.");
 	}
 
 	protected function find($key_field, $data) {

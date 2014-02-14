@@ -3,6 +3,9 @@ namespace Auth\Providers;
 
 class Email extends Base {
 
+	/**
+	 * Register a new user
+	 */
 	public function authenticate($data) {
 		$user = $this->findExistingUser($data);
 		if (!$user) {
@@ -11,6 +14,9 @@ class Email extends Base {
 		return $user->dataWithToken();
 	}
 
+	/**
+	 * Verify if user already exists
+	 */
 	public function verify($data) {
 		$userdata = null;
 		if ($user = $this->findExistingUser($data)) {
@@ -19,15 +25,30 @@ class Email extends Base {
 		return $userdata;
 	}
 
-	public function forgot_password($data) {
+	/**
+	 * Trigger forgot password email
+	 */
+	public function forgotPassword($data) {
 		$user = $this->findExistingUser($data);
 		if (!$user) {
 			throw new \ForbiddenException(__CLASS__ . ": user not found.");
 		}
-		// $sent = Mailer\Mail::send()
+
+		$username = (isset($user->name)) ? $user->name : $user->email;
+		$success = Mail::send(array(
+			'to' => "{$username} <{$user->email}>",
+			'from' => models\AppConfig::get('mail.from', 'no-reply@api.2l.cx'),
+			'body' => models\Module::template('auth.forgot_password.html')->compile($user),
+		));
 	}
 
-	public function reset_password($data) {
+	/**
+	 * Reset user password
+	 */
+	public function resetPassword($data) {
+		if ($user = $this->findExistingUser($data)) {
+
+		}
 	}
 
 	protected function findExistingUser($data) {

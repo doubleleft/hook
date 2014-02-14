@@ -9,7 +9,6 @@ class App extends \Core\Model
 	public static function boot() {
 		parent::boot();
 		static::created(function($instance) { $instance->afterCreate(); });
-		// static::saved(function($instance) { $instance->afterSave(); });
 	}
 
 	public function keys() {
@@ -31,10 +30,6 @@ class App extends \Core\Model
 	public function afterCreate() {
 		$this->generate_key();
 	}
-
-	// public function afterSave()
-	// {
-	// }
 
 	public function toArray() {
 		$arr = parent::toArray();
