@@ -41,5 +41,3 @@ class AppConfig extends \Core\Model
 	}
 
 }
-
-
