@@ -2,6 +2,7 @@
 namespace Auth\Providers;
 
 class Email extends Base {
+	const TEMPLATE_FORGOT_PASSWORD = 'auth.forgot_password.html';
 
 	/**
 	 * Register a new user
@@ -26,28 +27,50 @@ class Email extends Base {
 	}
 
 	/**
-	 * Trigger forgot password email
+	 * Trigger 'forgot password' email
 	 */
 	public function forgotPassword($data) {
-		$user = $this->findExistingUser($data);
+		$user = $this->find('email', $data);
+
 		if (!$user) {
 			throw new \ForbiddenException(__CLASS__ . ": user not found.");
 		}
 
-		$username = (isset($user->name)) ? $user->name : $user->email;
-		$success = Mail::send(array(
-			'to' => "{$username} <{$user->email}>",
-			'from' => models\AppConfig::get('mail.from', 'no-reply@api.2l.cx'),
-			'body' => models\Module::template('auth.forgot_password.html')->compile($user),
-		));
+		if (!isset($data['subject'])) {
+			$data['subject'] = 'Forgot your password?';
+		}
+
+		$body_data = $user->generateForgotPasswordToken()->toArray();
+		$body_data['token'] = $user->getAttribute(\models\Auth::FORGOT_PASSWORD_FIELD);
+
+		return array(
+			'success' => (\Mail::send(array(
+				'subject' => $data['subject'],
+				'from' => \models\AppConfig::get('mail.from', 'no-reply@api.2l.cx'),
+				'to' => $user->email,
+				'body' => \models\Module::template(self::TEMPLATE_FORGOT_PASSWORD)->compile($body_data)
+			)) === 1)
+		);
 	}
 
 	/**
 	 * Reset user password
 	 */
 	public function resetPassword($data) {
-		if ($user = $this->findExistingUser($data)) {
+		if (!isset($data['token']) === 0) {
+			throw new \Exception(__CLASS__ . ": you must provide a 'token'.");
+		}
+		if (!isset($data['password']) || strlen($data['password']) === 0) {
+			throw new \Exception(__CLASS__ . ": you must provide a valid 'password'.");
+		}
 
+		$data[\models\Auth::FORGOT_PASSWORD_FIELD] = $data['token'];
+		$user = $this->find(\models\Auth::FORGOT_PASSWORD_FIELD, $data);
+
+		if ($user && $user->resetPassword($data['password'])) {
+			return array('success' => true);
+		} else {
+			throw new \Exception(__CLASS__ . ": invalid or expired token.");
 		}
 	}
 

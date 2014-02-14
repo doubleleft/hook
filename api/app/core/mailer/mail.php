@@ -26,19 +26,19 @@ class Mail {
 			throw new \Exception(__CLASS__ . "::".__METHOD__.": 'to' option is required.");
 		}
 
-		if (!isset($options['template'])) {
-			throw new \Exception(__CLASS__ . "::".__METHOD__.": 'template' option is required.");
+		if (!isset($options['body'])) {
+			throw new \Exception(__CLASS__ . "::".__METHOD__.": 'body' option is required.");
 		}
 
-		// Compile template body
-		$body = models\Module::template($options['template'])
-			->compile($options['data']);
+		if (!isset($options['from'])) {
+			throw new \Exception(__CLASS__ . "::".__METHOD__.": 'from' option is required.");
+		}
 
 		$mailer = \Swift_Mailer::newInstance($transport);
 		$message = \Swift_Message::newInstance($options['subject'])
 			->setFrom($options['from'])
 			->setTo($options['to'])
-			->setBody($body);
+			->setBody($options['body']);
 
 		return $mailer->send($message);
 	}
