@@ -3,7 +3,7 @@
 class ResponseTypeMiddleware extends \Slim\Middleware
 {
 	const MAX_POOLING_RETRY = 60; // 60 seconds
-	const MIN_POOLING_RETRY = 1; // 10 seconds
+	const MIN_POOLING_RETRY = 0; // 1 second
 
 	const MAX_REFRESH_TIMEOUT = 40; // 40 seconds
 	const MIN_REFRESH_TIMEOUT = 1; // 1 seconds
@@ -44,8 +44,8 @@ class ResponseTypeMiddleware extends \Slim\Middleware
 				header("{$header}: {$content}");
 			}
 
+			echo 'retry: '. $retry_timeout . PHP_EOL;
 			do {
-				echo 'retry: '. $retry_timeout . PHP_EOL;
 
 				// Close EventSource connection after 4 seconds
 				// let the client re-open it if necessary
