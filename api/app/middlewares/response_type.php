@@ -2,8 +2,11 @@
 
 class ResponseTypeMiddleware extends \Slim\Middleware
 {
+	const MAX_POOLING_RETRY = 60; // 60 seconds
+	const MIN_POOLING_RETRY = 1; // 10 seconds
+
 	const MAX_REFRESH_TIMEOUT = 40; // 40 seconds
-	const POOLING_DEFAULT_RETRY = 10; // 10 seconds
+	const MIN_REFRESH_TIMEOUT = 1; // 1 seconds
 
 	public function call()
 	{
@@ -13,13 +16,15 @@ class ResponseTypeMiddleware extends \Slim\Middleware
 		// Respond based on ACCEPT request header
 		// Add EventSource middeware: http://en.wikipedia.org/wiki/Server-sent_events | http://www.html5rocks.com/en/tutorials/eventsource/basics/
 		if ($app->request->headers->get('ACCEPT') == 'text/event-stream') {
-
 			$pool_start = $app->request->headers->get('X-Time') ?: time();
-			$refresh_timeout = intval($app->request->get('refresh'));
-			if ($refresh_timeout > self::MAX_REFRESH_TIMEOUT) {
-				$refresh_timeout = self::MAX_REFRESH_TIMEOUT;
-			}
-			$retry_timeout = intval($app->request->get('retry', self::POOLING_DEFAULT_RETRY)) * 1000;
+
+			// stream timing configs
+			$stream_config = $app->request->get('stream');
+			$refresh_timeout = (isset($stream_config['refresh'])) ? intval($stream_config['refresh']) : self::MIN_REFRESH_TIMEOUT;
+			$refresh_timeout = clamp($refresh_timeout, self::MIN_REFRESH_TIMEOUT, self::MAX_REFRESH_TIMEOUT);
+			$retry_timeout = ((isset($stream_config['retry'])) ? intval($stream_config['retry']) : self::MAX_POOLING_RETRY);
+			$retry_timeout = clamp($retry_timeout, self::MIN_POOLING_RETRY, self::MAX_POOLING_RETRY) * 1000;
+
 			$last_event_id = $app->request->headers->get('Last-Event-ID');
 
 			// Get last collection event id when 'only_new' option is set
