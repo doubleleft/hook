@@ -30,12 +30,15 @@ class Mail {
 			throw new \Exception(__CLASS__ . "::".__METHOD__.": 'template' option is required.");
 		}
 
-		$mailer = \Swift_Mailer::newInstance($transport);
+		// Compile template body
+		$body = models\Module::template($options['template'])
+			->compile($options['data']);
 
+		$mailer = \Swift_Mailer::newInstance($transport);
 		$message = \Swift_Message::newInstance($options['subject'])
 			->setFrom($options['from'])
 			->setTo($options['to'])
-			->setBody($options['template']);
+			->setBody($body);
 
 		return $mailer->send($message);
 	}
