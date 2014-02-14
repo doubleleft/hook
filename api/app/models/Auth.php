@@ -3,7 +3,9 @@ namespace models;
 
 class Auth extends Collection
 {
-	const FORGOT_PASSWORD_FIELD = 'forgot_password';
+	const FORGOT_PASSWORD_FIELD = 'forgot_password_token';
+	const FORGOT_PASSWORD_EXPIRATION_FIELD = 'forgot_password_expiration';
+	const FORGOT_PASSWORD_EXPIRATION_TIME = 14400; // (60 * 60 * 4) = 4 hours
 
 	protected $guarded = array();
 	protected $primaryKey = '_id';
@@ -23,7 +25,28 @@ class Auth extends Collection
 		));
 	}
 
-	public function forgotPassword() {
+	public function generateForgotPasswordToken() {
+		$this->setAttribute(self::FORGOT_PASSWORD_FIELD, md5(uniqid(rand(), true)));
+		$this->setAttribute(self::FORGOT_PASSWORD_EXPIRATION_FIELD, time() + self::FORGOT_PASSWORD_EXPIRATION_TIME);
+		$this->save();
+		return $this;
+	}
+
+	/**
+	 * Reset user password
+	 */
+	public function resetPassword($newPassword) {
+		$success = false;
+		if (!$this->isForgotPasswordTokenExpired()) {
+			$this->password = $newPassword;
+			$this->setAttribute(self::FORGOT_PASSWORD_EXPIRATION_FIELD, time()); // expire token
+			$success = $this->save();
+		}
+		return $success;
+	}
+
+	protected function isForgotPasswordTokenExpired() {
+		return time() > $this->getAttribute(self::FORGOT_PASSWORD_EXPIRATION_FIELD);
 	}
 
 	public function toArray() {

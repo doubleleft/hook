@@ -42,16 +42,17 @@ class Module extends \Core\Model
 		//
 		if (preg_match('/^[A-Za-z0-9_\.\-\/]+\.html$/', $name)) {
 			// It's a template name!
-			$template = static::currentApp()->get(self::TYPE_TEMPLATE, $name);
+			$template = static::get(self::TYPE_TEMPLATE, $name);
 
 			if (!$template) {
-				$fallback_template_path = __DIR__ . '/../../storage/default/templates/' . $name;
+				$fallback_template_path = __DIR__ . '/../storage/default/templates/' . $name;
 				// try to retrieve local fallback template
 				if (!file_exists($fallback_template_path)) {
-					throw new MethodFailureException("Template not found: '{$name}'. Please run `dl-api generate:template {$name}` to generate one.");
+					throw new \MethodFailureException("Template not found: '{$name}'. Please run `dl-api generate:template {$name}` to generate one.");
 				}
+
 				// use local template if can't find
-				$template = static::__construct(array(
+				$template = new static(array(
 					'type' => self::TYPE_TEMPLATE,
 					'code' => file_get_contents($fallback_template_path),
 					'name' => $name
@@ -60,7 +61,7 @@ class Module extends \Core\Model
 		}
 
 		if (!$template) {
-			$template = static::__construct(array(
+			$template = new static(array(
 				'type' => self::TYPE_TEMPLATE,
 				'code' => $name,
 				'name' => 'inline-template.html'
@@ -94,7 +95,7 @@ class Module extends \Core\Model
 				if (class_exists($klass)) {
 					Collection::observe(new $klass);
 				} else {
-					throw new MethodFailureException("Module '{$name}.php' must define a class named '{$klass}'.");
+					throw new \MethodFailureException("Module '{$name}.php' must define a class named '{$klass}'.");
 				}
 
 			} else if ($this->type == self::TYPE_ROUTE) {
@@ -116,7 +117,7 @@ class Module extends \Core\Model
 				// https://github.com/bobthecow/mustache.php
 				//
 				if (gettype($value)==="object") { continue; }
-				$template = preg_replace('/{{'.$field.'}}/g', $value, $template);
+				$template = preg_replace('/{{'.$field.'}}/', $value, $template);
 			}
 
 			return $template;
