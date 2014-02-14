@@ -104,13 +104,8 @@ $app->group('/collection', function () use ($app) {
 	 * POST /collection/:name
 	 */
 	$app->post('/:name', function($name) use ($app) {
-		$module = models\Module::where('app_id', $app->key->app_id)->
-			where('type', 'observers')->
-			where('name', "{$name}.php")->
-			first();
-
-		if ($module) {
-			$module->evaluate();
+		if ($module = models\Module::observer($name)) {
+			$module->compile();
 		}
 
 		$model = new models\Collection(array_merge($app->request->post('data'), array(

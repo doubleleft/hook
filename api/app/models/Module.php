@@ -3,6 +3,7 @@ namespace models;
 
 class Module extends \Core\Model
 {
+	const TYPE_TEMPLATE = 'templates';
 	const TYPE_OBSERVER = 'observers';
 	const TYPE_ROUTE = 'routes';
 
@@ -13,14 +14,82 @@ class Module extends \Core\Model
 		return $this->belongsTo('models\App');
 	}
 
-	public function evaluate() {
+	/**
+	 * Get a template instance
+	 * @param string name
+	 */
+	public static function route($name) {
+		return static::currentApp()->get(self::TYPE_ROUTE, $name.'.php');
+	}
+
+	/**
+	 * Get a template instance
+	 * @param string name
+	 */
+	public static function observer($name) {
+		return static::currentApp()->get(self::TYPE_OBSERVER, $name.'.php');
+	}
+
+	/**
+	 * Get a template instance
+	 * @param string name
+	 */
+	public static function template($name) {
+		$template = null;
+
+		//
+		// It's a template name or template contents?
+		//
+		if (preg_match('/^[A-Za-z0-9_\.\-\/]+\.html$/', $name)) {
+			// It's a template name!
+			$template = static::currentApp()->get(self::TYPE_TEMPLATE, $name);
+
+			if (!$template) {
+				$fallback_template_path = __DIR__ . '/../../storage/default/templates/' . $name;
+				// try to retrieve local fallback template
+				if (!file_exists($fallback_template_path)) {
+					throw new MethodFailureException("Template not found: '{$name}'. Please run `dl-api generate:template {$name}` to generate one.");
+				}
+				// use local template if can't find
+				$template = static::__construct(array(
+					'type' => self::TYPE_TEMPLATE,
+					'code' => file_get_contents($fallback_template_path),
+					'name' => $name
+				));
+			}
+		}
+
+		if (!$template) {
+			$template = static::__construct(array(
+				'type' => self::TYPE_TEMPLATE,
+				'code' => $name,
+				'name' => 'inline-template.html'
+			));
+		}
+
+		return $template;
+	}
+
+	/**
+	 * Get a module instance
+	 * @param string type
+	 * @param string name
+	 */
+	public static function get($type, $name) {
+		return static::currentApp()->where('type', $type)->where('name', $name)->first();
+	}
+
+	/**
+	 * Compile module code
+	 */
+	public function compile($options=array()) {
 		$extension = '.' . pathinfo($this->name, PATHINFO_EXTENSION);
 		$name = basename($this->name, $extension);
-		$klass = ucfirst($name);
 
 		if ($extension === ".php") {
 			if ($this->type == self::TYPE_OBSERVER) {
 				eval(substr($this->code, 5)); // remove '<?php' for eval
+				$klass = ucfirst($name);
 
 				if (class_exists($klass)) {
 					Collection::observe(new $klass);
@@ -33,8 +102,35 @@ class Module extends \Core\Model
 				eval(substr($this->code, 5)); // remove '<?php' for eval
 			}
 
+		} else if ($extension === '.html') {
+			$template = $this->code;
+
+			// always use array for options
+			if (gettype($options)==='object') {
+				$options = $options->toArray();
+			}
+
+			foreach($options as $field => $value) {
+				//
+				// Please consider migrating it to mustache, for more complex templates:
+				// https://github.com/bobthecow/mustache.php
+				//
+				if (gettype($value)==="object") { continue; }
+				$template = preg_replace('/{{'.$field.'}}/g', $value, $template);
+			}
+
+			return $template;
 		}
 
 	}
 
+	/**
+	 * Current app scope
+	 * @example
+	 *     AppConfig::current()->where('name', 'like', 'mail.%')->get()
+	 */
+	public function scopeCurrentApp($query) {
+		$app = \Slim\Slim::getInstance();
+		return $query->where('app_id', $app->key->app_id);
+	}
 }
