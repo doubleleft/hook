@@ -4,7 +4,6 @@ error_reporting(E_ALL);
 date_default_timezone_set('America/Sao_Paulo');
 
 require __DIR__ . '/vendor/autoload.php';
-use Composer\Command\UpdateCommand;
 
 $app = new \Slim\Slim(array(
 	// 'cookies.encrypt' => true,
@@ -18,12 +17,8 @@ $app->add(new LogMiddleware());
 $app->add(new ResponseTypeMiddleware());
 $app->add(new AppMiddleware());
 
-// Attach authentication
+// Attach user authentication
 $app->add(new AuthMiddleware());
-
-// Evaluate custom routes
-if (!$app->request->isOptions()) {
-}
 
 $app->get('/', function() use ($app) {
 	$app->content = models\App::all();
@@ -205,6 +200,15 @@ $app->group('/collection', function () use ($app) {
 
 });
 
+$app->get('/email', function() use ($app) {
+	$app->content = Mail::send(array(
+		'template' => "Olá {name}",
+		'to' => 'edreyer@doubleleft.com',
+		'from' => 'endel.dreyer@gmail.com',
+		'subject' => "Testando!"
+	));
+});
+
 /**
  * Authentication API
  */
@@ -371,19 +375,19 @@ $app->group('/apps', function() use ($app) {
 		$app->content = models\App::find($id)->update($app->request->post('data'));
 	});
 
-	$app->get('/:name/composer', function($id) use ($app) {
-	// $app->post('/:id/composer', function($id) use ($app) {
-		// $composer = json_decode(file_get_contents('composer.json'));
-		// $composer['require'] = array_merge($composer['require'], $app->request->post('require'));
-		// file_put_contents('composer.json', json_encode($composer));
-		//Create the application and run it with the commands
-		error_reporting(E_ALL);
-		ini_set('display_errors', 1);
-		chdir('../');
-		$application = new Composer\Console\Application();
-		$application->run(new Symfony\Component\Console\Input\ArgvInput(array('update', 'willdurand/geocoder')));
-		var_dump("Finished.");
-	});
+	// $app->get('/:name/composer', function($id) use ($app) {
+	// // $app->post('/:id/composer', function($id) use ($app) {
+	// 	// $composer = json_decode(file_get_contents('composer.json'));
+	// 	// $composer['require'] = array_merge($composer['require'], $app->request->post('require'));
+	// 	// file_put_contents('composer.json', json_encode($composer));
+	// 	//Create the application and run it with the commands
+	// 	error_reporting(E_ALL);
+	// 	ini_set('display_errors', 1);
+	// 	chdir('../');
+	// 	$application = new Composer\Console\Application();
+	// 	$application->run(new Symfony\Component\Console\Input\ArgvInput(array('update', 'willdurand/geocoder')));
+	// 	var_dump("Finished.");
+	// });
 
 	$app->delete('/:name', function($id) {
 		echo json_encode(array('success' => models\App::query()->delete($id)));
