@@ -46,5 +46,15 @@ class App extends \Core\Model
 		return new Core\Storage\File($this);
 	}
 
+	/**
+	 * Current app scope
+	 * @example
+	 *     App::current()->where('name', 'like', 'mail.%')->get()
+	 */
+	public function scopeCurrent($query) {
+		$app = \Slim\Slim::getInstance();
+		return $query->where('_id', $app->key->app_id);
+	}
+
 }
 

@@ -41,11 +41,7 @@ class Mail {
 	}
 
 	public static function send($options = array()) {
-		$app = \Slim\Slim::getInstance();
-		$mail_configs = $app->key->app->configs()->where('name', 'like', 'mail.%')->get();
-
-		$params = array();
-		$mail_configs->each(function($config) use (&$params) {
+		models\AppConfig::getAll('mail.%')->each(function($config) use (&$params) {
 			preg_match('/mail\.([a-z]+)/', $config->name, $matches);
 			$params[ $matches[1] ] = $config->value;
 		});
