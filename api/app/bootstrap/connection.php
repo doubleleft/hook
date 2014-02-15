@@ -42,11 +42,11 @@ DLModel::setEventDispatcher($event_dispatcher);
 //
 $connection->setPaginator(new \Core\Pagination\Environment());
 
-
 //
-// Try to migrate the database
+// Try to create schema.
+// Ignore NoSQL databases.
 //
-if (preg_match('/sql|postgres/', $connection->getDriverName())) {
+if ($connection->getPdo()) {
 	$builder = $connection->getSchemaBuilder();
 	if (!$builder->hasTable('apps')) {
 		foreach(glob(__DIR__ . '/../models/schema/*.php') as $file) {
