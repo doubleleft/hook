@@ -43,12 +43,14 @@ class Email extends Base {
 		$body_data = $user->generateForgotPasswordToken()->toArray();
 		$body_data['token'] = $user->getAttribute(\models\Auth::FORGOT_PASSWORD_FIELD);
 
+		$template = isset($data['template']) ? $data['template'] : self::TEMPLATE_FORGOT_PASSWORD;
+
 		return array(
 			'success' => (\Mail::send(array(
 				'subject' => $data['subject'],
 				'from' => \models\AppConfig::get('mail.from', 'no-reply@api.2l.cx'),
 				'to' => $user->email,
-				'body' => \models\Module::template(self::TEMPLATE_FORGOT_PASSWORD)->compile($body_data)
+				'body' => \models\Module::template($template)->compile($body_data)
 			)) === 1)
 		);
 	}

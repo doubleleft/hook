@@ -57,6 +57,7 @@ class Auth extends Collection
 		 */
 		if (isset($arr['password'])) { unset($arr['password']); }
 		if (isset($arr[self::FORGOT_PASSWORD_FIELD])) { unset($arr[self::FORGOT_PASSWORD_FIELD]); }
+		if (isset($arr[self::FORGOT_PASSWORD_EXPIRATION_FIELD])) { unset($arr[self::FORGOT_PASSWORD_EXPIRATION_FIELD]); }
 
 		return $arr;
 	}
