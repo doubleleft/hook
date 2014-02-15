@@ -137,8 +137,10 @@ class ResponseTypeMiddleware extends \Slim\Middleware
 			return array();
 
 		} else {
-			// Exception has code 0 by default, it should send 500 through http
-			$code = intval($e->getCode()) ?: 500;
+			$code = intval($e->getCode());
+			if (!$code || $code < 200 || $code > 500) {
+				$code = 500;
+			}
 			$app->response->setStatus($code);
 
 			return array('error' => $message);
