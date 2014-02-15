@@ -23,14 +23,13 @@ class Collection extends \Core\Model
 	}
 
 	public function beforeSave() {
-		$conn = $this->getConnectionResolver()->connection();
+		$connection = $this->getConnectionResolver()->connection();
 
+		// Try to migrate schema.
 		// Ignore NoSQL databases.
-		if (!preg_match('/sql|postgres/', $conn->getDriverName())) {
-			return;
-		}
+		if (!$connection->getPdo()) { return; }
 
-		$builder = $conn->getSchemaBuilder();
+		$builder = $connection->getSchemaBuilder();
 		$attributes = $this->attributes;
 
 		//
