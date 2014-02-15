@@ -19,7 +19,7 @@ class Module extends \Core\Model
 	 * @param string name
 	 */
 	public static function route($name) {
-		return static::currentApp()->get(self::TYPE_ROUTE, $name.'.php');
+		return static::get(self::TYPE_ROUTE, $name.'.php');
 	}
 
 	/**
@@ -27,7 +27,7 @@ class Module extends \Core\Model
 	 * @param string name
 	 */
 	public static function observer($name) {
-		return static::currentApp()->get(self::TYPE_OBSERVER, $name.'.php');
+		return static::get(self::TYPE_OBSERVER, $name.'.php');
 	}
 
 	/**
