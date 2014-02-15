@@ -15,7 +15,7 @@ class Module extends \Core\Model
 	}
 
 	/**
-	 * Get a template instance
+	 * Get a route module instance
 	 * @param string name
 	 */
 	public static function route($name) {
@@ -23,7 +23,7 @@ class Module extends \Core\Model
 	}
 
 	/**
-	 * Get a template instance
+	 * Get a observer module instance
 	 * @param string name
 	 */
 	public static function observer($name) {
@@ -31,7 +31,7 @@ class Module extends \Core\Model
 	}
 
 	/**
-	 * Get a template instance
+	 * Get a template module instance, trying to fallback to a general template
 	 * @param string name
 	 */
 	public static function template($name) {
