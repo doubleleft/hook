@@ -46,8 +46,7 @@ class ResponseTypeMiddleware extends \Slim\Middleware
 
 			echo 'retry: '. $retry_timeout . PHP_EOL;
 			do {
-
-				// Close EventSource connection after 4 seconds
+				// Close EventSource connection after 15 seconds
 				// let the client re-open it if necessary
 				if ((time() - $pool_start) > 15) {
 					die();
@@ -81,7 +80,6 @@ class ResponseTypeMiddleware extends \Slim\Middleware
 						echo 'id: '. $data->_id . PHP_EOL;
 						echo 'data: '. $self->encode_content($data) . PHP_EOL;
 						echo PHP_EOL;
-						ob_flush();
 						flush();
 						$last_event_id = $data->_id;
 					});
@@ -94,7 +92,6 @@ class ResponseTypeMiddleware extends \Slim\Middleware
 					}
 					echo 'data: '. $this->encode_content($app->content) . PHP_EOL;
 					echo PHP_EOL;
-					ob_flush();
 					flush();
 				}
 
