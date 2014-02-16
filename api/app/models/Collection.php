@@ -6,6 +6,11 @@ class Collection extends \Core\Model
 	protected $guarded = array();
 	protected $primaryKey = '_id';
 
+	public static function boot() {
+		parent::boot();
+		static::saving(function($model) { $model->beforeSave(); });
+	}
+
 	public function __construct(array $attributes = array()) {
 		if (isset($attributes['table_name'])) {
 			$this->setTable($attributes['table_name']);
@@ -14,13 +19,38 @@ class Collection extends \Core\Model
 		parent::__construct($attributes);
 	}
 
-	public static function boot() {
-		static::saving(function($model) { $model->beforeSave(); });
+	public function scopeFilter($query, $filters = null) {
+		if ($filters) {
+			foreach($filters as $where) {
+				if (preg_match('/^[a-z_]+$/', $where[1]) !== 0) {
+					$method = 'where' . ucfirst(Illuminate\Support\Str::camel($where[1]));
+					$query->{$method}($where[0], $where[2]);
+				} else {
+					$query->where($where[0], $where[1], $where[2]);
+				}
+			}
+		}
+		return $query;
 	}
 
 	public function app() {
 		return $this->belongsTo('models\App');
 	}
+
+	/**
+	 * Drop the collection
+	 * @method drop
+	 */
+	public function drop() {
+		$conn = $this->getConnectionResolver()->connection();
+		$builder = $conn->getSchemaBuilder();
+		$builder->dropIfExists($this->getTable());
+		return true;
+	}
+
+	//
+	// Hooks
+	//
 
 	public function beforeSave() {
 		$connection = $this->getConnectionResolver()->connection();
@@ -64,6 +94,7 @@ class Collection extends \Core\Model
 							!$builder->hasColumn($table, "`{$field}`")) {
 						$datatype = gettype($value);
 						if ($datatype !== 'array') {
+							file_put_contents('php://stderr', gettype($value) . ', '. $field . PHP_EOL );
 							$t->{gettype($value)}($field)->nullable();
 						}
 					}
@@ -71,14 +102,6 @@ class Collection extends \Core\Model
 			});
 
 		}
-
-	}
-
-	public function drop() {
-		$conn = $this->getConnectionResolver()->connection();
-		$builder = $conn->getSchemaBuilder();
-		$builder->dropIfExists($this->getTable());
-		return true;
 	}
 
 }

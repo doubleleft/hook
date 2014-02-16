@@ -39,7 +39,6 @@ class ResponseTypeMiddleware extends \Slim\Middleware
 
 			// Set response headers
 			$app->response->headers->set('Content-type', 'text/event-stream');
-			// $app->response->headers->set('Connection', 'Keep-Alive');
 			foreach($app->response->headers as $header => $content) {
 				header("{$header}: {$content}");
 			}
@@ -77,6 +76,10 @@ class ResponseTypeMiddleware extends \Slim\Middleware
 				if (method_exists($app->content, 'each')) {
 					$self = $this;
 					$app->content->each(function($data) use ($app, &$last_event_id, &$self) {
+						// trigger channel event, if set
+						if (isset($data->event) && strlen($data->event) > 0) {
+							echo 'event: ' . $data->event . PHP_EOL;
+						}
 						echo 'id: '. $data->_id . PHP_EOL;
 						echo 'data: '. $self->encode_content($data) . PHP_EOL;
 						echo PHP_EOL;
@@ -90,7 +93,7 @@ class ResponseTypeMiddleware extends \Slim\Middleware
 						echo 'id: '. $app->content->_id . PHP_EOL;
 						$last_event_id = $data->content->_id;
 					}
-					echo 'data: '. $this->encode_content($app->content) . PHP_EOL;
+					echo 'data: '. $this->encode_content($app->content) . "\r\n";
 					echo PHP_EOL;
 					flush();
 				}
@@ -130,6 +133,7 @@ class ResponseTypeMiddleware extends \Slim\Middleware
 
 		if (strpos($message, "column not found") !== false ||        // mysql
 				strpos($message, "no such table") !== false ||           // mysql
+				strpos($message, "has no column named") !== false ||     // sqlite
 				strpos($message, "table or view not found") !== false) { // sqlite
 			return array();
 
