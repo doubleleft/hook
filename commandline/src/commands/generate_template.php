@@ -1,9 +1,9 @@
 <?php
 
 return array(
-	'arg0'    => 'generate:email',
-	'command' => 'generate:email <template-name>',
-	'description' => 'Generate email template.',
+	'arg0'    => 'generate:template',
+	'command' => 'generate:template <template-name>',
+	'description' => 'Generate HTML template.',
 	'run' => function($args) use ($commands) {
 
 		if (!isset($args[1])) {
@@ -16,7 +16,7 @@ return array(
 		$dest_file = $dest . $template_name . '.html';
 		@mkdir($dest, 0777, true);
 
-		$template = file_get_contents(__DIR__ . '/../templates/email.html');
+		$template = file_get_contents(__DIR__ . '/../templates/template.html');
 		$template = preg_replace('/{template_name}/', ucfirst($template_name), $template);
 		file_put_contents($dest_file, $template);
 
