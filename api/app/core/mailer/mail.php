@@ -34,10 +34,16 @@ class Mail {
 			throw new \Exception(__CLASS__ . "::".__METHOD__.": 'from' option is required.");
 		}
 
+		// Use text/html as default content-type
+		if (!isset($options['contentType'])) {
+			$options['contentType'] = 'text/html';
+		}
+
 		$mailer = \Swift_Mailer::newInstance($transport);
 		$message = \Swift_Message::newInstance($options['subject'])
 			->setFrom($options['from'])
 			->setTo($options['to'])
+			->setContentType($options['contentType'])
 			->setBody($options['body']);
 
 		return $mailer->send($message);
