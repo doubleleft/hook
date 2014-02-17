@@ -9,7 +9,7 @@ class Mail {
 		}
 
 		$transport_klass = '\Swift_'.ucfirst(strtolower($params['driver'])).'Transport';
-		$transport = $transport_klass::newInstance();
+		$transport = call_user_func(array($transport_klass, 'newInstance'));
 		unset($params['driver']);
 
 		// Set custom transport params
