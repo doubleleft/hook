@@ -39,15 +39,15 @@ class ResponseTypeMiddleware extends \Slim\Middleware
 
 			// Set response headers
 			$app->response->headers->set('Content-type', 'text/event-stream');
-			// $app->response->headers->set('Connection', 'Keep-Alive');
+			$app->response->headers->set('Cache-Control', 'no-cache');
 			foreach($app->response->headers as $header => $content) {
 				header("{$header}: {$content}");
 			}
 
 			echo 'retry: '. $retry_timeout . PHP_EOL;
-			do {
 
-				// Close EventSource connection after 4 seconds
+			do {
+				// Close EventSource connection after 15 seconds
 				// let the client re-open it if necessary
 				if ((time() - $pool_start) > 15) {
 					die();
@@ -78,9 +78,8 @@ class ResponseTypeMiddleware extends \Slim\Middleware
 				if (method_exists($app->content, 'each')) {
 					$self = $this;
 					$app->content->each(function($data) use ($app, &$last_event_id, &$self) {
-						echo 'id: '. $data->_id . PHP_EOL;
-						echo 'data: '. $self->encode_content($data) . PHP_EOL;
-						echo PHP_EOL;
+						echo 'id: '. $data->_id . PHP_EOL . PHP_EOL;
+						echo 'data: '. $self->encode_content($data) . PHP_EOL . PHP_EOL;
 						ob_flush();
 						flush();
 						$last_event_id = $data->_id;
@@ -89,11 +88,10 @@ class ResponseTypeMiddleware extends \Slim\Middleware
 				} else {
 					// Single result
 					if ($app->content instanceof stdClass) {
-						echo 'id: '. $app->content->_id . PHP_EOL;
+						echo 'id: '. $app->content->_id . PHP_EOL . PHP_EOL;
 						$last_event_id = $data->content->_id;
 					}
-					echo 'data: '. $this->encode_content($app->content) . PHP_EOL;
-					echo PHP_EOL;
+					echo 'data: '. $this->encode_content($app->content) . PHP_EOL . PHP_EOL;
 					ob_flush();
 					flush();
 				}
@@ -133,12 +131,15 @@ class ResponseTypeMiddleware extends \Slim\Middleware
 
 		if (strpos($message, "column not found") !== false ||        // mysql
 				strpos($message, "no such table") !== false ||           // mysql
+				strpos($message, "has no column named") !== false ||     // sqlite
 				strpos($message, "table or view not found") !== false) { // sqlite
 			return array();
 
 		} else {
-			// Exception has code 0 by default, it should send 500 through http
-			$code = intval($e->getCode()) ?: 500;
+			$code = intval($e->getCode());
+			if (!$code || $code < 200 || $code > 500) {
+				$code = 500;
+			}
 			$app->response->setStatus($code);
 
 			return array('error' => $message);
