@@ -7,5 +7,8 @@ return array('modules' => function($t) {
 	$t->string('type')->nullable();
 	$t->string('description')->nullable();
 	$t->text('code');
-	$t->timestamps();
+
+	// timestamps
+	$t->integer('created_at');
+	$t->integer('updated_at');
 });

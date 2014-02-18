@@ -6,5 +6,8 @@ return array('request_logs' => function($t) {
 	$t->string('key_id');
 	$t->string('uri');
 	$t->string('method', 6);
-	$t->timestamps();
+
+	// timestamps
+	$t->integer('created_at');
+	$t->integer('updated_at');
 });

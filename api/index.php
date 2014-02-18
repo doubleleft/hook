@@ -45,20 +45,9 @@ $app->group('/collection', function () use ($app) {
 	 * GET /collection/:name
 	 */
 	$app->get('/:name', function($name) use ($app) {
-		$query = models\Collection::query()->from($name);
-		$query->where('app_id', $app->key->app_id);
-
-		// Apply filters
-		if ($q = $app->request->get('q')) {
-			foreach($q as $where) {
-				if (preg_match('/^[a-z_]+$/', $where[1]) !== 0) {
-					$method = 'where' . ucfirst(Illuminate\Support\Str::camel($where[1]));
-					$query->{$method}($where[0], $where[2]);
-				} else {
-					$query->where($where[0], $where[1], $where[2]);
-				}
-			}
-		}
+		$query = models\Collection::filter($app->request->get('q'))
+			->from($name)
+			->where('app_id', $app->key->app_id);
 
 		// Apply ordering
 		if ($s = $app->request->get('s')) {
@@ -124,21 +113,9 @@ $app->group('/collection', function () use ($app) {
 	 * PUT /collection/:name
 	 */
 	$app->put('/:name', function($name) use ($app) {
-		$query = models\Collection::query()->from($name);
-		$query->where('app_id', $app->key->app_id);
-
-		// Apply filters
-		// FIXME: DRY with GET
-		if ($q = $app->request->post('q')) {
-			foreach($q as $where) {
-				if (preg_match('/^[a-z_]+$/', $where[1]) !== 0) {
-					$method = 'where' . ucfirst(Illuminate\Support\Str::camel($where[1]));
-					$query->{$method}($where[0], $where[2]);
-				} else {
-					$query->where($where[0], $where[1], $where[2]);
-				}
-			}
-		}
+		$query = models\Collection::filter($app->request->post('q'))
+			->from($name)
+			->where('app_id', $app->key->app_id);
 
 		if ($operation = $app->request->post('op')) {
 			// Operations: increment/decrement
@@ -195,13 +172,33 @@ $app->group('/collection', function () use ($app) {
 
 });
 
-$app->get('/email', function() use ($app) {
-	$app->content = Mail::send(array(
-		'template' => "Olá {name}",
-		'to' => 'edreyer@doubleleft.com',
-		'from' => 'endel.dreyer@gmail.com',
-		'subject' => "Testando!"
-	));
+/**
+ * Realtime channels
+ */
+$app->group('/channels', function() use ($app) {
+	/**
+	 * GET /channels/channel
+	 * GET /channels/some/deep/channel
+	 */
+	$app->get('/:name+', function($name) use ($app) {
+		$name = implode("/",$name);
+		$app->content = models\ChannelMessage::filter($app->request->get('q'))
+			->where('app_id', $app->key->app_id)
+			->where('channel', $name)
+			->get();
+	});
+
+	/**
+	 * POST /channels/channel
+	 * POST /channels/some/deep/channel
+	 */
+	$app->post('/:name+', function($name) use ($app) {
+		$name = implode("/",$name);
+		$app->content = models\ChannelMessage::create(array_merge($app->request->post('data'), array(
+			'app_id' => $app->key->app_id,
+			'channel' => $name
+		)));
+	});
 });
 
 /**

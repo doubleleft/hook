@@ -6,6 +6,8 @@ return array('files' => function($t) {
 	$t->string('path');
 	$t->string('name');
 	$t->string('mime');
-	$t->timestamps();
-});
 
+	// timestamps
+	$t->integer('created_at');
+	$t->integer('updated_at');
+});
