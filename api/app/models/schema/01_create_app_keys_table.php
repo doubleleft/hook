@@ -5,5 +5,8 @@ return array('app_keys' => function($t) {
 	$t->integer('app_id')->references('_id')->on('apps');
 	$t->string('key');
 	$t->string('secret');
-	$t->timestamps();
+
+	// timestamps
+	$t->integer('created_at');
+	$t->integer('updated_at');
 });

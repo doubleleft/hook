@@ -39,11 +39,13 @@ class ResponseTypeMiddleware extends \Slim\Middleware
 
 			// Set response headers
 			$app->response->headers->set('Content-type', 'text/event-stream');
+			$app->response->headers->set('Cache-Control', 'no-cache');
 			foreach($app->response->headers as $header => $content) {
 				header("{$header}: {$content}");
 			}
 
 			echo 'retry: '. $retry_timeout . PHP_EOL;
+
 			do {
 				// Close EventSource connection after 15 seconds
 				// let the client re-open it if necessary
@@ -76,9 +78,9 @@ class ResponseTypeMiddleware extends \Slim\Middleware
 				if (method_exists($app->content, 'each')) {
 					$self = $this;
 					$app->content->each(function($data) use ($app, &$last_event_id, &$self) {
-						echo 'id: '. $data->_id . PHP_EOL;
-						echo 'data: '. $self->encode_content($data) . PHP_EOL;
-						echo PHP_EOL;
+						echo 'id: '. $data->_id . PHP_EOL . PHP_EOL;
+						echo 'data: '. $self->encode_content($data) . PHP_EOL . PHP_EOL;
+						ob_flush();
 						flush();
 						$last_event_id = $data->_id;
 					});
@@ -86,11 +88,11 @@ class ResponseTypeMiddleware extends \Slim\Middleware
 				} else {
 					// Single result
 					if ($app->content instanceof stdClass) {
-						echo 'id: '. $app->content->_id . PHP_EOL;
+						echo 'id: '. $app->content->_id . PHP_EOL . PHP_EOL;
 						$last_event_id = $data->content->_id;
 					}
-					echo 'data: '. $this->encode_content($app->content) . "\r\n";
-					echo PHP_EOL;
+					echo 'data: '. $this->encode_content($app->content) . PHP_EOL . PHP_EOL;
+					ob_flush();
 					flush();
 				}
 

@@ -94,7 +94,6 @@ class Collection extends \Core\Model
 							!$builder->hasColumn($table, "`{$field}`")) {
 						$datatype = gettype($value);
 						if ($datatype !== 'array') {
-							file_put_contents('php://stderr', gettype($value) . ', '. $field . PHP_EOL );
 							$t->{gettype($value)}($field)->nullable();
 						}
 					}

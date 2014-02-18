@@ -9,6 +9,11 @@ class Model extends \DLModel
 		return time();
 	}
 
+	public function freshTimestampString()
+	{
+		return time();
+	}
+
 	public function getDates()
 	{
 		return array();

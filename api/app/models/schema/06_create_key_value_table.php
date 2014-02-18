@@ -5,7 +5,8 @@ return array('key_values' => function($t) {
 	$t->integer('app_id')->references('_id')->on('apps');
 	$t->string('name');
 	$t->string('value');
-	$t->timestamps();
+
+	// timestamps
+	$t->integer('created_at');
+	$t->integer('updated_at');
 });
-
-
