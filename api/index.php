@@ -177,20 +177,26 @@ $app->group('/collection', function () use ($app) {
  */
 $app->group('/channels', function() use ($app) {
 	/**
-	 * GET /channels/some_custom_channel
+	 * GET /channels/channel
+	 * GET /channels/some/deep/channel
 	 */
-	$app->get('/:name', function($name) use ($app) {
+	$app->get('/:name+', function($name) use ($app) {
+		$name = implode("/",$name);
 		$app->content = models\ChannelMessage::filter($app->request->get('q'))
 			->where('app_id', $app->key->app_id)
+			->where('channel', $name)
 			->get();
 	});
 
 	/**
-	 * POST /channels/some_custom_channel
+	 * POST /channels/channel
+	 * POST /channels/some/deep/channel
 	 */
-	$app->post('/:name', function($name) use ($app) {
+	$app->post('/:name+', function($name) use ($app) {
+		$name = implode("/",$name);
 		$app->content = models\ChannelMessage::create(array_merge($app->request->post('data'), array(
-			'app_id' => $app->key->app_id
+			'app_id' => $app->key->app_id,
+			'channel' => $name
 		)));
 	});
 });

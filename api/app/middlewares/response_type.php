@@ -76,10 +76,6 @@ class ResponseTypeMiddleware extends \Slim\Middleware
 				if (method_exists($app->content, 'each')) {
 					$self = $this;
 					$app->content->each(function($data) use ($app, &$last_event_id, &$self) {
-						// trigger channel event, if set
-						if (isset($data->event) && strlen($data->event) > 0) {
-							echo 'event: ' . $data->event . PHP_EOL;
-						}
 						echo 'id: '. $data->_id . PHP_EOL;
 						echo 'data: '. $self->encode_content($data) . PHP_EOL;
 						echo PHP_EOL;

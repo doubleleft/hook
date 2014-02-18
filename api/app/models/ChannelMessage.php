@@ -20,6 +20,12 @@ class ChannelMessage extends Collection {
 			$this->setAttribute('client_id', uniqid());
 		}
 
+		// Fill auth_id on message if there is a user authenticated.
+		$app = \Slim\Slim::getInstance();
+		if ($app->auth_token) {
+			$this->setAttribute('auth_id', $app->auth_token->auth_id);
+		}
+
 		parent::beforeSave();
 	}
 
