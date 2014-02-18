@@ -35,6 +35,9 @@ $cli->option('json')
   ->describedAs('JSON output. Useful to automate/integrate CLI workflow.')
   ->boolean();
 
+$cli->option('endpoint')
+  ->describedAs('Define dl-api host endpoint. Default: '. \Client\Client::getEndpoint());
+
 // show cli version
 if ($cli['version']) {
   die("dl-api: v" . $VERSION . PHP_EOL);
@@ -42,6 +45,10 @@ if ($cli['version']) {
 
 if ($cli['json']) {
   echo "WARNING: JSON output not working yet." . PHP_EOL;
+}
+
+if ($cli['endpoint']) {
+  \Client\Client::setEndpoint($cli['endpoint']);
 }
 
 if (isset($cli[0])) {
