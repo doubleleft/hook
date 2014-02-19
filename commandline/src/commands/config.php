@@ -6,6 +6,8 @@ return array(
 	'description' => 'List all app configurations',
 	'run' => function($args) {
 
+		$config = Client\Project::getConfig();
+		var_dump($config);
 		if (!$args['app']) {
 			die("Error: '--app' option is required" . PHP_EOL);
 		}
