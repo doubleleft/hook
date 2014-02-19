@@ -36,15 +36,21 @@ $cli->option('json')
   ->boolean();
 
 $cli->option('endpoint')
-  ->describedAs('Define dl-api host endpoint. Default: '. \Client\Client::getEndpoint());
+  ->describedAs('Define host endpoint. Default: '. \Client\Client::getEndpoint());
+
+// set app config manually
+if ($cli['app']) {
+  $client = new Client\Client();
+  $app_data = $client->get('apps/' . $cli['app']);
+  Client\Project::setTempConfig(array(
+    'app_id' => $app_data->keys[0]->app_id,
+    'key' => $app_data->keys[0]->key
+  ));
+}
 
 // show cli version
 if ($cli['version']) {
   die("dl-api: v" . $VERSION . PHP_EOL);
-}
-
-if ($cli['json']) {
-  echo "WARNING: JSON output not working yet." . PHP_EOL;
 }
 
 if ($cli['endpoint']) {
@@ -54,7 +60,13 @@ if ($cli['endpoint']) {
 if (isset($cli[0])) {
   if (isset($commands[$cli[0]])) {
     $command = $commands[$cli[0]];
-    $command['run']($cli);
+    $data = $command['run']($cli);
+
+    // Print JSON when requested
+    if ($data && $cli['json']) {
+      echo json_encode($data, JSON_PRETTY_PRINT) . PHP_EOL;
+    }
+
   } else {
     $cli->printHelp();
     echo "Command '{$cli[0]}' not found." . PHP_EOL;

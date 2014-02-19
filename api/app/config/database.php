@@ -15,8 +15,8 @@ return array(
 		'driver'   => 'mysql',
 		'host'     => 'localhost',
 		'username' => 'root',
-		'password' => 'root',
-		'database' => 'dl-api',
+		'password' => '',
+		'database' => 'dlapi',
 		'collation' => 'utf8_general_ci',
 		'charset' => 'utf8'
 	),

@@ -16,29 +16,23 @@ class AppKey extends \Core\Model
 	}
 
 	public function beforeSave() {
-		if ($this->key && $this->secret) { return; }
+		if (!$this->key) {
+			$this->key = md5(uniqid(rand(), true));
+			$this->secret = 0; // DEPRECATED.
+	 	}
 
-		$res = openssl_pkey_new(array(
-			"digest_alg" => "sha1",
-			"private_key_bits" => 512,
-			"private_key_type" => OPENSSL_KEYTYPE_RSA,
-		));
+		// if ($this->key && $this->secret) { return; }
 
-		// Extract the public key from $res to $pubKey
-		$public_key = openssl_pkey_get_details($res);
+		// $res = openssl_pkey_new(array(
+		// 	"digest_alg" => "sha1",
+		// 	"private_key_bits" => 512,
+		// 	"private_key_type" => OPENSSL_KEYTYPE_RSA,
+		// ));
+    //
+		// // Extract the public key from $res to $pubKey
+		// $public_key = openssl_pkey_get_details($res);
 
-		// $public_key ->
-		//	'rsa' ->
-		//		'n'
-		//		'e'
-		//		'd'
-		//		'p'
-		//		'q'
-		//		'dmp1'
-		//		'dmq1'
-		//		'iqmp'
-
-		$this->key    = md5($public_key['rsa']['dmq1']);
-		$this->secret = md5($public_key['rsa']['iqmp']);
+		// $this->key    = md5($public_key['rsa']['dmq1']);
+		// $this->secret = md5($public_key['rsa']['iqmp']);
 	}
 }

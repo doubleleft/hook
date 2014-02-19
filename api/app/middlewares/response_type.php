@@ -44,7 +44,7 @@ class ResponseTypeMiddleware extends \Slim\Middleware
 				header("{$header}: {$content}");
 			}
 
-			echo 'retry: '. $retry_timeout . PHP_EOL;
+			echo 'retry: '. $retry_timeout . PHP_EOL . PHP_EOL;
 
 			do {
 				// Close EventSource connection after 15 seconds
