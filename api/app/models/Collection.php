@@ -23,7 +23,7 @@ class Collection extends \Core\Model
 		if ($filters) {
 			foreach($filters as $where) {
 				if (preg_match('/^[a-z_]+$/', $where[1]) !== 0) {
-					$method = 'where' . ucfirst(Illuminate\Support\Str::camel($where[1]));
+					$method = 'where' . ucfirst(\Illuminate\Support\Str::camel($where[1]));
 					$query->{$method}($where[0], $where[2]);
 				} else {
 					$query->where($where[0], $where[1], $where[2]);
