@@ -21,7 +21,7 @@ return array(
 			if (isset($options['truncate']) && $options['truncate']) {
 				echo "Truncating '{$collection}'... ";
 				$truncate = $client->delete('collection/' . $collection);
-				if (count($truncate)>0 && $truncate->success) {
+				if (count($truncate)>0) {
 					echo "ok.";
 				}
 				echo PHP_EOL;

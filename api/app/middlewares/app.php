@@ -48,6 +48,8 @@ class AppMiddleware extends \Slim\Middleware
 					}
 				}
 			} else if (!preg_match('/$app/', $app->request->getResourceUri())) {
+				file_put_contents('php://stderr', $app->request->headers->get('X-Public-Key'));
+
 				// throw new ForbiddenException("invalid application credentials");
 			}
 

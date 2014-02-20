@@ -19,6 +19,9 @@ return array(
 							echo "{" . PHP_EOL;
 							echo "\tappId: {$app->_id}" . PHP_EOL;
 							echo "\tkey: " . $key->key . PHP_EOL;
+							if ($key->admin) {
+								echo "\tadmin: {$key->admin}" . PHP_EOL;
+							}
 							echo "}" . PHP_EOL;
 						}
 					}
