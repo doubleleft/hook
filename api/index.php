@@ -72,8 +72,13 @@ $app->group('/collection', function () use ($app) {
 		}
 
 		if ($aggr = $app->request->get('aggr')) {
-			// Aggregate count/max/min/avg/sum methods
-			$app->content = $query->{$aggr['method']}($aggr['field']);
+			// Aggregate 'max'/'min'/'avg'/'sum' methods
+			if ($aggr['field']) {
+				$app->content = $query->{$aggr['method']}($aggr['field']);
+			} else {
+				// Aggregate 'count'
+				$app->content = $query->{$aggr['method']}();
+			}
 
 		} else if ($app->request->get('p')) {
 			// Apply pagination
