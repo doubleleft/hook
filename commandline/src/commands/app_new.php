@@ -11,11 +11,12 @@ return array(
 		}
 
 		$client = new Client\Client();
-		$app = $client->post('apps', array(
+		$app = $client->post('app', array(
 			'app' => array('name' => $args[1])
 		));
 
 		Client\Project::setConfig(array(
+			'name' => $app->name,
 			'app_id' => $app->keys[0]->app_id,
 			'key' => $app->keys[0]->key
 		));

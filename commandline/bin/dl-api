@@ -10,8 +10,6 @@ $VERSION = '1.0.0rc1';
 require_once __DIR__ . '/../vendor/autoload.php';
 Guzzle\Http\StaticClient::mount();
 
-echo "..." . PHP_EOL ;
-
 $cli = new Commando\Command();
 $commands = array();
 
@@ -38,11 +36,22 @@ $cli->option('json')
 $cli->option('endpoint')
   ->describedAs('Define host endpoint. Default: '. \Client\Client::getEndpoint());
 
+if (!$cli['json']) {
+  echo "..." . PHP_EOL;
+}
+
 // set app config manually
 if ($cli['app']) {
   $client = new Client\Client();
   $app_data = $client->get('apps/' . $cli['app']);
+  $admin_keys = array_filter($app_data->keys, function($key) { return $key->admin; });
+
+  if (count($admin_keys)===0) {
+    die("Project '{$app_data->name}' doesn't have any admin key." . PHP_EOL);
+  }
+
   Client\Project::setTempConfig(array(
+    'name' => $app_data->name,
     'app_id' => $app_data->keys[0]->app_id,
     'key' => $app_data->keys[0]->key
   ));
@@ -63,7 +72,7 @@ if (isset($cli[0])) {
     $data = $command['run']($cli);
 
     // Print JSON when requested
-    if ($data && $cli['json']) {
+    if ($cli['json']) {
       echo json_encode($data, JSON_PRETTY_PRINT) . PHP_EOL;
     }
 

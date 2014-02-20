@@ -279,18 +279,21 @@ $app->group('/files', function() use($app) {
 $app->get('/apps', function() use($app) {
 	$app->content = models\App::all();
 });
+
+$app->get('/apps/:name', function($name) use ($app) {
+	$app->content = models\App::where('name', $name)->first();
+});
+
 $app->group('/app', function() use ($app) {
 	$app->get('/test', function() use ($app) {
-		if (models\App::count() == 0) {
-			$app = models\App::create(array(
-				'_id' => 1,
-				'name' => "test"
-			));
-			$app->keys()->create(array(
-				'key' => 'test',
-				'secret' => 'test'
-			));
-		}
+		$app = models\App::create(array(
+			'_id' => 1,
+			'name' => "test"
+		));
+		$app->keys()->create(array(
+			'key' => 'test',
+			'secret' => 'test'
+		));
 
 		$app->content = models\App::all();
 	});
@@ -299,15 +302,11 @@ $app->group('/app', function() use ($app) {
 		$app->content = models\App::create($app->request->post('app'));
 	});
 
-	$app->get('/:name', function($name) use ($app) {
-		$app->content = models\App::where('name', $name)->first();
-	});
-
 	$app->post('/keys', function() use ($app) {
 		$app->content = $app->key->app->generate_key();
 	});
 
-	$app->get('/configs', function($name) use ($app) {
+	$app->get('/configs', function() use ($app) {
 		$app->content = $app->key->app->configs;
 	});
 
@@ -354,10 +353,6 @@ $app->group('/app', function() use ($app) {
 			where('name', $module_name)->
 			delete();
 		$app->content = array('success' => $deleted);
-	});
-
-	$app->put('/', function() use ($app) {
-		$app->content = $app->key->app->update($app->request->post('data'));
 	});
 
 	// $app->get('/:name/composer', function($id) use ($app) {

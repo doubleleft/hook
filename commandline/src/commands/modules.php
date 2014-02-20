@@ -6,12 +6,8 @@ return array(
 	'description' => 'List all application modules',
 	'run' => function($args) {
 
-		if (!$args['app']) {
-			die("Error: '--app' option is required" . PHP_EOL);
-		}
-
 		$client = new Client\Client();
-		$modules = $client->get("apps/{$args['app']}/modules");
+		$modules = $client->get("app/modules");
 
 		if ($modules) {
 			echo "Modules: " . PHP_EOL;
@@ -19,7 +15,8 @@ return array(
 				echo "\t'{$module->name}' ({$module->type}) - LoC: " . substr_count($module->code, "\n") . PHP_EOL;
 			}
 		} else {
-			echo "No modules found for: '{$args['app']}'." . PHP_EOL;
+			$project = Client\Project::getConfig();
+			echo "No modules found for: '{$project['name']}'." . PHP_EOL;
 		}
 
 	}

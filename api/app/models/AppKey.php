@@ -18,7 +18,6 @@ class AppKey extends \Core\Model
 	public function beforeSave() {
 		if (!$this->key) {
 			$this->key = md5(uniqid(rand(), true));
-			$this->secret = 0; // DEPRECATED.
 	 	}
 
 		// if ($this->key && $this->secret) { return; }
