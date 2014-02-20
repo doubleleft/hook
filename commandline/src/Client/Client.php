@@ -47,9 +47,11 @@ class Client {
 
 	protected function getHeaders() {
 		$config = Project::getConfig();
-		$headers['X-App-Id'] = $config['app_id'];
-		$headers['X-App-Key'] = $config['key'];
-		// $headers['X-Public-Key'] = file_get_contents($_SERVER['HOME'] . '/.ssh/id_rsa.pub');
+		if (!empty($config)) {
+			$headers['X-App-Id'] = $config['app_id'];
+			$headers['X-App-Key'] = $config['key'];
+		}
+		$headers['X-Public-Key'] = file_get_contents($_SERVER['HOME'] . '/.ssh/id_rsa.pub');
 		return $headers;
 	}
 
