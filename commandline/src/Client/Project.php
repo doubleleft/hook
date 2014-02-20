@@ -22,10 +22,7 @@ class Project {
 		}
 
 		$config_file = self::root() . self::CONFIG_FILE;
-		if (!file_exists($config_file)) {
-			return array();
-		}
-		return json_decode(file_get_contents($config_file));
+		return (!file_exists($config_file)) ? array() : json_decode(file_get_contents($config_file), true);
 	}
 
 	public static function root() {

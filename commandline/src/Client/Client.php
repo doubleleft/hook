@@ -16,15 +16,22 @@ class Client {
 	}
 
 	public function get($segments) {
-		return $this->parse(\Guzzle::get(self::$endpoint . $segments, $this->getHeaders()));
+		return $this->parse(\Guzzle::get(self::$endpoint . $segments, array(
+			'headers' => $this->getHeaders()
+		)));
 	}
 
 	public function delete($segments) {
-		return $this->parse(\Guzzle::delete(self::$endpoint . $segments, $this->getHeaders()));
+		return $this->parse(\Guzzle::delete(self::$endpoint . $segments, array(
+			'headers' => $this->getHeaders()
+		)));
 	}
 
 	public function post($segments, $data = array()) {
-		return $this->parse(\Guzzle::post(self::$endpoint . $segments, $this->getHeaders()));
+		return $this->parse(\Guzzle::post(self::$endpoint . $segments, array(
+			'headers' => $this->getHeaders(),
+			'body' => $data
+		)));
 	}
 
 	protected function parse($response) {
@@ -39,8 +46,11 @@ class Client {
 	}
 
 	protected function getHeaders() {
-		$headers = Project::getConfig();
-		$headers['public_key'] = file_get_contents($_SERVER['HOME'] . '/.ssh/id_rsa.pub');
+		$config = Project::getConfig();
+		$headers['X-App-Id'] = $config['app_id'];
+		$headers['X-App-Key'] = $config['key'];
+		// $headers['X-Public-Key'] = file_get_contents($_SERVER['HOME'] . '/.ssh/id_rsa.pub');
+		return $headers;
 	}
 
 }

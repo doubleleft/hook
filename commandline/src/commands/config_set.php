@@ -6,10 +6,6 @@ return array(
 	'description' => 'Set a configuration to app.',
 	'run' => function($args) use ($commands) {
 
-		if (!$args['app']) {
-			die("Error: '--app' option is required" . PHP_EOL);
-		}
-
 		$configs_to_add = array();
 		foreach($args as $arg) {
 			if (!is_null($arg) && preg_match('/=/', $arg)) {
@@ -22,7 +18,7 @@ return array(
 		}
 
 		$client = new Client\Client();
-		$configs = $client->post("apps/{$args['app']}/configs", array(
+		$configs = $client->post("app/configs", array(
 			'configs' => $configs_to_add
 		));
 
