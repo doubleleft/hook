@@ -48,20 +48,49 @@ class AppMiddleware extends \Slim\Middleware
 					}
 				}
 			} else if (!preg_match('/$app/', $app->request->getResourceUri())) {
-				file_put_contents('php://stderr', $app->request->headers->get('X-Public-Key'));
+				if (!$this->validatePublicKey($app->request->headers->get('X-Public-Key'))) {
+					http_response_code(403);
+					die(json_encode(array('error' => "Public key not authorized.")));
+					// throw new ForbiddenException("Invalid credentials.");
+				}
 
-				// throw new ForbiddenException("invalid application credentials");
+			} else {
+				http_response_code(403);
+				die(json_encode(array('error' => "Invalid credentials.")));
+				// throw new ForbiddenException("Invalid credentials.");
 			}
 
 			//
 			// Parse incoming JSON data
 			if ($app->request->isPost() || $app->request->isPut()) {
+				file_put_contents('php://stderr', json_encode($app->environment->offsetGet('slim.request.form_hash')) . PHP_EOL);
+				file_put_contents('php://stderr', json_encode($app->environment->offsetGet('slim.input')) . PHP_EOL);
+
 				$input_data = $app->environment->offsetGet('slim.input');
+
 				$app->environment->offsetSet('slim.request.form_hash', json_decode($input_data, true));
 			}
 
 			$this->next->call();
 		}
+	}
+
+	protected function validatePublicKey($data) {
+		$valid = false;
+
+		if ($data) {
+			$data = trim($data);
+			$handle = fopen(__DIR__ . '/../../security/.authorized_keys', 'r');
+			while (!feof($handle)) {
+				$valid = (strpos(fgets($handle), $data) !== FALSE);
+				if ($valid) {
+					break;
+				}
+			}
+			fclose($handle);
+		}
+
+		return $valid;
 	}
 
 }
