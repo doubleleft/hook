@@ -11,7 +11,7 @@ return array(
 		}
 
 		$client = new Client\Client();
-		$app = $client->post('app', array(
+		$app = $client->post('apps', array(
 			'app' => array('name' => $args[1])
 		));
 

@@ -21,7 +21,7 @@ return array(
 
 				echo "Uploading: '{$module}'" . PHP_EOL;
 
-				print_r($client->post('app/modules', array(
+				print_r($client->post('apps/modules', array(
 					'module' => array(
 						'name' => basename($module),
 						'type' => $module_type,
@@ -31,9 +31,6 @@ return array(
 
 			}
 		}
-
-		// foreach()
-		// $client->post("apps/{$args['app']}/modules");
 
 	}
 );

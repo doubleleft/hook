@@ -5,11 +5,7 @@ date_default_timezone_set('America/Sao_Paulo');
 
 require __DIR__ . '/vendor/autoload.php';
 
-$app = new \Slim\Slim(array(
-	// 'cookies.encrypt' => true,
-	// 'cookies.lifetime' => '8 hours',
-	// 'cookies.path' => '/',
-));
+$app = new \Slim\Slim();
 require __DIR__ . '/app/bootstrap.php';
 
 // Middlewares
@@ -281,15 +277,7 @@ $app->group('/files', function() use($app) {
 /**
  * Internals
  */
-$app->get('/apps', function() use($app) {
-	$app->content = models\App::all();
-});
-
-$app->get('/apps/:name', function($name) use ($app) {
-	$app->content = models\App::where('name', $name)->first();
-});
-
-$app->group('/app', function() use ($app) {
+$app->group('/apps', function() use ($app) {
 	$app->get('/test', function() use ($app) {
 		$app = models\App::create(array(
 			'_id' => 1,
@@ -299,8 +287,21 @@ $app->group('/app', function() use ($app) {
 			'key' => 'test',
 			'secret' => 'test'
 		));
-
 		$app->content = models\App::all();
+	});
+
+	/**
+	 * GET /apps/list
+	 */
+	$app->get('/list', function() use($app) {
+		$app->content = models\App::all();
+	});
+
+	/**
+	 * GET /apps/by_name/:name
+	 */
+	$app->get('/by_name/:name', function($name) use ($app) {
+		$app->content = models\App::where('name', $name)->first();
 	});
 
 	$app->post('/', function() use ($app) {

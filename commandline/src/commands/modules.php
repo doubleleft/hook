@@ -7,7 +7,7 @@ return array(
 	'run' => function($args) {
 
 		$client = new Client\Client();
-		$modules = $client->get("app/modules");
+		$modules = $client->get("apps/modules");
 
 		if ($modules) {
 			echo "Modules: " . PHP_EOL;

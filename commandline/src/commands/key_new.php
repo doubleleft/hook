@@ -7,7 +7,7 @@ return array(
 	'run' => function($args) {
 
 		$client = new Client\Client();
-		$key = $client->post("app/keys");
+		$key = $client->post("apps/keys");
 
 		if (!$args['json']) {
 			echo "App: {$args['app']}" . PHP_EOL;
