@@ -23,11 +23,15 @@ class App extends \Core\Model
 		return $this->hasMany('models\AppConfig', 'app_id');
 	}
 
-	public function generate_key() {
-		return $this->keys()->create(array());
+	public function generate_key($admin=false) {
+		return $this->keys()->create(array('admin' => $admin));
 	}
 
 	public function afterCreate() {
+		// Generate admin key
+		$this->generate_key(true);
+
+		// Generate user key
 		$this->generate_key();
 	}
 

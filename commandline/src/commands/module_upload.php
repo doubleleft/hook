@@ -6,11 +6,6 @@ return array(
 	'description' => 'Upload a module to application',
 	'run' => function($args) {
 
-		if (!$args['app']) {
-			die("Error: '--app' option is required" . PHP_EOL);
-		}
-
-		$app = $args['app'];
 		$module_types = array('observers', 'routes', 'templates');
 
 		$client = new Client\Client();
@@ -26,13 +21,13 @@ return array(
 
 				echo "Uploading: '{$module}'" . PHP_EOL;
 
-				$client->post('apps/'.$app.'/modules', array(
+				print_r($client->post('app/modules', array(
 					'module' => array(
 						'name' => basename($module),
 						'type' => $module_type,
 						'code' => file_get_contents($module)
 					)
-				));
+				)));
 
 			}
 		}

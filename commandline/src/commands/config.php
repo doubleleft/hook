@@ -5,23 +5,22 @@ return array(
 	'command' => 'config',
 	'description' => 'List all app configurations',
 	'run' => function($args) {
-
-		if (!$args['app']) {
-			die("Error: '--app' option is required" . PHP_EOL);
-		}
+		$project = Client\Project::getConfig();
 
 		$client = new Client\Client();
-		$configs = $client->get("apps/{$args['app']}/configs");
+		$configs = $client->get("app/configs");
 
-		if ($configs) {
-			foreach($configs as $config) {
-				echo $config->name . ': ' . $config->value . PHP_EOL;
+		if (!$args['json']) {
+			if ($configs) {
+				foreach($configs as $config) {
+					echo $config->name . ': ' . $config->value . PHP_EOL;
+				}
+			} else {
+				echo "No configurations found for: '{$project['name']}'." . PHP_EOL;
 			}
-		} else {
-			echo "No configurations found for this app." . PHP_EOL;
 		}
 
-
+		return $configs;
 	}
 );
 

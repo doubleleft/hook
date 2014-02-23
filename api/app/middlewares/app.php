@@ -47,8 +47,17 @@ class AppMiddleware extends \Slim\Middleware
 						$custom_route->compile();
 					}
 				}
-			} else if (!preg_match('/apps/', $app->request->getResourceUri())) {
-				// throw new ForbiddenException("invalid application credentials");
+			} else if (!preg_match('/$app/', $app->request->getResourceUri())) {
+				if (!$this->validatePublicKey($app->request->headers->get('X-Public-Key'))) {
+					http_response_code(403);
+					die(json_encode(array('error' => "Public key not authorized.")));
+					// throw new ForbiddenException("Invalid credentials.");
+				}
+
+			} else {
+				http_response_code(403);
+				die(json_encode(array('error' => "Invalid credentials.")));
+				// throw new ForbiddenException("Invalid credentials.");
 			}
 
 			//
@@ -60,6 +69,24 @@ class AppMiddleware extends \Slim\Middleware
 
 			$this->next->call();
 		}
+	}
+
+	protected function validatePublicKey($data) {
+		$valid = false;
+
+		if ($data) {
+			$data = trim(urldecode($data));
+			$handle = fopen(__DIR__ . '/../../security/.authorized_keys', 'r');
+			while (!feof($handle)) {
+				$valid = (strpos(fgets($handle), $data) !== FALSE);
+				if ($valid) {
+					break;
+				}
+			}
+			fclose($handle);
+		}
+
+		return $valid;
 	}
 
 }

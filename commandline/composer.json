@@ -14,12 +14,13 @@
     }
   },
   "require": {
-    "nategood/commando": "*",
-    "guzzle/guzzle": "*"
+    "nategood/commando": "0.2.*",
+    "guzzle/guzzle": "*",
+    "symfony/yaml": "2.4.*"
   },
   "require-dev": {
     "phpunit/phpunit": "3.7.*"
   },
   "bin": ["bin/dl-api"],
-  "minimum-stability": "dev"
+  "minimum-stability": "stable"
 }

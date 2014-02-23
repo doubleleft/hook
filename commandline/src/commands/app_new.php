@@ -11,18 +11,31 @@ return array(
 		}
 
 		$client = new Client\Client();
-		$app = $client->post('apps', array(
+		$app = $client->post('app', array(
 			'app' => array('name' => $args[1])
 		));
 
-		echo "App: {$app->name}" . PHP_EOL;
-		echo "Access tokens:" . PHP_EOL;
-		echo "{" . PHP_EOL;
-		echo "\tappId: {$app->_id}" . PHP_EOL;
-		foreach($app->keys as $key) {
-			echo "\tkey: " . $key->key . PHP_EOL;
+		Client\Project::setConfig(array(
+			'name' => $app->name,
+			'app_id' => $app->keys[0]->app_id,
+			'key' => $app->keys[0]->key
+		));
+
+		if (!$args['json']) {
+			echo "App: {$app->name}" . PHP_EOL;
+			echo "Access tokens:" . PHP_EOL;
+			foreach($app->keys as $key) {
+				echo "{" . PHP_EOL;
+				if ($key->admin) {
+					echo "\tadmin: " . $key->admin . PHP_EOL;
+				}
+				echo "\tappId: {$app->_id}" . PHP_EOL;
+				echo "\tkey: " . $key->key . PHP_EOL;
+				echo "}" . PHP_EOL;
+			}
 		}
-		echo "}" . PHP_EOL . PHP_EOL;
+
+		return $app->keys;
 
 	}
 );
