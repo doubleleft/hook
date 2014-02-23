@@ -7,7 +7,7 @@ return array(
 	'run' => function($args) {
 
 		$client = new Client\Client();
-		$apps = $client->get('apps');
+		$apps = $client->get('apps/list');
 
 		if (!$args['json']) {
 			if ($apps) {

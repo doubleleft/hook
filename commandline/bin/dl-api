@@ -51,7 +51,7 @@ if (!$cli['json']) {
 // set app config manually
 if ($cli['app']) {
   $client = new Client\Client();
-  $app_data = $client->get('apps/' . $cli['app']);
+  $app_data = $client->get('apps/by_name/' . $cli['app']);
   $admin_keys = array_filter($app_data->keys, function($key) { return $key->admin; });
 
   if (count($admin_keys)===0) {
@@ -60,8 +60,8 @@ if ($cli['app']) {
 
   Client\Project::setTempConfig(array(
     'name' => $app_data->name,
-    'app_id' => $app_data->keys[0]->app_id,
-    'key' => $app_data->keys[0]->key
+    'app_id' => $admin_keys[0]->app_id,
+    'key' => $admin_keys[0]->key
   ));
 }
 

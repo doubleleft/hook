@@ -12,7 +12,7 @@ return array(
 		}
 
 		$client = new Client\Client();
-		$response = $client->delete('app/modules/'.$module);
+		$response = $client->delete('apps/modules/'.$module);
 
 		if ($response->success) {
 			echo "Module '{$module}' removed successfully." . PHP_EOL;

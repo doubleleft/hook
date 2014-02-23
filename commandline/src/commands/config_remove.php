@@ -12,7 +12,7 @@ return array(
 		}
 
 		$client = new Client\Client();
-		$configs = $client->delete("app/configs/" . $config);
+		$configs = $client->delete("apps/configs/" . $config);
 
 		if ($configs && $configs->success) {
 			echo "{$config} removed successfully." . PHP_EOL;

@@ -8,7 +8,7 @@ return array(
 		$project = Client\Project::getConfig();
 
 		$client = new Client\Client();
-		$configs = $client->get("app/configs");
+		$configs = $client->get("apps/configs");
 
 		if (!$args['json']) {
 			if ($configs) {
