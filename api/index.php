@@ -333,12 +333,12 @@ $app->group('/app', function() use ($app) {
 	});
 
 	$app->get('/modules', function() use ($app) {
-		$app->content = $_app->modules;
+		$app->content = $app->key->app->modules;
 	});
 
-	$app->post('/modules', function($name) use ($app) {
+	$app->post('/modules', function() use ($app) {
 		$data = $app->request->post('module');
-		$data['app_id'] = $app->key_id;
+		$data['app_id'] = $app->key->app_id;
 
 		// try to retrieve existing module for this app
 		$module = models\Module::where('app_id', $data['app_id'])
@@ -348,9 +348,9 @@ $app->group('/app', function() use ($app) {
 		$app->content = ($module) ? $module->update($data) : models\Module::create($data);
 	});
 
-	$app->delete('/modules/:module', function($module_name) use ($app) {
+	$app->delete('/modules/:name', function($name) use ($app) {
 		$deleted = models\Module::where('app_id', $app->key->app_id)->
-			where('name', $module_name)->
+			where('name', $name)->
 			delete();
 		$app->content = array('success' => $deleted);
 	});

@@ -1,0 +1,6 @@
+# -------------------------------------------------------------
+# WARNING: PROTECT PUBLIC ACCESS OF THIS FILE ON YOUR WEBSERVER
+# -------------------------------------------------------------
+# Lists of allowed openssh keys to consume API via commandline
+#
+ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAIBMjUabWl0bMrGT7O4Tvw8EUFhSHOBzXQe9nu48nvNmHc5ZURgKPuoTfovhdtERNSIF/wNEcRidwoIyB91TApWABT+iBX4ZW9uHEb170+8UO1BbaOsSTj8z1TPltm54ZIJoPR9WgY123/fRcsLWEurY9dPJqw9p1kRIyr+aQCjqow== rsa-key-20100114
