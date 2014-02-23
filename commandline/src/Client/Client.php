@@ -61,7 +61,7 @@ class Client {
 		$config = Project::getConfig();
 		$headers = array(
 			'Content-Type' => 'application/json',
-			'X-Public-Key' => file_get_contents($_SERVER['HOME'] . '/.ssh/id_rsa.pub')
+			'X-Public-Key' => urlencode(file_get_contents($_SERVER['HOME'] . '/.ssh/id_rsa.pub'))
 		);
 		if (!empty($config)) {
 			$headers['X-App-Id'] = $config['app_id'];

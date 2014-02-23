@@ -63,11 +63,7 @@ class AppMiddleware extends \Slim\Middleware
 			//
 			// Parse incoming JSON data
 			if ($app->request->isPost() || $app->request->isPut()) {
-				file_put_contents('php://stderr', json_encode($app->environment->offsetGet('slim.request.form_hash')) . PHP_EOL);
-				file_put_contents('php://stderr', json_encode($app->environment->offsetGet('slim.input')) . PHP_EOL);
-
 				$input_data = $app->environment->offsetGet('slim.input');
-
 				$app->environment->offsetSet('slim.request.form_hash', json_decode($input_data, true));
 			}
 
@@ -79,7 +75,7 @@ class AppMiddleware extends \Slim\Middleware
 		$valid = false;
 
 		if ($data) {
-			$data = trim($data);
+			$data = trim(urldecode($data));
 			$handle = fopen(__DIR__ . '/../../security/.authorized_keys', 'r');
 			while (!feof($handle)) {
 				$valid = (strpos(fgets($handle), $data) !== FALSE);
