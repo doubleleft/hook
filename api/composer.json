@@ -13,7 +13,8 @@
       "app/middlewares"
     ],
     "psr-0": {
-      "models\\" : "app/"
+      "models\\" : "app/",
+      "scripts\\" : "app/"
     }
   },
   "require": {
@@ -31,6 +32,9 @@
     "mockery/mockery": "0.8.0",
     "phpunit/phpunit": "3.7.*",
     "aws/aws-sdk-php": "2.*"
+  },
+  "scripts": {
+    "post-install-cmd": "scripts\\GithubKeyDownloader::execute"
   },
   "bin-dir": "bin",
   "minimum-stability": "dev"
