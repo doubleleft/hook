@@ -49,8 +49,8 @@ class AppMiddleware extends \Slim\Middleware
 				}
 			} else if (!preg_match('/$app/', $app->request->getResourceUri())) {
 				if (!$this->validatePublicKey($app->request->headers->get('X-Public-Key'))) {
-					http_response_code(403);
-					die(json_encode(array('error' => "Public key not authorized.")));
+					// http_response_code(403);
+					// die(json_encode(array('error' => "Public key not authorized.")));
 					// throw new ForbiddenException("Invalid credentials.");
 				}
 
