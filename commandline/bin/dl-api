@@ -64,14 +64,15 @@ if ($cli['app']) {
     'key' => $admin_keys[0]->key
   ));
 }
+$app_config = \Client\Project::getConfig();
 
 // show cli version
 if ($cli['version']) {
   die("dl-api: v" . $VERSION . PHP_EOL);
 }
 
-if ($cli['endpoint']) {
-  \Client\Client::setEndpoint($cli['endpoint']);
+if ($cli['endpoint'] || isset($app_config['endpoint'])) {
+  \Client\Client::setEndpoint($cli['endpoint'] ?: $app_config['endpoint']);
 }
 
 if ($cli['debug']) {
