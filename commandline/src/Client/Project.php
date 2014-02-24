@@ -12,6 +12,7 @@ class Project {
 
 	public static function setConfig($data) {
 		$config_file = self::root() . self::CONFIG_FILE;
+		$data['endpoint'] = Client::getEndpoint();
 		return file_put_contents($config_file, json_encode($data));
 	}
 
