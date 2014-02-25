@@ -1,0 +1,27 @@
+<?php
+
+return array(
+	'arg0'    => 'generate:seed',
+	'command' => 'generate:seed <collection-name>',
+	'description' => 'Generate seed template.',
+	'run' => function($args) use ($commands) {
+
+		if (!isset($args[1])) {
+			die("'collection-name' is required.");
+		}
+
+		$collection = strtolower($args[1]);
+
+		$dest = 'dl-ext/seeds/';
+		$dest_file = $dest . $collection . '.yaml';
+		@mkdir($dest, 0777, true);
+
+		$template = file_get_contents(__DIR__ . '/../templates/seed.yaml');
+		$template = preg_replace('/{name}/', $collection, $template);
+		file_put_contents($dest_file, $template);
+
+		echo "Seed created at '{$dest_file}'." . PHP_EOL;
+	}
+);
+
+
