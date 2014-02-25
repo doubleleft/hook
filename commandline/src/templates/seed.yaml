@@ -1,10 +1,7 @@
 #
 # Seed for {name}
 #
-
-options:
-  truncate: true
-
+truncate: true
 data:
   - name: one
   - name: two
