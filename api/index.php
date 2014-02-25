@@ -257,14 +257,14 @@ $app->group('/files', function() use($app) {
 	 * GET /files/:id
 	 */
 	$app->get('/:id', function($id) {
-		return File::find($id)->toJson();
+		return models\File::find($id)->toJson();
 	});
 
 	/**
 	 * POST /files
 	 */
 	$app->post('/:provider', function($provider = 'filesystem') use ($app) {
-		$app->content = File::create(array(
+		$app->content = models\File::create(array(
 			'app_id' => $app->key->app_id,
 			'file' => Storage\Provider::get($provider)->upload($app->request->file('file'))
 		));
