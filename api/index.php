@@ -252,26 +252,56 @@ $app->group('/key', function() use ($app) {
  * File API
  */
 $app->group('/files', function() use($app) {
+	function storagePath($app){
+		return '/app/storage/files/' . $app->key->app_id;
+	}
+	function storageURL($filePath){
+		$protocol = "http://";
+		$uri = str_replace("index.php", "", $_SERVER["SCRIPT_NAME"]);
+		return $protocol . $_SERVER["SERVER_NAME"] . "/". $uri . $filePath;
+	}
 
 	/**
 	 * GET /files/:id
 	 */
-	$app->get('/:id', function($id) {
-		return File::find($id)->toJson();
+	$app->get('/:id', function($id) use ($app){
+		$file = models\File::find($id);
+		if(!$file){
+			$app->response->setStatus(404);
+			return;
+		}
+		$file->url = storageURL($file->path);
+		$app->content = $file->toJson();
 	});
 
 	/**
 	 * POST /files
 	 */
 	$app->post('/:provider', function($provider = 'filesystem') use ($app) {
-		$app->content = File::create(array(
+		if(!isset($_FILES["file"])){
+			throw new \Exception("'file' field not provided");
+		}
+
+		$rawFile = $_FILES["file"];
+		$fileStoragePath = storagePath($app);
+		$storageProvider = Storage\Provider::get($provider);
+		$uploadedFile = $storageProvider->upload(__DIR__.$fileStoragePath, $rawFile);
+
+		if($uploadedFile == NULL){
+			throw new \Exception("error when uploading file");
+		}
+
+		$file = models\File::create(array(
 			'app_id' => $app->key->app_id,
-			'file' => Storage\Provider::get($provider)->upload($app->request->file('file'))
+			'file' => $rawFile,
+			'path' => $fileStoragePath . '/' . $uploadedFile	
 		));
+
+		$file->url = storageURL($file->path);
+		$app->content = $file->toJson();
 	});
 
 });
-
 
 
 /**
