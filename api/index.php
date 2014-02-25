@@ -291,11 +291,14 @@ $app->group('/files', function() use($app) {
 			throw new \Exception("error when uploading file");
 		}
 
-		$app->content = models\File::create(array(
+		$file = models\File::create(array(
 			'app_id' => $app->key->app_id,
 			'file' => $rawFile,
 			'path' => $fileStoragePath . '/' . $uploadedFile	
 		));
+
+		$file->url = storageURL($file->path);
+		$app->content = $file->toJson();
 	});
 
 });
