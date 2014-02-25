@@ -8,7 +8,7 @@ return array(
 		$seed_file = '*';
 
 		if ($args[1]!==null) {
-			$seed_file = $args[1];
+			$seed_file = $args[1] . '.yaml';
 		}
 
 		$client = new Client\Client();
