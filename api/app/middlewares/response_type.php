@@ -123,7 +123,7 @@ class ResponseTypeMiddleware extends \Slim\Middleware
 	}
 
 	protected function handle_error_response($e, $app) {
-		$message = strtolower($e->getMessage());
+		$message = $e->getMessage();
 
 		// Log stack-trace
 		$trace = $e->getTrace();
