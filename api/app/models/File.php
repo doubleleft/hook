@@ -16,17 +16,10 @@ class File extends \Core\Model
 
 	public function beforeCreate() {
 		if ($this->attributes['file']) {
-			unset($this->attributes['file']);
-
 			$this->name = $this->file['name'];
-			$this->mime = $this->file['mime-type'];
-			$this->path = $this->app->storage()->upload($this->file);
-
+			$this->mime = $this->file['type'];
+			unset($this->attributes['file']);
 		}
 	}
 
 }
-
-
-
-
