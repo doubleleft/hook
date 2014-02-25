@@ -8,7 +8,7 @@ class Provider {
 	static $list = array(
 		'filesystem' => 'Storage\\Providers\\Filesystem',
 		's3' => 'Storage\\Providers\\S3',
-		'dropbox' => 'Auth\\Providers\\Dropbox'
+		'dropbox' => 'Storage\\Providers\\Dropbox'
 	);
 
 	public static function get($name) {
