@@ -294,7 +294,7 @@ $app->group('/files', function() use($app) {
 		$file = models\File::create(array(
 			'app_id' => $app->key->app_id,
 			'file' => $rawFile,
-			'path' => $fileStoragePath . '/' . $uploadedFile	
+			'path' => $fileStoragePath . '/' . $uploadedFile
 		));
 
 		$file->url = storageURL($file->path);
@@ -336,6 +336,10 @@ $app->group('/apps', function() use ($app) {
 
 	$app->post('/', function() use ($app) {
 		$app->content = models\App::create($app->request->post('app'));
+	});
+
+	$app->get('/keys', function() use ($app) {
+		$app->content = $app->key->app->toArray();
 	});
 
 	$app->post('/keys', function() use ($app) {
