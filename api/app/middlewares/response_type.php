@@ -25,7 +25,7 @@ class ResponseTypeMiddleware extends \Slim\Middleware
 			$retry_timeout = ((isset($stream_config['retry'])) ? intval($stream_config['retry']) : self::MAX_POOLING_RETRY);
 			$retry_timeout = clamp($retry_timeout, self::MIN_POOLING_RETRY, self::MAX_POOLING_RETRY) * 1000;
 
-			$last_event_id = $app->request->headers->get('Last-Event-ID');
+			$last_event_id = $app->request->headers->get('Last-Event-ID') ?: $app->request->get('lastEventId');
 
 			// Get last collection event id when 'only_new' option is set
 			// if ($app->request->get('only_new')) {
