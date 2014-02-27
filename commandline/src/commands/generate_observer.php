@@ -10,7 +10,7 @@ return array(
 			die("'collection-name' is required.");
 		}
 
-		$dest = 'dl-ext/observers/';
+		$dest = Client\Project::root() . 'dl-ext/observers/';
 		$dest_file = $dest . $args[1] . '.php';
 		@mkdir($dest, 0777, true);
 

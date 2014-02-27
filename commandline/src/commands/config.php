@@ -10,6 +10,8 @@ return array(
 		$client = new Client\Client();
 		$configs = $client->get("apps/configs");
 
+		$project = Client\Project::getConfig();
+
 		if (!$args['json']) {
 			if ($configs) {
 				foreach($configs as $config) {
