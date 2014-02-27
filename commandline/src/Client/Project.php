@@ -27,7 +27,7 @@ class Project {
 	}
 
 	public static function root() {
-		$scm_list = array('.git', '_darcs', '.hg', '.bzr', '.svn');
+		$scm_list = array('.dl-config', '.git', '_darcs', '.hg', '.bzr', '.svn');
 		$path = getcwd();
 
 		while ($path !== '/') {
