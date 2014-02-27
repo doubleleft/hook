@@ -16,13 +16,13 @@ class Project {
 		return file_put_contents($config_file, json_encode($data));
 	}
 
-	public static function getConfig() {
+	public static function getConfig($alt_config_file=NULL) {
 		// return temporary app config
 		if (self::$temp_config !== null) {
 			return self::$temp_config;
 		}
 
-		$config_file = self::root() . self::CONFIG_FILE;
+		$config_file = self::root() . ($alt_config_file == NULL ?  self::CONFIG_FILE : $alt_config_file);
 		return (!file_exists($config_file)) ? array() : json_decode(file_get_contents($config_file), true);
 	}
 

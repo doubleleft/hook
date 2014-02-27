@@ -44,6 +44,9 @@ $cli->option('debug')
 $cli->option('endpoint')
   ->describedAs('Define host endpoint. Default: '. \Client\Client::getEndpoint());
 
+$cli->option('config')
+  ->describedAs('Alternative config file path');
+
 if (!$cli['json']) {
   echo "..." . PHP_EOL;
 }
@@ -64,7 +67,12 @@ if ($cli['app']) {
     'key' => $admin_keys[0]->key
   ));
 }
-$app_config = \Client\Project::getConfig();
+
+if(isset($cli["config"])){
+	$app_config = \Client\Project::getConfig($cli["config"]);
+}else{
+	$app_config = \Client\Project::getConfig();
+}
 
 // show cli version
 if ($cli['version']) {
