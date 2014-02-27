@@ -12,7 +12,7 @@ return array(
 		}
 
 		$client = new Client\Client();
-		foreach(\Client\Utils::glob('dl-ext/seeds/' . $seed_file) as $yaml_file) {
+		foreach(\Client\Utils::glob(Client\Project::root() . 'dl-ext/seeds/' . $seed_file) as $yaml_file) {
 			$collection = basename($yaml_file, '.yaml');
 
 			$yaml = new Symfony\Component\Yaml\Parser();
