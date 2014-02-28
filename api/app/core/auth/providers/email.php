@@ -8,10 +8,10 @@ class Email extends Base {
 	 * Register a new user
 	 */
 	public function authenticate($data) {
-		$user = $this->findExistingUser($data);
-		if (!$user) {
-			$user = \models\Auth::create($data);
+		if ($existing = $this->findExistingUser($data)) {
+			throw new \ForbiddenException(__CLASS__ . ': email already registered.');
 		}
+		$user = \models\Auth::create($data);
 		return $user->dataWithToken();
 	}
 
@@ -21,6 +21,9 @@ class Email extends Base {
 	public function verify($data) {
 		$userdata = null;
 		if ($user = $this->findExistingUser($data)) {
+			if ($user->password != $data['password']) {
+				throw new \ForbiddenException(__CLASS__ . ": password invalid.");
+			}
 			$userdata = $user->dataWithToken();
 		}
 		return $userdata;
@@ -92,9 +95,6 @@ class Email extends Base {
 
 		try {
 			$user = $this->find('email', $data);
-			if ($user && $user->password != $data['password']) {
-				throw new \ForbiddenException(__CLASS__ . ": password invalid.");
-			}
 		} catch (\Illuminate\Database\QueryException $e) {}
 
 		return $user;
