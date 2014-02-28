@@ -12,6 +12,12 @@ class Facebook extends Base {
 			unset($data[$field]);
 		}
 
+		// Throw error if email address is already registered.
+		$email_provider = new Email();
+		if ($existing = $email_provider->findExistingUser($data)) {
+			throw new \ForbiddenException(__CLASS__ . ': email already registered.');
+		}
+
 		$user = null;
 		try {
 			$user = $this->find('facebook_id', $data);
