@@ -8,6 +8,7 @@ class Email extends Base {
 	 * Register a new user
 	 */
 	public function authenticate($data) {
+		$this->validateParams($data);
 		if ($existing = $this->findExistingUser($data)) {
 			throw new \ForbiddenException(__CLASS__ . ': email already registered.');
 		}
@@ -19,6 +20,8 @@ class Email extends Base {
 	 * Verify if user already exists
 	 */
 	public function verify($data) {
+		$this->validateParams($data);
+
 		$userdata = null;
 		if ($user = $this->findExistingUser($data)) {
 			if ($user->password != $data['password']) {
@@ -79,8 +82,17 @@ class Email extends Base {
 		}
 	}
 
-	protected function findExistingUser($data) {
+	public function findExistingUser($data) {
+		$user = null;
 
+		try {
+			$user = $this->find('email', $data);
+		} catch (\Illuminate\Database\QueryException $e) {}
+
+		return $user;
+	}
+
+	protected function validateParams($data) {
 		// validate email address
 		if (!isset($data['email']) || !filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
 			throw new \Exception(__CLASS__ . ": you must provide a valid 'email'.");
@@ -91,13 +103,6 @@ class Email extends Base {
 			throw new \Exception(__CLASS__ . ": you must provide a password.");
 		}
 
-		$user = null;
-
-		try {
-			$user = $this->find('email', $data);
-		} catch (\Illuminate\Database\QueryException $e) {}
-
-		return $user;
 	}
 
 }
