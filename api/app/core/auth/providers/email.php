@@ -28,6 +28,10 @@ class Email extends Base {
 				throw new \ForbiddenException(__CLASS__ . ": password invalid.");
 			}
 			$userdata = $user->dataWithToken();
+		} else {
+			if (!$user) {
+				throw new \ForbiddenException(__CLASS__ . ": user not found.");
+			}
 		}
 		return $userdata;
 	}
