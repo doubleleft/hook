@@ -123,8 +123,15 @@ $app->group('/collection', function () use ($app) {
 			$app->content = $query->{$operation['method']}($operation['field'], $operation['value']);
 		} else {
 
-			// Raw update
-			$app->content = $query->update($app->request->post('d'));
+			// Perform raw update
+			//
+			// FIXME: 'd' is deprecated. use 'data' instead.
+			//
+			// Who is using it?
+			// - 'plugados-site'
+			// - 'clubsocial-possibilidades'
+			//
+			$app->content = $query->update($app->request->post('d') ?: $app->request->post('data'));
 		}
 	});
 
