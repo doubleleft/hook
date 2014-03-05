@@ -123,8 +123,35 @@ $app->group('/collection', function () use ($app) {
 			$app->content = $query->{$operation['method']}($operation['field'], $operation['value']);
 		} else {
 
-			// Raw update
-			$app->content = $query->update($app->request->post('d'));
+			// Perform raw update
+			//
+			// FIXME: 'd' is deprecated. use 'data' instead.
+			//
+			// Who is using it?
+			// - 'plugados-site'
+			// - 'clubsocial-possibilidades'
+			//
+			$app->content = $query->update($app->request->post('d') ?: $app->request->post('data'));
+		}
+	});
+
+	/**
+	 * PUT /collection/:name/:id
+	 */
+	$app->put('/:name/:id', function($name, $id) use ($app) {
+		//
+		// TODO: DRY with PUT /collection/:name
+		//
+		$query = models\Collection::from($name)
+			->where('app_id', $app->key->app_id)
+			->where('_id', $id);
+
+		if ($operation = $app->request->post('op')) {
+			// Operations: increment/decrement
+			$app->content = $query->{$operation['method']}($operation['field'], $operation['value']);
+		} else {
+			// Perform raw update
+			$app->content = $query->update($app->request->post('data'));
 		}
 	});
 
