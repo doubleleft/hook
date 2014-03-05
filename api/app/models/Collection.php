@@ -73,14 +73,14 @@ class Collection extends \Core\Model
 			$builder->create($table, function($t) use ($attributes) {
 				$t->increments('_id');
 				foreach($attributes as $field => $value) {
-					$datatype = gettype($value);
+					$datatype = strtolower(gettype($value));
 
 					// Detect large text blocks to declare 'text' datatype.
 					if ($datatype == 'string' && strlen($value) > 255) {
 						$datatype = 'text';
 					}
 
-					if ($datatype !== 'array') {
+					if ($datatype !== 'array' && $datatype !== 'null') {
 						$t->{$datatype}($field)->nullable();
 					}
 				}
@@ -98,14 +98,14 @@ class Collection extends \Core\Model
 				foreach($attributes as $field => $value) {
 					if (!$builder->hasColumn($table, $field) &&
 							!$builder->hasColumn($table, "`{$field}`")) {
-						$datatype = gettype($value);
+						$datatype = strtolower(gettype($value));
 
 						// Detect large text blocks to declare 'text' datatype.
 						if ($datatype == 'string' && strlen($value) > 255) {
 							$datatype = 'text';
 						}
 
-						if ($datatype !== 'array') {
+						if ($datatype !== 'array' && $datatype !== 'null') {
 							$t->{$datatype}($field)->nullable();
 						}
 					}
