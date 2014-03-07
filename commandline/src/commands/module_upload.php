@@ -18,6 +18,15 @@ return array(
 					continue;
 				}
 
+				// Check for syntax problems before uploading it.
+				$lint_output = null;
+				$lint_return_code = null;
+				exec('php --syntax-check ' . $module, $lint_output, $lint_return_code);
+				if ($lint_return_code !== 0) {
+					echo "Aborting." . PHP_EOL;
+					die();
+				}
+
 				echo "Uploading: '{$module}'" . PHP_EOL;
 
 				$uploaded = $client->post('apps/modules', array(
