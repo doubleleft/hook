@@ -3,26 +3,33 @@
 namespace Client;
 
 class Project {
-	const CONFIG_FILE = '.dl-config';
+	private static $config_file;
 	private static $temp_config;
+
+	public static function getConfigFile() {
+		return self::root() . self::$config_file;
+	}
+
+	public static function setConfigFile($file) {
+		self::$config_file = $file;
+	}
 
 	public static function setTempConfig($data) {
 		self::$temp_config = $data;
 	}
 
 	public static function setConfig($data) {
-		$config_file = self::root() . self::CONFIG_FILE;
 		$data['endpoint'] = Client::getEndpoint();
-		return file_put_contents($config_file, json_encode($data));
+		return file_put_contents(self::getConfigFile(), json_encode($data));
 	}
 
-	public static function getConfig($alt_config_file=NULL) {
+	public static function getConfig() {
 		// return temporary app config
 		if (self::$temp_config !== null) {
 			return self::$temp_config;
 		}
 
-		$config_file = self::root() . ($alt_config_file == NULL ?  self::CONFIG_FILE : $alt_config_file);
+		$config_file = self::getConfigFile();
 		return (!file_exists($config_file)) ? array() : json_decode(file_get_contents($config_file), true);
 	}
 

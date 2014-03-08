@@ -68,11 +68,9 @@ if ($cli['app']) {
   ));
 }
 
-if(isset($cli["config"])){
-	$app_config = \Client\Project::getConfig($cli["config"]);
-}else{
-	$app_config = \Client\Project::getConfig();
-}
+// Setup .dl-config
+\Client\Project::setConfigFile($cli["config"]!==null ? $cli["config"] : '.dl-config');
+$app_config = \Client\Project::getConfig();
 
 // show cli version
 if ($cli['version']) {
