@@ -20,11 +20,11 @@
 
   // first argument can be html string, filename, or url
   jsdom.env(html, ["https://dl-api.ddll.co/dist/dl.js"], function (errors, window) {
-    console.log("\rWelcome to dl-api console.");
-    console.log("API Documentation: http://doubleleft.github.io/dl-api-javascript\n");
+    console.log("\rAPI Documentation: http://doubleleft.github.io/dl-api-javascript\n");
     console.log("Available variables to hack on:");
-    console.log("\t- dl (DL.Client)");
-    console.log("\t- config (.dl-config)");
+    console.log("\t- dl - DL.Client");
+    console.log("\t- config - .dl-config");
+    console.log("\t- $ - jQuery 2.1.0");
     console.log("\t- window");
 
     function CollectionInspector(promise, options) {
