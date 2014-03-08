@@ -5,6 +5,11 @@ return array(
 	'command' => 'console',
 	'description' => 'Start interactive console.',
 	'run' => function($args) use ($commands) {
+		$dl_config_path = Client\Project::root() . Client\Project::CONFIG_FILE;
+		if (!file_exists($dl_config_path)) {
+			die("No .dl-config file found at project root.\n");
+		}
+
 		$descriptors = array(
 			array('file', '/dev/tty', 'r'),
 			array('file', '/dev/tty', 'w'),
@@ -12,7 +17,7 @@ return array(
 		);
 
 		$process = proc_open(
-			'node ' . __DIR__ . '/../../console/bootstrap.js ' . Client\Project::root() . Client\Project::CONFIG_FILE,
+			'node ' . __DIR__ . '/../../console/bootstrap.js ' . $dl_config_path,
 			$descriptors,
 			$pipes
 		);
