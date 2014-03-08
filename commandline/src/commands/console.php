@@ -5,7 +5,7 @@ return array(
 	'command' => 'console',
 	'description' => 'Start interactive console.',
 	'run' => function($args) use ($commands) {
-		$dl_config_path = Client\Project::root() . Client\Project::CONFIG_FILE;
+		$dl_config_path = Client\Project::getConfigFile();
 		if (!file_exists($dl_config_path)) {
 			die("No .dl-config file found at project root.\n");
 		}
