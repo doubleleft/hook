@@ -11,6 +11,26 @@ class App extends \Core\Model
 		static::created(function($instance) { $instance->afterCreate(); });
 	}
 
+	/**
+	 * currentId
+	 * @static
+	 * @return int
+	 */
+	public static function currentId() {
+		$app = \Slim\Slim::getInstance();
+		return $app->key->app_id;
+	}
+
+	/**
+	 * collection
+	 * @static
+	 * @param mixed $name name
+	 * @return models\Collection
+	 */
+	public static function collection($name) {
+		return Collection::from($name)->where('app_id', static::currentId());
+	}
+
 	public function keys() {
 		return $this->hasMany('models\AppKey', 'app_id');
 	}
@@ -35,20 +55,23 @@ class App extends \Core\Model
 		$this->generate_key();
 	}
 
+	/**
+	 * current
+	 *
+	 * @example
+	 *     App::current()->where('name', 'like', 'mail.%')->get()
+	 *
+	 * @static
+	 * @return models\App
+	 */
+	public function scopeCurrent($query) {
+		return $query->where('_id', static::currentId());
+	}
+
 	public function toArray() {
 		$arr = parent::toArray();
 		$arr['keys'] = $this->keys->toArray();
 		return $arr;
-	}
-
-	/**
-	 * Current app scope
-	 * @example
-	 *     App::current()->where('name', 'like', 'mail.%')->get()
-	 */
-	public function scopeCurrent($query) {
-		$app = \Slim\Slim::getInstance();
-		return $query->where('_id', $app->key->app_id);
 	}
 
 }
