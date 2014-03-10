@@ -88,8 +88,14 @@ class Module extends \Core\Model
 		$name = basename($this->name, $extension);
 
 		if ($extension === ".php") {
+			//
+			// Expose handy aliases for modules
+			//
+			$aliases = "use models\App as App;\n";
+			$aliases.= "use models\Collection as Collection;\n";
+
 			if ($this->type == self::TYPE_OBSERVER) {
-				eval(substr($this->code, 5)); // remove '<?php' for eval
+				eval($aliases . substr($this->code, 5)); // remove '<?php' for eval
 				$klass = ucfirst($name);
 
 				if (class_exists($klass)) {
@@ -100,7 +106,7 @@ class Module extends \Core\Model
 
 			} else if ($this->type == self::TYPE_ROUTE) {
 				$app = \Slim\Slim::getInstance();
-				eval(substr($this->code, 5)); // remove '<?php' for eval
+				eval($aliases . substr($this->code, 5)); // remove '<?php' for eval
 			}
 
 		} else if ($extension === '.html') {

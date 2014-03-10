@@ -36,8 +36,7 @@ class AppConfig extends \Core\Model
 	 *     AppConfig::current()->where('name', 'like', 'mail.%')->get()
 	 */
 	public function scopeCurrent($query) {
-		$app = \Slim\Slim::getInstance();
-		return $query->where('app_id', $app->key->app_id);
+		return $query->where('app_id', App::currentId());
 	}
 
 }
