@@ -53,7 +53,11 @@ class AppMiddleware extends \Slim\Middleware
 			if ($app->key) {
 				if ($custom_routes = models\Module::currentApp()->where('type', models\Module::TYPE_ROUTE)->get()) {
 					foreach($custom_routes as $custom_route) {
-						$custom_route->compile();
+						try {
+							$custom_route->compile();
+						} catch(Exception $e) {
+							file_put_contents('php://stderr', 'Error compiling route module: ' . $e->getTraceAsString() . PHP_EOL);
+						}
 					}
 				}
 			} else if (!preg_match('/$app/', $app->request->getResourceUri())) {
