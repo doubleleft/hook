@@ -36,10 +36,10 @@ class Collection extends \Core\Model
 		}
 	}
 
-	public function from($table) {
+	public static function from($table) {
 		static::$lastTableName = $table;
 		static::loadObserver($table);
-		return parent::from($table);
+		return static::query()->from($table);
 	}
 
 	public function __construct(array $attributes = array()) {
