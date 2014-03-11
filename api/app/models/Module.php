@@ -109,7 +109,13 @@ class Module extends \Core\Model
 
 			} else if ($this->type == self::TYPE_ROUTE) {
 				$app = \Slim\Slim::getInstance();
-				eval($aliases . $this->code);
+				try {
+					eval($aliases . $this->code);
+				} catch (\Exception $e) {
+					$message = $this->name . ': ' . $e->getMessage();
+					$app->response->headers->set('X-Error-'.uniqid(), $message);
+					file_put_contents('php://stderr', $message);
+				}
 			}
 
 		} else if ($extension === '.html') {
