@@ -3,18 +3,52 @@ namespace models;
 
 class Collection extends \Core\Model
 {
+	protected $table = '_collections';
+
 	protected $guarded = array();
 	protected $primaryKey = '_id';
 
+	protected static $observers;
+	public static $lastTableName;
+
 	public static function boot() {
+		if (!static::$observers) { static::$observers = array(); }
+
 		parent::boot();
 		static::saving(function($model) { $model->beforeSave(); });
 	}
 
+	public static function loadObserver($table) {
+		// Compile observer only if it isn't compiled yet.
+
+		//
+		// TODO: Clenaup previous observer to attach another.
+		//
+		// Since different collections share same class, loading
+		// more than one observer will just register more events.
+		//
+		if (!isset(static::$observers[ $table ])) {
+			if ($module = Module::observer($table)) {
+				static::$observers[ $table ] = $module;
+				$module->compile();
+			}
+		}
+	}
+
+	public function from($table) {
+		static::$lastTableName = $table;
+		static::loadObserver($table);
+		return parent::from($table);
+	}
+
 	public function __construct(array $attributes = array()) {
 		if (isset($attributes['table_name'])) {
-			$this->setTable($attributes['table_name']);
+			static::$lastTableName = $attributes['table_name'];
+			static::loadObserver(static::$lastTableName);
+			$this->setTable(static::$lastTableName);
 			unset($attributes['table_name']);
+		} else if (static::$lastTableName) {
+			$this->setTable(static::$lastTableName);
 		}
 		parent::__construct($attributes);
 	}

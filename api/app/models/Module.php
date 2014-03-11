@@ -94,6 +94,7 @@ class Module extends \Core\Model
 			$aliases = "use models\App as App;\n";
 			$aliases.= "use models\Collection as Collection;\n";
 
+
 			if ($this->type == self::TYPE_OBSERVER) {
 				eval($aliases . substr($this->code, 5)); // remove '<?php' for eval
 				$klass = ucfirst($name);
