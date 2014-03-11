@@ -28,7 +28,7 @@ class App extends \Core\Model
 	 * @return models\Collection
 	 */
 	public static function collection($name) {
-		return Collection::from($name)->where('app_id', static::currentId());
+		return Collection::query()->from($name)->where('app_id', static::currentId());
 	}
 
 	public function keys() {
