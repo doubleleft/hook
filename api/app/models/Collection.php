@@ -29,8 +29,9 @@ class Collection extends \Core\Model
 		//
 		if (!isset(static::$observers[ $table ])) {
 			if ($module = Module::observer($table)) {
-				static::$observers[ $table ] = $module;
-				$module->compile();
+				$observer = $module->compile();
+				static::$observers[ $table ] = $observer;
+				static::observe($observer);
 			}
 		}
 	}
@@ -44,12 +45,12 @@ class Collection extends \Core\Model
 	public function __construct(array $attributes = array()) {
 		if (isset($attributes['table_name'])) {
 			static::$lastTableName = $attributes['table_name'];
-			static::loadObserver(static::$lastTableName);
 			$this->setTable(static::$lastTableName);
 			unset($attributes['table_name']);
 		} else if (static::$lastTableName) {
 			$this->setTable(static::$lastTableName);
 		}
+		static::loadObserver($this->getTable());
 		parent::__construct($attributes);
 	}
 

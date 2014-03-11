@@ -82,6 +82,7 @@ class Module extends \Core\Model
 
 	/**
 	 * Compile module code
+	 * @return mixed
 	 */
 	public function compile($options=array()) {
 		$extension = '.' . pathinfo($this->name, PATHINFO_EXTENSION);
@@ -94,20 +95,21 @@ class Module extends \Core\Model
 			$aliases = "use models\App as App;\n";
 			$aliases.= "use models\Collection as Collection;\n";
 
-
 			if ($this->type == self::TYPE_OBSERVER) {
-				eval($aliases . substr($this->code, 5)); // remove '<?php' for eval
-				$klass = ucfirst($name);
+				// Prevent name conflict by using unique class names for custom modules
+				$klass = 'CustomModule' . uniqid();
+				eval($aliases . preg_replace('/class ([^\ {]+)/', 'class ' . $klass, $this->code));
 
 				if (class_exists($klass)) {
-					Collection::observe(new $klass);
+					// Return module instance for registering on model.
+					return new $klass;
 				} else {
-					throw new \MethodFailureException("Module '{$name}.php' must define a class named '{$klass}'.");
+					throw new \MethodFailureException("Module '{$name}.php' must define a class.");
 				}
 
 			} else if ($this->type == self::TYPE_ROUTE) {
 				$app = \Slim\Slim::getInstance();
-				eval($aliases . substr($this->code, 5)); // remove '<?php' for eval
+				eval($aliases . $this->code);
 			}
 
 		} else if ($extension === '.html') {
@@ -132,6 +134,12 @@ class Module extends \Core\Model
 
 	}
 
+	public function getCodeAttribute() {
+		$extension = pathinfo($this->name, PATHINFO_EXTENSION);
+		$code = $this->attributes['code'];
+		return ($extension==="php") ? substr($code, 5) : $code;
+	}
+
 	/**
 	 * Current app scope
 	 * @example
@@ -141,4 +149,5 @@ class Module extends \Core\Model
 		$app = \Slim\Slim::getInstance();
 		return $query->where('app_id', $app->key->app_id);
 	}
+
 }
