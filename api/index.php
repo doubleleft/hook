@@ -137,9 +137,7 @@ $app->group('/collection', function () use ($app) {
 	 * Curently only used on : Only Backbone.DLModel
 	 */
 	$app->put('/:name/:id', function($name, $id) use ($app) {
-		$query = models\Collection::from($name)
-			->where('app_id', $app->key->app_id)
-			->where('_id', $id);
+		$query = models\App::collection($name)->where('_id', $id);
 
 		if ($operation = $app->request->post('op')) {
 			// Operations: increment/decrement
