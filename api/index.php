@@ -179,7 +179,7 @@ $app->group('/collection', function () use ($app) {
 	 * DELETE /collection/:name/:id
 	 */
 	$app->delete('/:name/:id', function($name, $id) use ($app) {
-		$app->content = array('success' => models\App::collection($name)->find($id)->destroy());
+		$app->content = array('success' => models\App::collection($name)->find($id)->delete());
 	});
 
 	/**
