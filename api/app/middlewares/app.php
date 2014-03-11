@@ -16,7 +16,7 @@ class AppMiddleware extends \Slim\Middleware
 			$query_data = array();
 			// Parse JSON content on query string
 			if (preg_match('/([^&]+)(&.*)?/', $query_string, $query)) {
-				$query_data = json_decode(urldecode($query[1]), true);
+				$query_data = json_decode(urldecode($query[1]), true) ?: array();
 			}
 			// Parse remaining regular string variables
 			if (isset($query[2])) {
@@ -53,11 +53,7 @@ class AppMiddleware extends \Slim\Middleware
 			if ($app->key) {
 				if ($custom_routes = models\Module::currentApp()->where('type', models\Module::TYPE_ROUTE)->get()) {
 					foreach($custom_routes as $custom_route) {
-						try {
-							$custom_route->compile();
-						} catch(Exception $e) {
-							file_put_contents('php://stderr', 'Error compiling route module: ' . $e->getTraceAsString() . PHP_EOL);
-						}
+						$custom_route->compile();
 					}
 				}
 			} else if (!preg_match('/$app/', $app->request->getResourceUri())) {

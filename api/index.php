@@ -94,10 +94,6 @@ $app->group('/collection', function () use ($app) {
 	 * POST /collection/:name
 	 */
 	$app->post('/:name', function($name) use ($app) {
-		if ($module = models\Module::observer($name)) {
-			$module->compile();
-		}
-
 		$model = new models\Collection(array_merge($app->request->post('data'), array(
 			'app_id' => $app->key->app_id,
 			'table_name' => $name
