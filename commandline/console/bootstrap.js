@@ -34,51 +34,64 @@
 
     function writer(obj) {
       var that = this;
+
+      if(obj.constructor.name == 'Promise'){
+        obj.then(function(data) {
+          promiseOutputer(data,that);
+        });
+        return('[ Querying result... ]');
+      } else
       if (obj.constructor.name == "CollectionInspector") {
         obj.promise.then(function(data) {
-          if (data.length && data.length > 0) {
-            delete data[0].app_id;
-
-            if (!obj.options.timestamps) {
-              delete data[0].created_at;
-              delete data[0].updated_at;
-            }
-
-            var keys = Object.keys(data[0]),
-                table = new Table({ head: keys });
-
-            for (var i=0; i < data.length; i++) {
-              delete data[i].app_id;
-
-              if (!obj.options.timestamps) {
-                delete data[i].created_at;
-                delete data[i].updated_at;
-              }
-
-              var values = [];
-              for (var k in data[i]) {
-                values.push(util.inspect(data[i][k], {colors: true}));
-              }
-              table.push(values);
-            }
-
-            //
-            // FIXME: update buffer instantly.
-            // sometimes it outputs only after some RETURN key press.
-            //
-            that.outputStream.write("\n" + table.toString() + "\n");
-            that.displayPrompt();
-          } else if (data.lengh == 0) {
-            that.outputStream.write("\nEmpty.\n");
-          } else {
-            that.outputStream.write("\n" + util.inspect(data, {colors: true}) + "\n");
-          }
+          promiseOutputer(data,that,obj.options);
         }, function(data) {
           that.outputStream.write("\n"+util.inspect(data, {colors: true})+"\n");
         });
         return '[ Querying result... ]';
       } else {
         return util.inspect(obj, {colors: true});
+      }
+    }
+
+    function promiseOutputer(data,pointer,options){
+      if(typeof options == 'undefined') options = {};
+
+      if (data.length && data.length > 0) {
+        delete data[0].app_id;
+
+        if (!options.timestamps) {
+          delete data[0].created_at;
+          delete data[0].updated_at;
+        }
+
+        var keys = Object.keys(data[0]),
+            table = new Table({ head: keys });
+
+        for (var i=0; i < data.length; i++) {
+          delete data[i].app_id;
+
+          if (!options.timestamps) {
+            delete data[i].created_at;
+            delete data[i].updated_at;
+          }
+
+          var values = [];
+          for (var k in data[i]) {
+            values.push(util.inspect(data[i][k], {colors: true}));
+          }
+          table.push(values);
+        }
+
+        //
+        // FIXME: update buffer instantly.
+        // sometimes it outputs only after some RETURN key press.
+        //
+        pointer.outputStream.write("\n" + table.toString() + "\n");
+        pointer.displayPrompt();
+      } else if (data.lengh == 0) {
+        pointer.outputStream.write("\nEmpty.\n");
+      } else {
+        pointer.outputStream.write("\n" + util.inspect(data, {colors: true}) + "\n");
       }
     }
 
