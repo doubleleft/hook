@@ -132,12 +132,11 @@ $app->group('/collection', function () use ($app) {
 	});
 
 	/**
+	 * TODO: DRY with PUT /collection/:name
 	 * PUT /collection/:name/:id
+	 * Curently only used on : Only Backbone.DLModel
 	 */
 	$app->put('/:name/:id', function($name, $id) use ($app) {
-		//
-		// TODO: DRY with PUT /collection/:name
-		//
 		$query = models\Collection::from($name)
 			->where('app_id', $app->key->app_id)
 			->where('_id', $id);
@@ -166,9 +165,7 @@ $app->group('/collection', function () use ($app) {
 	 * GET /collection/:name/:id
 	 */
 	$app->get('/:name/:id', function($name, $id) use ($app) {
-		$app->content = models\Collection::query()
-			->from($name)
-			->find($id);
+		$app->content = models\App::collection($name)->find($id);
 	});
 
 	/**
@@ -176,10 +173,7 @@ $app->group('/collection', function () use ($app) {
 	 */
 	$app->post('/:name/:id', function($name, $id) use ($app) {
 		$app->content = array(
-			'success' => (models\Collection::query()
-				->from($name)
-				->where('_id', '=', $id)
-				->update($app->request->post('data')) === 1)
+			'success' => models\App::collection($name)->find($id)->update($app->request->post('data'))
 		);
 	});
 
@@ -187,7 +181,7 @@ $app->group('/collection', function () use ($app) {
 	 * DELETE /collection/:name/:id
 	 */
 	$app->delete('/:name/:id', function($name, $id) use ($app) {
-		$app->content = array('success' => models\Collection::query()->from($name)->where('_id', $id)->delete());
+		$app->content = array('success' => models\App::collection($name)->find($id)->destroy());
 	});
 
 	/**
