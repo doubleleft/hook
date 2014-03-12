@@ -36,6 +36,11 @@ class Collection extends \Core\Model
 		}
 	}
 
+	/**
+	 * from
+	 * @param string $table table
+	 * @return Illuminate\Database\Query\Builder
+	 */
 	public static function from($table) {
 		static::$lastTableName = $table;
 		static::loadObserver($table);
@@ -70,6 +75,24 @@ class Collection extends \Core\Model
 
 	public function app() {
 		return $this->belongsTo('models\App');
+	}
+
+	/**
+	 * toArray. Modules may define a custom toArray method.
+	 * @return array
+	 */
+	public function toArray() {
+		$array = parent::toArray();
+		$table = $this->getTable();
+
+		if (isset(static::$observers[ $table ])) {
+			$observer = static::$observers[ $table ];
+			if (method_exists($observer, 'toArray')) {
+				return $observer->toArray($this, $array);
+			}
+		}
+
+		return $array;
 	}
 
 	/**
@@ -120,9 +143,10 @@ class Collection extends \Core\Model
 					}
 				}
 
-				// Use timestamp instead of date for created_at/updated_at fields
-				$t->integer('created_at');
-				$t->integer('updated_at');
+				// Create timestamp created_at/updated_at fields if it isn't already defined
+				if (!isset($attributes['created_at'])) { $t->integer('created_at'); }
+				if (!isset($attributes['updated_at'])) { $t->integer('updated_at'); }
+
 			});
 
 		} else {
