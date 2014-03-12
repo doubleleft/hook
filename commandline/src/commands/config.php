@@ -5,8 +5,6 @@ return array(
 	'command' => 'config',
 	'description' => 'List all app configurations',
 	'run' => function($args) {
-		$project = Client\Project::getConfig();
-
 		$client = new Client\Client();
 		$configs = $client->get("apps/configs");
 
