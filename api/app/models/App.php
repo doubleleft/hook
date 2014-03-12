@@ -25,10 +25,10 @@ class App extends \Core\Model
 	 * collection
 	 * @static
 	 * @param mixed $name name
-	 * @return models\Collection
+	 * @return \core\CollectionDelegator
 	 */
 	public static function collection($name) {
-		return Collection::from($name)->where('app_id', static::currentId());
+		return new \core\CollectionDelegator($name, static::currentId(), Collection::from($name));
 	}
 
 	public function keys() {
