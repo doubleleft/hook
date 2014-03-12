@@ -13,6 +13,10 @@ return array(
 		$project = Client\Project::getConfig();
 
 		if (!$args['json']) {
+			foreach($project as $key => $value) {
+				echo $key . ': ' . $value . PHP_EOL;
+			}
+			echo str_repeat('-', 37) . PHP_EOL;
 			if ($configs) {
 				foreach($configs as $config) {
 					echo $config->name . ': ' . $config->value . PHP_EOL;
