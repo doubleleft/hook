@@ -71,8 +71,6 @@ class Collection extends \Core\Model
 		$array = parent::toArray();
 		$table = $this->getTable();
 
-		$observer = array($table => isset(static::$observers[ $table ]));
-
 		if (isset(static::$observers[ $table ])) {
 			$observer = static::$observers[ $table ];
 			if (method_exists($observer, 'toArray')) {
