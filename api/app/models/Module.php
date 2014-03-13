@@ -92,7 +92,8 @@ class Module extends \Core\Model
 			//
 			// Expose handy aliases for modules
 			//
-			$aliases = "use models\App as App;\n";
+			$aliases = "use models\App as App;";
+			$aliases = "use models\AuthToken as AuthToken;";
 			$aliases.= "use models\Collection as Collection;\n";
 
 			if ($this->type == self::TYPE_OBSERVER) {

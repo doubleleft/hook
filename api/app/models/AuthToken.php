@@ -1,7 +1,7 @@
 <?php
 namespace models;
 
-class AuthToken extends \Core\Model{
+class AuthToken extends \Core\Model {
 
 	const EXPIRATION = 24; // hours
 
