@@ -77,16 +77,6 @@ class CollectionDelegator {
 	}
 
 	/**
-	 * Execute the query as a "select" statement.
-	 *
-	 * @param  array  $columns
-	 * @return array
-	 */
-	public function get($columns=array('*')) {
-		return $this->query->get($columns);
-	}
-
-	/**
 	 * Add an "order by" clause to the query.
 	 *
 	 * @param  string  $column
@@ -107,7 +97,7 @@ class CollectionDelegator {
 	 * @return array
 	 */
 	public function toArray($columns=array('*')) {
-		return $this->get($columns)->toArray();
+		return $this->query->get($columns)->toArray();
 	}
 
 	/**
@@ -118,8 +108,12 @@ class CollectionDelegator {
 	 * @return \core\CollectionDelegator
 	 */
 	public function __call($method, $parameters) {
-		call_user_func_array(array($this->query, $method), $parameters);
-		return $this;
+		$mixed = call_user_func_array(array($this->query, $method), $parameters);
+		if ($mixed instanceof \Illuminate\Database\Eloquent\Builder || $mixed instanceof \Illuminate\Database\Query\Builder ) {
+			return $this;
+		} else {
+			return $mixed;
+		}
 	}
 
 }
