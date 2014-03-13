@@ -102,6 +102,15 @@ class CollectionDelegator {
 	}
 
 	/**
+	 * Shortcut for get+toArray methods.
+	 * @param string $columns columns
+	 * @return array
+	 */
+	public function toArray($columns=array('*')) {
+		return $this->get($columns)->toArray();
+	}
+
+	/**
 	 * Handle Illuminate\Database\Query\Builder methods.
 	 *
 	 * @param mixed $method method
