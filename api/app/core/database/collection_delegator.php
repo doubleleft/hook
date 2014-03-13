@@ -57,15 +57,60 @@ class CollectionDelegator {
 	}
 
 	/**
-	 * Handle custom query methods
+	 * filter
+	 *
+	 * @param array $filters filters
+	 * @return \core\CollectionDelegator
+	 */
+	public function filter($filters = null) {
+		if ($filters) {
+			foreach($filters as $where) {
+				if (preg_match('/^[a-z_]+$/', $where[1]) !== 0 && strtolower($where[1]) !== 'like') {
+					$method = 'where' . ucfirst(\Illuminate\Support\Str::camel($where[1]));
+					$this->query->{$method}($where[0], $where[2]);
+				} else {
+					$this->query->where($where[0], $where[1], $where[2]);
+				}
+			}
+		}
+		return $this;
+	}
+
+	/**
+	 * Execute the query as a "select" statement.
+	 *
+	 * @param  array  $columns
+	 * @return array
+	 */
+	public function get($columns=array('*')) {
+		return $this->query->get($columns);
+	}
+
+	/**
+	 * Add an "order by" clause to the query.
+	 *
+	 * @param  string  $column
+	 * @param  string|int  $direction
+	 * @return \core\CollectionDelegator
+	 */
+	public function sort($column, $direction = 'asc') {
+		if (is_int($direction)) {
+			$direction = ($direction == -1) ? 'desc' : 'asc';
+		}
+		$this->query->orderBy($column, $direction);
+		return $this;
+	}
+
+	/**
+	 * Handle Illuminate\Database\Query\Builder methods.
 	 *
 	 * @param mixed $method method
 	 * @param mixed $parameters parameters
-	 * @return mixed
+	 * @return \core\CollectionDelegator
 	 */
 	public function __call($method, $parameters) {
-		$caller = method_exists($this, $method) ? $this : $this->query;
-		return call_user_func_array(array($caller, $method), $parameters);
+		call_user_func_array(array($this->query, $method), $parameters);
+		return $this;
 	}
 
 }

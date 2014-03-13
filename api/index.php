@@ -41,9 +41,7 @@ $app->group('/collection', function () use ($app) {
 	 * GET /collection/:name
 	 */
 	$app->get('/:name', function($name) use ($app) {
-		$query = models\Collection::filter($app->request->get('q'))
-			->from($name)
-			->where('app_id', $app->key->app_id);
+		$query = models\App::collection($name)->filter($app->request->get('q'));
 
 		// Apply ordering
 		if ($s = $app->request->get('s')) {
@@ -110,9 +108,7 @@ $app->group('/collection', function () use ($app) {
 	 * PUT /collection/:name
 	 */
 	$app->put('/:name', function($name) use ($app) {
-		$query = models\Collection::filter($app->request->post('q'))
-			->from($name)
-			->where('app_id', $app->key->app_id);
+		$query = models\App::collection($name)->filter($app->request->get('q'));
 
 		if ($operation = $app->request->post('op')) {
 			// Operations: increment/decrement
@@ -152,10 +148,7 @@ $app->group('/collection', function () use ($app) {
 	 * DELETE /collection/:name
 	 */
 	$app->delete('/:name', function($name) use ($app) {
-		$query = models\Collection::filter($app->request->get('q'))
-			->from($name)
-			->where('app_id', $app->key->app_id);
-
+		$query = \models\App::collection($from)->filter($app->request->get('q'));
 		$app->content = array('success' => $query->delete());
 	});
 
@@ -201,8 +194,7 @@ $app->group('/channels', function() use ($app) {
 	 */
 	$app->get('/:name+', function($name) use ($app) {
 		$name = implode("/",$name);
-		$app->content = models\ChannelMessage::filter($app->request->get('q'))
-			->where('app_id', $app->key->app_id)
+		$app->content = models\App::collection('channel_messages')->filter($app->request->get('q'))
 			->where('channel', $name)
 			->get();
 	});

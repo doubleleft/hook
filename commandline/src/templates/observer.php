@@ -6,49 +6,49 @@
 
 class {name} {
 
-	public function creating($data) {
-		// before create
-
-		// if ($data->some_data == "invalid") {
-		//   return false;
-		// }
+	// customize response here
+	public function toArray($model, $array) {
+		return $array;
 	}
 
-	public function created($data) {
-		// after create
-		// Utils::send_mail();
+	// before create
+	public function creating($model) {
 	}
 
-	public function updating($data) {
-		// before update
+	// after create
+	public function created($model) {
 	}
 
-	public function updated($data) {
-		// after update
+	// before update
+	public function updating($model) {
 	}
 
-	public function saving($data) {
-		// before save
+	// after update
+	public function updated($model) {
 	}
 
-	public function saved($data) {
-		// after save
+	// before save
+	public function saving($model) {
 	}
 
-	public function deleting($data) {
-		// before delete
+	// after save
+	public function saved($model) {
 	}
 
-	public function deleted($data) {
-		// after delete
+	// before delete
+	public function deleting($model) {
 	}
 
-	public function restoring($data) {
-		// before restore (soft-delete)
+	// after delete
+	public function deleted($model) {
 	}
 
-	public function restored($data) {
-		// after restore
+	// before restore (soft-delete)
+	public function restoring($model) {
+	}
+
+	// after restore
+	public function restored($model) {
 	}
 
 }

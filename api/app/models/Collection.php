@@ -59,20 +59,6 @@ class Collection extends \Core\Model
 		parent::__construct($attributes);
 	}
 
-	public function scopeFilter($query, $filters = null) {
-		if ($filters) {
-			foreach($filters as $where) {
-				if (preg_match('/^[a-z_]+$/', $where[1]) !== 0 && strtolower($where[1]) !== 'like') {
-					$method = 'where' . ucfirst(\Illuminate\Support\Str::camel($where[1]));
-					$query->{$method}($where[0], $where[2]);
-				} else {
-					$query->where($where[0], $where[1], $where[2]);
-				}
-			}
-		}
-		return $query;
-	}
-
 	public function app() {
 		return $this->belongsTo('models\App');
 	}
@@ -84,6 +70,8 @@ class Collection extends \Core\Model
 	public function toArray() {
 		$array = parent::toArray();
 		$table = $this->getTable();
+
+		$observer = array($table => isset(static::$observers[ $table ]));
 
 		if (isset(static::$observers[ $table ])) {
 			$observer = static::$observers[ $table ];
