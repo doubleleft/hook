@@ -50,7 +50,11 @@ class Mail {
 	}
 
 	public static function send($options = array()) {
-		models\AppConfig::getAll('mail.%')->each(function($config) use (&$params) {
+		models\AppConfig::current()
+			->where('name', 'mail.driver')
+			->orWhere('name', 'mail.username')
+			->orWhere('name', 'mail.password')
+			->each(function($config) use (&$params) {
 			preg_match('/mail\.([a-z]+)/', $config->name, $matches);
 			$params[ $matches[1] ] = $config->value;
 		});
