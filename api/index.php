@@ -37,6 +37,15 @@ $app->group('/system', function() use ($app) {
  */
 $app->group('/collection', function () use ($app) {
 
+	// Get collection data for CREATE/UPDATE
+	$app->container->singleton('collection_data', function () use ($app) {
+		$data = $app->request->post('d') ?: $app->request->post('data');
+		if (isset($_FILES['data'])) {
+			$data[models\Collection::ATTACHED_FILES] = $_FILES['data'];
+		}
+		return $data;
+	});
+
 	/**
 	 * GET /collection/:name
 	 */
@@ -92,10 +101,7 @@ $app->group('/collection', function () use ($app) {
 	 * POST /collection/:name
 	 */
 	$app->post('/:name', function($name) use ($app) {
-		$model = new models\Collection(array_merge($app->request->post('data'), array(
-			'app_id' => $app->key->app_id,
-			'table_name' => $name
-		)));
+		$model = models\App::collection($name)->create_new($app->collection_data);
 
 		if (!$model->save()) {
 			throw new ForbiddenException("Can't save '{$name}'.");
@@ -123,7 +129,7 @@ $app->group('/collection', function () use ($app) {
 			// - 'plugados-site'
 			// - 'clubsocial-possibilidades'
 			//
-			$app->content = $query->update($app->request->post('d') ?: $app->request->post('data'));
+			$app->content = $query->update($app->collection_data);
 		}
 	});
 
@@ -140,7 +146,7 @@ $app->group('/collection', function () use ($app) {
 			$app->content = $query->{$operation['method']}($operation['field'], $operation['value']);
 		} else {
 			// Perform raw update
-			$app->content = $query->update($app->request->post('data'));
+			$app->content = $query->update($app->collection_data);
 		}
 	});
 
@@ -164,7 +170,7 @@ $app->group('/collection', function () use ($app) {
 	 */
 	$app->post('/:name/:id', function($name, $id) use ($app) {
 		$app->content = array(
-			'success' => models\App::collection($name)->find($id)->update($app->request->post('data'))
+			'success' => models\App::collection($name)->find($id)->update($app->collection_data)
 		);
 	});
 
@@ -289,19 +295,17 @@ $app->group('/files', function() use($app) {
 			throw new \Exception("'file' field not provided");
 		}
 
-		$rawFile = $_FILES["file"];
-		$fileStoragePath = storagePath($app);
-		$storageProvider = Storage\Provider::get($provider);
-		$uploadedFile = $storageProvider->upload(__DIR__.$fileStoragePath, $rawFile);
+		$raw_file = $_FILES["file"];
+		$public_path = Storage\Provider::get($provider)->upload($raw_file);
 
-		if($uploadedFile == NULL){
+		if($public_path == NULL){
 			throw new \Exception("error when uploading file");
 		}
 
 		$file = models\File::create(array(
 			'app_id' => $app->key->app_id,
-			'file' => $rawFile,
-			'path' => $fileStoragePath . '/' . $uploadedFile
+			'file' => $raw_file,
+			'path' => $public_path
 		));
 
 		$file->url = storageURL($file->path);

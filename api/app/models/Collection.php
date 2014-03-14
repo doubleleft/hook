@@ -11,6 +11,9 @@ class Collection extends \Core\Model
 	protected static $observers;
 	public static $lastTableName;
 
+	const ATTACHED_FILES = 'attached_files';
+	protected $_attached_files;
+
 	public static function boot() {
 		if (!static::$observers) { static::$observers = array(); }
 
@@ -92,11 +95,28 @@ class Collection extends \Core\Model
 		return true;
 	}
 
+	public function setAttachedFilesAttribute($files) {
+		$this->_attached_files = $files;
+	}
+
+	protected function uploadAttachedFiles($files) {
+		file_put_contents('php://stderr', json_encode($files) . PHP_EOL);
+		foreach($files as $file) {
+
+		}
+		$public_path = Storage\Provider::get($provider)->upload($raw_file);
+	}
+
 	//
 	// Hooks
 	//
 
 	public function beforeSave() {
+		// Upload/relate each file attachment on the collection.
+		if ($this->_attached_files) {
+			$this->uploadAttachedFiles($this->_attached_files);
+		}
+
 		$connection = $this->getConnectionResolver()->connection();
 
 		// Try to migrate schema.

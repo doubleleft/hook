@@ -17,10 +17,11 @@ class ResponseTypeMiddleware extends \Slim\Middleware
 		// Respond based on ACCEPT request header
 		// Add EventSource middeware: http://en.wikipedia.org/wiki/Server-sent_events | http://www.html5rocks.com/en/tutorials/eventsource/basics/
 		//
-		// Workaround for Internet Explorer, which can't send custom request headers on CORS requests.
-		//		if ($app->request->headers->get('ACCEPT') == 'text/event-stream') { // Checking for ACCEPT header is smarter.
-		//
-		if ($app->request->getMethod() == 'GET' && preg_match('/^\/channels/', $app->request->getResourceUri())) {
+		if (($app->request->headers->get('ACCEPT') == 'text/event-stream') || // Checking for ACCEPT header is smarter.
+				$app->request->getMethod() == 'GET' && preg_match('/^\/channels/', $app->request->getResourceUri())) { // Workaround for Internet Explorer, which can't send custom request headers on CORS requests.
+			ini_set('zlib.output_compression', 0);
+			ini_set('implicit_flush', 1);
+
 			$pool_start = $app->request->headers->get('X-Time') ?: time();
 
 			// stream timing configs
