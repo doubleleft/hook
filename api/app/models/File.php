@@ -15,9 +15,12 @@ class File extends \Core\Model
 	}
 
 	public function beforeCreate() {
-		if ($this->attributes['file']) {
+		if ($this->file) {
 			$this->name = $this->file['name'];
 			$this->mime = $this->file['type'];
+
+			$provider = AppConfig::get('storage.provider', 'filesystem');
+			$this->path = \Storage\Provider::get($provider)->upload($this->file);
 			unset($this->attributes['file']);
 		}
 	}

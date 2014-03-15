@@ -103,10 +103,13 @@ class Collection extends \Core\Model
 		file_put_contents('php://stderr', json_encode($files) . PHP_EOL);
 
 		$files = array_diverse($files);
-		$provider = AppConfig::get('storage.provider', 'filesystem');
 		foreach($files as $field => $file) {
-			$public_path = \Storage\Provider::get($provider)->upload($file);
-			$this->setAttribute($field, $public_path);
+			$_file = File::create(array(
+				'app_id' => $this->app_id,
+				'file' => $file
+			));
+			$this->setAttribute($field, $_file->path);
+			$this->setAttribute($field . '_id', $_file->_id);
 		}
 	}
 
