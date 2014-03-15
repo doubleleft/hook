@@ -101,10 +101,13 @@ class Collection extends \Core\Model
 
 	protected function uploadAttachedFiles($files) {
 		file_put_contents('php://stderr', json_encode($files) . PHP_EOL);
-		foreach($files as $file) {
 
+		$files = array_diverse($files);
+		$provider = AppConfig::get('storage.provider', 'filesystem');
+		foreach($files as $field => $file) {
+			$public_path = \Storage\Provider::get($provider)->upload($file);
+			$this->setAttribute($field, $public_path);
 		}
-		$public_path = Storage\Provider::get($provider)->upload($raw_file);
 	}
 
 	//
