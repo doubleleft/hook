@@ -271,12 +271,23 @@ $app->group('/files', function() use($app) {
 	 */
 	$app->get('/:id', function($id) use ($app){
 		$file = models\File::find($id);
-		if(!$file){
+		if (!$file) {
 			$app->response->setStatus(404);
 			return;
 		}
-		$file->url = storageURL($file->path);
-		$app->content = $file->toJson();
+		$app->content = $file;
+	});
+
+	/**
+	 * DELETE /files/:id
+	 */
+	$app->delete('/:id', function($id) use ($app){
+		$file = models\File::find($id);
+		if (!$file) {
+			$app->response->setStatus(404);
+			return;
+		}
+		$app->content = array('success' => ($file->delete() == 1));
 	});
 
 	/**
