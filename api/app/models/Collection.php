@@ -100,8 +100,6 @@ class Collection extends \Core\Model
 	}
 
 	protected function uploadAttachedFiles($files) {
-		file_put_contents('php://stderr', json_encode($files) . PHP_EOL);
-
 		$files = array_diverse($files);
 		foreach($files as $field => $file) {
 			$_file = File::create(array(
