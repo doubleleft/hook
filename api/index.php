@@ -265,14 +265,6 @@ $app->group('/key', function() use ($app) {
  * File API
  */
 $app->group('/files', function() use($app) {
-	function storagePath($app){
-		return '/app/storage/files/' . $app->key->app_id;
-	}
-	function storageURL($filePath){
-		$protocol = "http://";
-		$uri = str_replace("index.php", "", $_SERVER["SCRIPT_NAME"]);
-		return $protocol . $_SERVER["SERVER_NAME"] . "/". $uri . $filePath;
-	}
 
 	/**
 	 * GET /files/:id
@@ -290,11 +282,12 @@ $app->group('/files', function() use($app) {
 	/**
 	 * POST /files
 	 */
-	$app->post('/:provider', function($provider = 'filesystem') use ($app) {
+	$app->post('/', function() use ($app) {
 		if(!isset($_FILES["file"])){
-			throw new \Exception("'file' field not provided");
+			throw new \Exception("'file' field is required.");
 		}
 
+		$provider = AppConfig::get('storage.provider', 'filesystem');
 		$raw_file = $_FILES["file"];
 		$public_path = Storage\Provider::get($provider)->upload($raw_file);
 
