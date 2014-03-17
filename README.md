@@ -19,7 +19,7 @@ will install `dl-api` client system-wide on `/bin` directory.
 Client libraries
 ---
 
-[JavaScript](https://github.com/doubleleft/dl-api-javascript) ([docs](http://doubleleft.github.io/dl-api-javascript))
-[Android](https://github.com/doubleleft/dl-api-android)
-[iOS](https://github.com/doubleleft/dl-api-ios)
+- [JavaScript](https://github.com/doubleleft/dl-api-javascript) ([docs](http://doubleleft.github.io/dl-api-javascript))
+- [Android](https://github.com/doubleleft/dl-api-android)
+- [iOS](https://github.com/doubleleft/dl-api-ios)
 
