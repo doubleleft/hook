@@ -56,7 +56,7 @@ class AppMiddleware extends \Slim\Middleware
 						$custom_route->compile();
 					}
 				}
-			} else if (preg_match('/$app/', $app->request->getResourceUri())) {
+			} else if (preg_match('/^\/app/', $app->request->getResourceUri())) {
 				if (!$this->validatePublicKey($app->request->headers->get('X-Public-Key'))) {
 					// http_response_code(403);
 					// die(json_encode(array('error' => "Public key not authorized.")));
