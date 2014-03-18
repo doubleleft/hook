@@ -118,6 +118,7 @@ class Collection extends \Core\Model
 		// Upload/relate each file attachment on the collection.
 		if ($this->_attached_files) {
 			$this->uploadAttachedFiles($this->_attached_files);
+			$this->_attached_files = null;
 		}
 
 		$connection = $this->getConnectionResolver()->connection();
