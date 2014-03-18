@@ -22,4 +22,3 @@ Client libraries
 - [JavaScript](https://github.com/doubleleft/dl-api-javascript) ([docs](http://doubleleft.github.io/dl-api-javascript))
 - [Android](https://github.com/doubleleft/dl-api-android)
 - [iOS](https://github.com/doubleleft/dl-api-ios)
-
