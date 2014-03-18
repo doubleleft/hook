@@ -39,9 +39,12 @@ $app->group('/collection', function () use ($app) {
 
 	// Get collection data for CREATE/UPDATE
 	$app->container->singleton('collection_data', function () use ($app) {
-		$data = $app->request->post('d') ?: $app->request->post('data');
-		if (isset($_FILES['data'])) {
-			$data[models\Collection::ATTACHED_FILES] = $_FILES['data'];
+		//
+		// TODO: android and ios clients should deprecate 'data' param, and send it entirelly on BODY
+		//
+		$data = $app->request->post('d') ?: $app->request->post('data') ?: $app->request->post();
+		if (!empty($_FILES)) {
+			$data[models\Collection::ATTACHED_FILES] = $_FILES;
 		}
 		return $data;
 	});
