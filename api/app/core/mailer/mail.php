@@ -14,7 +14,10 @@ class Mail {
 
 		// Set custom transport params
 		foreach($params as $param => $value) {
-			$transport->{'set'.ucfirst($param)}($value);
+			$method = 'set' . ucfirst($param);
+			if (method_exists($transport, $method)) {
+				call_user_func(array($transport, $method), $value);
+			}
 		}
 
 		return $transport;
@@ -50,6 +53,8 @@ class Mail {
 	}
 
 	public static function send($options = array()) {
+		$params = array();
+
 		models\AppConfig::current()
 			->where('name', 'mail.driver')
 			->orWhere('name', 'mail.username')
