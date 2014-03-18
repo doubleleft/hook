@@ -214,7 +214,7 @@ $app->group('/channels', function() use ($app) {
 	 */
 	$app->post('/:name+', function($name) use ($app) {
 		$name = implode("/",$name);
-		$app->content = models\ChannelMessage::create(array_merge($app->request->post('data'), array(
+		$app->content = models\ChannelMessage::create(array_merge($app->request->post(), array(
 			'app_id' => $app->key->app_id,
 			'channel' => $name
 		)));
