@@ -54,6 +54,7 @@ class Mail {
 			->where('name', 'mail.driver')
 			->orWhere('name', 'mail.username')
 			->orWhere('name', 'mail.password')
+			->get()
 			->each(function($config) use (&$params) {
 			preg_match('/mail\.([a-z]+)/', $config->name, $matches);
 			$params[ $matches[1] ] = $config->value;
