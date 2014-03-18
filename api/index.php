@@ -230,7 +230,7 @@ $app->group('/auth', function() use ($app) {
 	 * POST /auth/email
 	 */
 	$app->post('/:provider(/:method)', function($provider_name, $method = 'authenticate') use ($app) {
-		$data = $app->request->post();
+		$data = $app->collection_data;
 		$data['app_id'] = $app->key->app_id;
 		$app->content = Auth\Provider::get($provider_name)->{$method}($data);
 	});
