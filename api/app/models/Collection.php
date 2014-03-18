@@ -100,7 +100,6 @@ class Collection extends \Core\Model
 	}
 
 	protected function uploadAttachedFiles($files) {
-		$files = array_diverse($files);
 		foreach($files as $field => $file) {
 			$_file = File::create(array(
 				'app_id' => $this->app_id,
