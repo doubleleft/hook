@@ -93,6 +93,8 @@ class Module extends \Core\Model
 			// Expose handy aliases for modules
 			//
 			$aliases = "use models\App as App;";
+			$aliases.= "use models\Module as Module;";
+			$aliases.= "use \Mail as Mail;";
 			$aliases.= "use models\AuthToken as AuthToken;";
 			$aliases.= "use models\Collection as Collection;";
 
