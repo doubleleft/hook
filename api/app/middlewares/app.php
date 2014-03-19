@@ -72,7 +72,7 @@ class AppMiddleware extends \Slim\Middleware
 
 			//
 			// Parse incoming JSON data
-			if ($app->request->isPost() || $app->request->isPut()) {
+			if ($app->request->isPost() || $app->request->isPut() || $app->request->isDelete()) {
 				$input_data = $app->environment->offsetGet('slim.input');
 				$app->environment->offsetSet('slim.request.form_hash', json_decode($input_data, true));
 			}

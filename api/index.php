@@ -157,7 +157,7 @@ $app->group('/collection', function () use ($app) {
 	 * DELETE /collection/:name
 	 */
 	$app->delete('/:name', function($name) use ($app) {
-		$query = \models\App::collection($name)->filter($app->request->get('q'));
+		$query = \models\App::collection($name)->filter($app->request->post('q'));
 		$app->content = array('success' => $query->delete());
 	});
 
