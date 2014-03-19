@@ -321,6 +321,13 @@ $app->group('/files', function() use($app) {
 
 });
 
+/**
+ * Push Notifications / Installations
+ */
+$app->group('/push', function() use ($app) {
+	$app->post('/register', function() {
+	});
+});
 
 /**
  * Internals
