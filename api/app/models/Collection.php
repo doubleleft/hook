@@ -128,7 +128,7 @@ class Collection extends \Core\Model
 		if (!$connection->getPdo()) { return; }
 
 		$builder = $connection->getSchemaBuilder();
-		$attributes = $this->attributes;
+		$attributes = &$this->attributes;
 
 		//
 		// TODO: Cache table structure for hasTable/hasColumn boosting
@@ -138,17 +138,21 @@ class Collection extends \Core\Model
 		// Collection table doesn't exists yet: CREATE TABLE
 		if (!$builder->hasTable($table)) {
 
-			$builder->create($table, function($t) use ($attributes) {
+			$builder->create($table, function($t) use (&$attributes) {
 				$t->increments('_id');
 				foreach($attributes as $field => $value) {
 					$datatype = strtolower(gettype($value));
+					if ($datatype == 'null') {
+						unset($attributes[$field]);
+						continue;
+					}
 
 					// Detect large text blocks to declare 'text' datatype.
 					if ($datatype == 'string' && strlen($value) > 255) {
 						$datatype = 'text';
 					}
 
-					if ($datatype !== 'array' && $datatype !== 'null') {
+					if ($datatype !== 'array') {
 						$t->{$datatype}($field)->nullable();
 					}
 				}
@@ -163,18 +167,22 @@ class Collection extends \Core\Model
 
 			// Add missing fields: ALTER TABLE.
 			// TODO: DRY
-			$builder->table($table, function($t) use ($attributes, $builder, $table) {
+			$builder->table($table, function($t) use (&$attributes, $builder, $table) {
 				foreach($attributes as $field => $value) {
 					if (!$builder->hasColumn($table, $field) &&
 							!$builder->hasColumn($table, "`{$field}`")) {
 						$datatype = strtolower(gettype($value));
+						if ($datatype == 'null') {
+							unset($attributes[$field]);
+							continue;
+						}
 
 						// Detect large text blocks to declare 'text' datatype.
 						if ($datatype == 'string' && strlen($value) > 255) {
 							$datatype = 'text';
 						}
 
-						if ($datatype !== 'array' && $datatype !== 'null') {
+						if ($datatype !== 'array') {
 							$t->{$datatype}($field)->nullable();
 						}
 					}
