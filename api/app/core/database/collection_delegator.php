@@ -101,6 +101,15 @@ class CollectionDelegator {
 	}
 
 	/**
+	 * Shortcut for get+toJson methods.
+	 * @param string $columns columns
+	 * @return string
+	 */
+	public function toJson($columns=array('*')) {
+		return $this->query->get($columns)->toJson();
+	}
+
+	/**
 	 * Handle Illuminate\Database\Query\Builder methods.
 	 *
 	 * @param mixed $method method
