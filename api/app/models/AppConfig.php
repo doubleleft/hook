@@ -1,6 +1,11 @@
 <?php
 namespace models;
 
+/**
+ * AppConfig
+ *
+ * @author Endel Dreyer <endel.dreyer@gmail.com>
+ */
 class AppConfig extends \Core\Model
 {
 	protected $guarded = array();

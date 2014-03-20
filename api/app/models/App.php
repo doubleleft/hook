@@ -1,6 +1,11 @@
 <?php
 namespace models;
 
+/**
+ * App
+ *
+ * @author Endel Dreyer <endel.dreyer@gmail.com>
+ */
 class App extends \Core\Model
 {
 	protected $guarded = array();

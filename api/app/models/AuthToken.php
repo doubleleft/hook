@@ -1,6 +1,11 @@
 <?php
 namespace models;
 
+/**
+ * AuthToken
+ *
+ * @author Endel Dreyer <endel.dreyer@gmail.com>
+ */
 class AuthToken extends \Core\Model {
 
 	const EXPIRATION = 24; // hours

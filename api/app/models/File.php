@@ -1,6 +1,11 @@
 <?php
 namespace models;
 
+/**
+ * File
+ *
+ * @author Endel Dreyer <endel.dreyer@gmail.com>
+ */
 class File extends \Core\Model
 {
 	protected $guarded = array();
