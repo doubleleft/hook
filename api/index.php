@@ -363,6 +363,9 @@ $app->group('/apps', function() use ($app) {
 		$app->content = models\App::create($app->request->post('app'));
 	});
 
+	/**
+	 * Keys
+	 */
 	$app->get('/keys', function() use ($app) {
 		$app->content = $app->key->app->toArray();
 	});
@@ -371,6 +374,24 @@ $app->group('/apps', function() use ($app) {
 		$app->content = $app->key->app->generate_key();
 	});
 
+	/**
+	 * Crontab
+	 */
+	$app->post('/cron', function() use ($app) {
+		// Remove all scheduled tasks for this app
+		models\ScheduledTask::current()->delete();
+
+		foreach($app->request->post('schedule', array()) as $schedule) {
+			models\ScheduledTask::create(array_merge($schedule, array('app_id' => $app->key->app_id)));
+		}
+	});
+
+	$app->get('/cron', function() use ($app) {
+	});
+
+	/**
+	 * Configurations
+	 */
 	$app->get('/configs', function() use ($app) {
 		$app->content = $app->key->app->configs;
 	});
@@ -397,6 +418,9 @@ $app->group('/apps', function() use ($app) {
 		);
 	});
 
+	/**
+	 * Modules
+	 */
 	$app->get('/modules', function() use ($app) {
 		$app->content = $app->key->app->modules;
 	});
