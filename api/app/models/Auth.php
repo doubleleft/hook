@@ -1,6 +1,12 @@
 <?php
 namespace models;
 
+/**
+ * Auth
+ *
+ * @uses Collection
+ * @author Endel Dreyer <endel.dreyer@gmail.com>
+ */
 class Auth extends Collection
 {
 	const FORGOT_PASSWORD_FIELD = 'forgot_password_token';
@@ -19,6 +25,10 @@ class Auth extends Collection
 		return $this->hasMany('models\AuthToken', 'auth_id');
 	}
 
+	/**
+	 * generateToken
+	 * @return AuthToken
+	 */
 	public function generateToken() {
 		return $this->tokens()->create(array(
 			'app_id' => $this->app_id
@@ -33,7 +43,9 @@ class Auth extends Collection
 	}
 
 	/**
-	 * Reset user password
+	 * resetPassword
+	 * @param mixed $newPassword newPassword
+	 * @return void
 	 */
 	public function resetPassword($newPassword) {
 		$success = false;
@@ -62,6 +74,10 @@ class Auth extends Collection
 		return $arr;
 	}
 
+	/**
+	 * dataWithToken
+	 * @return array
+	 */
 	public function dataWithToken() {
 		$data = $this->toArray();
 		$data['token'] = $this->generateToken()->toArray();

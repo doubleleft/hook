@@ -37,13 +37,23 @@ $app->group('/system', function() use ($app) {
  */
 $app->group('/collection', function () use ($app) {
 
+	// Get collection data for CREATE/UPDATE
+	$app->container->singleton('collection_data', function () use ($app) {
+		//
+		// TODO: android and ios clients should deprecate 'data' param, and send it entirelly on BODY
+		//
+		$data = $app->request->post('d') ?: $app->request->post('data') ?: $app->request->post();
+		if (!empty($_FILES)) {
+			$data[models\Collection::ATTACHED_FILES] = $_FILES;
+		}
+		return $data;
+	});
+
 	/**
 	 * GET /collection/:name
 	 */
 	$app->get('/:name', function($name) use ($app) {
-		$query = models\Collection::filter($app->request->get('q'))
-			->from($name)
-			->where('app_id', $app->key->app_id);
+		$query = models\App::collection($name)->filter($app->request->get('q'));
 
 		// Apply ordering
 		if ($s = $app->request->get('s')) {
@@ -94,14 +104,7 @@ $app->group('/collection', function () use ($app) {
 	 * POST /collection/:name
 	 */
 	$app->post('/:name', function($name) use ($app) {
-		if ($module = models\Module::observer($name)) {
-			$module->compile();
-		}
-
-		$model = new models\Collection(array_merge($app->request->post('data'), array(
-			'app_id' => $app->key->app_id,
-			'table_name' => $name
-		)));
+		$model = models\App::collection($name)->create_new($app->collection_data);
 
 		if (!$model->save()) {
 			throw new ForbiddenException("Can't save '{$name}'.");
@@ -114,9 +117,7 @@ $app->group('/collection', function () use ($app) {
 	 * PUT /collection/:name
 	 */
 	$app->put('/:name', function($name) use ($app) {
-		$query = models\Collection::filter($app->request->post('q'))
-			->from($name)
-			->where('app_id', $app->key->app_id);
+		$query = models\App::collection($name)->filter($app->request->get('q'));
 
 		if ($operation = $app->request->post('op')) {
 			// Operations: increment/decrement
@@ -131,27 +132,24 @@ $app->group('/collection', function () use ($app) {
 			// - 'plugados-site'
 			// - 'clubsocial-possibilidades'
 			//
-			$app->content = $query->update($app->request->post('d') ?: $app->request->post('data'));
+			$app->content = $query->update($app->collection_data);
 		}
 	});
 
 	/**
+	 * TODO: DRY with PUT /collection/:name
 	 * PUT /collection/:name/:id
+	 * Curently only used on : Only Backbone.DLModel
 	 */
 	$app->put('/:name/:id', function($name, $id) use ($app) {
-		//
-		// TODO: DRY with PUT /collection/:name
-		//
-		$query = models\Collection::from($name)
-			->where('app_id', $app->key->app_id)
-			->where('_id', $id);
+		$query = models\App::collection($name)->where('_id', $id);
 
 		if ($operation = $app->request->post('op')) {
 			// Operations: increment/decrement
 			$app->content = $query->{$operation['method']}($operation['field'], $operation['value']);
 		} else {
 			// Perform raw update
-			$app->content = $query->update($app->request->post('data'));
+			$app->content = $query->update($app->collection_data);
 		}
 	});
 
@@ -159,10 +157,7 @@ $app->group('/collection', function () use ($app) {
 	 * DELETE /collection/:name
 	 */
 	$app->delete('/:name', function($name) use ($app) {
-		$query = models\Collection::filter($app->request->get('q'))
-			->from($name)
-			->where('app_id', $app->key->app_id);
-
+		$query = \models\App::collection($name)->filter($app->request->post('q'));
 		$app->content = array('success' => $query->delete());
 	});
 
@@ -170,9 +165,7 @@ $app->group('/collection', function () use ($app) {
 	 * GET /collection/:name/:id
 	 */
 	$app->get('/:name/:id', function($name, $id) use ($app) {
-		$app->content = models\Collection::query()
-			->from($name)
-			->find($id);
+		$app->content = models\App::collection($name)->find($id);
 	});
 
 	/**
@@ -180,10 +173,7 @@ $app->group('/collection', function () use ($app) {
 	 */
 	$app->post('/:name/:id', function($name, $id) use ($app) {
 		$app->content = array(
-			'success' => (models\Collection::query()
-				->from($name)
-				->where('_id', '=', $id)
-				->update($app->request->post('data')) === 1)
+			'success' => models\App::collection($name)->find($id)->update($app->collection_data)
 		);
 	});
 
@@ -191,7 +181,7 @@ $app->group('/collection', function () use ($app) {
 	 * DELETE /collection/:name/:id
 	 */
 	$app->delete('/:name/:id', function($name, $id) use ($app) {
-		$app->content = array('success' => models\Collection::query()->from($name)->where('_id', $id)->delete());
+		$app->content = array('success' => models\App::collection($name)->find($id)->delete());
 	});
 
 	/**
@@ -213,8 +203,7 @@ $app->group('/channels', function() use ($app) {
 	 */
 	$app->get('/:name+', function($name) use ($app) {
 		$name = implode("/",$name);
-		$app->content = models\ChannelMessage::filter($app->request->get('q'))
-			->where('app_id', $app->key->app_id)
+		$app->content = models\App::collection('channel_messages')->filter($app->request->get('q'))
 			->where('channel', $name)
 			->get();
 	});
@@ -225,7 +214,7 @@ $app->group('/channels', function() use ($app) {
 	 */
 	$app->post('/:name+', function($name) use ($app) {
 		$name = implode("/",$name);
-		$app->content = models\ChannelMessage::create(array_merge($app->request->post('data'), array(
+		$app->content = models\ChannelMessage::create(array_merge($app->request->post(), array(
 			'app_id' => $app->key->app_id,
 			'channel' => $name
 		)));
@@ -241,7 +230,7 @@ $app->group('/auth', function() use ($app) {
 	 * POST /auth/email
 	 */
 	$app->post('/:provider(/:method)', function($provider_name, $method = 'authenticate') use ($app) {
-		$data = $app->request->post();
+		$data = $app->collection_data;
 		$data['app_id'] = $app->key->app_id;
 		$app->content = Auth\Provider::get($provider_name)->{$method}($data);
 	});
@@ -279,49 +268,51 @@ $app->group('/key', function() use ($app) {
  * File API
  */
 $app->group('/files', function() use($app) {
-	function storagePath($app){
-		return '/app/storage/files/' . $app->key->app_id;
-	}
-	function storageURL($filePath){
-		$protocol = "http://";
-		$uri = str_replace("index.php", "", $_SERVER["SCRIPT_NAME"]);
-		return $protocol . $_SERVER["SERVER_NAME"] . "/". $uri . $filePath;
-	}
 
 	/**
 	 * GET /files/:id
 	 */
 	$app->get('/:id', function($id) use ($app){
 		$file = models\File::find($id);
-		if(!$file){
+		if (!$file) {
 			$app->response->setStatus(404);
 			return;
 		}
-		$file->url = storageURL($file->path);
-		$app->content = $file->toJson();
+		$app->content = $file;
+	});
+
+	/**
+	 * DELETE /files/:id
+	 */
+	$app->delete('/:id', function($id) use ($app){
+		$file = models\File::find($id);
+		if (!$file) {
+			$app->response->setStatus(404);
+			return;
+		}
+		$app->content = array('success' => ($file->delete() == 1));
 	});
 
 	/**
 	 * POST /files
 	 */
-	$app->post('/:provider', function($provider = 'filesystem') use ($app) {
+	$app->post('/', function() use ($app) {
 		if(!isset($_FILES["file"])){
-			throw new \Exception("'file' field not provided");
+			throw new \Exception("'file' field is required.");
 		}
 
-		$rawFile = $_FILES["file"];
-		$fileStoragePath = storagePath($app);
-		$storageProvider = Storage\Provider::get($provider);
-		$uploadedFile = $storageProvider->upload(__DIR__.$fileStoragePath, $rawFile);
+		$provider = AppConfig::get('storage.provider', 'filesystem');
+		$raw_file = $_FILES["file"];
+		$public_path = Storage\Provider::get($provider)->upload($raw_file);
 
-		if($uploadedFile == NULL){
+		if($public_path == NULL){
 			throw new \Exception("error when uploading file");
 		}
 
 		$file = models\File::create(array(
 			'app_id' => $app->key->app_id,
-			'file' => $rawFile,
-			'path' => $fileStoragePath . '/' . $uploadedFile
+			'file' => $raw_file,
+			'path' => $public_path
 		));
 
 		$file->url = storageURL($file->path);
@@ -330,6 +321,13 @@ $app->group('/files', function() use($app) {
 
 });
 
+/**
+ * Push Notifications / Installations
+ */
+$app->group('/push', function() use ($app) {
+	$app->post('/register', function() {
+	});
+});
 
 /**
  * Internals

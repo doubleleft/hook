@@ -23,6 +23,9 @@ return array(
 				$lint_return_code = null;
 				exec('php --syntax-check ' . $module, $lint_output, $lint_return_code);
 				if ($lint_return_code !== 0) {
+					echo "\033[1;31m"; // red
+					echo $lint_output[1] . PHP_EOL;
+					echo "\033[0;39m"; // clear color
 					echo "Aborting." . PHP_EOL;
 					die();
 				}

@@ -16,7 +16,7 @@ class AppMiddleware extends \Slim\Middleware
 			$query_data = array();
 			// Parse JSON content on query string
 			if (preg_match('/([^&]+)(&.*)?/', $query_string, $query)) {
-				$query_data = json_decode(urldecode($query[1]), true);
+				$query_data = json_decode(urldecode($query[1]), true) ?: array();
 			}
 			// Parse remaining regular string variables
 			if (isset($query[2])) {
@@ -53,14 +53,10 @@ class AppMiddleware extends \Slim\Middleware
 			if ($app->key) {
 				if ($custom_routes = models\Module::currentApp()->where('type', models\Module::TYPE_ROUTE)->get()) {
 					foreach($custom_routes as $custom_route) {
-						try {
-							$custom_route->compile();
-						} catch(Exception $e) {
-							file_put_contents('php://stderr', 'Error compiling route module: ' . $e->getTraceAsString() . PHP_EOL);
-						}
+						$custom_route->compile();
 					}
 				}
-			} else if (!preg_match('/$app/', $app->request->getResourceUri())) {
+			} else if (preg_match('/^\/app/', $app->request->getResourceUri())) {
 				if (!$this->validatePublicKey($app->request->headers->get('X-Public-Key'))) {
 					// http_response_code(403);
 					// die(json_encode(array('error' => "Public key not authorized.")));
@@ -68,14 +64,15 @@ class AppMiddleware extends \Slim\Middleware
 				}
 
 			} else {
-				http_response_code(403);
-				die(json_encode(array('error' => "Invalid credentials.")));
-				// throw new ForbiddenException("Invalid credentials.");
+				// http_response_code(403);
+				$app->response->setStatus(403);
+				$app->response->setBody(json_encode(array('error' => "Invalid credentials.")));
+				return;
 			}
 
 			//
 			// Parse incoming JSON data
-			if ($app->request->isPost() || $app->request->isPut()) {
+			if ($app->request->isPost() || $app->request->isPut() || $app->request->isDelete()) {
 				$input_data = $app->environment->offsetGet('slim.input');
 				$app->environment->offsetSet('slim.request.form_hash', json_decode($input_data, true));
 			}

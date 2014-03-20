@@ -1,6 +1,11 @@
 <?php
 namespace models;
 
+/**
+ * KeyValue
+ *
+ * @author Endel Dreyer <endel.dreyer@gmail.com>
+ */
 class KeyValue extends \Core\Model
 {
 	protected $guarded = array();
