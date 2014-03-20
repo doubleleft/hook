@@ -1,6 +1,11 @@
 <?php
 namespace models;
 
+/**
+ * Module
+ *
+ * @author Endel Dreyer <endel.dreyer@gmail.com>
+ */
 class Module extends \Core\Model
 {
 	const TYPE_TEMPLATE = 'templates';
@@ -17,6 +22,7 @@ class Module extends \Core\Model
 	/**
 	 * Get a route module instance
 	 * @param string name
+	 * @return Module
 	 */
 	public static function route($name) {
 		return static::get(self::TYPE_ROUTE, $name.'.php');
@@ -25,6 +31,7 @@ class Module extends \Core\Model
 	/**
 	 * Get a observer module instance
 	 * @param string name
+	 * @return Module
 	 */
 	public static function observer($name) {
 		return static::get(self::TYPE_OBSERVER, $name.'.php');
@@ -33,6 +40,7 @@ class Module extends \Core\Model
 	/**
 	 * Get a template module instance, trying to fallback to a general template
 	 * @param string name
+	 * @return Module
 	 */
 	public static function template($name) {
 		$template = null;
@@ -75,13 +83,16 @@ class Module extends \Core\Model
 	 * Get a module instance
 	 * @param string type
 	 * @param string name
+	 * @return Module
 	 */
 	public static function get($type, $name) {
 		return static::currentApp()->where('type', $type)->where('name', $name)->first();
 	}
 
 	/**
+	 * compile
 	 * Compile module code
+	 * @param array options
 	 * @return mixed
 	 */
 	public function compile($options=array()) {
@@ -150,9 +161,14 @@ class Module extends \Core\Model
 	}
 
 	/**
+	 * currentApp
 	 * Current app scope
+	 *
+	 * @static
+	 * @return Illuminate\Database\Query\Builder
+	 *
 	 * @example
-	 *     AppConfig::current()->where('name', 'like', 'mail.%')->get()
+	 *     Module::currentApp()->where('name', 'like', 'get_%')->get()
 	 */
 	public function scopeCurrentApp($query) {
 		$app = \Slim\Slim::getInstance();

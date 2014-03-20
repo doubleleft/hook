@@ -1,6 +1,11 @@
 <?php
 namespace models;
 
+/**
+ * Collection
+ *
+ * @author Endel Dreyer <endel.dreyer@gmail.com>
+ */
 class Collection extends \Core\Model
 {
 	protected $table = '_collections';

@@ -2,6 +2,12 @@
 
 namespace models;
 
+/**
+ * ChannelMessage
+ *
+ * @uses Collection
+ * @author Endel Dreyer <endel.dreyer@gmail.com>
+ */
 class ChannelMessage extends Collection {
 	const EVENT_CONNECT = 'connected';
 
