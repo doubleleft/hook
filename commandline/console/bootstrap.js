@@ -8,7 +8,8 @@
       html = '<html><body></body></html>',
       Table = require('cli-table'),
       XMLHttpRequest = require('xmlhttprequest'),
-      FormData = require('form-data');
+      FormData = require('form-data'),
+      Blob;
 
   console.log("     _ _                   _                             _       ");
   console.log("  __| | |       __ _ _ __ (_)   ___ ___  _ __  ___  ___ | | ___  ");
@@ -28,37 +29,35 @@
     console.log("\t- $ - jQuery 2.1.0");
     console.log("\t- window");
 
+    // Define browser features
+    // -----------------------
+    // dummy localstorage
+    window.localStorage = {
+      _items: {},
+      getItem: function(name) { return this._items[name]; },
+      setItem: function(name, value) { this._items[name] = value; }
+    };
     window.FormData = FormData;
-
-    function CollectionInspector(promise, options) {
-      this.promise = promise;
-      this.options = options;
-    }
+    window.Blob = function Blob() {};
+    window.Blob.constructor = Buffer.prototype;
 
     function writer(obj) {
       var that = this;
 
       if(obj.constructor.name == 'Promise'){
-        obj.then(function(data) {
-          promiseOutputer(data,that);
+        obj.done(function(data) {
+          prettyPrint(data,that);
         });
-        return('[ Querying result... ]');
-      } else
-      if (obj.constructor.name == "CollectionInspector") {
-        obj.promise.then(function(data) {
-          promiseOutputer(data,that,obj.options);
-        }, function(data) {
-          that.outputStream.write("\n"+util.inspect(data, {colors: true})+"\n");
-        });
-        return '[ Querying result... ]';
+        return "[ Running... ]";
       } else {
         return util.inspect(obj, {colors: true});
       }
     }
 
-    function promiseOutputer(data,pointer,options){
-      if(typeof options == 'undefined') options = {};
+    function prettyPrint(data, pointer){
+      var options = {};
 
+      // Print table for arrays
       if (data.length && data.length > 0) {
         delete data[0].app_id;
 
@@ -85,17 +84,14 @@
           table.push(values);
         }
 
-        //
-        // FIXME: update buffer instantly.
-        // sometimes it outputs only after some RETURN key press.
-        //
         pointer.outputStream.write("\n" + table.toString() + "\n");
-        pointer.displayPrompt();
       } else if (data.lengh == 0) {
         pointer.outputStream.write("\nEmpty.\n");
       } else {
+        // Pretty general output
         pointer.outputStream.write("\n" + util.inspect(data, {colors: true}) + "\n");
       }
+      pointer.displayPrompt();
     }
 
     var $ = require('jquery')(window),
@@ -106,13 +102,6 @@
         }),
         config = JSON.parse(fs.readFileSync(process.argv[2]));
 
-    // dummy localstorage
-    window.localStorage = {
-      _items: {},
-      getItem: function(name) { return this._items[name]; },
-      setItem: function(name, value) { this._items[name] = value; }
-    };
-
     //
     // TODO: always use the same coding style for this
     //
@@ -122,17 +111,12 @@
     config.url = config.endpoint;
     delete config.endpoint;
 
-    window.DL.Collection.prototype.inspect = function(options) {
-      if (!options) { options = {}; }
-      // TOOD: add 'fields' option, allowing to filter specific fields to display on table
-
-      // Show timestamps by default
-      if (typeof(options.timestamps) === "undefined") {
-        options.timestamps = true;
-      }
-
-      return new CollectionInspector(this.then(), options);
-    };
+    var _request = window.DL.Client.prototype.request;
+    window.DL.Client.prototype.request = function(segments, method, data) {
+      if (typeof(data)==="undefined") { data = {}; }
+      data._sync = true;
+      return _request.apply(this, arguments);
+    }
 
     //
     // Custom inspecting
