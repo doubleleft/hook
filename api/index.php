@@ -375,9 +375,9 @@ $app->group('/apps', function() use ($app) {
 	});
 
 	/**
-	 * Crontab
+	 * Scheduled tasks
 	 */
-	$app->post('/cron', function() use ($app) {
+	$app->post('/tasks', function() use ($app) {
 		// Remove all scheduled tasks for this app
 		models\ScheduledTask::current()->delete();
 
@@ -386,7 +386,7 @@ $app->group('/apps', function() use ($app) {
 		}
 	});
 
-	$app->get('/cron', function() use ($app) {
+	$app->get('/tasks', function() use ($app) {
 	});
 
 	/**
