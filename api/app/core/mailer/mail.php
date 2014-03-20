@@ -14,7 +14,7 @@ class Mail {
 
 		// Set custom transport params
 		foreach($params as $param => $value) {
-			$transport->{'set'.ucfirst($param)}($value);
+			call_user_func(array($transport, 'set' . ucfirst($param)), $value);
 		}
 
 		return $transport;
@@ -50,7 +50,14 @@ class Mail {
 	}
 
 	public static function send($options = array()) {
-		models\AppConfig::getAll('mail.%')->each(function($config) use (&$params) {
+		$params = array();
+
+		models\AppConfig::current()
+			->where('name', 'mail.driver')
+			->orWhere('name', 'mail.username')
+			->orWhere('name', 'mail.password')
+			->get()
+			->each(function($config) use (&$params) {
 			preg_match('/mail\.([a-z]+)/', $config->name, $matches);
 			$params[ $matches[1] ] = $config->value;
 		});

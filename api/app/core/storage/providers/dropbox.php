@@ -3,7 +3,7 @@ namespace Storage\Providers;
 
 class Dropbox extends Base {
 
-	public function upload($path, $file, $options=array()) {
+	public function upload($file, $options=array()) {
 		return false;
 	}
 

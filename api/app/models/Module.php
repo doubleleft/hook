@@ -1,6 +1,11 @@
 <?php
 namespace models;
 
+/**
+ * Module
+ *
+ * @author Endel Dreyer <endel.dreyer@gmail.com>
+ */
 class Module extends \Core\Model
 {
 	const TYPE_TEMPLATE = 'templates';
@@ -17,6 +22,7 @@ class Module extends \Core\Model
 	/**
 	 * Get a route module instance
 	 * @param string name
+	 * @return Module
 	 */
 	public static function route($name) {
 		return static::get(self::TYPE_ROUTE, $name.'.php');
@@ -25,6 +31,7 @@ class Module extends \Core\Model
 	/**
 	 * Get a observer module instance
 	 * @param string name
+	 * @return Module
 	 */
 	public static function observer($name) {
 		return static::get(self::TYPE_OBSERVER, $name.'.php');
@@ -33,6 +40,7 @@ class Module extends \Core\Model
 	/**
 	 * Get a template module instance, trying to fallback to a general template
 	 * @param string name
+	 * @return Module
 	 */
 	public static function template($name) {
 		$template = null;
@@ -75,13 +83,17 @@ class Module extends \Core\Model
 	 * Get a module instance
 	 * @param string type
 	 * @param string name
+	 * @return Module
 	 */
 	public static function get($type, $name) {
 		return static::currentApp()->where('type', $type)->where('name', $name)->first();
 	}
 
 	/**
+	 * compile
 	 * Compile module code
+	 * @param array options
+	 * @return mixed
 	 */
 	public function compile($options=array()) {
 		$extension = '.' . pathinfo($this->name, PATHINFO_EXTENSION);
@@ -91,22 +103,33 @@ class Module extends \Core\Model
 			//
 			// Expose handy aliases for modules
 			//
-			$aliases = "use models\App as App;\n";
-			$aliases.= "use models\Collection as Collection;\n";
+			$aliases = "use models\App as App;";
+			$aliases.= "use models\Module as Module;";
+			$aliases.= "use \Mail as Mail;";
+			$aliases.= "use models\AuthToken as AuthToken;";
+			$aliases.= "use models\Collection as Collection;";
 
 			if ($this->type == self::TYPE_OBSERVER) {
-				eval($aliases . substr($this->code, 5)); // remove '<?php' for eval
-				$klass = ucfirst($name);
+				// Prevent name conflict by using unique class names for custom modules
+				$klass = 'CustomModule' . uniqid();
+				eval($aliases . preg_replace('/class ([^\ {]+)/', 'class ' . $klass, $this->code));
 
 				if (class_exists($klass)) {
-					Collection::observe(new $klass);
+					// Return module instance for registering on model.
+					return new $klass;
 				} else {
-					throw new \MethodFailureException("Module '{$name}.php' must define a class named '{$klass}'.");
+					throw new \MethodFailureException("Module '{$name}.php' must define a class.");
 				}
 
 			} else if ($this->type == self::TYPE_ROUTE) {
 				$app = \Slim\Slim::getInstance();
-				eval($aliases . substr($this->code, 5)); // remove '<?php' for eval
+				try {
+					eval($aliases . $this->code);
+				} catch (\Exception $e) {
+					$message = $this->name . ': ' . $e->getMessage();
+					$app->response->headers->set('X-Error-'.uniqid(), $message);
+					file_put_contents('php://stderr', $message);
+				}
 			}
 
 		} else if ($extension === '.html') {
@@ -131,13 +154,25 @@ class Module extends \Core\Model
 
 	}
 
+	public function getCodeAttribute() {
+		$extension = pathinfo($this->name, PATHINFO_EXTENSION);
+		$code = $this->attributes['code'];
+		return ($extension==="php") ? substr($code, 5) : $code;
+	}
+
 	/**
+	 * currentApp
 	 * Current app scope
+	 *
+	 * @static
+	 * @return Illuminate\Database\Query\Builder
+	 *
 	 * @example
-	 *     AppConfig::current()->where('name', 'like', 'mail.%')->get()
+	 *     Module::currentApp()->where('name', 'like', 'get_%')->get()
 	 */
 	public function scopeCurrentApp($query) {
 		$app = \Slim\Slim::getInstance();
 		return $query->where('app_id', $app->key->app_id);
 	}
+
 }

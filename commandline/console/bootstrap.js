@@ -7,7 +7,8 @@
       jsdom = require('jsdom'),
       html = '<html><body></body></html>',
       Table = require('cli-table'),
-      XMLHttpRequest = require('xmlhttprequest');
+      XMLHttpRequest = require('xmlhttprequest'),
+      FormData = require('form-data');
 
   console.log("     _ _                   _                             _       ");
   console.log("  __| | |       __ _ _ __ (_)   ___ ___  _ __  ___  ___ | | ___  ");
@@ -26,6 +27,8 @@
     console.log("\t- config - .dl-config");
     console.log("\t- $ - jQuery 2.1.0");
     console.log("\t- window");
+
+    window.FormData = FormData;
 
     function CollectionInspector(promise, options) {
       this.promise = promise;
@@ -97,7 +100,7 @@
 
     var $ = require('jquery')(window),
         sess = repl.start({
-          prompt: 'dl-api> ',
+          prompt: 'dl-api: javascript> ',
           writer: writer,
           ignoreUndefined: true
         }),

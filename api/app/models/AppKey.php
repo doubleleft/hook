@@ -1,6 +1,11 @@
 <?php
 namespace models;
 
+/**
+ * AppKey
+ *
+ * @author Endel Dreyer <endel.dreyer@gmail.com>
+ */
 class AppKey extends \Core\Model
 {
 	protected $guarded = array();
