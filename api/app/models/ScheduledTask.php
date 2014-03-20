@@ -19,6 +19,18 @@ class ScheduledTask extends \Core\Model
 		return $query->where('app_id', App::currentId());
 	}
 
+	public function toString() {
+		$shortcuts = array(
+			'hourly' => '* * * * *',
+			'daily' => '* * * * *',
+			'weekly' => '* * * * *',
+			'monthly' => '* * * * *'
+		);
+		$schedule = preg_match('/[a-z]/', $this->schedule) ? $shortcuts[$this->schedule] : $this->schedule;
+		$command = 'curl '; // TODO
+		return $schedule . ' ' . $command;
+	}
+
 }
 
 
