@@ -12,7 +12,7 @@ return array(
 
 		$template_name = basename($args[1], '.html');
 
-		$dest = 'dl-ext/templates/';
+		$dest = Client\Project::root() . 'dl-ext/templates/';
 		$dest_file = $dest . $template_name . '.html';
 		@mkdir($dest, 0777, true);
 
