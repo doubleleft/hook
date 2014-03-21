@@ -12,7 +12,7 @@ return array(
 
 		$collection = strtolower($args[1]);
 
-		$dest = 'dl-ext/seeds/';
+		$dest = Client\Project::root() . 'dl-ext/seeds/';
 		$dest_file = $dest . $collection . '.yaml';
 		@mkdir($dest, 0777, true);
 
