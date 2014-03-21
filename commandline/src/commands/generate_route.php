@@ -26,7 +26,7 @@ return array(
 			$route_path = '/' . $route_path;
 		}
 
-		$dest = 'dl-ext/routes/';
+		$dest = Client\Project::root() . 'dl-ext/routes/';
 		$dest_file = $dest . $route_filename . '.php';
 		@mkdir($dest, 0777, true);
 
