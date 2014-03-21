@@ -388,8 +388,6 @@ $app->group('/apps', function() use ($app) {
 		}
 		file_put_contents(__DIR__ . '/app/storage/crontabs/' . $app->key->app_id . '.cron', $tasks);
 
-		file_put_contents('php://stderr', get_current_user() . PHP_EOL);
-
 		$app->content = array('success' => models\ScheduledTask::install());
 	});
 
