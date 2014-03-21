@@ -381,12 +381,20 @@ $app->group('/apps', function() use ($app) {
 		// Remove all scheduled tasks for this app
 		models\ScheduledTask::current()->delete();
 
+		$tasks = "";
 		foreach($app->request->post('schedule', array()) as $schedule) {
-			models\ScheduledTask::create(array_merge($schedule, array('app_id' => $app->key->app_id)));
+			$task = models\ScheduledTask::create(array_merge($schedule, array('app_id' => $app->key->app_id)));
+			$tasks .= $task->getCommand() . "\n";
 		}
+		file_put_contents(__DIR__ . '/app/storage/crontabs/' . $app->key->app_id . '.cron', $tasks);
+
+		file_put_contents('php://stderr', get_current_user() . PHP_EOL);
+
+		$app->content = array('success' => models\ScheduledTask::install());
 	});
 
 	$app->get('/tasks', function() use ($app) {
+		$app->content = models\ScheduledTask::current()->get()->toArray();
 	});
 
 	/**

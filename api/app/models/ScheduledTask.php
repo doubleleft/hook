@@ -19,16 +19,38 @@ class ScheduledTask extends \Core\Model
 		return $query->where('app_id', App::currentId());
 	}
 
-	public function toString() {
+	public function getCommand() {
 		$shortcuts = array(
-			'hourly' => '* * * * *',
-			'daily' => '* * * * *',
-			'weekly' => '* * * * *',
-			'monthly' => '* * * * *'
+			'hourly'  => '0 * * * *',
+			'daily'   => '0 0 * * *',
+			'monthly' => '0 0 1 * *',
+			'weekly'  => '0 0 * * 0'
 		);
 		$schedule = preg_match('/[a-z]/', $this->schedule) ? $shortcuts[$this->schedule] : $this->schedule;
-		$command = 'curl '; // TODO
-		return $schedule . ' ' . $command;
+
+		$protocol = (isset($_SERVER['HTTPS']) && !empty($_SERVER['HTTPS']) ? 'https' : 'http');
+		$public_url = $protocol . '://' . $_SERVER['SERVER_NAME'] . $_SERVER["SCRIPT_NAME"] . '/' . $this->task;
+
+		// TODO: redirect output to application log file.
+		// https://github.com/doubleleft/dl-api/issues/37
+		return $schedule . ' ' . "curl -XGET -H 'X-App-Id: {$this->app_id}' -H 'X-App-Key: {$this->app->keys[0]->key}' '{$public_url}' 2>&1 /dev/null";
+	}
+
+	public function toArray() {
+		$arr = parent::toArray();
+		$arr['command'] = $this->getCommand();
+		return $arr;
+	}
+
+	public static function install() {
+		exec('crontab ' . __DIR__ . '/../storage/crontabs/*.cron', $output, $return_code);
+		return $return_code === 0;
+
+		// $tasks = array();
+		// static::all()->each(function($task) use (&$tasks) {
+		// 	array_push($tasks, $task->toString());
+		// });
+		// file_put_contents(__DIR__ . '/../storage/crontab', join("\n", $tasks));
 	}
 
 }

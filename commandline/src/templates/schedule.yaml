@@ -2,12 +2,20 @@
 # Scheduled tasks
 # ---------------
 #
+schedule:
+#   - task: frequent_task
+#     schedule: '* * * * *'
+#
+#   - task: update_something
+#     schedule: 'daily'
+
+#
 # Examples:
 #
-# - url: /search_something
-#   schedule: {daily,hourly,monthly,weekly}
+# - url: search_something
+#   schedule: '{daily,hourly,monthly,weekly}'
 #
-# - url: /do_something
+# - url: do_something
 #   schedule: *    *    *    *    *
 #             -    -    -    -    -
 #             |    |    |    |    |
@@ -18,9 +26,3 @@
 #             |    +-------------------- hour (0 - 23)
 #             +------------------------- min (0 - 59)
 #
-
-- task: /
-  schedule: * * * * * *
-
-- task: /update_something
-  schedule: daily

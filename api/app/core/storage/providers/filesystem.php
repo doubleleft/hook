@@ -14,8 +14,7 @@ class Filesystem extends Base {
 		}
 
 		if (move_uploaded_file($file['tmp_name'], $dir . $filename)) {
-			$path = str_replace("index.php", "", $_SERVER["SCRIPT_NAME"]);
-			return 'http://' . $_SERVER['SERVER_NAME'] . $path . 'app/' . $public_dir . $filename;
+			return public_url('app/' . $public_dir . $filename);
 		}
 	}
 

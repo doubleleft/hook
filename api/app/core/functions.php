@@ -1,6 +1,15 @@
 <?php
 
 /**
+ * URL helpers
+ */
+function public_url($segments, $protocol = null) {
+	$path = str_replace("index.php", "", $_SERVER["SCRIPT_NAME"]);
+	$protocol = $protocol ?: (isset($_SERVER['HTTPS']) && !empty($_SERVER['HTTPS']) ? 'https' : 'http');
+	return  $protocol . '://' . $_SERVER['SERVER_NAME'] . $path . $segments;
+}
+
+/**
  * Math extensions
  */
 function clamp($val, $min, $max) {
