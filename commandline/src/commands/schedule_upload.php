@@ -3,7 +3,7 @@
 return array(
 	'arg0'    => 'schedule:upload',
 	'command' => 'schedule:upload',
-	'description' => 'Upload a module to application',
+	'description' => 'Upload application schedule.',
 	'run' => function($args) {
 		$module_types = array('observers', 'routes', 'templates');
 
