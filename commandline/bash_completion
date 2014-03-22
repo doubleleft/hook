@@ -1,9 +1,17 @@
+#!/usr/bin/env bash
+
+# bash completion for dl-api commandline client
+
 _dl_api()
 {
     local cur=${COMP_WORDS[COMP_CWORD]}
+    local prev=${COMP_WORDS[COMP_CWORD-1]}
 
     local first=$(echo $cur | cut -d ':' -f 1)
     local second=$(echo $cur | cut -d ':' -f 2)
+
+    # case "$prev" in
+    # esac
 
     case "$first" in
       "app")
@@ -52,4 +60,11 @@ _dl_api()
     COMPREPLY=( $(compgen -W "app: apps console config: db: generate: key: keys module: modules schedule schedule:" -- $cur) )
     return 0
 }
+
+# complete is a bash builtin, but recent versions of ZSH come with a function
+# called bashcompinit that will create a complete in ZSH. If the user is in
+# ZSH, load and run bashcompinit before calling the complete function.
+if [[ -n ${ZSH_VERSION-} ]]; then
+  autoload -U +X bashcompinit && bashcompinit
+fi
 complete -F _dl_api -o nospace dl-api
