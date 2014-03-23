@@ -2,7 +2,7 @@
 
 return array(
 	'arg0'    => 'config:remove',
-	'command' => 'config:remove',
+	'command' => 'config:remove <name> [<name> ...]',
 	'description' => 'Remove configuration from app.',
 	'run' => function($args) use ($commands) {
 		$config = isset($args[1]) ? $args[1] : null;

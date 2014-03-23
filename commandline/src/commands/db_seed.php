@@ -3,7 +3,7 @@
 return array(
 	'arg0'    => 'db:seed',
 	'command' => 'db:seed [<seed-file>]',
-	'description' => 'Generate observer class for collection events.',
+	'description' => 'Seed collections from YAML files.',
 	'run' => function($args) use ($commands) {
 		$seed_file = '*';
 
