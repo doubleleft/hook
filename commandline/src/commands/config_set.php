@@ -2,7 +2,7 @@
 
 return array(
 	'arg0'    => 'config:set',
-	'command' => 'config:set',
+	'command' => 'config:set <name=value> [<name=value> ...]',
 	'description' => 'Set a configuration to app.',
 	'run' => function($args) use ($commands) {
 
