@@ -17,18 +17,17 @@ _dl_api()
     # contextual completion
     case "$prev" in
       "generate:seed")
-        # list collections from dl-api here
+        # TODO: list collections from dl-api here
         COMPREPLY=( $( compgen -W "auth" -- $cur ) )
         return 0
         ;;
       "generate:observer")
-        # list collections from dl-api here
+        # TODO: list collections from dl-api here
         COMPREPLY=( $( compgen -W "auth" -- $cur ) )
         return 0
         ;;
 
       "generate:route")
-        # list configs from dl-api
         COMPREPLY=( $( compgen -W "get post put delete" -- $cur ) )
         return 0
         ;;
