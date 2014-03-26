@@ -103,16 +103,18 @@ class Module extends \Core\Model
 			//
 			// Expose handy aliases for modules
 			//
-			$aliases = "use models\App as App;";
-			$aliases.= "use models\Module as Module;";
-			$aliases.= "use \Mail as Mail;";
-			$aliases.= "use models\AuthToken as AuthToken;";
-			$aliases.= "use models\Collection as Collection;";
+			$aliases = 'use \Mail as Mail;';
+			$aliases.= 'use models\App as App;';
+			$aliases.= 'use models\AppConfig as AppConfig;';
+			$aliases.= 'use models\Module as Module;';
+			$aliases.= 'use models\File as File;';
+			$aliases.= 'use models\AuthToken as AuthToken;';
+			$aliases.= 'use models\Collection as Collection;';
 
 			if ($this->type == self::TYPE_OBSERVER) {
 				// Prevent name conflict by using unique class names for custom modules
 				$klass = 'CustomModule' . uniqid();
-				eval($aliases . preg_replace('/class ([^\ {]+)/', 'class ' . $klass, $this->code));
+				eval($aliases . preg_replace('/class ([^\ {]+)/', 'class ' . $klass, $this->code, 1));
 
 				if (class_exists($klass)) {
 					// Return module instance for registering on model.
