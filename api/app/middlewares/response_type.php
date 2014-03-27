@@ -114,8 +114,16 @@ class ResponseTypeMiddleware extends \Slim\Middleware
 				$app->content = $this->handle_error_response($e, $app);
 			}
 
-			$app->response->headers->set('Content-type', 'application/json');
-			$app->response->setBody($this->encode_content($app->content));
+			// return 404 status code when 'content' is null or false.
+			// probably something is wrong. It's better that we shout it for you.
+			if (!$app->content) {
+				$app->response->setStatus(404);
+			} else {
+				$app->response->headers->set('Content-type', 'application/json');
+				$app->response->setBody($this->encode_content($app->content));
+			}
+
+
 		}
 
 	}
