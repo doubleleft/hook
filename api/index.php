@@ -172,9 +172,9 @@ $app->group('/collection', function () use ($app) {
 	 * POST /collection/:name/:id
 	 */
 	$app->post('/:name/:id', function($name, $id) use ($app) {
-		$app->content = array(
-			'success' => models\App::collection($name)->find($id)->update($app->collection_data)
-		);
+		$model = models\App::collection($name)->find($id);
+		$model->update($app->collection_data);
+		$app->content = $model;
 	});
 
 	/**
