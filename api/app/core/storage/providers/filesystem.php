@@ -4,6 +4,20 @@ use \models\App as App;
 
 class Filesystem extends Base {
 
+	public function store($filename, $data) {
+		$filename = md5($filename) . uniqid() . "." . pathinfo($filename, PATHINFO_EXTENSION);
+		$public_dir = 'storage/files/' . App::currentId() . '/';
+
+		$dir = __DIR__ . '/../../../' . $public_dir;
+		if (!is_dir($dir)) {
+			mkdir($dir, 0777, true);
+		}
+
+		if (file_put_contents($dir . $filename, $data)) {
+			return public_url('app/' . $public_dir . $filename);
+		}
+	}
+
 	public function upload($file, $options=array()) {
 		$filename = md5($file['name']) . uniqid() . "." . pathinfo($file['name'], PATHINFO_EXTENSION);
 		$public_dir = 'storage/files/' . App::currentId() . '/';
