@@ -3,9 +3,9 @@
 namespace Client;
 
 class Client {
-	// public static $endpoint = 'http://dl-api.ddll.co/';
+	public static $endpoint = 'http://dl-api.ddll.co/';
 	// public static $endpoint = 'http://api.2d.cx';
-	public static $endpoint = 'http://dl-api.dev/api/index.php/';
+	// public static $endpoint = 'http://dl-api.dev/api/index.php/';
 	public static $debug = false;
 
 	public static function setEndpoint($endpoint) {
@@ -21,7 +21,8 @@ class Client {
 	}
 
 	public function get($segments) {
-		return $this->parse($this->request('get', $segments));
+		$req = $this->request('get', $segments);
+		return $this->parse($req);
 	}
 
 	public function delete($segments) {
@@ -50,7 +51,7 @@ class Client {
 
 	protected function request($method, $segments, $data = array()) {
 		$client = new \Guzzle\Http\Client(self::$endpoint);
-		$request = $client->{$method}($segments, $this->getHeaders(), json_encode($data), array(
+		$request = $client->{$method}($segments, $this->getHeaders(), $data, array(
 			'debug' => static::$debug,
 			'exceptions' => false
 		));
