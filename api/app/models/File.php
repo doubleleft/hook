@@ -21,11 +21,18 @@ class File extends \Core\Model
 
 	public function beforeCreate() {
 		if ($this->file) {
-			$this->name = $this->file['name'];
-			$this->mime = $this->file['type'];
+            $provider = AppConfig::get('storage.provider', 'filesystem');
 
-			$provider = AppConfig::get('storage.provider', 'filesystem');
-			$this->path = \Storage\Provider::get($provider)->upload($this->file);
+            if(is_string($this->file) && strpos($this->file, "data:image/png") !== false){
+               $this->path = \Storage\Provider::get($provider)->decodeBase64($this->file);
+               $this->name = "base_64".uniqid();
+               $this->mime = "image/png";
+
+            }else{
+                $this->name = $this->file['name'];
+                $this->mime = $this->file['type'];
+                $this->path = \Storage\Provider::get($provider)->upload($this->file);
+            }
 			unset($this->attributes['file']);
 		}
 	}
