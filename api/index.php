@@ -43,9 +43,18 @@ $app->group('/collection', function () use ($app) {
 		// TODO: android and ios clients should deprecate 'data' param, and send it entirelly on BODY
 		//
 		$data = $app->request->post('d') ?: $app->request->post('data') ?: $app->request->post();
+        $files = array();
+        foreach($data as $key => $value){
+            if(strpos($value, "dl-api-data:") !== false){
+                $files[$key] = str_replace("dl-api-data:", "data:", $value);
+            }
+        }
+
 		if (!empty($_FILES)) {
-			$data[models\Collection::ATTACHED_FILES] = $_FILES;
-		}
+            $files = array_merge($files, $_FILES);
+        }
+
+        $data[models\Collection::ATTACHED_FILES] = $files;
 		return $data;
 	});
 
