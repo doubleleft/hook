@@ -42,11 +42,12 @@ class Facebook extends Base {
 
 		$client = new \Guzzle\Http\Client("https://graph.facebook.com");
 		$response = $client->get("/me?access_token={$data['accessToken']}")->send();
-		$data = json_decode($response->getBody(), true);
+		$facebookData = json_decode($response->getBody(), true);
+        $data = array_merge($data, $facebookData);
 
 		// rename 'facebook_id' field
 		$data['app_id'] = $app_id;
-		$data['facebook_id'] = $data['id'];
+        $data['facebook_id'] = $data['id'];
 		unset($data['id']);
 
 		return $data;
