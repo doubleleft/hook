@@ -45,7 +45,9 @@
       var that = this;
 
       if(obj.constructor.name == 'Promise'){
-        obj.done(function(data) {
+        obj.then(function(data) {
+          prettyPrint(data,that);
+        }).catch(function(data) {
           prettyPrint(data,that);
         });
         return "[ Running... ]";
