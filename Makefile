@@ -21,5 +21,15 @@ default:
 	echo "\nsource $(CURPATH)/commandline/bash_completion\n" >> ~/.bash_profile
 	echo "Finished"
 
-publish-docs:
-	php ${APIGEN_PATH}/apigen.php --source api/app/ --destination ./docs
+docs:
+	mkdir -p ../dl-api-docs/
+	php -d memory_limit=512M ${APIGEN_PATH}/apigen.php --destination ../dl-api-docs/ \
+																--exclude */tests/* \
+																--exclude */Tests/* \
+																--source ./api/app/ \
+																--source ./api/vendor/guzzle/guzzle/src \
+																--source ./api/vendor/illuminate \
+																--source ./api/vendor/doctrine \
+																--source ./api/vendor/slim/slim/Slim \
+																--source ./api/vendor/symfony
+	open ../dl-api-docs/index.html
