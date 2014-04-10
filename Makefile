@@ -10,6 +10,7 @@ default:
 
 	# ./api
 	cd "$(CURPATH)/api" composer install
+	mkdir -p "$(CURPATH)/api/app/storage"
 	chmod -R 777 "$(CURPATH)/api/app/storage"
 
 	# ./commandline
