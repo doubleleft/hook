@@ -2,21 +2,17 @@
 
 return array(
 	'arg0'    => 'generate:route',
-	'command' => 'generate:route <method> <path>',
+	'command' => 'generate:route <path> [<method=GET>]',
 	'description' => 'Generate a custom route for the application.',
 	'run' => function($args) use ($commands) {
 
-		if (!isset($args[1])) {
-			die("'method' is required.");
-		}
-
-		if (!isset($args[2])) {
+		if (!$args[1]) {
 			die("'path' is required.");
 		}
 
-		$route_method = strtolower($args[1]);
-		$route_method_uppercase = strtoupper($args[1]);
-		$route_path = strtolower($args[2]);
+		$route_path = strtolower($args[1]);
+		$route_method = strtolower($args[2] ?: 'get');
+		$route_method_uppercase = strtoupper($route_method);
 
 		$route_filename = $route_method . '_' . preg_replace('/:/', '', $route_path);
 		$route_filename = preg_replace('/\//', '_', $route_filename);
