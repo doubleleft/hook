@@ -182,7 +182,9 @@ $app->group('/collection', function () use ($app) {
 	 */
 	$app->post('/:name/:id', function($name, $id) use ($app) {
 		$model = models\App::collection($name)->find($id);
-		$model->update($app->collection_data);
+		if (!$model->update($app->collection_data)) {
+			throw new ForbiddenException("Can't save '{$name}'.");
+		}
 		$app->content = $model;
 	});
 
