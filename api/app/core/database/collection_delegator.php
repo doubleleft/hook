@@ -57,6 +57,16 @@ class CollectionDelegator {
 	}
 
 	/**
+	 * Delete a record from the database.
+	 *
+	 * @param  mixed  $id
+	 * @return int
+	 */
+	public function remove($id = null) {
+		return $this->query->delete($id);
+	}
+
+	/**
 	 * filter
 	 *
 	 * @param array $filters filters
