@@ -1,11 +1,15 @@
 <?php
 namespace core;
 
+use ArrayIterator;
+use IteratorAggregate;
+
 /**
  * CollectionDelegator
+ * @extends IteratorAggregate
  * @author Endel Dreyer <edreyer@doubleleft.com>
  */
-class CollectionDelegator {
+class CollectionDelegator implements IteratorAggregate {
 
 	/**
 	 * name
@@ -102,6 +106,14 @@ class CollectionDelegator {
 	}
 
 	/**
+	 * Get query items for iteration.
+	 * @return ArrayIterator
+	 */
+	public function getIterator() {
+		return new ArrayIterator($this->toArray());
+	}
+
+	/**
 	 * Shortcut for get+toArray methods.
 	 * @param string $columns columns
 	 * @return array
@@ -136,3 +148,4 @@ class CollectionDelegator {
 	}
 
 }
+
