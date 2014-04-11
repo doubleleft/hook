@@ -20,5 +20,14 @@ return array(
 		file_put_contents($dest_file, $template);
 
 		echo "Observer created at '{$dest_file}'." . PHP_EOL;
+
+		if ($editor = getenv('EDITOR')) {
+			$descriptors = array(
+				array('file', '/dev/tty', 'r'),
+				array('file', '/dev/tty', 'w'),
+				array('file', '/dev/tty', 'w')
+			);
+			$process = proc_open("{$editor} {$dest_file}", $descriptors, $pipes);
+		}
 	}
 );
