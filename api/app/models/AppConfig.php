@@ -40,7 +40,7 @@ class AppConfig extends \Core\Model
 	 * @example
 	 *     AppConfig::current()->where('name', 'like', 'mail.%')->get()
 	 */
-	public function static scopeCurrent() {
+	public static function scopeCurrent() {
 		return static::current()->where('app_id', App::currentId());
 	}
 
