@@ -53,6 +53,7 @@ class Mail {
 		$params = array();
 
 		models\AppConfig::current()
+			->where('app_id', App::currentId())
 			->where('name', 'mail.driver')
 			->orWhere('name', 'mail.username')
 			->orWhere('name', 'mail.password')
