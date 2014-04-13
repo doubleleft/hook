@@ -22,7 +22,7 @@ class AppConfig extends \Core\Model
 	 * @return string
 	 */
 	public static function get($name, $default = null) {
-		$config = static::scopeCurrent()->where('name', $name)->first();
+		$config = static::current()->where('name', $name)->first();
 		return ($config) ? $config->value : $default;
 	}
 
@@ -32,7 +32,7 @@ class AppConfig extends \Core\Model
 	 * @return Illuminate\Support\Collection
 	 */
 	public static function getAll($pattern) {
-		return static::scopeCurrent()->where('name', 'like', $pattern)->get();
+		return static::current()->where('name', 'like', $pattern)->get();
 	}
 
 	/**
@@ -40,8 +40,8 @@ class AppConfig extends \Core\Model
 	 * @example
 	 *     AppConfig::current()->where('name', 'like', 'mail.%')->get()
 	 */
-	public static function scopeCurrent() {
-		return static::current()->where('app_id', App::currentId());
+	public function scopeCurrent($query) {
+		return $query->where('app_id', App::currentId());
 	}
 
 }
