@@ -9,25 +9,22 @@
       Table = require('cli-table'),
       XMLHttpRequest = require('xmlhttprequest'),
       FormData = require('form-data'),
-      Blob;
+      evaluateFile = (process.argv[3]);
 
-  console.log("     _ _                   _                             _       ");
-  console.log("  __| | |       __ _ _ __ (_)   ___ ___  _ __  ___  ___ | | ___  ");
-  console.log(" / _` | |_____ / _` | '_ \\| |  / __/ _ \\| '_ \\/ __|/ _ \\| |/ _ \\ ");
-  console.log("| (_| | |_____| (_| | |_) | | | (_| (_) | | | \\__ \\ (_) | |  __/ ");
-  console.log(" \\__,_|_|      \\__,_| .__/|_|  \\___\\___/|_| |_|___/\\___/|_|\\___| ");
-  console.log("                    |_|                                          ");
-  console.log("");
+  if (!evaluateFile) {
+    console.log("     _ _                   _                             _       ");
+    console.log("  __| | |       __ _ _ __ (_)   ___ ___  _ __  ___  ___ | | ___  ");
+    console.log(" / _` | |_____ / _` | '_ \\| |  / __/ _ \\| '_ \\/ __|/ _ \\| |/ _ \\ ");
+    console.log("| (_| | |_____| (_| | |_) | | | (_| (_) | | | \\__ \\ (_) | |  __/ ");
+    console.log(" \\__,_|_|      \\__,_| .__/|_|  \\___\\___/|_| |_|___/\\___/|_|\\___| ");
+    console.log("                    |_|                                          ");
+    console.log("");
+  }
+
   process.stdout.write("Loading...");
 
   // first argument can be html string, filename, or url
-  jsdom.env(html, ["https://dl-api.ddll.co/dist/dl.js"], function (errors, window) {
-    console.log("\rAPI Documentation: http://doubleleft.github.io/dl-api-javascript\n");
-    console.log("Available variables to hack on:");
-    console.log("\t- dl - DL.Client");
-    console.log("\t- config - .dl-config");
-    console.log("\t- $ - jQuery 2.1.0");
-    console.log("\t- window");
+  jsdom.env(html, ["http://dl-api.ddll.co/dist/dl.js"], function (errors, window) {
 
     // Define browser features
     // -----------------------
@@ -96,12 +93,8 @@
       pointer.displayPrompt();
     }
 
-    var $ = require('jquery')(window),
-        sess = repl.start({
-          prompt: 'dl-api: javascript> ',
-          writer: writer,
-          ignoreUndefined: true
-        }),
+    var sess,
+        $ = require('jquery')(window),
         config = JSON.parse(fs.readFileSync(process.argv[2]));
 
     //
@@ -113,12 +106,33 @@
     config.url = config.endpoint;
     delete config.endpoint;
 
+    var dl = new window.DL.Client(config);
+
     var _request = window.DL.Client.prototype.request;
     window.DL.Client.prototype.request = function(segments, method, data) {
       if (typeof(data)==="undefined") { data = {}; }
       data._sync = true;
       return _request.apply(this, arguments);
     }
+
+    if (!evaluateFile) {
+      console.log("\rAPI Documentation: http://doubleleft.github.io/dl-api-javascript\n");
+      console.log("Available variables to hack on:");
+      console.log("\t- dl - DL.Client");
+      console.log("\t- config - .dl-config");
+      console.log("\t- $ - jQuery 2.1.0");
+      console.log("\t- window");
+
+      sess = repl.start({
+        prompt: 'dl-api: javascript> ',
+        writer: writer,
+        ignoreUndefined: true
+      });
+    } else {
+      process.stdout.write("\r             \r");
+      eval(fs.readFileSync(evaluateFile, "utf-8"));
+    }
+
 
     //
     // Custom inspecting
@@ -127,12 +141,14 @@
     //   return "[Collection: '" + this.name + "']";
     // };
 
-    sess.context.window = window;
-    sess.context.$ = window.$;
-    sess.context.DL = window.DL;
-    sess.context.config = config;
-    sess.context.dl = new window.DL.Client(config);
-    sess.context.sess = sess;
+    if (sess) {
+      sess.context.window = window;
+      sess.context.$ = window.$;
+      sess.context.DL = window.DL;
+      sess.context.config = config;
+      sess.context.dl = dl;
+      sess.context.sess = sess;
+    }
 
   });
 }());
