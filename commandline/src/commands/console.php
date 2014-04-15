@@ -2,8 +2,8 @@
 
 return array(
 	'arg0'    => 'console',
-	'command' => 'console',
-	'description' => 'Start interactive console.',
+	'command' => 'console [evaluate_file.js]',
+	'description' => 'Start interactive console, or run filename.',
 	'run' => function($args) use ($commands) {
 
 		$dl_config_path = Client\Project::getConfigFile();
@@ -18,7 +18,7 @@ return array(
 		);
 
 		$process = proc_open(
-			'node ' . __DIR__ . '/../../console/bootstrap.js ' . $dl_config_path,
+			'node ' . __DIR__ . '/../../console/bootstrap.js ' . $dl_config_path . ' ' . $args[1],
 			$descriptors,
 			$pipes
 		);
