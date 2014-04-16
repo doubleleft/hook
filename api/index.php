@@ -35,6 +35,9 @@ $app->group('/system', function() use ($app) {
      */
     $app->get('/ip', function() use ($app) {
         $ip = $_SERVER["REMOTE_ADDR"];
+        if(isset($_SERVER["HTTP_X_REAL_IP"])){
+            $ip = $_SERVER["HTTP_X_REAL_IP"];
+        }
         $app->content = json_decode(file_get_contents("http://ipinfo.io/$ip/json"), true);
     });
 });
