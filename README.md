@@ -33,7 +33,7 @@ default it uses `sqlite` as driver. The following additional drivers are
 supported: `mysql`, `postgres`, `sqlserver` and `mongodb`.
 
 NOTE: It's recommended to give ownership to your server's user on storage
-directory: e.g. (`chown -R www-data app/storage`)
+directory: e.g. (`chown -R www-data app/storage`).
 
 How to use
 ---
