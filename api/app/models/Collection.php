@@ -14,7 +14,6 @@ class Collection extends \Core\Model
 	protected $primaryKey = '_id';
 
 	protected static $observers;
-	protected static $dispatchers;
 	public static $lastTableName;
 
 	const ATTACHED_FILES = 'attached_files';
@@ -22,28 +21,26 @@ class Collection extends \Core\Model
 
 	public static function boot() {
 		if (!static::$observers) { static::$observers = array(); }
-		if (!static::$dispatchers) { static::$dispatchers = array(); }
 
 		parent::boot();
 		static::saving(function($model) { $model->beforeSave(); });
 	}
 
 	public static function loadObserver($table) {
-		//
 		// Compile observer only if it isn't compiled yet.
+
 		//
-		if (!isset(static::$dispatchers[ $table ])) {
+		// TODO: Clenaup previous observer to attach another.
+		//
+		// Since different collections share same class, loading
+		// more than one observer will just register more events.
+		//
+		if (!isset(static::$observers[ $table ])) {
 			if ($module = Module::observer($table)) {
 				$observer = $module->compile();
 				static::$observers[ $table ] = $observer;
-				static::$dispatchers[ $table ] = new \Illuminate\Events\Dispatcher();
-
-				// Create custom event dispatcher per collection name
-				static::setEventDispatcher(static::$dispatchers[ $table ]);
 				static::observe($observer);
 			}
-		} else {
-			static::setEventDispatcher(static::$dispatchers[ $table ]);
 		}
 	}
 
