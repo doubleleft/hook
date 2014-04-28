@@ -64,7 +64,6 @@ class AppMiddleware extends \Slim\Middleware
 				}
 
 			} else {
-				// http_response_code(403);
 				$app->response->setStatus(403);
 				$app->response->setBody(json_encode(array('error' => "Invalid credentials.")));
 				return;
