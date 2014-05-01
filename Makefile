@@ -2,6 +2,9 @@
 APIGEN_PATH = ~/Downloads/apigen
 CURPATH=`pwd -P`
 
+test:
+	./api/vendor/bin/phpunit ./api
+
 default:
 	# TODO: install composer automatically, if it isn't instaled
 	# if [ !-z `which composer` ]; then
