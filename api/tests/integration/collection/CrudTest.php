@@ -30,13 +30,11 @@ class CollectionCrud extends TestCase {
 		$item = $this->post('collection/something', array(
 			'name' => "testUpdate",
 		));
-		$updated = $this->put('collection/something/'. $item['_id'], array(
+		$updated_item = $this->post('collection/something/'. $item['_id'], array(
 			'floating' => 9.9,
 			'float_string' => '9.9',
 			'integer' => 1
 		));
-		$this->assertTrue($updated['success'] === true, "Updated 'something' successfully");
-		$updated_item = $this->get('collection/something/'. $item['_id']);
 		$this->assertTrue($updated_item['floating'] === 9.9, "keep floats on update");
 		$this->assertTrue($updated_item['float_string'] === '9.9', "keep strings on update");
 		$this->assertTrue($updated_item['integer'] === 1, "keep integer on update");
