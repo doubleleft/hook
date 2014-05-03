@@ -10,6 +10,22 @@ function public_url($segments, $protocol = null) {
 }
 
 /**
+ * storage_dir
+ * @return string
+ */
+function storage_dir($relative=true) {
+	return ($relative ? __DIR__ . '/../../' : '') . 'storage/files/' . models\App::currentId();
+}
+
+/**
+ * storage_url
+ * @return string
+ */
+function storage_url() {
+	return public_url(storage_dir(false));
+}
+
+/**
  * Math extensions
  */
 function clamp($val, $min, $max) {

@@ -55,7 +55,7 @@ $app->group('/collection', function () use ($app) {
 		$data = $app->request->post('d') ?: $app->request->post('data') ?: $app->request->post();
         $files = array();
         foreach($data as $key => $value){
-            if(strpos($value, "dl-api-data:") !== false){
+            if(is_string($value) && strpos($value, "dl-api-data:") !== false){
                 $files[$key] = str_replace("dl-api-data:", "data:", $value);
             }
         }
@@ -64,7 +64,9 @@ $app->group('/collection', function () use ($app) {
             $files = array_merge($files, $_FILES);
         }
 
-        $data[models\Collection::ATTACHED_FILES] = $files;
+		if(!empty($files)) {
+			$data[models\Collection::ATTACHED_FILES] = $files;
+		}
 		return $data;
 	});
 
@@ -151,7 +153,7 @@ $app->group('/collection', function () use ($app) {
 			// - 'plugados-site'
 			// - 'clubsocial-possibilidades'
 			//
-			$app->content = $query->update($app->collection_data);
+			$app->content = array('affected' => $query->update($app->collection_data));
 		}
 	});
 
@@ -168,7 +170,7 @@ $app->group('/collection', function () use ($app) {
 			$app->content = $query->{$operation['method']}($operation['field'], $operation['value']);
 		} else {
 			// Perform raw update
-			$app->content = $query->update($app->collection_data);
+			$app->content = array('success' => $query->update($app->collection_data) === 1);
 		}
 	});
 

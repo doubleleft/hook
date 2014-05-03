@@ -53,6 +53,11 @@ $cli->option('c')
   ->aka('config')
   ->describedAs('Alternative config file path');
 
+/**
+ * command-specific options
+ */
+$cli->option('t')->aka('tail')->boolean();
+
 if (!$cli['json']) {
   echo "..." . PHP_EOL;
 }
