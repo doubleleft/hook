@@ -51,11 +51,10 @@ class Client {
 
 	protected function request($method, $segments, $data = array()) {
 		$client = new \Guzzle\Http\Client(self::$endpoint);
-		$request = $client->{$method}($segments, $this->getHeaders(), $data, array(
+		return $client->{$method}($segments, $this->getHeaders(), $data, array(
 			'debug' => static::$debug,
 			'exceptions' => false
-		));
-		return $request->send();
+		))->send();
 	}
 
 	protected function getHeaders() {
