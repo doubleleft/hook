@@ -40,4 +40,18 @@ class CollectionCrud extends TestCase {
 		$this->assertTrue($updated_item['integer'] === 1, "keep integer on update");
 	}
 
+	public function testUpdateMany() {
+		$this->post('collection/products', array('name' => "Product 1", 'price' => 1));
+		$this->post('collection/products', array('name' => "Product 2", 'price' => 2));
+		$this->post('collection/products', array('name' => "Product 3", 'price' => 3));
+		$this->post('collection/products', array('name' => "Product 4", 'price' => 4));
+		$this->post('collection/products', array('name' => "Product 5", 'price' => 5));
+
+		$updated = $this->put('collection/products', array(
+			'q' => array(array('price', '>', 3)),
+			'd' => array('price' => 0)
+		));
+		$this->assertTrue($updated['affected'] === 2, "update many, with filters");
+	}
+
 }

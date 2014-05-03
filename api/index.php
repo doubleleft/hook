@@ -138,7 +138,7 @@ $app->group('/collection', function () use ($app) {
 	 * PUT /collection/:name
 	 */
 	$app->put('/:name', function($name) use ($app) {
-		$query = models\App::collection($name)->filter($app->request->get('q'));
+		$query = models\App::collection($name)->filter($app->request->post('q'));
 
 		if ($operation = $app->request->post('op')) {
 			// Operations: increment/decrement
