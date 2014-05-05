@@ -2,9 +2,6 @@
 APIGEN_PATH = ~/Downloads/apigen
 CURPATH=`pwd -P`
 
-test:
-	./api/vendor/bin/phpunit --configuration ./api/phpunit.xml
-
 default:
 	# TODO: install composer automatically, if it isn't instaled
 	# if [ !-z `which composer` ]; then
@@ -23,6 +20,9 @@ default:
 	npm --prefix "$(CURPATH)/commandline/console" install "$(CURPATH)/commandline/console"
 	echo "\nsource $(CURPATH)/commandline/bash_completion\n" >> ~/.bash_profile
 	echo "Finished"
+
+test:
+	./api/vendor/bin/phpunit --configuration ./api/phpunit.xml
 
 docs:
 	mkdir -p ../dl-api-docs/
