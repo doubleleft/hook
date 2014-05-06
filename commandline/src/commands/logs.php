@@ -6,17 +6,29 @@ return array(
 	'description' => 'Get app back-end logs.',
 	'run' => function($cli) {
 		$url = "apps/logs";
+		$data = array();
 
-		if ($cli['tail']) {
-			$url .= '?tail=1';
-		}
+		// if ($cli['tail']) {
+		// 	$url .= '?' . urlencode(json_encode(array('tail' => 1)));
+		// }
 
 		$client = new Client\Client();
-		$logs = $client->get($url);
-		echo $cli['tail'] . PHP_EOL;
+		$request = $client->request('get', $url);
 
-		print ($cli['tail'] ? 'Sim' : 'Nao') . PHP_EOL;
-		// return $logs;
+		if ($cli['tail']) {
+			// read from stream
+			$factory = new \Guzzle\Stream\PhpStreamRequestFactory();
+			$stream = $factory->fromRequest($request);
+
+			while (!$stream->feof()) {
+				echo $stream->readLine();
+			}
+
+		} else {
+			// just output response
+			echo $request->send()->getBody(true);
+		}
+
 	}
 );
 
