@@ -360,11 +360,11 @@ $app->group('/push', function() use ($app) {
 $app->group('/apps', function() use ($app) {
 
 	$app->get('/logs', function() use ($app) {
-
 		$file_path = $app->log->getWriter()->getFilePath();
 		$is_tail = ($app->request->get('tail')) ? '-f ' : '';
+		$lines = $app->request->get('n', 30);
 
-		$handle = popen("tail -n 30 {$is_tail} {$file_path} 2>&1", 'r');
+		$handle = popen("tail -n {$lines} {$is_tail} {$file_path} 2>&1", 'r');
 		while(!feof($handle)) {
 			echo fgets($handle);
 			ob_flush();
