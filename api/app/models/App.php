@@ -58,6 +58,9 @@ class App extends \Core\Model
 
 		// Generate user key
 		$this->generate_key();
+
+		// Create storage directory for this app
+		mkdir(storage_dir(true, $this->_id), 0777, true);
 	}
 
 	/**
