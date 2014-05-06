@@ -7,7 +7,7 @@ class LogWriter {
 		// create log directory if it doesn't exists.
 		$log_dir = dirname($file);
 		if (!file_exists($log_dir)) {
-			mkdir(dirname($log_dir), 0777, true);
+			mkdir($log_dir, 0777, true);
 		}
 		$this->file_path = $file;
 	}
