@@ -8,11 +8,18 @@ return array(
 		$url = "apps/logs";
 		$data = array();
 
+		//
 		// TODO: http stream not working properly
 		//
 		// if ($cli['tail']) {
-		// 	$url .= '?' . urlencode(json_encode(array('tail' => 1)));
+		// 	$data['tail'] = 1;
 		// }
+
+		if ($cli['n']) { $data['n'] = $cli['n']; }
+
+		if (!empty($data)) {
+			$url .= '?' . urlencode(json_encode($data));
+		}
 
 		$client = new Client\Client();
 		$request = $client->request('get', $url);

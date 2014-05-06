@@ -57,7 +57,7 @@ $cli->option('c')
  * command-specific options
  */
 $cli->option('t')->aka('tail')->boolean();
-$cli->option('t')->aka('n');
+$cli->option('n');
 
 if (!$cli['json']) {
   echo "..." . PHP_EOL;
