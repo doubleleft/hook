@@ -8,6 +8,8 @@ return array(
 		$url = "apps/logs";
 		$data = array();
 
+		// TODO: http stream not working properly
+		//
 		// if ($cli['tail']) {
 		// 	$url .= '?' . urlencode(json_encode(array('tail' => 1)));
 		// }
