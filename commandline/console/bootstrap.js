@@ -57,7 +57,7 @@
       var options = {};
 
       // Print table for arrays
-      if (data.length && data.length > 0) {
+      if (typeof(data)==="object" && data.length && data.length > 0) {
         delete data[0].app_id;
 
         if (!options.timestamps) {

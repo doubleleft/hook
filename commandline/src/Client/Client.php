@@ -21,16 +21,15 @@ class Client {
 	}
 
 	public function get($segments) {
-		$req = $this->request('get', $segments);
-		return $this->parse($req);
+		return $this->parse($this->request('get', $segments)->send());
 	}
 
 	public function delete($segments) {
-		return $this->parse($this->request('delete', $segments));
+		return $this->parse($this->request('delete', $segments)->send());
 	}
 
 	public function post($segments, $data = array()) {
-		return $this->parse($this->request('post', $segments, $data));
+		return $this->parse($this->request('post', $segments, $data)->send());
 	}
 
 	protected function parse($response) {
@@ -49,13 +48,12 @@ class Client {
 		return $data;
 	}
 
-	protected function request($method, $segments, $data = array()) {
+	public function request($method, $segments, $data = array()) {
 		$client = new \Guzzle\Http\Client(self::$endpoint);
-		$request = $client->{$method}($segments, $this->getHeaders(), $data, array(
+		return $client->{$method}($segments, $this->getHeaders(), $data, array(
 			'debug' => static::$debug,
 			'exceptions' => false
 		));
-		return $request->send();
 	}
 
 	protected function getHeaders() {
