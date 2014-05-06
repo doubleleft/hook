@@ -1,4 +1,4 @@
-#!/bin/sh
+SHELL := /bin/bash
 APIGEN_PATH = ~/Downloads/apigen
 CURPATH=`pwd -P`
 
@@ -41,3 +41,4 @@ docs:
 																--source ./api/vendor/slim/slim/Slim \
 																--source ./api/vendor/symfony
 	open ../dl-api-docs/index.html
+
