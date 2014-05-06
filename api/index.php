@@ -5,7 +5,9 @@ date_default_timezone_set('America/Sao_Paulo');
 
 require __DIR__ . '/vendor/autoload.php';
 
-$app = new \Slim\Slim();
+$app = new \Slim\Slim(array(
+	'log.enabled' => true
+));
 require __DIR__ . '/app/bootstrap.php';
 
 // Middlewares
@@ -356,6 +358,22 @@ $app->group('/push', function() use ($app) {
  * Internals
  */
 $app->group('/apps', function() use ($app) {
+
+	$app->get('/logs', function() use ($app) {
+
+		$file_path = $app->log->getWriter()->getFilePath();
+		$is_tail = ($app->request->get('tail')) ? '-f ' : '';
+
+		$handle = popen("tail -n 30 {$is_tail} {$file_path} 2>&1", 'r');
+		while(!feof($handle)) {
+			echo fgets($handle);
+			ob_flush();
+			flush();
+			usleep(300);
+		}
+		pclose($handle);
+	});
+
 	$app->get('/test', function() use ($app) {
 		$app = models\App::create(array(
 			'_id' => 1,
