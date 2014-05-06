@@ -54,9 +54,11 @@ class Mail {
 
 		models\AppConfig::current()
 			->where('app_id', \models\App::currentId())
-			->where('name', 'mail.driver')
-			->orWhere('name', 'mail.username')
-			->orWhere('name', 'mail.password')
+			->where(function($query) {
+				$query->where('name', 'mail.driver')
+					->orWhere('name', 'mail.username')
+					->orWhere('name', 'mail.password');
+			})
 			->get()
 			->each(function($config) use (&$params) {
 			preg_match('/mail\.([a-z]+)/', $config->name, $matches);
