@@ -5,8 +5,9 @@ class LogWriter {
 
 	function __construct($file) {
 		// create log directory if it doesn't exists.
-		if (!file_exists($file)) {
-			mkdir(dirname($file), 0777, true);
+		$log_dir = dirname($file);
+		if (!file_exists($log_dir)) {
+			mkdir(dirname($log_dir), 0777, true);
 		}
 		$this->file_path = $file;
 	}
