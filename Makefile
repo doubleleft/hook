@@ -15,7 +15,7 @@ default:
 
 	# ./commandline
 	cd "$(CURPATH)/commandline" && composer install
-	ln -sF "$(CURPATH)/commandline/bin/dl-api" "/bin/dl-api"
+	ln -sf "$(CURPATH)/commandline/bin/dl-api" "/bin/dl-api"
 	chmod +x "$(CURPATH)/commandline/bin/dl-api" "/bin/dl-api"
 	npm --prefix "$(CURPATH)/commandline/console" install "$(CURPATH)/commandline/console"
 	echo "\nsource $(CURPATH)/commandline/bash_completion\n" >> ~/.bash_profile
