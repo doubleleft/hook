@@ -28,13 +28,6 @@ class Collection extends \Core\Model
 
 	public static function loadObserver($table) {
 		// Compile observer only if it isn't compiled yet.
-
-		//
-		// TODO: Clenaup previous observer to attach another.
-		//
-		// Since different collections share same class, loading
-		// more than one observer will just register more events.
-		//
 		if (!isset(static::$observers[ $table ])) {
 			if ($module = Module::observer($table)) {
 				$observer = $module->compile();
@@ -42,6 +35,38 @@ class Collection extends \Core\Model
 				static::observe($observer);
 			}
 		}
+	}
+
+	//
+	// Use $lastTableName instead of get_class to register events on Collections
+	//
+	// @override
+	// http://laravel.com/api/source-class-Illuminate.Database.Eloquent.Model.html#_registerModelEvent
+	//
+	protected static function registerModelEvent($event, $callback) {
+		if (isset(static::$dispatcher)) {
+			$name = static::$lastTableName;
+			static::$dispatcher->listen("eloquent.{$event}: {$name}", $callback);
+		}
+	}
+
+	//
+	// Use $lastTableName instead of get_class to register events on Collections
+	//
+	// @override
+	// http://laravel.com/api/source-class-Illuminate.Database.Eloquent.Model.html#_fireModelEvent
+	//
+	protected function fireModelEvent($event, $halt = true) {
+		if ( ! isset(static::$dispatcher)) return true;
+
+		// We will append the names of the class to the event to distinguish it from
+		// other model events that are fired, allowing us to listen on each model
+		// event set individually instead of catching event for all the models.
+		$event = "eloquent.{$event}: ".static::$lastTableName;
+
+		$method = $halt ? 'until' : 'fire';
+
+		return static::$dispatcher->$method($event, $this);
 	}
 
 	/**

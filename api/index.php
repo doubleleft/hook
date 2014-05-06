@@ -5,7 +5,9 @@ date_default_timezone_set('America/Sao_Paulo');
 
 require __DIR__ . '/vendor/autoload.php';
 
-$app = new \Slim\Slim();
+$app = new \Slim\Slim(array(
+	'log.enabled' => true
+));
 require __DIR__ . '/app/bootstrap.php';
 
 // Middlewares
@@ -55,7 +57,7 @@ $app->group('/collection', function () use ($app) {
 		$data = $app->request->post('d') ?: $app->request->post('data') ?: $app->request->post();
         $files = array();
         foreach($data as $key => $value){
-            if(strpos($value, "dl-api-data:") !== false){
+            if(is_string($value) && strpos($value, "dl-api-data:") !== false){
                 $files[$key] = str_replace("dl-api-data:", "data:", $value);
             }
         }
@@ -64,7 +66,9 @@ $app->group('/collection', function () use ($app) {
             $files = array_merge($files, $_FILES);
         }
 
-        $data[models\Collection::ATTACHED_FILES] = $files;
+		if(!empty($files)) {
+			$data[models\Collection::ATTACHED_FILES] = $files;
+		}
 		return $data;
 	});
 
@@ -136,7 +140,7 @@ $app->group('/collection', function () use ($app) {
 	 * PUT /collection/:name
 	 */
 	$app->put('/:name', function($name) use ($app) {
-		$query = models\App::collection($name)->filter($app->request->get('q'));
+		$query = models\App::collection($name)->filter($app->request->post('q'));
 
 		if ($operation = $app->request->post('op')) {
 			// Operations: increment/decrement
@@ -151,7 +155,7 @@ $app->group('/collection', function () use ($app) {
 			// - 'plugados-site'
 			// - 'clubsocial-possibilidades'
 			//
-			$app->content = $query->update($app->collection_data);
+			$app->content = array('affected' => $query->update($app->collection_data));
 		}
 	});
 
@@ -168,7 +172,7 @@ $app->group('/collection', function () use ($app) {
 			$app->content = $query->{$operation['method']}($operation['field'], $operation['value']);
 		} else {
 			// Perform raw update
-			$app->content = $query->update($app->collection_data);
+			$app->content = array('success' => $query->update($app->collection_data) === 1);
 		}
 	});
 
@@ -354,6 +358,22 @@ $app->group('/push', function() use ($app) {
  * Internals
  */
 $app->group('/apps', function() use ($app) {
+
+	$app->get('/logs', function() use ($app) {
+		$file_path = $app->log->getWriter()->getFilePath();
+		$is_tail = ($app->request->get('tail')) ? '-f ' : '';
+		$lines = $app->request->get('n', 30);
+
+		$handle = popen("tail -n {$lines} {$is_tail} {$file_path} 2>&1", 'r');
+		while(!feof($handle)) {
+			echo fgets($handle);
+			ob_flush();
+			flush();
+			usleep(300);
+		}
+		pclose($handle);
+	});
+
 	$app->get('/test', function() use ($app) {
 		$app = models\App::create(array(
 			'_id' => 1,

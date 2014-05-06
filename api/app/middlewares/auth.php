@@ -7,9 +7,7 @@ class AuthMiddleware extends \Slim\Middleware
 	{
 		$app = $this->app;
 
-		$app->auth_token = \models\AuthToken::where('token', $app->request->headers->get('X-Auth-Token') ?: $app->request->get('X-Auth-Token'))
-			->where('expire_at', '>=', time())
-			->first();
+		$app->auth_token = \models\AuthToken::current();
 
 		$request_path = $app->request->getResourceUri();
 

@@ -17,6 +17,22 @@ class Auth extends Collection
 	protected $primaryKey = '_id';
 	protected $table = 'auth';
 
+	static $_current = null;
+
+	/**
+	 * current - get current active Auth instance
+	 * @static
+	 * @return Auth|null
+	 */
+	public static function current() {
+		if (static::$_current === null) {
+			if ($token = AuthToken::current()) {
+				static::$_current = $token->auth;
+			}
+		}
+		return static::$_current;
+	}
+
 	public function app() {
 		return $this->belongsTo('models\App');
 	}

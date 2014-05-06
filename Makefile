@@ -21,6 +21,9 @@ default:
 	echo "\nsource $(CURPATH)/commandline/bash_completion\n" >> ~/.bash_profile
 	echo "Finished"
 
+test:
+	./api/vendor/bin/phpunit --configuration ./api/phpunit.xml
+
 docs:
 	mkdir -p ../dl-api-docs/
 	php -d memory_limit=512M ${APIGEN_PATH}/apigen.php --destination ../dl-api-docs/ \
