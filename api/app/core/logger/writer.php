@@ -14,7 +14,7 @@ class LogWriter {
 
 	public function write($message) {
 		$fp = fopen($this->file_path, 'a+');
-		fwrite($fp, $message);
+		fwrite($fp, $message . PHP_EOL);
 		fclose($fp);
 	}
 
