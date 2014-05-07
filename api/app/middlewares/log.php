@@ -14,11 +14,8 @@ class LogMiddleware extends \Slim\Middleware
 			$this->app->log->setWriter(new \LogWriter(storage_dir() . '/logs.txt'));
 
 			if (strpos($app->request->getPath(), "/apps/") === false) {
-				$log = $app->request->getIp() . ' - [' . date('d-m-Y H:i:s') . '] ';
-				$log .= $app->request->getMethod() . ' ' . $app->request->getResourceUri() . PHP_EOL;
-				$log .= 'Params: ' . json_encode($app->request->params()) . PHP_EOL;
-
-				$app->log->info($log);
+				$app->log->info($app->request->getIp() . ' - [' . date('d-m-Y H:i:s') . '] ' . $app->request->getMethod() . ' ' . $app->request->getResourceUri());
+				$app->log->info('Params: ' . json_encode($app->request->params()));
 			}
 		}
 
