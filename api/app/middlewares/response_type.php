@@ -139,8 +139,9 @@ class ResponseTypeMiddleware extends \Slim\Middleware
 	protected function handle_error_response($e, $app) {
 		$message = $e->getMessage();
 
-		// Log stack-trace
-		$trace = $e->getTrace();
+		$app->log->info("Error: '{$message}'");
+		$app->log->info($e->getTraceAsString());
+
 		file_put_contents('php://stderr', "[[ dl-api: error ]] " . $message . PHP_EOL . $e->getTraceAsString() . PHP_EOL);
 
 		if (strpos($message, "column not found") !== false ||        // mysql
