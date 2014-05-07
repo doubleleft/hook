@@ -3,12 +3,7 @@ ini_set('display_errors', 1);
 error_reporting(E_ALL);
 date_default_timezone_set('America/Sao_Paulo');
 
-require __DIR__ . '/vendor/autoload.php';
-
-$app = new \Slim\Slim(array(
-	'log.enabled' => true
-));
-require __DIR__ . '/app/bootstrap.php';
+$app = require __DIR__ . '/app/bootstrap.php';
 
 // Middlewares
 $app->add(new LogMiddleware());
