@@ -26,7 +26,8 @@
     "swiftmailer/swiftmailer": "5.0.*",
     "jenssegers/mongodb": "1.1.*",
     "dropbox/dropbox-sdk": "1.1.*",
-    "aws/aws-sdk-php": "2.5.*"
+    "aws/aws-sdk-php": "2.5.*",
+    "hoa/websocket": "dev-master"
   },
   "require-dev": {
     "mockery/mockery": "0.8.0",
@@ -34,7 +35,10 @@
     "aws/aws-sdk-php": "2.*"
   },
   "scripts": {
-    "post-install-cmd": "scripts\\GithubKeyDownloader::execute"
+    "post-install-cmd": [
+      "scripts\\GithubKeyDownloader::execute",
+      ""
+    ]
   },
   "bin-dir": "bin",
   "minimum-stability": "dev"
