@@ -1,11 +1,10 @@
 SHELL := /bin/bash
 APIGEN_PATH = ~/Downloads/apigen
 CURPATH := $(shell pwd -P)
-export PATH := $(HOME)/bin:$(PATH)
-install_composer =
 
-default:
+default: install
 
+install:
 ifneq ($(shell which php > /dev/null 2>&1; echo $$?),0)
 	$(error "Missing php-cli.")
 endif	
