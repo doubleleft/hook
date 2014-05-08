@@ -11,23 +11,52 @@ $_SERVER['SERVER_PORT'] = 80;
 
 require __DIR__ . '/app/bootstrap.php';
 
-$websocket = new Hoa\Websocket\Server(new Hoa\Socket\Server('tcp://127.0.0.1:8889'));
-$websocket->on('open', function (Hoa\Core\Event\Bucket $bucket) {
-	echo 'new connection', "\n";
-	return;
-});
+use Ratchet\ConnectionInterface;
+use Ratchet\Wamp\WampServerInterface;
 
-$websocket->on('message', function (Hoa\Core\Event\Bucket $bucket) {
-	$data = $bucket->getData();
-	echo '> message ', $data['message'], "\n";
-	$bucket->getSource()->send($data['message']);
+class Channel implements WampServerInterface {
 
-	// $bucket->getSource()->getConnection()->getNodes();
-	return;
-});
+	public function onCall(ConnectionInterface $conn, $id, $topic, array $params) {
+	}
 
-$websocket->on('close', function (Hoa\Core\Event\Bucket $bucket) {
-	echo 'connection closed', "\n";
-	return;
-});
-$websocket->run();
+	public function onPublish(ConnectionInterface $conn, $topic, $event, array $exclude, array $eligible) {
+		echo "publish..." . PHP_EOL;
+		var_dump($topic);
+		var_dump($event);
+		$topic->broadcast($event);
+	}
+
+	public function onSubscribe(ConnectionInterface $conn, $topic) { }
+	public function onUnSubscribe(ConnectionInterface $conn, $topic) { }
+
+	public function onOpen(ConnectionInterface $conn) {
+		echo "openned..." . PHP_EOL;
+ 	}
+	public function onClose(ConnectionInterface $conn) {
+		echo "closed..." . PHP_EOL;
+ 	}
+	public function onError(ConnectionInterface $conn, \Exception $e) {
+		var_dump($e);
+ 	}
+}
+
+ // Set up our WebSocket server for clients wanting real-time updates
+$loop = React\EventLoop\Factory::create();
+$socket_server = new React\Socket\Server($loop);
+$socket_server->listen(8889, '0.0.0.0'); // Binding to 0.0.0.0 means remotes can connect
+$io_server = new Ratchet\Server\IoServer(
+	new Ratchet\Http\HttpServer(
+		new Ratchet\WebSocket\WsServer(
+			new Ratchet\Wamp\WampServer(
+				new Channel()
+			)
+		)
+	),
+	$socket_server
+);
+
+$loop->run();
+
+// $server = new \Ratchet\App('localhost', 8889);
+// $server->route('/', new Channel());
+// $server->run();

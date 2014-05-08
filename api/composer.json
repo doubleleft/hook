@@ -27,7 +27,7 @@
     "jenssegers/mongodb": "1.1.*",
     "dropbox/dropbox-sdk": "1.1.*",
     "aws/aws-sdk-php": "2.5.*",
-    "hoa/websocket": "dev-master"
+    "cboden/Ratchet": "0.3.*"
   },
   "require-dev": {
     "mockery/mockery": "0.8.0",
