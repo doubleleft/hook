@@ -1,4 +1,6 @@
 SHELL := /bin/bash
+export PATH=$(HOME)/bin:$(shell echo $$PATH)
+
 APIGEN_PATH = ~/Downloads/apigen
 CURPATH := $(shell pwd -P)
 
@@ -13,18 +15,19 @@ ifneq ($(shell which npm > /dev/null 2>&1 > /dev/null; echo $$?),0)
 	$(error "Missing npm.")
 endif
 
-ifneq ($(shell which composer > /dev/null 2>&1 || test -x $(HOME)/bin/composer > /dev/null 2>&1; echo $$?),0) 
+ifneq ($(shell which composer > /dev/null 2>&1; echo $$?),0) 
 	mkdir -p ~/bin
 	curl -sS https://getcomposer.org/installer | php -d detect_unicode=Off -- --install-dir=$(HOME)/bin --filename=composer
 	chmod +x $(HOME)/bin/composer
 endif
 
 	# ./api
-	cd "$(CURPATH)/api" ~/bin/composer install
+	cd "$(CURPATH)/api" && composer install
 	mkdir -p "$(CURPATH)/api/app/storage"
 	# chmod -R 755 "$(CURPATH)/api/app/storage"
 
 	# ./commandline
+	cd "$(CURPATH)/commandline" && composer install
 	ln -sf "$(CURPATH)/commandline/bin/dl-api" "$(HOME)/bin/dl-api"
 	chmod +x "$(CURPATH)/commandline/bin/dl-api" "$(HOME)/bin/dl-api"
 	npm --prefix "$(CURPATH)/commandline/console" install "$(CURPATH)/commandline/console"
