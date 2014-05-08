@@ -24,7 +24,7 @@ endif
 
 	# install composer if we don't have it already
 ifneq ($(shell which composer > /dev/null 2>&1 || test -x $(HOME)/bin/composer; echo $$?),0) 
-	mkdir -p ~/bin
+	mkdir -p $(HOME)/bin
 	curl -sS https://getcomposer.org/installer | php -d detect_unicode=Off -- --install-dir=$(HOME)/bin --filename=composer
 	chmod +x $(HOME)/bin/composer
 endif
@@ -35,6 +35,7 @@ endif
 	# chmod -R 755 "$(CURPATH)/api/app/storage"
 
 	# ./commandline
+	mkdir -p $(HOME)/bin
 	cd "$(CURPATH)/commandline" && composer install
 	ln -sf "$(CURPATH)/commandline/bin/dl-api" "$(HOME)/bin/dl-api"
 	chmod +x "$(CURPATH)/commandline/bin/dl-api" "$(HOME)/bin/dl-api"
