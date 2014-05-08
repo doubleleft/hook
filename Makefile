@@ -6,17 +6,17 @@ install_composer =
 
 default:
 
-ifneq ($(shell which php 1>&2 > /dev/null; echo $$?),0)
+ifneq ($(shell which php > /dev/null 2>&1; echo $$?),0)
 	$(error "Missing php-cli.")
 endif	
 
-ifneq ($(shell which npm 1>&2 > /dev/null; echo $$?),0)
+ifneq ($(shell which npm > /dev/null 2>&1 > /dev/null; echo $$?),0)
 	$(error "Missing npm.")
 endif
 
-ifneq ($(shell which composer 1>&2 > /dev/null; echo $$? || test -x $(HOME)/bin/composer 1>&2 > /dev/null; echo $$?),0) 
+ifneq ($(shell which composer > /dev/null 2>&1 || test -x $(HOME)/bin/composer > /dev/null 2>&1; echo $$?),0) 
 	mkdir -p ~/bin
-	-curl -sS https://getcomposer.org/installer | php -d detect_unicode=Off -- --install-dir=$(HOME)/bin --filename=composer
+	curl -sS https://getcomposer.org/installer | php -d detect_unicode=Off -- --install-dir=$(HOME)/bin --filename=composer
 	chmod +x $(HOME)/bin/composer
 endif
 
@@ -29,9 +29,15 @@ endif
 	ln -sf "$(CURPATH)/commandline/bin/dl-api" "$(HOME)/bin/dl-api"
 	chmod +x "$(CURPATH)/commandline/bin/dl-api" "$(HOME)/bin/dl-api"
 	npm --prefix "$(CURPATH)/commandline/console" install "$(CURPATH)/commandline/console"
-	if grep -q "commandline/bash_completion" $(HOME)/.bash_profile
-		echo "\nsource $(CURPATH)/commandline/bash_completion\n" >> $(HOME)/.bash_profile
-	fi
+
+ifneq ($(shell grep -q "commandline/bash_completion" $(HOME)/.bash{rc,_profile} > /dev/null 2>&1; echo $$?),0)
+	echo "source $(CURPATH)/commandline/bash_completion" >> $(HOME)/.bash_profile
+endif
+
+ifneq ($(shell grep -q "~/bin" $(HOME)/.bash{rc,_profile} > /dev/null 2>&1; echo $$?),0)
+	echo "PATH=~/bin:\$$PATH" >> $(HOME)/.bash_profile
+endif
+
 	echo "Finished"
 
 test:
