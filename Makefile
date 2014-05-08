@@ -23,14 +23,14 @@ ifneq ($(shell which npm > /dev/null 2>&1 > /dev/null; echo $$?),0)
 endif
 
 	# install composer if we don't have it already
-ifneq ($(shell which composer > /dev/null 2>&1; echo $$?),0) 
+ifneq ($(shell which composer > /dev/null 2>&1 || test -x $(HOME)/bin/composer; echo $$?),0) 
 	mkdir -p ~/bin
 	curl -sS https://getcomposer.org/installer | php -d detect_unicode=Off -- --install-dir=$(HOME)/bin --filename=composer
 	chmod +x $(HOME)/bin/composer
 endif
 
 	# ./api
-	cd "$(CURPATH)/api" && composer install
+	cd $(CURPATH)/api && composer install
 	mkdir -p "$(CURPATH)/api/app/storage"
 	# chmod -R 755 "$(CURPATH)/api/app/storage"
 
@@ -41,16 +41,16 @@ endif
 	npm --prefix "$(CURPATH)/commandline/console" install "$(CURPATH)/commandline/console"
 
 	# add bash_completion
-ifneq ($(shell grep -q "commandline/bash_completion" $(HOME)/.bash{rc,_profile} > /dev/null 2>&1; echo $$?),0)
+ifneq ($(shell grep -q "commandline/bash_completion" $(HOME)/.bash{rc,_profile}; echo $$?),0)
 	echo "source $(CURPATH)/commandline/bash_completion" >> $(HOME)/.bash_profile
 endif
 	
 	# add ~/bin to user PATH
-ifneq ($(shell grep -q "~/bin" $(HOME)/.bash{rc,_profile} > /dev/null 2>&1; echo $$?),0)
+ifneq ($(shell grep -q "~/bin" $(HOME)/.bash{rc,_profile}; echo $$?),0)
 	echo "export PATH=~/bin:\$$PATH" >> $(HOME)/.bash_profile
 endif
 
-	echo "Finished"
+	@echo "Finished"
 
 test:
 	./api/vendor/bin/phpunit --configuration ./api/phpunit.xml
