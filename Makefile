@@ -14,19 +14,9 @@ ifneq ($(shell which npm 1>&2 > /dev/null; echo $$?),0)
 	$(error "Missing npm.")
 endif
 
-ifneq ($(shell test ! -x $(HOME)/bin/composer 1>&2 > /dev/null; echo $$?),0)
-	$(eval install_composer = yes)
-endif
-
-ifneq ($(shell which composer 1>&2 2> /dev/null; echo $$?),0) 
-	$(eval install_composer = yes)
-endif
-
-ifdef install_composer
-	@echo $(shell which composer 1>&2 2> /dev/null; echo $$?)
-	@echo $$PATH
+ifneq ($(shell which composer 1>&2 > /dev/null; echo $$? || test -x $(HOME)/bin/composer 1>&2 > /dev/null; echo $$?),0) 
 	mkdir -p ~/bin
-	curl -sS https://getcomposer.org/installer | php -d detect_unicode=Off -- --install-dir=$(HOME)/bin --filename=composer
+	-curl -sS https://getcomposer.org/installer | php -d detect_unicode=Off -- --install-dir=$(HOME)/bin --filename=composer
 	chmod +x $(HOME)/bin/composer
 endif
 
