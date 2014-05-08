@@ -1,6 +1,6 @@
 # This Makefile downloads and installs dl-api dependencies and the dl-api commandline. 
 # It depends on GNU Make. 
-# For dl-api instalation we need php-cli, php-json and npm. 
+# For dl-api installation we need php-cli, php-json and npm. 
 # It has been tested on Linux (Ubuntu, Gentoo) and Mac OSX. 
 # 
 # The default target is "make install", but it also provides "make test" and "make docs".
