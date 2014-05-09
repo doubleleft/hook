@@ -42,13 +42,21 @@ endif
 	npm --prefix "$(CURPATH)/commandline/console" install "$(CURPATH)/commandline/console"
 
 	# add bash_completion
-ifneq ($(shell grep -q "commandline/bash_completion" $(HOME)/.bash{rc,_profile}; echo $$?),0)
+ifneq ($(shell grep -qs "commandline/bash_completion" $(HOME)/.{profile,bash{rc,_profile}}; echo $$?),0)
+ifeq ($(shell test -f $(HOME)/.bash_profile),0)
 	echo "source $(CURPATH)/commandline/bash_completion" >> $(HOME)/.bash_profile
+else
+	echo "source $(CURPATH)/commandline/bash_completion" >> $(HOME)/.profile
 endif
-	
+endif
+
 	# add ~/bin to user PATH
-ifneq ($(shell grep -q "~/bin" $(HOME)/.bash{rc,_profile}; echo $$?),0)
+ifneq ($(shell grep -qs "\(~\|\$$[{]\?HOME[}]\?\)/bin" $(HOME)/.{profile,bash{rc,_profile}}; echo $$?),0)
+ifeq ($(shell test -f $(HOME)/.bash_profile),0)
 	echo "export PATH=~/bin:\$$PATH" >> $(HOME)/.bash_profile
+else
+	echo "export PATH=~/bin:\$$PATH" >> $(HOME)/.profile
+endif
 endif
 
 	@echo "Finished"
