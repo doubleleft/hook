@@ -51,7 +51,7 @@ endif
 endif
 
 	# add ~/bin to user PATH
-ifneq ($(shell grep -qs "~/bin\|\$$[{]\?HOME[}]\?/bin" $(HOME)/.{profile,bash{rc,_profile}}; echo $$?),0)
+ifneq ($(shell grep -qs "\(~\|\$[{]\?HOME[}]\?\)/bin" $(HOME)/.{profile,bash{rc,_profile}}; echo $$?),0)
 ifeq ($(shell test -f $(HOME)/.bash_profile),0)
 	echo "export PATH=~/bin:\$$PATH" >> $(HOME)/.bash_profile
 else
