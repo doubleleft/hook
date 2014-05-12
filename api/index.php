@@ -360,13 +360,15 @@ $app->group('/apps', function() use ($app) {
 		$lines = $app->request->get('n', 30);
 
 		$handle = popen("tail -n {$lines} {$is_tail} {$file_path} 2>&1", 'r');
+		$content = "";
 		while(!feof($handle)) {
-			echo fgets($handle);
+			$content .= fgets($handle);
 			ob_flush();
 			flush();
 			usleep(300);
 		}
 		pclose($handle);
+		$app->content = array('text' => $content);
 	});
 
 	$app->get('/test', function() use ($app) {

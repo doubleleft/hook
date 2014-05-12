@@ -14,15 +14,22 @@ class AppMiddleware extends \Slim\Middleware
 
 		if (strlen($query_string)>0) {
 			$query_data = array();
-			// Parse JSON content on query string
-			if (preg_match('/([^&]+)(&.*)?/', $query_string, $query)) {
+			parse_str($query_string, $query_params);
+
+			// Remove json data from query params (which just have key as param)
+			$last_param = end($query_params);
+			if (is_array($last_param) && end($last_param) === "") {
+				array_pop($query_params);
+			}
+
+			// Decode JSON data from query params
+			if (preg_match('/({[^$]+)/', urldecode($query_string), $query)) {
 				$query_data = json_decode(urldecode($query[1]), true) ?: array();
 			}
+
 			// Parse remaining regular string variables
-			if (isset($query[2])) {
-				parse_str($query[2], $additional_query_data);
-				$query_data = array_merge($query_data, $additional_query_data);
-			}
+			$query_data = array_merge($query_data, $query_params);
+
 			$app->environment->offsetSet('slim.request.query_hash', $query_data);
 		}
 
@@ -99,3 +106,4 @@ class AppMiddleware extends \Slim\Middleware
 	}
 
 }
+
