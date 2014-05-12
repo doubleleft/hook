@@ -1,30 +1,65 @@
+# This Makefile downloads and installs dl-api dependencies and the dl-api commandline. 
+# It depends on GNU Make. 
+# For dl-api installation we need php-cli, php-json and npm. 
+# It has been tested on Linux (Ubuntu, Gentoo) and Mac OSX. 
+# 
+# The default target is "make install", but it also provides "make test" and "make docs".
+
 SHELL := /bin/bash
 APIGEN_PATH = ~/Downloads/apigen
-CURPATH=`pwd -P`
+CURPATH := $(shell pwd -P)
+export PATH=$(HOME)/bin:$(shell echo $$PATH)
 
-default:
-	# TODO: install composer automatically, if it isn't instaled
-	# if [[ !-z `which composer` ]]; then
-	# 	curl -sS https://getcomposer.org/installer | php -d detect_unicode=Off -- --install-dir=/usr/local/bin --filename=composer
-	# fi
+default: install
+
+install:
+	# check dependencies
+ifneq ($(shell which php > /dev/null 2>&1; echo $$?),0)
+	$(error "Missing php-cli.")
+endif	
+
+ifneq ($(shell which npm > /dev/null 2>&1 > /dev/null; echo $$?),0)
+	$(error "Missing npm.")
+endif
+
+	# install composer if we don't have it already
+ifneq ($(shell which composer > /dev/null 2>&1 || test -x $(HOME)/bin/composer; echo $$?),0) 
+	mkdir -p $(HOME)/bin
+	curl -sS https://getcomposer.org/installer | php -d detect_unicode=Off -- --install-dir=$(HOME)/bin --filename=composer
+	chmod +x $(HOME)/bin/composer
+endif
 
 	# ./api
-	cd "$(CURPATH)/api" composer install
+	cd $(CURPATH)/api && composer install
 	mkdir -p "$(CURPATH)/api/app/storage"
-	chmod -R 777 "$(CURPATH)/api/app/storage"
+	# chmod -R 755 "$(CURPATH)/api/app/storage"
 
 	# ./commandline
+	mkdir -p $(HOME)/bin
 	cd "$(CURPATH)/commandline" && composer install
-	if [[ ! -d ~/bin ]]; then
-		mkdir ~/bin
-	fi
-	ln -sf "$(CURPATH)/commandline/bin/dl-api" "~/bin/dl-api"
-	chmod +x "$(CURPATH)/commandline/bin/dl-api" "~/bin/dl-api"
+	ln -sf "$(CURPATH)/commandline/bin/dl-api" "$(HOME)/bin/dl-api"
+	chmod +x "$(CURPATH)/commandline/bin/dl-api" "$(HOME)/bin/dl-api"
 	npm --prefix "$(CURPATH)/commandline/console" install "$(CURPATH)/commandline/console"
-	if grep -q "commandline/bash_completion" ~/.bash_profile
-		echo "\nsource $(CURPATH)/commandline/bash_completion\n" >> ~/.bash_profile
-	fi
-	echo "Finished"
+
+	# add bash_completion
+ifneq ($(shell grep -qs "commandline/bash_completion" $(HOME)/.{profile,bash{rc,_profile}}; echo $$?),0)
+ifeq ($(shell test -f $(HOME)/.bash_profile),0)
+	echo "source $(CURPATH)/commandline/bash_completion" >> $(HOME)/.bash_profile
+else
+	echo "source $(CURPATH)/commandline/bash_completion" >> $(HOME)/.profile
+endif
+endif
+
+	# add ~/bin to user PATH
+ifneq ($(shell grep -qs "\(~\|\$${\?HOME}\?\)/bin" $(HOME)/.{profile,bash{rc,_profile}}; echo $$?),0)
+ifeq ($(shell test -f $(HOME)/.bash_profile),0)
+	echo "export PATH=~/bin:\$$PATH" >> $(HOME)/.bash_profile
+else
+	echo "export PATH=~/bin:\$$PATH" >> $(HOME)/.profile
+endif
+endif
+
+	@echo "Finished"
 
 test:
 	./api/vendor/bin/phpunit --configuration ./api/phpunit.xml
