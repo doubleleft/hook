@@ -22,21 +22,23 @@ return array(
 		}
 
 		$client = new Client\Client();
-		$request = $client->request('get', $url);
+		// $request = $client->request('get', $url);
+		$response = $client->request('get', $url)->send()->json();
+		echo $response->text;
 
-		if ($cli['tail']) {
-			// read from stream
-			$factory = new \Guzzle\Stream\PhpStreamRequestFactory();
-			$stream = $factory->fromRequest($request);
-
-			while (!$stream->feof()) {
-				echo $stream->readLine();
-			}
-
-		} else {
-			// just output response
-			echo $request->send()->getBody(true);
-		}
+		// if ($cli['tail']) {
+		// 	// read from stream
+		// 	$factory = new \Guzzle\Stream\PhpStreamRequestFactory();
+		// 	$stream = $factory->fromRequest($request);
+    //
+		// 	while (!$stream->feof()) {
+		// 		echo $stream->readLine();
+		// 	}
+    //
+		// } else {
+		// 	// just output response
+		// 	echo $request->send()->getBody(true);
+		// }
 
 	}
 );
