@@ -372,6 +372,7 @@ $app->group('/apps', function() use ($app) {
 			usleep(300);
 		}
 		pclose($handle);
+		return ;
 	});
 
 	$app->get('/test', function() use ($app) {
