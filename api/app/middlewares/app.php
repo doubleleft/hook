@@ -17,7 +17,8 @@ class AppMiddleware extends \Slim\Middleware
 			parse_str($query_string, $query_params);
 
 			// Remove json data from query params (which just have key as param)
-			if (is_array(end($query_params)) && end(end($query_params)) === "") {
+			$last_param = end($query_params);
+			if (is_array($last_param) && end($last_param) === "") {
 				array_pop($query_params);
 			}
 
