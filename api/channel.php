@@ -1,4 +1,8 @@
 <?php
+//
+// Consider using ZeroMQ or Redis - http://socketo.me/docs/push#tyingittogether
+//
+
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 date_default_timezone_set('America/Sao_Paulo');
