@@ -22,6 +22,8 @@ return array(
 			'configs' => $configs_to_add
 		));
 
+		echo "New config sent to ".$client->getEndpoint()."." . PHP_EOL."...".PHP_EOL;
+
 		// Run 'config' command after config:add
 		$commands['config']['run']($args);
 	}
