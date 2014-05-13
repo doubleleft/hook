@@ -14,34 +14,85 @@ require __DIR__ . '/app/bootstrap.php';
 use Ratchet\ConnectionInterface;
 use Ratchet\Wamp\WampServerInterface;
 
-class Channel implements WampServerInterface {
+class PubSubServer implements WampServerInterface {
+	private $handlers;
+
+	public function __construct() {
+		$this->handlers = array();
+	}
+
+	public function getHandler($conn) {
+		$credentials = $conn->WebSocket->request->getQuery()->toArray();
+		$resource = substr($conn->WebSocket->request->getPath(), 1);
+		$hash = md5($resource . join(",", array_values($credentials)));
+
+		if (!isset($this->handlers[$hash])) {
+			$app = \Slim\Slim::getInstance();
+
+			if ($key = models\AppKey::where('app_id', $credentials['X-App-Id'])
+				->where('key', $credentials['X-App-Key'])
+				->first()) {
+					$app->key = ((object) $key->toArray());
+
+					$channel = models\Module::channel($resource);
+					if ($channel) {
+						$this->handlers[$hash] = $channel->compile();
+					}
+			}
+		}
+
+		return (isset($this->handlers[$hash])) ? $this->handlers[$hash] : null;
+	}
 
 	public function onCall(ConnectionInterface $conn, $id, $topic, array $params) {
+		$handler = $this->getHandler($conn);
+		if ($handler) {
+			call_user_func_array(array($handler, 'onCall'), func_get_args());
+		}
 	}
 
 	public function onPublish(ConnectionInterface $conn, $topic, $event, array $exclude, array $eligible) {
-		echo "publish..." . PHP_EOL;
-		// var_dump($conn);
-		// var_dump($topic);
-		// var_dump($event);
-		// var_dump($exclude);
-		// var_dump($eligible);
-		$topic->broadcast($event);
+		$handler = $this->getHandler($conn);
+		if ($handler) {
+			call_user_func_array(array($handler, 'onPublish'), func_get_args());
+		} else {
+			$topic->broadcast($event);
+		}
 	}
 
-	public function onSubscribe(ConnectionInterface $conn, $topic) {}
-	public function onUnSubscribe(ConnectionInterface $conn, $topic) {}
+	public function onSubscribe(ConnectionInterface $conn, $topic) {
+		$handler = $this->getHandler($conn);
+		if ($handler) {
+			call_user_func_array(array($handler, 'onSubscribe'), func_get_args());
+		}
+	}
+
+	public function onUnSubscribe(ConnectionInterface $conn, $topic) {
+		$handler = $this->getHandler($conn);
+		if ($handler) {
+			call_user_func_array(array($handler, 'onUnSubscribe'), func_get_args());
+		}
+	}
 
 	public function onOpen(ConnectionInterface $conn) {
-		echo "opened..." . PHP_EOL;
+		$handler = $this->getHandler($conn);
+		if ($handler) {
+			call_user_func_array(array($handler, 'onOpen'), func_get_args());
+		}
 	}
 
 	public function onClose(ConnectionInterface $conn) {
-		echo "closed..." . PHP_EOL;
+		$handler = $this->getHandler($conn);
+		if ($handler) {
+			call_user_func_array(array($handler, 'onClose'), func_get_args());
+		}
 	}
 
 	public function onError(ConnectionInterface $conn, \Exception $e) {
-		var_dump($e);
+		$handler = $this->getHandler($conn);
+		if ($handler) {
+			call_user_func_array(array($handler, 'onError'), func_get_args());
+		}
 	}
 }
 
@@ -51,8 +102,12 @@ $loop = React\EventLoop\Factory::create();
 $socket_server = new React\Socket\Server($loop);
 $socket_server->listen(8080, '0.0.0.0'); // Binding to 0.0.0.0 means remotes can connect
 
-$io_server = new Ratchet\Server\IoServer(new Ratchet\Http\HttpServer(
-	new Ratchet\WebSocket\WsServer(new Ratchet\Wamp\WampServer(new Channel()))
+$io_server = new Ratchet\Server\IoServer(
+	new Ratchet\Http\HttpServer(
+		new Ratchet\WebSocket\WsServer(
+			new Ratchet\Wamp\WampServer(new PubSubServer()
+		)
+	)
 ), $socket_server);
 
 $loop->run();
