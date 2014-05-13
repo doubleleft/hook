@@ -1,6 +1,8 @@
 <?php
 //
-// Consider using ZeroMQ or Redis - http://socketo.me/docs/push#tyingittogether
+// Consider using ZeroMQ or Redis
+// http://socketo.me/docs/push#tyingittogether
+// http://blog.jmoz.co.uk/websockets-ratchet-react-redis/
 //
 
 ini_set('display_errors', 1);
@@ -27,7 +29,9 @@ class PubSubServer implements WampServerInterface {
 
 	public function getHandler($conn) {
 		$credentials = $conn->WebSocket->request->getQuery()->toArray();
-		$resource = substr($conn->WebSocket->request->getPath(), 1);
+
+		// remove "/" and possible "ws/" from resource path
+		$resource = str_replace("ws/", "", substr($conn->WebSocket->request->getPath(), 1));
 		$hash = md5($resource . join(",", array_values($credentials)));
 
 		if (!isset($this->handlers[$hash])) {
