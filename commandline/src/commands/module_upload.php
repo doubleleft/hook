@@ -5,7 +5,7 @@ return array(
 	'command' => 'module:upload',
 	'description' => 'Upload a module to application',
 	'run' => function($args) {
-		$module_types = array('observers', 'routes', 'templates');
+		$module_types = array('observers', 'routes', 'templates', 'channels');
 
 		$client = new Client\Client();
 		foreach(Client\Utils::glob(Client\Project::root() . 'dl-ext/**') as $module) {

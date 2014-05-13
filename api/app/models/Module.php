@@ -11,6 +11,7 @@ class Module extends \Core\Model
 	const TYPE_TEMPLATE = 'templates';
 	const TYPE_OBSERVER = 'observers';
 	const TYPE_ROUTE = 'routes';
+	const TYPE_CHANNEL = 'channels';
 
 	protected $guarded = array();
 	protected $primaryKey = '_id';
@@ -26,6 +27,15 @@ class Module extends \Core\Model
 	 */
 	public static function route($name) {
 		return static::get(self::TYPE_ROUTE, $name.'.php');
+	}
+
+	/**
+	 * Get a channel module instance
+	 * @param string name
+	 * @return Module
+	 */
+	public static function channel($name) {
+		return static::get(self::TYPE_CHANNEL, $name.'.php');
 	}
 
 	/**
@@ -111,7 +121,7 @@ class Module extends \Core\Model
 			$aliases.= 'use models\AuthToken as AuthToken;';
 			$aliases.= 'use models\Collection as Collection;';
 
-			if ($this->type == self::TYPE_OBSERVER) {
+			if ($this->type == self::TYPE_OBSERVER || $this->type == self::TYPE_CHANNEL) {
 				// Prevent name conflict by using unique class names for custom modules
 				$klass = 'CustomModule' . uniqid();
 				eval($aliases . preg_replace('/class ([^\ {]+)/', 'class ' . $klass, $this->code, 1));
