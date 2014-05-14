@@ -42,9 +42,15 @@ class AuthEmail extends TestCase {
 			'email' => 'edreyer' . uniqid() . '@doubleleft.com',
 			'password' => '12345'
 		);
+
+		// registering...
 		$auth = $this->post('auth/email', $auth_data);
 		$this->assertTrue(is_array($auth) && !is_string($auth['error']));
 
+		$logged_user = $this->get('auth', array('X-Auth-Token' => $auth['token']['token']));
+		$this->assertTrue($logged_user['email'] == $auth['email']);
+
+		// verifying...
 		$auth = $this->post('auth/email/verify', array(
 			'email' => $auth_data['email'],
 			'password' => "wrong password"
@@ -53,6 +59,9 @@ class AuthEmail extends TestCase {
 
 		$auth = $this->post('auth/email/verify', $auth_data);
 		$this->assertTrue(is_array($auth) && !is_string($auth['error']));
+
+		$logged_user = $this->get('auth', array('X-Auth-Token' => $auth['token']['token']));
+		$this->assertTrue($logged_user['email'] == $auth['email']);
 	}
 
 	public function testForgotPassword() { }
