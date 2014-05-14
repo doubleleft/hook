@@ -43,12 +43,13 @@ class {name} {
 	public function deleted($model) {
 	}
 
-	// before restore (soft-delete)
-	public function restoring($model) {
+	// before update multiple rows
+	public function updating_multiple($query, $values) {
+		return $values;
 	}
 
-	// after restore
-	public function restored($model) {
+	// before delete multiple rows
+	public function deleting_multiple($query) {
 	}
 
 }
