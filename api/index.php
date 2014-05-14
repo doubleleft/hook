@@ -150,7 +150,11 @@ $app->group('/collection', function () use ($app) {
 			// - 'plugados-site'
 			// - 'clubsocial-possibilidades'
 			//
-			$app->content = array('affected' => $query->update($app->collection_data));
+			$affected = $query->update($app->collection_data);
+			$app->content = array(
+				'success' => is_int($affected) && $affected > 0,
+				'affected' => $affected
+			);
 		}
 	});
 
@@ -369,18 +373,6 @@ $app->group('/apps', function() use ($app) {
 		}
 		pclose($handle);
 		$app->content = array('text' => $content);
-	});
-
-	$app->get('/test', function() use ($app) {
-		$app = models\App::create(array(
-			'_id' => 1,
-			'name' => "test"
-		));
-		$app->keys()->create(array(
-			'key' => 'test',
-			'secret' => 'test'
-		));
-		$app->content = models\App::all();
 	});
 
 	/**

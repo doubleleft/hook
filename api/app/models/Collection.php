@@ -13,6 +13,8 @@ class Collection extends \Core\Model
 	protected $guarded = array();
 	protected $primaryKey = '_id';
 
+	protected $observables = array('updating_multiple', 'deleting_multiple');
+
 	protected static $observers;
 	public static $lastTableName;
 

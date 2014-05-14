@@ -61,13 +61,40 @@ class CollectionDelegator implements IteratorAggregate {
 	}
 
 	/**
+	 * Update a record in the database.
+	 *
+	 * @param  array  $values
+	 * @return int
+	 */
+	public function update(array $values) {
+		$allowed = $this->fireEvent('updating_multiple', array($this, $values));
+		if ($allowed === false) {
+			return false;
+		} else if (is_array($allowed)) {
+			$values = $allowed;
+		}
+		return $this->query->update($values);
+	}
+
+	/**
 	 * Delete a record from the database.
 	 *
 	 * @param  mixed  $id
 	 * @return int
 	 */
-	public function remove($id = null) {
+	public function delete($id = null) {
+		if ($id === null && $this->fireEvent('deleting_multiple', $this) === false) {
+			return false;
+		}
 		return $this->query->delete($id);
+	}
+
+	/**
+	 * Alias to delete
+	 * @see delete
+	 */
+	public function remove($id = null) {
+		return $this->delete($id);
 	}
 
 	/**
@@ -145,6 +172,14 @@ class CollectionDelegator implements IteratorAggregate {
 		} else {
 			return $mixed;
 		}
+	}
+
+	protected function fireEvent($event, $payload) {
+		$dispatcher = \models\Collection::getEventDispatcher();
+		if (!$dispatcher) return true;
+
+		$event = "eloquent.{$event}: ".$this->name;
+		return $dispatcher->until($event, $payload);
 	}
 
 }
