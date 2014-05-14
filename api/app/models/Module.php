@@ -140,6 +140,7 @@ class Module extends \Core\Model
 					eval($aliases . $this->code);
 				} catch (\Exception $e) {
 					$message = $this->name . ': ' . $e->getMessage();
+					$app->log->info($message);
 					$app->response->headers->set('X-Error-'.uniqid(), $message);
 					file_put_contents('php://stderr', $message);
 				}
