@@ -118,6 +118,7 @@ class Module extends \Core\Model
 			$aliases.= 'use models\AppConfig as AppConfig;';
 			$aliases.= 'use models\Module as Module;';
 			$aliases.= 'use models\File as File;';
+			$aliases.= 'use models\Auth as Auth;';
 			$aliases.= 'use models\AuthToken as AuthToken;';
 			$aliases.= 'use models\Collection as Collection;';
 

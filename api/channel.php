@@ -28,15 +28,20 @@ class PubSubServer implements WampServerInterface {
 	}
 
 	public function getHandler($conn) {
+		$app = \Slim\Slim::getInstance();
 		$credentials = $conn->WebSocket->request->getQuery()->toArray();
+
+		// set x-auth-token
+		if (isset($credentials['X-Auth-Token'])) {
+			$app->request->headers->set('X-Auth-Token', $credentials['X-Auth-Token']);
+			unset($credentials['X-Auth-Token']);
+		}
 
 		// remove "/" and possible "ws/" from resource path
 		$resource = str_replace("ws/", "", substr($conn->WebSocket->request->getPath(), 1));
 		$hash = md5($resource . join(",", array_values($credentials)));
 
 		if (!isset($this->handlers[$hash])) {
-			$app = \Slim\Slim::getInstance();
-
 			if ($key = models\AppKey::where('app_id', $credentials['X-App-Id'])
 				->where('key', $credentials['X-App-Key'])
 				->first()) {

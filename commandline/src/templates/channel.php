@@ -6,11 +6,8 @@
 
 class {name} implements Ratchet\Wamp\WampServerInterface {
 
-	public function onCall(Ratchet\ConnectionInterface $conn, $id, $topic, array $params) {
-	}
-
 	public function onPublish(Ratchet\ConnectionInterface $conn, $topic, $message, array $exclude, array $eligible) {
-		// broadcast the message to all subscribers
+		// Broadcast message to all subscribers
 		$topic->broadcast($message);
 	}
 
@@ -24,6 +21,9 @@ class {name} implements Ratchet\Wamp\WampServerInterface {
 	}
 
 	public function onClose(Ratchet\ConnectionInterface $conn) {
+	}
+
+	public function onCall(Ratchet\ConnectionInterface $conn, $id, $topic, array $params) {
 	}
 
 	public function onError(Ratchet\ConnectionInterface $conn, \Exception $e) {
