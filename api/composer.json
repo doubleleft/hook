@@ -35,10 +35,7 @@
     "phpunit/phpunit": "3.7.*"
   },
   "scripts": {
-    "post-install-cmd": [
-      "scripts\\GithubKeyDownloader::execute",
-      ""
-    ]
+    "post-install-cmd": [ ]
   },
   "bin-dir": "bin",
   "minimum-stability": "dev"
