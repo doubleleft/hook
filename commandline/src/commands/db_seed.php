@@ -5,11 +5,11 @@ return array(
 	'command' => 'db:seed [<seed-file>]',
 	'description' => 'Seed collections from YAML files.',
 	'run' => function($args) use ($commands) {
-		$seed_file = '*';
+		$seed_file = '*.yaml';
 
-		if ($args[1]!==null) {
-			$seed_file = $args[1] . '.yaml';
-		}
+		// if ($args[1] !== null) {
+		// 	$seed_file = $args[1] . '.yaml';
+		// }
 
 		$client = new Client\Client();
 		foreach(\Client\Utils::glob(Client\Project::root() . 'dl-ext/seeds/' . $seed_file) as $yaml_file) {
@@ -26,11 +26,18 @@ return array(
 				}
 				echo PHP_EOL;
 			}
-
 			if (isset($options['data']) && $options['data']) {
 				$current_row = 0;
 				$total_rows = count($options['data']);
 				foreach($options['data'] as $data) {
+
+					// Look for special data fields
+					foreach($data as $key => $value) {
+						if(is_array($value) && $value["upload"]){
+							$data[$key] = $value["upload"];
+						}
+					}
+
 					$client->post('collection/' . $collection, array('data' => $data));
 					$current_row += 1;
 					$percent = round(($current_row / $total_rows)*100);
