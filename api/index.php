@@ -356,7 +356,12 @@ $app->group('/files', function() use($app) {
  * Push Notifications / Installations
  */
 $app->group('/push', function() use ($app) {
+	/**
+	 * POST /push/register
+	 */
 	$app->post('/register', function() {
+		$data = $app->request->post('d') ?: $app->request->post('data') ?: $app->request->post();
+		return models\PushRegistration::create(array_merge($data, array('app_id' => $app->key->app_id)));
 	});
 });
 
