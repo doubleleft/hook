@@ -8,5 +8,3 @@ before_script:
   - make
   - phpunit
 
-
-
