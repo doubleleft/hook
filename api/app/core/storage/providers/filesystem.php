@@ -27,18 +27,6 @@ class Filesystem extends Base {
 		}
 	}
 
-    public function decodeBase64($base64){
-		$filename = md5(uniqid()) . ".png";
-        $public_dir = $this->_publicDir();
-        $dir = $this->_uploadDir();
-
-        list($type, $data) = explode(';', $base64);
-        list(, $data) = explode(',', $data);
-        $data = base64_decode($data);
-        file_put_contents($dir.$filename, $data);
-        return public_url('app/'. $public_dir . $filename);
-    }
-
     public function _publicDir(){
         $public_dir = 'storage/files/' . App::currentId() . '/';
         return $public_dir;

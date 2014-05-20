@@ -7,9 +7,9 @@ return array(
 	'run' => function($args) use ($commands) {
 		$seed_file = '*.yaml';
 
-		// if ($args[1] !== null) {
-		// 	$seed_file = $args[1] . '.yaml';
-		// }
+		if ($args[1] !== null) {
+			$seed_file = $args[1] . '.yaml';
+		}
 
 		$client = new Client\Client();
 		foreach(\Client\Utils::glob(Client\Project::root() . 'dl-ext/seeds/' . $seed_file) as $yaml_file) {
@@ -26,15 +26,18 @@ return array(
 				}
 				echo PHP_EOL;
 			}
+
 			if (isset($options['data']) && $options['data']) {
 				$current_row = 0;
 				$total_rows = count($options['data']);
 				foreach($options['data'] as $data) {
 
 					// Look for special data fields
-					foreach($data as $key => $value) {
-						if(is_array($value) && $value["upload"]){
-							$data[$key] = $value["upload"];
+					foreach($data as $field => $value) {
+						if (preg_match('/\!upload ([^$]+)/', $value, $file)) {
+							$filepath = 'dl-ext/seeds/' . $file[1];
+							$mime_type = Client\Utils::mime_type($filepath);
+							$data[$field] = 'data:' . $mime_type . ';base64,' . base64_encode(file_get_contents($filepath));
 						}
 					}
 
