@@ -34,7 +34,11 @@ class ScheduledTask extends \Core\Model
 
 		// TODO: redirect output to application log file.
 		// https://github.com/doubleleft/dl-api/issues/37
-		return $schedule . ' ' . "curl -XGET -H 'X-App-Id: {$this->app_id}' -H 'X-App-Key: {$this->app->keys[0]->key}' '{$public_url}' 2>&1 /dev/null";
+
+		$curl_headers = "-H 'X-App-Id: {$this->app_id}' ";
+		$curl_headers .= "-H 'X-App-Key: {$this->app->keys[0]->key}' ";
+		$curl_headers .= "-H 'X-Scheduled-Task: yes' ";
+		return $schedule . ' ' . "curl -XGET {$curl_headers} '{$public_url}' 2>&1 /dev/null";
 	}
 
 	public function toArray() {

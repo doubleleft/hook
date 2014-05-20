@@ -33,7 +33,7 @@ class App extends \Core\Model
 	 * @return \core\CollectionDelegator
 	 */
 	public static function collection($name) {
-		return new \core\CollectionDelegator($name, static::currentId(), Collection::from($name));
+		return new \core\CollectionDelegator($name, static::currentId());
 	}
 
 	public function keys() {
