@@ -10,6 +10,16 @@ function public_url($segments, $protocol = null) {
 }
 
 /**
+ * debug
+ *
+ * @param string $text
+ */
+function debug($text) {
+	$app = \Slim\Slim::getInstance();
+	return $app->log->info($text);
+}
+
+/**
  * storage_dir
  *
  * @param bool $relative

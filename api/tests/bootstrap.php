@@ -46,6 +46,8 @@ class TestCase extends PHPUnit_Framework_TestCase {
 		$uri = $this->base_url . $uri;
 		$client = new \Guzzle\Http\Client();
 
+		// $uri .= '?X-App-Id=' . $this->app['app_id'] . '&X-App-Key=' . $this->app['key'];
+
 		$headers = array_merge($headers, array(
 			'Accept' => 'application/json',
 			'Content-Type' => 'application/json',
