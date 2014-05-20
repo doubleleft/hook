@@ -250,6 +250,13 @@ $app->group('/channels', function() use ($app) {
  */
 $app->group('/auth', function() use ($app) {
 	/**
+	 * GET /auth
+	 */
+	$app->get('/', function() use ($app) {
+		$app->content = models\Auth::current();
+	});
+
+	/**
 	 * POST /auth/facebook
 	 * POST /auth/email
 	 */

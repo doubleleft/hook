@@ -141,6 +141,58 @@ class CollectionDelegator implements IteratorAggregate {
 	}
 
 	/**
+	 * Chunk the results of the query.
+	 *
+	 * @param  int  $count
+	 * @param  callable  $callback
+	 * @return void
+	 */
+	public function chunk($count, $callback) {
+		//
+		// ----------------
+		// Developer alert:
+		// ----------------
+		//
+		// This block of code is exactly the same on
+		// Eloquent\Builder and Query\Builder as of this writing.
+		//
+		// It was necessary to define it here to CollectionDelegator
+		// be able to intercept the ->get() method and fix the
+		// Collection table's name.
+		//
+
+		$results = $this->forPage($page = 1, $count)->get();
+
+		while (count($results) > 0)
+		{
+			echo PHP_EOL . PHP_EOL;
+			// On each chunk result set, we will pass them to the callback and then let the
+			// developer take care of everything within the callback, which allows us to
+			// keep the memory low for spinning through large result sets for working.
+			call_user_func($callback, $results);
+
+			$page++;
+
+			$results = $this->forPage($page, $count)->get();
+		}
+	}
+
+	/**
+	 * Execute the query as a "select" statement.
+	 *
+	 * @param  array  $columns
+	 * @return \Illuminate\Database\Eloquent\Collection|static[]
+	 */
+	public function get($columns = array('*')) {
+		if ($this->query instanceof \Illuminate\Database\Eloquent\Builder) {
+			$this->query->setModel(new \models\Collection(array('table_name' => $this->name)));
+		} else if ($this->query instanceof \Illuminate\Database\Query\Builder) {
+			$this->query->from($this->name);
+		}
+		return $this->__call('get', func_get_args());
+	}
+
+	/**
 	 * Shortcut for get+toArray methods.
 	 * @param string $columns columns
 	 * @return array
