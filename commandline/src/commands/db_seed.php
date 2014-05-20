@@ -36,6 +36,13 @@ return array(
 					foreach($data as $field => $value) {
 						if (preg_match('/\!upload ([^$]+)/', $value, $file)) {
 							$filepath = 'dl-ext/seeds/' . $file[1];
+
+							// stop when file doens't exists
+							if (!file_exists($filepath)) {
+								Client\Console::error("File not found: '{$filepath}'");
+								die();
+							}
+
 							$mime_type = Client\Utils::mime_type($filepath);
 							$data[$field] = 'data:' . $mime_type . ';base64,' . base64_encode(file_get_contents($filepath));
 						}
