@@ -1,0 +1,29 @@
+<?php
+namespace models;
+
+class PushMessage extends Collection
+{
+	protected $guarded = array();
+	protected $primaryKey = '_id';
+	protected $table = 'push_messages';
+
+	public static function boot() {
+		parent::boot();
+		static::creating(function($model) { $model->beforeCreate(); });
+	}
+
+	public function app() {
+		return $this->belongsTo('models\App');
+	}
+
+	public function beforeCreate() {
+		if (!AuthToken::current()) {
+			// throw new \Exception("auth token is required to create push_messages.");
+		}
+
+		$this->setAttribute('delivered', 0);
+		$this->setAttribute('complete', false);
+		$this->beforeSave();
+	}
+
+}

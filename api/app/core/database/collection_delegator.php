@@ -24,14 +24,41 @@ class CollectionDelegator implements IteratorAggregate {
 	protected $query;
 
 	/**
+	 * is_collection
+	 * @var bool
+	 */
+	protected $is_collection;
+
+	/**
+	 * custom_collections
+	 * @var array
+	 */
+	static $custom_collections = array(
+		'push_messages' => 'models\\PushMessage',
+		'push_registrations' => 'models\\PushRegistration',
+	);
+
+	/**
 	 * Create a new CollectionDelegator instance.
 	 *
-	 * @param string $name name
+	 * @param string $name
+	 * @param string $app_id
 	 * @param Illuminate\Database\Query\Builder $query query
 	 */
-	public function __construct($name, $app_id, $query) {
+	public function __construct($name, $app_id) {
+		$is_collection = true;
+
+		$query = null;
+		if (isset(self::$custom_collections[$name])) {
+			$query = call_user_func(array(self::$custom_collections[$name], 'query'));
+			$is_collection = false;
+		} else {
+			$query = \models\Collection::from($name);
+		}
+
 		$this->name = $name;
 		$this->app_id = $app_id;
+		$this->is_collection = $is_collection;
 		$this->query = $query->where('app_id', $app_id);
 	}
 
@@ -42,10 +69,16 @@ class CollectionDelegator implements IteratorAggregate {
 	 * @return \models\Collection
 	 */
 	public function create_new(array $attributes) {
-		return new \models\Collection(array_merge($attributes, array(
-			'table_name' => $this->name,
-			'app_id' => $this->app_id
-		)));
+		$attributes['app_id'] = $this->app_id;
+
+		if (!$this->is_collection) {
+			$klass = self::$custom_collections[$this->name];
+			return new $klass($attributes);
+
+		} else {
+			$attributes['table_name'] = $this->name;
+			return new \models\Collection($attributes);
+		}
 	}
 
 	/**

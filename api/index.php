@@ -371,6 +371,25 @@ $app->group('/push', function() use ($app) {
 		$data = $app->request->post('d') ?: $app->request->post('data') ?: $app->request->post();
 		return models\PushRegistration::create(array_merge($data, array('app_id' => $app->key->app_id)));
 	});
+
+	/**
+	 * GET /notify
+	 */
+	$app->get('/notify', function() use ($app) {
+		if (!$app->request->headers->get('X-Scheduled-Task')) {
+			// throw new Exception("You can't do that.");
+		}
+
+		$sent = 0;
+		$notifier = new PushNotification\Notifier();
+		$messages = models\App::collection('push_messages')->where('complete', false);
+		foreach($messages as $message) {
+			$sent += $notifier->push($message);
+		}
+
+		$app->content = array('messages_sent' => $sent);
+	});
+
 });
 
 /**

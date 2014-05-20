@@ -7,7 +7,14 @@ class PushRegistration extends Collection
 	protected $primaryKey = '_id';
 	protected $table = 'push_registrations';
 
-	// Fields (based on Parse.com: https://parse.com/docs/push_guide#top/Android)
+	// Required fields (dl-api)
+	// ------------------------
+	// app_name: application name
+	// app_version: application version
+	// device_id: token/regid
+	// platform: platform name (ios / android / winrt)
+
+	// Reference Fields (based on Parse.com: https://parse.com/docs/push_guide#top/Android)
 	// --------------------------------------------------------------------------
 	// badge: The current value of the icon badge for iOS apps. Changing this value on the PFInstallation will update the badge value on the app icon. Changes should be saved to the server so that they will be used for future badge-increment push notifications.
 	// channels: An array of the channels to which a device is currently subscribed.
@@ -20,7 +27,8 @@ class PushRegistration extends Collection
 	// app_version: The version string of the client application to which this installation belongs (readonly).
 	// app_identifier: A unique identifier for this install
 
-	public function boot() {
+	public static function boot() {
+		parent::boot();
 		static::creating(function($model) { $model->beforeCreate(); });
 	}
 
