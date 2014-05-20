@@ -359,7 +359,15 @@ $app->group('/push', function() use ($app) {
 	/**
 	 * POST /push/register
 	 */
-	$app->post('/register', function() {
+	$app->post('/registration', function() {
+		$data = $app->request->post('d') ?: $app->request->post('data') ?: $app->request->post();
+		return models\PushRegistration::create(array_merge($data, array('app_id' => $app->key->app_id)));
+	});
+
+	/**
+	 * POST /push/unregister
+	 */
+	$app->delete('/registration', function() {
 		$data = $app->request->post('d') ?: $app->request->post('data') ?: $app->request->post();
 		return models\PushRegistration::create(array_merge($data, array('app_id' => $app->key->app_id)));
 	});
