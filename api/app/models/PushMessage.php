@@ -1,10 +1,8 @@
 <?php
 namespace models;
 
-class PushMessage extends Collection
+class PushMessage extends DynamicModel
 {
-	protected $guarded = array();
-	protected $primaryKey = '_id';
 	protected $table = 'push_messages';
 
 	public static function boot() {

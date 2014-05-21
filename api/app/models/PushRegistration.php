@@ -1,10 +1,8 @@
 <?php
 namespace models;
 
-class PushRegistration extends Collection
+class PushRegistration extends DynamicModel
 {
-	protected $guarded = array();
-	protected $primaryKey = '_id';
 	protected $table = 'push_registrations';
 
 	// Required fields (dl-api)

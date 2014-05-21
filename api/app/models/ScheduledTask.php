@@ -1,10 +1,7 @@
 <?php
 namespace models;
 
-class ScheduledTask extends \Core\Model
-{
-	protected $guarded = array();
-	protected $primaryKey = '_id';
+class ScheduledTask extends \Core\Model {
 
 	public function app() {
 		return $this->belongsTo('models\App');

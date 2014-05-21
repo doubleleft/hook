@@ -13,9 +13,6 @@ class Module extends \Core\Model
 	const TYPE_ROUTE = 'routes';
 	const TYPE_CHANNEL = 'channels';
 
-	protected $guarded = array();
-	protected $primaryKey = '_id';
-
 	public function app() {
 		return $this->belongsTo('models\App');
 	}
