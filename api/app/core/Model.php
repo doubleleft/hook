@@ -3,6 +3,8 @@ namespace Core;
 
 class Model extends \DLModel
 {
+	protected $guarded = array();
+	protected $primaryKey = '_id';
 
 	public function freshTimestamp()
 	{

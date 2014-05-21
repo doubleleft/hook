@@ -8,8 +8,6 @@ namespace models;
  */
 class File extends \Core\Model
 {
-	protected $guarded = array();
-	protected $primaryKey = '_id';
 
 	public static function boot() {
 		static::creating(function($m) { $m->beforeCreate(); });

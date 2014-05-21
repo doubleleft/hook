@@ -49,8 +49,9 @@ class CollectionDelegator implements IteratorAggregate {
 		$is_collection = true;
 
 		$query = null;
-		if (isset(self::$custom_collections[$name])) {
-			$query = call_user_func(array(self::$custom_collections[$name], 'query'));
+		if (isset(static::$custom_collections[$name])) {
+			echo "custom_collection: " . static::$custom_collections[$name] . PHP_EOL;
+			$query = call_user_func(array(static::$custom_collections[$name], 'query'));
 			$is_collection = false;
 		} else {
 			$query = \models\Collection::from($name);
@@ -217,7 +218,7 @@ class CollectionDelegator implements IteratorAggregate {
 	 * @return \Illuminate\Database\Eloquent\Collection|static[]
 	 */
 	public function get($columns = array('*')) {
-		if ($this->query instanceof \Illuminate\Database\Eloquent\Builder) {
+		if ($this->is_collection) {
 			$this->query->setModel(new \models\Collection(array('table_name' => $this->name)));
 		} else if ($this->query instanceof \Illuminate\Database\Query\Builder) {
 			$this->query->from($this->name);
@@ -243,6 +244,14 @@ class CollectionDelegator implements IteratorAggregate {
 		return $this->query->get($columns)->toJson();
 	}
 
+	protected function fireEvent($event, $payload) {
+		$dispatcher = \models\Collection::getEventDispatcher();
+		if (!$dispatcher) return true;
+
+		$event = "eloquent.{$event}: ".$this->name;
+		return $dispatcher->until($event, $payload);
+	}
+
 	/**
 	 * Handle Illuminate\Database\Query\Builder methods.
 	 *
@@ -257,14 +266,6 @@ class CollectionDelegator implements IteratorAggregate {
 		} else {
 			return $mixed;
 		}
-	}
-
-	protected function fireEvent($event, $payload) {
-		$dispatcher = \models\Collection::getEventDispatcher();
-		if (!$dispatcher) return true;
-
-		$event = "eloquent.{$event}: ".$this->name;
-		return $dispatcher->until($event, $payload);
 	}
 
 }
