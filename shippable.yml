@@ -1,0 +1,10 @@
+build_environment: ubuntu1404
+language: php
+php:
+  - 5.3
+  - 5.4
+  - 5.5
+
+before_script: make
+
+script: make test
