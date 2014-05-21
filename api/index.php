@@ -357,7 +357,7 @@ $app->group('/files', function() use($app) {
  */
 $app->group('/push', function() use ($app) {
 	/**
-	 * POST /push/register
+	 * POST /push/registration
 	 */
 	$app->post('/registration', function() {
 		$data = $app->request->post('d') ?: $app->request->post('data') ?: $app->request->post();
@@ -365,7 +365,7 @@ $app->group('/push', function() use ($app) {
 	});
 
 	/**
-	 * POST /push/unregister
+	 * DELETE /push/registration
 	 */
 	$app->delete('/registration', function() {
 		$data = $app->request->post('d') ?: $app->request->post('data') ?: $app->request->post();
