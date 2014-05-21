@@ -9,6 +9,9 @@ class APNS {
 	 * @param mixed $data
 	 */
 	public function push($registrations, $data) {
+		$app = \Slim\Slim::getInstance();
+		$total_errors = 0;
+
 		// Instantiate a new ApnsPHP_Push object
 		$push = new \ApnsPHP_Push(
 			\ApnsPHP_Abstract::ENVIRONMENT_SANDBOX,
@@ -29,7 +32,12 @@ class APNS {
 
 		// Add all registrations as message recipient
 		foreach($registrations as $registration) {
-			$message->addRecipient($registration->device_id);
+			try {
+				$message->addRecipient($registration->device_id);
+			} catch (\ApnsPHP_Message_Exception $e) {
+				$app->log->info($e->getMessage());
+				$total_errors +=1;
+			}
 		}
 
 		// Set a custom identifier. To get back this identifier use the getCustomIdentifier() method
@@ -83,12 +91,20 @@ class APNS {
 		// Examine the error message container
 		$error_list = $push->getErrors();
 
-		if (!empty($error_list)) {
-			var_dump($error_list);
-			return false;
+		// Log delivery status
+		$errors = $push->getErrors();
+		$total_errors += count($errors);
+
+		if ($total_errors > 0) {
+			foreach($errors as $error) {
+				$app->log->info($errors);
+			}
 		}
 
-		return true;
+		return array(
+			'success' => $registrations->count() - $total_errors,
+			'errors' => $total_errors
+		);
 	}
 
 }
