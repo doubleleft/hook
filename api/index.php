@@ -380,14 +380,9 @@ $app->group('/push', function() use ($app) {
 			// throw new Exception("You can't do that.");
 		}
 
-		$sent = 0;
 		$notifier = new PushNotification\Notifier();
 		$messages = models\App::collection('push_messages')->where('complete', false);
-		foreach($messages as $message) {
-			$sent += $notifier->push($message);
-		}
-
-		$app->content = array('messages_sent' => $sent);
+		$app->content = $notifier->push_messages($messages);
 	});
 
 });
