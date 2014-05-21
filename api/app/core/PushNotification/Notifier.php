@@ -48,9 +48,13 @@ class Notifier {
 			$service = new $service_klass();
 			$query = \models\App::collection('push_registrations')->where('platform', $platform);
 			$query->chunk(self::MAX_RECIPIENTS_PER_REQUEST, function($registrations) use (&$service, &$status, $message) {
-				$chunk_status = $service->push($registrations, $message);
-				$status['success'] += $chunk_status['success'];
-				$status['errors'] += $chunk_status['errors'];
+				try {
+					$chunk_status = $service->push($registrations, $message);
+					$status['success'] += $chunk_status['success'];
+					$status['errors'] += $chunk_status['errors'];
+				} catch (\Exception $e) {
+					debug("PushNotification: platform: {$platform} -> {$e->getMessage()}");
+				}
 			});
 		}
 
