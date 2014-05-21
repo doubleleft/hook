@@ -9,18 +9,27 @@ class APNS {
 	 * @param mixed $data
 	 */
 	public function push($registrations, $data) {
+		$apns_environment = \models\AppConfig::get('push.apns.environment', 'sandbox');
+		$apns_certificate_file = \models\AppConfig::get('push.apns.cert.file', false);
+		$apns_certificate_pass = \models\AppConfig::get('push.apns.cert.pass', false);
+
+		if (!$apns_certificate_file) {
+			throw new \Exception("APNS config error: 'push.apns.cert.file' not set.");
+		}
+
 		$app = \Slim\Slim::getInstance();
 		$total_errors = 0;
 
 		// Instantiate a new ApnsPHP_Push object
 		$push = new \ApnsPHP_Push(
-			\ApnsPHP_Abstract::ENVIRONMENT_SANDBOX,
-			// 'server_certificates_bundle_sandbox.pem'
-			__DIR__ . '/cert.pem'
+			($apns_environment == 'sandbox') ? \ApnsPHP_Abstract::ENVIRONMENT_SANDBOX : \ApnsPHP_Abstract::ENVIRONMENT_PRODUCTION,
+			$this->getCertificateFile($apns_certificate_file)
 		);
 
 		// Set the Provider Certificate passphrase
-		// $push->setProviderCertificatePassphrase('test');
+		if ($apns_certificate_pass) {
+			$push->setProviderCertificatePassphrase($apns_certificate_pass);
+		}
 
 		// Set the Root Certificate Autority to verify the Apple remote peer
 		// $push->setRootCertificationAuthority('entrust_root_certification_authority.pem');
@@ -103,6 +112,20 @@ class APNS {
 			'success' => $registrations->count() - $total_errors,
 			'errors' => $total_errors
 		);
+	}
+
+	/**
+	 * getCertificateFile
+	 * @param string $contents
+	 */
+	protected function getCertificateFile($contents) {
+		$filename = storage_dir() . '/' . md5($contents) . '.pem';
+
+		if (!file_exists($filename)) {
+			file_put_contents($filename, $contents);
+		}
+
+		return $filename;
 	}
 
 }

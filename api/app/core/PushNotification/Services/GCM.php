@@ -13,7 +13,11 @@ class GCM {
 	 * @param mixed $data
 	 */
 	public function push($registrations, $data) {
-		$gcm_access_key = models\AppConfig::get('push.gcm.access_key');
+		$gcm_access_key = models\AppConfig::get('push.gcm.access_key', false);
+
+		if (!$gcm_access_key) {
+			throw new \Exception("Please set 'push.gcm.access_key' value.");
+		}
 
 		$registration_ids = $registrations->map(function($registration) {
 			return $registration->device_id;
