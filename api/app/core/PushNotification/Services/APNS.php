@@ -52,9 +52,7 @@ class APNS {
 		}
 
 		// Set text
-		if ($data['text']) {
-			$message->setText($data['text']);
-		}
+		$message->setText($data['message']);
 
 		// Play the default sound
 		if (!isset($data['sound']) || empty($data['sound'])) {

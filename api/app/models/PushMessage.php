@@ -19,6 +19,10 @@ class PushMessage extends DynamicModel
 			// throw new \Exception("auth token is required to create push_messages.");
 		}
 
+		if (!$this->getAttribute('message')) {
+			throw new \Exception("Can't create PushMessage: 'message' is required.");
+		}
+
 		$this->setAttribute('delivered', 0);
 		$this->setAttribute('complete', false);
 		$this->beforeSave();
