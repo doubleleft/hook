@@ -1,9 +1,0 @@
-language: php
-php:
-  - 5.5
-  - 5.4
-  - hhvm
-
-before_script:
-  - make
-
