@@ -11,12 +11,6 @@ Installation
 Firstly, You need [node.js](http://nodejs.org/) installed for commandline
 support.
 
-If you don't have `composer` installed, you'll need it available globally:
-
-```bash
-curl -sS https://getcomposer.org/installer | php -d detect_unicode=Off -- --install-dir=/usr/local/bin --filename=composer
-```
-
 Now, clone [doubleleft/dl-api](https://github.com/doubleleft/dl-api.git) repository, cd into it and run `sudo make`:
 
 ```bash

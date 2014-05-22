@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "051866289e819658addec41999fc0f32",
+    "hash": "d5242059cfcb628ba075614786538166",
     "packages": [
         {
             "name": "aws/aws-sdk-php",
@@ -649,6 +649,44 @@
                 "dropbox"
             ],
             "time": "2014-01-28 23:22:03"
+        },
+        {
+            "name": "duccio/apns-php",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/duccio/ApnsPHP.git",
+                "reference": "c8d2067c916e8727fbc455b8646f60a1c25435af"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/duccio/ApnsPHP/zipball/c8d2067c916e8727fbc455b8646f60a1c25435af",
+                "reference": "c8d2067c916e8727fbc455b8646f60a1c25435af",
+                "shasum": ""
+            },
+            "require": {
+                "lib-openssl": "*",
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "ApnsPHP/Autoload.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "description": "Apple Push Notification & Feedback Provider",
+            "homepage": "https://github.com/duccio/ApnsPHP",
+            "keywords": [
+                "apns",
+                "apple",
+                "notification",
+                "push"
+            ],
+            "time": "2014-05-14 15:24:01"
         },
         {
             "name": "evenement/evenement",

@@ -8,8 +8,6 @@ namespace models;
  */
 class App extends \Core\Model
 {
-	protected $guarded = array();
-	protected $primaryKey = '_id';
 
 	public static function boot() {
 		parent::boot();
@@ -33,7 +31,7 @@ class App extends \Core\Model
 	 * @return \core\CollectionDelegator
 	 */
 	public static function collection($name) {
-		return new \core\CollectionDelegator($name, static::currentId(), Collection::from($name));
+		return new \core\CollectionDelegator($name, static::currentId());
 	}
 
 	public function keys() {

@@ -18,6 +18,8 @@ return array(
 			echo "{$config} removed successfully." . PHP_EOL;
 		}
 
+		echo '...' . PHP_EOL;
+
 		// Run 'config' command after config:add
 		$commands['config']['run']($args);
 	}
