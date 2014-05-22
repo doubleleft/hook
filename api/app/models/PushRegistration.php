@@ -11,6 +11,7 @@ class PushRegistration extends DynamicModel
 	// app_version: application version
 	// device_id: token/regid
 	// platform: platform name (ios / android / winrt)
+	// channels: array of channels the user is subscribed to
 
 	// Reference Fields (based on Parse.com: https://parse.com/docs/push_guide#top/Android)
 	// --------------------------------------------------------------------------

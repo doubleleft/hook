@@ -3,6 +3,7 @@ namespace PushNotification;
 
 class Notifier {
 
+	// Android currently supports 1000 registration_ids per request.
 	const MAX_RECIPIENTS_PER_REQUEST = 1000;
 
 	// available services

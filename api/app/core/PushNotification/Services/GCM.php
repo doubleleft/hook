@@ -5,7 +5,7 @@ namespace PushNotification\Services;
 // Reference: https://gist.github.com/prime31/5675017
 //
 
-class GCM {
+class GCM implements Service {
 
 	/**
 	 * push
