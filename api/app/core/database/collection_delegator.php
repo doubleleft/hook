@@ -24,14 +24,42 @@ class CollectionDelegator implements IteratorAggregate {
 	protected $query;
 
 	/**
+	 * is_collection
+	 * @var bool
+	 */
+	protected $is_collection;
+
+	/**
+	 * custom_collections
+	 * @var array
+	 */
+	static $custom_collections = array(
+		'push_messages' => 'models\\PushMessage',
+		'push_registrations' => 'models\\PushRegistration',
+	);
+
+	/**
 	 * Create a new CollectionDelegator instance.
 	 *
-	 * @param string $name name
+	 * @param string $name
+	 * @param string $app_id
 	 * @param Illuminate\Database\Query\Builder $query query
 	 */
-	public function __construct($name, $app_id, $query) {
+	public function __construct($name, $app_id) {
+		$is_collection = true;
+
+		$query = null;
+		if (isset(static::$custom_collections[$name])) {
+			echo "custom_collection: " . static::$custom_collections[$name] . PHP_EOL;
+			$query = call_user_func(array(static::$custom_collections[$name], 'query'));
+			$is_collection = false;
+		} else {
+			$query = \models\Collection::from($name);
+		}
+
 		$this->name = $name;
 		$this->app_id = $app_id;
+		$this->is_collection = $is_collection;
 		$this->query = $query->where('app_id', $app_id);
 	}
 
@@ -42,10 +70,16 @@ class CollectionDelegator implements IteratorAggregate {
 	 * @return \models\Collection
 	 */
 	public function create_new(array $attributes) {
-		return new \models\Collection(array_merge($attributes, array(
-			'table_name' => $this->name,
-			'app_id' => $this->app_id
-		)));
+		$attributes['app_id'] = $this->app_id;
+
+		if (!$this->is_collection) {
+			$klass = self::$custom_collections[$this->name];
+			return new $klass($attributes);
+
+		} else {
+			$attributes['table_name'] = $this->name;
+			return new \models\Collection($attributes);
+		}
 	}
 
 	/**
@@ -184,7 +218,7 @@ class CollectionDelegator implements IteratorAggregate {
 	 * @return \Illuminate\Database\Eloquent\Collection|static[]
 	 */
 	public function get($columns = array('*')) {
-		if ($this->query instanceof \Illuminate\Database\Eloquent\Builder) {
+		if ($this->is_collection) {
 			$this->query->setModel(new \models\Collection(array('table_name' => $this->name)));
 		} else if ($this->query instanceof \Illuminate\Database\Query\Builder) {
 			$this->query->from($this->name);
@@ -210,6 +244,14 @@ class CollectionDelegator implements IteratorAggregate {
 		return $this->query->get($columns)->toJson();
 	}
 
+	protected function fireEvent($event, $payload) {
+		$dispatcher = \models\Collection::getEventDispatcher();
+		if (!$dispatcher) return true;
+
+		$event = "eloquent.{$event}: ".$this->name;
+		return $dispatcher->until($event, $payload);
+	}
+
 	/**
 	 * Handle Illuminate\Database\Query\Builder methods.
 	 *
@@ -224,14 +266,6 @@ class CollectionDelegator implements IteratorAggregate {
 		} else {
 			return $mixed;
 		}
-	}
-
-	protected function fireEvent($event, $payload) {
-		$dispatcher = \models\Collection::getEventDispatcher();
-		if (!$dispatcher) return true;
-
-		$event = "eloquent.{$event}: ".$this->name;
-		return $dispatcher->until($event, $payload);
 	}
 
 }
