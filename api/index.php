@@ -377,7 +377,7 @@ $app->group('/push', function() use ($app) {
 	 */
 	$app->get('/notify', function() use ($app) {
 		if (!$app->request->headers->get('X-Scheduled-Task')) {
-			// throw new Exception("You can't do that.");
+			throw new Exception("Oops.");
 		}
 
 		$notifier = new PushNotification\Notifier();

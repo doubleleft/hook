@@ -1,7 +1,7 @@
 <?php
 namespace PushNotification\Services;
 
-class APNS {
+class APNS implements Service {
 
 	/**
 	 * push
