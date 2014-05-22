@@ -510,9 +510,10 @@ $app->group('/apps', function() use ($app) {
 		$app->content = ($module) ? $module->update($data) : models\Module::create($data);
 	});
 
-	$app->delete('/modules/:name', function($name) use ($app) {
+	$app->delete('/modules', function($name) use ($app) {
+		$data = $app->request->post('module');
 		$deleted = models\Module::where('app_id', $app->key->app_id)->
-			where('name', $name)->
+			where('name', $data['name'])->
 			delete();
 		$app->content = array('success' => $deleted);
 	});
