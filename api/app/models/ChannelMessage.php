@@ -24,9 +24,9 @@ class ChannelMessage extends DynamicModel {
 		}
 
 		// Fill auth_id on message if there is a user authenticated.
-		$app = \Slim\Slim::getInstance();
-		if ($app->auth_token) {
-			$this->setAttribute('auth_id', $app->auth_token->auth_id);
+		$auth = AuthToken::current();
+		if ($auth) {
+			$this->setAttribute('auth_id', $auth->auth_id);
 		}
 
 		parent::beforeSave();
