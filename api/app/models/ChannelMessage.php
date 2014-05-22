@@ -8,29 +8,38 @@ namespace models;
  * @author Endel Dreyer <endel.dreyer@gmail.com>
  */
 class ChannelMessage extends DynamicModel {
-	const EVENT_CONNECT = 'connected';
+	const EVENT_CONNECTED = 'connected';
 
 	protected $table = 'channel_messages';
+
+	public static function boot() {
+		parent::boot();
+		static::creating(function($model) { $model->beforeCreate(); });
+	}
 
 	public function app() {
 		return $this->belongsTo('models\App');
 	}
 
-	public function beforeSave() {
+	public function beforeCreate() {
 		// Check if a CONNECT message is being created, to
 		// generate a unique client_id.
-		if (!$this->_id && $this->getAttribute('event') && $this->event == self::EVENT_CONNECT) {
+		if ($this->getAttribute('event') && $this->event == self::EVENT_CONNECTED) {
 			$this->setAttribute('client_id', uniqid());
+			$this->beforeSave();
 		}
+	}
 
+	public function beforeSave() {
+		//
 		// Fill auth_id on message if there is a user authenticated.
-		$app = \Slim\Slim::getInstance();
-		if ($app->auth_token) {
-			$this->setAttribute('auth_id', $app->auth_token->auth_id);
+		//
+		$auth_token = AuthToken::current();
+		if ($auth_token) {
+			$this->setAttribute('auth_id', $auth_token->auth_id);
 		}
 
 		parent::beforeSave();
 	}
-
 
 }
