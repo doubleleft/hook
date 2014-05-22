@@ -362,7 +362,7 @@ $app->group('/push', function() use ($app) {
 	/**
 	 * POST /push/registration
 	 */
-	$app->post('/registration', function() {
+	$app->post('/registration', function() use ($app) {
 		$data = $app->request->post('d') ?: $app->request->post('data') ?: $app->request->post();
 		return models\PushRegistration::create(array_merge($data, array('app_id' => $app->key->app_id)));
 	});
@@ -370,7 +370,7 @@ $app->group('/push', function() use ($app) {
 	/**
 	 * DELETE /push/registration
 	 */
-	$app->delete('/registration', function() {
+	$app->delete('/registration', function() use ($app) {
 		$data = $app->request->post('d') ?: $app->request->post('data') ?: $app->request->post();
 		return models\PushRegistration::create(array_merge($data, array('app_id' => $app->key->app_id)));
 	});
