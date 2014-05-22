@@ -13,8 +13,6 @@ class Auth extends Collection
 	const FORGOT_PASSWORD_EXPIRATION_FIELD = 'forgot_password_expiration';
 	const FORGOT_PASSWORD_EXPIRATION_TIME = 14400; // (60 * 60 * 4) = 4 hours
 
-	protected $guarded = array();
-	protected $primaryKey = '_id';
 	protected $table = 'auth';
 
 	static $_current = null;

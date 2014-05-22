@@ -1,5 +1,4 @@
 <?php
-
 namespace models;
 
 /**
@@ -8,11 +7,9 @@ namespace models;
  * @uses Collection
  * @author Endel Dreyer <endel.dreyer@gmail.com>
  */
-class ChannelMessage extends Collection {
+class ChannelMessage extends DynamicModel {
 	const EVENT_CONNECT = 'connected';
 
-	protected $guarded = array();
-	protected $primaryKey = '_id';
 	protected $table = 'channel_messages';
 
 	public function app() {

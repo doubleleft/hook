@@ -10,9 +10,7 @@ class AuthToken extends \Core\Model {
 
 	const EXPIRATION = 24; // hours
 
-	protected $table = 'auth_tokens';
-	protected $guarded = array();
-	protected $primaryKey = '_id';
+	// protected $table = 'auth_tokens';
 	public $timestamps = false;
 
 	static $_current = null;

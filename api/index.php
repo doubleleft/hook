@@ -359,8 +359,35 @@ $app->group('/files', function() use($app) {
  * Push Notifications / Installations
  */
 $app->group('/push', function() use ($app) {
-	$app->post('/register', function() {
+	/**
+	 * POST /push/registration
+	 */
+	$app->post('/registration', function() {
+		$data = $app->request->post('d') ?: $app->request->post('data') ?: $app->request->post();
+		return models\PushRegistration::create(array_merge($data, array('app_id' => $app->key->app_id)));
 	});
+
+	/**
+	 * DELETE /push/registration
+	 */
+	$app->delete('/registration', function() {
+		$data = $app->request->post('d') ?: $app->request->post('data') ?: $app->request->post();
+		return models\PushRegistration::create(array_merge($data, array('app_id' => $app->key->app_id)));
+	});
+
+	/**
+	 * GET /notify
+	 */
+	$app->get('/notify', function() use ($app) {
+		if (!$app->request->headers->get('X-Scheduled-Task')) {
+			throw new Exception("Oops.");
+		}
+
+		$notifier = new PushNotification\Notifier();
+		$messages = models\App::collection('push_messages')->where('complete', false);
+		$app->content = $notifier->push_messages($messages);
+	});
+
 });
 
 /**
