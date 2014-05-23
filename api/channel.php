@@ -69,7 +69,16 @@ class PubSubServer implements WampServerInterface {
 		if ($handler) {
 			call_user_func_array(array($handler, 'onPublish'), func_get_args());
 		} else {
-			$topic->broadcast($event);
+
+			// By default exclude / eligible message to clients
+			// --------------------------------------------
+			foreach($topic->getIterator() as $conn) {
+				$is_excluded = !in_array($conn->WAMP->sessionId, $exclude);
+				$is_eligible = count($eligible) === 0 || in_array($conn->WAMP->sessionId, $eligible);
+				if ($is_excluded && $is_eligible) {
+					$conn->event($topic, $event);
+				}
+			}
 		}
 	}
 
