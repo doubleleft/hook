@@ -1,5 +1,6 @@
 <VirtualHost *:80>
   DocumentRoot %TRAVIS_BUILD_DIR%
+  DirectoryIndex index.php
 
   <Directory "%TRAVIS_BUILD_DIR%">
     Options FollowSymLinks MultiViews ExecCGI
