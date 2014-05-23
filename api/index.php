@@ -55,7 +55,7 @@ $app->group('/collection', function () use ($app) {
 
 		// Check for base64-encoded files
 		foreach($data as $key => $value){
-			if (is_string($value) && preg_match('/^data:[a-z]+\/[a-z]+;base64,/', $value)){
+			if (models\File::base64($value)){
 				$attached_files[$key] = $value;
 			}
 		}
