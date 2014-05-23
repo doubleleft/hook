@@ -7,8 +7,18 @@
 class {name} implements Ratchet\Wamp\WampServerInterface {
 
 	public function onPublish(Ratchet\ConnectionInterface $conn, $topic, $message, array $exclude, array $eligible) {
-		// Broadcast message to all subscribers
-		$topic->broadcast($message);
+		// // Broadcast message to all subscribers
+		// $topic->broadcast($message);
+
+		// Filter excluded/eligible clients
+		foreach($topic->getIterator() as $conn) {
+			$is_excluded = !in_array($conn->WAMP->sessionId, $exclude);
+			$is_eligible = count($eligible) === 0 || in_array($conn->WAMP->sessionId, $eligible);
+			if ($is_excluded && $is_eligible) {
+				$conn->event($topic, $event);
+			}
+		}
+
 	}
 
 	public function onSubscribe(Ratchet\ConnectionInterface $conn, $topic) {
