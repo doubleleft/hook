@@ -7,7 +7,7 @@ namespace models;
  * @uses Collection
  * @author Endel Dreyer <endel.dreyer@gmail.com>
  */
-class ChannelMessage extends DynamicModel {
+class ChannelMessage extends Collection {
 	const EVENT_CONNECTED = 'connected';
 
 	protected $table = 'channel_messages';
