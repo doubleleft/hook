@@ -31,11 +31,14 @@ class PubSubServer implements WampServerInterface {
 		$app = \Slim\Slim::getInstance();
 		$credentials = $conn->WebSocket->request->getQuery()->toArray();
 
-		// set x-auth-token
-		if (isset($credentials['X-Auth-Token'])) {
-			$app->request->headers->set('X-Auth-Token', $credentials['X-Auth-Token']);
-			unset($credentials['X-Auth-Token']);
-		}
+		//
+		// Aparently, this doesn't work as expected.
+		//
+		// // set x-auth-token
+		// if (isset($credentials['X-Auth-Token'])) {
+		// 	$app->request->headers->set('X-Auth-Token', $credentials['X-Auth-Token']);
+		// 	unset($credentials['X-Auth-Token']);
+		// }
 
 		// remove "/" and possible "ws/" from resource path
 		$resource = str_replace("ws/", "", substr($conn->WebSocket->request->getPath(), 1));
@@ -71,10 +74,10 @@ class PubSubServer implements WampServerInterface {
 			call_user_func_array(array($handler, 'onPublish'), func_get_args());
 		} else {
 
-			// Append auth_id if a logged user is the publisher
-			if ($token = models\AuthToken::current()) {
-				$event['auth_id'] = $token->auth_id;
-			}
+			// // Append auth_id if a logged user is the publisher
+			// if ($token = models\AuthToken::current()) {
+			// 	$event['auth_id'] = $token->auth_id;
+			// }
 
 			// By default exclude / eligible message to clients
 			// --------------------------------------------
