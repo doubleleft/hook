@@ -66,9 +66,15 @@ class PubSubServer implements WampServerInterface {
 
 	public function onPublish(ConnectionInterface $conn, $topic, $event, array $exclude, array $eligible) {
 		$handler = $this->getHandler($conn);
+
 		if ($handler) {
 			call_user_func_array(array($handler, 'onPublish'), func_get_args());
 		} else {
+
+			// Append auth_id if a logged user is the publisher
+			if ($token = AuthToken::current()) {
+				$event['auth_id'] = $token->auth_id;
+			}
 
 			// By default exclude / eligible message to clients
 			// --------------------------------------------
