@@ -364,7 +364,7 @@ $app->group('/push', function() use ($app) {
 	 */
 	$app->post('/registration', function() use ($app) {
 		$data = $app->request->post('d') ?: $app->request->post('data') ?: $app->request->post();
-		return models\PushRegistration::create(array_merge($data, array('app_id' => $app->key->app_id)));
+		$app->content = models\PushRegistration::create(array_merge($data, array('app_id' => $app->key->app_id)));
 	});
 
 	/**
@@ -372,7 +372,12 @@ $app->group('/push', function() use ($app) {
 	 */
 	$app->delete('/registration', function() use ($app) {
 		$data = $app->request->post('d') ?: $app->request->post('data') ?: $app->request->post();
-		return models\PushRegistration::create(array_merge($data, array('app_id' => $app->key->app_id)));
+		if (!isset($data['device_id'])) {
+			throw new \Exception("'device_id' is required to delete push registration.");
+		}
+		$registration = models\PushRegistration::where('app_id', $app->key->app_id)
+			->where('device_id', $data['device_id']);
+		$app->content = array('success' => ($registration->delete() == 1));
 	});
 
 	/**
@@ -380,7 +385,7 @@ $app->group('/push', function() use ($app) {
 	 */
 	$app->get('/notify', function() use ($app) {
 		if (!$app->request->headers->get('X-Scheduled-Task')) {
-			throw new Exception("Oops.");
+			throw new \Exception("Oops.");
 		}
 
 		$notifier = new PushNotification\Notifier();
