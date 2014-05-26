@@ -72,7 +72,7 @@ class PubSubServer implements WampServerInterface {
 		} else {
 
 			// Append auth_id if a logged user is the publisher
-			if ($token = AuthToken::current()) {
+			if ($token = models\AuthToken::current()) {
 				$event['auth_id'] = $token->auth_id;
 			}
 
