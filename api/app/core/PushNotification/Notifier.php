@@ -56,7 +56,7 @@ class Notifier {
 		foreach(static::getPlatformServices() as $platform => $service_klass) {
 			$service = new $service_klass();
 			$query = \models\App::collection('push_registrations')->where('platform', $platform);
-			$query->chunk(self::MAX_RECIPIENTS_PER_REQUEST, function($registrations) use (&$service, &$status, $message) {
+			$query->chunk(self::MAX_RECIPIENTS_PER_REQUEST, function($registrations) use (&$platform, &$service, &$status, $message) {
 				try {
 					$chunk_status = $service->push($registrations, $message);
 					$status['success'] += $chunk_status['success'];
