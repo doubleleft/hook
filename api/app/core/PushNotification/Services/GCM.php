@@ -49,7 +49,9 @@ class GCM implements Service {
 			'data' => $payload
 		), array(
 			'exceptions' => false
-		));
+		))->json();
+
+		debug($response);
 
 		var_dump($response);
 		return true;
