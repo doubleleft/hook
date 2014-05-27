@@ -389,7 +389,7 @@ $app->group('/push', function() use ($app) {
 		}
 
 		$notifier = new PushNotification\Notifier();
-		$messages = models\App::collection('push_messages')->where('complete', false);
+		$messages = models\App::collection('push_messages')->where('status', 0);
 		$app->content = $notifier->push_messages($messages);
 	});
 

@@ -23,8 +23,9 @@ class PushMessage extends DynamicModel
 			throw new \Exception("Can't create PushMessage: 'message' is required.");
 		}
 
-		$this->setAttribute('delivered', 0);
-		$this->setAttribute('complete', false);
+		$this->setAttribute('status', 0);
+		$this->setAttribute('devices', 0);
+        $this->setAttribute('devices_errors', 0);
 		$this->beforeSave();
 	}
 
