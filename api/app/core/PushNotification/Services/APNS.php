@@ -32,7 +32,7 @@ class APNS implements Service {
 		}
 
 		// Set the Root Certificate Autority to verify the Apple remote peer
-		// $push->setRootCertificationAuthority('entrust_root_certification_authority.pem');
+		$push->setRootCertificationAuthority($this->getRootCertificationAuthority());
 
 		// Connect to the Apple Push Notification Service
 		$push->connect();
@@ -123,6 +123,16 @@ class APNS implements Service {
 
 		if (!file_exists($filename)) {
 			file_put_contents($filename, $contents);
+		}
+
+		return $filename;
+	}
+
+	protected function getRootCertificationAuthority() {
+		$filename = storage_dir() . '/' . md5('entrust_2048_ca') . '.cer';
+
+		if (!file_exists($filename)) {
+			file_put_contents($filename, file_get_contents('https://www.entrust.net/downloads/binary/entrust_2048_ca.cer'));
 		}
 
 		return $filename;
