@@ -13,8 +13,10 @@ class Notifier {
 	);
 
 	public function push_messages($messages) {
-		$messages->update(array("status" => \models\PushMessage::STATUS_SENDING)); //lock messages
 		$messages = $messages->get();
+
+		//lock messages
+		$messages->update(array("status" => \models\PushMessage::STATUS_SENDING));
 
 		// Count total devices available to deliver
 		$devices = \models\App::collection('push_registrations')->
