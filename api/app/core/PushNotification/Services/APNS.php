@@ -1,6 +1,13 @@
 <?php
 namespace PushNotification\Services;
 
+class APNSLogger implements \ApnsPHP_Log_Interface {
+	public function log($message) {
+		$app = \Slim\Slim::getInstance();
+		$app->log->info($message);
+	}
+}
+
 class APNS implements Service {
 
 	/**
@@ -18,13 +25,16 @@ class APNS implements Service {
 		}
 
 		$app = \Slim\Slim::getInstance();
-		$total_errors = 0;
+		$total_failure = 0;
 
 		// Instantiate a new ApnsPHP_Push object
 		$push = new \ApnsPHP_Push(
 			($apns_environment == 'sandbox') ? \ApnsPHP_Abstract::ENVIRONMENT_SANDBOX : \ApnsPHP_Abstract::ENVIRONMENT_PRODUCTION,
 			$this->getCertificateFile($apns_certificate_file)
 		);
+
+		// set custom logger
+		$push->setLogger(new APNSLogger());
 
 		// Set the Provider Certificate passphrase
 		if ($apns_certificate_pass) {
@@ -45,15 +55,19 @@ class APNS implements Service {
 				$message->addRecipient($registration->device_id);
 			} catch (\ApnsPHP_Message_Exception $e) {
 				$app->log->info($e->getMessage());
-				$total_errors +=1;
+				$total_failure +=1;
 			}
 		}
+
+		debug("Recipients => " . json_encode($message->getRecipients()));
 
 		// Set a custom identifier. To get back this identifier use the getCustomIdentifier() method
 		// over a ApnsPHP_Message object retrieved with the getErrors() message.
 		if (isset($data['custom_identifier'])) {
 			$message->setCustomIdentifier($data['custom_identifier']);
 		}
+
+		// $data['badge'] = $data['badge'] ?: 1;
 
 		// Set badge icon to "3"
 		if (is_int($data['badge'])) {
@@ -90,7 +104,7 @@ class APNS implements Service {
 		$push->add($message);
 
 		// Send all messages in the message queue
-		$push->send();
+		$stats = $push->send();
 
 		// Disconnect from the Apple Push Notification Service
 		$push->disconnect();
@@ -100,17 +114,17 @@ class APNS implements Service {
 
 		// Log delivery status
 		$errors = $push->getErrors();
-		$total_errors += count($errors);
+		$total_failure += count($errors);
 
-		if ($total_errors > 0) {
+		if ($total_failure > 0) {
 			foreach($errors as $error) {
 				$app->log->info($errors);
 			}
 		}
 
 		return array(
-			'success' => $registrations->count() - $total_errors,
-			'errors' => $total_errors
+			'success' => $registrations->count() - $total_failure,
+			'failure' => $total_failure
 		);
 	}
 
@@ -125,7 +139,7 @@ class APNS implements Service {
 			file_put_contents($filename, $contents);
 		}
 
-		return $filename;
+		return realpath($filename);
 	}
 
 	protected function getRootCertificationAuthority() {
@@ -135,7 +149,7 @@ class APNS implements Service {
 			file_put_contents($filename, file_get_contents('https://www.entrust.net/downloads/binary/entrust_2048_ca.cer'));
 		}
 
-		return $filename;
+		return realpath($filename);
 	}
 
 }
