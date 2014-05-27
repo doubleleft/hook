@@ -5,6 +5,10 @@ class Notifier {
 
 	// Android currently supports 1000 registration_ids per request.
 	const MAX_RECIPIENTS_PER_REQUEST = 1000;
+    const STATUS_QUEUE = 0;
+    const STATUS_ERROR = 1;
+    const STATUS_SENDING = 2;
+    const STATUS_SENT = 3;
 
 	// available services
 	static $services = array(
@@ -13,6 +17,7 @@ class Notifier {
 	);
 
 	public function push_messages($messages) {
+        $messages->update(array("status" => STATUS_SENDING)); //lock messages
 		$messages = $messages->get();
 
 		// Count total devices available to deliver
@@ -33,6 +38,11 @@ class Notifier {
 			$status = $this->push($message->toArray());
 			$statuses['success'] += $status['success'];
 			$statuses['errors'] += $status['errors'];
+            $message->update(array(
+                'devices' => $statuses['devices'],
+                'devices_errors' => $status['errors'],
+                'status' => STATUS_SENT
+            ));
 		}
 
 		return $statuses;
