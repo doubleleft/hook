@@ -49,7 +49,7 @@ class GCM implements Service {
 			'data' => $payload
 		), array(
 			'exceptions' => false
-		))->json();
+		))->send()->json();
 
 		debug($response);
 
