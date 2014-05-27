@@ -12,11 +12,11 @@ class Notifier {
 		'android' => 'PushNotification\\Services\\GCM'
 	);
 
-	public function push_messages($messages) {
-		$messages = $messages->get();
+	public function push_messages($query) {
+		$messages = $query->get();
 
 		//lock messages
-		$messages->update(array("status" => \models\PushMessage::STATUS_SENDING));
+		$query->update(array("status" => \models\PushMessage::STATUS_SENDING));
 
 		// Count total devices available to deliver
 		$devices = \models\App::collection('push_registrations')->
