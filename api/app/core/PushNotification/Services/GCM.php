@@ -23,6 +23,8 @@ class GCM implements Service {
 			return $registration->device_id;
 		});
 
+		debug("registration_ids => " . json_encode($registration_ids));
+
 		// Payload data
 		$payload = array (
 			'message' => $data['message'],
