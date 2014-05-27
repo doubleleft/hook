@@ -67,8 +67,6 @@ class APNS implements Service {
 			$message->setCustomIdentifier($data['custom_identifier']);
 		}
 
-		// $data['badge'] = $data['badge'] ?: 1;
-
 		// Set badge icon to "3"
 		if (isset($data['badge']) && is_int($data['badge'])) {
 			$message->setBadge((int)$data['badge']);
