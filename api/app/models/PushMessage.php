@@ -5,6 +5,11 @@ class PushMessage extends DynamicModel
 {
 	protected $table = 'push_messages';
 
+	const STATUS_QUEUE = 0;
+	const STATUS_ERROR = 1;
+	const STATUS_SENDING = 2;
+	const STATUS_SENT = 3;
+
 	public static function boot() {
 		parent::boot();
 		static::creating(function($model) { $model->beforeCreate(); });
@@ -23,9 +28,9 @@ class PushMessage extends DynamicModel
 			throw new \Exception("Can't create PushMessage: 'message' is required.");
 		}
 
-		$this->setAttribute('status', 0);
+		$this->setAttribute('status', self::STATUS_QUEUE);
 		$this->setAttribute('devices', 0);
-        $this->setAttribute('devices_errors', 0);
+		$this->setAttribute('devices_errors', 0);
 		$this->beforeSave();
 	}
 
