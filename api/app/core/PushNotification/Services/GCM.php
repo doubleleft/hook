@@ -19,11 +19,15 @@ class GCM implements Service {
 			throw new \Exception("Please set 'push.gcm.access_key' value.");
 		}
 
-		$registration_ids = $registrations->map(function($registration) {
-			return $registration->device_id;
-		});
+		$registration_ids = array();
+		foreach($registrations as $registration) {
+			array_push($registration_ids, $registration['device_id']);
+		}
 
-		debug("registration_ids => " . json_encode($registration_ids));
+		// Nobody registeted. Return 0 statuses
+		if (empty($registration_ids)) {
+			return array('success' => 0, 'failure' => 0);
+		}
 
 		// Payload data
 		$payload = array (
@@ -46,17 +50,17 @@ class GCM implements Service {
 		$response = $client->post('/gcm/send', array(
 			'Authorization' => 'key=' . $gcm_access_key,
 			'Content-Type' => 'application/json'
-		), array(
+		), json_encode(array(
 			'registration_ids' => $registration_ids,
 			'data' => $payload
-		), array(
+		)), array(
 			'exceptions' => false
-		))->send();
+		))->send()->json();
 
-		debug($response->getBody());
-
-		var_dump($response);
-		return true;
+		return array(
+			'success' => $response['success'],
+			'failure' => $response['failure'],
+		);
 	}
 
 }

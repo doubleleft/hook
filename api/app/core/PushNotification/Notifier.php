@@ -27,7 +27,7 @@ class Notifier {
 			'push_messages' => $messages->count(),
 			'devices' => $devices,
 			'success' => 0,
-			'errors' => 0
+			'failure' => 0
 		);
 
 		debug("PushNotification: pushing {$statuses['push_messages']} message(s) to {$statuses['devices']} devices.");
@@ -35,10 +35,10 @@ class Notifier {
 		foreach($messages as $message) {
 			$status = $this->push($message->toArray());
 			$statuses['success'] += $status['success'];
-			$statuses['errors'] += $status['errors'];
+			$statuses['failure'] += $status['failure'];
 			$message->update(array(
 				'devices' => $statuses['devices'],
-				'devices_errors' => $status['errors'],
+				'failure' => $status['failure'],
 				'status' => \models\PushMessage::STATUS_SENT
 			));
 		}
@@ -51,7 +51,7 @@ class Notifier {
 	 * @param models\PushMessage $message
 	 */
 	public function push($message) {
-		$status = array('success' => 0, 'errors' => 0);
+		$status = array('success' => 0, 'failure' => 0);
 
 		foreach(static::getPlatformServices() as $platform => $service_klass) {
 			$service = new $service_klass();
@@ -60,7 +60,7 @@ class Notifier {
 				try {
 					$chunk_status = $service->push($registrations, $message);
 					$status['success'] += $chunk_status['success'];
-					$status['errors'] += $chunk_status['errors'];
+					$status['failure'] += $chunk_status['failure'];
 				} catch (\Exception $e) {
 					debug("PushNotification: platform: {$platform} -> {$e->getMessage()}");
 				}

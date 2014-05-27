@@ -30,7 +30,7 @@ class PushMessage extends DynamicModel
 
 		$this->setAttribute('status', self::STATUS_QUEUE);
 		$this->setAttribute('devices', 0);
-		$this->setAttribute('devices_errors', 0);
+		$this->setAttribute('failure', 0);
 		$this->beforeSave();
 	}
 
