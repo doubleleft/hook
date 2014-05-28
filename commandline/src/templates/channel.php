@@ -15,7 +15,7 @@ class {name} implements Ratchet\Wamp\WampServerInterface {
 			$is_excluded = !in_array($conn->WAMP->sessionId, $exclude);
 			$is_eligible = count($eligible) === 0 || in_array($conn->WAMP->sessionId, $eligible);
 			if ($is_excluded && $is_eligible) {
-				$conn->event($topic, $event);
+				$conn->event($topic, $message);
 			}
 		}
 
