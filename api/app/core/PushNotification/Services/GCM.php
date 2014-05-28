@@ -57,6 +57,11 @@ class GCM implements Service {
 			'exceptions' => false
 		))->send()->json();
 
+		// Log results
+		if (isset($response['results'])) {
+			debug("PushNotification: GCM -> " . json_encode($response['results']));
+		}
+
 		return array(
 			'success' => $response['success'],
 			'failure' => $response['failure'],
