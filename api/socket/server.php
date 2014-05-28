@@ -15,7 +15,7 @@ $_SERVER['REQUEST_URI'] = '';
 $_SERVER['SERVER_NAME'] = 'websocket';
 $_SERVER['SERVER_PORT'] = 80;
 
-require __DIR__ . '/app/bootstrap.php';
+require __DIR__ . '/../app/bootstrap.php';
 
 use Ratchet\ConnectionInterface;
 use Ratchet\Wamp\WampServerInterface;
