@@ -57,7 +57,7 @@ And you may also need to setup a socket policy server:
 perl -Tw api/socket/flash_socketpolicy.pl
 ```
 
-Its is set to listen on port 8430 in order to be able to run it as an unprivileged user, but as the script needs to bind in port 843 we can forward ports.
+Its set to listen on port 8430 in order to be able to run it as an unprivileged user, but as the script needs to bind in port 843 we can forward ports.
 
 With iptables we can apply the following rule (of curse with `sudo` or as `root` user):
 
