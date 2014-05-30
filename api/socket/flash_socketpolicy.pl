@@ -30,7 +30,7 @@ if ($should_be_logging) {
     LOG->autoflush(1);
 }
 
-my $port = 843;
+my $port = 8430;
 my $proto = getprotobyname('tcp');
 
 #my $bindip = 0.0.0.0;    # If you want to bind a particular IP, do it here.
