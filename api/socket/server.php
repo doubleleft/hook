@@ -34,11 +34,11 @@ class PubSubServer implements WampServerInterface {
 		//
 		// Aparently, this doesn't work as expected.
 		//
-		// // set x-auth-token
-		// if (isset($credentials['X-Auth-Token'])) {
-		// 	$app->request->headers->set('X-Auth-Token', $credentials['X-Auth-Token']);
-		// 	unset($credentials['X-Auth-Token']);
-		// }
+		// set x-auth-token
+		if (isset($credentials['X-Auth-Token'])) {
+			$app->request->headers->set('X-Auth-Token', $credentials['X-Auth-Token']);
+			unset($credentials['X-Auth-Token']);
+		}
 
 		// remove "/" and possible "ws/" from resource path
 		$resource = str_replace("ws/", "", substr($conn->WebSocket->request->getPath(), 1));
@@ -107,6 +107,9 @@ class PubSubServer implements WampServerInterface {
 
 	public function onOpen(ConnectionInterface $conn) {
 		$handler = $this->getHandler($conn);
+
+		// var_dump($conn->)
+
 		if ($handler) {
 			call_user_func_array(array($handler, 'onOpen'), func_get_args());
 		}
