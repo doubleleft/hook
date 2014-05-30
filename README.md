@@ -16,7 +16,7 @@ Now, clone [doubleleft/dl-api](https://github.com/doubleleft/dl-api.git) reposit
 ```bash
 git clone https://github.com/doubleleft/dl-api.git
 cd dl-api
-sudo make
+make
 ```
 
 Configuration
@@ -41,3 +41,32 @@ For client specific documentation:
 - [Android](https://github.com/doubleleft/dl-api-android) (_docs missing_)
 - [iOS](https://github.com/doubleleft/dl-api-ios) (_docs missing_)
 - [C++](https://github.com/doubleleft/dl-api-cpp) (_docs missing_)
+
+Websocket
+---
+
+For the websocket itself:
+
+```bash
+php api/socket/server.php
+```
+
+And you may also need to setup a socket policy server:
+
+```bash
+perl -Tw api/socket/flash_socketpolicy.pl
+```
+
+Its set to listen on port 8430 in order to be able to run it as an unprivileged user, but as the script needs to bind in port 843 we can forward ports.
+
+With iptables we can apply the following rule (of curse with `sudo` or as `root` user):
+
+```bash
+sudo iptables -t nat -A PREROUTING -p tcp --dport 843 -j REDIRECT --to-port 8430
+```
+
+Or with ipfw on Mac OS X:
+```bash
+sudo ipfw add 100 fwd 127.0.0.1,8430 tcp from any to me 843 in
+```
+
