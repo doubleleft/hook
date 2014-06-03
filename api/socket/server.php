@@ -20,6 +20,18 @@ require __DIR__ . '/../app/bootstrap.php';
 use Ratchet\ConnectionInterface;
 use Ratchet\Wamp\WampServerInterface;
 
+class Socket {
+	private static $loop;
+
+	public static function getLoop() {
+		return static::$loop;
+	}
+
+	public static function setLoop(&$loop) {
+		static::$loop = $loop;
+	}
+}
+
 class PubSubServer implements WampServerInterface {
 	private $handlers;
 
@@ -132,6 +144,7 @@ class PubSubServer implements WampServerInterface {
 
  // Set up our WebSocket server for clients wanting real-time updates
 $loop = React\EventLoop\Factory::create();
+Socket::setLoop($loop);
 
 $socket_server = new React\Socket\Server($loop);
 $socket_server->listen(8080, '0.0.0.0'); // Binding to 0.0.0.0 means remotes can connect
