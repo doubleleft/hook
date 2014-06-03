@@ -20,18 +20,6 @@ require __DIR__ . '/../app/bootstrap.php';
 use Ratchet\ConnectionInterface;
 use Ratchet\Wamp\WampServerInterface;
 
-class Socket {
-	private static $loop;
-
-	public static function getLoop() {
-		return static::$loop;
-	}
-
-	public static function setLoop(&$loop) {
-		static::$loop = $loop;
-	}
-}
-
 class PubSubServer implements WampServerInterface {
 	private $handlers;
 
@@ -51,10 +39,14 @@ class PubSubServer implements WampServerInterface {
 			$app->request->headers->set('X-Auth-Token', $credentials['X-Auth-Token']);
 			unset($credentials['X-Auth-Token']);
 		}
+		var_dump($credentials);
 
 		// remove "/" and possible "ws/" from resource path
 		$resource = str_replace("ws/", "", substr($conn->WebSocket->request->getPath(), 1));
 		$hash = md5($resource . join(",", array_values($credentials)));
+
+		var_dump($resource);
+		var_dump($hash);
 
 		if (!isset($this->handlers[$hash])) {
 			if ($key = models\AppKey::where('app_id', $credentials['X-App-Id'])
@@ -68,6 +60,8 @@ class PubSubServer implements WampServerInterface {
 					}
 			}
 		}
+
+		var_dump((isset($this->handlers[$hash])));
 
 		return (isset($this->handlers[$hash])) ? $this->handlers[$hash] : null;
 	}
@@ -120,8 +114,6 @@ class PubSubServer implements WampServerInterface {
 	public function onOpen(ConnectionInterface $conn) {
 		$handler = $this->getHandler($conn);
 
-		// var_dump($conn->)
-
 		if ($handler) {
 			call_user_func_array(array($handler, 'onOpen'), func_get_args());
 		}
@@ -142,9 +134,19 @@ class PubSubServer implements WampServerInterface {
 	}
 }
 
- // Set up our WebSocket server for clients wanting real-time updates
+class Channel {
+	private static $loop;
+	public static function getLoop() {
+		return static::$loop;
+	}
+	public static function setLoop(&$loop) {
+		static::$loop = $loop;
+	}
+}
+
+// Set up our WebSocket server for clients wanting real-time updates
 $loop = React\EventLoop\Factory::create();
-Socket::setLoop($loop);
+Channel::setLoop($loop);
 
 $socket_server = new React\Socket\Server($loop);
 $socket_server->listen(8080, '0.0.0.0'); // Binding to 0.0.0.0 means remotes can connect
