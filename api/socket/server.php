@@ -39,14 +39,10 @@ class PubSubServer implements WampServerInterface {
 			$app->request->headers->set('X-Auth-Token', $credentials['X-Auth-Token']);
 			unset($credentials['X-Auth-Token']);
 		}
-		var_dump($credentials);
 
 		// remove "/" and possible "ws/" from resource path
 		$resource = str_replace("ws/", "", substr($conn->WebSocket->request->getPath(), 1));
 		$hash = md5($resource . join(",", array_values($credentials)));
-
-		var_dump($resource);
-		var_dump($hash);
 
 		if (!isset($this->handlers[$hash])) {
 			if ($key = models\AppKey::where('app_id', $credentials['X-App-Id'])
