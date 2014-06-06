@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "d5242059cfcb628ba075614786538166",
+    "hash": "7c68d80557d45b6dd93862899333e361",
     "packages": [
         {
             "name": "aws/aws-sdk-php",
@@ -656,12 +656,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/duccio/ApnsPHP.git",
-                "reference": "c8d2067c916e8727fbc455b8646f60a1c25435af"
+                "reference": "e3129bfcfbe55e2fa762db697541bc606d23c90f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/duccio/ApnsPHP/zipball/c8d2067c916e8727fbc455b8646f60a1c25435af",
-                "reference": "c8d2067c916e8727fbc455b8646f60a1c25435af",
+                "url": "https://api.github.com/repos/duccio/ApnsPHP/zipball/e3129bfcfbe55e2fa762db697541bc606d23c90f",
+                "reference": "e3129bfcfbe55e2fa762db697541bc606d23c90f",
                 "shasum": ""
             },
             "require": {
@@ -686,7 +686,7 @@
                 "notification",
                 "push"
             ],
-            "time": "2014-05-14 15:24:01"
+            "time": "2014-06-04 20:58:10"
         },
         {
             "name": "evenement/evenement",
@@ -2221,9 +2221,9 @@
 
     ],
     "minimum-stability": "dev",
-    "stability-flags": [
-
-    ],
+    "stability-flags": {
+        "duccio/apns-php": 20
+    },
     "platform": [
 
     ],
