@@ -29,7 +29,7 @@
     "aws/aws-sdk-php": "2.5.*",
     "guzzle/guzzle": "3.7.*",
     "cboden/Ratchet": "0.3.*",
-    "duccio/apns-php": "*"
+    "duccio/apns-php": "dev-master"
   },
   "require-dev": {
     "mockery/mockery": "0.8.0",
