@@ -6,12 +6,6 @@ class Facebook extends Base {
 	public function authenticate($data) {
 		$data = $this->requestFacebookGraph($data);
 
-		// don't fill unusual fields
-		$unusual_fields = array('work', 'languages', 'hometown', 'location', 'sports', 'favorite_teams', 'favorite_athletes', 'education');
-		foreach($unusual_fields as $field) {
-			unset($data[$field]);
-		}
-
 		$user = null;
 		try {
 			$user = $this->find('facebook_id', $data);
@@ -44,6 +38,14 @@ class Facebook extends Base {
 		$response = $client->get("/me?access_token={$data['accessToken']}")->send();
 		$facebookData = json_decode($response->getBody(), true);
 		$data = array_merge($data, $facebookData);
+
+		// Skip fields that isn't whitelisted for auth.
+		$field_whitelist = array('id', 'email', 'first_name', 'gender', 'last_name', 'link', 'locale', 'name', 'timezone', 'username');
+		foreach($data as $field => $value) {
+			if (!in_array($field, $field_whitelist)) {
+				unset($data[$field]);
+			}
+		}
 
 		// rename 'facebook_id' field
 		$data['app_id'] = $app_id;
