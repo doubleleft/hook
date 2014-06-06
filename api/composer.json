@@ -26,7 +26,10 @@
     "swiftmailer/swiftmailer": "5.0.*",
     "jenssegers/mongodb": "1.1.*",
     "dropbox/dropbox-sdk": "1.1.*",
-    "aws/aws-sdk-php": "2.5.*"
+    "aws/aws-sdk-php": "2.5.*",
+    "guzzle/guzzle": "3.7.*",
+    "cboden/Ratchet": "0.3.*",
+    "duccio/apns-php": "dev-master"
   },
   "require-dev": {
     "mockery/mockery": "0.8.0",
