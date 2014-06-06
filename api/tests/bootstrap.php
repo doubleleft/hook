@@ -39,8 +39,8 @@ class TestCase extends PHPUnit_Framework_TestCase {
 		return $this->request('put', $uri, $data, $headers);
 	}
 
-	public function delete($uri, $headers = array()) {
-		return $this->request('delete', $uri, array(), $headers);
+	public function delete($uri, $data = array(), $headers = array()) {
+		return $this->request('delete', $uri, $data, $headers);
 	}
 
 	protected function request($method, $uri, $data = array(), $headers = array()) {
