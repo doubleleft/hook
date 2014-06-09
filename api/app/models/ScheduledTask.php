@@ -45,7 +45,7 @@ class ScheduledTask extends \Core\Model {
 	}
 
 	public static function install() {
-		exec('crontab ' . __DIR__ . '/../storage/crontabs/*.cron', $output, $return_code);
+		exec('cat ' . __DIR__ . '/../storage/crontabs/*.cron | crontab', $output, $return_code);
 
 		if (!empty($output)) {
 			throw new Exception(json_encode($output));
