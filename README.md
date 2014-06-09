@@ -41,6 +41,7 @@ For client specific documentation:
 - [Android](https://github.com/doubleleft/dl-api-android) (_docs missing_)
 - [iOS](https://github.com/doubleleft/dl-api-ios) (_docs missing_)
 - [C++](https://github.com/doubleleft/dl-api-cpp) (_docs missing_)
+- [Ruby](https://github.com/doubleleft/dl-api-ruby) (_docs missing_)
 
 Websocket
 ---
