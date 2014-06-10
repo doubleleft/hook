@@ -72,7 +72,11 @@ class Mail {
 
 			$preset_file = __DIR__ . '/presets/' . $params['driver'] . '.php';
 			if (file_exists($preset_file)) {
-				$params = array_merge($params, require($preset_file));
+				$preset_params = require($preset_file);
+				unset($params['driver']);
+
+				// allow to overwrite default preset settings with custom configs
+				$params = array_merge($preset_params, $params);
 			}
 
 		}
