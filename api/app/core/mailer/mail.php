@@ -56,6 +56,9 @@ class Mail {
 			->where('app_id', \models\App::currentId())
 			->where(function($query) {
 				$query->where('name', 'mail.driver')
+					->orWhere('name', 'mail.host')
+					->orWhere('name', 'mail.port')
+					->orWhere('name', 'mail.encryption')
 					->orWhere('name', 'mail.username')
 					->orWhere('name', 'mail.password');
 			})
