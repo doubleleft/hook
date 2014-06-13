@@ -9,9 +9,9 @@
 require __DIR__ . '/../vendor/autoload.php';
 
 class TestCase extends PHPUnit_Framework_TestCase {
-	protected $base_url = 'http://127.0.0.1:9000';
 	// protected $base_url = 'http://localhost/api/index.php/';
-	// protected $base_url = 'http://dl-api.dev/api/index.php/';
+	// protected $base_url = 'http://localhost/api/index.php/';
+	protected $base_url = 'http://dl-api.dev/api/index.php/';
 	protected $app;
 
 	public function setUp() {
