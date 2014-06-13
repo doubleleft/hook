@@ -4,4 +4,6 @@
 truncate: true
 data:
   - name: one
+    # file: !upload path/to/one.jpg
   - name: two
+    # file: !upload path/to/two.jpg

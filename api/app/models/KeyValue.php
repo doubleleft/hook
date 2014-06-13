@@ -8,8 +8,6 @@ namespace models;
  */
 class KeyValue extends \Core\Model
 {
-	protected $guarded = array();
-	protected $primaryKey = '_id';
 
 	public static function upsert($data) {
 		$key = self::where('app_id', $data['app_id'])

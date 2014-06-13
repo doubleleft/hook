@@ -3,12 +3,7 @@ ini_set('display_errors', 1);
 error_reporting(E_ALL);
 date_default_timezone_set('America/Sao_Paulo');
 
-require __DIR__ . '/vendor/autoload.php';
-
-$app = new \Slim\Slim(array(
-	'log.enabled' => true
-));
-require __DIR__ . '/app/bootstrap.php';
+$app = require __DIR__ . '/app/bootstrap.php';
 
 // Middlewares
 $app->add(new LogMiddleware());
@@ -55,19 +50,22 @@ $app->group('/collection', function () use ($app) {
 		// TODO: android and ios clients should deprecate 'data' param, and send it entirelly on BODY
 		//
 		$data = $app->request->post('d') ?: $app->request->post('data') ?: $app->request->post();
-        $files = array();
-        foreach($data as $key => $value){
-            if(is_string($value) && strpos($value, "dl-api-data:") !== false){
-                $files[$key] = str_replace("dl-api-data:", "data:", $value);
-            }
-        }
+
+		$attached_files = array();
+
+		// Check for base64-encoded files
+		foreach($data as $key => $value){
+			if (models\File::base64($value)){
+				$attached_files[$key] = $value;
+			}
+		}
 
 		if (!empty($_FILES)) {
-            $files = array_merge($files, $_FILES);
-        }
+			$attached_files = array_merge($attached_files, $_FILES);
+		}
 
-		if(!empty($files)) {
-			$data[models\Collection::ATTACHED_FILES] = $files;
+		if(!empty($attached_files)) {
+			$data[models\Collection::ATTACHED_FILES] = $attached_files;
 		}
 		return $data;
 	});
@@ -155,7 +153,11 @@ $app->group('/collection', function () use ($app) {
 			// - 'plugados-site'
 			// - 'clubsocial-possibilidades'
 			//
-			$app->content = array('affected' => $query->update($app->collection_data));
+			$affected = $query->update($app->collection_data);
+			$app->content = array(
+				'success' => is_int($affected) && $affected > 0,
+				'affected' => $affected
+			);
 		}
 	});
 
@@ -250,6 +252,13 @@ $app->group('/channels', function() use ($app) {
  * Authentication API
  */
 $app->group('/auth', function() use ($app) {
+	/**
+	 * GET /auth
+	 */
+	$app->get('/', function() use ($app) {
+		$app->content = models\Auth::current();
+	});
+
 	/**
 	 * POST /auth/facebook
 	 * POST /auth/email
@@ -350,8 +359,40 @@ $app->group('/files', function() use($app) {
  * Push Notifications / Installations
  */
 $app->group('/push', function() use ($app) {
-	$app->post('/register', function() {
+	/**
+	 * POST /push/registration
+	 */
+	$app->post('/registration', function() use ($app) {
+		$data = $app->request->post('d') ?: $app->request->post('data') ?: $app->request->post();
+		$app->content = models\PushRegistration::create(array_merge($data, array('app_id' => $app->key->app_id)));
 	});
+
+	/**
+	 * DELETE /push/registration
+	 */
+	$app->delete('/registration', function() use ($app) {
+		$data = $app->request->post('d') ?: $app->request->post('data') ?: $app->request->post();
+		if (!isset($data['device_id'])) {
+			throw new \Exception("'device_id' is required to delete push registration.");
+		}
+		$registration = models\PushRegistration::where('app_id', $app->key->app_id)
+			->where('device_id', $data['device_id']);
+		$app->content = array('success' => ($registration->delete() == 1));
+	});
+
+	/**
+	 * GET /notify
+	 */
+	$app->get('/notify', function() use ($app) {
+		if (!$app->request->headers->get('X-Scheduled-Task')) {
+			throw new \Exception("Oops.");
+		}
+
+		$notifier = new PushNotification\Notifier();
+		$messages = models\App::collection('push_messages')->where('status', models\PushMessage::STATUS_QUEUE);
+		$app->content = $notifier->push_messages($messages);
+	});
+
 });
 
 /**
@@ -374,18 +415,6 @@ $app->group('/apps', function() use ($app) {
 		}
 		pclose($handle);
 		$app->content = array('text' => $content);
-	});
-
-	$app->get('/test', function() use ($app) {
-		$app = models\App::create(array(
-			'_id' => 1,
-			'name' => "test"
-		));
-		$app->keys()->create(array(
-			'key' => 'test',
-			'secret' => 'test'
-		));
-		$app->content = models\App::all();
 	});
 
 	/**
@@ -486,9 +515,10 @@ $app->group('/apps', function() use ($app) {
 		$app->content = ($module) ? $module->update($data) : models\Module::create($data);
 	});
 
-	$app->delete('/modules/:name', function($name) use ($app) {
+	$app->delete('/modules', function($name) use ($app) {
+		$data = $app->request->post('module');
 		$deleted = models\Module::where('app_id', $app->key->app_id)->
-			where('name', $name)->
+			where('name', $data['name'])->
 			delete();
 		$app->content = array('success' => $deleted);
 	});

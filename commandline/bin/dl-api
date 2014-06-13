@@ -10,10 +10,6 @@ $VERSION = '1.0.0rc1';
 require_once __DIR__ . '/../vendor/autoload.php';
 Guzzle\Http\StaticClient::mount();
 
-// $client = new Client\Client();
-// print_r($client->post("test", array("hello" => '1')));
-// die();
-
 $cli = new Commando\Command();
 $commands = array();
 

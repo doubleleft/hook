@@ -41,10 +41,10 @@ class AppMiddleware extends \Slim\Middleware
 		// The Slim application
 		$app = $this->app;
 
-		$referer = parse_url($app->environment->offsetGet('HTTP_REFERER'));
+		$origin = $app->request->headers->get('ORIGIN');
 
 		// Enable Cross-Origin Resource Sharing
-		$app->response->headers->set('Access-Control-Allow-Origin', (isset($referer['host'])) ? 'http://'.$referer['host'] : '*' );
+		$app->response->headers->set('Access-Control-Allow-Origin', ($origin) ? $origin : '*' );
 		$app->response->headers->set('Access-Control-Allow-Credentials', 'true');
 		$app->response->headers->set('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE');
 		$app->response->headers->set('Access-Control-Allow-Headers', 'x-app-id, x-app-key, x-auth-token, content-type, user-agent, accept');

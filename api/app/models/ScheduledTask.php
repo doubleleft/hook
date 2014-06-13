@@ -1,10 +1,7 @@
 <?php
 namespace models;
 
-class ScheduledTask extends \Core\Model
-{
-	protected $guarded = array();
-	protected $primaryKey = '_id';
+class ScheduledTask extends \Core\Model {
 
 	public function app() {
 		return $this->belongsTo('models\App');
@@ -34,7 +31,11 @@ class ScheduledTask extends \Core\Model
 
 		// TODO: redirect output to application log file.
 		// https://github.com/doubleleft/dl-api/issues/37
-		return $schedule . ' ' . "curl -XGET -H 'X-App-Id: {$this->app_id}' -H 'X-App-Key: {$this->app->keys[0]->key}' '{$public_url}' 2>&1 /dev/null";
+
+		$curl_headers = "-H 'X-App-Id: {$this->app_id}' ";
+		$curl_headers .= "-H 'X-App-Key: {$this->app->keys[0]->key}' ";
+		$curl_headers .= "-H 'X-Scheduled-Task: yes' ";
+		return $schedule . ' ' . "curl -XGET {$curl_headers} '{$public_url}' 2>&1 /dev/null";
 	}
 
 	public function toArray() {
@@ -44,7 +45,7 @@ class ScheduledTask extends \Core\Model
 	}
 
 	public static function install() {
-		exec('crontab ' . __DIR__ . '/../storage/crontabs/*.cron', $output, $return_code);
+		exec('cat ' . __DIR__ . '/../storage/crontabs/*.cron | crontab', $output, $return_code);
 
 		if (!empty($output)) {
 			throw new Exception(json_encode($output));

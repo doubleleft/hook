@@ -11,9 +11,7 @@ class Module extends \Core\Model
 	const TYPE_TEMPLATE = 'templates';
 	const TYPE_OBSERVER = 'observers';
 	const TYPE_ROUTE = 'routes';
-
-	protected $guarded = array();
-	protected $primaryKey = '_id';
+	const TYPE_CHANNEL = 'channels';
 
 	public function app() {
 		return $this->belongsTo('models\App');
@@ -26,6 +24,15 @@ class Module extends \Core\Model
 	 */
 	public static function route($name) {
 		return static::get(self::TYPE_ROUTE, $name.'.php');
+	}
+
+	/**
+	 * Get a channel module instance
+	 * @param string name
+	 * @return Module
+	 */
+	public static function channel($name) {
+		return static::get(self::TYPE_CHANNEL, $name.'.php');
 	}
 
 	/**
@@ -108,10 +115,11 @@ class Module extends \Core\Model
 			$aliases.= 'use models\AppConfig as AppConfig;';
 			$aliases.= 'use models\Module as Module;';
 			$aliases.= 'use models\File as File;';
+			$aliases.= 'use models\Auth as Auth;';
 			$aliases.= 'use models\AuthToken as AuthToken;';
 			$aliases.= 'use models\Collection as Collection;';
 
-			if ($this->type == self::TYPE_OBSERVER) {
+			if ($this->type == self::TYPE_OBSERVER || $this->type == self::TYPE_CHANNEL) {
 				// Prevent name conflict by using unique class names for custom modules
 				$klass = 'CustomModule' . uniqid();
 				eval($aliases . preg_replace('/class ([^\ {]+)/', 'class ' . $klass, $this->code, 1));
@@ -129,6 +137,7 @@ class Module extends \Core\Model
 					eval($aliases . $this->code);
 				} catch (\Exception $e) {
 					$message = $this->name . ': ' . $e->getMessage();
+					$app->log->info($message);
 					$app->response->headers->set('X-Error-'.uniqid(), $message);
 					file_put_contents('php://stderr', $message);
 				}

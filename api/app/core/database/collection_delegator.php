@@ -24,14 +24,42 @@ class CollectionDelegator implements IteratorAggregate {
 	protected $query;
 
 	/**
+	 * is_collection
+	 * @var bool
+	 */
+	protected $is_collection;
+
+	/**
+	 * custom_collections
+	 * @var array
+	 */
+	static $custom_collections = array(
+		'push_messages' => 'models\\PushMessage',
+		'push_registrations' => 'models\\PushRegistration',
+	);
+
+	/**
 	 * Create a new CollectionDelegator instance.
 	 *
-	 * @param string $name name
+	 * @param string $name
+	 * @param string $app_id
 	 * @param Illuminate\Database\Query\Builder $query query
 	 */
-	public function __construct($name, $app_id, $query) {
+	public function __construct($name, $app_id) {
+		$is_collection = true;
+
+		$query = null;
+		if (isset(static::$custom_collections[$name])) {
+			echo "custom_collection: " . static::$custom_collections[$name] . PHP_EOL;
+			$query = call_user_func(array(static::$custom_collections[$name], 'query'));
+			$is_collection = false;
+		} else {
+			$query = \models\Collection::from($name);
+		}
+
 		$this->name = $name;
 		$this->app_id = $app_id;
+		$this->is_collection = $is_collection;
 		$this->query = $query->where('app_id', $app_id);
 	}
 
@@ -42,10 +70,16 @@ class CollectionDelegator implements IteratorAggregate {
 	 * @return \models\Collection
 	 */
 	public function create_new(array $attributes) {
-		return new \models\Collection(array_merge($attributes, array(
-			'table_name' => $this->name,
-			'app_id' => $this->app_id
-		)));
+		$attributes['app_id'] = $this->app_id;
+
+		if (!$this->is_collection) {
+			$klass = self::$custom_collections[$this->name];
+			return new $klass($attributes);
+
+		} else {
+			$attributes['table_name'] = $this->name;
+			return new \models\Collection($attributes);
+		}
 	}
 
 	/**
@@ -61,13 +95,40 @@ class CollectionDelegator implements IteratorAggregate {
 	}
 
 	/**
+	 * Update a record in the database.
+	 *
+	 * @param  array  $values
+	 * @return int
+	 */
+	public function update(array $values) {
+		$allowed = $this->fireEvent('updating_multiple', array($this, $values));
+		if ($allowed === false) {
+			return false;
+		} else if (is_array($allowed)) {
+			$values = $allowed;
+		}
+		return $this->query->update($values);
+	}
+
+	/**
 	 * Delete a record from the database.
 	 *
 	 * @param  mixed  $id
 	 * @return int
 	 */
-	public function remove($id = null) {
+	public function delete($id = null) {
+		if ($id === null && $this->fireEvent('deleting_multiple', $this) === false) {
+			return false;
+		}
 		return $this->query->delete($id);
+	}
+
+	/**
+	 * Alias to delete
+	 * @see delete
+	 */
+	public function remove($id = null) {
+		return $this->delete($id);
 	}
 
 	/**
@@ -114,6 +175,58 @@ class CollectionDelegator implements IteratorAggregate {
 	}
 
 	/**
+	 * Chunk the results of the query.
+	 *
+	 * @param  int  $count
+	 * @param  callable  $callback
+	 * @return void
+	 */
+	public function chunk($count, $callback) {
+		//
+		// ----------------
+		// Developer alert:
+		// ----------------
+		//
+		// This block of code is exactly the same on
+		// Eloquent\Builder and Query\Builder as of this writing.
+		//
+		// It was necessary to define it here to CollectionDelegator
+		// be able to intercept the ->get() method and fix the
+		// Collection table's name.
+		//
+
+		$results = $this->forPage($page = 1, $count)->get();
+
+		while (count($results) > 0)
+		{
+			echo PHP_EOL . PHP_EOL;
+			// On each chunk result set, we will pass them to the callback and then let the
+			// developer take care of everything within the callback, which allows us to
+			// keep the memory low for spinning through large result sets for working.
+			call_user_func($callback, $results);
+
+			$page++;
+
+			$results = $this->forPage($page, $count)->get();
+		}
+	}
+
+	/**
+	 * Execute the query as a "select" statement.
+	 *
+	 * @param  array  $columns
+	 * @return \Illuminate\Database\Eloquent\Collection|static[]
+	 */
+	public function get($columns = array('*')) {
+		if ($this->is_collection) {
+			$this->query->setModel(new \models\Collection(array('table_name' => $this->name)));
+		} else if ($this->query instanceof \Illuminate\Database\Query\Builder) {
+			$this->query->from($this->name);
+		}
+		return $this->__call('get', func_get_args());
+	}
+
+	/**
 	 * Shortcut for get+toArray methods.
 	 * @param string $columns columns
 	 * @return array
@@ -129,6 +242,14 @@ class CollectionDelegator implements IteratorAggregate {
 	 */
 	public function toJson($columns=array('*')) {
 		return $this->query->get($columns)->toJson();
+	}
+
+	protected function fireEvent($event, $payload) {
+		$dispatcher = \models\Collection::getEventDispatcher();
+		if (!$dispatcher) return true;
+
+		$event = "eloquent.{$event}: ".$this->name;
+		return $dispatcher->until($event, $payload);
 	}
 
 	/**

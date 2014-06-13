@@ -116,7 +116,7 @@ class ResponseTypeMiddleware extends \Slim\Middleware
 
 			// return 404 status code when 'content' is null or false.
 			// probably something is wrong. It's better that we shout it for you.
-			if (!$app->content) {
+			if ($app->content === null || $app->content === false) {
 				$app->response->setStatus(404);
 			} else {
 				$app->response->headers->set('Content-type', 'application/json');

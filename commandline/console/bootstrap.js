@@ -9,6 +9,7 @@
       Table = require('cli-table'),
       XMLHttpRequest = require('xmlhttprequest'),
       FormData = require('form-data'),
+      WebSocket = require('ws'),
       evaluateFile = (process.argv[3]);
 
   if (!evaluateFile) {
@@ -35,6 +36,7 @@
       setItem: function(name, value) { this._items[name] = value; }
     };
     window.FormData = FormData;
+    window.WebSocket = WebSocket;
     window.Blob = function Blob() {};
     window.Blob.constructor = Buffer.prototype;
 

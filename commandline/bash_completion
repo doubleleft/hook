@@ -70,7 +70,7 @@ _dl_api()
         ;;
 
       "generate")
-        COMPREPLY=( $( compgen -W "observer route schedule seed template" -- $second ) )
+        COMPREPLY=( $( compgen -W "observer route schedule seed template channel" -- $second ) )
         return 0
         ;;
 

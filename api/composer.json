@@ -33,11 +33,10 @@
   },
   "require-dev": {
     "mockery/mockery": "0.8.0",
-    "phpunit/phpunit": "3.7.*",
-    "aws/aws-sdk-php": "2.*"
+    "phpunit/phpunit": "3.7.*"
   },
   "scripts": {
-    "post-install-cmd": "scripts\\GithubKeyDownloader::execute"
+    "post-install-cmd": [ ]
   },
   "bin-dir": "bin",
   "minimum-stability": "dev"

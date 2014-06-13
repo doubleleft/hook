@@ -1,8 +1,8 @@
-# This Makefile downloads and installs dl-api dependencies and the dl-api commandline. 
-# It depends on GNU Make. 
-# For dl-api installation we need php-cli, php-json and npm. 
-# It has been tested on Linux (Ubuntu, Gentoo) and Mac OSX. 
-# 
+# This Makefile downloads and installs dl-api dependencies and the dl-api commandline.
+# It depends on GNU Make.
+# For dl-api installation we need php-cli, php-json and npm.
+# It has been tested on Linux (Ubuntu, Gentoo) and Mac OSX.
+#
 # The default target is "make install", but it also provides "make test" and "make docs".
 
 SHELL := /bin/bash
@@ -16,14 +16,14 @@ install:
 	# check dependencies
 ifneq ($(shell which php > /dev/null 2>&1; echo $$?),0)
 	$(error "Missing php-cli.")
-endif	
+endif
 
 ifneq ($(shell which npm > /dev/null 2>&1 > /dev/null; echo $$?),0)
 	$(error "Missing npm.")
 endif
 
 	# install composer if we don't have it already
-ifneq ($(shell which composer > /dev/null 2>&1 || test -x $(HOME)/bin/composer; echo $$?),0) 
+ifneq ($(shell which composer > /dev/null 2>&1 || test -x $(HOME)/bin/composer; echo $$?),0)
 	mkdir -p $(HOME)/bin
 	curl -sS https://getcomposer.org/installer | php -d detect_unicode=Off -- --install-dir=$(HOME)/bin --filename=composer
 	chmod +x $(HOME)/bin/composer
@@ -31,8 +31,6 @@ endif
 
 	# ./api
 	cd $(CURPATH)/api && composer install
-	mkdir -p "$(CURPATH)/api/app/storage"
-	# chmod -R 755 "$(CURPATH)/api/app/storage"
 
 	# ./commandline
 	mkdir -p $(HOME)/bin
