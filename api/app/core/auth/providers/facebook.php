@@ -36,8 +36,18 @@ class Facebook extends Base {
 
 		$client = new \Guzzle\Http\Client("https://graph.facebook.com");
 		$response = $client->get("/me?access_token={$data['accessToken']}")->send();
-		$facebookData = json_decode($response->getBody(), true);
-		$data = array_merge($data, $facebookData);
+		$facebook_data = json_decode($response->getBody(), true);
+
+		// Filter fields from Facebook that isn't whitelisted for auth.
+		$field_whitelist = array('id', 'email', 'first_name', 'gender', 'last_name', 'link', 'locale', 'name', 'timezone', 'username');
+		foreach($facebook_data as $field => $value) {
+			if (!in_array($field, $field_whitelist)) {
+				unset($facebook_data[$field]);
+			}
+		}
+
+		// Merge given data with facebook data
+		$data = array_merge($data, $facebook_data);
 
 		// Skip fields that isn't whitelisted for auth.
 		$field_whitelist = array('id', 'email', 'first_name', 'gender', 'last_name', 'link', 'locale', 'name', 'timezone', 'username');

@@ -17,7 +17,8 @@ return array(
 			echo str_repeat('-', 37) . PHP_EOL;
 			if ($configs) {
 				foreach($configs as $config) {
-					echo $config->name . ': ' . $config->value . PHP_EOL;
+					preg_match('/([^$|\n]+)/', $config->value, $value);
+					echo $config->name . ': ' . $value[1] . PHP_EOL;
 				}
 			} else {
 				echo "No configurations found for: '{$project['name']}'." . PHP_EOL;
