@@ -25,6 +25,12 @@ class TestCase extends PHPUnit_Framework_TestCase {
 
 	public function useApp($id, $db_driver = 'sqlite') {
 		$apps = $this->get('apps/list');
+		if (!isset($apps[0])) {
+			$this->post('apps', array(
+				'app' => array('name' => 'phpunit')
+			));
+			return $this->useApp($id, $db_driver);
+		}
 		return $apps[0]['keys'][0];
 	}
 
