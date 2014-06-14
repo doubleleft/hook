@@ -10,5 +10,4 @@ before_script:
   - travis_retry composer install -d api
 
 script:
-  - curl -s http://127.0.0.1:9000 && sudo cat /var/log/apache2/error.log && curl -s http://127.0.0.1:9000
   - api/vendor/bin/phpunit --configuration ./api/phpunit.xml --verbose

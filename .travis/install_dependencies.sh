@@ -4,7 +4,7 @@
 sudo apt-get install -qq apache2
 
 # Configure Apache
-WEBROOT="$(pwd)/api"
+WEBROOT="$(pwd)"
 CGIROOT=`dirname "$(which php-cgi)"`
 echo "WEBROOT: $WEBROOT"
 echo "CGIROOT: $CGIROOT"
