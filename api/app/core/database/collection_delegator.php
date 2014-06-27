@@ -54,7 +54,7 @@ class CollectionDelegator implements IteratorAggregate {
 			$query = call_user_func(array(static::$custom_collections[$name], 'query'));
 			$is_collection = false;
 		} else {
-			$query = \models\Collection::from($name);
+			$query = \Model\Collection::from($name);
 		}
 
 		$this->name = $name;
@@ -67,7 +67,7 @@ class CollectionDelegator implements IteratorAggregate {
 	 * Create a new Collection instance. No database operations here.
 	 *
 	 * @param array $attributes attributes
-	 * @return \models\Collection
+	 * @return \Model\Collection
 	 */
 	public function create_new(array $attributes) {
 		$attributes['app_id'] = $this->app_id;
@@ -78,7 +78,7 @@ class CollectionDelegator implements IteratorAggregate {
 
 		} else {
 			$attributes['table_name'] = $this->name;
-			return new \models\Collection($attributes);
+			return new \Model\Collection($attributes);
 		}
 	}
 
@@ -86,7 +86,7 @@ class CollectionDelegator implements IteratorAggregate {
 	 * Create a new record into the database.
 	 *
 	 * @param array $attributes attributes
-	 * @return \models\Collection
+	 * @return \Model\Collection
 	 */
 	public function create(array $attributes) {
 		$model = $this->create_new($attributes);
@@ -219,7 +219,7 @@ class CollectionDelegator implements IteratorAggregate {
 	 */
 	public function get($columns = array('*')) {
 		if ($this->is_collection) {
-			$this->query->setModel(new \models\Collection(array('table_name' => $this->name)));
+			$this->query->setModel(new \Model\Collection(array('table_name' => $this->name)));
 		} else if ($this->query instanceof \Illuminate\Database\Query\Builder) {
 			$this->query->from($this->name);
 		}
@@ -245,7 +245,7 @@ class CollectionDelegator implements IteratorAggregate {
 	}
 
 	protected function fireEvent($event, $payload) {
-		$dispatcher = \models\Collection::getEventDispatcher();
+		$dispatcher = \Model\Collection::getEventDispatcher();
 		if (!$dispatcher) return true;
 
 		$event = "eloquent.{$event}: ".$this->name;

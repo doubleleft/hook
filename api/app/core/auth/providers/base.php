@@ -20,7 +20,7 @@ class Base {
 	}
 
 	protected function find($key_field, $data) {
-		return \models\Auth::where($key_field, $data[$key_field])
+		return \Model\Auth::where($key_field, $data[$key_field])
 			->where('app_id', $data['app_id'])
 			->first();
 	}

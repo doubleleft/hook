@@ -1,5 +1,5 @@
 <?php
-namespace models;
+namespace Model;
 
 /**
  * AuthToken
@@ -28,7 +28,7 @@ class AuthToken extends \Core\Model {
 	public static function current() {
 		if (static::$_current === null) {
 			$app = \Slim\Slim::getInstance();
-			static::$_current = \models\AuthToken::where('token', $app->request->headers->get('X-Auth-Token') ?: $app->request->get('X-Auth-Token'))
+			static::$_current = static::where('token', $app->request->headers->get('X-Auth-Token') ?: $app->request->get('X-Auth-Token'))
 				->where('expire_at', '>=', time())
 				->first();
 		}

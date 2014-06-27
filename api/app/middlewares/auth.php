@@ -7,7 +7,7 @@ class AuthMiddleware extends \Slim\Middleware
 	{
 		$app = $this->app;
 
-		$app->auth_token = \models\AuthToken::current();
+		$app->auth_token = \Model\AuthToken::current();
 
 		$request_path = $app->request->getResourceUri();
 

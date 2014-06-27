@@ -16,9 +16,9 @@ class APNS implements Service {
 	 * @param mixed $data
 	 */
 	public function push($registrations, $data) {
-		$apns_environment = \models\AppConfig::get('push.apns.environment', 'sandbox');
-		$apns_certificate_file = \models\AppConfig::get('push.apns.cert.file', false);
-		$apns_certificate_pass = \models\AppConfig::get('push.apns.cert.pass', false);
+		$apns_environment = \Model\AppConfig::get('push.apns.environment', 'sandbox');
+		$apns_certificate_file = \Model\AppConfig::get('push.apns.cert.file', false);
+		$apns_certificate_pass = \Model\AppConfig::get('push.apns.cert.pass', false);
 
 		if (!$apns_certificate_file) {
 			throw new \Exception("APNS config error: 'push.apns.cert.file' not set.");

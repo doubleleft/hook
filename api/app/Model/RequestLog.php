@@ -1,5 +1,5 @@
 <?php
-namespace models;
+namespace Model;
 
 class RequestLog extends \Core\Model
 {

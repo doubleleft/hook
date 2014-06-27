@@ -1,5 +1,5 @@
 <?php
-namespace models;
+namespace Model;
 
 class PushRegistration extends DynamicModel
 {

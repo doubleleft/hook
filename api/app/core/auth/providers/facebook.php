@@ -12,7 +12,7 @@ class Facebook extends Base {
 		} catch (\Illuminate\Database\QueryException $e) {}
 
 		if (!$user) {
-			$user = \models\Auth::create($data);
+			$user = \Model\Auth::create($data);
 		}
 
 		return $user->dataWithToken();

@@ -53,7 +53,7 @@ class Mail {
 		$params = array();
 
 		models\AppConfig::current()
-			->where('app_id', \models\App::currentId())
+			->where('app_id', \Model\App::currentId())
 			->where(function($query) {
 				$query->where('name', 'mail.driver')
 					->orWhere('name', 'mail.host')

@@ -1,5 +1,5 @@
 <?php
-namespace models;
+namespace Model;
 
 class ScheduledTask extends \Core\Model {
 

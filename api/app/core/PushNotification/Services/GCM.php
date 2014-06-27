@@ -13,7 +13,7 @@ class GCM implements Service {
 	 * @param mixed $data
 	 */
 	public function push($registrations, $data) {
-		$gcm_access_key = \models\AppConfig::get('push.gcm.access_key', false);
+		$gcm_access_key = \Model\AppConfig::get('push.gcm.access_key', false);
 
 		if (!$gcm_access_key) {
 			throw new \Exception("Please set 'push.gcm.access_key' value.");

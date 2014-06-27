@@ -1,6 +1,7 @@
 <?php
+
 namespace Storage\Providers;
-use \models\App as App;
+use \Model\App as App;
 
 class Filesystem extends Base {
 
