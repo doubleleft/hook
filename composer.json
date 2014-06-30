@@ -1,0 +1,38 @@
+{
+  "name": "doubleleft/dl-api",
+  "description": "Doubleleft backend API",
+  "keywords": ["doubleleft", "api"],
+  "license": "MIT",
+  "authors": [{
+    "name": "Endel Dreyer",
+    "email": "edreyer@doubleleft.com"
+  }],
+  "autoload": {
+    "classmap": ["src"],
+    "psr-0": {}
+  },
+  "require": {
+    "php": ">=5.3.0",
+    "slim/slim": "2.4.*",
+    "doctrine/dbal" : "2.*",
+    "illuminate/database": "4.1.*",
+    "illuminate/config": "4.1.*",
+    "illuminate/cache": "4.1.*",
+    "swiftmailer/swiftmailer": "5.0.*",
+    "jenssegers/mongodb": "1.1.*",
+    "dropbox/dropbox-sdk": "1.1.*",
+    "aws/aws-sdk-php": "2.5.*",
+    "guzzle/guzzle": "3.7.*",
+    "cboden/Ratchet": "0.3.*",
+    "duccio/apns-php": "dev-master"
+  },
+  "require-dev": {
+    "mockery/mockery": "0.8.0",
+    "phpunit/phpunit": "3.7.*"
+  },
+  "scripts": {
+    "post-install-cmd": [ ]
+  },
+  "bin-dir": "bin",
+  "minimum-stability": "dev"
+}

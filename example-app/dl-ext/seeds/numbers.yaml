@@ -1,8 +1,0 @@
-truncate: true
-data:
-  - name: One
-    number: 1
-  - name: Two
-    number: 2
-  - name: Tree
-    number: 3
