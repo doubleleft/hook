@@ -71,18 +71,21 @@ class CollectionDelegator implements IteratorAggregate
      */
     public function getIterator()
     {
-        return new ArrayIterator($this->toArray());
+        return new ArrayIterator($this->get()->all());
     }
 
     /**
      * each
      *
      * @param Closure $callback
+     * @return Database\CollectionDelegator
      */
     public function each(\Closure $callback) {
         foreach ($this as $row) {
             $callback($row);
         }
+
+        return $this;
     }
 
     /**
