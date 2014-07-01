@@ -1,14 +1,21 @@
 <?php
-// $_SERVER['REQUEST_METHOD'] = '';
-// $_SERVER['REMOTE_ADDR'] = '127.0.0.1';
-// $_SERVER['REQUEST_URI'] = '';
-// $_SERVER['SERVER_NAME'] = 'localhost';
-// $_SERVER['SERVER_PORT'] = '80';
-// require __DIR__ . "/../index.php";
+$_SERVER['REQUEST_METHOD'] = '';
+$_SERVER['REMOTE_ADDR'] = '127.0.0.1';
+$_SERVER['REQUEST_URI'] = '';
+$_SERVER['SERVER_NAME'] = 'localhost';
+$_SERVER['SERVER_PORT'] = '80';
 
 require __DIR__ . '/../vendor/autoload.php';
+require __DIR__ . '/../src/PHPAPI.php';
 
-class TestCase extends PHPUnit_Framework_TestCase {}
+class TestCase extends PHPUnit_Framework_TestCase
+{
+    public function setUp()
+    {
+        $app = \Slim\Slim::getInstance();
+        $app->key = API\Model\AppKey::first();
+    }
+}
 
 class HTTP_TestCase extends PHPUnit_Framework_TestCase
 {

@@ -66,6 +66,26 @@ class CollectionDelegator implements IteratorAggregate
     }
 
     /**
+     * Get query items for iteration.
+     * @return ArrayIterator
+     */
+    public function getIterator()
+    {
+        return new ArrayIterator($this->toArray());
+    }
+
+    /**
+     * each
+     *
+     * @param Closure $callback
+     */
+    public function each(\Closure $callback) {
+        foreach ($this as $row) {
+            $callback($row);
+        }
+    }
+
+    /**
      * Create a new Collection instance. No database operations here.
      *
      * @param  array             $attributes attributes
@@ -180,15 +200,6 @@ class CollectionDelegator implements IteratorAggregate
         $this->query->orderBy($column, $direction);
 
         return $this;
-    }
-
-    /**
-     * Get query items for iteration.
-     * @return ArrayIterator
-     */
-    public function getIterator()
-    {
-        return new ArrayIterator($this->toArray());
     }
 
     /**
