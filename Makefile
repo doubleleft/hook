@@ -60,7 +60,7 @@ endif
 	@echo "Finished"
 
 test:
-	./api/vendor/bin/phpunit --configuration ./api/tests/phpunit.xml
+	./vendor/bin/phpunit --configuration ./tests/phpunit.xml
 
 docs:
 	mkdir -p ../dl-api-docs/

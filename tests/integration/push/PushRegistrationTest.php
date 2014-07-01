@@ -1,6 +1,6 @@
 <?php
 
-class PushRegistrationTest extends TestCase
+class PushRegistrationTest extends HTTP_TestCase
 {
     public function testRegistration()
     {

@@ -1,6 +1,6 @@
 <?php
 
-class KeyValue extends TestCase
+class KeyValue extends HTTP_TestCase
 {
     public function testSetString()
     {

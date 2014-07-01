@@ -197,6 +197,7 @@ class Module extends Model
     public function scopeCurrentApp($query)
     {
         $app = Slim\Slim::getInstance();
+
         return $query->where('app_id', $app->key->app_id);
     }
 

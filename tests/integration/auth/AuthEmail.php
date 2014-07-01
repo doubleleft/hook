@@ -1,6 +1,6 @@
 <?php
 
-class AuthEmail extends TestCase
+class AuthEmail extends HTTP_TestCase
 {
     public function testInvalidAuth()
     {

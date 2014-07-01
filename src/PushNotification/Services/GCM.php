@@ -1,6 +1,8 @@
 <?php
 namespace API\PushNotification\Services;
 
+use API\Model\AppConfig as AppConfig;
+
 //
 // Reference: https://gist.github.com/prime31/5675017
 //
@@ -14,7 +16,7 @@ class GCM implements Service
      */
     public function push($registrations, $data)
     {
-        $gcm_access_key = \Model\AppConfig::get('push.gcm.access_key', false);
+        $gcm_access_key = AppConfig::get('push.gcm.access_key', false);
 
         if (!$gcm_access_key) {
             throw new \Exception("Please set 'push.gcm.access_key' value.");

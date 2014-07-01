@@ -1,6 +1,6 @@
 <?php
 
-class AuthFacebook extends TestCase
+class AuthFacebook extends HTTP_TestCase
 {
     public function setUp()
     {

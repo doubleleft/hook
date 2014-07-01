@@ -4,6 +4,7 @@ $app = require __DIR__ . '/src/PHPAPI.php';
 use API\Middlewares as Middlewares;
 use API\Model as Model;
 use API\Auth as Auth;
+use API\PushNotification as PushNotification;
 
 // Middlewares
 $app->add(new Middlewares\LogMiddleware());
@@ -96,8 +97,19 @@ $app->group('/collection', function () use ($app) {
         if ($offset = $app->request->get('offset')) {
             $query = $query->skip($offset);
         }
+
         if ($limit = $app->request->get('limit')) {
             $query = $query->take($limit);
+        }
+
+        // remember
+        if ($remember = $app->request->get('remember')) {
+            $query = $query->remember($remember);
+        }
+
+        // with
+        if ($with = $app->request->get('with')) {
+            $query = call_user_func_array(array($query, 'remember'), $with);
         }
 
         if ($aggr = $app->request->get('aggr')) {
@@ -184,7 +196,7 @@ $app->group('/collection', function () use ($app) {
      * DELETE /collection/:name
      */
     $app->delete('/:name', function ($name) use ($app) {
-        $query = \Model\App::collection($name)->filter($app->request->post('q'));
+        $query = Model\App::collection($name)->filter($app->request->post('q'));
         $app->content = array('success' => $query->delete());
     });
 

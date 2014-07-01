@@ -43,6 +43,13 @@ DLModel::setEventDispatcher($event_dispatcher);
 $connection->setPaginator(new API\Pagination\Environment());
 
 //
+// Setup cache manager
+//
+$connection->setCacheManager(function () {
+    return null;
+});
+
+//
 // TODO: Create `dl-api migrate` command.
 // --------------------------------------
 //

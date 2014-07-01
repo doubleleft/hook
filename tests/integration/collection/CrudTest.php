@@ -1,6 +1,6 @@
 <?php
 
-class CollectionCrud extends TestCase
+class CollectionCrud extends HTTP_TestCase
 {
     public function testCreate()
     {

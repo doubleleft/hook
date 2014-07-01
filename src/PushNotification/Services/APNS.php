@@ -1,6 +1,11 @@
 <?php
 namespace API\PushNotification\Services;
 
+use API\Model\AppConfig as AppConfig;
+
+/**
+ * @nodoc
+ */
 class APNSLogger implements \ApnsPHP_Log_Interface
 {
     public function log($message)
@@ -19,9 +24,9 @@ class APNS implements Service
      */
     public function push($registrations, $data)
     {
-        $apns_environment = \Model\AppConfig::get('push.apns.environment', 'sandbox');
-        $apns_certificate_file = \Model\AppConfig::get('push.apns.cert.file', false);
-        $apns_certificate_pass = \Model\AppConfig::get('push.apns.cert.pass', false);
+        $apns_environment = AppConfig::get('push.apns.environment', 'sandbox');
+        $apns_certificate_file = AppConfig::get('push.apns.cert.file', false);
+        $apns_certificate_pass = AppConfig::get('push.apns.cert.pass', false);
 
         if (!$apns_certificate_file) {
             throw new \Exception("APNS config error: 'push.apns.cert.file' not set.");

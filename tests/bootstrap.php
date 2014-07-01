@@ -8,11 +8,14 @@
 
 require __DIR__ . '/../vendor/autoload.php';
 
-class TestCase extends PHPUnit_Framework_TestCase
+class TestCase extends PHPUnit_Framework_TestCase {}
+
+class HTTP_TestCase extends PHPUnit_Framework_TestCase
 {
-    // protected $base_url = 'http://localhost/api/index.php/';
-    // protected $base_url = 'http://localhost/api/index.php/';
-    protected $base_url = 'http://dl-api.dev/api/index.php/';
+    // protected $base_url = 'http://localhost/index.php/';
+    // protected $base_url = 'http://localhost/index.php/';
+    // protected $base_url = 'http://dl-api.dev/index.php/';
+    protected $base_url = 'http://dl-api.dev:58054/index.php/';
     protected $app;
 
     public function setUp()

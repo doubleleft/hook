@@ -1,8 +1,8 @@
 <?php
 namespace API\PushNotification;
 
-use Model\PushMessage as PushMessage;
-use Model\App as App;
+use API\Model\PushMessage as PushMessage;
+use API\Model\App as App;
 
 class Notifier
 {
@@ -11,8 +11,8 @@ class Notifier
 
     // available services
     static $services = array(
-        'ios' => 'PushNotification\\Services\\APNS',
-        'android' => 'PushNotification\\Services\\GCM'
+        'ios' => 'API\\PushNotification\\Services\\APNS',
+        'android' => 'API\\PushNotification\\Services\\GCM'
     );
 
     public function push_messages($query)
@@ -52,7 +52,7 @@ class Notifier
 
     /**
      * push
-     * @param Model\PushMessage $message
+     * @param API\Model\PushMessage $message
      */
     public function push($message)
     {
