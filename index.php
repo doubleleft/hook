@@ -3,6 +3,7 @@ $app = require __DIR__ . '/src/PHPAPI.php';
 
 use API\Middlewares as Middlewares;
 use API\Model as Model;
+use API\Auth as Auth;
 
 // Middlewares
 $app->add(new Middlewares\LogMiddleware());
@@ -264,7 +265,7 @@ $app->group('/auth', function () use ($app) {
      * POST /auth/facebook
      * POST /auth/email
      */
-    $app->post('/:provider(/:method)', function ($provider_name, $method = 'authenticate') use ($app) {
+    $app->post('/:provider(/:method)', function ($provider_name, $method = 'register') use ($app) {
         $data = $app->collection_data;
         $data['app_id'] = $app->key->app_id;
         $app->content = Auth\Provider::get($provider_name)->{$method}($data);

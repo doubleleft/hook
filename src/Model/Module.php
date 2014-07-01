@@ -3,6 +3,8 @@ namespace API\Model;
 
 use Slim;
 
+use API\Exceptions;
+
 /**
  * Module
  *
@@ -17,7 +19,7 @@ class Module extends Model
 
     public function app()
     {
-        return $this->belongsTo('Model\App');
+        return $this->belongsTo('API\Model\App');
     }
 
     /**
@@ -67,10 +69,10 @@ class Module extends Model
             $template = static::get(self::TYPE_TEMPLATE, $name);
 
             if (!$template) {
-                $fallback_template_path = __DIR__ . '/../storage/default/templates/' . $name;
+                $fallback_template_path = __DIR__ . '/../../storage/default/templates/' . $name;
                 // try to retrieve local fallback template
                 if (!file_exists($fallback_template_path)) {
-                    throw new \MethodFailureException("Template not found: '{$name}'. Please run `dl-api generate:template {$name}` to generate one.");
+                    throw new Exceptions\MethodFailureException("Template not found: '{$name}'. Please run `dl-api generate:template {$name}` to generate one.");
                 }
 
                 // use local template if can't find
@@ -137,7 +139,7 @@ class Module extends Model
                     // Return module instance for registering on model.
                     return new $klass;
                 } else {
-                    throw new \MethodFailureException("Module '{$name}.php' must define a class.");
+                    throw new Exceptions\MethodFailureException("Module '{$name}.php' must define a class.");
                 }
 
             } elseif ($this->type == self::TYPE_ROUTE) {

@@ -21,9 +21,12 @@ class ResponseTypeMiddleware extends Slim\Middleware
         // Add EventSource middeware: http://en.wikipedia.org/wiki/Server-sent_events | http://www.html5rocks.com/en/tutorials/eventsource/basics/
         //
         if (($app->request->headers->get('ACCEPT') == 'text/event-stream') || // Checking for ACCEPT header is smarter.
-                $app->request->getMethod() == 'GET' && preg_match('/^\/channels/', $app->request->getResourceUri())) { // Workaround for Internet Explorer, which can't send custom request headers on CORS requests.
+             $app->request->getMethod() == 'GET' && preg_match('/^\/channels/', $app->request->getResourceUri())) { // Workaround for Internet Explorer, which can't send custom request headers on CORS requests.
             ini_set('zlib.output_compression', 0);
             ini_set('implicit_flush', 1);
+
+            // Start buffering
+            ob_start();
 
             $pool_start = $app->request->headers->get('X-Time') ?: time();
 
@@ -35,16 +38,6 @@ class ResponseTypeMiddleware extends Slim\Middleware
             $retry_timeout = clamp($retry_timeout, self::MIN_POOLING_RETRY, self::MAX_POOLING_RETRY) * 1000;
 
             $last_event_id = $app->request->headers->get('Last-Event-ID') ?: $app->request->get('lastEventId');
-
-            // Get last collection event id when 'only_new' option is set
-            // if ($app->request->get('only_new')) {
-            // 	$last_event_id = Model\Collection::query()
-            // 		->from(basename($app->request->getResourceUri()))
-            // 		->orderBy('_id', 'desc')
-            // 		// ->offset(1)
-            // 		->first()
-            // 		->_id;
-            // }
 
             // Set response headers
             $app->response->headers->set('Content-type', 'text/event-stream');
@@ -79,7 +72,7 @@ class ResponseTypeMiddleware extends Slim\Middleware
                 try {
                     // Call current request
                     $this->next->call();
-                } catch (Exception $e) {
+                } catch (\Exception $e) {
                     $app->content = $this->handle_error_response($e, $app);
                 }
 
@@ -113,12 +106,12 @@ class ResponseTypeMiddleware extends Slim\Middleware
             try {
                 // Call current request
                 $this->next->call();
-            } catch (Exception $e) {
+            } catch (\Exception $e) {
                 $app->content = $this->handle_error_response($e, $app);
             }
 
             // return 404 status code when 'content' is null or false.
-            // probably something is wrong. It's better that we shout it for you.
+            // probably something is wrong. It's better the API shout it for the client.
             if ($app->content === null || $app->content === false) {
                 $app->response->setStatus(404);
             } else {
@@ -149,9 +142,9 @@ class ResponseTypeMiddleware extends Slim\Middleware
         file_put_contents('php://stderr', "[[ dl-api: error ]] " . $message . PHP_EOL . $e->getTraceAsString() . PHP_EOL);
 
         if (strpos($message, "column not found") !== false ||        // mysql
-                strpos($message, "no such table") !== false ||           // mysql
-                strpos($message, "has no column named") !== false ||     // sqlite
-                strpos($message, "table or view not found") !== false) { // sqlite
+            strpos($message, "no such table") !== false ||           // mysql
+            strpos($message, "has no column named") !== false ||     // sqlite
+            strpos($message, "table or view not found") !== false) { // sqlite
 
             return array();
 

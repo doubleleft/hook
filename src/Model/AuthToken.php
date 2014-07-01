@@ -38,12 +38,12 @@ class AuthToken extends Model
 
     public function app()
     {
-        return $this->belongsTo('Model\App');
+        return $this->belongsTo('API\Model\App');
     }
 
     public function auth()
     {
-        return $this->belongsTo('Model\Auth');
+        return $this->belongsTo('API\Model\Auth');
     }
 
     /**

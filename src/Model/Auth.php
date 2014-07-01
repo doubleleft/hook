@@ -34,12 +34,12 @@ class Auth extends Collection
 
     public function app()
     {
-        return $this->belongsTo('Model\App');
+        return $this->belongsTo('API\Model\App');
     }
 
     public function tokens()
     {
-        return $this->hasMany('Model\AuthToken', 'auth_id');
+        return $this->hasMany('API\Model\AuthToken', 'auth_id');
     }
 
     /**

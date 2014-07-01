@@ -2,17 +2,18 @@
 namespace API\Auth\Providers;
 
 use API\Exceptions\NotImplementedException;
+use API\Model\Auth as Auth;
 
 class Base
 {
-    public function authenticate($data)
+    public function register($data)
     {
-        throw new NotImplementedException("'authenticate' not implemented on this provider.");
+        throw new NotImplementedException("'register' not implemented on this provider.");
     }
 
-    public function verify($data)
+    public function login($data)
     {
-        throw new NotImplementedException("'verify' not implemented on this provider.");
+        throw new NotImplementedException("'login' not implemented on this provider.");
     }
 
     public function forgotPassword($data)
@@ -27,7 +28,7 @@ class Base
 
     protected function find($key_field, $data)
     {
-        return \Model\Auth::where($key_field, $data[$key_field])
+        return Auth::where($key_field, $data[$key_field])
             ->where('app_id', $data['app_id'])
             ->first();
     }

@@ -5,11 +5,11 @@ class Provider
 {
     // available providers
     static $list = array(
-        'facebook' => 'Auth\\Providers\\Facebook',
-        'twitter' => 'Auth\\Providers\\Twitter',
-        'email' => 'Auth\\Providers\\Email',
-        'google' => 'Auth\\Providers\\Google',
-        'github' => 'Auth\\Providers\\Github'
+        'facebook' => 'API\\Auth\\Providers\\Facebook',
+        'twitter' => 'API\\Auth\\Providers\\Twitter',
+        'email' => 'API\\Auth\\Providers\\Email',
+        'google' => 'API\\Auth\\Providers\\Google',
+        'github' => 'API\\Auth\\Providers\\Github'
     );
 
     public static function get($name)

@@ -1,12 +1,27 @@
 <?php
 namespace API\Exceptions;
+use \Exception as Exception;
+
+// Exception descriptions extracted from:
+// http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html
+
+/**
+ * The request could not be understood by the server due to malformed syntax.
+ * The client SHOULD NOT repeat the request without modifications.
+ *
+ * @see Exception
+ */
+class BadRequestException extends Exception
+{
+    protected $code = 400;
+}
 
 /**
  * The request requires user authentication.
  *
- * @see ErrorException
+ * @see Exception
  */
-class UnauthorizedException extends ErrorException
+class UnauthorizedException extends Exception
 {
     protected $code = 401;
 }
@@ -14,9 +29,9 @@ class UnauthorizedException extends ErrorException
 /**
  * The server understood the request, but is refusing to fulfill it.
  *
- * @see ErrorException
+ * @see Exception
  */
-class ForbiddenException extends ErrorException
+class ForbiddenException extends Exception
 {
     protected $code = 403;
 }
@@ -24,9 +39,9 @@ class ForbiddenException extends ErrorException
 /**
  * The server has not found anything matching the Request-URI.
  *
- * @see ErrorException
+ * @see Exception
  */
-class NotFoundException extends ErrorException
+class NotFoundException extends Exception
 {
     protected $code = 404;
 }
@@ -34,9 +49,9 @@ class NotFoundException extends ErrorException
 /**
  * MethodFailureException
  *
- * @see ErrorException
+ * @see Exception
  */
-class MethodFailureException extends ErrorException
+class MethodFailureException extends Exception
 {
     protected $code = 424;
 }
@@ -44,9 +59,9 @@ class MethodFailureException extends ErrorException
 /**
  * The server encountered an unexpected condition which prevented it from fulfilling the request.
  *
- * @see ErrorException
+ * @see Exception
  */
-class InternalException extends ErrorException
+class InternalException extends Exception
 {
     protected $code = 500;
 }
@@ -54,9 +69,9 @@ class InternalException extends ErrorException
 /**
  * The server does not support the functionality required to fulfill the request.
  *
- * @see ErrorException
+ * @see Exception
  */
-class NotImplementedException extends ErrorException
+class NotImplementedException extends Exception
 {
     protected $code = 501;
 }
@@ -65,9 +80,9 @@ class NotImplementedException extends ErrorException
  * The server is currently unable to handle the request due to a
  * temporary overloading or maintenance of the server.
  *
- * @see ErrorException
+ * @see Exception
  */
-class ServiceUnavailableException extends ErrorException
+class ServiceUnavailableException extends Exception
 {
     protected $code = 503;
 }

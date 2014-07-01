@@ -40,17 +40,17 @@ class App extends Model
 
     public function keys()
     {
-        return $this->hasMany('Model\AppKey', 'app_id');
+        return $this->hasMany('API\Model\AppKey', 'app_id');
     }
 
     public function modules()
     {
-        return $this->hasMany('Model\Module', 'app_id');
+        return $this->hasMany('API\Model\Module', 'app_id');
     }
 
     public function configs()
     {
-        return $this->hasMany('Model\AppConfig', 'app_id');
+        return $this->hasMany('API\Model\AppConfig', 'app_id');
     }
 
     public function generate_key($admin=false)

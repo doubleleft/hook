@@ -6,7 +6,7 @@ use API\Model\Auth as Auth;
 
 class Facebook extends Base
 {
-    public function authenticate($data)
+    public function register($data)
     {
         $data = $this->requestFacebookGraph($data);
 
@@ -22,7 +22,7 @@ class Facebook extends Base
         return $user->dataWithToken();
     }
 
-    public function verify($data)
+    public function login($data)
     {
         $userdata = null;
         if ($user = $this->find('facebook_id', $this->requestFacebookGraph($data))) {
@@ -40,9 +40,19 @@ class Facebook extends Base
         }
 
         $app_id = $data['app_id'];
+        $access_token = $data['accessToken'];
+
+        // remove invalid data from request fields
+        // these fields are present on 'authResponse' from FB.login
+        $invalid_keys = array('accessToken', 'expiresIn', 'signedRequest', 'userID');
+        foreach ($invalid_keys as $key) {
+            if (isset($data[$key])) {
+                unset($data[$key]);
+            }
+        }
 
         $client = new \Guzzle\Http\Client("https://graph.facebook.com");
-        $response = $client->get("/me?access_token={$data['accessToken']}")->send();
+        $response = $client->get("/me?access_token={$access_token}")->send();
         $facebook_data = json_decode($response->getBody(), true);
 
         // Filter fields from Facebook that isn't whitelisted for auth.

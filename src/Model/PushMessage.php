@@ -23,7 +23,7 @@ class PushMessage extends DynamicModel
 
     public function app()
     {
-        return $this->belongsTo('Model\App');
+        return $this->belongsTo('API\Model\App');
     }
 
     public function beforeCreate()

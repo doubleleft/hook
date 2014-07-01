@@ -1,46 +1,42 @@
 <?php
 namespace API\Auth\Providers;
 
-use API\Exceptions\ForbiddenException;
+use API\Exceptions;
 
 use API\Model\Auth as Auth;
 use API\Model\AppConfig as AppConfig;
 use API\Model\Module as Module;
 
+use API\Mailer\Mail as Mail;
+
 class Email extends Base
 {
     const TEMPLATE_FORGOT_PASSWORD = 'auth.forgot_password.html';
 
-    /**
-     * Register a new user
-     */
-    public function authenticate($data)
+    public function register($data)
     {
         $this->validateParams($data);
         if ($existing = $this->findExistingUser($data)) {
-            throw new ForbiddenException(__CLASS__ . ': email already registered.');
+            throw new Exceptions\InternalException('already_registered');
         }
         $user = Auth::create($data);
 
         return $user->dataWithToken();
     }
 
-    /**
-     * Verify if user already exists
-     */
-    public function verify($data)
+    public function login($data)
     {
         $this->validateParams($data);
 
         $userdata = null;
         if ($user = $this->findExistingUser($data)) {
             if ($user->password != $data['password']) {
-                throw new ForbiddenException(__CLASS__ . ": password invalid.");
+                throw new Exceptions\ForbiddenException("password_invalid");
             }
             $userdata = $user->dataWithToken();
         } else {
             if (!$user) {
-                throw new ForbiddenException(__CLASS__ . ": user not found.");
+                throw new Exceptions\ForbiddenException("invalid_user");
             }
         }
 
@@ -55,7 +51,7 @@ class Email extends Base
         $user = $this->find('email', $data);
 
         if (!$user) {
-            throw new ForbiddenException(__CLASS__ . ": user not found.");
+            throw new Exceptions\NotFoundException("invalid_user");
         }
 
         if (!isset($data['subject'])) {
@@ -68,7 +64,7 @@ class Email extends Base
         $template = isset($data['template']) ? $data['template'] : self::TEMPLATE_FORGOT_PASSWORD;
 
         return array(
-            'success' => (\Mail::send(array(
+            'success' => (Mail::send(array(
                 'subject' => $data['subject'],
                 'from' => AppConfig::get('mail.from', 'no-reply@api.2l.cx'),
                 'to' => $user->email,
@@ -83,10 +79,10 @@ class Email extends Base
     public function resetPassword($data)
     {
         if (!isset($data['token']) === 0) {
-            throw new \Exception(__CLASS__ . ": you must provide a 'token'.");
+            throw new Exceptions\BadRequestException("you must provide a 'token'.");
         }
         if (!isset($data['password']) || strlen($data['password']) === 0) {
-            throw new \Exception(__CLASS__ . ": you must provide a valid 'password'.");
+            throw new Exceptions\BadRequestException("you must provide a valid 'password'.");
         }
 
         $data[Auth::FORGOT_PASSWORD_FIELD] = $data['token'];
@@ -95,7 +91,7 @@ class Email extends Base
         if ($user && $user->resetPassword($data['password'])) {
             return array('success' => true);
         } else {
-            throw new \Exception(__CLASS__ . ": invalid or expired token.");
+            throw new Exceptions\UnauthorizedException("invalid_token");
         }
     }
 
@@ -114,12 +110,12 @@ class Email extends Base
     {
         // validate email address
         if (!isset($data['email']) || !filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
-            throw new \Exception(__CLASS__ . ": you must provide a valid 'email'.");
+            throw new Exceptions\BadRequestException("invalid_email");
         }
 
         // validate password
         if (!isset($data['password']) || strlen($data['password']) === 0) {
-            throw new \Exception(__CLASS__ . ": you must provide a password.");
+            throw new Exceptions\BadRequestException("invalid_password");
         }
 
     }
