@@ -17,6 +17,7 @@ class DynamicModel extends Model
 
     public function beforeSave()
     {
+        var_dump("before save => " . $this->getTable());
         $connection = $this->getConnectionResolver()->connection();
 
         // Try to migrate schema.

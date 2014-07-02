@@ -102,7 +102,7 @@ $app->group('/collection', function () use ($app) {
             $query = $query->take($limit);
         }
 
-        // remember
+        // remember / caching
         if ($remember = $app->request->get('remember')) {
             $query = $query->remember($remember);
         }

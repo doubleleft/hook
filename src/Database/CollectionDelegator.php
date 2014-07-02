@@ -298,7 +298,12 @@ class CollectionDelegator implements IteratorAggregate
      */
     public function __call($method, $parameters)
     {
-        $mixed = call_user_func_array(array($this->query, $method), $parameters);
+        try {
+            $mixed = call_user_func_array(array($this->query, $method), $parameters);
+        } catch (\Illuminate\Database\QueryException $e) {
+            var_dump($e);
+        }
+
         if ($mixed instanceof \Illuminate\Database\Eloquent\Builder || $mixed instanceof \Illuminate\Database\Query\Builder) {
             return $this;
         } else {

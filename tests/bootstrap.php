@@ -1,4 +1,6 @@
 <?php
+
+// setup dummy server variables
 $_SERVER['REQUEST_METHOD'] = '';
 $_SERVER['REMOTE_ADDR'] = '127.0.0.1';
 $_SERVER['REQUEST_URI'] = '';
@@ -21,8 +23,8 @@ class HTTP_TestCase extends PHPUnit_Framework_TestCase
 {
     // protected $base_url = 'http://localhost/index.php/';
     // protected $base_url = 'http://localhost/index.php/';
-    // protected $base_url = 'http://dl-api.dev/index.php/';
-    protected $base_url = 'http://dl-api.dev:58054/index.php/';
+    // protected $base_url = 'http://dl-api.dev:58054/index.php/';
+    protected $base_url = 'http://dl-api.dev/index.php/';
     protected $app;
 
     public function setUp()
