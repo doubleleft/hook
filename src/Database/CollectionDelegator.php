@@ -290,6 +290,14 @@ class CollectionDelegator implements IteratorAggregate
     }
 
     /**
+     * getQueryBuilder
+     * @return \Illuminate\Database\Eloquent\Builder | \Illuminate\Database\Query\Builder
+     */
+    public function getQueryBuilder() {
+        return $this->query;
+    }
+
+    /**
      * Handle Illuminate\Database\Query\Builder methods.
      *
      * @param  mixed                        $method     method
@@ -298,11 +306,7 @@ class CollectionDelegator implements IteratorAggregate
      */
     public function __call($method, $parameters)
     {
-        try {
-            $mixed = call_user_func_array(array($this->query, $method), $parameters);
-        } catch (\Illuminate\Database\QueryException $e) {
-            var_dump($e);
-        }
+        $mixed = call_user_func_array(array($this->query, $method), $parameters);
 
         if ($mixed instanceof \Illuminate\Database\Eloquent\Builder || $mixed instanceof \Illuminate\Database\Query\Builder) {
             return $this;

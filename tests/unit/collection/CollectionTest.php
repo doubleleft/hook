@@ -2,9 +2,9 @@
 
 use API\Model\App as App;
 
-
 class Book extends API\Model\Collection {
     protected $table = 'books';
+
     function author() {
         return $this->belongsTo('Author');
     }
@@ -19,16 +19,18 @@ class CollectionTest extends TestCase
 
     public function testCreate()
     {
-        $author = App::collection('authors')->create(array(
-            'name' => "Endel " . uniqid()
-        ));
+        // $author = App::collection('authors')->create(array(
+        //     'name' => "Endel " . uniqid()
+        // ));
+        //
+        // $book = App::collection('books')->create(array(
+        //     'name' => "My book " . uniqid(),
+        //     'author_id' => $author->_id
+        // ));
 
-        $book = App::collection('books')->create(array(
-            'name' => "My book " . uniqid(),
-            'author_id' => $author->_id
-        ));
-
-        // var_dump(Book::with('author')->get()->toArray());
+        App::collection('books')->with('author')->each(function($row) {
+            var_dump($row->toArray());
+        });
 
         // App::collection('testing')->each(function($row) {
         //     var_dump($row);

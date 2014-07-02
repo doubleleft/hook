@@ -1,6 +1,8 @@
 <?php
 namespace API\Model;
 
+use API\Database\Relationship as Relationship;
+
 /**
  * Collections load & execute custom observers automatically.
  * They also can be retrieved by `App::collection('my_collection')`
@@ -40,38 +42,13 @@ class Collection extends DynamicModel
         }
     }
 
-    //
-    // Use $lastTableName instead of get_class to register events on Collections
-    //
-    // @override
-    // http://laravel.com/api/source-class-Illuminate.Database.Eloquent.Model.html#_registerModelEvent
-    //
-    protected static function registerModelEvent($event, $callback)
-    {
-        if (isset(static::$dispatcher)) {
-            $name = static::$lastTableName;
-            static::$dispatcher->listen("eloquent.{$event}: {$name}", $callback);
-        }
-    }
-
-    //
-    // Use $lastTableName instead of get_class to register events on Collections
-    //
-    // @override
-    // http://laravel.com/api/source-class-Illuminate.Database.Eloquent.Model.html#_fireModelEvent
-    //
-    protected function fireModelEvent($event, $halt = true)
-    {
-        if ( ! isset(static::$dispatcher)) return true;
-
-        // We will append the names of the class to the event to distinguish it from
-        // other model events that are fired, allowing us to listen on each model
-        // event set individually instead of catching event for all the models.
-        $event = "eloquent.{$event}: ".static::$lastTableName;
-
-        $method = $halt ? 'until' : 'fire';
-
-        return static::$dispatcher->$method($event, $this);
+    /**
+     * getObserver
+     * @param string $name
+     * @return Class | null
+     */
+    public static function getObserver($table) {
+        return (isset(static::$observers[$table])) ? static::$observers[$table] : null;
     }
 
     /**
@@ -112,10 +89,9 @@ class Collection extends DynamicModel
     public function toArray()
     {
         $array = parent::toArray();
-        $table = $this->getTable();
+        $observer = static::getObserver($this->getTable());
 
-        if (isset(static::$observers[ $table ])) {
-            $observer = static::$observers[ $table ];
+        if ($observer) {
             if (method_exists($observer, 'toArray')) {
                 return $observer->toArray($this, $array);
             }
@@ -167,6 +143,55 @@ class Collection extends DynamicModel
         }
 
         return parent::beforeSave();
+    }
+
+    //
+    // Protected methods - event fire/register
+    //
+
+    public function __call($method, $parameters)
+    {
+        if (Relationship::exists($this->getTable(), $method)) {
+
+            return Relationship::get($this, $method);
+        } else {
+
+            return parent::__call($method, $parameters);
+        }
+    }
+
+    //
+    // Use $lastTableName instead of get_class to register events on Collections
+    //
+    // @override
+    // http://laravel.com/api/source-class-Illuminate.Database.Eloquent.Model.html#_registerModelEvent
+    //
+    protected static function registerModelEvent($event, $callback)
+    {
+        if (isset(static::$dispatcher)) {
+            $name = static::$lastTableName;
+            static::$dispatcher->listen("eloquent.{$event}: {$name}", $callback);
+        }
+    }
+
+    //
+    // Use $lastTableName instead of get_class to register events on Collections
+    //
+    // @override
+    // http://laravel.com/api/source-class-Illuminate.Database.Eloquent.Model.html#_fireModelEvent
+    //
+    protected function fireModelEvent($event, $halt = true)
+    {
+        if ( ! isset(static::$dispatcher)) return true;
+
+        // We will append the names of the class to the event to distinguish it from
+        // other model events that are fired, allowing us to listen on each model
+        // event set individually instead of catching event for all the models.
+        $event = "eloquent.{$event}: ".static::$lastTableName;
+
+        $method = $halt ? 'until' : 'fire';
+
+        return static::$dispatcher->$method($event, $this);
     }
 
 }

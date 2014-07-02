@@ -18,6 +18,14 @@ return array(
     // 'collation' => 'utf8_general_ci',
     // 'charset' => 'utf8'
 
+    // PostgreSQL
+    // -------
+    // 'driver'   => 'pgsql',
+    // 'host'     => 'localhost',
+    // 'username' => 'postgres',
+    // 'password' => '',
+    // 'database' => 'dlapi',
+
     // MongoDB
     // -------
     // 'driver'   => 'mongodb',
