@@ -34,6 +34,7 @@ class PushRegistration extends DynamicModel
     public static function boot()
     {
         parent::boot();
+        static::registerDefaultEvents();
         static::creating(function ($model) { $model->beforeCreate(); });
     }
 

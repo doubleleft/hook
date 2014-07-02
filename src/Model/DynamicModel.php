@@ -10,9 +10,12 @@ class DynamicModel extends Model
     protected static $booted = array();
     protected $observables = array('updating_multiple', 'deleting_multiple');
 
-    protected static function registerDefaultEvents($table)
+    protected static function registerDefaultEvents($table=null)
     {
-        if (!isset(static::$booted[ $table ])) {
+        if (is_null($table)) {
+            static::saving(function ($model) { $model->beforeSave(); });
+
+        } else if (!isset(static::$booted[ $table ])) {
             static::$booted[ $table ] = true;
             static::saving(function ($model) { $model->beforeSave(); });
         }
@@ -20,7 +23,6 @@ class DynamicModel extends Model
 
     public function beforeSave()
     {
-        var_dump("before save => " . $this->getTable());
         $connection = $this->getConnectionResolver()->connection();
 
         // Try to migrate schema.
