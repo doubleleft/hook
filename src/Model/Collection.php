@@ -19,14 +19,19 @@ class Collection extends DynamicModel
 
     public static function boot()
     {
-        if (!static::$observers) { static::$observers = array(); }
         parent::boot();
+
+        if (!static::$observers) { static::$observers = array(); }
+        if (!static::$booted) { static::$booted = array(); }
     }
 
     public static function loadObserver($table)
     {
         // Compile observer only if it isn't compiled yet.
         if (!isset(static::$observers[ $table ])) {
+            // Register default events (DynamicModel)
+            static::registerDefaultEvents($table);
+
             if ($module = Module::observer($table)) {
                 $observer = $module->compile();
                 static::$observers[ $table ] = $observer;
@@ -91,8 +96,8 @@ class Collection extends DynamicModel
         } elseif (static::$lastTableName) {
             $this->setTable(static::$lastTableName);
         }
-        static::loadObserver($this->getTable());
         parent::__construct($attributes);
+        static::loadObserver($this->getTable());
     }
 
     public function app()

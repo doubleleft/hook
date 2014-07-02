@@ -19,17 +19,14 @@ class CollectionTest extends TestCase
 
     public function testCreate()
     {
-        echo "Let's create author!\n";
         $author = App::collection('authors')->create(array(
             'name' => "Endel " . uniqid()
         ));
 
-        $book = App::collection('books')->create_new(array(
+        $book = App::collection('books')->create(array(
             'name' => "My book " . uniqid(),
             'author_id' => $author->_id
         ));
-        echo "Let's save book!\n";
-        $book->save();
 
         // var_dump(Book::with('author')->get()->toArray());
 

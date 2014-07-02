@@ -7,12 +7,15 @@ namespace API\Model;
  */
 class DynamicModel extends Model
 {
+    protected static $booted = array();
     protected $observables = array('updating_multiple', 'deleting_multiple');
 
-    public static function boot()
+    protected static function registerDefaultEvents($table)
     {
-        parent::boot();
-        static::saving(function ($model) { $model->beforeSave(); });
+        if (!isset(static::$booted[ $table ])) {
+            static::$booted[ $table ] = true;
+            static::saving(function ($model) { $model->beforeSave(); });
+        }
     }
 
     public function beforeSave()
