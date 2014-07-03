@@ -28,9 +28,7 @@ class Base
 
     protected function find($key_field, $data)
     {
-        return Auth::where($key_field, $data[$key_field])
-            ->where('app_id', $data['app_id'])
-            ->first();
+        return Auth::where($key_field, $data[$key_field])->first();
     }
 
 }

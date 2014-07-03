@@ -39,7 +39,6 @@ class Facebook extends Base
             throw new ForbiddenException(__CLASS__ . ": you must provide user 'accessToken'.");
         }
 
-        $app_id = $data['app_id'];
         $access_token = $data['accessToken'];
 
         // remove invalid data from request fields
@@ -67,7 +66,6 @@ class Facebook extends Base
         $data = array_merge($data, $facebook_data);
 
         // rename 'facebook_id' field
-        $data['app_id'] = $app_id;
         $data['facebook_id'] = $data['id'];
         unset($data['id']);
 

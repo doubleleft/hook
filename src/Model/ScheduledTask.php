@@ -6,20 +6,6 @@ namespace API\Model;
  */
 class ScheduledTask extends Model
 {
-    public function app()
-    {
-        return $this->belongsTo('API\Model\App');
-    }
-
-    /**
-     * Current app scope
-     * @example
-     *     ScheduledTask::current()->delete()
-     */
-    public function scopeCurrent($query)
-    {
-        return $query->where('app_id', App::currentId());
-    }
 
     public function getCommand()
     {
@@ -38,7 +24,9 @@ class ScheduledTask extends Model
         // TODO: redirect output to application log file.
         // https://github.com/doubleleft/dl-api/issues/37
 
-        $curl_headers = "-H 'X-App-Id: {$this->app_id}' ";
+        $app_id = App::currentId();
+
+        $curl_headers = "-H 'X-App-Id: {$app_id}' ";
         $curl_headers .= "-H 'X-App-Key: {$this->app->keys[0]->key}' ";
         $curl_headers .= "-H 'X-Scheduled-Task: yes' ";
 

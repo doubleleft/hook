@@ -4,6 +4,7 @@ $app = require __DIR__ . '/src/PHPAPI.php';
 use API\Middlewares as Middlewares;
 use API\Model as Model;
 use API\Auth as Auth;
+use API\Database\AppContext as AppContext;
 use API\PushNotification as PushNotification;
 
 // Middlewares
@@ -256,7 +257,6 @@ $app->group('/channels', function () use ($app) {
     $app->post('/:name+', function ($name) use ($app) {
         $name = implode("/",$name);
         $app->content = Model\ChannelMessage::create(array_merge($app->request->post(), array(
-            'app_id' => $app->key->app_id,
             'channel' => $name
         )));
     });
@@ -278,9 +278,7 @@ $app->group('/auth', function () use ($app) {
      * POST /auth/email
      */
     $app->post('/:provider(/:method)', function ($provider_name, $method = 'register') use ($app) {
-        $data = $app->collection_data;
-        $data['app_id'] = $app->key->app_id;
-        $app->content = Auth\Provider::get($provider_name)->{$method}($data);
+        $app->content = Auth\Provider::get($provider_name)->{$method}($app->collection_data);
     });
 });
 
@@ -293,9 +291,7 @@ $app->group('/key', function () use ($app) {
      * GET /key/:name
      */
     $app->get('/:key', function ($key) use ($app) {
-        $app->content = Model\KeyValue::where('app_id', $app->key->app_id)
-            ->where('name', $key)
-            ->first() ?: new Model\KeyValue();
+        $app->content = Model\KeyValue::where('name', $key)->first() ?: new Model\KeyValue();
     });
 
     /**
@@ -303,7 +299,6 @@ $app->group('/key', function () use ($app) {
      */
     $app->post('/:key', function ($key) use ($app) {
         $app->content = Model\KeyValue::upsert(array(
-            'app_id' => $app->key->app_id,
             'name' => $key,
             'value' => $app->request->post('value')
         ));
@@ -351,7 +346,6 @@ $app->group('/files', function () use ($app) {
         }
 
         $app->content = Model\File::create(array(
-            'app_id' => $app->key->app_id,
             'file' => $_FILES["file"]
         ));
     });
@@ -367,7 +361,7 @@ $app->group('/push', function () use ($app) {
      */
     $app->post('/registration', function () use ($app) {
         $data = $app->request->post('d') ?: $app->request->post('data') ?: $app->request->post();
-        $app->content = Model\PushRegistration::create(array_merge($data, array('app_id' => $app->key->app_id)));
+        $app->content = Model\PushRegistration::create($data);
     });
 
     /**
@@ -378,8 +372,7 @@ $app->group('/push', function () use ($app) {
         if (!isset($data['device_id'])) {
             throw new \Exception("'device_id' is required to delete push registration.");
         }
-        $registration = Model\PushRegistration::where('app_id', $app->key->app_id)
-            ->where('device_id', $data['device_id']);
+        $registration = Model\PushRegistration::where('device_id', $data['device_id']);
         $app->content = array('success' => ($registration->delete() == 1));
     });
 
@@ -402,6 +395,18 @@ $app->group('/push', function () use ($app) {
  * Internals
  */
 $app->group('/apps', function () use ($app) {
+
+    /**
+     * Create a new app
+     *
+     * POST /apps/
+     */
+    $app->post('/', function () use ($app) {
+        $data = Model\App::create($app->request->post('app'))->toArray();
+        AppContext::setPrefix($data['_id']);
+        AppContext::migrate();
+        $app->content = $data;
+    });
 
     $app->get('/logs', function () use ($app) {
         $file_path = $app->log->getWriter()->getFilePath();
@@ -434,10 +439,6 @@ $app->group('/apps', function () use ($app) {
         $app->content = Model\App::where('name', $name)->first();
     });
 
-    $app->post('/', function () use ($app) {
-        $app->content = Model\App::create($app->request->post('app'));
-    });
-
     /**
      * Keys
      */
@@ -454,11 +455,11 @@ $app->group('/apps', function () use ($app) {
      */
     $app->post('/tasks', function () use ($app) {
         // Remove all scheduled tasks for this app
-        Model\ScheduledTask::current()->delete();
+        Model\ScheduledTask::delete();
 
         $tasks = "";
         foreach ($app->request->post('schedule', array()) as $schedule) {
-            $task = Model\ScheduledTask::create(array_merge($schedule, array('app_id' => $app->key->app_id)));
+            $task = Model\ScheduledTask::create($schedule);
             $tasks .= $task->getCommand() . "\n";
         }
         file_put_contents(__DIR__ . '/app/storage/crontabs/' . $app->key->app_id . '.cron', $tasks);
@@ -467,7 +468,7 @@ $app->group('/apps', function () use ($app) {
     });
 
     $app->get('/tasks', function () use ($app) {
-        $app->content = Model\ScheduledTask::current()->get()->toArray();
+        $app->content = Model\ScheduledTask::all()->get()->toArray();
     });
 
     /**
@@ -508,21 +509,16 @@ $app->group('/apps', function () use ($app) {
 
     $app->post('/modules', function () use ($app) {
         $data = $app->request->post('module');
-        $data['app_id'] = $app->key->app_id;
 
         // try to retrieve existing module for this app
-        $module = Model\Module::where('app_id', $data['app_id'])
-            ->where('name', $data['name'])
-            ->first();
+        $module = Model\Module::where('name', $data['name'])->first();
 
         $app->content = ($module) ? $module->update($data) : Model\Module::create($data);
     });
 
     $app->delete('/modules', function ($name) use ($app) {
         $data = $app->request->post('module');
-        $deleted = Model\Module::where('app_id', $app->key->app_id)->
-            where('name', $data['name'])->
-            delete();
+        $deleted = Model\Module::where('name', $data['name'])->delete();
         $app->content = array('success' => $deleted);
     });
 

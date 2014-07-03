@@ -5,6 +5,8 @@ use Slim;
 use API\Model\AppKey as AppKey;
 use API\Model\Module as Module;
 
+use API\Database\AppContext as AppContext;
+
 class AppMiddleware extends Slim\Middleware
 {
 
@@ -64,7 +66,12 @@ class AppMiddleware extends Slim\Middleware
                 ->first();
 
             if ($app->key) {
-                if ($custom_routes = Module::currentApp()->where('type', Module::TYPE_ROUTE)->get()) {
+                //
+                // From now, every query will use app_id prefix.
+                //
+                AppContext::setPrefix($app->key->app_id);
+
+                if ($custom_routes = Module::where('type', Module::TYPE_ROUTE)->get()) {
                     foreach ($custom_routes as $custom_route) {
                         $custom_route->compile();
                     }
@@ -96,21 +103,23 @@ class AppMiddleware extends Slim\Middleware
 
     protected function validatePublicKey($data)
     {
-        $valid = false;
+        return true;
 
-        if ($data) {
-            $data = trim(urldecode($data));
-            $handle = fopen(__DIR__ . '/../../security/.authorized_keys', 'r');
-            while (!feof($handle)) {
-                $valid = (strpos(fgets($handle), $data) !== FALSE);
-                if ($valid) {
-                    break;
-                }
-            }
-            fclose($handle);
-        }
-
-        return $valid;
+        // $valid = false;
+        //
+        // if ($data) {
+        //     $data = trim(urldecode($data));
+        //     $handle = fopen(__DIR__ . '/../../security/.authorized_keys', 'r');
+        //     while (!feof($handle)) {
+        //         $valid = (strpos(fgets($handle), $data) !== FALSE);
+        //         if ($valid) {
+        //             break;
+        //         }
+        //     }
+        //     fclose($handle);
+        // }
+        //
+        // return $valid;
     }
 
 }

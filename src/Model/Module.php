@@ -17,11 +17,6 @@ class Module extends Model
     const TYPE_ROUTE = 'routes';
     const TYPE_CHANNEL = 'channels';
 
-    public function app()
-    {
-        return $this->belongsTo('API\Model\App');
-    }
-
     /**
      * Get a route module instance
      * @param string name
@@ -103,7 +98,7 @@ class Module extends Model
      */
     public static function get($type, $name)
     {
-        return static::currentApp()->where('type', $type)->where('name', $name)->first();
+        return static::where('type', $type)->where('name', $name)->first();
     }
 
     /**
@@ -182,23 +177,6 @@ class Module extends Model
         $code = $this->attributes['code'];
 
         return ($extension==="php") ? substr($code, 5) : $code;
-    }
-
-    /**
-     * currentApp
-     * Current app scope
-     *
-     * @static
-     * @return Illuminate\Database\Query\Builder
-     *
-     * @example
-     *     Module::currentApp()->where('name', 'like', 'get_%')->get()
-     */
-    public function scopeCurrentApp($query)
-    {
-        $app = Slim\Slim::getInstance();
-
-        return $query->where('app_id', $app->key->app_id);
     }
 
 }

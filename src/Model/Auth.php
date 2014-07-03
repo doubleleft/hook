@@ -48,9 +48,7 @@ class Auth extends Collection
      */
     public function generateToken()
     {
-        return $this->tokens()->create(array(
-            'app_id' => $this->app_id
-        ));
+        return $this->tokens()->create(array());
     }
 
     public function generateForgotPasswordToken()

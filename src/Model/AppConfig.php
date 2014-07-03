@@ -6,10 +6,6 @@ namespace API\Model;
  */
 class AppConfig extends Model
 {
-    public function app()
-    {
-        return $this->belongsTo('API\Model\App');
-    }
 
     /**
      * Get app config value by name
@@ -19,7 +15,7 @@ class AppConfig extends Model
      */
     public static function get($name, $default = null)
     {
-        $config = static::current()->where('name', $name)->first();
+        $config = static::where('name', $name)->first();
 
         return ($config) ? $config->value : $default;
     }
@@ -31,17 +27,7 @@ class AppConfig extends Model
      */
     public static function getAll($pattern)
     {
-        return static::current()->where('name', 'like', $pattern)->get();
-    }
-
-    /**
-     * Current app scope
-     * @example
-     *     AppConfig::current()->where('name', 'like', 'mail.%')->get()
-     */
-    public function scopeCurrent($query)
-    {
-        return $query->where('app_id', App::currentId());
+        return static::where('name', 'like', $pattern)->get();
     }
 
 }

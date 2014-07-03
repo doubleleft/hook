@@ -18,11 +18,6 @@ class ChannelMessage extends Collection
         static::creating(function ($model) { $model->beforeCreate(); });
     }
 
-    public function app()
-    {
-        return $this->belongsTo('API\Model\App');
-    }
-
     public function beforeCreate()
     {
         // Check if a CONNECT message is being created, to

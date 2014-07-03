@@ -52,7 +52,6 @@ class CollectionDelegator implements IteratorAggregate
 
         $query = null;
         if (isset(static::$custom_collections[$name])) {
-            echo "custom_collection: " . static::$custom_collections[$name] . PHP_EOL;
             $query = call_user_func(array(static::$custom_collections[$name], 'query'));
             $is_collection = false;
         } else {

@@ -23,11 +23,6 @@ class File extends Model
         return false;
     }
 
-    public function app()
-    {
-        return $this->belongsTo('API\Model\App');
-    }
-
     public function beforeCreate()
     {
         if ($this->file) {

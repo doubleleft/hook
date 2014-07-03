@@ -53,7 +53,7 @@ class App extends Model
         return $this->hasMany('API\Model\AppConfig', 'app_id');
     }
 
-    public function generate_key($admin=false)
+    public function generateKey($admin=false)
     {
         return $this->keys()->create(array('admin' => $admin));
     }
@@ -61,27 +61,16 @@ class App extends Model
     public function afterCreate()
     {
         // Generate admin key
-        $this->generate_key(true);
+        $this->generateKey(true);
 
         // Generate user key
-        $this->generate_key();
+        $this->generateKey();
 
         // Create storage directory for this app
-        mkdir(storage_dir(true, $this->_id), 0777, true);
-    }
-
-    /**
-     * current
-     *
-     * @example
-     *     App::current()->where('name', 'like', 'mail.%')->get()
-     *
-     * @static
-     * @return Model\App
-     */
-    public function scopeCurrent($query)
-    {
-        return $query->where('_id', static::currentId());
+        $storage_dir = storage_dir(true, $this->_id);
+        if (!file_exists($storage_dir)) {
+            mkdir($storage_dir, 0777, true);
+        }
     }
 
     public function toArray()

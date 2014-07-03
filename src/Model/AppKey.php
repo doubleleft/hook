@@ -13,11 +13,6 @@ class AppKey extends Model
         static::saving(function ($instance) { $instance->beforeSave(); });
     }
 
-    public function app()
-    {
-        return $this->belongsTo('API\Model\App');
-    }
-
     public function beforeSave()
     {
         if (!$this->key) {

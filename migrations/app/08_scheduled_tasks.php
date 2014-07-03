@@ -2,7 +2,6 @@
 
 return array('scheduled_tasks' => function ($t) {
     $t->increments('_id');
-    $t->integer('app_id')->references('_id')->on('apps');
     $t->string('schedule');
     $t->string('task');
 

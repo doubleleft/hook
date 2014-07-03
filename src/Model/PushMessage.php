@@ -22,11 +22,6 @@ class PushMessage extends DynamicModel
         static::creating(function ($model) { $model->beforeCreate(); });
     }
 
-    public function app()
-    {
-        return $this->belongsTo('API\Model\App');
-    }
-
     public function beforeCreate()
     {
         if (!AuthToken::current()) {

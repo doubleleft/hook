@@ -40,7 +40,7 @@ class DynamicModel extends Model
         // Collection table doesn't exists yet: CREATE TABLE
         if (!$builder->hasTable($table)) {
 
-            $builder->create($table, function ($t) use (&$attributes) {
+            $builder->create($connection->getTablePrefix() . $table, function ($t) use (&$attributes) {
                 $t->increments('_id'); // Primary key
 
                 foreach ($attributes as $field => $value) {
@@ -71,7 +71,7 @@ class DynamicModel extends Model
 
             // Add missing fields: ALTER TABLE.
             // TODO: DRY
-            $builder->table($table, function ($t) use (&$attributes, $builder, $table) {
+            $builder->table($connection->getTablePrefix() . $table, function ($t) use (&$attributes, $builder, $table) {
                 foreach ($attributes as $field => $value) {
                     if (!$builder->hasColumn($table, $field) &&
                             !$builder->hasColumn($table, "`{$field}`")) {

@@ -53,16 +53,16 @@ $connection->setCacheManager(function () {
 // TODO: Create `dl-api migrate` command.
 // --------------------------------------
 //
-// //
-// // Try to create schema.
-// // Ignore NoSQL databases.
-// //
-// if ($connection->getPdo()) {
-// 	$builder = $connection->getSchemaBuilder();
-// 	if (!$builder->hasTable('apps')) {
-// 		foreach (glob(__DIR__ . '/../models/schema/*.php') as $file) {
-// 			$migration = require($file);
-// 			$builder->create(key($migration), current($migration));
-// 		}
-// 	}
-// }
+//
+// Try to create schema.
+// Ignore NoSQL databases.
+//
+if ($connection->getPdo()) {
+	$builder = $connection->getSchemaBuilder();
+	if (!$builder->hasTable('apps')) {
+		foreach (glob(__DIR__ . '/../../migrations/global/*.php') as $file) {
+			$migration = require($file);
+			$builder->create(key($migration), current($migration));
+		}
+	}
+}

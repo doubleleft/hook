@@ -77,11 +77,6 @@ class Collection extends DynamicModel
         static::loadObserver($this->getTable());
     }
 
-    public function app()
-    {
-        return $this->belongsTo('API\Model\App');
-    }
-
     /**
      * toArray. Modules may define a custom toArray method.
      * @return array
@@ -121,10 +116,7 @@ class Collection extends DynamicModel
     protected function uploadAttachedFiles($files)
     {
         foreach ($files as $field => $file) {
-            $_file = File::create(array(
-                'app_id' => $this->app_id,
-                'file' => $file
-            ));
+            $_file = File::create(array('file' => $file));
             $this->setAttribute($field, $_file->path);
             $this->setAttribute($field . '_id', $_file->_id);
         }

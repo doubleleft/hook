@@ -28,9 +28,7 @@ class Mail
     {
         $params = array();
 
-        AppConfig::current()
-            ->where('app_id', App::currentId())
-            ->where(function ($query) {
+        AppConfig::where(function ($query) {
                 $query->where('name', 'mail.driver')
                     ->orWhere('name', 'mail.host')
                     ->orWhere('name', 'mail.port')
