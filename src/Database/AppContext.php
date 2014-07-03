@@ -15,6 +15,21 @@ class AppContext
         $connection->setTablePrefix($connection->getTablePrefix() . 'app' . $prefix . '_');
     }
 
+    /**
+     * getPrefix
+     *
+     * @return string
+     */
+    public static function getPrefix() {
+        $connection = \DLModel::getConnectionResolver()->connection();
+        return $connection->getTablePrefix();
+    }
+
+    /**
+     * migrate
+     *
+     * Migrate core application schema.
+     */
     public static function migrate() {
         $connection = \DLModel::getConnectionResolver()->connection();
         if ($connection->getPdo()) {

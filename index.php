@@ -5,6 +5,7 @@ use API\Middlewares as Middlewares;
 use API\Model as Model;
 use API\Auth as Auth;
 use API\Database\AppContext as AppContext;
+use API\Database\Schema as Schema;
 use API\PushNotification as PushNotification;
 
 // Middlewares
@@ -516,10 +517,31 @@ $app->group('/apps', function () use ($app) {
         $app->content = ($module) ? $module->update($data) : Model\Module::create($data);
     });
 
-    $app->delete('/modules', function ($name) use ($app) {
+    $app->delete('/modules', function () use ($app) {
         $data = $app->request->post('module');
         $deleted = Model\Module::where('name', $data['name'])->delete();
         $app->content = array('success' => $deleted);
+    });
+
+    /**
+     * Schema
+     */
+    $app->post('/schema', function () use ($app) {
+        $schema = $app->request->post('schema');
+
+        ob_start();
+        foreach($schema as $collection => $config) {
+            Schema\Builder::migrate(Model\App::collection($collection)->getModel(), $config);
+        }
+
+        $res = ob_get_contents();
+        ob_end_flush();
+
+        $app->content = array('success' => $res);
+    });
+
+    $app->get('/schema', function () use ($app) {
+        $app->content = Schema\Cache::dump();
     });
 
     // $app->get('/:name/composer', function ($id) use ($app) {

@@ -44,14 +44,13 @@ $resolver->setDefaultConnection('default');
 DLModel::setConnectionResolver($resolver);
 DLModel::setEventDispatcher($event_dispatcher);
 
-//
 // Setup paginator
-//
 $connection->setPaginator(new API\Pagination\Environment());
 
-//
+// Setup Schema Grammar
+// $connection->setSchemaGrammar();
+
 // Setup cache manager
-//
 $connection->setCacheManager(function () {
     return null;
 });
@@ -65,11 +64,11 @@ $connection->setCacheManager(function () {
 // Ignore NoSQL databases.
 //
 if ($connection->getPdo()) {
-	$builder = $connection->getSchemaBuilder();
-	if (!$builder->hasTable('apps')) {
-		foreach (glob(__DIR__ . '/../../migrations/global/*.php') as $file) {
-			$migration = require($file);
-			$builder->create(key($migration), current($migration));
-		}
-	}
+    $builder = $connection->getSchemaBuilder();
+    if (!$builder->hasTable('apps')) {
+        foreach (glob(__DIR__ . '/../../migrations/global/*.php') as $file) {
+            $migration = require($file);
+            $builder->create(key($migration), current($migration));
+        }
+    }
 }

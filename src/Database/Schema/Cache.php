@@ -7,4 +7,22 @@ namespace API\Database\Schema;
  */
 class Cache
 {
+
+    /**
+     * dump
+     *
+     * @return array
+     */
+    public static function dump()
+    {
+    }
+
+    public static function get($key)
+    {
+    }
+
+    public static function set($key, $value)
+    {
+    }
+
 }

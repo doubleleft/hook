@@ -1,6 +1,8 @@
 <?php
 namespace API\Database\Schema;
 
+use API\Database\AppContext as AppContext;
+
 /**
  * Builder
  * @author Endel Dreyer <edreyer@doubleleft.com>
@@ -8,6 +10,12 @@ namespace API\Database\Schema;
 class Builder
 {
 
+    /**
+     * dynamic
+     *
+     * @param API\Model\Collection $model
+     * @param mixed $attributes
+     */
     public static function dynamic($model, &$attributes = null)
     {
         $connection = $model->getConnectionResolver()->connection();
@@ -18,11 +26,8 @@ class Builder
 
         $builder = $connection->getSchemaBuilder();
 
-        //
-        // TODO: Cache table structure for hasTable/hasColumn boosting
-        //
         $table = $model->getTable();
-        $table_name = $connection->getTablePrefix() . $table;
+        $table_name = AppContext::getPrefix() . $table;
 
         $is_creating = (!$builder->hasTable($table));
         $method = ($is_creating) ? 'create' : 'table';
@@ -76,8 +81,95 @@ class Builder
         return call_user_func(array($builder, $method), $table_name, $migrate);
     }
 
-}
+    /**
+     * migrate
+     *
+     * @param API\Model\Collection $model
+     * @param array $config
+     *
+     * @return bool
+     */
+    public static function migrate($model, $config)
+    {
+        $connection = $model->getConnectionResolver()->connection();
 
+        // Ignore NoSQL databases.
+        if (!$connection->getPdo()) { return; }
+
+        $builder = $connection->getSchemaBuilder();
+
+        // Set custom blueprint resolver
+        $builder->blueprintResolver(function($table, $callback) {
+            return new \API\Database\Schema\Blueprint($table, $callback);
+        });
+
+        $table = $model->getTable();
+        $table_name = AppContext::getPrefix() . $table;
+
+        $is_creating = (!$builder->hasTable($table));
+        $method = ($is_creating) ? 'create' : 'table';
+
+        $cached_schema = Cache::get($table);
+
+        if (isset($config['attributes'])) {
+            $attributes = $config['attributes'];
+            $migrate = function ($t) use (&$table, &$builder, &$is_creating, $attributes, &$cached_schema) {
+                if ($is_creating) {
+                    $t->increments('_id'); // primary key
+                    $t->timestamps();      // created_at / updated_at field
+                    $t->softDeletes();     // deleted_at field
+                }
+
+                foreach($attributes as $attribute) {
+
+                    if (!isset($attribute['type']) || !isset($attribute['name'])) {
+                        throw new API\Exceptions\MethodFailureException('invalid_schema');
+                    }
+
+                    $field_name = array_remove($attribute, 'name');
+                    $type = camel_case(array_remove($attribute, 'type'));
+
+                    $default = array_remove($attribute, 'default');
+                    $index = array_remove($attribute, 'index');
+                    $unique = array_remove($attribute, 'unique');
+                    $required = array_remove($attribute, 'required');
+
+                    // don't migrate default fields
+                    $ignore_fields = array('created_at', 'updated_at', 'deleted_at');
+                    if (in_array($field_name, $ignore_fields)) { continue; }
+
+                    if (count($attribute) > 0) {
+                        // the remaining attributes on field definition are
+                        // the data-type related config, such as 'length',
+                        // 'allowed', 'total', 'places', etc.
+                        $column = $t->newColumn($type, $field_name, $attribute);
+                    } else {
+                        $column = $t->{$type}($field_name);
+                    }
+
+                    // columns are nullable unless specified as 'required'
+                    if (!$required) { $column->nullable(); }
+
+                    // apply default value
+                    if ($default) { $column->default($default); }
+
+                    // apply index if specified
+                    if ($index && !$unique) { $column->index(); }
+
+                    // apply unique index if specified
+                    if ($unique) {
+                        $unique_fields = (!is_array($unique)) ? $field_name : array_merge(array($field_name), $unique);
+                        $t->unique($unique_fields);
+                    }
+                }
+            };
+        }
+
+        Cache::set($table, $config);
+        return call_user_func(array($builder, $method), $table_name, $migrate);
+    }
+
+}
 
 // $table->bigIncrements('id');	Incrementing ID using a "big integer" equivalent.
 // $table->bigInteger('votes');	BIGINT equivalent to the table

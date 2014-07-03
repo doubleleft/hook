@@ -62,6 +62,7 @@ function clamp($val, $min, $max)
 /**
  * Array functions
  */
+
 function array_diverse($vector)
 {
     $result = array();
@@ -72,4 +73,21 @@ function array_diverse($vector)
     }
 
     return $result;
+}
+
+
+/**
+ * Removes an item from the array and returns its value.
+ *
+ * @param array $arr The input array
+ * @param $key The key pointing to the desired value
+ * @return The value mapped to $key or null if none
+ */
+function array_remove(array &$arr, $key) {
+    if (array_key_exists($key, $arr)) {
+        $val = $arr[$key];
+        unset($arr[$key]);
+        return $val;
+    }
+    return null;
 }
