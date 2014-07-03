@@ -61,7 +61,7 @@ class CollectionDelegator implements IteratorAggregate
         $this->name = $name;
         $this->app_id = $app_id;
         $this->is_collection = $is_collection;
-        $this->query = $query->where('app_id', $app_id);
+        $this->query = $query;
     }
 
     /**
@@ -95,8 +95,6 @@ class CollectionDelegator implements IteratorAggregate
      */
     public function create_new(array $attributes)
     {
-        $attributes['app_id'] = $this->app_id;
-
         if (!$this->is_collection) {
             $klass = self::$custom_collections[$this->name];
 
