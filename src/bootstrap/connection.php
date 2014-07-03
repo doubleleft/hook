@@ -30,6 +30,13 @@ if ($db_config['driver'] == 'mongodb') {
     class_alias('\Illuminate\Database\Eloquent\Model', 'DLModel');
 }
 
+//
+// Setup default date format
+// Use a string representing an RFC2822 or ISO 8601 date
+// http://tools.ietf.org/html/rfc2822#page-14
+//
+\Carbon\Carbon::setToStringFormat('Y-m-d\TH:i:sP');
+
 $resolver = new \Illuminate\Database\ConnectionResolver(array('default' => $connection));
 $resolver->addConnection('app', $connection);
 $resolver->setDefaultConnection('default');
