@@ -529,15 +529,11 @@ $app->group('/apps', function () use ($app) {
     $app->post('/schema', function () use ($app) {
         $schema = $app->request->post('schema');
 
-        ob_start();
         foreach($schema as $collection => $config) {
             Schema\Builder::migrate(Model\App::collection($collection)->getModel(), $config);
         }
 
-        $res = ob_get_contents();
-        ob_end_flush();
-
-        $app->content = array('success' => $res);
+        $app->content = array('success' => true);
     });
 
     $app->get('/schema', function () use ($app) {

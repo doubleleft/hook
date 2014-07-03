@@ -135,11 +135,12 @@ class ResponseTypeMiddleware extends Slim\Middleware
     protected function handle_error_response($e, $app)
     {
         $message = $e->getMessage();
+        $trace = $e->getTraceAsString();
 
         $app->log->info("Error: '{$message}'");
-        $app->log->info($e->getTraceAsString());
+        $app->log->info($trace);
 
-        file_put_contents('php://stderr', "[[ dl-api: error ]] " . $message . PHP_EOL . $e->getTraceAsString() . PHP_EOL);
+        file_put_contents('php://stderr', "[[ dl-api: error ]] " . $message . PHP_EOL . $trace . PHP_EOL);
 
         if (strpos($message, "column not found") !== false ||        // mysql
             strpos($message, "no such table") !== false ||           // mysql
@@ -155,7 +156,7 @@ class ResponseTypeMiddleware extends Slim\Middleware
             }
             $app->response->setStatus($code);
 
-            return array('error' => $message);
+            return array('error' => $message); // , 'trace' => $trace
         }
     }
 

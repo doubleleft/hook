@@ -6,7 +6,7 @@ return array(
         $t->string('name')->unique();
 
         // timestamps
-        $t->integer('created_at');
-        $t->integer('updated_at');
+        $t->softDeletes();
+        $t->timestamps();
     }
 );

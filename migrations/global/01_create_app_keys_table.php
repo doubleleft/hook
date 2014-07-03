@@ -8,6 +8,6 @@ return array('app_keys' => function ($t) {
     $t->boolean('admin')->default(false);
 
     // timestamps
-    $t->integer('created_at');
-    $t->integer('updated_at');
+    $t->softDeletes();
+    $t->timestamps();
 });

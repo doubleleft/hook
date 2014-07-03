@@ -147,11 +147,14 @@ class Builder
                         $column = $t->{$type}($field_name);
                     }
 
+                    // apply default value
+                    if ($default) {
+                        $required = true;
+                        $column->default($default);
+                    }
+
                     // columns are nullable unless specified as 'required'
                     if (!$required) { $column->nullable(); }
-
-                    // apply default value
-                    if ($default) { $column->default($default); }
 
                     // apply index if specified
                     if ($index && !$unique) { $column->index(); }
