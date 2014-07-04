@@ -6,6 +6,6 @@ return array('key_values' => function ($t) {
     $t->string('value');
 
     // timestamps
-    $t->integer('created_at');
-    $t->integer('updated_at');
+    $t->softDeletes();
+    $t->timestamps();
 });

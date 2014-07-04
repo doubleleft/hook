@@ -6,6 +6,6 @@ return array('app_configs' => function ($t) {
     $t->text('value');
 
     // timestamps
-    $t->integer('created_at');
-    $t->integer('updated_at');
+    $t->softDeletes();
+    $t->timestamps();
 });

@@ -1,17 +1,18 @@
 <?php
 namespace API\Model;
 
+use \Carbon\Carbon;
+
 /**
  * AuthToken
  */
 class AuthToken extends Model
 {
-    const EXPIRATION = 24; // hours
+    const EXPIRATION_HOURS = 24; // hours
 
-    // protected $table = 'auth_tokens';
     public $timestamps = false;
-
     static $_current = null;
+    protected $dates = array('expire_at');
 
     public static function boot()
     {
@@ -57,8 +58,8 @@ class AuthToken extends Model
 
     public function beforeCreate()
     {
-        $this->expire_at = time() + (static::EXPIRATION * 60 * 60);
-        $this->created_at = time();
+        $this->created_at = Carbon::now();
+        $this->expire_at = Carbon::now()->addHours(static::EXPIRATION_HOURS);
         $this->token = md5(uniqid(rand(), true));
         // $this->level = 1;
     }

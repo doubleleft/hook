@@ -6,6 +6,6 @@ return array('scheduled_tasks' => function ($t) {
     $t->string('task');
 
     // timestamps
-    $t->integer('created_at');
-    $t->integer('updated_at');
+    $t->softDeletes();
+    $t->timestamps();
 });

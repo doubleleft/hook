@@ -156,7 +156,7 @@ class ResponseTypeMiddleware extends Slim\Middleware
             }
             $app->response->setStatus($code);
 
-            return array('error' => $message); // , 'trace' => $trace
+            return array('error' => $message, 'trace' => $trace); //
         }
     }
 

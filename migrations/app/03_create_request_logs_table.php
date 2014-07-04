@@ -7,6 +7,6 @@ return array('request_logs' => function ($t) {
     $t->string('method', 6);
 
     // timestamps
-    $t->integer('created_at');
-    $t->integer('updated_at');
+    $t->softDeletes();
+    $t->timestamps();
 });

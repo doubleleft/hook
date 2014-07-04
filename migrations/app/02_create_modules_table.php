@@ -8,6 +8,6 @@ return array('modules' => function ($t) {
     $t->text('code');
 
     // timestamps
-    $t->integer('created_at');
-    $t->integer('updated_at');
+    $t->softDeletes();
+    $t->timestamps();
 });

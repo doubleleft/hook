@@ -7,6 +7,6 @@ return array('auth_tokens' => function ($t) {
     $t->integer('role')->default(0);
 
     // timestamps
-    $t->integer('created_at');
-    $t->integer('expire_at');
+    $t->timestamp('created_at');
+    $t->timestamp('expire_at');
 });
