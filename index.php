@@ -527,7 +527,7 @@ $app->group('/apps', function () use ($app) {
      * Schema
      */
     $app->post('/schema', function () use ($app) {
-        $schema = $app->request->post('schema');
+        $schema = $app->request->post();
 
         foreach($schema as $collection => $config) {
             Schema\Builder::migrate(Model\App::collection($collection)->getModel(), $config);

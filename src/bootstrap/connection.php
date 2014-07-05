@@ -52,7 +52,13 @@ $connection->setPaginator(new API\Pagination\Environment());
 
 // Setup cache manager
 $connection->setCacheManager(function () {
-    return null;
+    return new Illuminate\Cache\CacheManager(array(
+        'files' => new \Illuminate\Filesystem\Filesystem(),
+        'config' => array(
+            'cache.driver' => 'file',
+            'cache.path' => storage_dir() . '/cache'
+        )
+    ));;
 });
 
 //
