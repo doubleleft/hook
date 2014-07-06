@@ -109,9 +109,9 @@ $app->group('/collection', function () use ($app) {
             $query = $query->remember($remember);
         }
 
-        // with
+        // with - eager load relationships
         if ($with = $app->request->get('with')) {
-            $query = call_user_func_array(array($query, 'remember'), $with);
+            $query = call_user_func_array(array($query, 'with'), $with);
         }
 
         if ($aggr = $app->request->get('aggr')) {
@@ -162,13 +162,6 @@ $app->group('/collection', function () use ($app) {
         } else {
 
             // Perform raw update
-            //
-            // FIXME: 'd' is deprecated. use 'data' instead.
-            //
-            // Who is using it?
-            // - 'plugados-site'
-            // - 'clubsocial-possibilidades'
-            //
             $affected = $query->update($app->collection_data);
             $app->content = array(
                 'success' => is_int($affected) && $affected > 0,

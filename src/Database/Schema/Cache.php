@@ -5,12 +5,16 @@ use API\Cache\Cache as Store;
 class Cache
 {
 
-    public static function forever($key, $value) {
-        return Store::forever($key, json_encode($value));
+    public static function forever($collection, $value) {
+        return Store::forever(static::key($collection), json_encode($value));
     }
 
-    public static function get($key) {
-        return json_decode(Store::get($key));
+    public static function get($collection) {
+        return json_decode(Store::get(static::key($collection)), true) ?: array();
+    }
+
+    protected static function key($name) {
+        return $name . '_schema';
     }
 
 }

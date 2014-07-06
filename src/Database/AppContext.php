@@ -1,5 +1,4 @@
-<?php
-namespace API\Database;
+<?php namespace API\Database;
 
 use API\Model\App as App;
 

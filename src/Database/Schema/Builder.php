@@ -148,6 +148,8 @@ class Builder
                     // only create field on belongs_to relationships
                     if ($relation == "belongs_to") {
                         foreach ($fields as $field => $collection) {
+                            // maybe 'collection' table isn't created here.
+                            // TODO: create related table before referencing foreign key.
                             $t->unsignedInteger($field . '_id');
                             $t->foreign($field . '_id')
                                 ->references('_id')
@@ -160,7 +162,10 @@ class Builder
             $result = call_user_func(array($builder, $method), $table_prefix . $table, $migrate);
         }
 
-        Cache::forever($table, $config);
+        var_dump($cached_schema, $config);
+
+        // Cache table schema for further reference
+        Cache::forever($table, array_merge_recursive($cached_schema, $config));
 
         return $result;
     }

@@ -1,5 +1,7 @@
 <?php
 namespace API\Database;
+
+use API\Model\App as App;
 use API\Model\Collection as Collection;
 
 use ArrayIterator;
@@ -305,7 +307,13 @@ class CollectionDelegator implements IteratorAggregate
      */
     public function __call($method, $parameters)
     {
-        $mixed = call_user_func_array(array($this->query, $method), $parameters);
+        try {
+            $mixed = call_user_func_array(array($this->query, $method), $parameters);
+
+        } catch (\BadMethodCallException $e) {
+            $model = App::collection($this->name)->getModel();
+            $mixed = call_user_func_array(array($model, $method), $parameters);
+        }
 
         if ($mixed instanceof \Illuminate\Database\Eloquent\Builder || $mixed instanceof \Illuminate\Database\Query\Builder) {
             return $this;

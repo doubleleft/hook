@@ -10,12 +10,17 @@ $_SERVER['SERVER_PORT'] = '80';
 require __DIR__ . '/../vendor/autoload.php';
 require __DIR__ . '/../src/PHPAPI.php';
 
+$app = \Slim\Slim::getInstance();
+$app->key = API\Model\AppKey::first();
+
+var_dump($app->key);
+
 class TestCase extends PHPUnit_Framework_TestCase
 {
     public function setUp()
     {
         $app = \Slim\Slim::getInstance();
-        $app->key = API\Model\AppKey::first();
+        API\Database\AppContext::setPrefix($app->key->app_id);
     }
 }
 

@@ -137,20 +137,16 @@ class Collection extends DynamicModel
         return parent::beforeSave();
     }
 
+    public function __call($method, $parameters)
+    {
+        // get requested relationship, or use parent function
+        return Relationship::getRelation($this, $method)
+            ?: parent::__call($method, $parameters);
+    }
+
     //
     // Protected methods - event fire/register
     //
-
-    public function __call($method, $parameters)
-    {
-        if (Relationship::exists($this->getTable(), $method)) {
-
-            return Relationship::get($this, $method);
-        } else {
-
-            return parent::__call($method, $parameters);
-        }
-    }
 
     //
     // Use $lastTableName instead of get_class to register events on Collections
