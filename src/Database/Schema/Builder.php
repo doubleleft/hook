@@ -66,7 +66,7 @@ class Builder
         });
 
         $table = $model->getTable();
-        $table_prefix = AppContext::getPrefix() . '_';
+        $table_prefix = AppContext::getPrefix();
 
         $is_creating = (!$builder->hasTable($table));
         $method = ($is_creating) ? 'create' : 'table';
