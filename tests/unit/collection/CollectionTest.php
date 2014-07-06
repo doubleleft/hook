@@ -28,9 +28,9 @@ class CollectionTest extends TestCase
         //     'author_id' => $author->_id
         // ));
 
-        App::collection('books')->with('author')->each(function($row) {
-            var_dump($row->toArray());
-        });
+        // App::collection('books')->with('author')->each(function($row) {
+        //     var_dump($row->toArray());
+        // });
 
         // App::collection('testing')->each(function($row) {
         //     var_dump($row);

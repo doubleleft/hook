@@ -124,6 +124,7 @@ class Module extends Model
             $aliases.= 'use API\Model\Auth as Auth;';
             $aliases.= 'use API\Model\AuthToken as AuthToken;';
             $aliases.= 'use API\Model\Collection as Collection;';
+            $aliases.= 'use API\Cache\Cache as Cache;';
 
             if ($this->type == self::TYPE_OBSERVER || $this->type == self::TYPE_CHANNEL) {
                 // Prevent name conflict by using unique class names for custom modules

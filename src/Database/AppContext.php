@@ -11,8 +11,14 @@ class AppContext
 {
 
     public static function setPrefix($prefix) {
+        $prefix = 'app' . $prefix . '_';
+
+        // set database prefix
         $connection = \DLModel::getConnectionResolver()->connection();
-        $connection->setTablePrefix($connection->getTablePrefix() . 'app' . $prefix . '_');
+        $connection->setTablePrefix($connection->getTablePrefix() . $prefix);
+
+        // set cache prefix
+        $connection->getCacheManager()->setPrefix($prefix);
     }
 
     /**

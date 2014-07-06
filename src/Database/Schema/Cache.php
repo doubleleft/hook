@@ -1,28 +1,16 @@
-<?php
-namespace API\Database\Schema;
+<?php namespace API\Database\Schema;
 
-/**
- * Cache
- * @author Endel Dreyer <edreyer@doubleleft.com>
- */
+use API\Cache\Cache as Store;
+
 class Cache
 {
 
-    /**
-     * dump
-     *
-     * @return array
-     */
-    public static function dump()
-    {
+    public static function forever($key, $value) {
+        return Store::forever($key, json_encode($value));
     }
 
-    public static function get($key)
-    {
-    }
-
-    public static function set($key, $value)
-    {
+    public static function get($key) {
+        return json_decode(Store::get($key));
     }
 
 }

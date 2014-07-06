@@ -1,5 +1,4 @@
-<?php
-namespace API\Database\Schema;
+<?php namespace API\Database\Schema;
 
 use API\Database\AppContext as AppContext;
 
@@ -53,6 +52,7 @@ class Builder
      */
     public static function migrate($model, $config)
     {
+        $result = null;
         $connection = $model->getConnectionResolver()->connection();
 
         // Ignore NoSQL databases.
@@ -66,23 +66,34 @@ class Builder
         });
 
         $table = $model->getTable();
-        $table_name = AppContext::getPrefix() . $table;
+        $table_prefix = AppContext::getPrefix() . '_';
 
         $is_creating = (!$builder->hasTable($table));
         $method = ($is_creating) ? 'create' : 'table';
 
         $cached_schema = Cache::get($table);
 
-        if (isset($config['attributes'])) {
-            $attributes = $config['attributes'];
-            $migrate = function ($t) use (&$table, &$builder, &$is_creating, $attributes, &$cached_schema) {
+        // sanitize / normalize relationship definitions
+        if (isset($config['relationships'])) {
+            foreach($config['relationships'] as $relation => $fields) {
+                $config['relationships'][$relation] = Relation::sanitize($relation, $fields);
+            }
+        } else {
+            $config['relationships'] = array();
+        }
+
+        if (!isset($config['attributes'])) { $config['attributes'] = array(); }
+
+        if (!empty($config['attributes']) || !empty($config['relationships'])) {
+
+            $migrate = function ($t) use (&$table, &$table_prefix, &$builder, &$is_creating, &$cached_schema, $config) {
                 if ($is_creating) {
                     $t->increments('_id'); // primary key
                     $t->timestamps();      // created_at / updated_at field
                     $t->softDeletes();     // deleted_at field
                 }
 
-                foreach($attributes as $attribute) {
+                foreach($config['attributes'] as $attribute) {
 
                     if (!isset($attribute['type']) || !isset($attribute['name'])) {
                         throw new API\Exceptions\MethodFailureException('invalid_schema');
@@ -132,11 +143,26 @@ class Builder
                         $t->unique($unique_fields);
                     }
                 }
+
+                foreach($config['relationships'] as $relation => $fields) {
+                    // only create field on belongs_to relationships
+                    if ($relation == "belongs_to") {
+                        foreach ($fields as $field => $collection) {
+                            $t->unsignedInteger($field . '_id');
+                            $t->foreign($field . '_id')
+                                ->references('_id')
+                                ->on($table_prefix . $collection);
+                        }
+                    }
+                }
+
             };
+            $result = call_user_func(array($builder, $method), $table_prefix . $table, $migrate);
         }
 
-        Cache::set($table, $config);
-        return call_user_func(array($builder, $method), $table_name, $migrate);
+        Cache::forever($table, $config);
+
+        return $result;
     }
 
 }

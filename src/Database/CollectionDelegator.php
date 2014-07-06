@@ -48,6 +48,8 @@ class CollectionDelegator implements IteratorAggregate
      */
     public function __construct($name, $app_id)
     {
+        // force plural collection names.
+        $name = str_plural($name);
         $is_collection = true;
 
         $query = null;
