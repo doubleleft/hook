@@ -157,9 +157,10 @@ class Builder
                             // maybe 'collection' table isn't created here.
                             // TODO: create related table before referencing foreign key.
                             $t->unsignedInteger($foreign_field);
-                            $t->foreign($foreign_field)
-                                ->references('_id')
-                                ->on($table_prefix . $collection);
+
+                            // $t->foreign($foreign_field)
+                            //     ->references('_id')
+                            //     ->on($table_prefix . $collection);
                         }
                     }
                 }

@@ -10,13 +10,6 @@ use API\Database\Schema\Cache as Cache;
  */
 class Relationship
 {
-    static $types = array(
-        'belongs_to' => '\Illuminate\Database\Eloquent\Relations\BelongsTo',
-        'belongs_to_many' => '\Illuminate\Database\Eloquent\Relations\BelongsToMany',
-        'has_one' => '\Illuminate\Database\Eloquent\Relations\HasOne',
-        'has_one_or_many' => '\Illuminate\Database\Eloquent\Relations\HasOneOrMany',
-        'has_many' => '\Illuminate\Database\Eloquent\Relations\HasMany',
-    );
 
     public static function getRelation($model, $relation_name) {
         $schema = Cache::get($model->getTable());
@@ -47,42 +40,46 @@ class Relationship
      * @return \Illuminate\Database\Eloquent\Relations\Relation
      */
     public static function getRelationInstance($model, $related_collection, $relation_type, $field) {
-        $relation_name = null;
-        $relation_klass = static::$types[$relation_type];
+        $model_table = str_singular($model->getTable());
+
+        $relation_name = str_singular($field);
         $related_model = $related_collection->getModel();
         $related_table = $related_model->getTable();
+        $foreign_key = $relation_name . '_id';
+
+        // define relation model
+        $related_klass = "Related" . ucfirst( str_singular( camel_case( $related_collection->getTable() ) ) );
+
+        // TODO: refactoring
+        // eval is evil. But it's necessary here since Eloquent\Model
+        // will try to instantiate the 'related class' without constructor params.
+        if (!class_exists($related_klass)) {
+            eval("class {$related_klass} extends API\Model\Collection { protected \$table = '{$related_table}'; }");
+        }
 
         switch ($relation_type) {
         case "belongs_to":
-            $relation_name = str_singular($field);
-            $foreign_key = $relation_name . '_id';
-            $other_key = $related_model->getKeyName();
-            $query = $related_collection->getQueryBuilder();
-            $relation = new $relation_klass($query, $model, $foreign_key, $other_key, $relation_name);
-            break;
+            // function belongsTo($related, $foreignKey = null, $otherKey = null, $relation = null)
+            return $model->belongsTo($related_klass, $foreign_key, '_id', $field);
 
         case "belongs_to_many":
-            $relation_name = str_singular($field);
-            $foreign_key = $relation_name . '_id';
-            $other_key = $related_collection->getModel()->getKeyName();
-            $query = $related_collection->getQueryBuilder();
-            $relation = new $relation_klass($query, $model, $related_model, $related_table, $foreign_key, $other_key, $relation_name);
-            // __construct(Builder $query, Model $parent, $table, $foreignKey, $otherKey, $relationName = null)
-            break;
+            // function belongsToMany($related, $table = null, $foreignKey = null, $otherKey = null, $relation = null)
+            return $model->belongsToMany($related_klass, $related_table, $foreign_key, '_id', $field);
 
         case "has_many":
-        case "has_one":
-        case "has_one_or_many":
-            $relation_name = str_singular($field);
-            $foreign_key = '_id';
-            $other_key = $related_collection->getModel()->getKeyName();
-            $query = $related_collection->getQueryBuilder();
-            $relation = new $relation_klass($query, $related_model, $foreign_key, $other_key);
-            break;
+            // function hasMany($related, $foreignKey = null, $localKey = null)
+            return $model->hasMany($related_klass, $model_table . '_id', '_id');
 
+        case "has_one":
+            // function hasOne($related, $foreignKey = null, $localKey = null)
+            return $model->hasOne($related_klass, $foreign_key, '_id');
+
+        case "has_many_through":
+            // function hasManyThrough($related, $through, $firstKey = null, $secondKey = null)
+            return $model->hasManyThrough($related_klass, $foreign_key, '_id');
         }
 
-        return $relation;
+        return null;
     }
 
 }
