@@ -33,7 +33,7 @@ cat /etc/apache2/sites-available/default
 sudo a2enmod rewrite
 sudo a2enmod actions
 sudo service apache2 restart
-sudo chmod -R 777 ./app/storage/
+sudo chmod -R 777 ./storage/
 
 # mysql -e 'CREATE DATABASE dlapi;'
 # sed s/%database_name%/myapp_test/ app/config/parameters.ini-dist | sed s/%database_login%/root/ | sed s/%database_password%// > app/config/parameters.ini
