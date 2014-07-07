@@ -61,16 +61,13 @@ class AppMiddleware extends Slim\Middleware
 
         // Don't proceed on CORS requests.
         if (!$app->request->isOptions()) {
-            $app->key = AppKey::where('app_id', $app->request->headers->get('X-App-Id') ?: $app->request->get('X-App-Id'))
-                ->where('key', $app->request->headers->get('X-App-Key') ?: $app->request->get('X-App-Key'))
-                ->first();
+            $app_key = AppContext::validateKey(
+                $app->request->headers->get('X-App-Id') ?: $app->request->get('X-App-Id'),
+                $app->request->headers->get('X-App-Key') ?: $app->request->get('X-App-Key')
+            );
 
-            if ($app->key) {
-                //
-                // From now, every query will use app_id prefix.
-                //
-                AppContext::setPrefix($app->key->app_id);
-
+            if ($app_key) {
+                // Compile all route modules
                 if ($custom_routes = Module::where('type', Module::TYPE_ROUTE)->get()) {
                     foreach ($custom_routes as $custom_route) {
                         $custom_route->compile();

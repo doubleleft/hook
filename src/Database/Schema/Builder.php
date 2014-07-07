@@ -162,8 +162,6 @@ class Builder
             $result = call_user_func(array($builder, $method), $table_prefix . $table, $migrate);
         }
 
-        var_dump($cached_schema, $config);
-
         // Cache table schema for further reference
         Cache::forever($table, array_merge_recursive($cached_schema, $config));
 

@@ -2,6 +2,7 @@
 namespace API\Model;
 
 use API\Database\CollectionDelegator as CollectionDelegator;
+use API\Database\AppContext as AppContext;
 
 /**
  * App
@@ -22,9 +23,7 @@ class App extends Model
      */
     public static function currentId()
     {
-        $app = \Slim\Slim::getInstance();
-
-        return $app->key->app_id;
+        return AppContext::getKey()->app_id;
     }
 
     /**
@@ -63,7 +62,7 @@ class App extends Model
         // Generate admin key
         $this->generateKey(true);
 
-        // Generate user key
+        // Generate and apply user key for current request context
         $this->generateKey();
 
         // Create storage directory for this app

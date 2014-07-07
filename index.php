@@ -396,10 +396,11 @@ $app->group('/apps', function () use ($app) {
      * POST /apps/
      */
     $app->post('/', function () use ($app) {
-        $data = Model\App::create($app->request->post('app'))->toArray();
-        AppContext::setPrefix($data['_id']);
+        $data = Model\App::create($app->request->post('app'));
+        $response = $data->toArray();
+        AppContext::setKey($data->keys[0]);
         AppContext::migrate();
-        $app->content = $data;
+        $app->content = $response;
     });
 
     $app->get('/logs', function () use ($app) {

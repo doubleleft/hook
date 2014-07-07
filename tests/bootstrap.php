@@ -10,26 +10,19 @@ $_SERVER['SERVER_PORT'] = '80';
 require __DIR__ . '/../vendor/autoload.php';
 require __DIR__ . '/../src/PHPAPI.php';
 
-$app = \Slim\Slim::getInstance();
-$app->key = API\Model\AppKey::first();
-
-var_dump($app->key);
+// Force some application key for testing
+API\Database\AppContext::setKey(API\Model\AppKey::first());
 
 class TestCase extends PHPUnit_Framework_TestCase
 {
-    public function setUp()
-    {
-        $app = \Slim\Slim::getInstance();
-        API\Database\AppContext::setPrefix($app->key->app_id);
-    }
 }
 
 class HTTP_TestCase extends PHPUnit_Framework_TestCase
 {
     // protected $base_url = 'http://localhost/index.php/';
     // protected $base_url = 'http://localhost/index.php/';
-    // protected $base_url = 'http://dl-api.dev:58054/index.php/';
-    protected $base_url = 'http://dl-api.dev/index.php/';
+    protected $base_url = 'http://dl-api.dev:58054/index.php/';
+    // protected $base_url = 'http://dl-api.dev/index.php/';
     protected $app;
 
     public function setUp()

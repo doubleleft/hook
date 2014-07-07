@@ -1,6 +1,7 @@
 <?php namespace API\Database;
 
 use API\Model\App as App;
+use API\Model\AppKey as AppKey;
 
 /**
  * AppContext
@@ -8,6 +9,31 @@ use API\Model\App as App;
  */
 class AppContext
 {
+    protected static $app_key;
+
+    /**
+     * setKey
+     *
+     * @param mixed $app_id
+     * @param string $key
+     *
+     * @return API\Model\AppKey
+     */
+    public static function validateKey($app_id, $key) {
+        if ($app_key = AppKey::where('app_id', $app_id)->where('key', $key)->first()) {
+            return static::setKey($app_key);
+        }
+    }
+
+    public static function setKey($app_key) {
+        static::$app_key = $app_key;
+        AppContext::setPrefix($app_key->app_id);
+        return static::$app_key;
+    }
+
+    public static function getKey() {
+        return static::$app_key;
+    }
 
     public static function setPrefix($prefix) {
         $prefix = 'app' . $prefix . '_';
