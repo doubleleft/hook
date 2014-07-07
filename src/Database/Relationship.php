@@ -42,10 +42,9 @@ class Relationship
     public static function getRelationInstance($model, $related_collection, $relation_type, $field) {
         $model_table = str_singular($model->getTable());
 
-        $relation_name = str_singular($field);
         $related_model = $related_collection->getModel();
         $related_table = $related_model->getTable();
-        $foreign_key = $relation_name . '_id';
+        $foreign_key = $field . '_id';
 
         // define relation model
         $related_klass = "Related" . ucfirst( str_singular( camel_case( $related_collection->getTable() ) ) );
@@ -59,23 +58,23 @@ class Relationship
 
         switch ($relation_type) {
         case "belongs_to":
-            // function belongsTo($related, $foreignKey = null, $otherKey = null, $relation = null)
+            // belongsTo($related, $foreignKey = null, $otherKey = null, $relation = null)
             return $model->belongsTo($related_klass, $foreign_key, '_id', $field);
 
         case "belongs_to_many":
-            // function belongsToMany($related, $table = null, $foreignKey = null, $otherKey = null, $relation = null)
+            // belongsToMany($related, $table = null, $foreignKey = null, $otherKey = null, $relation = null)
             return $model->belongsToMany($related_klass, $related_table, $foreign_key, '_id', $field);
 
         case "has_many":
-            // function hasMany($related, $foreignKey = null, $localKey = null)
+            // hasMany($related, $foreignKey = null, $localKey = null)
             return $model->hasMany($related_klass, $model_table . '_id', '_id');
 
         case "has_one":
-            // function hasOne($related, $foreignKey = null, $localKey = null)
-            return $model->hasOne($related_klass, $foreign_key, '_id');
+            // hasOne($related, $foreignKey = null, $localKey = null)
+            return $model->hasOne($related_klass, $model_table . '_id', '_id');
 
         case "has_many_through":
-            // function hasManyThrough($related, $through, $firstKey = null, $secondKey = null)
+            // hasManyThrough('Post', 'User', 'country_id', 'user_id');
             return $model->hasManyThrough($related_klass, $foreign_key, '_id');
         }
 

@@ -13,19 +13,17 @@ class CollectionRelationshipTest extends TestCase
 
         Cache::flush();
 
-        // setup schema
-
+        // books / authors / contacts
         Schema\Builder::migrate(App::collection('contacts')->getModel(), array(
             'relationships' => array('belongs_to' => 'author')
         ));
-
         Schema\Builder::migrate(App::collection('authors')->getModel(), array(
             'relationships' => array('has_many' => array('books', 'contacts'))
         ));
-
         Schema\Builder::migrate(App::collection('books')->getModel(), array(
-            'relationships' => array('belongs_to' => 'author')
+            'relationships' => array('belongs_to' => array('author'))
         ));
+
 
         // clear tables before running tests
         App::collection('authors')->truncate();
@@ -41,9 +39,38 @@ class CollectionRelationshipTest extends TestCase
             'name' => "Programming PHP",
             'author_id' => $author->_id
         ));
+
+        // teams / matches
+        Schema\Builder::migrate(App::collection('matches')->getModel(), array(
+            'relationships' => array('belongs_to' => array('team_1' => 'teams', 'team_2' => 'teams'))
+        ));
+        Schema\Builder::migrate(App::collection('teams')->getModel(), array(
+            'relationships' => array('has_many' => 'matches')
+        ));
+
+        App::collection('teams')->truncate();
+        App::collection('matches')->truncate();
+
+        $brazil = App::collection('teams')->create(array('name' => "Brazil"));
+        $germany = App::collection('teams')->create(array('name' => "Germany"));
+        $argentina = App::collection('teams')->create(array('name' => "Argentina"));
+        $netherlands = App::collection('teams')->create(array('name' => "Netherlands"));
+
+        App::collection('matches')->create(array(
+            'name' => "Brazil vs Germany",
+            'team_1_id' => $brazil->_id,
+            'team_2_id' => $germany->_id,
+        ));
+
+        App::collection('matches')->create(array(
+            'name' => "Argentina vs Netherlands",
+            'team_1_id' => $argentina->_id,
+            'team_2_id' => $netherlands->_id,
+        ));
+
     }
 
-    public function testRelationships()
+    public function testBooksAndAuthors()
     {
         $books = App::collection('books')->with('author')->toArray();
         $this->assertTrue(count($books) == 1);
@@ -66,6 +93,19 @@ class CollectionRelationshipTest extends TestCase
         $this->assertTrue(count($authors_books_contacts[0]['contacts']) == 2);
         $this->assertTrue($authors_books_contacts[0]['contacts'][0]['name'] == "Kevin Tatroe");
         $this->assertTrue($authors_books_contacts[0]['contacts'][1]['name'] == "Peter MacIntyre");
+    }
+
+    public function testTeamAndMatches()
+    {
+        $matches = App::collection('matches')->toArray();
+        $this->assertTrue(count($matches) == 2);
+        $this->assertTrue(isset($matches[0]['team_1']) == false);
+        $this->assertTrue(isset($matches[0]['team_2']) == false);
+
+        $matches = App::collection('matches')->with('team_1', 'team_2')->toArray();
+        $this->assertTrue(count($matches) == 2);
+        $this->assertTrue($matches[0]['team_1']['name'] == "Brazil");
+        $this->assertTrue($matches[0]['team_2']['name'] == "Germany");
     }
 
 }
