@@ -85,7 +85,6 @@ class Builder
         if (!isset($config['attributes'])) { $config['attributes'] = array(); }
 
         if (!empty($config['attributes']) || !empty($config['relationships'])) {
-
             $migrate = function ($t) use (&$table, &$table_prefix, &$builder, &$is_creating, &$cached_schema, $config) {
                 if ($is_creating) {
                     $t->increments('_id'); // primary key
@@ -148,10 +147,17 @@ class Builder
                     // only create field on belongs_to relationships
                     if ($relation == "belongs_to") {
                         foreach ($fields as $field => $collection) {
+                            $foreign_field = $field . '_id';
+
+                            // skip if field already exists
+                            if ($builder->hasColumn($table, $foreign_field)) {
+                                continue;
+                            }
+
                             // maybe 'collection' table isn't created here.
                             // TODO: create related table before referencing foreign key.
-                            $t->unsignedInteger($field . '_id');
-                            $t->foreign($field . '_id')
+                            $t->unsignedInteger($foreign_field);
+                            $t->foreign($foreign_field)
                                 ->references('_id')
                                 ->on($table_prefix . $collection);
                         }

@@ -37,7 +37,7 @@ class CollectionRelationshipTest extends TestCase
     public function testRelationships()
     {
         var_dump(App::collection('books')->with('author')->toArray());
-        var_dump(App::collection('author')->with('books')->get()->toArray());
+        var_dump(App::collection('author')->with('books')->toArray());
     }
 
 }

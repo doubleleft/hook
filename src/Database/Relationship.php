@@ -27,8 +27,7 @@ class Relationship
             // change the way to store relationships to prevent excessive loops
             foreach($schema['relationships'] as $relation => $fields) {
                 foreach($fields as $field => $collection) {
-                    if ($field == $relation_name) {
-
+                    if ($field == $relation_name || $collection == $relation_name) {
                         $related_collection = App::collection($collection);
                         return static::getRelationInstance($model, $related_collection, $relation, $field);
                     }
@@ -75,11 +74,10 @@ class Relationship
         case "has_one":
         case "has_one_or_many":
             $relation_name = str_singular($field);
-            $foreign_key = $relation_name . '_id';
+            $foreign_key = '_id';
             $other_key = $related_collection->getModel()->getKeyName();
             $query = $related_collection->getQueryBuilder();
             $relation = new $relation_klass($query, $related_model, $foreign_key, $other_key);
-            // __construct(Builder $query, Model $parent, $foreignKey, $localKey)
             break;
 
         }
