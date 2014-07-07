@@ -108,5 +108,33 @@ class CollectionRelationshipTest extends TestCase
         $this->assertTrue($matches[0]['team_2']['name'] == "Germany");
     }
 
+    public function testDirectAssociation()
+    {
+        $match_1 = App::collection('matches')->create(array(
+            'name' => "Team one VS Team two",
+            'team_1' => array('name' => "One"),
+            'team_2' => array('name' => "Two")
+        ));
+
+        $three = App::collection('teams')->create(array('name' => "Three"));
+        $four = App::collection('teams')->create(array('name' => "Four"));
+        $match_2 = App::collection('matches')->create(array(
+            'name' => "Team three VS Team four",
+            'team_1' => $three,
+            'team_2' => $four
+        ));
+
+        // retrieve recent-created matches with relationships
+        $matches = App::collection('matches')
+            ->where('_id', '>=', $match_1->_id)
+            ->with('team_1', 'team_2')
+            ->toArray();
+        $this->assertTrue($matches[0]['team_1']['name'] == "One");
+        $this->assertTrue($matches[0]['team_2']['name'] == "Two");
+        $this->assertTrue($matches[1]['team_1']['name'] == "Three");
+        $this->assertTrue($matches[1]['team_2']['name'] == "Four");
+
+    }
+
 }
 

@@ -10,6 +10,16 @@ class Builder
 {
 
     /**
+     * isSupported
+     *
+     * @return bool
+     */
+    public static function isSupported() {
+        $connection = \DLModel::getConnectionResolver()->connection();
+        return !is_null($connection->getPdo());
+    }
+
+    /**
      * dynamic
      *
      * @param API\Model\Collection $model

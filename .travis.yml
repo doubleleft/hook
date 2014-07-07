@@ -8,7 +8,7 @@ php:
 before_script:
   - sudo sh ./.travis/install_dependencies.sh
   - travis_retry composer self-update
-  - travis_retry composer install -d api
+  - travis_retry composer install
 
 script:
   - api/vendor/bin/phpunit --configuration ./api/phpunit.xml --verbose
