@@ -1,7 +1,7 @@
-<?php namespace API\Database;
+<?php namespace Hook\Database;
 
-use API\Model\App as App;
-use API\Model\AppKey as AppKey;
+use Hook\Model\App as App;
+use Hook\Model\AppKey as AppKey;
 
 /**
  * AppContext
@@ -17,7 +17,7 @@ class AppContext
      * @param mixed $app_id
      * @param string $key
      *
-     * @return API\Model\AppKey
+     * @return Hook\Model\AppKey
      */
     public static function validateKey($app_id, $key) {
         if ($app_key = AppKey::where('app_id', $app_id)->where('key', $key)->first()) {

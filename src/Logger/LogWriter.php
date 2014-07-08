@@ -1,5 +1,5 @@
 <?php
-namespace API\Logger;
+namespace Hook\Logger;
 
 class LogWriter
 {

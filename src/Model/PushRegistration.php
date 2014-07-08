@@ -1,5 +1,5 @@
 <?php
-namespace API\Model;
+namespace Hook\Model;
 
 /**
  * Devices that will receive PushMessage's.

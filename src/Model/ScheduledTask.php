@@ -1,5 +1,5 @@
 <?php
-namespace API\Model;
+namespace Hook\Model;
 
 /**
  * Task scheduled to run on target time

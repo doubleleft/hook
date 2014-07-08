@@ -1,4 +1,4 @@
-<?php namespace API\Database\Schema;
+<?php namespace Hook\Database\Schema;
 
 class Relation
 {

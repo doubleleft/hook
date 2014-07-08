@@ -1,5 +1,5 @@
 <?php
-namespace API\Auth\Providers;
+namespace Hook\Auth\Providers;
 
 /**
  * TODO

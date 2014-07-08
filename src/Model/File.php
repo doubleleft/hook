@@ -1,7 +1,7 @@
 <?php
-namespace API\Model;
+namespace Hook\Model;
 
-use API\Storage\Provider as Provider;
+use Hook\Storage\Provider as Provider;
 
 /**
  * Store file upload references.

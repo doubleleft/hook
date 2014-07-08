@@ -1,8 +1,8 @@
 <?php
-namespace API\Model;
+namespace Hook\Model;
 
-use API\Database\CollectionDelegator as CollectionDelegator;
-use API\Database\AppContext as AppContext;
+use Hook\Database\CollectionDelegator as CollectionDelegator;
+use Hook\Database\AppContext as AppContext;
 
 /**
  * App
@@ -39,17 +39,17 @@ class App extends Model
 
     public function keys()
     {
-        return $this->hasMany('API\Model\AppKey', 'app_id');
+        return $this->hasMany('Hook\Model\AppKey', 'app_id');
     }
 
     public function modules()
     {
-        return $this->hasMany('API\Model\Module', 'app_id');
+        return $this->hasMany('Hook\Model\Module', 'app_id');
     }
 
     public function configs()
     {
-        return $this->hasMany('API\Model\AppConfig', 'app_id');
+        return $this->hasMany('Hook\Model\AppConfig', 'app_id');
     }
 
     public function generateKey($admin=false)

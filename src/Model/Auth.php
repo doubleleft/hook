@@ -1,5 +1,5 @@
 <?php
-namespace API\Model;
+namespace Hook\Model;
 
 /**
  * Auth
@@ -34,12 +34,12 @@ class Auth extends Collection
 
     public function app()
     {
-        return $this->belongsTo('API\Model\App');
+        return $this->belongsTo('Hook\Model\App');
     }
 
     public function tokens()
     {
-        return $this->hasMany('API\Model\AuthToken', 'auth_id');
+        return $this->hasMany('Hook\Model\AuthToken', 'auth_id');
     }
 
     /**

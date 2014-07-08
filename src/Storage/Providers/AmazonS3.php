@@ -1,5 +1,5 @@
 <?php
-namespace API\Storage\Providers;
+namespace Hook\Storage\Providers;
 
 class AmazonS3 extends Base
 {

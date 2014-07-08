@@ -1,8 +1,8 @@
 <?php
-namespace API\Mailer;
+namespace Hook\Mailer;
 
-use API\Model\AppConfig as AppConfig;
-use API\Model\App as App;
+use Hook\Model\AppConfig as AppConfig;
+use Hook\Model\App as App;
 
 /**
  * Mail delivery class

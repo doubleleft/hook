@@ -36,7 +36,7 @@ function debug($text)
 function storage_dir($relative=true, $app_id = null)
 {
     if (!$app_id) {
-        $app_id = API\Model\App::currentId();
+        $app_id = Hook\Model\App::currentId();
     }
 
     return ($relative ? __DIR__ . '/../../' : '') . 'storage/files/' . $app_id;

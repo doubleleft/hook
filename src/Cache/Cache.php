@@ -1,4 +1,4 @@
-<?php namespace API\Cache;
+<?php namespace Hook\Cache;
 
 /**
  * Cache - Proxy class to Illuminate\Cache\StoreInterface

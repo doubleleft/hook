@@ -1,6 +1,6 @@
-<?php namespace API\Database\Schema;
+<?php namespace Hook\Database\Schema;
 
-use API\Database\AppContext as AppContext;
+use Hook\Database\AppContext as AppContext;
 
 /**
  * Builder
@@ -22,7 +22,7 @@ class Builder
     /**
      * dynamic
      *
-     * @param API\Model\Collection $model
+     * @param Hook\Model\Collection $model
      * @param mixed $attributes
      */
     public static function dynamic($model, &$attributes = null)
@@ -55,7 +55,7 @@ class Builder
     /**
      * migrate
      *
-     * @param API\Model\Collection $model
+     * @param Hook\Model\Collection $model
      * @param array $config
      *
      * @return bool
@@ -72,7 +72,7 @@ class Builder
 
         // Set custom blueprint resolver
         $builder->blueprintResolver(function($table, $callback) {
-            return new \API\Database\Schema\Blueprint($table, $callback);
+            return new \Hook\Database\Schema\Blueprint($table, $callback);
         });
 
         $table = $model->getTable();
@@ -105,7 +105,7 @@ class Builder
                 foreach($config['attributes'] as $attribute) {
 
                     if (!isset($attribute['type']) || !isset($attribute['name'])) {
-                        throw new API\Exceptions\MethodFailureException('invalid_schema');
+                        throw new Hook\Exceptions\MethodFailureException('invalid_schema');
                     }
 
                     $field_name = array_remove($attribute, 'name');

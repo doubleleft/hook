@@ -1,5 +1,5 @@
 <?php
-namespace API\Model;
+namespace Hook\Model;
 
 use \Carbon\Carbon;
 
@@ -39,12 +39,12 @@ class AuthToken extends Model
 
     public function app()
     {
-        return $this->belongsTo('API\Model\App');
+        return $this->belongsTo('Hook\Model\App');
     }
 
     public function auth()
     {
-        return $this->belongsTo('API\Model\Auth');
+        return $this->belongsTo('Hook\Model\Auth');
     }
 
     /**

@@ -1,8 +1,8 @@
 <?php
-namespace API\Auth\Providers;
+namespace Hook\Auth\Providers;
 
-use API\Exceptions\NotImplementedException;
-use API\Model\Auth as Auth;
+use Hook\Exceptions\NotImplementedException;
+use Hook\Model\Auth as Auth;
 
 class Base
 {

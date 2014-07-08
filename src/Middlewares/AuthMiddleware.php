@@ -1,5 +1,5 @@
 <?php
-namespace API\Middlewares;
+namespace Hook\Middlewares;
 
 use Slim;
 

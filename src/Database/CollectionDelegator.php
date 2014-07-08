@@ -1,8 +1,8 @@
 <?php
-namespace API\Database;
+namespace Hook\Database;
 
-use API\Model\App as App;
-use API\Model\Collection as Collection;
+use Hook\Model\App as App;
+use Hook\Model\Collection as Collection;
 
 use ArrayIterator;
 use IteratorAggregate;
@@ -37,8 +37,8 @@ class CollectionDelegator implements IteratorAggregate
      * @var array
      */
     static $custom_collections = array(
-        'push_messages' => 'API\\Model\\PushMessage',
-        'push_registrations' => 'API\\Model\\PushRegistration',
+        'push_messages' => 'Hook\\Model\\PushMessage',
+        'push_registrations' => 'Hook\\Model\\PushRegistration',
     );
 
     /**

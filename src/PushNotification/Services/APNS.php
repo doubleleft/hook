@@ -1,7 +1,7 @@
 <?php
-namespace API\PushNotification\Services;
+namespace Hook\PushNotification\Services;
 
-use API\Model\AppConfig as AppConfig;
+use Hook\Model\AppConfig as AppConfig;
 
 /**
  * @nodoc

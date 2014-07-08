@@ -1,13 +1,13 @@
 <?php
-namespace API\Auth\Providers;
+namespace Hook\Auth\Providers;
 
-use API\Exceptions;
+use Hook\Exceptions;
 
-use API\Model\Auth as Auth;
-use API\Model\AppConfig as AppConfig;
-use API\Model\Module as Module;
+use Hook\Model\Auth as Auth;
+use Hook\Model\AppConfig as AppConfig;
+use Hook\Model\Module as Module;
 
-use API\Mailer\Mail as Mail;
+use Hook\Mailer\Mail as Mail;
 
 class Email extends Base
 {

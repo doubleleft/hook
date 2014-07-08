@@ -1,15 +1,15 @@
 <?php
-namespace API\Auth;
+namespace Hook\Auth;
 
 class Provider
 {
     // available providers
     static $list = array(
-        'facebook' => 'API\\Auth\\Providers\\Facebook',
-        'twitter' => 'API\\Auth\\Providers\\Twitter',
-        'email' => 'API\\Auth\\Providers\\Email',
-        'google' => 'API\\Auth\\Providers\\Google',
-        'github' => 'API\\Auth\\Providers\\Github'
+        'facebook' => 'Hook\\Auth\\Providers\\Facebook',
+        'twitter' => 'Hook\\Auth\\Providers\\Twitter',
+        'email' => 'Hook\\Auth\\Providers\\Email',
+        'google' => 'Hook\\Auth\\Providers\\Google',
+        'github' => 'Hook\\Auth\\Providers\\Github'
     );
 
     public static function get($name)

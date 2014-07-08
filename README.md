@@ -1,7 +1,7 @@
-Welcome to dl-api ![Build status](https://api.travis-ci.com/doubleleft/dl-api.svg?token=px2fsDaL7WdoeJ9qixdB)
+Welcome to hook ![Build status](https://api.travis-ci.com/doubleleft/dl-api.svg?token=px2fsDaL7WdoeJ9qixdB)
 ===
 
-dl-api is a backend-as-a-service platform that includes everything that you need
+hook is a backend-as-a-service platform that includes everything that you need
 to create web applications, without writing back-end code. It is flexible
 enought if you need a custom behaviour.
 
@@ -11,11 +11,11 @@ Installation
 Firstly, You need [node.js](http://nodejs.org/) installed for commandline
 support.
 
-Now, clone [doubleleft/dl-api](https://github.com/doubleleft/dl-api.git) repository, cd into it and run `sudo make`:
+Now, clone [doubleleft/hook](https://github.com/doubleleft/hook.git) repository, cd into it and run `sudo make`:
 
 ```bash
-git clone https://github.com/doubleleft/dl-api.git
-cd dl-api
+git clone https://github.com/doubleleft/hook.git
+cd hook
 make
 ```
 
@@ -32,16 +32,16 @@ directory: e.g. (`chown -R www-data app/storage`).
 How to use
 ---
 
-Take a look at the [wiki](https://github.com/doubleleft/dl-api/wiki) for more
+Take a look at the [wiki](https://github.com/doubleleft/hook/wiki) for more
 details.
 
 For client specific documentation:
 
-- [JavaScript](https://github.com/doubleleft/dl-api-javascript) ([docs](http://doubleleft.github.io/dl-api-javascript))
-- [Android](https://github.com/doubleleft/dl-api-android) (_docs missing_)
-- [iOS](https://github.com/doubleleft/dl-api-ios) (_docs missing_)
-- [C++](https://github.com/doubleleft/dl-api-cpp) (_docs missing_)
-- [Ruby](https://github.com/doubleleft/dl-api-ruby) (_docs missing_)
+- [JavaScript](https://github.com/doubleleft/hook-javascript) ([docs](http://doubleleft.github.io/hook-javascript))
+- [Android](https://github.com/doubleleft/hook-android) (_docs missing_)
+- [iOS](https://github.com/doubleleft/hook-ios) (_docs missing_)
+- [C++](https://github.com/doubleleft/hook-cpp) (_docs missing_)
+- [Ruby](https://github.com/doubleleft/hook-ruby) (_docs missing_)
 
 Websocket
 ---

@@ -1,9 +1,9 @@
 <?php
-namespace API\Middlewares;
+namespace Hook\Middlewares;
 
 use Slim;
-use API\Logger\LogWriter;
-use API\Database\AppContext as AppContext;
+use Hook\Logger\LogWriter;
+use Hook\Database\AppContext as AppContext;
 
 class LogMiddleware extends Slim\Middleware
 {

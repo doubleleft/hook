@@ -1,6 +1,6 @@
 <?php
 
-namespace API\Pagination;
+namespace Hook\Pagination;
 
 class Environment
 {

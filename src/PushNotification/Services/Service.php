@@ -1,5 +1,5 @@
 <?php
-namespace API\PushNotification\Services;
+namespace Hook\PushNotification\Services;
 
 interface Service
 {

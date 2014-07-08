@@ -1,6 +1,6 @@
-<?php namespace API\Database\Schema;
+<?php namespace Hook\Database\Schema;
 
-use API\Cache\Cache as Store;
+use Hook\Cache\Cache as Store;
 
 class Cache
 {

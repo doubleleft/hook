@@ -1,7 +1,7 @@
 <?php
-namespace API\Model;
+namespace Hook\Model;
 
-use API\Database\Relationship as Relationship;
+use Hook\Database\Relationship as Relationship;
 
 /**
  * Collections load & execute custom observers automatically.

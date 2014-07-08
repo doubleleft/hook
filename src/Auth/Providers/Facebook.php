@@ -1,8 +1,8 @@
 <?php
-namespace API\Auth\Providers;
+namespace Hook\Auth\Providers;
 
-use API\Exceptions\ForbiddenException;
-use API\Model\Auth as Auth;
+use Hook\Exceptions\ForbiddenException;
+use Hook\Model\Auth as Auth;
 
 class Facebook extends Base
 {

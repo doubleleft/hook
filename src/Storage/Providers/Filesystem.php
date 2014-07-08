@@ -1,7 +1,7 @@
 <?php
-namespace API\Storage\Providers;
+namespace Hook\Storage\Providers;
 
-use API\Model\App as App;
+use Hook\Model\App as App;
 
 class Filesystem extends Base
 {

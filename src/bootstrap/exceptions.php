@@ -1,5 +1,5 @@
 <?php
-namespace API\Exceptions;
+namespace Hook\Exceptions;
 use \Exception as Exception;
 
 // Exception descriptions extracted from:

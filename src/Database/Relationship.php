@@ -1,8 +1,8 @@
 <?php
-namespace API\Database;
+namespace Hook\Database;
 
-use API\Model\App as App;
-use API\Database\Schema\Cache as Cache;
+use Hook\Model\App as App;
+use Hook\Database\Schema\Cache as Cache;
 
 /**
  * Relationship
@@ -53,7 +53,7 @@ class Relationship
         // eval is evil. But it's necessary here since Eloquent\Model
         // will try to instantiate the 'related class' without constructor params.
         if (!class_exists($related_klass)) {
-            eval("class {$related_klass} extends API\Model\Collection { protected \$table = '{$related_table}'; }");
+            eval("class {$related_klass} extends Hook\Model\Collection { protected \$table = '{$related_table}'; }");
         }
 
         switch ($relation_type) {

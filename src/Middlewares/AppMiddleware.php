@@ -1,11 +1,11 @@
 <?php
-namespace API\Middlewares;
+namespace Hook\Middlewares;
 
 use Slim;
-use API\Model\AppKey as AppKey;
-use API\Model\Module as Module;
+use Hook\Model\AppKey as AppKey;
+use Hook\Model\Module as Module;
 
-use API\Database\AppContext as AppContext;
+use Hook\Database\AppContext as AppContext;
 
 class AppMiddleware extends Slim\Middleware
 {

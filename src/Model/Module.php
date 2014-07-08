@@ -1,9 +1,9 @@
 <?php
-namespace API\Model;
+namespace Hook\Model;
 
 use Slim;
 
-use API\Exceptions;
+use Hook\Exceptions;
 
 /**
  * Module
@@ -116,15 +116,15 @@ class Module extends Model
             //
             // Expose handy aliases for modules
             //
-            $aliases = 'use API\Mailer\Mail as Mail;';
-            $aliases.= 'use API\Model\App as App;';
-            $aliases.= 'use API\Model\AppConfig as AppConfig;';
-            $aliases.= 'use API\Model\Module as Module;';
-            $aliases.= 'use API\Model\File as File;';
-            $aliases.= 'use API\Model\Auth as Auth;';
-            $aliases.= 'use API\Model\AuthToken as AuthToken;';
-            $aliases.= 'use API\Model\Collection as Collection;';
-            $aliases.= 'use API\Cache\Cache as Cache;';
+            $aliases = 'use Hook\Mailer\Mail as Mail;';
+            $aliases.= 'use Hook\Model\App as App;';
+            $aliases.= 'use Hook\Model\AppConfig as AppConfig;';
+            $aliases.= 'use Hook\Model\Module as Module;';
+            $aliases.= 'use Hook\Model\File as File;';
+            $aliases.= 'use Hook\Model\Auth as Auth;';
+            $aliases.= 'use Hook\Model\AuthToken as AuthToken;';
+            $aliases.= 'use Hook\Model\Collection as Collection;';
+            $aliases.= 'use Hook\Cache\Cache as Cache;';
 
             if ($this->type == self::TYPE_OBSERVER || $this->type == self::TYPE_CHANNEL) {
                 // Prevent name conflict by using unique class names for custom modules

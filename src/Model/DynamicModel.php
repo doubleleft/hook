@@ -1,13 +1,13 @@
 <?php
-namespace API\Model;
+namespace Hook\Model;
 
-use API\Database\Schema as Schema;
-use API\Database\Relationship as Relationship;
-use API\Exceptions\BadRequestException as BadRequestException;
+use Hook\Database\Schema as Schema;
+use Hook\Database\Relationship as Relationship;
+use Hook\Exceptions\BadRequestException as BadRequestException;
 
 /**
  * Models that extends DynamicModel will have it's defined on-the-fly.
- * @uses API\Model\Model
+ * @uses Hook\Model\Model
  */
 class DynamicModel extends Model
 {
