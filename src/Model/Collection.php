@@ -166,12 +166,15 @@ class Collection extends DynamicModel
 
                 // does a relationship with this name exists?
                 if (!is_null($relationship)) {
+                    // var_dump(get_class($relationship), $relationship->getRelated());
                     $related_item_id = null;
 
                     if (isset($values['_id'])) {
                         $related_item_id = $values['_id'];
                     } else {
-                        $related_item_id = $relationship->getRelated()->create($values)->_id;
+                        $related_item = $relationship->getRelated()->create($values);
+                        var_dump($related_item);
+                        $related_item_id = $related_item->_id;
                     }
 
                     // associate related item _id to the model

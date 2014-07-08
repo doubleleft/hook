@@ -134,6 +134,18 @@ class CollectionRelationshipTest extends TestCase
         $this->assertTrue($matches[1]['team_1']['name'] == "Three");
         $this->assertTrue($matches[1]['team_2']['name'] == "Four");
 
+        // from related direction
+        App::collection('authors')->create(array(
+            'name' => "Somebody",
+            'contacts' => array(
+                array('name' => "Contact 1"),
+                array('name' => "Contact 2"),
+                array('name' => "Contact 3"),
+                array('name' => "Contact 4"),
+                array('name' => "Contact 5")
+            )
+        ));
+
     }
 
 }
