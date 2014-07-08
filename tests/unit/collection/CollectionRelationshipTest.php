@@ -1,8 +1,8 @@
 <?php
 
-use API\Model\App as App;
-use API\Database\Schema as Schema;
-use API\Cache\Cache as Cache;
+use Hook\Model\App as App;
+use Hook\Database\Schema as Schema;
+use Hook\Cache\Cache as Cache;
 
 class CollectionRelationshipTest extends TestCase
 {

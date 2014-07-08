@@ -1,6 +1,6 @@
 <?php
 
-use API\Database\Schema\Relation as Relation;
+use Hook\Database\Schema\Relation as Relation;
 
 class RelationTest extends TestCase
 {

@@ -1,12 +1,12 @@
 <?php
-$app = require __DIR__ . '/src/PHPAPI.php';
+$app = require __DIR__ . '/src/Hook.php';
 
-use API\Middlewares as Middlewares;
-use API\Model as Model;
-use API\Auth as Auth;
-use API\Database\AppContext as AppContext;
-use API\Database\Schema as Schema;
-use API\PushNotification as PushNotification;
+use Hook\Middlewares as Middlewares;
+use Hook\Model as Model;
+use Hook\Auth as Auth;
+use Hook\Database\AppContext as AppContext;
+use Hook\Database\Schema as Schema;
+use Hook\PushNotification as PushNotification;
 
 // Middlewares
 $app->add(new Middlewares\LogMiddleware());

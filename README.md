@@ -1,4 +1,4 @@
-Welcome to hook ![Build status](https://api.travis-ci.com/doubleleft/dl-api.svg?token=px2fsDaL7WdoeJ9qixdB)
+Welcome to hook ![Build status](https://magnum.travis-ci.com/doubleleft/hook.svg?token=px2fsDaL7WdoeJ9qixdB)
 ===
 
 hook is a backend-as-a-service platform that includes everything that you need

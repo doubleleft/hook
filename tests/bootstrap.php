@@ -8,10 +8,10 @@ $_SERVER['SERVER_NAME'] = 'localhost';
 $_SERVER['SERVER_PORT'] = '80';
 
 require __DIR__ . '/../vendor/autoload.php';
-require __DIR__ . '/../src/PHPAPI.php';
+require __DIR__ . '/../src/Hook.php';
 
 // Force some application key for testing
-API\Database\AppContext::setKey(API\Model\AppKey::first());
+Hook\Database\AppContext::setKey(Hook\Model\AppKey::first());
 
 class TestCase extends PHPUnit_Framework_TestCase
 {

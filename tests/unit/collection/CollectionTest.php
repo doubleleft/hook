@@ -1,8 +1,8 @@
 <?php
 
-use API\Model\App as App;
+use Hook\Model\App as App;
 
-class Book extends API\Model\Collection {
+class Book extends Hook\Model\Collection {
     protected $table = 'books';
 
     function author() {
@@ -10,7 +10,7 @@ class Book extends API\Model\Collection {
     }
 };
 
-class Author extends API\Model\Collection {
+class Author extends Hook\Model\Collection {
     protected $table = 'authors';
 };
 
