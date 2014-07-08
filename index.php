@@ -531,7 +531,7 @@ $app->group('/apps', function () use ($app) {
     });
 
     $app->get('/schema', function () use ($app) {
-        $app->content = Schema\Cache::dump();
+        $app->content = Schema\Builder::dump();
     });
 
     // $app->get('/:name/composer', function ($id) use ($app) {

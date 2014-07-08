@@ -72,3 +72,7 @@ Or with ipfw on Mac OS X:
 sudo ipfw add 100 fwd 127.0.0.1,8430 tcp from any to me 843 in
 ```
 
+License
+---
+
+MIT. Please see LICENSE file.

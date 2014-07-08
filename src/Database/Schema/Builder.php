@@ -20,6 +20,21 @@ class Builder
     }
 
     /**
+     * dump
+     *
+     * @return array
+     */
+    public static function dump() {
+        $schema = array();
+
+        foreach(Cache::get('app_collections') as $collection) {
+            $schema[$collection] = Cache::get($collection);
+        }
+
+        return $schema;
+    }
+
+    /**
      * dynamic
      *
      * @param Hook\Model\Collection $model
@@ -81,7 +96,7 @@ class Builder
         $is_creating = (!$builder->hasTable($table));
         $method = ($is_creating) ? 'create' : 'table';
 
-        $cached_schema = Cache::get($table);
+        $table_schema = Cache::get($table);
 
         // sanitize / normalize relationship definitions
         if (isset($config['relationships'])) {
@@ -95,7 +110,7 @@ class Builder
         if (!isset($config['attributes'])) { $config['attributes'] = array(); }
 
         if (!empty($config['attributes']) || !empty($config['relationships'])) {
-            $migrate = function ($t) use (&$table, &$table_prefix, &$builder, &$is_creating, &$cached_schema, $config) {
+            $migrate = function ($t) use (&$table, &$table_prefix, &$builder, &$is_creating, &$table_schema, $config) {
                 if ($is_creating) {
                     $t->increments('_id'); // primary key
                     $t->timestamps();      // created_at / updated_at field
@@ -179,8 +194,14 @@ class Builder
             $result = call_user_func(array($builder, $method), $table_prefix . $table, $migrate);
         }
 
+
         // Cache table schema for further reference
-        Cache::forever($table, array_merge_recursive($cached_schema, $config));
+        $table_schema = array_merge_recursive($table_schema, $config);
+        Cache::forever($table, $table_schema);
+
+        $app_collections = Cache::get('app_collections');
+        Cache::forever('app_collections', array_unique(array_merge($app_collections, array($table))));
+
 
         return $result;
     }
