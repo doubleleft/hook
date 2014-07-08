@@ -2,8 +2,6 @@
 namespace API\Model;
 
 use API\Database\Relationship as Relationship;
-use API\Exceptions\BadRequestException as BadRequestException;
-use API\Database\Schema\Builder as Builder;
 
 /**
  * Collections load & execute custom observers automatically.
@@ -136,60 +134,12 @@ class Collection extends DynamicModel
             $this->_attached_files = null;
         }
 
-        // create or associate nested values as relationships
-        $this->associateRelatedFields($this->attributes);
-
         return parent::beforeSave();
-    }
-
-    public function __call($method, $parameters)
-    {
-        // get requested relationship, or use parent function
-        return Relationship::getRelation($this, $method)
-            ?: parent::__call($method, $parameters);
     }
 
     //
     // Protected methods - event fire/register
     //
-
-    protected function associateRelatedFields(&$attributes) {
-        foreach($attributes as $field => $values) {
-            // Model\Collection found, use it's data as array
-            if (is_object($values) && method_exists($values, 'toArray')) {
-                $values = $values->toArray();
-            }
-
-            // nested values found
-            if (is_array($values)) {
-                $relationship = Relationship::getRelation($this, $field);
-
-                // does a relationship with this name exists?
-                if (!is_null($relationship)) {
-                    // var_dump(get_class($relationship), $relationship->getRelated());
-                    $related_item_id = null;
-
-                    if (isset($values['_id'])) {
-                        $related_item_id = $values['_id'];
-                    } else {
-                        $related_item = $relationship->getRelated()->create($values);
-                        var_dump($related_item);
-                        $related_item_id = $related_item->_id;
-                    }
-
-                    // associate related item _id to the model
-                    $attributes[$field . '_id'] = $related_item_id;
-                    unset($attributes[$field]);
-
-                } else if (is_null($relationship) && !Builder::isSupported()) {
-                    // no relationship with field name found.
-                    // probably it's a programming issue. throw an exception.
-                    throw new BadRequestException("nested complex objects not supported.");
-                }
-
-            }
-        }
-    }
 
     //
     // Use $lastTableName instead of get_class to register events on Collections
