@@ -103,7 +103,7 @@ $app->group('/collection', function () use ($app) {
             $query = $query->skip($offset);
         }
 
-        if ($limit = $app->request->get('limit')) {
+        if ($limit = $app->request->get('limit', 1000)) {
             $query = $query->take($limit);
         }
 
