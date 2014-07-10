@@ -42,7 +42,13 @@ class Builder
      */
     public static function dynamic($model, &$attributes = null)
     {
-        $config = array('attributes');
+        // dynamic migration is not allowed when attributes are locked explicitly
+        $table_schema = Cache::get($model->getTable());
+        if (isset($table_schema['lock_attributes']) && $table_schema['lock_attributes']) {
+            return true;
+        }
+
+        $config = array('attributes' => array());
 
         foreach ($attributes as $field => $value) {
             // extract datatype from field value to migrate
@@ -107,7 +113,9 @@ class Builder
             $config['relationships'] = array();
         }
 
-        if (!isset($config['attributes'])) { $config['attributes'] = array(); }
+        if (!isset($config['attributes'])) {
+            $config['attributes'] = array();
+        }
 
         if (!empty($config['attributes']) || !empty($config['relationships'])) {
             $migrate = function ($t) use (&$table, &$table_prefix, &$builder, &$is_creating, &$table_schema, $config) {
@@ -124,7 +132,7 @@ class Builder
                     }
 
                     $field_name = array_remove($attribute, 'name');
-                    $type = camel_case(array_remove($attribute, 'type'));
+                    $type = camel_case(array_remove($attribute, 'type') ?: 'string');
 
                     $default = array_remove($attribute, 'default');
                     $index = array_remove($attribute, 'index');
@@ -193,7 +201,6 @@ class Builder
             };
             $result = call_user_func(array($builder, $method), $table_prefix . $table, $migrate);
         }
-
 
         // Cache table schema for further reference
         $table_schema = array_merge_recursive($table_schema, $config);
