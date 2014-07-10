@@ -88,7 +88,7 @@ class Auth extends Collection
         // only display email for the logged user
         $auth_token = AuthToken::current();
         if (!$auth_token || $auth_token->auth_id != $this->_id) {
-            unset($this->attributes['email']);
+            unset($arr['email']);
         }
 
         return $arr;

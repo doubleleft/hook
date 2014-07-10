@@ -30,16 +30,11 @@ class AuthToken extends Model
         if (static::$_current === null) {
             $app = \Slim\Slim::getInstance();
             static::$_current = static::where('token', $app->request->headers->get('X-Auth-Token') ?: $app->request->get('X-Auth-Token'))
-                ->where('expire_at', '>=', time())
+                ->where('expire_at', '>=', Carbon::now())
                 ->first();
         }
 
         return static::$_current;
-    }
-
-    public function app()
-    {
-        return $this->belongsTo('Hook\Model\App');
     }
 
     public function auth()
@@ -53,7 +48,7 @@ class AuthToken extends Model
      */
     public function isExpired()
     {
-        return time() > $this->expire_at;
+        return Carbon::now() > $this->expire_at;
     }
 
     public function beforeCreate()
