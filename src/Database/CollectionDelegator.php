@@ -45,10 +45,9 @@ class CollectionDelegator implements IteratorAggregate
      * Create a new CollectionDelegator instance.
      *
      * @param string                            $name
-     * @param string                            $app_id
      * @param Illuminate\Database\Query\Builder $query  query
      */
-    public function __construct($name, $app_id)
+    public function __construct($name)
     {
         // force plural collection names.
         $name = str_plural($name);
@@ -63,7 +62,6 @@ class CollectionDelegator implements IteratorAggregate
         }
 
         $this->name = $name;
-        $this->app_id = $app_id;
         $this->is_collection = $is_collection;
         $this->query = $query;
     }

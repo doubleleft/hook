@@ -12,8 +12,8 @@ use Hook\Auth as Auth;
 use Hook\Exceptions\ForbiddenException as ForbiddenException;
 
 // Middlewares
-$app->add(new Middlewares\LogMiddleware());
 $app->add(new Middlewares\ResponseTypeMiddleware());
+$app->add(new Middlewares\LogMiddleware());
 $app->add(new Middlewares\AppMiddleware());
 
 // Attach user authentication

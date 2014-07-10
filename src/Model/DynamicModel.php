@@ -12,6 +12,9 @@ use Hook\Exceptions\BadRequestException as BadRequestException;
 class DynamicModel extends Model
 {
     protected static $booted = array();
+
+    protected $guarded = array('created_at');
+
     protected $observables = array('updating_multiple', 'deleting_multiple');
     protected $softDelete = true;
 
