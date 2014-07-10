@@ -19,6 +19,8 @@ class Collection extends DynamicModel
     const ATTACHED_FILES = 'attached_files';
     protected $_attached_files;
 
+    protected $hidden = array('deleted_at');
+
     public static function boot()
     {
         parent::boot();

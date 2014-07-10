@@ -12,7 +12,11 @@ class Auth extends Collection
     const FORGOT_PASSWORD_EXPIRATION_FIELD = 'forgot_password_expiration';
     const FORGOT_PASSWORD_EXPIRATION_TIME = 14400; // (60 * 60 * 4) = 4 hours
 
-    protected $table = 'auth';
+    protected $table = 'auths';
+
+    // protect from mass-assignment.
+    protected $guarded = array('email', 'password', 'password_salt', 'forgot_password_token', 'forgot_password_expiration', 'deleted_at');
+    protected $hidden = array('password', 'password_salt', 'forgot_password_token', 'forgot_password_expiration', 'deleted_at');
 
     static $_current = null;
 
@@ -32,11 +36,6 @@ class Auth extends Collection
         return static::$_current;
     }
 
-    public function app()
-    {
-        return $this->belongsTo('Hook\Model\App');
-    }
-
     public function tokens()
     {
         return $this->hasMany('Hook\Model\AuthToken', 'auth_id');
@@ -53,7 +52,7 @@ class Auth extends Collection
 
     public function generateForgotPasswordToken()
     {
-        $this->setAttribute(self::FORGOT_PASSWORD_FIELD, md5(uniqid(rand(), true)));
+        $this->setAttribute(self::FORGOT_PASSWORD_FIELD, sha1(uniqid(rand(), true)));
         $this->setAttribute(self::FORGOT_PASSWORD_EXPIRATION_FIELD, time() + self::FORGOT_PASSWORD_EXPIRATION_TIME);
         $this->save();
 
@@ -86,12 +85,11 @@ class Auth extends Collection
     {
         $arr = parent::toArray();
 
-        /**
-         * FIXME: find other way to hide password / tokens from authentication
-         */
-        if (isset($arr['password'])) { unset($arr['password']); }
-        if (isset($arr[self::FORGOT_PASSWORD_FIELD])) { unset($arr[self::FORGOT_PASSWORD_FIELD]); }
-        if (isset($arr[self::FORGOT_PASSWORD_EXPIRATION_FIELD])) { unset($arr[self::FORGOT_PASSWORD_EXPIRATION_FIELD]); }
+        // only display email for the logged user
+        $auth_token = AuthToken::current();
+        if (!$auth_token || $auth_token->auth_id != $this->_id) {
+            unset($this->attributes['email']);
+        }
 
         return $arr;
     }
@@ -106,6 +104,28 @@ class Auth extends Collection
         $data['token'] = $this->generateToken()->toArray();
 
         return $data;
+    }
+
+    //
+    // Hooks
+    //
+    public function beforeCreate()
+    {
+        if ($this->password) {
+            $this->password_salt = sha1(uniqid(rand(), true));
+            $this->password = static::password_hash($this->password, $this->password_salt);
+        }
+    }
+
+    public function beforeSave()
+    {
+        return parent::beforeSave();
+    }
+
+    public static function password_hash($password, $salt)
+    {
+        $app_auth_pepper = AppConfig::get('auth_pepper') ?: '';
+        return sha1($password . $salt . $app_auth_pepper);
     }
 
 }

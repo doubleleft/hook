@@ -19,7 +19,17 @@ class Email extends Base
         if ($existing = $this->findExistingUser($data)) {
             throw new Exceptions\InternalException('already_registered');
         }
-        $user = Auth::create($data);
+
+        // let's create a new authentication
+        $user = new Auth;
+
+        // set email/password directly due mass-assignment prevention
+        $user->email = $data['email'];
+        $user->password = $data['password'];
+
+        // fill with additional user-data
+        $user->fill($data);
+        $user->save();
 
         return $user->dataWithToken();
     }
@@ -30,7 +40,7 @@ class Email extends Base
 
         $userdata = null;
         if ($user = $this->findExistingUser($data)) {
-            if ($user->password != $data['password']) {
+            if ($user->password != Auth::password_hash($data['password'], $user->password_salt)) {
                 throw new Exceptions\ForbiddenException("password_invalid");
             }
             $userdata = $user->dataWithToken();

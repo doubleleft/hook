@@ -37,6 +37,7 @@ class CollectionDelegator implements IteratorAggregate
      * @var array
      */
     static $custom_collections = array(
+        'auths' => 'Hook\\Model\\Auth',
         'push_messages' => 'Hook\\Model\\PushMessage',
         'push_registrations' => 'Hook\\Model\\PushRegistration',
     );

@@ -47,6 +47,16 @@ class NotFoundException extends Exception
 }
 
 /**
+ * The method is implemented, but not available for the resource.
+ *
+ * @see Exception
+ */
+class NotAllowedException extends Exception
+{
+    protected $code = 405;
+}
+
+/**
  * MethodFailureException
  *
  * @see Exception

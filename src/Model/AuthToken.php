@@ -60,7 +60,7 @@ class AuthToken extends Model
     {
         $this->created_at = Carbon::now();
         $this->expire_at = Carbon::now()->addHours(static::EXPIRATION_HOURS);
-        $this->token = md5(uniqid(rand(), true));
+        $this->token = sha1(uniqid(rand(), true));
         // $this->level = 1;
     }
 

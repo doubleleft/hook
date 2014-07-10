@@ -26,6 +26,7 @@ class DynamicModel extends Model
             // register events using class name
             static::saving(function ($model) { $model->beforeSave(); });
             static::saved(function ($model) { $model->afterSave(); });
+            static::creating(function ($model) { $model->beforeCreate(); });
 
         } else if (!isset(static::$booted[ $table ])) {
 
@@ -33,7 +34,12 @@ class DynamicModel extends Model
             static::$booted[ $table ] = true;
             static::saving(function ($model) { $model->beforeSave(); });
             static::saved(function ($model) { $model->afterSave(); });
+            static::creating(function ($model) { $model->beforeCreate(); });
         }
+    }
+
+    public function beforeCreate()
+    {
     }
 
     public function beforeSave()

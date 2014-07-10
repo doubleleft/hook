@@ -4,6 +4,7 @@ namespace Hook\Middlewares;
 use Slim;
 use Hook\Model\AppKey as AppKey;
 use Hook\Model\Module as Module;
+use Hook\Model\AppConfig as AppConfig;
 
 use Hook\Database\AppContext as AppContext;
 
@@ -49,7 +50,16 @@ class AppMiddleware extends Slim\Middleware
         // The Slim application
         $app = $this->app;
 
+        self::decode_query_string();
+
+        // Get application key
+        $app_key = AppContext::validateKey(
+            $app->request->headers->get('X-App-Id') ?: $app->request->get('X-App-Id'),
+            $app->request->headers->get('X-App-Key') ?: $app->request->get('X-App-Key')
+        );
+
         $origin = $app->request->headers->get('ORIGIN');
+        // $allowed_origins = AppConfig::get('security.allowed_origins');
 
         // Enable Cross-Origin Resource Sharing
         $app->response->headers->set('Access-Control-Allow-Origin', ($origin) ? $origin : '*' );
@@ -57,15 +67,8 @@ class AppMiddleware extends Slim\Middleware
         $app->response->headers->set('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE');
         $app->response->headers->set('Access-Control-Allow-Headers', 'x-app-id, x-app-key, x-auth-token, content-type, user-agent, accept');
 
-        self::decode_query_string();
-
         // Don't proceed on CORS requests.
         if (!$app->request->isOptions()) {
-            $app_key = AppContext::validateKey(
-                $app->request->headers->get('X-App-Id') ?: $app->request->get('X-App-Id'),
-                $app->request->headers->get('X-App-Key') ?: $app->request->get('X-App-Key')
-            );
-
             if ($app_key) {
                 // Compile all route modules
                 if ($custom_routes = Module::where('type', Module::TYPE_ROUTE)->get()) {
