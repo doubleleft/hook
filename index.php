@@ -2,11 +2,14 @@
 $app = require __DIR__ . '/src/Hook.php';
 
 use Hook\Middlewares as Middlewares;
-use Hook\Model as Model;
-use Hook\Auth as Auth;
 use Hook\Database\AppContext as AppContext;
 use Hook\Database\Schema as Schema;
 use Hook\PushNotification as PushNotification;
+
+use Hook\Model as Model;
+use Hook\Auth as Auth;
+
+use Hook\Exceptions\ForbiddenException as ForbiddenException;
 
 // Middlewares
 $app->add(new Middlewares\LogMiddleware());
@@ -144,7 +147,7 @@ $app->group('/collection', function () use ($app) {
         $model = Model\App::collection($name)->create_new($app->collection_data);
 
         if (!$model->save()) {
-            throw new ForbiddenException("Can't save '{$name}'.");
+            throw new ForbiddenException("Can't save '{$model->getName()}'.");
         }
 
         $app->content = $model;
@@ -206,9 +209,13 @@ $app->group('/collection', function () use ($app) {
      * POST /collection/:name/:id
      */
     $app->post('/:name/:id', function ($name, $id) use ($app) {
-        $model = Model\App::collection($name)->find($id);
-        if (!$model->update($app->collection_data)) {
-            throw new ForbiddenException("Can't save '{$name}'.");
+        $collection = Model\App::collection($name);
+        if ($model = $collection->find($id)) {
+            if ($model->fill($app->collection_data) && $model->isModified()) {
+                if (!$model->save()) {
+                    throw new ForbiddenException("Can't save '{$collection->getName()}'.");
+                }
+            }
         }
         $app->content = $model;
     });

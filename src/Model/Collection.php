@@ -78,6 +78,24 @@ class Collection extends DynamicModel
     }
 
     /**
+     * isModified
+     * @return bool
+     */
+    public function isModified()
+    {
+        return (count($this->getDirty()) > 0 || $this->hasAttachedFiles());
+    }
+
+    /**
+     * hasAttachedFiles
+     * @return bool
+     */
+    public function hasAttachedFiles()
+    {
+        return count($this->_attached_files) > 0;
+    }
+
+    /**
      * toArray. Modules may define a custom toArray method.
      * @return array
      */
@@ -113,13 +131,14 @@ class Collection extends DynamicModel
         $this->_attached_files = $files;
     }
 
-    protected function uploadAttachedFiles($files)
+    protected function uploadAttachedFiles()
     {
-        foreach ($files as $field => $file) {
+        foreach ($this->_attached_files as $field => $file) {
             $_file = File::create(array('file' => $file));
             $this->setAttribute($field, $_file->path);
             $this->setAttribute($field . '_id', $_file->_id);
         }
+        $this->_attached_files = null;
     }
 
     //
@@ -129,9 +148,8 @@ class Collection extends DynamicModel
     public function beforeSave()
     {
         // Upload/relate each file attachment on the collection.
-        if ($this->_attached_files) {
-            $this->uploadAttachedFiles($this->_attached_files);
-            $this->_attached_files = null;
+        if ($this->hasAttachedFiles()) {
+            $this->uploadAttachedFiles();
         }
 
         return parent::beforeSave();

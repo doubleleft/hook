@@ -69,6 +69,15 @@ class CollectionDelegator implements IteratorAggregate
     }
 
     /**
+     * getName
+     *
+     * @return string
+     */
+    public function getName() {
+        return $this->name;
+    }
+
+    /**
      * Get query items for iteration.
      * @return ArrayIterator
      */
