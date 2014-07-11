@@ -119,6 +119,16 @@ class Auth extends Collection
         return parent::beforeSave();
     }
 
+    /**
+     * Generate sha1 hash of a password, using 'salt' and 'pepper' (AppConfig)
+     *
+     * @static
+     *
+     * @param string $password
+     * @param string $salt
+     *
+     * @return string
+     */
     public static function password_hash($password, $salt)
     {
         $app_auth_pepper = AppConfig::get('auth_pepper') ?: '';
