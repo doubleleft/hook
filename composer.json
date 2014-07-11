@@ -24,6 +24,7 @@
     "aws/aws-sdk-php": "2.5.*",
     "guzzle/guzzle": "3.7.*",
     "cboden/Ratchet": "0.3.*",
+    "react/socket": "0.4.*",
     "duccio/apns-php": "dev-master"
   },
   "require-dev": {
