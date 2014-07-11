@@ -5,6 +5,7 @@ use Hook\Middlewares as Middlewares;
 use Hook\Database\AppContext as AppContext;
 use Hook\Database\Schema as Schema;
 use Hook\PushNotification as PushNotification;
+use Hook\Cache\Cache as Cache;
 
 use Hook\Model as Model;
 use Hook\Auth as Auth;
@@ -409,6 +410,14 @@ $app->group('/apps', function () use ($app) {
         AppContext::setKey($data->keys[0]);
         AppContext::migrate();
         $app->content = $response;
+    });
+
+    /**
+     * Clear application cache
+     */
+    $app->delete('/cache', function () use ($app) {
+        Cache::flush();
+        $app->content = array('success' => true);
     });
 
     $app->get('/logs', function () use ($app) {
