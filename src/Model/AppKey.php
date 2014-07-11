@@ -7,6 +7,10 @@ namespace Hook\Model;
 class AppKey extends Model
 {
 
+    public function app() {
+        return $this->belongsTo('Hook\Model\App');
+    }
+
     public static function boot()
     {
         parent::boot();

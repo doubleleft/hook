@@ -59,7 +59,7 @@ $connection->setCacheManager(function () {
             'cache.driver' => 'file',
             'cache.path' => storage_dir() . '/cache'
         )
-    ));;
+    ));
 });
 
 //

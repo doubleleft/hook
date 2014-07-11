@@ -20,7 +20,12 @@ class AppContext
      * @return Hook\Model\AppKey
      */
     public static function validateKey($app_id, $key) {
-        if ($app_key = AppKey::where('app_id', $app_id)->where('key', $key)->first()) {
+        $app_key = AppKey::with('app')
+            ->where('app_id', $app_id)
+            ->where('key', $key)
+            ->first();
+
+        if ($app_key) {
             return static::setKey($app_key);
         }
     }

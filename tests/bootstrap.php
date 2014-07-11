@@ -11,7 +11,7 @@ require __DIR__ . '/../vendor/autoload.php';
 require __DIR__ . '/../src/Hook.php';
 
 // Force some application key for testing
-Hook\Database\AppContext::setKey(Hook\Model\AppKey::first());
+Hook\Database\AppContext::setKey(Hook\Model\AppKey::with('app')->first());
 
 class TestCase extends PHPUnit_Framework_TestCase
 {

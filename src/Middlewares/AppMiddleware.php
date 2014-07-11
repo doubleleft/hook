@@ -67,6 +67,9 @@ class AppMiddleware extends Slim\Middleware
         $app->response->headers->set('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE');
         $app->response->headers->set('Access-Control-Allow-Headers', 'x-app-id, x-app-key, x-auth-token, content-type, user-agent, accept');
 
+        // var_dump( \Hook\Database\Schema\Cache::getStore() );
+        // die();
+
         // Don't proceed on CORS requests.
         if (!$app->request->isOptions()) {
             if ($app_key) {

@@ -483,6 +483,12 @@ $app->group('/apps', function () use ($app) {
         $app->content = Model\ScheduledTask::all()->get()->toArray();
     });
 
+    $app->get('/deploy', function () use ($app) {
+        $app->content = array(
+            'modules' => Model\Module::all()->get()->toArray()
+        );
+    });
+
     /**
      * Configurations
      */
@@ -504,15 +510,6 @@ $app->group('/apps', function () use ($app) {
         $app->content = array('success' => true);
     });
 
-    $app->delete('/configs/:config', function ($config) use ($app) {
-        $app->content = array(
-            'success' => ($app->key->app->configs()
-                ->where('name', $config)
-                ->first()
-                ->delete()) == 1
-        );
-    });
-
     /**
      * Modules
      */
@@ -527,12 +524,6 @@ $app->group('/apps', function () use ($app) {
         $module = Model\Module::where('name', $data['name'])->first();
 
         $app->content = ($module) ? $module->update($data) : Model\Module::create($data);
-    });
-
-    $app->delete('/modules', function () use ($app) {
-        $data = $app->request->post('module');
-        $deleted = Model\Module::where('name', $data['name'])->delete();
-        $app->content = array('success' => $deleted);
     });
 
     /**

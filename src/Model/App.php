@@ -13,6 +13,7 @@ class App extends Model
     public static function boot()
     {
         parent::boot();
+        static::creating(function ($instance) { $instance->beforeCreate(); });
         static::created(function ($instance) { $instance->afterCreate(); });
     }
 
@@ -55,6 +56,12 @@ class App extends Model
     public function generateKey($admin=false)
     {
         return $this->keys()->create(array('admin' => $admin));
+    }
+
+    public function beforeCreate()
+    {
+        // Generate app secret.
+        $this->secret = md5(uniqid(rand(), true));
     }
 
     public function afterCreate()
