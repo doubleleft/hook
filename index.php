@@ -144,9 +144,10 @@ $app->group('/collection', function () use ($app) {
      * POST /collection/:name
      */
     $app->post('/:name', function ($name) use ($app) {
-        $model = Model\App::collection($name)->create_new($app->collection_data);
+        $method = ($app->request->post('f')) ? 'firstOrCreate' : 'create_new';
+        $model = call_user_func(array(Model\App::collection($name), $method), $app->collection_data);
 
-        if (!$model->save()) {
+        if ($model->isModified() && !$model->save()) {
             throw new ForbiddenException("Can't save '{$model->getName()}'.");
         }
 
@@ -477,18 +478,19 @@ $app->group('/apps', function () use ($app) {
      * Configurations
      */
     $app->get('/configs', function () use ($app) {
-        $app->content = $app->key->app->configs;
+        $app->content = Model\AppConfig::all();
     });
 
     $app->post('/configs', function () use ($app) {
-        $_app = $app->key->app;
         foreach ($app->request->post('configs', array()) as $config) {
-            $existing = $_app->configs()->where('name', $config['name'])->first();
-            if ($existing) {
-                $existing->update($config);
-            } else {
-                $_app->configs()->create($config);
-            }
+            $_config = Model\AppConfig::firstOrNew(array('name' => $config['name']));
+
+            // $existing = $_app->configs()->where('name', $config['name'])->first();
+            // if ($existing) {
+            //     $existing->update($config);
+            // } else {
+            //     $_app->configs()->create($config);
+            // }
         }
         $app->content = array('success' => true);
     });

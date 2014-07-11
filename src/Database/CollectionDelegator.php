@@ -105,7 +105,7 @@ class CollectionDelegator implements IteratorAggregate
      * @param  array             $attributes attributes
      * @return \Model\Collection
      */
-    public function create_new(array $attributes)
+    public function create_new(array $attributes = array())
     {
         if (!$this->is_collection) {
             $klass = self::$custom_collections[$this->name];
