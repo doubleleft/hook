@@ -52,27 +52,29 @@ class AppMiddleware extends Slim\Middleware
 
         self::decode_query_string();
 
-        // Get application key
-        $app_key = AppContext::validateKey(
-            $app->request->headers->get('X-App-Id') ?: $app->request->get('X-App-Id'),
-            $app->request->headers->get('X-App-Key') ?: $app->request->get('X-App-Key')
-        );
+        $origin = $app->request->headers->get('ORIGIN', '*');
 
-        $origin = $app->request->headers->get('ORIGIN');
-        // $allowed_origins = AppConfig::get('security.allowed_origins');
-
-        // Enable Cross-Origin Resource Sharing
-        $app->response->headers->set('Access-Control-Allow-Origin', ($origin) ? $origin : '*' );
+        // Allow Cross-Origin Resource Sharing
         $app->response->headers->set('Access-Control-Allow-Credentials', 'true');
         $app->response->headers->set('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE');
         $app->response->headers->set('Access-Control-Allow-Headers', 'x-app-id, x-app-key, x-auth-token, content-type, user-agent, accept');
 
-        // var_dump( \Hook\Database\Schema\Cache::getStore() );
-        // die();
+        if ($app->request->isOptions()) {
+            // Always allow OPTIONS requests.
+            $app->response->headers->set('Access-Control-Allow-Origin', $origin);
 
-        // Don't proceed on CORS requests.
-        if (!$app->request->isOptions()) {
+        } else {
+            // Get application key
+            $app_key = AppContext::validateKey(
+                $app->request->headers->get('X-App-Id') ?: $app->request->get('X-App-Id'),
+                $app->request->headers->get('X-App-Key') ?: $app->request->get('X-App-Key')
+            );
+
             if ($app_key) {
+                // Check the application key allowed origins, and block if necessary.
+                // $allowed_origins = AppConfig::get('security.allowed_origins', $origin);
+                $app->response->headers->set('Access-Control-Allow-Origin', $origin);
+
                 // Compile all route modules
                 if ($custom_routes = Module::where('type', Module::TYPE_ROUTE)->get()) {
                     foreach ($custom_routes as $custom_route) {
