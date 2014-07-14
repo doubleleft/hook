@@ -41,9 +41,13 @@ class AppConfig extends Model
      * @param string pattern
      * @return Illuminate\Support\Collection
      */
-    public static function getAll($pattern)
+    public static function getAll($pattern, $default = null)
     {
-        return static::where('name', 'like', $pattern)->get();
+        $configs = static::select('value')->where('name', 'like', $pattern)->get()->map(function($config) {
+            return $config->value;
+        })->toArray();
+
+        return (empty($configs) && $default) ? $default : $configs;
     }
 
 }

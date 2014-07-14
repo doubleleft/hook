@@ -7,6 +7,7 @@ use Hook\Model\Module as Module;
 use Hook\Model\AppConfig as AppConfig;
 
 use Hook\Database\AppContext as AppContext;
+use Hook\Exceptions\NotAllowedException as NotAllowedException;
 
 class AppMiddleware extends Slim\Middleware
 {
@@ -70,10 +71,24 @@ class AppMiddleware extends Slim\Middleware
                 $app->request->headers->get('X-App-Key') ?: $app->request->get('X-App-Key')
             );
 
+            $is_commandline = preg_match('/^\/app/', $app->request->getResourceUri());
+
             if ($app_key) {
                 // Check the application key allowed origins, and block if necessary.
-                // $allowed_origins = AppConfig::get('security.allowed_origins', $origin);
                 $app->response->headers->set('Access-Control-Allow-Origin', $origin);
+
+                $request_origin = preg_replace("/https?:\/\//", "", $origin);
+                $allowed_origins = AppConfig::getAll('security.allowed_origins.%', array($request_origin));
+                $is_origin_allowed = array_filter($allowed_origins, function($allowed_origin) use (&$request_origin) {
+                    return fnmatch($allowed_origin, $request_origin);
+                });
+
+                if (count($is_origin_allowed) == 0 && !$is_commandline) {
+                    // throw new NotAllowedException("origin_not_allowed");
+                    $app->response->setStatus(405);
+                    $app->response->setBody(json_encode(array('error' => "origin_not_allowed")));
+                    return;
+                }
 
                 // Compile all route modules
                 if ($custom_routes = Module::where('type', Module::TYPE_ROUTE)->get()) {
@@ -81,7 +96,7 @@ class AppMiddleware extends Slim\Middleware
                         $custom_route->compile();
                     }
                 }
-            } elseif (preg_match('/^\/app/', $app->request->getResourceUri())) {
+            } elseif ($is_commandline) {
                 if (!$this->validatePublicKey($app->request->headers->get('X-Public-Key'))) {
                     // http_response_code(403);
                     // die(json_encode(array('error' => "Public key not authorized.")));
