@@ -24,7 +24,7 @@ class AppMiddleware extends \Slim\Middleware
 
 			// Decode JSON data from query params
 			if (preg_match('/({[^$]+)/', urldecode($query_string), $query)) {
-				$query_data = json_decode(urldecode($query[1]), true) ?: array();
+				$query_data = json_decode($query[1], true) ?: array();
 			}
 
 			// Parse remaining regular string variables
