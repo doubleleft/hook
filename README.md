@@ -43,6 +43,7 @@ For client specific documentation:
 - [C++](https://github.com/doubleleft/hook-cpp) (_docs missing_)
 - [Ruby](https://github.com/doubleleft/hook-ruby) (_docs missing_)
 - [PHP](https://github.com/doubleleft/hook-php) (_docs missing_)
+- [C#](https://github.com/doubleleft/hook-csharp) (_docs missing_)
 
 Websocket
 ---
