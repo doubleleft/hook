@@ -83,7 +83,7 @@ class Builder
      */
     public static function migrate($model, $config)
     {
-        $result = null;
+        $result = false;
         $connection = $model->getConnectionResolver()->connection();
 
         // Ignore NoSQL databases.
@@ -118,7 +118,7 @@ class Builder
         }
 
         if (!empty($config['attributes']) || !empty($config['relationships'])) {
-            $migrate = function ($t) use (&$table, &$table_prefix, &$builder, &$is_creating, &$table_schema, $config) {
+            $migrate = function ($t) use (&$table, &$table_prefix, &$builder, &$is_creating, &$table_schema, $config, &$result) {
                 if ($is_creating) {
                     $t->increments('_id'); // primary key
                     $t->timestamps();      // created_at / updated_at field
@@ -198,8 +198,14 @@ class Builder
                     }
                 }
 
+                // return true when any modification is present
+                if (count($t->getColumns()) > 0 || count($t->getCommands()) > 0) {
+                    $result = true;
+                }
+
             };
-            $result = call_user_func(array($builder, $method), $table_prefix . $table, $migrate);
+
+            call_user_func(array($builder, $method), $table_prefix . $table, $migrate);
         }
 
         // Cache table schema for further reference
@@ -208,7 +214,6 @@ class Builder
 
         $app_collections = Cache::get('app_collections');
         Cache::forever('app_collections', array_unique(array_merge($app_collections, array($table))));
-
 
         return $result;
     }

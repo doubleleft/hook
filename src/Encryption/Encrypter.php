@@ -15,7 +15,7 @@ class Encrypter extends \Illuminate\Encryption\Encrypter
     {
         if (!static::$instance) {
             $app_key = AppContext::getKey();
-            $salt = $app_key->app->_id;
+            $salt = $app_key->app_id;
             static::$instance = new static($app_key->app->secret, $salt);
         }
         return static::$instance;

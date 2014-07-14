@@ -11,6 +11,7 @@ use Hook\Model as Model;
 use Hook\Auth as Auth;
 
 use Hook\Exceptions\ForbiddenException as ForbiddenException;
+use Carbon\Carbon as Carbon;
 
 // Middlewares
 $app->add(new Middlewares\ResponseTypeMiddleware());
@@ -480,12 +481,47 @@ $app->group('/apps', function () use ($app) {
     });
 
     $app->get('/tasks', function () use ($app) {
-        $app->content = Model\ScheduledTask::all()->get()->toArray();
+        $app->content = Model\ScheduledTask::all()->toArray();
     });
 
+    /**
+     * GET /apps/deploy
+     */
     $app->get('/deploy', function () use ($app) {
+        $app->content = array('modules' => Model\Module::dump());
+    });
+
+    /**
+     * POST /apps/deploy
+     *
+     * TODO: atomic deployment
+     */
+    $app->post('/deploy', function () use ($app) {
+        // application configs
+        Model\AppConfig::deploy($app->request->post('config', array()));
+
+        // application secrets
+        Model\AppConfig::deploy($app->request->post('security', array()), array('security'));
+
+        // invalidate previous configurations
+        Model\AppConfig::where('updated_at', '<', Carbon::now())->delete();
+
+        $collections_migrated = 0;
+        foreach($app->request->post('schema', array()) as $collection => $config) {
+            if (Schema\Builder::migrate(Model\App::collection($collection)->getModel(), $config)) {
+                $collections_migrated += 1;
+            }
+        }
+
         $app->content = array(
-            'modules' => Model\Module::all()->get()->toArray()
+            // schema
+            'schema' => $collections_migrated,
+
+            // scheduled tasks
+            'schedule' => Model\ScheduledTask::deploy($app->request->post('schedule', array())),
+
+            // modules
+            'modules' => Model\Module::deploy($app->request->post('modules', array()))
         );
     });
 

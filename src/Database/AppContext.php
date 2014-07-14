@@ -32,12 +32,16 @@ class AppContext
 
     public static function setKey($app_key) {
         static::$app_key = $app_key;
-        AppContext::setPrefix($app_key->app_id);
+        AppContext::setPrefix($app_key->app->_id);
         return static::$app_key;
     }
 
     public static function getKey() {
         return static::$app_key;
+    }
+
+    public static function getAppId() {
+        return static::getKey()->app_id;
     }
 
     public static function setPrefix($prefix) {

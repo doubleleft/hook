@@ -43,6 +43,17 @@ function storage_dir($relative=true, $app_id = null)
 }
 
 /**
+ * shared_storage_dir
+ *
+ * @param mixed $relative
+ * @param mixed $app_id
+ */
+function shared_storage_dir()
+{
+    return __DIR__ . '/../../storage';
+}
+
+/**
  * storage_url
  * @return string
  */
@@ -62,19 +73,6 @@ function clamp($val, $min, $max)
 /**
  * Array functions
  */
-
-function array_diverse($vector)
-{
-    $result = array();
-    foreach ($vector as $key1 => $value1) {
-        foreach ($value1 as $key2 => $value2) {
-            $result[$key2][$key1] = $value2;
-        }
-    }
-
-    return $result;
-}
-
 
 /**
  * Removes an item from the array and returns its value.

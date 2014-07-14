@@ -102,6 +102,70 @@ class Module extends Model
     }
 
     /**
+     * dump
+     * @return array
+     */
+    public static function dump()
+    {
+        $modules = array();
+        static::select('name', 'type', 'updated_at')->get()->each(function($module) use (&$modules) {
+            if (!isset($modules[ $module->type ])) {
+                $modules[ $module->type ] = array();
+            }
+            $modules[ $module->type ][ $module->name ] = $module->updated_at->timestamp;
+        });
+        return $modules;
+    }
+
+    /**
+     * deploy
+     *
+     * @param mixed $module
+     * @return bool
+     */
+    public static function deploy($sync)
+    {
+        $stats = array(
+            'removed' => 0,
+            'updated' => 0,
+            'uploaded' => 0
+        );
+
+        if (!isset($sync['upload'])) { $sync['upload'] = array(); }
+        if (!isset($sync['update'])) { $sync['update'] = array(); }
+        if (!isset($sync['remove'])) { $sync['remove'] = array(); }
+
+        // remove requested modules
+        if (isset($sync['remove'])) {
+            foreach(array_keys($sync['remove']) as $type) {
+                $stats['removed'] += 1;
+                static::where('type', $type)->whereIn('name', $sync['remove'][$type])->delete();
+            }
+        }
+
+        $updates = array_merge_recursive($sync['update'], $sync['upload']);
+        foreach($updates as $type => $modules) {
+            foreach($modules as $name => $module) {
+                $code = $module[0];
+                $updated_at = $module[1];
+
+                $_module = static::firstOrNew(array(
+                    'type' => $type,
+                    'name' => $name
+                ));
+
+                $stats[ (($_module->_id) ? 'updated' : 'created') ] += 1;
+
+                $_module->code = $code;
+                $_module->updated_at = $updated_at;
+                $_module->save();
+            }
+        }
+
+        return $stats;
+    }
+
+    /**
      * compile
      * Compile module code
      * @param array options
