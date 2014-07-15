@@ -513,14 +513,16 @@ $app->group('/apps', function () use ($app) {
         Model\AppConfig::where('updated_at', '<', Carbon::now())->delete();
 
         $collections_migrated = 0;
+
+        // Flush cache on deployment
+        Cache::flush();
+
+        // Migrate and keep schema cache
         foreach($app->request->post('schema', array()) as $collection => $config) {
             if (Schema\Builder::migrate(Model\App::collection($collection)->getModel(), $config)) {
                 $collections_migrated += 1;
             }
         }
-
-        // Flush cache on deployment
-        Cache::flush();
 
         $app->content = array(
             // schema
