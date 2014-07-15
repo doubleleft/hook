@@ -53,11 +53,6 @@ class App extends Model
         return $this->hasMany('Hook\Model\AppConfig', 'app_id');
     }
 
-    public function generateKey($admin=false)
-    {
-        return $this->keys()->create(array('admin' => $admin));
-    }
-
     public function beforeCreate()
     {
         // Generate app secret.
@@ -66,11 +61,17 @@ class App extends Model
 
     public function afterCreate()
     {
-        // Generate admin key
-        $this->generateKey(true);
+        // Generate commandline (full-access)
+        $this->keys()->create(array('type' => AppKey::TYPE_CLI));
 
-        // Generate and apply user key for current request context
-        $this->generateKey();
+        // Generate browser key (client-side)
+        $this->keys()->create(array('type' => AppKey::TYPE_BROWSER));
+
+        // Generate device key  (client-side)
+        $this->keys()->create(array('type' => AppKey::TYPE_DEVICE));
+
+        // Generate server key  (server-side)
+        $this->keys()->create(array('type' => AppKey::TYPE_SERVER));
 
         // Create storage directory for this app
         $storage_dir = storage_dir(true, $this->_id);

@@ -6,9 +6,35 @@ namespace Hook\Model;
  */
 class AppKey extends Model
 {
+    protected $guarded = array('key');
+
+    const TYPE_CLI = 'cli';
+    const TYPE_BROWSER = 'browser';
+    const TYPE_SERVER = 'server';
+    const TYPE_DEVICE = 'device';
 
     public function app() {
         return $this->belongsTo('Hook\Model\App');
+    }
+
+    public function isBrowser()
+    {
+        return $this->type == self::TYPE_BROWSER;
+    }
+
+    public function isServer()
+    {
+        return $this->type == self::TYPE_SERVER;
+    }
+
+    public function isDevice()
+    {
+        return $this->type == self::TYPE_DEVICE;
+    }
+
+    public function isCommandline()
+    {
+        return $this->type == self::TYPE_CLI;
     }
 
     public static function boot()

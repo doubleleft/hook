@@ -406,10 +406,16 @@ $app->group('/apps', function () use ($app) {
      * POST /apps/
      */
     $app->post('/', function () use ($app) {
+        // Reset table prefix
+        \DLModel::getConnectionResolver()->connection()->setTablePrefix('');
+
         $data = Model\App::create($app->request->post('app'));
         $response = $data->toArray();
+
+        // Set application prefix for migration
         AppContext::setKey($data->keys[0]);
         AppContext::migrate();
+
         $app->content = $response;
     });
 

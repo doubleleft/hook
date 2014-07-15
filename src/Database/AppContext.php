@@ -44,7 +44,7 @@ class AppContext
         return static::getKey()->app_id;
     }
 
-    public static function setPrefix($prefix) {
+    public static function setPrefix($prefix = null) {
         $prefix = 'app' . $prefix . '_';
 
         // set database prefix

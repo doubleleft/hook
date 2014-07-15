@@ -71,23 +71,27 @@ class AppMiddleware extends Slim\Middleware
                 $app->request->headers->get('X-App-Key') ?: $app->request->get('X-App-Key')
             );
 
-            $is_commandline = preg_match('/^\/app/', $app->request->getResourceUri());
+            $is_commandline = preg_match('/^\/app/', $app->request->getResourceUri()) &&
+                $app->request->headers->get('User-Agent') == 'hook-cli';
 
             if ($app_key) {
+
                 // Check the application key allowed origins, and block if necessary.
-                $app->response->headers->set('Access-Control-Allow-Origin', $origin);
+                if ($app_key->isBrowser()) {
+                    $app->response->headers->set('Access-Control-Allow-Origin', $origin);
 
-                $request_origin = preg_replace("/https?:\/\//", "", $origin);
-                $allowed_origins = AppConfig::getAll('security.allowed_origins.%', array($request_origin));
-                $is_origin_allowed = array_filter($allowed_origins, function($allowed_origin) use (&$request_origin) {
-                    return fnmatch($allowed_origin, $request_origin);
-                });
+                    $request_origin = preg_replace("/https?:\/\//", "", $origin);
+                    $allowed_origins = AppConfig::getAll('security.allowed_origins.%', array($request_origin));
+                    $is_origin_allowed = array_filter($allowed_origins, function($allowed_origin) use (&$request_origin) {
+                        return fnmatch($allowed_origin, $request_origin);
+                    });
 
-                if (count($is_origin_allowed) == 0 && !$is_commandline) {
-                    // throw new NotAllowedException("origin_not_allowed");
-                    $app->response->setStatus(405);
-                    $app->response->setBody(json_encode(array('error' => "origin_not_allowed")));
-                    return;
+                    if (count($is_origin_allowed) == 0 && !$is_commandline) {
+                        // throw new NotAllowedException("origin_not_allowed");
+                        $app->response->setStatus(403); // forbidden
+                        $app->response->setBody(json_encode(array('error' => "origin_not_allowed")));
+                        return;
+                    }
                 }
 
                 // Compile all route modules
