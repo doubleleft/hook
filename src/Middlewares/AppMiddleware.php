@@ -55,6 +55,9 @@ class AppMiddleware extends Slim\Middleware
 
         $origin = $app->request->headers->get('ORIGIN', '*');
 
+        // Always keep connection open
+        $app->response->headers->set('Connection', 'Keep-Alive');
+
         // Allow Cross-Origin Resource Sharing
         $app->response->headers->set('Access-Control-Allow-Credentials', 'true');
         $app->response->headers->set('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE');
@@ -86,9 +89,10 @@ class AppMiddleware extends Slim\Middleware
                         return fnmatch($allowed_origin, $request_origin);
                     });
 
-                    if (count($is_origin_allowed) == 0 && !$is_commandline) {
+                    if (count($is_origin_allowed) == 0) {
                         // throw new NotAllowedException("origin_not_allowed");
                         $app->response->setStatus(403); // forbidden
+                        $app->response->headers->set('Content-type', 'application/json');
                         $app->response->setBody(json_encode(array('error' => "origin_not_allowed")));
                         return;
                     }

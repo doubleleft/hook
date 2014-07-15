@@ -1,8 +1,7 @@
 <?php
 
 return array('app_configs' => function ($t) {
-    $t->increments('_id');
-    $t->string('name');
+    $t->string('name')->index()->unique();
     $t->text('value');
 
     // timestamps

@@ -116,7 +116,7 @@ class Auth extends Collection
             $this->password_salt = sha1(uniqid(rand(), true));
             $this->password = static::password_hash($this->password, $this->password_salt);
         }
-        return parent::beforeSave();
+         parent::beforeSave();
     }
 
     /**

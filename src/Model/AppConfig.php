@@ -6,6 +6,10 @@ namespace Hook\Model;
  */
 class AppConfig extends Model
 {
+    const DEFAULT_CACHE_MINUTES = 120;
+
+    // configuration names are unique.
+	protected $primaryKey = 'name';
 
     public static function deploy($value, $key = array())
     {
@@ -43,9 +47,12 @@ class AppConfig extends Model
      */
     public static function getAll($pattern, $default = null)
     {
-        $configs = static::select('value')->where('name', 'like', $pattern)->get()->map(function($config) {
-            return $config->value;
-        })->toArray();
+        $configs = static::select('value')
+            ->remember(self::DEFAULT_CACHE_MINUTES)
+            ->where('name', 'like', $pattern)
+            ->get()->map(function($config) {
+                return $config->value;
+            })->toArray();
 
         return (empty($configs) && $default) ? $default : $configs;
     }

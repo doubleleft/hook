@@ -519,6 +519,9 @@ $app->group('/apps', function () use ($app) {
             }
         }
 
+        // Flush cache on deployment
+        Cache::flush();
+
         $app->content = array(
             // schema
             'schema' => $collections_migrated,
