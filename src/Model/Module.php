@@ -154,7 +154,7 @@ class Module extends Model
                     'name' => $name
                 ));
 
-                $stats[ (($_module->_id) ? 'updated' : 'created') ] += 1;
+                $stats[ (($_module->_id) ? 'updated' : 'uploaded') ] += 1;
 
                 $_module->code = $code;
                 $_module->updated_at = $updated_at;
