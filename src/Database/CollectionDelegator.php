@@ -185,11 +185,20 @@ class CollectionDelegator implements IteratorAggregate
     {
         if ($filters) {
             foreach ($filters as $where) {
+                // Use 'and' as default boolean method
+                if (!isset($where[3])) { $where[3] = 'and'; }
+
+                // Workaround to support whereNotNull
+                if ($where[1] == '!=' && $where[2] == null) {
+                    $where[1] = 'not_null';
+                    $where[2] = 'and';
+                }
+
                 if (preg_match('/^[a-z_]+$/', $where[1]) !== 0 && strtolower($where[1]) !== 'like') {
                     $method = 'where' . ucfirst(\Illuminate\Support\Str::camel($where[1]));
-                    $this->query->{$method}($where[0], $where[2]);
+                    $this->query->{$method}($where[0], $where[2], $where[3]);
                 } else {
-                    $this->query->where($where[0], $where[1], $where[2]);
+                    $this->query->where($where[0], $where[1], $where[2], $where[3]);
                 }
             }
         }

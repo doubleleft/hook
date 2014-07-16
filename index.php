@@ -86,6 +86,11 @@ $app->group('/collection', function () use ($app) {
     $app->get('/:name', function ($name) use ($app) {
         $query = Model\App::collection($name)->filter($app->request->get('q'));
 
+        // Select fieds
+        if ($fields = $app->request->get('select')) {
+            $query = $query->select($fields);
+        }
+
         // Apply ordering
         if ($s = $app->request->get('s')) {
             foreach ($s as $ordering) {
