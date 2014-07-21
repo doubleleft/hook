@@ -295,7 +295,6 @@ $app->group('/auth', function () use ($app) {
  * Key/value routes
  */
 $app->group('/key', function () use ($app) {
-
     /**
      * GET /key/:name
      */
@@ -323,6 +322,10 @@ $app->group('/push', function () use ($app) {
      * POST /push/registration
      */
     $app->post('/registration', function () use ($app) {
+        if (!AppContext::getKey()->isDevice()) {
+            throw new ForbiddenException("Need a 'device' key to perform this action.");
+        }
+
         $data = $app->request->post('d') ?: $app->request->post('data') ?: $app->request->post();
         $app->content = Model\PushRegistration::create($data);
     });
@@ -331,6 +334,10 @@ $app->group('/push', function () use ($app) {
      * DELETE /push/registration
      */
     $app->delete('/registration', function () use ($app) {
+        if (!AppContext::getKey()->isDevice()) {
+            throw new ForbiddenException("Need a 'device' key to perform this action.");
+        }
+
         $data = $app->request->post('d') ?: $app->request->post('data') ?: $app->request->post();
         if (!isset($data['device_id'])) {
             throw new \Exception("'device_id' is required to delete push registration.");
@@ -343,8 +350,8 @@ $app->group('/push', function () use ($app) {
      * GET /notify
      */
     $app->get('/notify', function () use ($app) {
-        if (!$app->request->headers->get('X-Scheduled-Task')) {
-            throw new \Exception("Oops.");
+        if (!(AppContext::getKey()->isServer() && $app->request->headers->get('X-Scheduled-Task'))) {
+            throw new ForbiddenException("Need a 'device' key to perform this action.");
         }
 
         $notifier = new PushNotification\Notifier();

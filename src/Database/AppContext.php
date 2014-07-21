@@ -36,6 +36,26 @@ class AppContext
         return static::$app_key;
     }
 
+    public static function getAppKeys($type=null) {
+        $app_id = self::getAppId();
+        if (!$app_id) { throw new \Exception("app_id is required."); }
+
+        // keep previous
+        $connection = \DLModel::getConnectionResolver()->connection();
+        $previous_prefix = $connection->getTablePrefix();
+        $connection->setTablePrefix('');
+
+        // filter by app_id
+        $query = AppKey::where('app_id', $app_id);
+
+        // filter by type if specified
+        if ($type) { $query->where('type', $type); }
+        $app_keys = $query->get();
+
+        $connection->setTablePrefix($previous_prefix);
+        return $app_keys;
+    }
+
     public static function getKey() {
         return static::$app_key;
     }

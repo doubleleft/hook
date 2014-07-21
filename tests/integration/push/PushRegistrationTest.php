@@ -1,9 +1,25 @@
 <?php
 
+use Hook\Model\AppKey as AppKey;
+
 class PushRegistrationTest extends HTTP_TestCase
 {
-    public function testRegistration()
+
+    public function testRegistrationFail()
     {
+        $this->setKeyType(AppKey::TYPE_SERVER);
+        $registration = $this->post('push/registration', array(
+            'app_name' => "Testing App",
+            'app_version' => "1.0.0",
+            'device_id' => "ios-12345",
+            'platform' => "ios"
+        ));
+        $this->assertTrue(is_array($registration) && is_string($registration['error']));
+    }
+
+    public function testRegistrationSuccess()
+    {
+        $this->setKeyType(AppKey::TYPE_DEVICE);
         $registration = $this->post('push/registration', array(
             'app_name' => "Testing App",
             'app_version' => "1.0.0",
@@ -19,14 +35,23 @@ class PushRegistrationTest extends HTTP_TestCase
             'platform' => "android"
         ));
         $this->assertTrue(is_array($registration) && is_string($registration['app_name']));
-
-        // $unregistration = $this->delete('push/registration', array('device_id' => "ios-12345"));
-        // $this->assertTrue($unregistration['success'] === true);
     }
 
-    public function testCreateMessage()
+    public function testCreateMessageFail()
     {
+        $this->setKeyType(AppKey::TYPE_BROWSER);
         $message = $this->post('collection/push_messages', array('message' => "Hello!"));
+        $this->assertTrue(is_array($message) && is_string($message['error']));
+        $this->setKeyType(AppKey::TYPE_DEVICE);
+        $message = $this->post('collection/push_messages', array('message' => "Hello!"));
+        $this->assertTrue(is_array($message) && is_string($message['error']));
+    }
+
+    public function testCreateMessageSuccess()
+    {
+        $this->setKeyType(AppKey::TYPE_DEVICE);
+        $message = $this->post('collection/push_messages', array('message' => "Hello!"));
+        $this->assertTrue(is_array($message) && $message['message'] == "Hello!");
     }
 
     public function testNotify()

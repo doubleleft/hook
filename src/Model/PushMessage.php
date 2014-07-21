@@ -1,6 +1,11 @@
 <?php
 namespace Hook\Model;
 
+use Hook\Database\AppContext as AppContext;
+use Hook\Exceptions\ForbiddenException as ForbiddenException;
+use Hook\Exceptions\InternalException as InternalException;
+
+
 /**
  * Messages to be delievered to devices.
  *
@@ -24,18 +29,17 @@ class PushMessage extends DynamicModel
 
     public function beforeCreate()
     {
-        if (!AuthToken::current()) {
-            // throw new \Exception("auth token is required to create push_messages.");
+        if (!AppContext::getKey()->isServer()) {
+            throw new ForbiddenException("Need a 'server' key to perform this action.");
         }
 
         if (!$this->getAttribute('message')) {
-            throw new \Exception("Can't create PushMessage: 'message' is required.");
+            throw new InternalException("Can't create PushMessage: 'message' is required.");
         }
 
         $this->setAttribute('status', self::STATUS_QUEUE);
         $this->setAttribute('devices', 0);
         $this->setAttribute('failure', 0);
-        $this->beforeSave();
     }
 
 }

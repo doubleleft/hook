@@ -74,8 +74,10 @@ class AppMiddleware extends Slim\Middleware
                 $app->request->headers->get('X-App-Key') ?: $app->request->get('X-App-Key')
             );
 
-            $is_commandline = preg_match('/^\/app/', $app->request->getResourceUri()) &&
-                $app->request->headers->get('User-Agent') == 'hook-cli';
+            $is_commandline = (
+                preg_match('/^\/app/', $app->request->getResourceUri()) &&
+                $app->request->headers->get('User-Agent') == 'hook-cli'
+            ); //  || $app_key->isCommandline()
 
             if ($app_key) {
 

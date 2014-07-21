@@ -7,6 +7,7 @@ class ConfigDeployTest extends TestCase
 
     public function testConfigDeploy()
     {
+        AppConfig::truncate();
         AppConfig::deploy(array(
             'something' => array(
                 'very' => array(
@@ -22,19 +23,10 @@ class ConfigDeployTest extends TestCase
             )
         ));
 
-        $configs = AppConfig::all();
-
-        $this->assertTrue($configs[0]->name == 'something.very.deep.here');
-        $this->assertTrue($configs[0]->value == 'value');
-
-        $this->assertTrue($configs[1]->name == 'something.very.nice');
-        $this->assertTrue($configs[1]->value == 6);
-
-        $this->assertTrue($configs[2]->name == 'another');
-        $this->assertTrue($configs[2]->value == '10');
-
-        $this->assertTrue($configs[3]->name == 'hello.there');
-        $this->assertTrue($configs[3]->value == 'hey!');
+        $this->assertEquals(AppConfig::get('something.very.deep.here'), 'value');
+        $this->assertEquals(AppConfig::get('something.very.nice'), 6);
+        $this->assertEquals(AppConfig::get('another'), '10');
+        $this->assertEquals(AppConfig::get('hello.there'), 'hey!');
     }
 
 }

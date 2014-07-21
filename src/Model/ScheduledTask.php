@@ -2,6 +2,7 @@
 namespace Hook\Model;
 
 use Hook\Database\AppContext as AppContext;
+use Hook\Model\AppKey as AppKey;
 
 /**
  * Task scheduled to run on target time
@@ -43,17 +44,17 @@ class ScheduledTask extends Model
         // $public_url = $protocol . '://' . $_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . $_SERVER['SCRIPT_NAME'] . '/' . $this->task;
         $public_url = $protocol . '://' . $_SERVER['SERVER_NAME'] . $_SERVER['SCRIPT_NAME'] . '/' . $this->task;
 
-        // TODO: redirect output to application log file.
-        // https://github.com/doubleleft/dl-api/issues/37
+        // retrieve server key to allow calls from crontab.
+        $server_key = AppContext::getAppKeys(AppKey::TYPE_SERVER)->first();
 
-        $app_id = AppContext::getAppId();
-        $app_key = AppContext::getKey()->key;
-
-        $curl_headers = "-H 'X-App-Id: {$app_id}' ";
-        $curl_headers .= "-H 'X-App-Key: {$app_key}' ";
+        $curl_headers = "-H 'X-App-Id: {$server_key->app_id}' ";
+        $curl_headers .= "-H 'X-App-Key: {$server_key->key}' ";
         $curl_headers .= "-H 'X-Scheduled-Task: yes' ";
 
-        return $schedule . ' ' . "curl -XGET {$curl_headers} '{$public_url}' 2>&1 /dev/null";
+        // Output the response to application log file
+        $app = \Slim\Slim::getInstance();
+        $output_file = $app->log->getWriter()->getFilePath();
+        return $schedule . ' ' . "curl -XGET {$curl_headers} '{$public_url}' 2>&1 " . $output_file;
     }
 
     public function toArray()

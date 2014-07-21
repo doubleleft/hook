@@ -13,6 +13,9 @@ require __DIR__ . '/../src/Hook.php';
 // Force some application key for testing
 Hook\Database\AppContext::setKey(Hook\Model\AppKey::with('app')->first());
 
+$app = \Slim\Slim::getInstance();
+$app->log->setWriter(new Hook\Logger\LogWriter(storage_dir() . '/logs.txt'));
+
 class TestCase extends PHPUnit_Framework_TestCase
 {
 }
@@ -22,12 +25,13 @@ class HTTP_TestCase extends PHPUnit_Framework_TestCase
     // protected $base_url = 'http://localhost/index.php/';
     // protected $base_url = 'http://localhost/index.php/';
     protected $base_url = 'http://dl-api.dev:58054/index.php/';
+    protected $app_keys = array();
+    protected $app_key = array();
     // protected $base_url = 'http://dl-api.dev/index.php/';
-    protected $app;
 
     public function setUp()
     {
-        $this->app = $this->useApp('default');
+        $this->useApp('default');
         parent::setUp();
     }
 
@@ -43,11 +47,23 @@ class HTTP_TestCase extends PHPUnit_Framework_TestCase
             $this->post('apps', array(
                 'app' => array('name' => 'phpunit')
             ));
-
             return $this->useApp($id, $db_driver);
         }
 
-        return $apps[0]['keys'][0];
+        // associate keys by type
+        foreach($apps[0]['keys'] as $key) {
+            if ($key['deleted_at']==null) {
+                $this->app_keys[$key['type']] = $key;
+            }
+        }
+
+        // use browser key by default
+        $this->setKeyType('browser');
+    }
+
+    public function setKeyType($type)
+    {
+        $this->app_key = $this->app_keys[$type];
     }
 
     public function get($uri, $headers = array())
@@ -80,8 +96,9 @@ class HTTP_TestCase extends PHPUnit_Framework_TestCase
         $headers = array_merge($headers, array(
             'Accept' => 'application/json',
             'Content-Type' => 'application/json',
-            'X-App-Id' => $this->app['app_id'],
-            'X-App-Key' => $this->app['key']
+            'X-App-Id' => ($this->app_key) ? $this->app_key['app_id'] : null,
+            'X-App-Key' => ($this->app_key) ? $this->app_key['key'] : null,
+            'User-Agent' => 'hook-cli'
         ));
 
         return $client->{$method}($uri, $headers, json_encode($data), array(
