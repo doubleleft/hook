@@ -316,52 +316,6 @@ $app->group('/key', function () use ($app) {
 });
 
 /**
- * File API
- */
-$app->group('/files', function () use ($app) {
-
-    /**
-     * GET /files/:id
-     */
-    $app->get('/:id', function ($id) use ($app) {
-        $file = Model\File::find($id);
-        if (!$file) {
-            $app->response->setStatus(404);
-
-            return;
-        }
-        $app->content = $file;
-    });
-
-    /**
-     * DELETE /files/:id
-     */
-    $app->delete('/:id', function ($id) use ($app) {
-        $file = Model\File::find($id);
-        if (!$file) {
-            $app->response->setStatus(404);
-
-            return;
-        }
-        $app->content = array('success' => ($file->delete() == 1));
-    });
-
-    /**
-     * POST /files
-     */
-    $app->post('/', function () use ($app) {
-        if (!isset($_FILES["file"])) {
-            throw new \Exception("'file' field is required.");
-        }
-
-        $app->content = Model\File::create(array(
-            'file' => $_FILES["file"]
-        ));
-    });
-
-});
-
-/**
  * Push Notifications / Installations
  */
 $app->group('/push', function () use ($app) {
