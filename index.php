@@ -298,18 +298,20 @@ $app->group('/key', function () use ($app) {
     /**
      * GET /key/:name
      */
-    $app->get('/:key', function ($key) use ($app) {
-        $app->content = Model\KeyValue::where('name', $key)->first() ?: new Model\KeyValue();
+    $app->get('/:key', function ($name) use ($app) {
+        $key = Model\KeyValue::where('name', $name)->first();
+        $app->content = ($key) ? $key->value : null;
     });
 
     /**
      * PUT /key/:name
      */
-    $app->post('/:key', function ($key) use ($app) {
-        $app->content = Model\KeyValue::upsert(array(
-            'name' => $key,
+    $app->post('/:key', function ($name) use ($app) {
+        $key = Model\KeyValue::upsert(array(
+            'name' => $name,
             'value' => $app->request->post('value')
         ));
+        $app->content = $key->value;
     });
 
 });
