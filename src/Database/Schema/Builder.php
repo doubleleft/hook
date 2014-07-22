@@ -44,9 +44,13 @@ class Builder
     {
         // dynamic migration is not allowed when attributes are locked explicitly
         $table_schema = Cache::get($model->getTable());
+
         if (isset($table_schema['lock_attributes']) && $table_schema['lock_attributes']) {
             return true;
         }
+
+        // Cached attributes
+        $cached_attributes = array_map(function($item) { return $item['name']; }, isset($table_schema['attributes']) ? $table_schema['attributes'] : array());
 
         $config = array('attributes' => array());
 
@@ -65,12 +69,16 @@ class Builder
                 $datatype = 'text';
             }
 
-            if ($datatype !== 'array') {
+            if ($datatype !== 'array' && !in_array($field, $cached_attributes)) {
                 $config['attributes'][] = array('name' => $field, 'type' => $datatype);
             }
         }
 
-        return static::migrate($model, $config);
+        if (count($config['attributes']) > 0) {
+            return static::migrate($model, $config);
+        } else {
+            return false;
+        }
     }
 
     /**

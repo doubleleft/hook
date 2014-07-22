@@ -394,7 +394,7 @@ $app->group('/apps', function () use ($app) {
     });
 
     $app->get('/logs', function () use ($app) {
-        $file_path = $app->log->getWriter()->getFilePath();
+        $file_path = storage_dir() . '/logs.txt';
         $is_tail = ($app->request->get('tail')) ? '-f ' : '';
         $lines = $app->request->get('n', 30);
 

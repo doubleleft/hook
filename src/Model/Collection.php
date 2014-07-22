@@ -40,6 +40,9 @@ class Collection extends DynamicModel
                 $observer = $module->compile();
                 static::$observers[ $table ] = $observer;
                 static::observe($observer);
+            } else {
+                // Cache observer as not available
+                static::$observers[ $table ] = false;
             }
         }
     }
@@ -50,7 +53,7 @@ class Collection extends DynamicModel
      * @return Class | null
      */
     public static function getObserver($table) {
-        return (isset(static::$observers[$table])) ? static::$observers[$table] : null;
+        return (isset(static::$observers[$table]) && static::$observers[$table]) ? static::$observers[$table] : null;
     }
 
     /**
