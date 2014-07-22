@@ -18,10 +18,18 @@ function public_url($segments, $protocol = null)
 /**
  * debug
  *
- * @param string $text
+ * @param mixed $data
  */
-function debug($text)
+function debug($data)
 {
+    if (is_string($data)) {
+        $text = $data;
+    } else if (method_exists($data, 'toJson')) {
+        $text = $data->toJson();
+    } else {
+        $text = json_encode($data);
+    }
+
     $app = \Slim\Slim::getInstance();
 
     return $app->log->info($text);

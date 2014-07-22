@@ -131,6 +131,8 @@ class Builder
                     $t->increments('_id'); // primary key
                     $t->timestamps();      // created_at / updated_at field
                     $t->softDeletes();     // deleted_at field
+                } else {
+                    $table_columns = $builder->getColumnListing($table);
                 }
 
                 foreach($config['attributes'] as $attribute) {
@@ -147,12 +149,14 @@ class Builder
                     $unique = array_remove($attribute, 'unique');
                     $required = array_remove($attribute, 'required');
 
-                    // don't migrate default fields
+                    // Skip default fields
                     $ignore_fields = array('created_at', 'updated_at', 'deleted_at');
-                    if (in_array($field_name, $ignore_fields)) { continue; }
+                    if (in_array($field_name, $ignore_fields)) {
+                        continue;
+                    }
 
-                    if (!$is_creating && ($builder->hasColumn($table, $field_name) ||
-                                          $builder->hasColumn($table, "`{$field_name}`"))) {
+                    // Skip if column already exists
+                    if (!$is_creating && in_array($field_name, array_map('strtolower', $table_columns))) {
                         continue;
                     }
 
