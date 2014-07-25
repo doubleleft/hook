@@ -48,6 +48,11 @@ class CollectionDelegator implements IteratorAggregate {
 	public function __construct($name, $app_id) {
 		$is_collection = true;
 
+		// Prevent accessing 'modules' as a Collection
+		if ($name == "modules") {
+			throw new \Exception("Oops.");
+		}
+
 		$query = null;
 		if (isset(static::$custom_collections[$name])) {
 			echo "custom_collection: " . static::$custom_collections[$name] . PHP_EOL;
