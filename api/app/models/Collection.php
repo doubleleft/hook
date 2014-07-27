@@ -17,13 +17,18 @@ class Collection extends DynamicModel
 	protected $_attached_files;
 
 	public static function boot() {
-		if (!static::$observers) { static::$observers = array(); }
 		parent::boot();
+
+		if (!static::$observers) { static::$observers = array(); }
+		if (!static::$booted) { static::$booted = array(); }
 	}
 
 	public static function loadObserver($table) {
 		// Compile observer only if it isn't compiled yet.
 		if (!isset(static::$observers[ $table ])) {
+			// Register default events (DynamicModel)
+			static::registerDefaultEvents($table);
+
 			if ($module = Module::observer($table)) {
 				$observer = $module->compile();
 				static::$observers[ $table ] = $observer;
@@ -57,7 +62,7 @@ class Collection extends DynamicModel
 		// We will append the names of the class to the event to distinguish it from
 		// other model events that are fired, allowing us to listen on each model
 		// event set individually instead of catching event for all the models.
-		$event = "eloquent.{$event}: ".static::$lastTableName;
+		$event = "eloquent.{$event}: ".$this->getTable();
 
 		$method = $halt ? 'until' : 'fire';
 
@@ -83,8 +88,8 @@ class Collection extends DynamicModel
 		} else if (static::$lastTableName) {
 			$this->setTable(static::$lastTableName);
 		}
-		static::loadObserver($this->getTable());
 		parent::__construct($attributes);
+		static::loadObserver($this->getTable());
 	}
 
 	public function app() {
