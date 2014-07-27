@@ -3,12 +3,30 @@ namespace models;
 
 class DynamicModel extends \Core\Model
 {
+	protected static $booted = array();
+
 	protected $observables = array('updating_multiple', 'deleting_multiple');
 
-	public static function boot() {
-		parent::boot();
-		static::saving(function($model) { $model->beforeSave(); });
+	protected static function registerDefaultEvents($table=null)
+	{
+		if (is_null($table)) {
+			// register events using class name
+			static::saving(function ($model) { $model->beforeSave(); });
+			static::saved(function ($model) { $model->afterSave(); });
+			static::creating(function ($model) { $model->beforeCreate(); });
+
+		} else if (!isset(static::$booted[ $table ])) {
+
+			// register events using table name
+			static::$booted[ $table ] = true;
+			static::saving(function ($model) { $model->beforeSave(); });
+			static::saved(function ($model) { $model->afterSave(); });
+			static::creating(function ($model) { $model->beforeCreate(); });
+		}
 	}
+
+	public function afterSave() {}
+	public function beforeCreate() {}
 
 	public function beforeSave() {
 		$connection = $this->getConnectionResolver()->connection();
