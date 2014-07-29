@@ -9,7 +9,7 @@ class AppConfig extends Model
     const DEFAULT_CACHE_MINUTES = 120;
 
     // configuration names are unique.
-	protected $primaryKey = 'name';
+    protected $primaryKey = 'name';
 
     public static function deploy($value, $key = array())
     {

@@ -47,6 +47,6 @@ class LogMiddleware extends Slim\Middleware
             }
         }
 
-        $this->next->call();
+        return $this->next->call();
     }
 }

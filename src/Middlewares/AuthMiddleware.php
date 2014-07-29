@@ -18,7 +18,7 @@ class AuthMiddleware extends Slim\Middleware
         // 	return;
         // }
 
-        $this->next->call();
+        return $this->next->call();
     }
 
 }

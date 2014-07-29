@@ -72,14 +72,15 @@ class ResponseTypeMiddleware extends Slim\Middleware
                 try {
                     // Call current request
                     $this->next->call();
+                    $response = $app->response->getBody();
                 } catch (\Exception $e) {
-                    $app->content = $this->handle_error_response($e, $app);
+                    $response = $this->handle_error_response($e, $app);
                 }
 
                 // Multiple results
-                if (method_exists($app->content, 'each')) {
+                if (method_exists($response, 'each')) {
                     $self = $this;
-                    $app->content->each(function ($data) use ($app, &$last_event_id, &$self) {
+                    $response->each(function ($data) use ($app, &$last_event_id, &$self) {
                         echo 'id: '. $data->_id . PHP_EOL . PHP_EOL;
                         echo 'data: '. $self->encode_content($data) . PHP_EOL . PHP_EOL;
                         ob_flush();
@@ -89,11 +90,11 @@ class ResponseTypeMiddleware extends Slim\Middleware
 
                 } else {
                     // Single result
-                    if ($app->content instanceof stdClass) {
-                        echo 'id: '. $app->content->_id . PHP_EOL . PHP_EOL;
+                    if ($response instanceof stdClass) {
+                        echo 'id: '. $response->_id . PHP_EOL . PHP_EOL;
                         $last_event_id = $data->content->_id;
                     }
-                    echo 'data: '. $this->encode_content($app->content) . PHP_EOL . PHP_EOL;
+                    echo 'data: '. $this->encode_content($response) . PHP_EOL . PHP_EOL;
                     ob_flush();
                     flush();
                 }
@@ -106,17 +107,18 @@ class ResponseTypeMiddleware extends Slim\Middleware
             try {
                 // Call current request
                 $this->next->call();
+                $response = $app->response->getBody();
             } catch (\Exception $e) {
-                $app->content = $this->handle_error_response($e, $app);
+                $response = $this->handle_error_response($e, $app);
             }
 
             // return 404 status code when 'content' is null or false.
             // probably something is wrong. It's better the API shout it for the client.
-            if ($app->content === null || $app->content === false) {
+            if ($response === null || $response === false) {
                 $app->response->setStatus(404);
             } else {
                 $app->response->headers->set('Content-type', 'application/json');
-                $app->response->setBody($this->encode_content($app->content));
+                $app->response->setBody($this->encode_content($response));
             }
 
         }
@@ -125,10 +127,12 @@ class ResponseTypeMiddleware extends Slim\Middleware
 
     public function encode_content($content)
     {
-        if (method_exists($content, 'toJson')) {
+        if (is_string($content)) {
+            return $content;
+        } else if (method_exists($content, 'toJson')) {
             return $content->toJson();
         } else {
-            return json_encode($content);
+            return $content;
         }
     }
 

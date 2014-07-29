@@ -15,6 +15,17 @@ function public_url($segments, $protocol = null)
     return  $protocol . '://' . $_SERVER['SERVER_NAME'] . $path . $segments;
 }
 
+function to_json($data) {
+    if (is_string($data)) {
+        $json = $data;
+    } else if (method_exists($data, 'toJson')) {
+        $json = $data->toJson();
+    } else {
+        $json = json_encode($data);
+    }
+    return $json;
+}
+
 /**
  * debug
  *
@@ -22,17 +33,9 @@ function public_url($segments, $protocol = null)
  */
 function debug($data)
 {
-    if (is_string($data)) {
-        $text = $data;
-    } else if (method_exists($data, 'toJson')) {
-        $text = $data->toJson();
-    } else {
-        $text = json_encode($data);
-    }
-
     $app = \Slim\Slim::getInstance();
 
-    return $app->log->info($text);
+    return $app->log->info(to_json($data));
 }
 
 /**

@@ -9,7 +9,7 @@ class EncryptionMiddleware extends Slim\Middleware
     public function call()
     {
         $app = $this->app;
-        $this->next->call();
+        return $this->next->call();
     }
 
 }

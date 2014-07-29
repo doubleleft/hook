@@ -127,7 +127,7 @@ class AppMiddleware extends Slim\Middleware
                 $app->environment->offsetSet('slim.request.form_hash', json_decode($input_data, true));
             }
 
-            $this->next->call();
+            return $this->next->call();
         }
     }
 
