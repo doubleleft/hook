@@ -1,8 +1,9 @@
 <?php
 namespace Hook\Database;
 
-use Hook\Model\App as App;
-use Hook\Model\Collection as Collection;
+use Hook\Model\App;
+use Hook\Model\Collection;
+use Hook\Exceptions\UnauthorizedException;
 
 use ArrayIterator;
 use IteratorAggregate;
@@ -54,6 +55,10 @@ class CollectionDelegator implements IteratorAggregate
         // force plural collection names.
         $name = str_plural($name);
         $is_collection = true;
+
+        if ($name == "modules") {
+            throw new UnauthorizedException("not_authorized");
+        }
 
         $query = null;
         if (isset(static::$custom_collections[$name])) {
