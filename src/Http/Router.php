@@ -7,9 +7,9 @@ use Hook\Middlewares;
 class Router {
     protected static $instance;
 
-    public static function mount($app)
+    public static function setup($app)
     {
-        static::$instance = $app;
+        static::setInstance($app);
 
         //
         // Setup middlewares
@@ -19,6 +19,11 @@ class Router {
         $app->add(new Middlewares\AuthMiddleware());
         $app->add(new Middlewares\AppMiddleware());
 
+        return static::mount($app);
+    }
+
+    public static function mount($app)
+    {
         // System
         $app->get('/system/time', 'Hook\\Controllers\\SystemController:time');
         $app->get('/system/ip', 'Hook\\Controllers\\SystemController:ip');
@@ -70,6 +75,10 @@ class Router {
         });
 
         return $app;
+    }
+
+    public static function setInstance($instance) {
+        static::$instance = $instance;
     }
 
     public static function getInstance() {
