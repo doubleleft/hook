@@ -208,6 +208,18 @@ class CollectionDelegator implements IteratorAggregate
     }
 
     /**
+     * Add a "group by" clause to the query.
+     *
+     * @param  dynamic  $columns
+     * @return \Illuminate\Database\Query\Builder
+     */
+    public function group()
+    {
+        $this->query->groupBy(func_get_args());
+        return $this;
+    }
+
+    /**
      * Add an "order by" clause to the query.
      *
      * @param  string                       $column
