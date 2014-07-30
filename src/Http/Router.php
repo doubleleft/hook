@@ -32,7 +32,15 @@ class Router {
 
         // Auth
         $app->get('/auth', 'Hook\\Controllers\\AuthController:show');
-        $app->post('/auth/:provider(/:method', 'Hook\\Controllers\\AuthController:execute');
+        $app->post('/auth/:provider(/:method)', 'Hook\\Controllers\\AuthController:execute');
+
+        // Key/Value
+        $app->get('/key/:name', 'Hook\\Controllers\\KeyValueController:show');
+        $app->post('/key/:name', 'Hook\\Controllers\\KeyValueController:store');
+
+        // Channels
+        $app->get('/channels/:name+', 'Hook\\Controllers\\ChannelsController:index');
+        $app->post('/channels/:name+', 'Hook\\Controllers\\ChannelsController:store');
 
         // Push Notifications
         $app->post('/push', 'Hook\\Controllers\\PushNotificationController:store');

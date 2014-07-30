@@ -1,8 +1,11 @@
 <?php namespace Hook\Controllers;
 
+use Hook\Model;
+use Hook\Http\Input;
+
 class AppsController extends HookController {
     public function index() {
-        return Response::json(Model\App::all());
+        return $this->json(Model\App::all());
     }
 
     public function create() {
@@ -21,7 +24,7 @@ class AppsController extends HookController {
 
     public function delete_cache() {
         Cache\Cache::flush();
-        return Response::json(array('success' => true));
+        return $this->json(array('success' => true));
     }
 
     public function logs() {
@@ -38,11 +41,11 @@ class AppsController extends HookController {
             usleep(300);
         }
         pclose($handle);
-        return Response::json(array('text' => $content));
+        return $this->json(array('text' => $content));
     }
 
     public function tasks() {
-        return Response::json(Model\ScheduledTask::all()->toArray());
+        return $this->json(Model\ScheduledTask::all()->toArray());
     }
 
     public function recreate_tasks() {
@@ -56,11 +59,11 @@ class AppsController extends HookController {
         }
         file_put_contents(__DIR__ . '/app/storage/crontabs/' . $app->key->app_id . '.cron', $tasks);
 
-        return Response::json(array('success' => Model\ScheduledTask::install()));
+        return $this->json(array('success' => Model\ScheduledTask::install()));
     }
 
     public function dump_deploy() {
-        return Response::json(array('modules' => Model\Module::dump()));
+        return $this->json(array('modules' => Model\Module::dump()));
     }
 
     public function deploy() {
@@ -85,7 +88,7 @@ class AppsController extends HookController {
             }
         }
 
-        return Response::json(array(
+        return $this->json(array(
             // schema
             'schema' => $collections_migrated,
 
@@ -99,15 +102,15 @@ class AppsController extends HookController {
     }
 
     public function configs() {
-        return Response::json(Model\AppConfig::all());
+        return $this->json(Model\AppConfig::all());
     }
 
     public function modules() {
-        return Response::json(Model\Module::all());
+        return $this->json(Model\Module::all());
     }
 
     public function schema() {
-        return Response::json(Schema\Builder::dump());
+        return $this->json(Schema\Builder::dump());
     }
 
     public function upload_schema() {
@@ -117,11 +120,11 @@ class AppsController extends HookController {
             Schema\Builder::migrate(Model\App::collection($collection)->getModel(), $config);
         }
 
-        return Response::json(array('success' => true));
+        return $this->json(array('success' => true));
     }
 
     public function delete() {
-        return Response::json(array('success' => false));
+        return $this->json(array('success' => false));
     }
 
 }

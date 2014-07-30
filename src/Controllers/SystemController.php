@@ -11,7 +11,7 @@ class SystemController extends HookController {
         if (isset($_SERVER["HTTP_X_REAL_IP"])) {
             $ip = $_SERVER["HTTP_X_REAL_IP"];
         }
-        return Response::json( json_decode(file_get_contents("http://ipinfo.io/$ip/json"), true) );
+        return $this->json( json_decode(file_get_contents("http://ipinfo.io/$ip/json"), true) );
     }
 
 }

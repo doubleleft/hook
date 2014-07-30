@@ -132,7 +132,7 @@ class ResponseTypeMiddleware extends Slim\Middleware
         } else if (method_exists($content, 'toJson')) {
             return $content->toJson();
         } else {
-            return $content;
+            return json_encode($content);
         }
     }
 

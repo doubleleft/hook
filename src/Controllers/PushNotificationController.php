@@ -1,5 +1,9 @@
 <?php namespace Hook\Controllers;
 
+use Hook\Model;
+use Hook\Http\Input;
+use Hook\Http\Request;
+
 class PushNotificationController extends HookController {
 
     public function store() {
@@ -8,7 +12,7 @@ class PushNotificationController extends HookController {
         }
 
         $data = Input::get('d', Input::get('data', Input::get()));
-        return Response::json(Model\PushRegistration::create($data));
+        return $this->json(Model\PushRegistration::create($data));
     }
 
     public function delete() {
@@ -31,7 +35,7 @@ class PushNotificationController extends HookController {
 
         $notifier = new PushNotification\Notifier();
         $messages = Model\App::collection('push_messages')->where('status', Model\PushMessage::STATUS_QUEUE);
-        return Response::json($notifier->push_messages($messages));
+        return $this->json($notifier->push_messages($messages));
     }
 
 }

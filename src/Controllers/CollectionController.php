@@ -70,7 +70,7 @@ class CollectionController extends HookController {
     }
 
     //
-    // POST /collections/:name
+    // POST /collection/:name
     //
     public function store($name) {
         $method = (Input::get('f')) ? 'firstOrCreate' : 'create_new';
@@ -84,7 +84,7 @@ class CollectionController extends HookController {
     }
 
     //
-    // PUT /collections/:name
+    // PUT /collection/:name
     //
     public function put($name, $_id = null) {
         $collection = Model\App::collection($name);
