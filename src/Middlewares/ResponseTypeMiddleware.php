@@ -146,22 +146,13 @@ class ResponseTypeMiddleware extends Slim\Middleware
 
         file_put_contents('php://stderr', "[[ dl-api: error ]] " . $message . PHP_EOL . $trace . PHP_EOL);
 
-        if (strpos($message, "column not found") !== false ||        // mysql
-            strpos($message, "no such table") !== false ||           // mysql
-            strpos($message, "has no column named") !== false ||     // sqlite
-            strpos($message, "table or view not found") !== false) { // sqlite
-
-            return array();
-
-        } else {
-            $code = intval($e->getCode());
-            if (!$code || $code < 200 || $code > 500) {
-                $code = 500;
-            }
-            $app->response->setStatus($code);
-
-            return array('error' => $message, 'trace' => $trace); //
+        $code = intval($e->getCode());
+        if (!$code || $code < 200 || $code > 500) {
+            $code = 500;
         }
+        $app->response->setStatus($code);
+
+        return array('error' => $message, 'trace' => $trace); //
     }
 
 }
