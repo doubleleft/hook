@@ -27,15 +27,12 @@ function to_json($data) {
 }
 
 /**
- * debug
- *
+ * debug - DEPRECATED, use Hook\Logger\Logger::debug
  * @param mixed $data
  */
 function debug($data)
 {
-    $app = \Slim\Slim::getInstance();
-
-    return $app->log->info(to_json($data));
+    return Hook\Logger\Logger::debug($data);
 }
 
 /**

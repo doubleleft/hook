@@ -74,11 +74,6 @@ class AppMiddleware extends Slim\Middleware
                 $app->request->headers->get('X-App-Key') ?: $app->request->get('X-App-Key')
             );
 
-            $is_commandline = (
-                preg_match('/^\/app/', $app->request->getResourceUri()) &&
-                $app->request->headers->get('User-Agent') == 'hook-cli'
-            ); //  || $app_key->isCommandline()
-
             if ($app_key) {
 
                 // Check the application key allowed origins, and block if necessary.
@@ -106,13 +101,6 @@ class AppMiddleware extends Slim\Middleware
                         $custom_route->compile();
                     }
                 }
-            } elseif ($is_commandline) {
-                if (!$this->validatePublicKey($app->request->headers->get('X-Public-Key'))) {
-                    // http_response_code(403);
-                    // die(json_encode(array('error' => "Public key not authorized.")));
-                    // throw new ForbiddenException("Invalid credentials.");
-                }
-
             } else {
                 $app->response->setStatus(403);
                 $app->response->setBody(json_encode(array('error' => "Invalid credentials.")));

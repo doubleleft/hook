@@ -62,7 +62,7 @@ class GCM implements Service
 
         // Log results
         if (isset($response['results'])) {
-            debug("PushNotification: GCM -> " . json_encode($response['results']));
+            Logger::debug("PushNotification: GCM -> " . json_encode($response['results']));
         }
 
         return array(

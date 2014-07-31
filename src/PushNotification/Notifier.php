@@ -1,6 +1,7 @@
 <?php
 namespace Hook\PushNotification;
 
+use Hook\Logger\Logger;
 use Hook\Model\PushMessage as PushMessage;
 use Hook\Model\App as App;
 
@@ -34,7 +35,7 @@ class Notifier
             'failure' => 0
         );
 
-        debug("PushNotification: pushing {$statuses['push_messages']} message(s) to {$statuses['devices']} devices.");
+        Logger::debug("PushNotification: pushing {$statuses['push_messages']} message(s) to {$statuses['devices']} devices.");
 
         foreach ($messages as $message) {
             $status = $this->push($message->toArray());
@@ -67,7 +68,7 @@ class Notifier
                     $status['success'] += $chunk_status['success'];
                     $status['failure'] += $chunk_status['failure'];
                 } catch (\Exception $e) {
-                    debug("PushNotification: platform: {$platform} -> {$e->getMessage()}");
+                    Logger::debug("PushNotification: platform: {$platform} -> {$e->getMessage()}");
                 }
             });
         }

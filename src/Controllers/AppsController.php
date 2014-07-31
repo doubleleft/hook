@@ -1,10 +1,29 @@
 <?php namespace Hook\Controllers;
 
 use Hook\Model;
+
 use Hook\Http\Input;
+use Hook\Http\Request;
+
+use Hook\Database\AppContext;
+use Hook\Exceptions\UnauthorizedException;
 
 class AppsController extends HookController {
+
+    public function __construct() {
+        $is_commandline = true; //(Request::header('User-Agent') == 'hook-cli');
+        $is_allowed_ip = $this->isAllowedIP();
+
+        $key = AppContext::getKey();
+        $allowed = $is_commandline && (($key && $key->isCommandline()) || $this->isAllowedIP());
+
+        if (!$allowed) {
+            throw new UnauthorizedException("Your IP Address is not allowed to perform this operation.");
+        }
+    }
+
     public function index() {
+        \DLModel::getConnectionResolver()->connection()->setTablePrefix('');
         return $this->json(Model\App::all());
     }
 
@@ -125,6 +144,19 @@ class AppsController extends HookController {
 
     public function delete() {
         return $this->json(array('success' => false));
+    }
+
+
+    protected function isAllowedIP() {
+        $allowed = false;
+        $allowed_ip_addresses = AppContext::config('allowed_ip_addresses');
+
+        if ($allowed_ip_addresses && !empty($allowed_ip_addresses)) {
+            $allowed = in_array("*", $allowed_ip_addresses) ||
+                in_array(Request::ip(), $allowed_ip_addresses);
+        }
+
+        return $allowed;
     }
 
 }

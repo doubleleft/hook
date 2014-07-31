@@ -1,6 +1,7 @@
 <?php
 namespace Hook\PushNotification\Services;
 
+use Hook\Logger\Logger;
 use Hook\Model\AppConfig as AppConfig;
 
 /**
@@ -10,7 +11,7 @@ class APNSLogger implements \ApnsPHP_Log_Interface
 {
     public function log($message)
     {
-        debug($message);
+        Logger::debug($message);
     }
 }
 
@@ -60,12 +61,12 @@ class APNS implements Service
             try {
                 $message->addRecipient($registration->device_id);
             } catch (\ApnsPHP_Message_Exception $e) {
-                debug($e->getMessage());
+                Logger::error($e->getMessage());
                 $total_failure +=1;
             }
         }
 
-        debug("Recipients => " . json_encode($message->getRecipients()));
+        Logger::debug("Recipients => " . json_encode($message->getRecipients()));
 
         // Set a custom identifier. To get back this identifier use the getCustomIdentifier() method
         // over a ApnsPHP_Message object retrieved with the getErrors() message.
@@ -122,7 +123,7 @@ class APNS implements Service
 
         if ($total_failure > 0) {
             foreach ($errors as $error) {
-                debug($errors);
+                Logger::error($error);
             }
         }
 

@@ -1,7 +1,9 @@
 <?php namespace Hook\Database;
 
-use Hook\Model\App as App;
-use Hook\Model\AppKey as AppKey;
+use Hook\Model\App;
+use Hook\Model\AppKey;
+
+use Hook\Http\Router;
 
 /**
  * AppContext
@@ -10,6 +12,10 @@ use Hook\Model\AppKey as AppKey;
 class AppContext
 {
     protected static $app_key;
+
+    public static function config($name) {
+        return Router::getInstance()->config($name);
+    }
 
     /**
      * setKey

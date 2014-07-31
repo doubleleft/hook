@@ -1,5 +1,7 @@
 <?php namespace Hook\Controllers;
 
+use Hook\Http\Request;
+
 class SystemController extends HookController {
 
     public function time() {
@@ -7,11 +9,8 @@ class SystemController extends HookController {
     }
 
     public function ip() {
-        $ip = $_SERVER["REMOTE_ADDR"];
-        if (isset($_SERVER["HTTP_X_REAL_IP"])) {
-            $ip = $_SERVER["HTTP_X_REAL_IP"];
-        }
-        return $this->json( json_decode(file_get_contents("http://ipinfo.io/$ip/json"), true) );
+        $ip = Request::ip();
+        return $this->json( json_decode(file_get_contents("http://ipinfo.io/{$ip}/json"), true) );
     }
 
 }

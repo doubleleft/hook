@@ -29,6 +29,7 @@
     "illuminate/encryption": "4.1.*"
   },
   "require-dev": {
+    "composer/composer": "dev-master",
     "mockery/mockery": "0.8.0",
     "phpunit/phpunit": "3.7.*"
   },

@@ -180,15 +180,18 @@ class Module extends Model
             //
             // Expose handy aliases for modules
             //
-            $aliases = 'use Hook\Mailer\Mail as Mail;';
-            $aliases.= 'use Hook\Model\App as App;';
-            $aliases.= 'use Hook\Model\AppConfig as AppConfig;';
-            $aliases.= 'use Hook\Model\Module as Module;';
-            $aliases.= 'use Hook\Model\File as File;';
-            $aliases.= 'use Hook\Model\Auth as Auth;';
-            $aliases.= 'use Hook\Model\AuthToken as AuthToken;';
-            $aliases.= 'use Hook\Model\Collection as Collection;';
-            $aliases.= 'use Hook\Cache\Cache as Cache;';
+            $aliases = 'use Hook\Mailer\Mail;';
+            $aliases.= 'use Hook\Model\App;';
+            $aliases.= 'use Hook\Model\AppConfig;';
+            $aliases.= 'use Hook\Model\Module;';
+            $aliases.= 'use Hook\Model\File;';
+            $aliases.= 'use Hook\Model\Auth;';
+            $aliases.= 'use Hook\Model\AuthToken;';
+            $aliases.= 'use Hook\Model\Collection;';
+            $aliases.= 'use Hook\Cache\Cache;';
+            $aliases.= 'use Hook\Http\Input;';
+            $aliases.= 'use Hook\Http\Request;';
+            $aliases.= 'use Hook\Logger\Logger;';
 
             if ($this->type == self::TYPE_OBSERVER || $this->type == self::TYPE_CHANNEL) {
                 // Prevent name conflict by using unique class names for custom modules
