@@ -34,6 +34,7 @@ class Router {
         $app->put('/collection/:name', 'Hook\\Controllers\\CollectionController:put');
         $app->put('/collection/:name/:id', 'Hook\\Controllers\\CollectionController:put');
         $app->post('/collection/:name/:id', 'Hook\\Controllers\\CollectionController:post');
+        $app->delete('/collection/:name(/:id)', 'Hook\\Controllers\\CollectionController:delete');
 
         // Auth
         $app->get('/auth', 'Hook\\Controllers\\AuthController:show');
@@ -67,11 +68,15 @@ class Router {
         $app->get('/apps/schema', 'Hook\\Controllers\\AppsController:schema');
         $app->post('/apps/schema', 'Hook\\Controllers\\AppsController:upload_schema');
 
+        $app->notFound(function () use ($app) {
+            echo json_encode(array('error' => 'not_found'));
+        });
+
         //
         // Output exceptions as JSON {'error':'message'}
         //
         $app->error(function($e) use ($app) {
-            return json_encode(array('error' => $e->getMessage()));
+            echo json_encode(array('error' => $e->getMessage()));
         });
 
         return $app;
