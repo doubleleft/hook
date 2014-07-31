@@ -15,9 +15,9 @@ class AppsController extends HookController {
         $is_allowed_ip = $this->isAllowedIP();
 
         $key = AppContext::getKey();
-        $allowed = $is_commandline && (($key && $key->isCommandline()) || $this->isAllowedIP());
+        $allowed = $is_commandline && ($key && $key->isCommandline());
 
-        if (!$allowed) {
+        if ((preg_match('/^\/(apps)$/', Request::path()) && !$this->isAllowedIP()) || !$allowed) {
             throw new UnauthorizedException("Your IP Address is not allowed to perform this operation.");
         }
     }
