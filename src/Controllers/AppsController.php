@@ -17,6 +17,10 @@ class AppsController extends HookController {
         $key = AppContext::getKey();
         $allowed = $is_commandline && ($key && $key->isCommandline());
 
+        if (!$allowed) {
+            throw new UnauthorizedException("Invalid credentials.");
+        }
+
         if ((preg_match('/^\/(apps)$/', Request::path()) && !$this->isAllowedIP()) || !$allowed) {
             throw new UnauthorizedException("Your IP Address is not allowed to perform this operation.");
         }
