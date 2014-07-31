@@ -119,25 +119,4 @@ class AppMiddleware extends Slim\Middleware
         }
     }
 
-    protected function validatePublicKey($data)
-    {
-        return true;
-
-        // $valid = false;
-        //
-        // if ($data) {
-        //     $data = trim(urldecode($data));
-        //     $handle = fopen(__DIR__ . '/../../security/.authorized_keys', 'r');
-        //     while (!feof($handle)) {
-        //         $valid = (strpos(fgets($handle), $data) !== FALSE);
-        //         if ($valid) {
-        //             break;
-        //         }
-        //     }
-        //     fclose($handle);
-        // }
-        //
-        // return $valid;
-    }
-
 }
