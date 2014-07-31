@@ -10,8 +10,7 @@ class APNSLogger implements \ApnsPHP_Log_Interface
 {
     public function log($message)
     {
-        $app = \Slim\Slim::getInstance();
-        $app->log->info($message);
+        debug($message);
     }
 }
 
@@ -32,7 +31,6 @@ class APNS implements Service
             throw new \Exception("APNS config error: 'push.apns.cert.file' not set.");
         }
 
-        $app = \Slim\Slim::getInstance();
         $total_failure = 0;
 
         // Instantiate a new ApnsPHP_Push object
@@ -62,7 +60,7 @@ class APNS implements Service
             try {
                 $message->addRecipient($registration->device_id);
             } catch (\ApnsPHP_Message_Exception $e) {
-                $app->log->info($e->getMessage());
+                debug($e->getMessage());
                 $total_failure +=1;
             }
         }
@@ -124,7 +122,7 @@ class APNS implements Service
 
         if ($total_failure > 0) {
             foreach ($errors as $error) {
-                $app->log->info($errors);
+                debug($errors);
             }
         }
 

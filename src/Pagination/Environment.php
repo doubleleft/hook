@@ -2,21 +2,16 @@
 
 namespace Hook\Pagination;
 
+use Hook\Http\Input;
+
 class Environment
 {
-    protected $request;
     protected $paginator;
     protected $currentPage;
 
-    public function __construct()
-    {
-        $slim_app = \Slim\Slim::getInstance();
-        $this->request = $slim_app->request();
-    }
-
     public function getCurrentPage()
     {
-        $page = (int) $this->currentPage ?: $this->request->get('page', 1);
+        $page = (int) $this->currentPage ?: Input::get('page', 1);
 
         if ($page < 1 || filter_var($page, FILTER_VALIDATE_INT) === false) {
             return 1;

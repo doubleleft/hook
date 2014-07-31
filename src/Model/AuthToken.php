@@ -1,6 +1,9 @@
 <?php
 namespace Hook\Model;
 
+use Hook\Http\Request;
+use Hook\Http\Input;
+
 use \Carbon\Carbon;
 
 /**
@@ -28,8 +31,7 @@ class AuthToken extends Model
     public static function current()
     {
         if (static::$_current === null) {
-            $app = \Slim\Slim::getInstance();
-            static::$_current = static::where('token', $app->request->headers->get('X-Auth-Token') ?: $app->request->get('X-Auth-Token'))
+            static::$_current = static::where('token', Request::header('X-Auth-Token', Input::get('X-Auth-Token')))
                 ->where('expire_at', '>=', Carbon::now())
                 ->first();
         }
