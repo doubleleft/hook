@@ -25,22 +25,22 @@ class Blueprint extends IlluminateSchema\Blueprint
         return $this->addColumn('point', $name, $parameters);
     }
 
-	/**
-	 * Specify a unique index for the table.
-	 *
-	 * @param  string|array  $columns
-	 * @param  string  $name
-	 * @return \Illuminate\Support\Fluent
-	 */
-	public function spatialIndex($columns, $name = null)
-	{
+    /**
+     * Specify a unique index for the table.
+     *
+     * @param  string|array  $columns
+     * @param  string  $name
+     * @return \Illuminate\Support\Fluent
+     */
+    public function spatialIndex($columns, $name = null)
+    {
         $connection_klass = get_class(\DLModel::getConnectionResolver()->connection());
         if ($connection_klass == 'Illuminate\Database\MySqlConnection') {
             // MySQL: Only MyISAM engine have spatial indexing
             $this->engine = 'MyISAM';
         }
 
-		return $this->indexCommand('spatial', $columns, $name);
-	}
+        return $this->indexCommand('spatial', $columns, $name);
+    }
 
 }
