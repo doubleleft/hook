@@ -97,6 +97,9 @@ class Builder
         // Ignore NoSQL databases.
         if (!$connection->getPdo()) { return; }
 
+        // Get modified Schema\Grammar for hook features.
+        $connection->setSchemaGrammar(static::getSchemaGrammar($connection));
+
         $builder = $connection->getSchemaBuilder();
 
         // Set custom blueprint resolver
@@ -146,8 +149,11 @@ class Builder
 
                     $default = array_remove($attribute, 'default');
                     $index = array_remove($attribute, 'index');
-                    $unique = array_remove($attribute, 'unique');
+                    $unique = array_remove($attribute, 'unique') || $index == 'unique';
                     $required = array_remove($attribute, 'required');
+
+                    // spatial indexes are NOT NULL by default
+                    $nullable = !$required && ($type !== 'point');
 
                     // Skip default fields
                     $ignore_fields = array('created_at', 'updated_at', 'deleted_at');
@@ -176,14 +182,19 @@ class Builder
                     }
 
                     // columns are nullable unless specified as 'required'
-                    if (!$required) { $column->nullable(); }
+                    if ($nullable) { $column->nullable(); }
 
-                    // apply index if specified
-                    if ($index && !$unique) { $column->index(); }
+                    if ($index == 'spatial') {
+                        // apply geospatial index, only MyISQL
+                        $t->spatialIndex($field_name);
+                    } else if ($index && !$unique) {
+                        // apply index if specified
+                        $column->index();
+                    }
 
-                    // apply unique index if specified
                     if ($unique) {
-                        $unique_fields = (!is_array($unique)) ? $field_name : array_merge(array($field_name), $unique);
+                        // apply unique index if specified
+                        $unique_fields = (!is_array($unique)) ? $field_name : array_unique(array_merge(array($field_name), $unique));
                         $t->unique($unique_fields);
                     }
                 }
@@ -228,6 +239,14 @@ class Builder
         Cache::forever('app_collections', array_unique(array_merge($app_collections, array($table))));
 
         return $result;
+    }
+
+    protected static function getSchemaGrammar($connection)
+    {
+        $connection_klass = get_class($connection);
+        $connection_klass = str_replace('Illuminate\\Database', '', $connection_klass);
+        $connection_klass = 'Hook\\Database\\Schema\\Grammars' . str_replace('Connection', 'Grammar', $connection_klass);
+        return new $connection_klass;
     }
 
 }
