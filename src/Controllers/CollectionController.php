@@ -14,7 +14,7 @@ class CollectionController extends HookController {
         }
 
         // Apply ordering
-        if ($s = Input::get('s')) {
+        if ($s = Input::get('s', array(array('_id', 'asc')))) {
             foreach ($s as $ordering) {
                 $query->orderBy(reset($ordering), end($ordering));
             }
