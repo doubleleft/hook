@@ -14,18 +14,17 @@ use Carbon\Carbon;
 
 class AppsController extends HookController {
 
+    public static function isRootOperation() {
+        return (preg_match('/^\/(apps)$/', Request::path()) && static::isAllowedIP());
+    }
+
     public function __construct() {
         $is_commandline = true; //(Request::header('User-Agent') == 'hook-cli');
-        $is_allowed_ip = $this->isAllowedIP();
 
         $key = AppContext::getKey();
         $allowed = $is_commandline && ($key && $key->isCommandline());
 
-        if (!$allowed) {
-            throw new UnauthorizedException("Invalid credentials.");
-        }
-
-        if ((preg_match('/^\/(apps)$/', Request::path()) && !$this->isAllowedIP()) || !$allowed) {
+        if (!static::isRootOperation() && !$allowed) {
             throw new UnauthorizedException("Your IP Address is not allowed to perform this operation.");
         }
     }
@@ -46,7 +45,7 @@ class AppsController extends HookController {
         AppContext::setKey($data->keys[0]);
         AppContext::migrate();
 
-        $app->content = $response;
+        return $this->json($response);
     }
 
     public function delete_cache() {
@@ -155,7 +154,7 @@ class AppsController extends HookController {
     }
 
 
-    protected function isAllowedIP() {
+    public static function isAllowedIP() {
         $allowed = false;
         $allowed_ip_addresses = AppContext::config('allowed_ip_addresses');
 
