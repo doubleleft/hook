@@ -53,21 +53,31 @@ $connection->setEventDispatcher($event_dispatcher);
 
 // Setup cache manager
 $connection->setCacheManager(function () {
-    return new Illuminate\Cache\CacheManager(array(
-        'db' => \DLModel::getConnectionResolver(),
-        'encrypter' => Hook\Encryption\Encrypter::getInstance(),
+    $cache_driver = \Slim\Slim::getInstance()->config('cache');
 
-        // 'files' => new \Illuminate\Filesystem\Filesystem(),
-        'config' => array(
-            'cache.driver' => 'database',
-            'cache.connection' => 'default',
-            'cache.table' => 'cache',
-            'cache.prefix' => ''
+    if ($cache_driver == "filesystem") {
+        $config = array(
+            'files' => new \Illuminate\Filesystem\Filesystem(),
+            'config' => array(
+                'cache.driver' => 'file',
+                'cache.path' => storage_dir() . '/cache'
+            )
+        );
 
-            // 'cache.driver' => 'file',
-            // 'cache.path' => storage_dir() . '/cache'
-        )
-    ));
+    } else if ($cache_driver == "database") {
+        $config = array(
+            'db' => \DLModel::getConnectionResolver(),
+            'encrypter' => Hook\Encryption\Encrypter::getInstance(),
+            'config' => array(
+                'cache.driver' => 'database',
+                'cache.connection' => 'default',
+                'cache.table' => 'cache',
+                'cache.prefix' => ''
+            )
+        );
+    }
+
+    return new Illuminate\Cache\CacheManager($config);
 });
 
 //

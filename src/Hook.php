@@ -2,17 +2,15 @@
 // global helpers
 require __DIR__ . '/bootstrap/helpers.php';
 
-$config = array();
-$preferences = require(__DIR__ . '/../config/preferences.php');
-date_default_timezone_set($preferences['timezone']);
+$config = require(__DIR__ . '/../config/preferences.php');
+date_default_timezone_set($config['timezone']);
 
-if ($preferences['debug']) {
+if ($config['debug']) {
     ini_set('display_errors', 1);
     error_reporting(E_ALL);
 }
 
-$config['debug'] = $preferences['debug'];
-$config['log.enabled'] = $preferences['debug'];
+$config['log.enabled'] = $config['debug'];
 
 // Merge settings with security config
 $config = array_merge($config, require(__DIR__ . '/../config/security.php'));
