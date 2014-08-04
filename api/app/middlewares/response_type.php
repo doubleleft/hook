@@ -2,10 +2,10 @@
 
 class ResponseTypeMiddleware extends \Slim\Middleware
 {
-	const MAX_POOLING_RETRY = 60; // 60 seconds
-	const MIN_POOLING_RETRY = 0; // 1 second
+	const MAX_POOLING_RETRY = 5; // 5 seconds
+	const MIN_POOLING_RETRY = 1; // 1 second
 
-	const MAX_REFRESH_TIMEOUT = 40; // 40 seconds
+	const MAX_REFRESH_TIMEOUT = 4; // 4 seconds
 	const MIN_REFRESH_TIMEOUT = 1; // 1 seconds
 
 	public function call()
@@ -28,7 +28,7 @@ class ResponseTypeMiddleware extends \Slim\Middleware
 			$stream_config = $app->request->get('stream');
 			$refresh_timeout = (isset($stream_config['refresh'])) ? intval($stream_config['refresh']) : self::MIN_REFRESH_TIMEOUT;
 			$refresh_timeout = clamp($refresh_timeout, self::MIN_REFRESH_TIMEOUT, self::MAX_REFRESH_TIMEOUT);
-			$retry_timeout = ((isset($stream_config['retry'])) ? intval($stream_config['retry']) : self::MAX_POOLING_RETRY);
+			$retry_timeout = ((isset($stream_config['retry'])) ? intval($stream_config['retry']) : self::MIN_POOLING_RETRY);
 			$retry_timeout = clamp($retry_timeout, self::MIN_POOLING_RETRY, self::MAX_POOLING_RETRY) * 1000;
 
 			$last_event_id = $app->request->headers->get('Last-Event-ID') ?: $app->request->get('lastEventId');

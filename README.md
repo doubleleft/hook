@@ -1,4 +1,4 @@
-Welcome to dl-api
+Welcome to dl-api ![Build status](https://api.travis-ci.com/doubleleft/dl-api.svg?token=px2fsDaL7WdoeJ9qixdB)
 ===
 
 dl-api is a backend-as-a-service platform that includes everything that you need
