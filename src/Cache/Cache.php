@@ -12,7 +12,6 @@ class Cache
     {
         if (!static::$instance) {
             $connection = \DLModel::getConnectionResolver()->connection();
-
             $cache_manager = $connection->getCacheManager();
             $default_driver = $cache_manager->getDefaultDriver();
             static::$instance = $cache_manager->driver($default_driver);
