@@ -38,9 +38,7 @@ class DynamicModel extends Model
         }
     }
 
-    public function beforeCreate()
-    {
-    }
+    public function beforeCreate() { }
 
     public function beforeSave()
     {

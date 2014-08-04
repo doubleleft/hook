@@ -20,6 +20,12 @@ class Auth extends Collection
 
     static $_current = null;
 
+    public static function boot()
+    {
+        static::$lastTableName = 'auths';
+        parent::boot();
+    }
+
     /**
      * current - get current active Auth instance
      * @static
