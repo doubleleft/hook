@@ -10,6 +10,7 @@ require __DIR__ . '/../vendor/autoload.php';
 
 class TestCase extends PHPUnit_Framework_TestCase {
 	// protected $base_url = 'http://localhost/api/index.php/';
+	// protected $base_url = 'http://localhost/api/index.php/';
 	protected $base_url = 'http://dl-api.dev/api/index.php/';
 	protected $app;
 
@@ -24,6 +25,12 @@ class TestCase extends PHPUnit_Framework_TestCase {
 
 	public function useApp($id, $db_driver = 'sqlite') {
 		$apps = $this->get('apps/list');
+		if (!isset($apps[0])) {
+			$this->post('apps', array(
+				'app' => array('name' => 'phpunit')
+			));
+			return $this->useApp($id, $db_driver);
+		}
 		return $apps[0]['keys'][0];
 	}
 
