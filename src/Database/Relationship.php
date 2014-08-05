@@ -13,7 +13,6 @@ class Relationship
 
     public static function getRelation($model, $relation_name) {
         $schema = Cache::get($model->getTable());
-        $debug = json_encode($schema);
 
         if (isset($schema['relationships'])) {
             // TODO: refactoring.
@@ -21,7 +20,9 @@ class Relationship
             foreach($schema['relationships'] as $relation => $fields) {
                 foreach($fields as $field => $collection) {
                     if ($field == $relation_name || $collection == $relation_name) {
-                        $related_collection = App::collection($collection);
+                        // TODO: '$collection' should be always a string
+                        $related_collection_name = (is_array($collection)) ? $collection[0] : $collection;
+                        $related_collection = App::collection($related_collection_name);
                         return static::getRelationInstance($model, $related_collection, $relation, $field);
                     }
                 }

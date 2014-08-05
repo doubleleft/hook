@@ -38,6 +38,15 @@ class DynamicModel extends Model
         }
     }
 
+    /**
+     * isModified
+     * @return bool
+     */
+    public function isModified()
+    {
+        return count($this->getDirty()) > 0;
+    }
+
     public function beforeCreate() { }
 
     public function beforeSave()

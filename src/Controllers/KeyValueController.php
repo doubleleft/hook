@@ -7,14 +7,20 @@ class KeyValueController extends HookController {
 
     public function show($name) {
         $key = Model\KeyValue::where('name', $name)->first();
-        return $this->json(($key) ? $key->value : null);
+        return $this->json(($key) ? json_encode(unserialize($key->value)) : null);
     }
 
     public function store($name) {
-        return $this->json(Model\KeyValue::upsert(array(
+        $value = Input::get('value');
+        Model\KeyValue::upsert(array(
             'name' => $name,
-            'value' => Input::get('value')
-        ))->value);
+            'value' => serialize($value)
+        ));
+        return $this->json(json_encode($value));
+    }
+
+    public function delete($name) {
+        return $this->json(Model\KeyValue::where('name', $name)->delete());
     }
 
 }

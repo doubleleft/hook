@@ -24,22 +24,26 @@ class PushMessage extends DynamicModel
     {
         parent::boot();
         static::registerDefaultEvents();
-        static::creating(function ($model) { $model->beforeCreate(); });
     }
 
-    public function beforeCreate()
+    public function beforeSave()
     {
-        if (!AppContext::getKey()->isServer()) {
-            throw new ForbiddenException("Need a 'server' key to perform this action.");
+        if (!$this->getAttribute('_id')) {
+
+            if (!AppContext::getKey()->isServer()) {
+                throw new ForbiddenException("Need a 'server' key to perform this action.");
+            }
+
+            if (!$this->getAttribute('message')) {
+                throw new InternalException("Can't create PushMessage: 'message' is required.");
+            }
+
+            $this->setAttribute('status', self::STATUS_QUEUE);
+            $this->setAttribute('devices', 0);
+            $this->setAttribute('failure', 0);
         }
 
-        if (!$this->getAttribute('message')) {
-            throw new InternalException("Can't create PushMessage: 'message' is required.");
-        }
-
-        $this->setAttribute('status', self::STATUS_QUEUE);
-        $this->setAttribute('devices', 0);
-        $this->setAttribute('failure', 0);
+        parent::beforeSave();
     }
 
 }

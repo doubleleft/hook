@@ -40,14 +40,16 @@ class HTTP_TestCase extends PHPUnit_Framework_TestCase
         parent::tearDown();
     }
 
-    public function useApp($id, $db_driver = 'sqlite')
+    public function useApp($id)
     {
-        $apps = $this->get('apps/list');
+        $db_driver = getenv('DB_DRIVER') ?: 'mysql';
+
+        $apps = $this->get('apps');
         if (!isset($apps[0])) {
             $this->post('apps', array(
                 'app' => array('name' => 'phpunit')
             ));
-            return $this->useApp($id, $db_driver);
+            return $this->useApp($id);
         }
 
         // associate keys by type

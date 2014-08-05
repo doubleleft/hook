@@ -4,6 +4,11 @@ use Hook\Model;
 use Hook\Http\Input;
 use Hook\Http\Request;
 
+use Hook\Database\AppContext;
+use Hook\Exceptions\ForbiddenException;
+
+use Hook\PushNotification;
+
 class PushNotificationController extends HookController {
 
     public function store() {
@@ -25,7 +30,7 @@ class PushNotificationController extends HookController {
             throw new \Exception("'device_id' is required to delete push registration.");
         }
         $registration = Model\PushRegistration::where('device_id', $data['device_id']);
-        $app->content = array('success' => ($registration->delete() == 1));
+        return $this->json(array('success' => ($registration->delete() == 1)));
     }
 
     public function notify() {

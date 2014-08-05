@@ -6,17 +6,21 @@ use Hook\Encryption\Encrypter as Encrypter;
 class Cache
 {
     protected static $store;
-    protected static $local_cache = array();
+    protected static $tmp_cache = array();
+
+    public static function flush() {
+        static::$tmp_cache = array();
+    }
 
     public static function forever($collection, $value) {
         return static::getStore()->forever($collection, $value);
     }
 
     public static function get($collection) {
-        if (!isset(static::$local_cache[$collection])) {
-            static::$local_cache[$collection] = static::getStore()->get($collection) ?: array();
+        if (!isset(static::$tmp_cache[$collection])) {
+            static::$tmp_cache[$collection] = static::getStore()->get($collection) ?: array();
         }
-        return static::$local_cache[$collection];
+        return static::$tmp_cache[$collection];
     }
 
     public static function getStore() {

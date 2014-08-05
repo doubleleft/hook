@@ -48,7 +48,7 @@ class CollectionController extends HookController {
 
         if ($aggr = Input::get('aggr')) {
             // Aggregate 'max'/'min'/'avg'/'sum' methods
-            if ($aggr['field']) {
+            if (isset($aggr['field'])) {
                 return $this->json($query->{$aggr['method']}($aggr['field']));
 
             } else {

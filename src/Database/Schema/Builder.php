@@ -124,6 +124,8 @@ class Builder
             $config['relationships'] = array();
         }
 
+        // var_dump($table, $config['relationships']);
+
         if (!isset($config['attributes'])) {
             $config['attributes'] = array();
         }
