@@ -13,6 +13,13 @@ class AppContext
 {
     protected static $app_key;
 
+    /**
+     * config
+     *
+     * @param mixed $name
+     *
+     * @return string
+     */
     public static function config($name) {
         return Router::getInstance()->config($name);
     }

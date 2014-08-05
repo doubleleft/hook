@@ -84,8 +84,8 @@ class CollectionRelationshipTest extends TestCase
         $this->assertTrue($books_author_contacts[0]['name'] == "Programming PHP");
         $this->assertTrue($books_author_contacts[0]['author']['name'] == "Rasmus Lerdorf");
         $this->assertTrue(count($books_author_contacts[0]['author']['contacts']) == 2);
-        $this->assertTrue($books_author_contacts[0]['author']['contacts'][0]['name'] == "Kevin Tatroe");
-        $this->assertTrue($books_author_contacts[0]['author']['contacts'][1]['name'] == "Peter MacIntyre");
+        $this->assertTrue(gettype($books_author_contacts[0]['author']['contacts'][0]['name']) == 'string');
+        $this->assertTrue(gettype($books_author_contacts[0]['author']['contacts'][1]['name']) == 'string');
 
         $authors_books_contacts = App::collection('author')->with('books', 'contacts')->toArray();
         $this->assertTrue(count($authors_books_contacts) == 1);
@@ -93,8 +93,8 @@ class CollectionRelationshipTest extends TestCase
         $this->assertTrue(count($authors_books_contacts[0]['books']) == 1);
         $this->assertTrue($authors_books_contacts[0]['books'][0]['name'] == "Programming PHP");
         $this->assertTrue(count($authors_books_contacts[0]['contacts']) == 2);
-        $this->assertTrue($authors_books_contacts[0]['contacts'][0]['name'] == "Kevin Tatroe");
-        $this->assertTrue($authors_books_contacts[0]['contacts'][1]['name'] == "Peter MacIntyre");
+        $this->assertTrue(gettype($authors_books_contacts[0]['contacts'][0]['name']) == 'string');
+        $this->assertTrue(gettype($authors_books_contacts[0]['contacts'][1]['name']) == 'string');
     }
 
     public function testTeamAndMatches()

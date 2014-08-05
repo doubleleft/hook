@@ -10,10 +10,27 @@ $_SERVER['SERVER_PORT'] = '80';
 require __DIR__ . '/../vendor/autoload.php';
 require __DIR__ . '/../src/Hook.php';
 
-// Force some application key for testing
+$app = \Slim\Slim::getInstance();
+Hook\Http\Router::setInstance($app);
+
+//
+// Ensure that tests will run against an valid fresh app
+//
+if (Hook\Model\AppKey::count() == 0) {
+    $app->environment->offsetSet('PATH_INFO', '/apps');
+    $app->environment->offsetSet('slim.request.form_hash', array(
+        'app' => array(
+            'name' => 'testing'
+        )
+    ));
+    $apps_controller = new Hook\Controllers\AppsController();
+    $apps_controller->create();
+}
+
+// Force application key for testing
+\DLModel::getConnectionResolver()->connection()->setTablePrefix('');
 Hook\Database\AppContext::setKey(Hook\Model\AppKey::with('app')->first());
 
-$app = \Slim\Slim::getInstance();
 $app->log->setWriter(new Hook\Logger\LogWriter(storage_dir() . '/logs.txt'));
 
 class TestCase extends PHPUnit_Framework_TestCase
