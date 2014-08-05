@@ -1,5 +1,5 @@
 <?php
-$db_config = require(__DIR__ . '/../../config/database.php');
+$db_config = \Slim\Slim::getInstance()->config('database');
 
 $container = new Illuminate\Container\Container();
 $event_dispatcher = new Illuminate\Events\Dispatcher($container);

@@ -16,8 +16,4 @@ $config['log.enabled'] = $config['debug'];
 $config = array_merge($config, require(__DIR__ . '/../config/security.php'));
 
 $app = new \Slim\Slim($config);
-
-// database
-require __DIR__ . '/bootstrap/connection.php';
-
 return $app;

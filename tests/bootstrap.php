@@ -7,10 +7,12 @@ $_SERVER['REQUEST_URI'] = '';
 $_SERVER['SERVER_NAME'] = 'localhost';
 $_SERVER['SERVER_PORT'] = '80';
 
-require __DIR__ . '/../vendor/autoload.php';
-require __DIR__ . '/../src/Hook.php';
+$db_driver = getenv('DB_DRIVER') ?: 'mysql';
 
-$app = \Slim\Slim::getInstance();
+require __DIR__ . '/../vendor/autoload.php';
+$app = require __DIR__ . '/../src/Hook.php';
+$app->config('database', require(__DIR__ . "/configs/{$db_driver}.php"));
+require __DIR__ . '/../src/bootstrap/connection.php';
 Hook\Http\Router::setInstance($app);
 
 //
@@ -59,8 +61,6 @@ class HTTP_TestCase extends PHPUnit_Framework_TestCase
 
     public function useApp($id)
     {
-        $db_driver = getenv('DB_DRIVER') ?: 'mysql';
-
         $apps = $this->get('apps');
         if (!isset($apps[0])) {
             $this->post('apps', array(
