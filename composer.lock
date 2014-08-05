@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "39a801e6729367fd72de5f867b625fab",
+    "hash": "6b64c65ef3edc7d388d08582dc59fa74",
     "packages": [
         {
             "name": "aws/aws-sdk-php",
@@ -1238,27 +1238,31 @@
         },
         {
             "name": "jenssegers/mongodb",
-            "version": "v1.1.4",
+            "version": "v1.3.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/jenssegers/laravel-mongodb.git",
-                "reference": "828a490d67c47572ec3922f474b4e857a7a5cc9d"
+                "reference": "57c0d8511434e706048c312e69f50fdf482bdd11"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jenssegers/laravel-mongodb/zipball/828a490d67c47572ec3922f474b4e857a7a5cc9d",
-                "reference": "828a490d67c47572ec3922f474b4e857a7a5cc9d",
+                "url": "https://api.github.com/repos/jenssegers/laravel-mongodb/zipball/57c0d8511434e706048c312e69f50fdf482bdd11",
+                "reference": "57c0d8511434e706048c312e69f50fdf482bdd11",
                 "shasum": ""
             },
             "require": {
-                "illuminate/database": "4.1.x",
-                "illuminate/events": "4.1.x",
-                "illuminate/support": "4.1.x",
+                "illuminate/database": "4.1.*",
+                "illuminate/events": "4.1.*",
+                "illuminate/support": "4.1.*",
                 "php": ">=5.3.0"
             },
             "require-dev": {
-                "illuminate/auth": "4.1.x",
-                "illuminate/cache": "4.1.x"
+                "mockery/mockery": "*",
+                "orchestra/testbench": "2.1.*"
+            },
+            "suggest": {
+                "jenssegers/mongodb-sentry": "Add Sentry support to Laravel-MongoDB",
+                "jenssegers/mongodb-session": "Add MongoDB session support to Laravel-MongoDB"
             },
             "type": "library",
             "autoload": {
@@ -1274,7 +1278,7 @@
             "authors": [
                 {
                     "name": "Jens Segers",
-                    "email": "hello@jenssegers.be"
+                    "homepage": "http://jenssegers.be"
                 }
             ],
             "description": "A MongoDB based Eloquent model and Query builder for Laravel 4",
@@ -1286,7 +1290,7 @@
                 "mongo",
                 "mongodb"
             ],
-            "time": "2014-02-27 11:50:36"
+            "time": "2014-05-29 10:27:23"
         },
         {
             "name": "nesbot/carbon",

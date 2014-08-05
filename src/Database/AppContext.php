@@ -56,7 +56,7 @@ class AppContext
         // keep previous
         $connection = \DLModel::getConnectionResolver()->connection();
         $previous_prefix = $connection->getTablePrefix();
-        $connection->setTablePrefix('');
+        static::setTablePrefix('');
 
         // filter by app_id
         $query = AppKey::where('app_id', $app_id);
@@ -65,7 +65,7 @@ class AppContext
         if ($type) { $query->where('type', $type); }
         $app_keys = $query->get();
 
-        $connection->setTablePrefix($previous_prefix);
+        static::setTablePrefix($previous_prefix);
         return $app_keys;
     }
 
@@ -82,7 +82,7 @@ class AppContext
 
         // set database prefix
         $connection = \DLModel::getConnectionResolver()->connection();
-        $connection->setTablePrefix($connection->getTablePrefix() . $prefix);
+        static::setTablePrefix($connection->getTablePrefix() . $prefix);
 
         // set cache prefix
         $connection->getCacheManager()->setPrefix($prefix);
@@ -96,6 +96,13 @@ class AppContext
     public static function getPrefix() {
         $connection = \DLModel::getConnectionResolver()->connection();
         return $connection->getTablePrefix();
+    }
+
+    public static function setTablePrefix($prefix) {
+        $connection = \DLModel::getConnectionResolver()->connection();
+        if ($connection->getPdo()) {
+            $connection->setTablePrefix($prefix);
+        }
     }
 
     /**

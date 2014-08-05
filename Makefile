@@ -61,6 +61,11 @@ endif
 
 test:
 	./vendor/bin/phpunit --configuration ./tests/phpunit.xml
+	# DB_DRIVER=mysql ./vendor/bin/phpunit --configuration ./tests/phpunit.xml
+	# DB_DRIVER=postgres ./vendor/bin/phpunit --configuration ./tests/phpunit.xml
+	# DB_DRIVER=sqlite ./vendor/bin/phpunit --configuration ./tests/phpunit.xml
+	# DB_DRIVER=mongodb ./vendor/bin/phpunit --configuration ./tests/phpunit.xml
+	# DB_DRIVER=sqlsrv ./vendor/bin/phpunit --configuration ./tests/phpunit.xml
 
 docs:
 	mkdir -p ../dl-api-docs/

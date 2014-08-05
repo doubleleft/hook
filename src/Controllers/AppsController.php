@@ -30,13 +30,13 @@ class AppsController extends HookController {
     }
 
     public function index() {
-        \DLModel::getConnectionResolver()->connection()->setTablePrefix('');
+        AppContext::setTablePrefix('');
         return $this->json(Model\App::all());
     }
 
     public function create() {
         // Reset table prefix
-        \DLModel::getConnectionResolver()->connection()->setTablePrefix('');
+        AppContext::setTablePrefix('');
 
         $data = Model\App::create(Input::get('app'));
         $response = $data->toArray();

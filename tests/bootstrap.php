@@ -30,7 +30,7 @@ if (Hook\Model\AppKey::count() == 0) {
 }
 
 // Force application key for testing
-\DLModel::getConnectionResolver()->connection()->setTablePrefix('');
+Hook\Database\AppContext::setTablePrefix('');
 Hook\Database\AppContext::setKey(Hook\Model\AppKey::with('app')->first());
 
 $app->log->setWriter(new Hook\Logger\LogWriter(storage_dir() . '/logs.txt'));
@@ -71,7 +71,7 @@ class HTTP_TestCase extends PHPUnit_Framework_TestCase
 
         // associate keys by type
         foreach($apps[0]['keys'] as $key) {
-            if ($key['deleted_at']==null) {
+            if (!isset($key['deleted_at']) || $key['deleted_at']==null) {
                 $this->app_keys[$key['type']] = $key;
             }
         }

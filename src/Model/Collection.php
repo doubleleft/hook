@@ -118,19 +118,6 @@ class Collection extends DynamicModel
         return $array;
     }
 
-    /**
-     * Drop the collection
-     * @method drop
-     */
-    public function drop()
-    {
-        $conn = $this->getConnectionResolver()->connection();
-        $builder = $conn->getSchemaBuilder();
-        $builder->dropIfExists($this->getTable());
-
-        return true;
-    }
-
     public function setAttachedFilesAttribute($files)
     {
         $this->_attached_files = $files;
