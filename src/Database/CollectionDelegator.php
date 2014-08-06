@@ -194,8 +194,12 @@ class CollectionDelegator implements IteratorAggregate
                 // Use 'and' as default boolean method
                 if (!isset($where[3])) { $where[3] = 'and'; }
 
-                // Workaround to support whereNotNull
-                if ($where[1] == '!=' && $where[2] == null) {
+                // Sugar for 'IN' operations
+                if ($where[1] == '=' && gettype($where[2]) == 'array') {
+                    $where[1] = 'in';
+
+                } else if ($where[1] == '!=' && $where[2] == null) {
+                    // Workaround to support whereNotNull
                     $where[1] = 'not_null';
                     $where[2] = 'and';
                 }
