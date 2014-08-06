@@ -1,6 +1,7 @@
 <?php
 namespace Hook\Model;
 
+use Hook\Database\Schema as Schema;
 use Hook\Database\Relationship as Relationship;
 
 /**
@@ -78,8 +79,21 @@ class Collection extends DynamicModel
         } elseif (static::$lastTableName) {
             $this->setTable(static::$lastTableName);
         }
+
+        // Configure date fields to output /
+        $table_name = $this->getTable();
+        $schema = Schema\Cache::get($table_name);
+        if ($schema && isset($schema['attributes'])) {
+            foreach($schema['attributes'] as $attribute) {
+                if ($attribute['type'] == 'timestamp') {
+                    array_push($this->dates, $attribute['name']);
+                }
+            }
+        }
+
         parent::__construct($attributes);
-        static::loadObserver($this->getTable());
+
+        static::loadObserver($table_name);
     }
 
     /**

@@ -47,6 +47,10 @@ class DynamicModel extends Model
         return count($this->getDirty()) > 0;
     }
 
+    //
+    // Hooks
+    //
+
     public function beforeCreate() { }
 
     public function beforeSave()

@@ -1,6 +1,7 @@
 <?php namespace Hook\Database\Schema;
 
 use Hook\Database\AppContext as AppContext;
+use Carbon\Carbon;
 
 /**
  * Builder
