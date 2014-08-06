@@ -99,8 +99,9 @@ class Auth extends Collection
 	 * @return array
 	 */
 	public function dataWithToken() {
+		AuthToken::$_current = $this->generateToken();
 		$data = $this->toArray();
-		$data['token'] = $this->generateToken()->toArray();
+		$data['token'] = AuthToken::$_current->toArray();
 		return $data;
 	}
 
