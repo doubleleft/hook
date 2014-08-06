@@ -1,6 +1,9 @@
 <?php
 namespace Hook\Model;
 
+use Hook\Database\AppContext;
+use Hook\Exceptions\ForbiddenException;
+
 /**
  * Auth
  *
@@ -106,8 +109,11 @@ class Auth extends Collection
      */
     public function dataWithToken()
     {
+        $auth_token = $this->generateToken();
+        AuthToken::setCurrent($auth_token);
+
         $data = $this->toArray();
-        $data['token'] = $this->generateToken()->toArray();
+        $data['token'] = $auth_token->toArray();
 
         return $data;
     }
@@ -118,6 +124,16 @@ class Auth extends Collection
 
     public function beforeSave()
     {
+        // Need a 'server' key, or a user with rights to update this row.
+        $auth_token = AuthToken::current();
+        if (
+            !AppContext::getKey()->isServer() ||
+            ($auth_token && $auth_token->auth_id != $this->_id)
+        ) {
+            throw new ForbiddenException("not_allowed");
+        }
+
+        // Update password
         if ($this->isDirty('password')) {
             $this->password_salt = sha1(uniqid(rand(), true));
             $this->password = static::password_hash($this->password, $this->password_salt);

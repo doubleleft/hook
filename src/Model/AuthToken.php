@@ -13,8 +13,9 @@ class AuthToken extends Model
 {
     const EXPIRATION_HOURS = 24; // hours
 
+    protected static $_current = null;
+
     public $timestamps = false;
-    static $_current = null;
     protected $dates = array('expire_at');
 
     public static function boot()
@@ -37,6 +38,10 @@ class AuthToken extends Model
         }
 
         return static::$_current;
+    }
+
+    public static function setCurrent($auth_token) {
+        static::$_current = $auth_token;
     }
 
     public function auth()
