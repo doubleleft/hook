@@ -46,8 +46,8 @@ class Router {
         $app->delete('/key/:name', 'Hook\\Controllers\\KeyValueController:delete');
 
         // Channels
-        $app->get('/channels/:name+', 'Hook\\Controllers\\ChannelsController:index');
-        $app->post('/channels/:name+', 'Hook\\Controllers\\ChannelsController:store');
+        $app->get('/channel/:name+', 'Hook\\Controllers\\ChannelController:index');
+        $app->post('/channel/:name+', 'Hook\\Controllers\\ChannelController:store');
 
         // Push Notifications
         $app->post('/push/registration', 'Hook\\Controllers\\PushNotificationController:store');
