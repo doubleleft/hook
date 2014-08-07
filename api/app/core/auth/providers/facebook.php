@@ -49,14 +49,6 @@ class Facebook extends Base {
 		// Merge given data with facebook data
 		$data = array_merge($data, $facebook_data);
 
-		// Skip fields that isn't whitelisted for auth.
-		$field_whitelist = array('id', 'email', 'first_name', 'gender', 'last_name', 'link', 'locale', 'name', 'timezone', 'username');
-		foreach($data as $field => $value) {
-			if (!in_array($field, $field_whitelist)) {
-				unset($data[$field]);
-			}
-		}
-
 		// rename 'facebook_id' field
 		$data['app_id'] = $app_id;
 		$data['facebook_id'] = $data['id'];
