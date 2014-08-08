@@ -6,6 +6,7 @@ use Hook\Model\AppKey as AppKey;
 use Hook\Model\Module as Module;
 use Hook\Model\AppConfig as AppConfig;
 
+use Hook\Package;
 use Hook\Database\AppContext as AppContext;
 use Hook\Exceptions\NotAllowedException as NotAllowedException;
 
@@ -94,6 +95,9 @@ class AppMiddleware extends Slim\Middleware
                         return;
                     }
                 }
+
+                // Require custom app packages
+                Package\Manager::autoload();
 
                 // Compile all route modules
                 if ($custom_routes = Module::where('type', Module::TYPE_ROUTE)->get()) {

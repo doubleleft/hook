@@ -10,6 +10,8 @@ class Manager {
     const VENDOR_TMP_DIR = 'vendor-tmp';
 
     public static function install($packages) {
+        // if (empty($packages)) { return false; }
+
         putenv('COMPOSER_HOME=' . __DIR__ . '/../../vendor/bin/composer');
         self::createComposerJson($packages);
         chdir(storage_dir());
@@ -17,10 +19,9 @@ class Manager {
         //
         // Programmatically run `composer install`
         //
-        $input = new ArrayInput(array('command' => 'install'));
         $application = new Application();
         $application->setAutoExit(false);
-        $code = $application->run($input);
+        $code = $application->run(new ArrayInput(array('command' => 'install')));
 
         // remove previously installed packages
         if (file_exists(storage_dir() . '/' . self::VENDOR_DIR)) {
@@ -28,12 +29,34 @@ class Manager {
         }
 
         // move newsly installed packages to `production`
-        rename(
-            storage_dir() . '/' . self::VENDOR_TMP_DIR,
-            storage_dir() . '/' . self::VENDOR_DIR
-        );
+        if (file_exists(storage_dir() . '/' . self::VENDOR_TMP_DIR)) {
+            rename(
+                storage_dir() . '/' . self::VENDOR_TMP_DIR,
+                storage_dir() . '/' . self::VENDOR_DIR
+            );
+        }
 
-        return $code;
+        // remove composer.json
+        unlink(storage_dir() . '/composer.json');
+
+        return $code == 0;
+    }
+
+    public static function dump() {
+        $composer_file = storage_dir() . '/composer.json';
+        if (file_exists($composer_file)) {
+            $composer_json = json_decode(file_get_contents($composer_file), true);
+            return $composer_json['require'];
+        } else {
+            return array();
+        }
+    }
+
+    public static function autoload() {
+        $autoload_file = storage_dir() . '/vendor/autoload.php';
+        if (file_exists($autoload_file)) {
+            require $autoload_file;
+        }
     }
 
     protected static function createComposerJson($packages) {

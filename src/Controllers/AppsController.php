@@ -90,7 +90,10 @@ class AppsController extends HookController {
     }
 
     public function dump_deploy() {
-        return $this->json(array('modules' => Model\Module::dump()));
+        return $this->json(array(
+            'modules' => Model\Module::dump(),
+            'packages' => Package\Manager::dump()
+        ));
     }
 
     public function deploy() {
