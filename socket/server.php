@@ -5,20 +5,25 @@
 // http://blog.jmoz.co.uk/websockets-ratchet-react-redis/
 //
 
-ini_set('display_errors', 1);
-error_reporting(E_ALL);
-date_default_timezone_set('America/Sao_Paulo');
+$bind_address = '0.0.0.0'; // Binding to 0.0.0.0 means remotes can connect
+$bind_port = '8080';
 
+//
+// Dummy configuration
+//
 $_SERVER['REQUEST_METHOD'] = 'GET';
 $_SERVER['REMOTE_ADDR'] = '127.0.0.1';
 $_SERVER['REQUEST_URI'] = '';
 $_SERVER['SERVER_NAME'] = 'websocket';
 $_SERVER['SERVER_PORT'] = 80;
 
-require __DIR__ . '/../app/bootstrap.php';
+require __DIR__ . '/../vendor/autoload.php';
+require __DIR__ . '/../src/bootstrap.php';
 
 use Ratchet\ConnectionInterface;
 use Ratchet\Wamp\WampServerInterface;
+
+use Hook\Model;
 
 class PubSubServer implements WampServerInterface
 {
@@ -48,12 +53,12 @@ class PubSubServer implements WampServerInterface
         $hash = md5($resource . join(",", array_values($credentials)));
 
         if (!isset($this->handlers[$hash])) {
-            if ($key = models\AppKey::where('app_id', $credentials['X-App-Id'])
+            if ($key = Model\AppKey::where('app_id', $credentials['X-App-Id'])
                 ->where('key', $credentials['X-App-Key'])
                 ->first()) {
                     $app->key = ((object) $key->toArray());
 
-                    $channel = models\Module::channel($resource);
+                    $channel = Model\Module::channel($resource);
                     if ($channel) {
                         $this->handlers[$hash] = $channel->compile();
                     }
@@ -82,7 +87,7 @@ class PubSubServer implements WampServerInterface
         } else {
 
             // // Append auth_id if a logged user is the publisher
-            // if ($token = models\AuthToken::current()) {
+            // if ($token = Model\AuthToken::current()) {
             // 	$message['auth_id'] = $token->auth_id;
             // }
 
@@ -158,7 +163,7 @@ $loop = React\EventLoop\Factory::create();
 Channel::setLoop($loop);
 
 $socket_server = new React\Socket\Server($loop);
-$socket_server->listen(8080, '0.0.0.0'); // Binding to 0.0.0.0 means remotes can connect
+$socket_server->listen($bind_port, $bind_address);
 
 $io_server = new Ratchet\Server\IoServer(
     new Ratchet\Http\HttpServer(
@@ -168,4 +173,5 @@ $io_server = new Ratchet\Server\IoServer(
     )
 ), $socket_server);
 
+echo "WebSocket running at ws://{$bind_address}:{$bind_port}/" . PHP_EOL;
 $loop->run();
