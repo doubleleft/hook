@@ -1,6 +1,4 @@
-<?php
-
-namespace Hook\Pagination;
+<?php namespace Hook\Pagination;
 
 use Hook\Http\Input;
 

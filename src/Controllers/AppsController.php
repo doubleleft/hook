@@ -7,6 +7,7 @@ use Hook\Database\Schema;
 use Hook\Http\Input;
 use Hook\Http\Request;
 
+use Hook\Package;
 use Hook\Database\AppContext;
 use Hook\Exceptions\UnauthorizedException;
 
@@ -93,6 +94,8 @@ class AppsController extends HookController {
     }
 
     public function deploy() {
+        set_time_limit(0);
+
         // application configs
         Model\AppConfig::deploy(Input::get('config', array()));
 
@@ -122,7 +125,10 @@ class AppsController extends HookController {
             'schedule' => Model\ScheduledTask::deploy(Input::get('schedule', array())),
 
             // modules
-            'modules' => Model\Module::deploy(Input::get('modules', array()))
+            'modules' => Model\Module::deploy(Input::get('modules', array())),
+
+            // install composer packages
+            'packages' => Package\Manager::install(Input::get('packages', array()))
         ));
 
     }

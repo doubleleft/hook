@@ -1,5 +1,4 @@
-<?php
-namespace Hook\Pagination;
+<?php namespace Hook\Pagination;
 
 use Countable;
 use ArrayAccess;

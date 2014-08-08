@@ -71,6 +71,19 @@ function storage_url()
 }
 
 /**
+ * rmdir_r - Remove a directory and all it's contents.
+ *
+ * @param mixed $dir
+ */
+function rmdir_r($dir) {
+    $files = array_diff(scandir($dir), array('.','..'));
+    foreach ($files as $file) {
+        (is_dir("$dir/$file")) ? rmdir_r("$dir/$file") : unlink("$dir/$file");
+    }
+    return rmdir($dir);
+}
+
+/**
  * Math extensions
  */
 function clamp($val, $min, $max)
