@@ -1,7 +1,7 @@
 {
-  "name": "doubleleft/dl-api",
-  "description": "Doubleleft backend API",
-  "keywords": ["doubleleft", "api"],
+  "name": "doubleleft/hook",
+  "description": "backend as a service",
+  "keywords": ["hook", "doubleleft"],
   "license": "MIT",
   "authors": [{
     "name": "Endel Dreyer",
