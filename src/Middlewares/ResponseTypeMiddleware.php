@@ -116,9 +116,6 @@ class ResponseTypeMiddleware extends Slim\Middleware
             // probably something is wrong. It's better the API shout it for the client.
             if ($response === null || $response === false) {
                 $app->response->setStatus(404);
-            } else {
-                $app->response->headers->set('Content-type', 'application/json');
-                $app->response->setBody($this->encode_content($response));
             }
 
         }

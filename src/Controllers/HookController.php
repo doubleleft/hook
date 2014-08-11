@@ -14,10 +14,9 @@ class HookController {
     }
 
     protected function json($data) {
-        Router::getInstance()->response->setBody(to_json($data));
-    }
-
-    protected function view($name, $data) {
+        $response = Router::getInstance()->response;
+        $response->headers->set('Content-type', 'application/json');
+        $response->setBody(to_json($data));
     }
 
 }
