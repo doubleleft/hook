@@ -47,7 +47,8 @@ function storage_dir($relative=true, $app_id = null)
         $app_id = Hook\Model\App::currentId();
     }
 
-    return ($relative ? __DIR__ . '/../../' : '') . 'storage/files/' . $app_id;
+    $paths = \Slim\Slim::getInstance()->config('paths');
+    return ($relative ? $paths['root'] : '') . $paths['storage'] . '/files/' . $app_id;
 }
 
 /**
@@ -58,7 +59,8 @@ function storage_dir($relative=true, $app_id = null)
  */
 function shared_storage_dir()
 {
-    return __DIR__ . '/../../storage';
+    $paths = \Slim\Slim::getInstance()->config('paths');
+    return __DIR__ . '/../../' . $paths['storage'];
 }
 
 /**
