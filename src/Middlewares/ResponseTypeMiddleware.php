@@ -110,6 +110,7 @@ class ResponseTypeMiddleware extends Slim\Middleware
                 $response = $app->response->getBody();
             } catch (\Exception $e) {
                 $response = $this->handle_error_response($e, $app);
+                $app->response->headers->set('Content-type', 'application/json');
                 $app->response->setBody(to_json($response));
             }
 
