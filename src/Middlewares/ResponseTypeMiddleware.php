@@ -110,6 +110,7 @@ class ResponseTypeMiddleware extends Slim\Middleware
                 $response = $app->response->getBody();
             } catch (\Exception $e) {
                 $response = $this->handle_error_response($e, $app);
+                $app->response->setBody(to_json($response));
             }
 
             // return 404 status code when 'content' is null or false.
