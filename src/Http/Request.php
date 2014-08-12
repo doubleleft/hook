@@ -45,4 +45,9 @@ class Request {
         return Router::getInstance()->request->getMethod();
     }
 
+    public static function __callStatic($method, $args = array()) {
+        $request = Router::getInstance()->request;
+        return call_user_func_array(array($request, $method), $args);
+    }
+
 }
