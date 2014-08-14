@@ -1,7 +1,5 @@
 <?php namespace Hook\Http;
 
-use Respect\Rest\Router as RestRouter;
-
 use Hook\Middlewares;
 
 class Router {
