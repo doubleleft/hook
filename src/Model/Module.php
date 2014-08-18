@@ -5,6 +5,44 @@ use Slim;
 
 use Hook\Exceptions;
 
+// ModuleCompiler: include module from filesystem
+// TODO refactor me
+class ModuleCompiler {
+
+    protected $path;
+    protected $name;
+
+    public static function get($type, $name)
+    {
+        $extension = '.' . pathinfo($name, PATHINFO_EXTENSION);
+        if ($extension == ".php") {
+            $app = Slim\Slim::getInstance();
+            $module_path = $app->config('root') . "hook-ext/{$type}/{$name}";
+
+            if (file_exists($module_path)) {
+                $basename = basename($name, $extension);
+                $klass_name = ucfirst(camel_case($basename));
+                return new static($module_path, $klass_name);
+            }
+        }
+    }
+
+    public function __construct($path, $name)
+    {
+        $this->path = $path;
+        $this->name = $name;
+    }
+
+    public function compile() {
+        require_once($this->path);
+        try {
+            return new $this->name;
+        } catch (Exception $e) {
+            throw new Exceptions\InternalException($this->path . " should define a class with name: '{$this->name}'");
+        }
+    }
+}
+
 /**
  * Module
  *
@@ -98,7 +136,8 @@ class Module extends Model
      */
     public static function get($type, $name)
     {
-        return static::where('type', $type)->where('name', $name)->first();
+
+        return ModuleCompiler::get($type, $name) ?: static::where('type', $type)->where('name', $name)->first();
     }
 
     /**
