@@ -1,5 +1,4 @@
 TODO:
-- Support custom composer dependencies
 - Support push notification addon
 - Support websockets addon
 
@@ -14,3 +13,4 @@ DONE:
 + AuthToken::current() should be present when user just registered.
 + Support syntactic sugar for IN operations (example: `where('_id', [1,2,3])`)
 + Deal with dates across database engines
++ Support custom composer dependencies
