@@ -45,6 +45,14 @@ class Request {
         return Router::getInstance()->request->getMethod();
     }
 
+    /**
+     * redirect
+     # @param string
+     */
+    public static function redirect($path) {
+        return Router::getInstance()->redirect($path);
+    }
+
     public static function __callStatic($method, $args = array()) {
         $request = Router::getInstance()->request;
         return call_user_func_array(array($request, $method), $args);
