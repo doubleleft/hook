@@ -13,6 +13,11 @@ class CollectionController extends HookController {
             $query = $query->select($fields);
         }
 
+        // Distinct keyword
+        if ($distinct = Input::get('distinct')) {
+            $query = $query->distinct();
+        }
+
         // Apply ordering
         if ($s = Input::get('s', array(array('_id', 'asc')))) {
             foreach ($s as $ordering) {
