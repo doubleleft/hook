@@ -17,10 +17,10 @@ class Router {
         $app->add(new Middlewares\AuthMiddleware());
         $app->add(new Middlewares\AppMiddleware());
 
-        return static::mount($app);
+        return static::registerCoreRoutes($app);
     }
 
-    public static function mount($app)
+    public static function registerCoreRoutes($app)
     {
         // System
         $app->get('/system/time', 'Hook\\Controllers\\SystemController:time');
@@ -79,6 +79,41 @@ class Router {
         });
 
         return $app;
+    }
+
+    public static function mount($path, $controller_klass)
+    {
+        $methods = get_class_methods($controller_klass);
+
+        // skip
+        if (!$methods) {
+            debug("'{$controller_klass}' has no methods.");
+            return;
+        }
+
+        foreach($methods as $method_name) {
+            // skip invalid methods
+            if ($method_name == '__construct') {
+                continue;
+            }
+
+            // // call 'mounted' method
+            if ($method_name == 'mounted') {
+                call_user_func(array($controller_klass, 'mounted'), $path);
+                continue;
+            }
+
+            preg_match('/^(get|put|post|patch)/', $method_name, $matches);
+
+            $http_method = (count($matches) > 0) ? $matches[0] : 'any';
+            $route = "{$path}";
+
+            if ($method_name !== 'index') {
+                $route .= '/' . $method_name;
+            }
+
+            static::$instance->{$http_method}($route, "{$controller_klass}:{$method_name}");
+        }
     }
 
     public static function setInstance($instance) {

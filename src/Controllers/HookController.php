@@ -10,7 +10,7 @@ class HookController {
         $this->view = Router::getInstance()->view;
 
         if (method_exists($this, 'before')) {
-            call_user_func(array($this, 'before'));
+            $this->before();
             // Router::getInstance()->hook('slim.before.dispatch', $callback);
         }
 

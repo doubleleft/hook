@@ -3,6 +3,8 @@
 use Hook\Database\AppContext as AppContext;
 use Carbon\Carbon;
 
+use Hook\Exceptions\MethodFailureException;
+
 /**
  * Builder
  * @author Endel Dreyer <edreyer@doubleleft.com>
@@ -53,7 +55,10 @@ class Builder
         // Cached attributes
         $cached_attributes = array_map(function($item) { return $item['name']; }, isset($table_schema['attributes']) ? $table_schema['attributes'] : array());
 
-        $config = array('attributes' => array());
+        $config = array(
+            'dynamic' => true,
+            'attributes' => array()
+        );
 
         foreach ($attributes as $field => $value) {
             // extract datatype from field value to migrate
@@ -101,9 +106,8 @@ class Builder
         // Get modified Schema\Grammar for hook features.
         $connection->setSchemaGrammar(static::getSchemaGrammar($connection));
 
-        $builder = $connection->getSchemaBuilder();
-
         // Set custom blueprint resolver
+        $builder = $connection->getSchemaBuilder();
         $builder->blueprintResolver(function($table, $callback) {
             return new \Hook\Database\Schema\Blueprint($table, $callback);
         });
@@ -125,8 +129,6 @@ class Builder
             $config['relationships'] = array();
         }
 
-        // var_dump($table, $config['relationships']);
-
         if (!isset($config['attributes'])) {
             $config['attributes'] = array();
         }
@@ -143,8 +145,8 @@ class Builder
 
                 foreach($config['attributes'] as $attribute) {
 
-                    if (!isset($attribute['type']) || !isset($attribute['name'])) {
-                        throw new Hook\Exceptions\MethodFailureException('invalid_schema');
+                    if (!isset($attribute['name'])) {
+                        throw new MethodFailureException('invalid_schema');
                     }
 
                     $field_name = array_remove($attribute, 'name');
