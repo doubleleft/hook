@@ -4,13 +4,19 @@ use Hook\Http\Router;
 use Closure;
 
 class HookController {
+    protected $view;
 
-    protected function before(Closure $callback) {
-        Router::getInstance()->hook('slim.before.dispatch', $callback);
-    }
+    public function __construct() {
+        $this->view = Router::getInstance()->view;
 
-    protected function after(Closure $callback) {
-        Router::getInstance()->hook('slim.after.dispatch', $callback);
+        if (method_exists($this, 'before')) {
+            call_user_func(array($this, 'before'));
+            // Router::getInstance()->hook('slim.before.dispatch', $callback);
+        }
+
+        if (method_exists($this, 'after')) {
+            Router::getInstance()->hook('slim.after.dispatch', $callback);
+        }
     }
 
     /**
@@ -30,7 +36,7 @@ class HookController {
      * @param mixed $template
      * @param array $data
      */
-    protected function view($template, $data = array()) {
+    protected function render($template, $data = array()) {
         Router::getInstance()->render($template, $data);
     }
 

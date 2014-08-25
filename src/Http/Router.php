@@ -89,4 +89,9 @@ class Router {
         return static::$instance;
     }
 
+    public static function __callStatic($method, $arguments)
+    {
+        return call_user_func_array(array(static::$instance, $method), $arguments);
+    }
+
 }

@@ -19,7 +19,7 @@ class AppsController extends HookController {
         return (preg_match('/^\/(apps)$/', Request::path()) && static::isAllowedIP());
     }
 
-    public function __construct() {
+    public function before() {
         $is_commandline = true; //(Request::header('User-Agent') == 'hook-cli');
 
         $key = AppContext::getKey();
