@@ -1,5 +1,7 @@
 <?php
 
+use Hook\Http\Router;
+
 /**
  * Globally available helper functions
  */
@@ -47,7 +49,7 @@ function storage_dir($relative=true, $app_id = null)
         $app_id = Hook\Model\App::currentId();
     }
 
-    $paths = \Slim\Slim::getInstance()->config('paths');
+    $paths = Router::config('paths');
     return ($relative ? $paths['root'] : '') . $paths['storage'] . '/files/' . $app_id;
 }
 
@@ -59,8 +61,8 @@ function storage_dir($relative=true, $app_id = null)
  */
 function shared_storage_dir()
 {
-    $paths = \Slim\Slim::getInstance()->config('paths');
-    return __DIR__ . '/../../' . $paths['storage'];
+    $paths = Router::config('paths');
+    return $paths['root'] . $paths['storage'];
 }
 
 /**
