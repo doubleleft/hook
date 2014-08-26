@@ -85,7 +85,7 @@ class Collection extends DynamicModel
         $schema = Schema\Cache::get($table_name);
         if ($schema && isset($schema['attributes'])) {
             foreach($schema['attributes'] as $attribute) {
-                if ($attribute['type'] == 'timestamp') {
+                if (isset($attribute['type']) && $attribute['type'] == 'timestamp') {
                     array_push($this->dates, $attribute['name']);
                 }
             }

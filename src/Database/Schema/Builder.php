@@ -144,7 +144,6 @@ class Builder
                 }
 
                 foreach($config['attributes'] as $attribute) {
-
                     if (!isset($attribute['name'])) {
                         throw new MethodFailureException('invalid_schema');
                     }
