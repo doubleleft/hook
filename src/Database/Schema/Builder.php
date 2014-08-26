@@ -253,4 +253,11 @@ class Builder
         return new $connection_klass;
     }
 
+    public static function __callStatic($method, $args)
+    {
+        $connection = \DLModel::getConnectionResolver()->connection();
+        $builder = $connection->getSchemaBuilder();
+        return call_user_func_array(array($builder, $method), $args);
+    }
+
 }
