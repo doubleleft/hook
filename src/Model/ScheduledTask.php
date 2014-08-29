@@ -21,7 +21,7 @@ class ScheduledTask extends Model
         static::truncate();
 
         foreach ($schedule as $task) {
-            $task = Model\ScheduledTask::create($task);
+            $task = ScheduledTask::create($task);
             $tasks .= $task->getCommand() . "\n";
         }
         file_put_contents($cronfile, $tasks);
@@ -54,7 +54,9 @@ class ScheduledTask extends Model
         // Output the response to application log file
         $app = \Slim\Slim::getInstance();
         $output_file = $app->log->getWriter()->getFilePath();
-        return $schedule . ' ' . "curl -XGET {$curl_headers} '{$public_url}' 2>&1 " . $output_file;
+
+        // Redirect stderr and stdout to file
+        return $schedule . ' ' . "curl -XGET {$curl_headers} '{$public_url}' &> " . $output_file;
     }
 
     public function toArray()

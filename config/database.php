@@ -5,7 +5,7 @@ return array(
     // // SQLite
     // // -------
     // 'driver'   => 'sqlite',
-    // 'database' => __DIR__ . '/../storage/database.sqlite',
+    // 'database' => __DIR__ . '/../shared/database.sqlite',
     // 'prefix'   => '',
 
     // MySQL

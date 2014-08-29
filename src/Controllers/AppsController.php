@@ -77,16 +77,9 @@ class AppsController extends HookController {
 
     public function recreate_tasks() {
         // Remove all scheduled tasks for this app
-        Model\ScheduledTask::delete();
-
-        $tasks = "";
-        foreach (Input::get('schedule', array()) as $schedule) {
-            $task = Model\ScheduledTask::create($schedule);
-            $tasks .= $task->getCommand() . "\n";
-        }
-        file_put_contents(__DIR__ . '/app/storage/crontabs/' . $app->key->app_id . '.cron', $tasks);
-
-        return $this->json(array('success' => Model\ScheduledTask::install()));
+        return $this->json(array(
+            'success' => Model\ScheduledTask::deploy(Input::get('schedule', array()))
+        ));
     }
 
     public function dump_deploy() {
