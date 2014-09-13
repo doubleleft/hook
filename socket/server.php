@@ -23,6 +23,7 @@ require __DIR__ . '/../src/bootstrap.php';
 use Ratchet\ConnectionInterface;
 use Ratchet\Wamp\WampServerInterface;
 
+use Hook\Database\AppContext;
 use Hook\Model;
 
 class PubSubServer implements WampServerInterface
@@ -36,6 +37,8 @@ class PubSubServer implements WampServerInterface
 
     public function getHandler($conn)
     {
+        AppContext::clear();
+
         $app = \Slim\Slim::getInstance();
         $credentials = $conn->WebSocket->request->getQuery()->toArray();
 
@@ -56,7 +59,7 @@ class PubSubServer implements WampServerInterface
             if ($key = Model\AppKey::where('app_id', $credentials['X-App-Id'])
                 ->where('key', $credentials['X-App-Key'])
                 ->first()) {
-                    $app->key = ((object) $key->toArray());
+                    AppContext::setKey($key);
 
                     $channel = Model\Module::channel($resource);
                     if ($channel) {
@@ -65,15 +68,13 @@ class PubSubServer implements WampServerInterface
             }
         }
 
-        var_dump((isset($this->handlers[$hash])));
-
         return (isset($this->handlers[$hash])) ? $this->handlers[$hash] : null;
     }
 
     public function onCall(ConnectionInterface $conn, $id, $topic, array $params)
     {
         $handler = $this->getHandler($conn);
-        if ($handler) {
+        if ($handler && method_exists($handler, 'onCall')) {
             call_user_func_array(array($handler, 'onCall'), func_get_args());
         }
     }
@@ -82,7 +83,7 @@ class PubSubServer implements WampServerInterface
     {
         $handler = $this->getHandler($conn);
 
-        if ($handler) {
+        if ($handler && method_exists($handler, 'onPublish')) {
             call_user_func_array(array($handler, 'onPublish'), func_get_args());
         } else {
 
@@ -106,7 +107,7 @@ class PubSubServer implements WampServerInterface
     public function onSubscribe(ConnectionInterface $conn, $topic)
     {
         $handler = $this->getHandler($conn);
-        if ($handler) {
+        if ($handler && method_exists($handler, 'onSubscribe')) {
             call_user_func_array(array($handler, 'onSubscribe'), func_get_args());
         }
     }
@@ -114,7 +115,7 @@ class PubSubServer implements WampServerInterface
     public function onUnSubscribe(ConnectionInterface $conn, $topic)
     {
         $handler = $this->getHandler($conn);
-        if ($handler) {
+        if ($handler && method_exists($handler, 'onUnSubscribe')) {
             call_user_func_array(array($handler, 'onUnSubscribe'), func_get_args());
         }
     }
@@ -123,7 +124,7 @@ class PubSubServer implements WampServerInterface
     {
         $handler = $this->getHandler($conn);
 
-        if ($handler) {
+        if ($handler && method_exists($handler, 'onOpen')) {
             call_user_func_array(array($handler, 'onOpen'), func_get_args());
         }
     }
@@ -131,7 +132,7 @@ class PubSubServer implements WampServerInterface
     public function onClose(ConnectionInterface $conn)
     {
         $handler = $this->getHandler($conn);
-        if ($handler) {
+        if ($handler && method_exists($handler, 'onClose')) {
             call_user_func_array(array($handler, 'onClose'), func_get_args());
         }
     }
@@ -139,7 +140,7 @@ class PubSubServer implements WampServerInterface
     public function onError(ConnectionInterface $conn, \Exception $e)
     {
         $handler = $this->getHandler($conn);
-        if ($handler) {
+        if ($handler && method_exists($handler, 'onError')) {
             call_user_func_array(array($handler, 'onError'), func_get_args());
         }
     }

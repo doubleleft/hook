@@ -13,11 +13,12 @@ class Encrypter extends \Illuminate\Encryption\Encrypter
 
     public static function getInstance()
     {
-        if (!static::$instance) {
-            $app_key = AppContext::getKey();
-            $salt = $app_key->app_id;
-            static::$instance = new static($app_key->app->secret, $salt);
+        $app_key = AppContext::getKey();
+
+        if (!static::$instance && $app_key) {
+            static::$instance = new static($app_key->app->secret, $app_key->app_id);
         }
+
         return static::$instance;
     }
 

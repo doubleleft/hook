@@ -43,6 +43,12 @@ class AppContext
         }
     }
 
+    public static function clear() {
+        static::$app_key = null;
+        static::setTablePrefix('');
+        AppContext::setPrefix(null);
+    }
+
     public static function setKey($app_key) {
         static::$app_key = $app_key;
         AppContext::setPrefix($app_key->app->_id);
@@ -78,7 +84,9 @@ class AppContext
     }
 
     public static function setPrefix($prefix = null) {
-        $prefix = 'app' . $prefix . '_';
+        if ($prefix) {
+            $prefix = 'app' . $prefix . '_';
+        }
 
         // set database prefix
         $connection = \DLModel::getConnectionResolver()->connection();
