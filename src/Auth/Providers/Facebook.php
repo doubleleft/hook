@@ -16,7 +16,11 @@ class Facebook extends Base
         } catch (\Illuminate\Database\QueryException $e) {}
 
         if (!$user) {
-            $user = Auth::create($data);
+            // create a new user
+            $user = new Auth;
+            $user->email = $data['email'];
+            $user->fill($data);
+            $user->save();
         }
 
         return $user->dataWithToken();
