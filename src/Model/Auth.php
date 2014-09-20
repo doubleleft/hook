@@ -16,6 +16,7 @@ class Auth extends Collection
     const FORGOT_PASSWORD_EXPIRATION_TIME = 14400; // (60 * 60 * 4) = 4 hours
 
     protected $table = 'auths';
+    protected $dates = array(self::FORGOT_PASSWORD_EXPIRATION_FIELD);
 
     // protect from mass-assignment.
     protected $guarded = array('email', 'password', 'password_salt', 'forgot_password_token', 'forgot_password_expiration', 'deleted_at');
@@ -124,13 +125,10 @@ class Auth extends Collection
 
     public function beforeSave()
     {
-        // Need a 'server' key, or a user with rights to update this row.
-        $auth_token = AuthToken::current();
-        if (
-            !AppContext::getKey()->isServer() ||
-            ($auth_token && $auth_token->auth_id != $this->_id)
-        ) {
-            throw new ForbiddenException("not_allowed");
+        if ($this->_id) {
+            if (!$this->isUpdateAllowed()) {
+                throw new ForbiddenException("not_allowed");
+            }
         }
 
         // Update password
@@ -139,6 +137,23 @@ class Auth extends Collection
             $this->password = static::password_hash($this->password, $this->password_salt);
         }
          parent::beforeSave();
+    }
+
+    protected function isUpdateAllowed() {
+        $auth_token = AuthToken::current();
+        $dirty = $this->getDirty();
+
+        //
+        // Allow updates only when:
+        // - Is using 'server' context.
+        // - Authenticated user is updating it's own data
+        // - Is updating FORGOT_PASSWORD_FIELD
+        //
+        return AppContext::getKey()->isServer() ||
+            ($auth_token && $auth_token->auth_id == $this->_id) ||
+            (count($dirty) == 2 &&
+             isset($dirty[self::FORGOT_PASSWORD_FIELD]) &&
+             isset($dirty[self::FORGOT_PASSWORD_EXPIRATION_FIELD]));
     }
 
     /**
