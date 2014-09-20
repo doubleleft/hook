@@ -5,7 +5,7 @@ use Hook\Http\Request;
 class SystemController extends HookController {
 
     public function time() {
-        return time();
+        return $this->json( time() );
     }
 
     public function ip() {
