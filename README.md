@@ -42,11 +42,8 @@ For client specific documentation:
 - [iOS](https://github.com/doubleleft/hook-ios) (_docs missing_)
 - [C++](https://github.com/doubleleft/hook-cpp) (_docs missing_)
 - [Ruby](https://github.com/doubleleft/hook-ruby) (_docs missing_)
-<<<<<<< HEAD
 - [PHP](https://github.com/doubleleft/hook-php) (_docs missing_)
 - [C#](https://github.com/doubleleft/hook-csharp) (_docs missing_)
-=======
->>>>>>> fc504ef6401b85e98ea19fcdc2b9de8e64a68de3
 
 Websocket
 ---
