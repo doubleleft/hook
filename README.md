@@ -1,7 +1,14 @@
+<<<<<<< HEAD
 Welcome to hook ![Build status](https://magnum.travis-ci.com/doubleleft/hook.svg?token=px2fsDaL7WdoeJ9qixdB)
 ===
 
 hook is a backend-as-a-service platform that includes everything that you need
+=======
+Welcome to Hook ![Build status](https://api.travis-ci.com/doubleleft/hook.svg?token=px2fsDaL7WdoeJ9qixdB)
+===
+
+Hook is a backend-as-a-service platform that includes everything that you need
+>>>>>>> fc504ef6401b85e98ea19fcdc2b9de8e64a68de3
 to create web applications, without writing back-end code. It is flexible
 enought if you need a custom behaviour.
 
@@ -42,8 +49,11 @@ For client specific documentation:
 - [iOS](https://github.com/doubleleft/hook-ios) (_docs missing_)
 - [C++](https://github.com/doubleleft/hook-cpp) (_docs missing_)
 - [Ruby](https://github.com/doubleleft/hook-ruby) (_docs missing_)
+<<<<<<< HEAD
 - [PHP](https://github.com/doubleleft/hook-php) (_docs missing_)
 - [C#](https://github.com/doubleleft/hook-csharp) (_docs missing_)
+=======
+>>>>>>> fc504ef6401b85e98ea19fcdc2b9de8e64a68de3
 
 Websocket
 ---

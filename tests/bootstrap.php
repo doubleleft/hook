@@ -43,7 +43,7 @@ class HTTP_TestCase extends PHPUnit_Framework_TestCase
 {
     // protected $base_url = 'http://localhost/index.php/';
     // protected $base_url = 'http://localhost/index.php/';
-    protected $base_url = 'http://dl-api.dev:58054/index.php/';
+    protected $base_url = 'http://hook-master.dev:58790/index.php/';
     protected $app_keys = array();
     protected $app_key = array();
     // protected $base_url = 'http://dl-api.dev/index.php/';

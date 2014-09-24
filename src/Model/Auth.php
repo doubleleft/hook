@@ -19,7 +19,7 @@ class Auth extends Collection
     protected $dates = array(self::FORGOT_PASSWORD_EXPIRATION_FIELD);
 
     // protect from mass-assignment.
-    protected $guarded = array('email', 'password', 'password_salt', 'forgot_password_token', 'forgot_password_expiration', 'deleted_at');
+    protected $guarded = array('password_salt', 'forgot_password_token', 'forgot_password_expiration', 'deleted_at'); // 'email', 'password',
     protected $hidden = array('password', 'password_salt', 'forgot_password_token', 'forgot_password_expiration', 'deleted_at');
 
     static $_current = null;
@@ -149,7 +149,7 @@ class Auth extends Collection
         // - Authenticated user is updating it's own data
         // - Is updating FORGOT_PASSWORD_FIELD
         //
-        return AppContext::getKey()->isServer() ||
+        return AppContext::getKey()->isServer() || AppContext::getKey()->isCommandline() ||
             ($auth_token && $auth_token->auth_id == $this->_id) ||
             (count($dirty) == 2 &&
              isset($dirty[self::FORGOT_PASSWORD_FIELD]) &&
