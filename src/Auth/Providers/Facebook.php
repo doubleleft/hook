@@ -4,6 +4,8 @@ namespace Hook\Auth\Providers;
 use Hook\Exceptions\ForbiddenException;
 use Hook\Model\Auth as Auth;
 
+use \GuzzleHttp\Client as HttpClient;
+
 class Facebook extends Base
 {
     public function register($data)
@@ -54,8 +56,8 @@ class Facebook extends Base
             }
         }
 
-        $client = new \Guzzle\Http\Client("https://graph.facebook.com");
-        $response = $client->get("/me?access_token={$access_token}")->send();
+        $client = new HttpClient();
+        $response = $client->get("https://graph.facebook.com/me?access_token={$access_token}");
         $facebook_data = json_decode($response->getBody(), true);
 
         // Filter fields from Facebook that isn't whitelisted for auth.

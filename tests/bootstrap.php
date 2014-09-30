@@ -1,4 +1,5 @@
 <?php
+require __DIR__ . '/../vendor/autoload.php';
 
 // setup dummy server variables
 $_SERVER['REQUEST_METHOD'] = '';
@@ -9,9 +10,11 @@ $_SERVER['SERVER_PORT'] = '80';
 
 $db_driver = getenv('DB_DRIVER') ?: 'mysql';
 
-require __DIR__ . '/../vendor/autoload.php';
 $app = require __DIR__ . '/../src/Hook.php';
+
 $app->config('database', require(__DIR__ . "/configs/{$db_driver}.php"));
+$app->config('paths', require(__DIR__ . '/../config/paths.php'));
+
 require __DIR__ . '/../src/bootstrap/connection.php';
 Hook\Http\Router::setInstance($app);
 
@@ -43,7 +46,7 @@ class HTTP_TestCase extends PHPUnit_Framework_TestCase
 {
     // protected $base_url = 'http://localhost/index.php/';
     // protected $base_url = 'http://localhost/index.php/';
-    protected $base_url = 'http://hook-master.dev:58790/index.php/';
+    protected $base_url = 'http://hook.dev:58790/index.php/';
     protected $app_keys = array();
     protected $app_key = array();
     // protected $base_url = 'http://dl-api.dev/index.php/';
@@ -108,21 +111,21 @@ class HTTP_TestCase extends PHPUnit_Framework_TestCase
     protected function request($method, $uri, $data = array(), $headers = array())
     {
         $uri = $this->base_url . $uri;
-        $client = new \Guzzle\Http\Client();
+        $client = new \GuzzleHttp\Client();
 
         // $uri .= '?X-App-Id=' . $this->app['app_id'] . '&X-App-Key=' . $this->app['key'];
 
-        $headers = array_merge($headers, array(
-            'Accept' => 'application/json',
-            'Content-Type' => 'application/json',
-            'X-App-Id' => ($this->app_key) ? $this->app_key['app_id'] : null,
-            'X-App-Key' => ($this->app_key) ? $this->app_key['key'] : null,
-            'User-Agent' => 'hook-cli'
-        ));
+        $headers['Content-Type'] = 'application/json';
+        $headers['User-Agent'] = 'hook-cli';
 
-        return $client->{$method}($uri, $headers, json_encode($data), array(
+        if ($this->app_key) {
+            $headers['X-App-Id'] = $this->app_key['app_id'];
+            $headers['X-App-Key'] = $this->app_key['key'];
+        }
+
+        return $client->{$method}($uri, array('headers' => $headers), json_encode($data), array(
             'exceptions' => false
-        ))->send()->json();
+        ))->json();
     }
 
 }

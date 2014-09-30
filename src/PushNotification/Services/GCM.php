@@ -2,6 +2,7 @@
 namespace Hook\PushNotification\Services;
 
 use Hook\Model\AppConfig as AppConfig;
+use GuzzleHttp\Client as HttpClient;
 
 //
 // Reference: https://gist.github.com/prime31/5675017
@@ -49,8 +50,8 @@ class GCM implements Service
         // 	$payload['sound'] = 0;
         // }
 
-        $client = new \Guzzle\Http\Client('https://android.googleapis.com');
-        $response = $client->post('/gcm/send', array(
+        $client = new HttpClient();
+        $response = $client->post('https://android.googleapis.com/gcm/send', array(
             'Authorization' => 'key=' . $gcm_access_key,
             'Content-Type' => 'application/json'
         ), json_encode(array(
@@ -58,7 +59,7 @@ class GCM implements Service
             'data' => $payload
         )), array(
             'exceptions' => false
-        ))->send()->json();
+        ))->json();
 
         // Log results
         if (isset($response['results'])) {
