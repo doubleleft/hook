@@ -24,5 +24,21 @@ return array(
      * - filesystem
      * - database
      */
-    'cache' => 'database'
+    'cache' => 'database',
+
+    // Global aliases
+    'aliases' => array(
+        // Hook\Model
+        'App' => 'Hook\\Model\\App',
+        'Config' => 'Hook\\Model\\AppConfig',
+
+        // Hook\Http
+        'Cookie' => 'Hook\\Http\\Cookie',
+        'Input' => 'Hook\\Http\\Input',
+        'Request' => 'Hook\\Http\\Request',
+        'Router' => 'Hook\\Http\\Router',
+
+        // Utils
+        'Mail' => 'Hook\\Mailer\\Mail'
+    )
 );

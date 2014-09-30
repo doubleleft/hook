@@ -102,10 +102,10 @@ class Module extends Model
             $template = static::get(self::TYPE_TEMPLATE, $name);
 
             if (!$template) {
-                $fallback_template_path = __DIR__ . '/../../storage/default/templates/' . $name;
+                $fallback_template_path = shared_storage_dir() . '/default/templates/' . $name;
                 // try to retrieve local fallback template
                 if (!file_exists($fallback_template_path)) {
-                    throw new Exceptions\MethodFailureException("Template not found: '{$name}'. Please run `dl-api generate:template {$name}` to generate one.");
+                    throw new Exceptions\MethodFailureException("Template not found: '{$name}'. Please run `hook generate:template {$name}` to generate one.");
                 }
 
                 // use local template if can't find
@@ -219,18 +219,20 @@ class Module extends Model
             //
             // Expose handy aliases for modules
             //
-            $aliases = 'use Hook\Mailer\Mail;';
-            $aliases.= 'use Hook\Model\App;';
-            $aliases.= 'use Hook\Model\AppConfig;';
+            $aliases = '';
             $aliases.= 'use Hook\Model\Module;';
             $aliases.= 'use Hook\Model\File;';
             $aliases.= 'use Hook\Model\Auth;';
             $aliases.= 'use Hook\Model\AuthToken;';
             $aliases.= 'use Hook\Model\Collection;';
             $aliases.= 'use Hook\Cache\Cache;';
-            $aliases.= 'use Hook\Http\Input;';
-            $aliases.= 'use Hook\Http\Request;';
             $aliases.= 'use Hook\Logger\Logger;';
+
+            // $aliases.= 'use Hook\Http\Input;';
+            // $aliases.= 'use Hook\Http\Request;';
+            // $aliases = 'use Hook\Mailer\Mail;';
+            // $aliases.= 'use Hook\Model\App;';
+            // $aliases.= 'use Hook\Model\AppConfig;';
 
             if ($this->type == self::TYPE_OBSERVER || $this->type == self::TYPE_CHANNEL) {
                 // Prevent name conflict by using unique class names for custom modules

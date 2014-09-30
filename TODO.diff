@@ -1,4 +1,6 @@
 TODO:
+- Local configuration file per app instead of database-driven
+
 - Support push notification addon
 - Support websockets addon
 
