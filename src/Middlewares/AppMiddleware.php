@@ -105,7 +105,7 @@ class AppMiddleware extends Slim\Middleware
                         $custom_route->compile();
                     }
                 }
-            } else if (!\Hook\Controllers\AppsController::isRootOperation()) {
+            } else if (!\Hook\Controllers\ApplicationController::isRootOperation()) {
                 $app->response->setStatus(403);
                 $app->response->setBody(json_encode(array('error' => "Invalid credentials.")));
 

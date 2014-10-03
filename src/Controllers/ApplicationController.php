@@ -13,7 +13,7 @@ use Hook\Exceptions\UnauthorizedException;
 
 use Carbon\Carbon;
 
-class AppsController extends HookController {
+class ApplicationController extends HookController {
 
     public static function isRootOperation() {
         return (preg_match('/^\/(apps)$/', Request::path()) !== false && static::isAllowedIP());

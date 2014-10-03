@@ -53,19 +53,19 @@ class Router {
         $app->get('/push/notify', 'Hook\\Controllers\\PushNotificationController:notify');
 
         // App management
-        $app->get('/apps', 'Hook\\Controllers\\AppsController:index');
-        $app->post('/apps', 'Hook\\Controllers\\AppsController:create');
-        $app->delete('/apps', 'Hook\\Controllers\\AppsController:delete');
-        $app->delete('/apps/cache', 'Hook\\Controllers\\AppsController:delete_cache');
-        $app->get('/apps/logs', 'Hook\\Controllers\\AppsController:logs');
-        $app->get('/apps/tasks', 'Hook\\Controllers\\AppsController:tasks');
-        $app->post('/apps/tasks', 'Hook\\Controllers\\AppsController:recreate_tasks');
-        $app->get('/apps/deploy', 'Hook\\Controllers\\AppsController:dump_deploy');
-        $app->post('/apps/deploy', 'Hook\\Controllers\\AppsController:deploy');
-        $app->get('/apps/configs', 'Hook\\Controllers\\AppsController:configs');
-        $app->get('/apps/modules', 'Hook\\Controllers\\AppsController:modules');
-        $app->get('/apps/schema', 'Hook\\Controllers\\AppsController:schema');
-        $app->post('/apps/schema', 'Hook\\Controllers\\AppsController:upload_schema');
+        $app->get('/apps', 'Hook\\Controllers\\ApplicationController:index');
+        $app->post('/apps', 'Hook\\Controllers\\ApplicationController:create');
+        $app->delete('/apps', 'Hook\\Controllers\\ApplicationController:delete');
+        $app->delete('/apps/cache', 'Hook\\Controllers\\ApplicationController:delete_cache');
+        $app->get('/apps/logs', 'Hook\\Controllers\\ApplicationController:logs');
+        $app->get('/apps/tasks', 'Hook\\Controllers\\ApplicationController:tasks');
+        $app->post('/apps/tasks', 'Hook\\Controllers\\ApplicationController:recreate_tasks');
+        $app->get('/apps/deploy', 'Hook\\Controllers\\ApplicationController:dump_deploy');
+        $app->post('/apps/deploy', 'Hook\\Controllers\\ApplicationController:deploy');
+        $app->get('/apps/configs', 'Hook\\Controllers\\ApplicationController:configs');
+        $app->get('/apps/modules', 'Hook\\Controllers\\ApplicationController:modules');
+        $app->get('/apps/schema', 'Hook\\Controllers\\ApplicationController:schema');
+        $app->post('/apps/schema', 'Hook\\Controllers\\ApplicationController:upload_schema');
 
         $app->notFound(function () use ($app) {
             echo json_encode(array('error' => 'not_found'));

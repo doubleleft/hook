@@ -28,8 +28,8 @@ if (Hook\Model\AppKey::count() == 0) {
             'name' => 'testing'
         )
     ));
-    $apps_controller = new Hook\Controllers\AppsController();
-    $apps_controller->create();
+    $app_controller = new Hook\Controllers\ApplicationController();
+    $app_controller->create();
 }
 
 // Force application key for testing
