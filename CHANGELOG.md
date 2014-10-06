@@ -1,6 +1,13 @@
 dl-api changelog
 ===
 
+v0.2.0:
+---
+
+- Schema definitions
+- Cache support
+- Relationship support (has_many / belongs_to / has_one)
+
 v0.1.0:
 ---
 

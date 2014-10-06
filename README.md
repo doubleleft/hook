@@ -1,7 +1,7 @@
-Welcome to Hook ![Build status](https://api.travis-ci.com/doubleleft/hook.svg?token=px2fsDaL7WdoeJ9qixdB)
+Welcome to hook ![Build status](https://magnum.travis-ci.com/doubleleft/hook.svg?token=px2fsDaL7WdoeJ9qixdB)
 ===
 
-Hook is a backend-as-a-service platform that includes everything that you need
+hook is a backend-as-a-service platform that includes everything that you need
 to create web applications, without writing back-end code. It is flexible
 enought if you need a custom behaviour.
 
@@ -42,6 +42,8 @@ For client specific documentation:
 - [iOS](https://github.com/doubleleft/hook-ios) (_docs missing_)
 - [C++](https://github.com/doubleleft/hook-cpp) (_docs missing_)
 - [Ruby](https://github.com/doubleleft/hook-ruby) (_docs missing_)
+- [PHP](https://github.com/doubleleft/hook-php) (_docs missing_)
+- [C#](https://github.com/doubleleft/hook-csharp) (_docs missing_)
 
 Websocket
 ---
@@ -71,3 +73,7 @@ Or with ipfw on Mac OS X:
 sudo ipfw add 100 fwd 127.0.0.1,8430 tcp from any to me 843 in
 ```
 
+License
+---
+
+MIT. Please see LICENSE file.

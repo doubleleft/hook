@@ -1,0 +1,18 @@
+TODO:
+- Local configuration file per app instead of database-driven
+
+- Support push notification addon
+- Support websockets addon
+
+- Auth update / updateAll restrictions.
+- Collection operation restrictions
+
+- Back-end validations
+- Request/response level caching
+- CLI: Use schema to auto-complete `generate` commands.
+
+DONE:
++ AuthToken::current() should be present when user just registered.
++ Support syntactic sugar for IN operations (example: `where('_id', [1,2,3])`)
++ Deal with dates across database engines
++ Support custom composer dependencies

@@ -60,18 +60,23 @@ endif
 	@echo "Finished"
 
 test:
-	./api/vendor/bin/phpunit --configuration ./api/phpunit.xml
+	./vendor/bin/phpunit --configuration ./tests/phpunit.xml
+	# DB_DRIVER=mysql ./vendor/bin/phpunit --configuration ./tests/phpunit.xml
+	# DB_DRIVER=postgres ./vendor/bin/phpunit --configuration ./tests/phpunit.xml
+	# DB_DRIVER=sqlite ./vendor/bin/phpunit --configuration ./tests/phpunit.xml
+	# DB_DRIVER=mongodb ./vendor/bin/phpunit --configuration ./tests/phpunit.xml
+	# DB_DRIVER=sqlsrv ./vendor/bin/phpunit --configuration ./tests/phpunit.xml
 
 docs:
 	mkdir -p ../dl-api-docs/
 	php -d memory_limit=512M ${APIGEN_PATH}/apigen.php --destination ../dl-api-docs/ \
 																--exclude */tests/* \
 																--exclude */Tests/* \
-																--source ./api/app/ \
-																--source ./api/vendor/guzzle/guzzle/src \
-																--source ./api/vendor/illuminate \
-																--source ./api/vendor/doctrine \
-																--source ./api/vendor/slim/slim/Slim \
-																--source ./api/vendor/symfony
+																--source ./src/ \
+																--source ./vendor/guzzle/guzzle/src \
+																--source ./vendor/illuminate \
+																--source ./vendor/doctrine \
+																--source ./vendor/slim/slim/Slim \
+																--source ./vendor/symfony
 	open ../dl-api-docs/index.html
 
