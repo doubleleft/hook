@@ -5,7 +5,6 @@
 <?php
 
 return array(
-        'mysql' => array(
 		'driver'   => 'mysql',
 		'host'     => 'localhost',
 		'username' => '{{ mysql_user }}',
@@ -13,5 +12,4 @@ return array(
 		'database' => '{{ mysql_db }}',
 		'collation' => 'utf8_general_ci',
 		'charset' => 'utf8'
-	),
 );
