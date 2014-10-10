@@ -20,6 +20,17 @@ nginx-conf:
     - makedirs: True
     - unless: test -d {{ www_root }}
 
+{% if grains['host'] in ['staging','ddll'] %}
+nginx-conf-available:
+  file.managed:
+    - name: /etc/nginx/sites-available/01-{{ proj_name }}.ddll.co.conf
+    - source: salt://sites/template.conf
+    - template: jinja
+    - watch_in:
+      - service: nginx
+    - defaults:
+        ssl: False
+{% else %}
 nginx-conf-available:
   file.managed:
     - name: /etc/nginx/sites-available/{{ proj_name }}.conf
@@ -29,6 +40,7 @@ nginx-conf-available:
       - service: nginx
     - defaults:
         ssl: False
+{% endif %}
 
 nginx-conf-enabled:
   file.symlink:
