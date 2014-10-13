@@ -12,7 +12,10 @@ class ScheduledTask extends Model
 
     public static function deploy($schedule)
     {
-        $tasks = "";
+        // Don't proceed if there's nothing to schedule
+        if (static::count() == 0 && count($schedule) == 0) {
+            return true;
+        }
 
         $cronfile = shared_storage_dir() . '/' . AppContext::getAppId(). '.cron';
         $previous_tasks = (file_exists($cronfile)) ? file_get_contents($cronfile) : $tasks;
