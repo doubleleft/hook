@@ -29,8 +29,18 @@
   "require-dev": {
     "composer/composer": "dev-master",
     "mockery/mockery": "0.8.0",
-    "phpunit/phpunit": "3.7.*"
+    "phpunit/phpunit": "3.7.*",
+    "microsoft/windowsazure": "*",
+    "pear-pear.php.net/http_request2" : "*",
+    "aws/aws-sdk-php": "dev-master",
+    "dropbox/dropbox-sdk": "1.1.*"
   },
+
+  "repositories": [{
+    "type": "pear",
+    "url": "http://pear.php.net"
+  }],
+
   "scripts": {
     "post-install-cmd": [ ]
   },
