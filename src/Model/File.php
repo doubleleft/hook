@@ -30,13 +30,17 @@ class File extends Model
 
             if ($base64 = static::base64($this->file)) {
                 $this->name = "base64" . uniqid() . '.' . $base64[1];
-                $this->path = Provider::get($provider)->store($this->name, base64_decode($base64[2]));
                 $this->mime = $base64[1];
+                $this->path = Provider::get($provider)->store($this->name, base64_decode($base64[2]), array(
+                    'mime' => $this->mime // some storage providers need to know the file mime type
+                ));
 
             } else {
                 $this->name = $this->file['name'];
                 $this->mime = $this->file['type'];
-                $this->path = Provider::get($provider)->upload($this->file);
+                $this->path = Provider::get($provider)->upload($this->file, array(
+                    'mime' => $this->mime // some storage providers need to know the file mime type
+                ));
             }
             unset($this->attributes['file']);
         }
