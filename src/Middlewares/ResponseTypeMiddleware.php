@@ -2,6 +2,7 @@
 namespace Hook\Middlewares;
 
 use Slim;
+use Exception;
 
 class ResponseTypeMiddleware extends Slim\Middleware
 {
@@ -73,7 +74,7 @@ class ResponseTypeMiddleware extends Slim\Middleware
                     // Call current request
                     $this->next->call();
                     $response = $app->response->getBody();
-                } catch (\Exception $e) {
+                } catch (Exception $e) {
                     $response = $this->handle_error_response($e, $app);
                 }
 
@@ -108,7 +109,7 @@ class ResponseTypeMiddleware extends Slim\Middleware
                 // Call current request
                 $this->next->call();
                 $response = $app->response->getBody();
-            } catch (\Exception $e) {
+            } catch (Exception $e) {
                 $response = $this->handle_error_response($e, $app);
                 $app->response->headers->set('Content-type', 'application/json');
                 $app->response->setBody(to_json($response));
@@ -143,7 +144,12 @@ class ResponseTypeMiddleware extends Slim\Middleware
         $app->log->info("Error: '{$message}'");
         $app->log->info($trace);
 
-        file_put_contents('php://stderr', "[[ dl-api: error ]] " . $message . PHP_EOL . $trace . PHP_EOL);
+        try {
+            file_put_contents('php://stderr', "[[ hook: error ]] " . $message . PHP_EOL . $trace . PHP_EOL);
+        } catch (Exception $e) {
+            // echo $message . "<br />";
+            // echo nl2br($trace);
+        }
 
         $code = intval($e->getCode());
         if (!$code || $code < 200 || $code > 500) {
