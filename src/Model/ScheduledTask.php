@@ -14,7 +14,7 @@ class ScheduledTask extends Model
     {
         // Don't proceed if there's nothing to schedule
         if (static::count() == 0 && count($schedule) == 0) {
-            return true;
+            return false;
         }
 
         $cronfile = shared_storage_dir() . '/' . AppContext::getAppId(). '.cron';
