@@ -8,7 +8,6 @@ class Filesystem extends Base
 
     public function store($filename, $data, $options = array())
     {
-        $filename = md5($filename) . uniqid() . "." . pathinfo($filename, PATHINFO_EXTENSION);
         $public_dir = storage_dir(false);
 
         $dir = __DIR__ . '/../../../' . $public_dir . '/';

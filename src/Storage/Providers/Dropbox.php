@@ -16,8 +16,6 @@ class Dropbox extends Base
 
     public function store($filename, $data, $options = array())
     {
-        $filename = md5($filename) . uniqid() . "." . pathinfo($filename, PATHINFO_EXTENSION);
-
         // Maybe we should use this method instead:
         // getClient()->uploadFileFromString($path, $writeMode, $data)
         $stream = fopen('php://memory','r+');

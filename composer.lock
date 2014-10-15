@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "bb663ba7c27612ef06dcee18e02e4e41",
+    "hash": "e3f592e0a31e58691030bf23704074fc",
     "packages": [
         {
             "name": "cboden/ratchet",
@@ -3018,8 +3018,7 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "duccio/apns-php": 20,
-        "composer/composer": 20,
-        "aws/aws-sdk-php": 20
+        "composer/composer": 20
     },
     "platform": {
         "php": ">=5.3.0"
