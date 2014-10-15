@@ -1,16 +1,11 @@
 <?php namespace Hook\Package;
 
-use Hook\Database\AppContext;
-
-use Composer\Factory;
 use Composer\Console\Application;
 use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Output\StreamOutput;
-use Symfony\Component\Console\Formatter\OutputFormatter;
 
 class Manager {
     const VENDOR_DIR = 'vendor';
-    const VENDOR_TMP_DIR = 'vendor-tmp';
 
     public static function install($packages) {
         // Don't proceed if packages haven't changed.
@@ -24,14 +19,12 @@ class Manager {
         $stream = fopen('php://temp', 'w+');
         $output = new StreamOutput($stream);
 
-        //
         // Programmatically run `composer install`
-        //
         $application = new Application();
         $application->setAutoExit(false);
         $code = $application->run(new ArrayInput(array('command' => 'install')), $output);
 
-        // remove composer.json
+        // remove composer.lock
         if (file_exists(storage_dir() . '/composer.lock')) {
             unlink(storage_dir() . '/composer.lock');
         }
@@ -52,7 +45,7 @@ class Manager {
     }
 
     public static function autoload() {
-        $autoload_file = storage_dir() . '/vendor/autoload.php';
+        $autoload_file = storage_dir() . '/' . self::VENDOR_DIR . '/autoload.php';
         if (file_exists($autoload_file)) {
             require $autoload_file;
         }
