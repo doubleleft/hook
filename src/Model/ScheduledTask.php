@@ -18,7 +18,7 @@ class ScheduledTask extends Model
         }
 
         $cronfile = shared_storage_dir() . '/' . AppContext::getAppId(). '.cron';
-        $previous_tasks = (file_exists($cronfile)) ? file_get_contents($cronfile) : $tasks;
+        $previous_tasks = (file_exists($cronfile)) ? file_get_contents($cronfile) : "";
 
         // Remove all scheduled tasks for this app
         static::truncate();
