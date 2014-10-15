@@ -41,6 +41,8 @@ class WindowsAzure extends Base
                 // Container has been created. Let's retry storing blob file.
                 $options['retry'] = true;
                 return $this->store($filename, $data, $options);
+            } else {
+                throw $e;
             }
         }
 
