@@ -33,7 +33,9 @@
     "microsoft/windowsazure": "*",
     "pear-pear.php.net/http_request2" : "*",
     "aws/aws-sdk-php": "2.7.*",
-    "dropbox/dropbox-sdk": "1.1.*"
+    "dropbox/dropbox-sdk": "1.1.*",
+    "opauth/opauth": "dev-master",
+    "opauth/twitter": "dev-master"
   },
 
   "repositories": [{

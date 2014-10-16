@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "e3f592e0a31e58691030bf23704074fc",
+    "hash": "9d5db5981623558b4093f5bf37f92ec8",
     "packages": [
         {
             "name": "cboden/ratchet",
@@ -2193,6 +2193,103 @@
             "time": "2013-04-01 12:13:17"
         },
         {
+            "name": "opauth/opauth",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/opauth/opauth.git",
+                "reference": "3ff68e72c21a3691e5a87fc8c30e458edbb22990"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/opauth/opauth/zipball/3ff68e72c21a3691e5a87fc8c30e458edbb22990",
+                "reference": "3ff68e72c21a3691e5a87fc8c30e458edbb22990",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.2.0"
+            },
+            "suggest": {
+                "opauth/facebook": "Allows Facebook authentication",
+                "opauth/google": "Allows Google authentication",
+                "opauth/twitter": "Allows Twitter authentication"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "lib/Opauth/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "U-Zyn Chua",
+                    "email": "chua@uzyn.com",
+                    "homepage": "http://uzyn.com"
+                }
+            ],
+            "description": "Multi-provider authentication framework for PHP",
+            "homepage": "http://opauth.org",
+            "keywords": [
+                "Authentication",
+                "OpenId",
+                "auth",
+                "facebook",
+                "google",
+                "oauth",
+                "omniauth",
+                "twitter"
+            ],
+            "time": "2014-03-23 12:01:56"
+        },
+        {
+            "name": "opauth/twitter",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/opauth/twitter.git",
+                "reference": "023f514a307e97dcdf9320f3fc1c5cfcf6fb5974"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/opauth/twitter/zipball/023f514a307e97dcdf9320f3fc1c5cfcf6fb5974",
+                "reference": "023f514a307e97dcdf9320f3fc1c5cfcf6fb5974",
+                "shasum": ""
+            },
+            "require": {
+                "opauth/opauth": ">=0.2.0",
+                "php": ">=5.2.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "": "."
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "U-Zyn Chua",
+                    "email": "chua@uzyn.com",
+                    "homepage": "http://uzyn.com"
+                }
+            ],
+            "description": "Twitter strategy for Opauth",
+            "homepage": "http://opauth.org",
+            "keywords": [
+                "Authentication",
+                "auth",
+                "twitter"
+            ],
+            "time": "2014-08-12 07:09:59"
+        },
+        {
             "name": "pear-pear.php.net/Archive_Tar",
             "version": "1.3.13",
             "dist": {
@@ -3018,7 +3115,9 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "duccio/apns-php": 20,
-        "composer/composer": 20
+        "composer/composer": 20,
+        "opauth/opauth": 20,
+        "opauth/twitter": 20
     },
     "platform": {
         "php": ">=5.3.0"
