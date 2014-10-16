@@ -25,7 +25,7 @@ install-composer:
   cmd.wait:
     - name: mv /root/composer.phar /usr/local/bin/composer
     - cwd: /root
-    - watch: 
+    - watch:
       - cmd: get-composer
 
 install-hook:
@@ -37,7 +37,14 @@ install-hook:
       - pkg: hook-deps
 
 {% if user != 'vagrant' %}
-{{ www_root }}/api/app/storage:
+{{ www_root }}/public/storage:
+  file.directory:
+    - user: {{ user }}
+    - group: www-data
+    - mode: 775
+    - makedirs: True
+
+{{ www_root }}/shared:
   file.directory:
     - user: {{ user }}
     - group: www-data
@@ -47,7 +54,7 @@ install-hook:
 
 {{ www_root }}/config/database.php:
   file.managed:
-    - source: 
+    - source:
       - salt://hook/database.php
       - user: {{ user }}
       - mode: 644
@@ -55,5 +62,5 @@ install-hook:
     - template: jinja
     - require:
       - cmd: install-hook
-  
+
 

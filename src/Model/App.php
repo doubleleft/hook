@@ -75,7 +75,9 @@ class App extends Model
 
         // Create storage directory for this app
         $storage_dir = storage_dir(true, $this->_id);
-        if (!file_exists($storage_dir)) {
+
+        // maybe we're on a readonly filesystem
+        if (!file_exists($storage_dir) && is_writable(dirname($storage_dir))) {
             mkdir($storage_dir, 0777, true);
         }
     }

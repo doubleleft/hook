@@ -25,7 +25,7 @@ ifneq ($(shell which composer > /dev/null 2>&1 || test -x $(HOME)/bin/composer; 
 	chmod +x $(HOME)/bin/composer
 endif
 
-	composer install --prefer-dist
+	composer install --prefer-dist --no-dev
 
 	@echo "Finished"
 

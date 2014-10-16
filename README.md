@@ -51,13 +51,13 @@ Websocket
 For the websocket itself:
 
 ```bash
-php api/socket/server.php
+php socket/server.php
 ```
 
 And you may also need to setup a socket policy server:
 
 ```bash
-perl -Tw api/socket/flash_socketpolicy.pl
+perl -Tw socket/flash_socketpolicy.pl
 ```
 
 Its set to listen on port 8430 in order to be able to run it as an unprivileged user, but as the script needs to bind in port 843 we can forward ports.

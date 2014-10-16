@@ -6,7 +6,8 @@ class Provider
     // available providers
     static $list = array(
         'filesystem' => 'Hook\\Storage\\Providers\\Filesystem',
-        's3' => 'Hook\\Storage\\Providers\\S3',
+        'amazon_aws' => 'Hook\\Storage\\Providers\\AmazonAWS',
+        'windows_azure' => 'Hook\\Storage\\Providers\\WindowsAzure',
         'dropbox' => 'Hook\\Storage\\Providers\\Dropbox'
     );
 

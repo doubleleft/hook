@@ -50,7 +50,7 @@ function storage_dir($relative=true, $app_id = null)
     }
 
     $paths = Router::config('paths');
-    return ($relative ? $paths['public'] : '') . $paths['storage'] . '/files/' . $app_id;
+    return ($relative ? $paths['root'] . 'public/' : '') . $paths['storage'] . '/files/' . $app_id . '/';
 }
 
 /**

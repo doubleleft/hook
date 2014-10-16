@@ -16,7 +16,7 @@ use Carbon\Carbon;
 class ApplicationController extends HookController {
 
     public static function isRootOperation() {
-        return (preg_match('/^\/(apps)$/', Request::path()) !== false && static::isAllowedIP());
+        return (preg_match('/^\/(apps)$/', Request::path()) && static::isAllowedIP());
     }
 
     public function before() {

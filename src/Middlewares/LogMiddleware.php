@@ -39,7 +39,12 @@ class LogMiddleware extends Slim\Middleware
 
         if (!$app->request->isOptions() && $app_key) {
             // set application log writer for this app
-            $app->log->setWriter(new LogWriter(storage_dir() . '/logs.txt'));
+            $log_file = storage_dir() . '/logs.txt';
+            $app->log->setWriter(new LogWriter($log_file));
+
+            // disable log if storage directory doesn't exists.
+            // maybe we're on a readonly filesystem
+            $app->log->setEnabled(file_exists($log_file));
 
             if (strpos($app->request->getPath(), "/apps/") === false) {
                 $app->log->info($app->request->getIp() . ' - [' . date('d-m-Y H:i:s') . '] ' . $app->request->getMethod() . ' ' . $app->request->getResourceUri());
