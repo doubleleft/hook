@@ -30,6 +30,7 @@ return array(
     'aliases' => array(
         // Hook\Model
         'App' => 'Hook\\Model\\App',
+        'AppKey' => 'Hook\\Model\\AppKey',
         'Config' => 'Hook\\Model\\AppConfig',
 
         // Hook\Http
