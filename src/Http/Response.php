@@ -8,8 +8,16 @@ class Response {
      * @param default
      * @return string
      */
-    public static function headers() {
-        return Router::getInstance()->response->headers;
+    public static function header($name = null, $value = null) {
+        if (!$name && !$value) {
+            return Router::getInstance()->response->headers;
+
+        } else if ($name && $value) {
+            return Router::getInstance()->response->headers->set($name, $value);
+
+        } else if ($name && !$value) {
+            return Router::getInstance()->response->headers->get($name);
+        }
     }
 
     public static function __callStatic($method, $args = array()) {
