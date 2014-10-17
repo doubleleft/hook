@@ -32,6 +32,7 @@ return array(
         'App' => 'Hook\\Model\\App',
         'AppKey' => 'Hook\\Model\\AppKey',
         'Config' => 'Hook\\Model\\AppConfig',
+        'AppContext' => 'Hook\\Database\\AppContext',
 
         // Hook\Http
         'Cookie' => 'Hook\\Http\\Cookie',
