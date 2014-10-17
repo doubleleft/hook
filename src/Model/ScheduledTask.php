@@ -19,18 +19,18 @@ class ScheduledTask extends Model
 
         $cronfile = shared_storage_dir() . '/' . AppContext::getAppId(). '.cron';
         $previous_tasks = (file_exists($cronfile)) ? file_get_contents($cronfile) : "";
+        $new_tasks = '';
 
         // Remove all scheduled tasks for this app
         static::truncate();
-
         foreach ($schedule as $task) {
             $task = ScheduledTask::create($task);
-            $tasks .= $task->getCommand() . "\n";
+            $new_tasks .= $task->getCommand() . "\n";
         }
-        file_put_contents($cronfile, $tasks);
+        file_put_contents($cronfile, $new_tasks);
         static::install();
 
-        return $previous_tasks != $tasks;
+        return $previous_tasks != $new_tasks;
     }
 
     public function getCommand()
