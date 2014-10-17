@@ -38,6 +38,7 @@ return array(
         'Cookie' => 'Hook\\Http\\Cookie',
         'Input' => 'Hook\\Http\\Input',
         'Request' => 'Hook\\Http\\Request',
+        'Response' => 'Hook\\Http\\Response',
         'Router' => 'Hook\\Http\\Router',
 
         // Utils
