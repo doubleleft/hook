@@ -53,8 +53,4 @@ class AppKey extends Model
         }
     }
 
-    public static function __callStatic($method, $arguments) {
-        return call_user_func_array(array(AppContext::getKey(), $name), $arguments);
-    }
-
 }
