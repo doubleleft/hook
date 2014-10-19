@@ -148,7 +148,7 @@ class Builder
                         throw new MethodFailureException('invalid_schema');
                     }
 
-                    $field_name = array_remove($attribute, 'name');
+                    $field_name = strtolower(array_remove($attribute, 'name'));
                     $type = camel_case(array_remove($attribute, 'type') ?: 'string');
 
                     $default = array_remove($attribute, 'default');
