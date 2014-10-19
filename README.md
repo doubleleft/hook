@@ -15,6 +15,9 @@ cd hook
 make
 ```
 
+To create and deploy hook apps, you'll need to clone and install
+[hook-cli](https://github.com/doubleleft/hook-cli.git) (Commandline Interface)
+
 How to use
 ---
 
