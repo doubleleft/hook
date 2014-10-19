@@ -94,13 +94,9 @@ class ApplicationController extends HookController {
         set_time_limit(0);
 
         // application configs
-        Config::deploy(Input::get('config', array()));
-
-        // application secrets
-        Config::deploy(Input::get('security', array()), array('security'));
-
-        // invalidate previous configurations
-        Config::where('updated_at', '<', Carbon::now())->delete();
+        $configs = Input::get('config', array());
+        $configs['security'] = Input::get('security', array());
+        Config::deploy($configs);
 
         $collections_migrated = 0;
 
