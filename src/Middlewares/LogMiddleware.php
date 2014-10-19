@@ -3,14 +3,14 @@ namespace Hook\Middlewares;
 
 use Slim;
 use Hook\Logger\LogWriter;
-use Hook\Database\AppContext as AppContext;
+use Hook\Application\Context as Context;
 
 class LogMiddleware extends Slim\Middleware
 {
     public function call()
     {
         $app = $this->app;
-        $app_key = AppContext::getKey();
+        $app_key = Context::getKey();
 
         //
         // TODO: need a way to enable/disable logs for production use

@@ -6,7 +6,7 @@ namespace Hook\Storage\Providers;
 // aws/aws-sdk-php: dev-master
 //
 
-use Hook\Model\AppConfig;
+use Hook\Application\Config;
 
 use Aws\Common\Aws;
 use Aws\S3\Exception\S3Exception;
@@ -17,7 +17,7 @@ class AmazonAWS extends Base
 
     public function store($filename, $data, $options = array()) {
         $object = $this->getClient()->putObject(array(
-            'Bucket' => AppConfig::get('storage.bucket', 'default'),
+            'Bucket' => Config::get('storage.bucket', 'default'),
             'Key' => $filename,
             'Body' => $data,
             'ContentType' => $options['mime'],
@@ -28,9 +28,9 @@ class AmazonAWS extends Base
 
     protected function getClient() {
         if (!$this->client) {
-            $bucket = AppConfig::get('storage.bucket', 'default');
-            $key = AppConfig::get('storage.key');
-            $secret = AppConfig::get('storage.secret');
+            $bucket = Config::get('storage.bucket', 'default');
+            $key = Config::get('storage.key');
+            $secret = Config::get('storage.secret');
 
             $this->client = Aws::factory(array(
                 'bucket' => $bucket,

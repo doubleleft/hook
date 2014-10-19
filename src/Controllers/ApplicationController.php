@@ -8,7 +8,8 @@ use Hook\Http\Input;
 use Hook\Http\Request;
 
 use Hook\Package;
-use Hook\Database\AppContext;
+use Hook\Application\Context;
+use Hook\Application\Config;
 use Hook\Exceptions\UnauthorizedException;
 
 use Carbon\Carbon;
@@ -22,7 +23,7 @@ class ApplicationController extends HookController {
     public function before() {
         $is_commandline = true; //(Request::header('User-Agent') == 'hook-cli');
 
-        $key = AppContext::getKey();
+        $key = Context::getKey();
         $allowed = $is_commandline && ($key && $key->isCommandline());
 
         if (!static::isRootOperation() && !$allowed) {
@@ -31,20 +32,20 @@ class ApplicationController extends HookController {
     }
 
     public function index() {
-        AppContext::setTablePrefix('');
+        Context::setTablePrefix('');
         return $this->json(Model\App::all());
     }
 
     public function create() {
         // Reset table prefix
-        AppContext::setTablePrefix('');
+        Context::setTablePrefix('');
 
         $data = Model\App::create(Input::get('app'));
         $response = $data->toArray();
 
         // Set application prefix for migration
-        AppContext::setKey($data->keys[0]);
-        AppContext::migrate();
+        Context::setKey($data->keys[0]);
+        Context::migrate();
 
         return $this->json($response);
     }
@@ -93,13 +94,13 @@ class ApplicationController extends HookController {
         set_time_limit(0);
 
         // application configs
-        Model\AppConfig::deploy(Input::get('config', array()));
+        Config::deploy(Input::get('config', array()));
 
         // application secrets
-        Model\AppConfig::deploy(Input::get('security', array()), array('security'));
+        Config::deploy(Input::get('security', array()), array('security'));
 
         // invalidate previous configurations
-        Model\AppConfig::where('updated_at', '<', Carbon::now())->delete();
+        Config::where('updated_at', '<', Carbon::now())->delete();
 
         $collections_migrated = 0;
 
@@ -130,7 +131,7 @@ class ApplicationController extends HookController {
     }
 
     public function configs() {
-        return $this->json(Model\AppConfig::all());
+        return $this->json(Config::all());
     }
 
     public function modules() {
@@ -158,7 +159,7 @@ class ApplicationController extends HookController {
 
     public static function isAllowedIP() {
         $allowed = false;
-        $allowed_ip_addresses = AppContext::config('allowed_ip_addresses');
+        $allowed_ip_addresses = Context::config('allowed_ip_addresses');
 
         if ($allowed_ip_addresses && !empty($allowed_ip_addresses)) {
             $allowed = in_array("*", $allowed_ip_addresses) ||

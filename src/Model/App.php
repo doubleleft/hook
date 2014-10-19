@@ -2,7 +2,7 @@
 namespace Hook\Model;
 
 use Hook\Database\CollectionDelegator as CollectionDelegator;
-use Hook\Database\AppContext as AppContext;
+use Hook\Application\Context as Context;
 
 /**
  * App
@@ -24,7 +24,7 @@ class App extends Model
      */
     public static function currentId()
     {
-        return AppContext::getKey()->app_id;
+        return Context::getKey()->app_id;
     }
 
     /**
@@ -46,11 +46,6 @@ class App extends Model
     public function modules()
     {
         return $this->hasMany('Hook\Model\Module', 'app_id');
-    }
-
-    public function configs()
-    {
-        return $this->hasMany('Hook\Model\AppConfig', 'app_id');
     }
 
     public function beforeCreate()

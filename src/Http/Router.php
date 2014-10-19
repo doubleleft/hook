@@ -38,8 +38,9 @@ class Router {
         $app->get('/auth', 'Hook\\Controllers\\AuthController:show');
         $app->post('/auth/:provider(/:method)', 'Hook\\Controllers\\AuthController:execute');
 
-        $app->get('/oauth/:strategy(/:callback)', 'Hook\\Controllers\\AuthController:oauth');
-        $app->post('/oauth/callback', 'Hook\\Controllers\\AuthController:oauth');
+        // OAuth
+        $app->get('/oauth/:strategy(/:callback)', 'Hook\\Controllers\\OAuthController:auth');
+        $app->post('/oauth/callback', 'Hook\\Controllers\\OAuthController:auth');
 
         // Key/Value
         $app->get('/key/:name', 'Hook\\Controllers\\KeyValueController:show');

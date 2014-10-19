@@ -6,7 +6,7 @@ namespace Hook\Storage\Providers;
 // dropbox/dropbox-sdk: 1.1.*
 //
 
-use Hook\Model\AppConfig;
+use Hook\Application\Config;
 
 use Dropbox as dbx;
 
@@ -31,7 +31,7 @@ class Dropbox extends Base
     protected function getClient()
     {
         if (!$this->client) {
-            $app_access_token = AppConfig::get('storage.access_token');
+            $app_access_token = Config::get('storage.access_token');
             $client_identifier = "hook-server/0.2";
             $this->client = new dbx\Client($app_access_token, $client_identifier);
         }

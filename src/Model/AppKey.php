@@ -1,8 +1,6 @@
 <?php
 namespace Hook\Model;
 
-use Hook\Database\AppContext;
-
 /**
  * AppKey
  */

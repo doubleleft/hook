@@ -1,33 +1,19 @@
 Welcome to hook ![Build status](https://magnum.travis-ci.com/doubleleft/hook.svg?token=px2fsDaL7WdoeJ9qixdB)
 ===
 
-hook is a backend-as-a-service platform that includes everything that you need
-to create web applications, without writing back-end code. It is flexible
-enought if you need a custom behaviour.
+hook is a extendable Back-end as a Service (BaaS) that includes everything that you need
+to create the back-end of your application.
 
 Installation
 ---
 
-Firstly, You need [node.js](http://nodejs.org/) installed for commandline
-support.
-
-Now, clone [doubleleft/hook](https://github.com/doubleleft/hook.git) repository, cd into it and run `sudo make`:
+Clone [doubleleft/hook](https://github.com/doubleleft/hook.git) repository, cd into it and run `make`:
 
 ```bash
 git clone https://github.com/doubleleft/hook.git
 cd hook
 make
 ```
-
-Configuration
----
-
-Optionally configure your database preferences at `app/config/database`. By
-default it uses `sqlite` as driver. The following additional drivers are
-supported: `mysql`, `postgres`, `sqlserver` and `mongodb`.
-
-NOTE: It's recommended to give ownership to your server's user on storage
-directory: e.g. (`chown -R www-data app/storage`).
 
 How to use
 ---

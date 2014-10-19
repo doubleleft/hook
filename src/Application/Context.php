@@ -1,4 +1,4 @@
-<?php namespace Hook\Database;
+<?php namespace Hook\Application;
 
 use Hook\Model\App;
 use Hook\Model\AppKey;
@@ -6,10 +6,10 @@ use Hook\Model\AppKey;
 use Hook\Http\Router;
 
 /**
- * AppContext
+ * Context
  * @author Endel Dreyer <edreyer@doubleleft.com>
  */
-class AppContext
+class Context
 {
     protected static $app_key;
 
@@ -46,12 +46,12 @@ class AppContext
     public static function clear() {
         static::$app_key = null;
         static::setTablePrefix('');
-        AppContext::setPrefix(null);
+        Context::setPrefix(null);
     }
 
     public static function setKey($app_key) {
         static::$app_key = $app_key;
-        AppContext::setPrefix($app_key->app->_id);
+        Context::setPrefix($app_key->app->_id);
         return static::$app_key;
     }
 

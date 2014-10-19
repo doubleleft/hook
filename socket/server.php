@@ -23,7 +23,7 @@ require __DIR__ . '/../src/bootstrap.php';
 use Ratchet\ConnectionInterface;
 use Ratchet\Wamp\WampServerInterface;
 
-use Hook\Database\AppContext;
+use Hook\Application\Context;
 use Hook\Model;
 
 class PubSubServer implements WampServerInterface
@@ -37,7 +37,7 @@ class PubSubServer implements WampServerInterface
 
     public function getHandler($conn)
     {
-        AppContext::clear();
+        Context::clear();
 
         $app = \Slim\Slim::getInstance();
         $credentials = $conn->WebSocket->request->getQuery()->toArray();
@@ -59,7 +59,7 @@ class PubSubServer implements WampServerInterface
             if ($key = Model\AppKey::where('app_id', $credentials['X-App-Id'])
                 ->where('key', $credentials['X-App-Key'])
                 ->first()) {
-                    AppContext::setKey($key);
+                    Context::setKey($key);
 
                     $channel = Model\Module::channel($resource);
                     if ($channel) {

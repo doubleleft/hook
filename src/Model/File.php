@@ -1,7 +1,8 @@
 <?php
 namespace Hook\Model;
 
-use Hook\Storage\Provider as Provider;
+use Hook\Storage\Provider;
+use Hook\Application\Config;
 
 /**
  * Store file upload references.
@@ -26,7 +27,7 @@ class File extends Model
     public function beforeCreate()
     {
         if ($this->file) {
-            $provider = AppConfig::get('storage.provider', 'filesystem');
+            $provider = Config::get('storage.provider', 'filesystem');
 
             if ($base64 = static::base64($this->file)) {
                 $this->name = "base64" . uniqid() . '.' . $base64[1];

@@ -232,7 +232,6 @@ class Module extends Model
             // $aliases.= 'use Hook\Http\Request;';
             // $aliases = 'use Hook\Mailer\Mail;';
             // $aliases.= 'use Hook\Model\App;';
-            // $aliases.= 'use Hook\Model\AppConfig;';
 
             if ($this->type == self::TYPE_OBSERVER || $this->type == self::TYPE_CHANNEL) {
                 // Prevent name conflict by using unique class names for custom modules

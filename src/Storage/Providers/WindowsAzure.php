@@ -6,7 +6,7 @@ namespace Hook\Storage\Providers;
 // microsoft/windowsazure: dev-master
 //
 
-use Hook\Model\AppConfig;
+use Hook\Application\Config;
 use Exception;
 
 use WindowsAzure\Common\ServicesBuilder;
@@ -22,7 +22,7 @@ class WindowsAzure extends Base
     public function store($filename, $data, $options = array())
     {
         $retrying = isset($options['retry']);
-        $options['container'] = AppConfig::get('storage.container', 'default');
+        $options['container'] = Config::get('storage.container', 'default');
 
         try {
             $this->createBlockBlob($filename, $data, $options);
@@ -60,13 +60,13 @@ class WindowsAzure extends Base
 
     protected function getBlobService() {
         if (!$this->service) {
-            $endpoint = AppConfig::get('storage.endpoint_protocol', 'https');
+            $endpoint = Config::get('storage.endpoint_protocol', 'https');
             if (!$endpoint) { throw new Exception(__CLASS__ . ": 'storage.endpoint_protocol' config is required."); }
 
-            $account = AppConfig::get('storage.account');
+            $account = Config::get('storage.account');
             if (!$account) { throw new Exception(__CLASS__ . ": 'storage.account' config is required."); }
 
-            $key = AppConfig::get('storage.key');
+            $key = Config::get('storage.key');
             if (!$key) { throw new Exception(__CLASS__ . ": 'storage.key' config is required."); }
 
             $conection = array(

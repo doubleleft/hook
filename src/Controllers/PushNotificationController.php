@@ -4,7 +4,7 @@ use Hook\Model;
 use Hook\Http\Input;
 use Hook\Http\Request;
 
-use Hook\Database\AppContext;
+use Hook\Application\Context;
 use Hook\Exceptions\ForbiddenException;
 
 use Hook\PushNotification;
@@ -12,7 +12,7 @@ use Hook\PushNotification;
 class PushNotificationController extends HookController {
 
     public function store() {
-        if (!AppContext::getKey()->isDevice()) {
+        if (!Context::getKey()->isDevice()) {
             throw new ForbiddenException("Need a 'device' key to perform this action.");
         }
 
@@ -21,7 +21,7 @@ class PushNotificationController extends HookController {
     }
 
     public function delete() {
-        if (!AppContext::getKey()->isDevice()) {
+        if (!Context::getKey()->isDevice()) {
             throw new ForbiddenException("Need a 'device' key to perform this action.");
         }
 
@@ -34,7 +34,7 @@ class PushNotificationController extends HookController {
     }
 
     public function notify() {
-        if (!(AppContext::getKey()->isServer() && Request::header('X-Scheduled-Task'))) {
+        if (!(Context::getKey()->isServer() && Request::header('X-Scheduled-Task'))) {
             throw new ForbiddenException("Need a 'device' key to perform this action.");
         }
 

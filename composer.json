@@ -35,7 +35,8 @@
     "aws/aws-sdk-php": "2.7.*",
     "dropbox/dropbox-sdk": "1.1.*",
     "opauth/opauth": "dev-master",
-    "opauth/twitter": "dev-master"
+    "opauth/twitter": "dev-master",
+    "opauth/facebook": "dev-master"
   },
 
   "repositories": [{

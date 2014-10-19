@@ -1,12 +1,11 @@
 <?php
 namespace Hook\Auth\Providers;
 
-use Hook\Exceptions;
-
 use Hook\Model\Auth as Auth;
-use Hook\Model\AppConfig as AppConfig;
 use Hook\Model\Module as Module;
 
+use Hook\Exceptions;
+use Hook\Application\Config as Config;
 use Hook\Mailer\Mail as Mail;
 
 class Email extends Base
@@ -76,7 +75,7 @@ class Email extends Base
         return array(
             'success' => (Mail::send(array(
                 'subject' => $data['subject'],
-                'from' => AppConfig::get('mail.from', 'no-reply@api.2l.cx'),
+                'from' => Config::get('mail.from', 'no-reply@api.2l.cx'),
                 'to' => $user->email,
                 'body' => Module::template($template)->compile($body_data)
             )) === 1)

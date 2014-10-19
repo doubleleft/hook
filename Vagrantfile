@@ -122,6 +122,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   #   chef.validation_client_name = "ORGNAME-validator"
   config.vm.provision :salt do |salt|
     salt.minion_config = "salt/minion"
-    salt.run_highstate = true  
+    salt.run_highstate = true
   end
 end
