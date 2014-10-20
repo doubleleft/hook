@@ -39,6 +39,7 @@ class Router {
         $app->post('/auth/:provider(/:method)', 'Hook\\Controllers\\AuthController:execute');
 
         // OAuth
+        $app->get('/oauth/relay_frame', 'Hook\\Controllers\\OAuthController:relay_frame');
         $app->get('/oauth/:strategy(/:callback)', 'Hook\\Controllers\\OAuthController:auth');
         $app->post('/oauth/callback', 'Hook\\Controllers\\OAuthController:auth');
 
