@@ -1,6 +1,7 @@
 <?php namespace Hook\Controllers;
 
 use Hook\Application\Context;
+use Hook\Exceptions\UnauthorizedException;
 
 use Hook\Application\Config;
 use Hook\Model\Auth;
@@ -17,6 +18,11 @@ class OAuthController extends HookController {
 
         if (isset($_POST['opauth'])) {
             $opauth = unserialize(base64_decode($_POST['opauth']));
+
+            if (isset($opauth['error'])) {
+                throw new UnauthorizedException($opauth['error']['raw']);
+            }
+
             $auth = $opauth['auth'];
 
             $identity = AuthIdentity::firstOrNew(array(
