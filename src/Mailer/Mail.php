@@ -29,7 +29,7 @@ class Mail
         $params = array();
         $allowed_configs = array('driver', 'host', 'port', 'encryption', 'username', 'password');
 
-        foreach(Config::get('mail') as $name => $value) {
+        foreach(Config::get('mail', array()) as $name => $value) {
             if (in_array($name, $allowed_configs)) {
                 $params[$name] = $value;
             }
@@ -48,11 +48,9 @@ class Mail
                 // allow to overwrite default preset settings with custom configs
                 $params = array_merge($preset_params, $params);
             }
-
         }
 
         $transport = static::getTransport($params);
-
         return static::sendMessage($transport, $options);
     }
 
