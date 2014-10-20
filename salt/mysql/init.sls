@@ -5,6 +5,7 @@
 {% set mysql_db = mysql_user %}
 {% set mysql_root_password = salt['pillar.get']('mysql:server:root_password', salt['grains.get']('server_id')) %}
 
+{% if not grains['host'] in ['ddll','staging','odesmistificador'] %}
 mysql-server:
   pkg.installed: []
   service.running:
@@ -13,7 +14,6 @@ mysql-server:
     - require:
       - pkg: mysql-server
 
-{% if not ( 'ddll' in grains['host'] or 'staging' in grains['host'] ) %}
 mysql_debconf:
   debconf.set:
     - name: mysql-server
@@ -21,13 +21,16 @@ mysql_debconf:
         'mysql-server/root_password': {'type': 'password', 'value': '{{ mysql_root_password }}'}
         'mysql-server/root_password_again': {'type': 'password', 'value': '{{ mysql_root_password }}'}
         'mysql-server/start_on_boot': {'type': 'boolean', 'value': 'true'}
-{% endif %}
 
 mysql:
   service.running:
     - name: mysql
     - require:
       - pkg: mysql-server
+{% endif %}
+
+mysql-client:
+	pkg.installed
 
 python-mysqldb:
   pkg.installed
@@ -37,7 +40,6 @@ dbconfig:
     - name: {{ mysql_user }}
     - password: "{{ salt['grains.get_or_set_hash']('mysql:' ~ mysql_user ~ '') }}"
     - require:
-      - service: mysql
       - pkg: python-mysqldb
 
   mysql_database.present:
