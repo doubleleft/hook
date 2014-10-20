@@ -2,11 +2,7 @@
 {% set mysql_user = proj_name|replace('-','')|truncate(15) -%}
 {% set mysql_pass = salt['grains.get']('mysql:' ~ mysql_user ~ '') -%}
 {% set mysql_db = mysql_user -%}
-{% if grains['host'] in ['odesmistificador'] -%}
-  {% set mysql_host = 'shell-mitos.crectshle2hx.us-east-1.rds.amazonaws.com' -%}
-{% else -%}
-  {% set mysql_host = 'localhost' -%}
-{% endif -%}
+{% set mysql_host = salt['pillar.get']('master:mysql.host','localhost') %}
 <?php
 
 return array(
