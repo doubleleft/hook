@@ -4,7 +4,12 @@
 {% set mysql_user = proj_name|replace('-','')|truncate(15) %}
 {% set mysql_db = mysql_user %}
 {% set mysql_root_password = salt['pillar.get']('mysql:server:root_password', salt['grains.get']('server_id')) %}
-{% set mysql_host = salt['pillar.get']('master:mysql.host','localhost') %}
+
+{% if grains['host'] in ['odesmistificador'] %}
+  {% set grants_ip = salt['network.interfaces']()['eth0']['inet'][0]['address'] %}
+{% else %}
+  {% set grants_ip = salt['pillar.get']('master:mysql.host','localhost') %}
+{% endif %}
 
 {% if not grains['host'] in ['ddll','staging','odesmistificador'] %}
 mysql-server:
@@ -40,7 +45,7 @@ dbconfig:
   mysql_user.present:
     - name: {{ mysql_user }}
     - password: "{{ salt['grains.get_or_set_hash']('mysql:' ~ mysql_user ~ '') }}"
-    - host: {{ mysql_host }}
+    - host: {{ grants_ip }}
     - require:
       - pkg: python-mysqldb
 
@@ -53,7 +58,7 @@ dbconfig:
     - grant: all privileges
     - database: {{ mysql_db }}.*
     - user: {{ mysql_user }}
-    - host: {{ mysql_host }}
+    - host: {{ grants_ip }}
     - require:
       - mysql_database: dbconfig 
 
