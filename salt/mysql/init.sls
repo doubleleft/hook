@@ -7,7 +7,7 @@
 
 {% if not grains['host'] in ['ddll','staging','odesmistificador'] %}
 mysql-server:
-  pkg.installed: []
+  pkg.installed
   service.running:
     - name: mysql
     - enable: True
@@ -30,7 +30,7 @@ mysql:
 {% endif %}
 
 mysql-client:
-	pkg.installed
+  pkg.installed
 
 python-mysqldb:
   pkg.installed
