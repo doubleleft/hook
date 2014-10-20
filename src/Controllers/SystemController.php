@@ -5,12 +5,12 @@ use Hook\Http\Request;
 class SystemController extends HookController {
 
     public function time() {
-        return $this->json( time() );
+        return time();
     }
 
     public function ip() {
         $ip = Request::ip();
-        return $this->json( json_decode(file_get_contents("http://ipinfo.io/{$ip}/json"), true) );
+        return json_decode(file_get_contents("http://ipinfo.io/{$ip}/json"), true);
     }
 
 }

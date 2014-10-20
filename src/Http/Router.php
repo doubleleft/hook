@@ -13,6 +13,7 @@ class Router {
         // Setup middlewares
         //
         $app->add(new Middlewares\ResponseTypeMiddleware());
+        $app->add(new Middlewares\ChannelMiddleware());
         $app->add(new Middlewares\LogMiddleware());
         $app->add(new Middlewares\AuthMiddleware());
         $app->add(new Middlewares\AppMiddleware());

@@ -125,7 +125,9 @@ class AppContext
             if (!$builder->hasTable('modules')) {
                 foreach (glob(__DIR__ . '/../../migrations/app/*.php') as $file) {
                     $migration = require($file);
-                    $builder->create($connection->getTablePrefix() . key($migration), current($migration));
+                    if (is_array($migration)) {
+                        $builder->create($connection->getTablePrefix() . key($migration), current($migration));
+                    }
                 }
             }
         }
