@@ -51,8 +51,23 @@ class OAuthController extends HookController {
             if (Context::getKey()->isBrowser()) {
                 Response::header('Content-type', 'text/html');
                 $js_origin = "window.opener.location.protocol + '//' + window.opener.location.hostname + (window.opener.location.port ? ':' + window.opener.location.port: '')";
-                Response::setBody("<script>window.opener.postMessage(".to_json($data).", {$js_origin});</script>");
-
+                Response::setBody("
+                    <!DOCTYPE html>
+                    <html>
+                        <head>
+                            <meta http-equiv='X-UA-Compatible' content='chrome=1' />
+                        </head>
+                        <body>
+                        <script type='text/javascript'>
+                          window.addEventListener('message', function receiveMessage(event) {
+                            // posting back to message source, i.e. index.html
+                            // second parameter is eventOrigin: must match event.origin
+                            event.source.postMessage(".to_json($data).", {$js_origin});
+                          });
+                        </script>
+                        </body>
+                    </html>
+                ");
             } else {
                 $this->json($data);
             }
