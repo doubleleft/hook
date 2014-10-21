@@ -175,7 +175,7 @@ class Auth extends Collection
      */
     public static function password_hash($password, $salt)
     {
-        $app_auth_pepper = Config::get('auth_pepper', '');
+        $app_auth_pepper = Config::get('security.auth_pepper', '');
         return sha1($password . $salt . $app_auth_pepper);
     }
 
