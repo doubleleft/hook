@@ -14,22 +14,11 @@ class ResponseTypeMiddleware extends Slim\Middleware
 
         try {
             // Call current request
-            var_dump($this->next);
             $response = $this->next->call();
-
-            var_dump($response);
-            var_dump($app->response->getBody());
 
             // Only set body automatically if it wasn't set manually
             if (!$app->response->getBody()) {
-                $app->response->setBody($response);
-            } else {
-                $response = $app->response->getBody();
-            }
-
-            // Set content-type automatically if it wasn't set manually
-            if (!$app->response->headers->get('Content-type')) {
-                $this->autoContentType($app->response);
+                $this->autoContentType($response);
             }
 
         } catch (Exception $e) {
@@ -46,14 +35,17 @@ class ResponseTypeMiddleware extends Slim\Middleware
 
     }
 
-    protected function autoContentType($response) {
-        if (gettype($response)=="string") {
+    protected function autoContentType($data) {
+        if (gettype($data)=="string") {
             $content_type = 'text/html';
+            $body = $data;
         } else {
             $content_type = 'application/json';
+            $body = to_json($data);
         }
 
-        $response->headers->set('Content-type', $content_type);
+        $this->app->response->headers->set('Content-type', $content_type);
+        $this->app->response->setBody($body);
     }
 
     protected function handleErrorRespone($e, $app)
