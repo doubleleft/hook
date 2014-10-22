@@ -20,7 +20,7 @@ get-composer:
     - unless: test -f /usr/local/bin/composer
     - cwd: /root/
     - require:
-      - pkg: php_cli
+      - pkg: hook-deps
 
 install-composer:
   cmd.wait:
