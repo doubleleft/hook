@@ -37,19 +37,16 @@ class Email extends Base
     {
         $this->validateParams($data);
 
-        $userdata = null;
-        if ($user = $this->findExistingUser($data)) {
+        $user = $this->findExistingUser($data);
+        if ($user) {
             if ($user->password != Auth::password_hash($data['password'], $user->password_salt)) {
                 throw new Exceptions\ForbiddenException("password_invalid");
             }
-            $userdata = $user->dataWithToken();
-        } else {
-            if (!$user) {
-                throw new Exceptions\ForbiddenException("invalid_user");
-            }
-        }
+            return $user->dataWithToken();
 
-        return $userdata;
+        } else {
+            throw new Exceptions\ForbiddenException("invalid_user");
+        }
     }
 
     /**

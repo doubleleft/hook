@@ -153,13 +153,11 @@ class Auth extends Collection
 
     protected function isUpdateAllowed() {
         $auth_token = AuthToken::current();
-        $dirty = $this->getDirty();
 
         //
         // Allow updates only when:
         // - Is using 'server' context.
         // - Authenticated user is updating it's own data
-        // - Is updating FORGOT_PASSWORD_FIELD
         //
         return Context::getKey()->isServer() || Context::getKey()->isCommandline() ||
             ($auth_token && $auth_token->auth_id == $this->_id);
