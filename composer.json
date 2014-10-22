@@ -44,8 +44,15 @@
       "type": "pear",
       "url": "http://pear.php.net"
     }, {
-      "type": "vcs",
-      "url": "http://github.com/endel/Slim"
+      "type": "package",
+      "package": {
+        "name" : "slim/Slim",
+        "version" : "dev-master",
+        "dist": {
+          "url": "https://github.com/endel/Slim/archive/master.zip",
+          "type": "zip"
+        }
+      }
     }
   ],
 
