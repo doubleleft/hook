@@ -8,16 +8,16 @@ class ChannelController extends HookController {
 
     public function index($name) {
         $name = implode("/", $name);
-        return $this->json(Model\App::collection('channel_messages')->filter(Input::get('q'))
+        return Model\App::collection('channel_messages')->filter(Input::get('q'))
             ->where('channel', $name)
-            ->get());
+            ->get();
     }
 
     public function store($name) {
         $name = implode("/", $name);
-        return $this->json( Model\ChannelMessage::create(array_merge(Input::get(), array(
+        return Model\ChannelMessage::create(array_merge(Input::get(), array(
             'channel' => $name
-        ))));
+        )));
     }
 
 }

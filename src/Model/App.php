@@ -74,6 +74,7 @@ class App extends Model
         // maybe we're on a readonly filesystem
         if (!file_exists($storage_dir) && is_writable(dirname($storage_dir))) {
             mkdir($storage_dir, 0777, true);
+            file_put_contents($storage_dir . 'logs.txt', '');
         }
     }
 

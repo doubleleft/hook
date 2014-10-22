@@ -7,7 +7,7 @@ class KeyValueController extends HookController {
 
     public function show($name) {
         $key = Model\KeyValue::where('name', $name)->first();
-        return $this->json(($key) ? json_encode(unserialize($key->value)) : null);
+        return (($key) ? json_encode(unserialize($key->value)) : null);
     }
 
     public function store($name) {
@@ -16,11 +16,11 @@ class KeyValueController extends HookController {
             'name' => $name,
             'value' => serialize($value)
         ));
-        return $this->json(json_encode($value));
+        return json_encode($value);
     }
 
     public function delete($name) {
-        return $this->json(Model\KeyValue::where('name', $name)->delete());
+        return Model\KeyValue::where('name', $name)->delete();
     }
 
 }

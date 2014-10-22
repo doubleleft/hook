@@ -5,6 +5,7 @@ use Hook\Application\Context;
 use Hook\Application\Config;
 use Hook\Exceptions\ForbiddenException;
 
+use Carbon\Carbon;
 
 /**
  * Auth
@@ -23,6 +24,10 @@ class Auth extends Collection
     // protect from mass-assignment.
     protected $guarded = array('password_salt', 'forgot_password_token', 'forgot_password_expiration', 'deleted_at'); // 'email', 'password',
     protected $hidden = array('password', 'password_salt', 'forgot_password_token', 'forgot_password_expiration', 'deleted_at');
+
+    // force a trusted action?
+    // - currently only used on resetPassword method
+    protected $isTrustedAction = false;
 
     static $_current = null;
 
@@ -71,6 +76,7 @@ class Auth extends Collection
     {
         $this->setAttribute(self::FORGOT_PASSWORD_FIELD, sha1(uniqid(rand(), true)));
         $this->setAttribute(self::FORGOT_PASSWORD_EXPIRATION_FIELD, time() + self::FORGOT_PASSWORD_EXPIRATION_TIME);
+        $this->isTrustedAction = true;
         $this->save();
 
         return $this;
@@ -87,6 +93,7 @@ class Auth extends Collection
         if (!$this->isForgotPasswordTokenExpired()) {
             $this->password = $newPassword;
             $this->setAttribute(self::FORGOT_PASSWORD_EXPIRATION_FIELD, time()); // expire token
+            $this->isTrustedAction = true;
             $success = $this->save();
         }
 
@@ -95,7 +102,7 @@ class Auth extends Collection
 
     protected function isForgotPasswordTokenExpired()
     {
-        return time() > $this->getAttribute(self::FORGOT_PASSWORD_EXPIRATION_FIELD);
+        return Carbon::now()->gte($this->getAttribute(self::FORGOT_PASSWORD_EXPIRATION_FIELD));
     }
 
     public function toArray()
@@ -132,10 +139,8 @@ class Auth extends Collection
 
     public function beforeSave()
     {
-        if ($this->_id) {
-            if (!$this->isUpdateAllowed()) {
-                throw new ForbiddenException("not_allowed");
-            }
+        if ($this->_id && !$this->isTrustedAction && !$this->isUpdateAllowed()) {
+            throw new ForbiddenException("not_allowed");
         }
 
         // Update password
@@ -143,24 +148,19 @@ class Auth extends Collection
             $this->password_salt = sha1(uniqid(rand(), true));
             $this->password = static::password_hash($this->password, $this->password_salt);
         }
-         parent::beforeSave();
+        parent::beforeSave();
     }
 
     protected function isUpdateAllowed() {
         $auth_token = AuthToken::current();
-        $dirty = $this->getDirty();
 
         //
         // Allow updates only when:
         // - Is using 'server' context.
         // - Authenticated user is updating it's own data
-        // - Is updating FORGOT_PASSWORD_FIELD
         //
         return Context::getKey()->isServer() || Context::getKey()->isCommandline() ||
-            ($auth_token && $auth_token->auth_id == $this->_id) ||
-            (count($dirty) == 2 &&
-             isset($dirty[self::FORGOT_PASSWORD_FIELD]) &&
-             isset($dirty[self::FORGOT_PASSWORD_EXPIRATION_FIELD]));
+            ($auth_token && $auth_token->auth_id == $this->_id);
     }
 
     /**
@@ -175,7 +175,7 @@ class Auth extends Collection
      */
     public static function password_hash($password, $salt)
     {
-        $app_auth_pepper = Config::get('auth_pepper', '');
+        $app_auth_pepper = Config::get('security.auth_pepper', '');
         return sha1($password . $salt . $app_auth_pepper);
     }
 

@@ -14,7 +14,7 @@
   "require": {
     "php": ">=5.3.0",
     "composer/composer": "dev-master",
-    "slim/slim": "~2.4.3",
+    "slim/Slim": "dev-master",
     "doctrine/dbal" : "2.*",
     "illuminate/database": "4.1.*",
     "illuminate/config": "4.1.*",
@@ -39,10 +39,15 @@
     "opauth/facebook": "dev-master"
   },
 
-  "repositories": [{
-    "type": "pear",
-    "url": "http://pear.php.net"
-  }],
+  "repositories": [
+    {
+      "type": "pear",
+      "url": "http://pear.php.net"
+    }, {
+      "type": "vcs",
+      "url": "http://github.com/endel/Slim"
+    }
+  ],
 
   "scripts": {
     "post-install-cmd": [ ]

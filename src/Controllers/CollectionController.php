@@ -54,23 +54,23 @@ class CollectionController extends HookController {
         if ($aggr = Input::get('aggr')) {
             // Aggregate 'max'/'min'/'avg'/'sum' methods
             if (isset($aggr['field'])) {
-                return $this->json($query->{$aggr['method']}($aggr['field']));
+                return $query->{$aggr['method']}($aggr['field']);
 
             } else {
                 // Aggregate 'count'
-                return $this->json($query->{$aggr['method']}());
+                return $query->{$aggr['method']}();
             }
 
         } elseif ($paginate = Input::get('p')) {
             // Apply pagination
-            return $this->json($query->paginate($paginate));
+            return $query->paginate($paginate);
 
         } elseif (Input::get('f')) {
             // First
-            return $this->json($query->first());
+            return $query->first();
 
         } else {
-            return $this->json($query->get());
+            return $query->get();
         }
     }
 
@@ -85,7 +85,7 @@ class CollectionController extends HookController {
             throw new ForbiddenException("Can't save '{$model->getName()}'.");
         }
 
-        return $this->json($model);
+        return $model;
     }
 
     //
@@ -97,15 +97,15 @@ class CollectionController extends HookController {
 
         if ($operation = Input::get('op')) {
             // Operations: increment/decrement
-            return $this->json($query->{$operation['method']}($operation['field'], $operation['value']));
+            return $query->{$operation['method']}($operation['field'], $operation['value']);
         } else {
 
             // Perform raw update
             $affected = $query->update(static::getData());
-            return $this->json(array(
+            return array(
                 'success' => is_int($affected) && $affected > 0,
                 'affected' => $affected
-            ));
+            );
         }
     }
 
@@ -118,17 +118,17 @@ class CollectionController extends HookController {
                 }
             }
         }
-        return $this->json($model);
+        return $model;
     }
 
     public function show($name, $_id) {
-        return $this->json(Model\App::collection($name)->find($_id));
+        return Model\App::collection($name)->find($_id);
     }
 
     public function delete($name, $_id = null) {
         $collection = Model\App::collection($name);
         $query = ($_id) ? $collection->find($_id) : $collection->filter(Input::get('q'));
-        return $this->json(array('success' => $query->delete()));
+        return array('success' => $query->delete());
     }
 
     public static function getData() {

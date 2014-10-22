@@ -5,8 +5,8 @@ class Response {
     /**
      * header
      * @param name
-     * @param default
-     * @return string
+     * @param value
+     * @return mixed
      */
     public static function header($name = null, $value = null) {
         if (!$name && !$value) {
