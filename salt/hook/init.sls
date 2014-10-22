@@ -29,12 +29,12 @@ install-composer:
       - cmd: get-composer
 
 install-hook:
-  cmd.run:
+  cmd.watch:
     - name: make
     - user: {{ user }}
     - cwd: {{ www_root }}
-    - require:
-      - pkg: hook-deps
+    - watch:
+      - cmd: test -d {{ www_root }}/vendor
 
 {% if user != 'vagrant' %}
 {{ www_root }}/public/storage:
