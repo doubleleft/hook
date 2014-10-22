@@ -5,6 +5,7 @@ use Hook\Application\Context;
 use Hook\Application\Config;
 use Hook\Exceptions\ForbiddenException;
 
+use Carbon\Carbon;
 
 /**
  * Auth
@@ -23,6 +24,10 @@ class Auth extends Collection
     // protect from mass-assignment.
     protected $guarded = array('password_salt', 'forgot_password_token', 'forgot_password_expiration', 'deleted_at'); // 'email', 'password',
     protected $hidden = array('password', 'password_salt', 'forgot_password_token', 'forgot_password_expiration', 'deleted_at');
+
+    // force a trusted action?
+    // - currently only used on resetPassword method
+    protected $isTrustedAction = false;
 
     static $_current = null;
 
@@ -87,6 +92,7 @@ class Auth extends Collection
         if (!$this->isForgotPasswordTokenExpired()) {
             $this->password = $newPassword;
             $this->setAttribute(self::FORGOT_PASSWORD_EXPIRATION_FIELD, time()); // expire token
+            $this->isTrustedAction = true;
             $success = $this->save();
         }
 
@@ -95,7 +101,7 @@ class Auth extends Collection
 
     protected function isForgotPasswordTokenExpired()
     {
-        return time() > $this->getAttribute(self::FORGOT_PASSWORD_EXPIRATION_FIELD);
+        return Carbon::now()->gte($this->getAttribute(self::FORGOT_PASSWORD_EXPIRATION_FIELD));
     }
 
     public function toArray()
@@ -133,7 +139,7 @@ class Auth extends Collection
     public function beforeSave()
     {
         if ($this->_id) {
-            if (!$this->isUpdateAllowed()) {
+            if (!$this->isUpdateAllowed() || !$this->isTrustedAction) {
                 throw new ForbiddenException("not_allowed");
             }
         }
@@ -143,7 +149,7 @@ class Auth extends Collection
             $this->password_salt = sha1(uniqid(rand(), true));
             $this->password = static::password_hash($this->password, $this->password_salt);
         }
-         parent::beforeSave();
+        parent::beforeSave();
     }
 
     protected function isUpdateAllowed() {
