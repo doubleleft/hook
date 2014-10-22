@@ -12,6 +12,7 @@ hook-deps:
       - npm
       - nodejs
       - nodejs-legacy
+      - php5-cli
 
 get-composer:
   cmd.run:
