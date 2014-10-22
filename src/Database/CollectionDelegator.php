@@ -64,6 +64,7 @@ class CollectionDelegator implements IteratorAggregate
         $query = null;
         if (isset(static::$custom_collections[$name])) {
             $query = call_user_func(array(static::$custom_collections[$name], 'query'));
+            $query->getModel()->setTable($name);
             $is_collection = false;
         } else {
             $query = Collection::from($name);
