@@ -76,6 +76,7 @@ class Auth extends Collection
     {
         $this->setAttribute(self::FORGOT_PASSWORD_FIELD, sha1(uniqid(rand(), true)));
         $this->setAttribute(self::FORGOT_PASSWORD_EXPIRATION_FIELD, time() + self::FORGOT_PASSWORD_EXPIRATION_TIME);
+        $this->isTrustedAction = true;
         $this->save();
 
         return $this;
@@ -163,10 +164,7 @@ class Auth extends Collection
         // - Is updating FORGOT_PASSWORD_FIELD
         //
         return Context::getKey()->isServer() || Context::getKey()->isCommandline() ||
-            ($auth_token && $auth_token->auth_id == $this->_id) ||
-            (count($dirty) == 2 &&
-             isset($dirty[self::FORGOT_PASSWORD_FIELD]) &&
-             isset($dirty[self::FORGOT_PASSWORD_EXPIRATION_FIELD]));
+            ($auth_token && $auth_token->auth_id == $this->_id);
     }
 
     /**
