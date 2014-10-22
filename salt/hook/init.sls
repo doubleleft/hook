@@ -35,7 +35,7 @@ install-hook:
     - user: {{ user }}
     - cwd: {{ www_root }}
     - watch:
-      - cmd: test -d {{ www_root }}/vendor
+      - cmd: test ! -d {{ www_root }}/vendor
 
 {% if user != 'vagrant' %}
 {{ www_root }}/public/storage:
