@@ -1,6 +1,6 @@
 <?php namespace Hook\Database\Schema;
 
-use Hook\Database\AppContext as AppContext;
+use Hook\Application\Context;
 use Carbon\Carbon;
 
 use Hook\Exceptions\MethodFailureException;
@@ -113,7 +113,7 @@ class Builder
         });
 
         $table = $model->getTable();
-        $table_prefix = AppContext::getPrefix();
+        $table_prefix = Context::getPrefix();
 
         $is_creating = (!$builder->hasTable($table));
         $method = ($is_creating) ? 'create' : 'table';

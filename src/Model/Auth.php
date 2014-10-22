@@ -1,8 +1,10 @@
 <?php
 namespace Hook\Model;
 
-use Hook\Database\AppContext;
+use Hook\Application\Context;
+use Hook\Application\Config;
 use Hook\Exceptions\ForbiddenException;
+
 
 /**
  * Auth
@@ -49,6 +51,11 @@ class Auth extends Collection
     public function tokens()
     {
         return $this->hasMany('Hook\Model\AuthToken', 'auth_id');
+    }
+
+    public function identities()
+    {
+        return $this->hasMany('Hook\Model\AuthIdentity', 'auth_id');
     }
 
     /**
@@ -149,7 +156,7 @@ class Auth extends Collection
         // - Authenticated user is updating it's own data
         // - Is updating FORGOT_PASSWORD_FIELD
         //
-        return AppContext::getKey()->isServer() || AppContext::getKey()->isCommandline() ||
+        return Context::getKey()->isServer() || Context::getKey()->isCommandline() ||
             ($auth_token && $auth_token->auth_id == $this->_id) ||
             (count($dirty) == 2 &&
              isset($dirty[self::FORGOT_PASSWORD_FIELD]) &&
@@ -157,7 +164,7 @@ class Auth extends Collection
     }
 
     /**
-     * Generate sha1 hash of a password, using 'salt' and 'pepper' (AppConfig)
+     * Generate sha1 hash of a password, using 'salt' and 'pepper' (Config)
      *
      * @static
      *
@@ -168,7 +175,7 @@ class Auth extends Collection
      */
     public static function password_hash($password, $salt)
     {
-        $app_auth_pepper = AppConfig::get('auth_pepper') ?: '';
+        $app_auth_pepper = Config::get('security.auth_pepper', '');
         return sha1($password . $salt . $app_auth_pepper);
     }
 

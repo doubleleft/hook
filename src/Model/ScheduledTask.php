@@ -1,7 +1,7 @@
 <?php
 namespace Hook\Model;
 
-use Hook\Database\AppContext as AppContext;
+use Hook\Application\Context as Context;
 use Hook\Model\AppKey as AppKey;
 
 /**
@@ -17,7 +17,7 @@ class ScheduledTask extends Model
             return false;
         }
 
-        $cronfile = shared_storage_dir() . '/' . AppContext::getAppId(). '.cron';
+        $cronfile = shared_storage_dir() . '/' . Context::getAppId(). '.cron';
         $previous_tasks = (file_exists($cronfile)) ? file_get_contents($cronfile) : "";
         $new_tasks = '';
 
@@ -48,7 +48,7 @@ class ScheduledTask extends Model
         $public_url = $protocol . '://' . $_SERVER['SERVER_NAME'] . $_SERVER['SCRIPT_NAME'] . '/' . $this->task;
 
         // retrieve server key to allow calls from crontab.
-        $server_key = AppContext::getAppKeys(AppKey::TYPE_SERVER)->first();
+        $server_key = Context::getAppKeys(AppKey::TYPE_SERVER)->first();
 
         $curl_headers = "-H 'X-App-Id: {$server_key->app_id}' ";
         $curl_headers .= "-H 'X-App-Key: {$server_key->key}' ";

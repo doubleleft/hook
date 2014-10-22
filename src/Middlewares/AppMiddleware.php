@@ -4,10 +4,11 @@ namespace Hook\Middlewares;
 use Slim;
 use Hook\Model\AppKey as AppKey;
 use Hook\Model\Module as Module;
-use Hook\Model\AppConfig as AppConfig;
 
 use Hook\Package;
-use Hook\Database\AppContext as AppContext;
+use Hook\Application\Context;
+use Hook\Application\Config;
+
 use Hook\Exceptions\NotAllowedException as NotAllowedException;
 
 class AppMiddleware extends Slim\Middleware
@@ -70,7 +71,7 @@ class AppMiddleware extends Slim\Middleware
 
         } else {
             // Get application key
-            $app_key = AppContext::validateKey(
+            $app_key = Context::validateKey(
                 $app->request->headers->get('X-App-Id') ?: $app->request->get('X-App-Id'),
                 $app->request->headers->get('X-App-Key') ?: $app->request->get('X-App-Key')
             );
@@ -82,7 +83,7 @@ class AppMiddleware extends Slim\Middleware
                     $app->response->headers->set('Access-Control-Allow-Origin', $origin);
 
                     $request_origin = preg_replace("/https?:\/\//", "", $origin);
-                    $allowed_origins = AppConfig::getAll('security.allowed_origins.%', array($request_origin));
+                    $allowed_origins = Config::get('security.allowed_origins', array($request_origin));
                     $is_origin_allowed = array_filter($allowed_origins, function($allowed_origin) use (&$request_origin) {
                         return fnmatch($allowed_origin, $request_origin);
                     });

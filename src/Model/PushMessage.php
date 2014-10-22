@@ -1,7 +1,7 @@
 <?php
 namespace Hook\Model;
 
-use Hook\Database\AppContext as AppContext;
+use Hook\Application\Context as Context;
 use Hook\Exceptions\ForbiddenException as ForbiddenException;
 use Hook\Exceptions\InternalException as InternalException;
 
@@ -30,7 +30,7 @@ class PushMessage extends DynamicModel
     {
         if (!$this->getAttribute('_id')) {
 
-            if (!AppContext::getKey()->isServer()) {
+            if (!Context::getKey()->isServer()) {
                 throw new ForbiddenException("Need a 'server' key to perform this action.");
             }
 

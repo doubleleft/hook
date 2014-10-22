@@ -38,14 +38,12 @@ test:
 	# DB_DRIVER=sqlsrv ./vendor/bin/phpunit --configuration ./tests/phpunit.xml
 
 docs:
-	mkdir -p ../dl-api-docs/
-	php -d memory_limit=512M ${APIGEN_PATH}/apigen.php --destination ../dl-api-docs/ \
+	mkdir -p documentation
+	php -d memory_limit=512M ${APIGEN_PATH}/apigen.php --destination documentation --debug \
 																--exclude */tests/* \
 																--exclude */Tests/* \
 																--source ./src/ \
-																--source ./vendor/guzzle/guzzle/src \
 																--source ./vendor/illuminate \
-																--source ./vendor/doctrine \
-																--source ./vendor/slim/slim/Slim \
-																--source ./vendor/symfony
-	open ../dl-api-docs/index.html
+																--source ./vendor/slim/slim/Slim
+	open documentation/index.html
+	# --source ./vendor/guzzlehttp/guzzle/src \

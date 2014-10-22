@@ -3,6 +3,8 @@
 use Hook\Cache\Cache as Store;
 use Hook\Encryption\Encrypter as Encrypter;
 
+use Illuminate\Cache\CacheManager;
+
 class Cache
 {
     protected static $store;
@@ -25,7 +27,7 @@ class Cache
 
     public static function getStore() {
         if (!static::$store) {
-            $manager = new \Illuminate\Cache\CacheManager(array(
+            $manager = new CacheManager(array(
                 'encrypter' => Encrypter::getInstance(),
                 'db' => \DLModel::getConnectionResolver(),
                 'config' => array(

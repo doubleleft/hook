@@ -1,6 +1,6 @@
 <?php namespace Hook\Encryption;
 
-use Hook\Database\AppContext as AppContext;
+use Hook\Application\Context;
 
 class Encrypter extends \Illuminate\Encryption\Encrypter
 {
@@ -13,7 +13,7 @@ class Encrypter extends \Illuminate\Encryption\Encrypter
 
     public static function getInstance()
     {
-        $app_key = AppContext::getKey();
+        $app_key = Context::getKey();
 
         if (!static::$instance && $app_key) {
             static::$instance = new static($app_key->app->secret, $app_key->app_id);

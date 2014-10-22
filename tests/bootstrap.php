@@ -33,8 +33,8 @@ if (Hook\Model\AppKey::count() == 0) {
 }
 
 // Force application key for testing
-Hook\Database\AppContext::setTablePrefix('');
-Hook\Database\AppContext::setKey(Hook\Model\AppKey::with('app')->first());
+Hook\Application\Context::setTablePrefix('');
+Hook\Application\Context::setKey(Hook\Model\AppKey::with('app')->first());
 
 $app->log->setWriter(new Hook\Logger\LogWriter(storage_dir() . '/logs.txt'));
 

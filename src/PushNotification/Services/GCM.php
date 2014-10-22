@@ -1,7 +1,7 @@
 <?php
 namespace Hook\PushNotification\Services;
 
-use Hook\Model\AppConfig as AppConfig;
+use Hook\Application\Config;
 use GuzzleHttp\Client as HttpClient;
 
 //
@@ -17,7 +17,7 @@ class GCM implements Service
      */
     public function push($registrations, $data)
     {
-        $gcm_access_key = AppConfig::get('push.gcm.access_key', false);
+        $gcm_access_key = Config::get('push.gcm.access_key', false);
 
         if (!$gcm_access_key) {
             throw new \Exception("Please set 'push.gcm.access_key' value.");

@@ -1,7 +1,7 @@
 <?php
 namespace Hook\Mailer;
 
-use Hook\Model\AppConfig as AppConfig;
+use Hook\Application\Config;
 use Hook\Model\App as App;
 
 /**
@@ -27,17 +27,13 @@ class Mail
     public static function send($options = array())
     {
         $params = array();
+        $allowed_configs = array('driver', 'host', 'port', 'encryption', 'username', 'password');
 
-        AppConfig::where('name', 'mail.driver')
-            ->orWhere('name', 'mail.host')
-            ->orWhere('name', 'mail.port')
-            ->orWhere('name', 'mail.encryption')
-            ->orWhere('name', 'mail.username')
-            ->orWhere('name', 'mail.password')
-            ->get()->each(function ($config) use (&$params) {
-                preg_match('/mail\.([a-z]+)/', $config->name, $matches);
-                $params[ $matches[1] ] = $config->value;
-            });
+        foreach(Config::get('mail', array()) as $name => $value) {
+            if (in_array($name, $allowed_configs)) {
+                $params[$name] = $value;
+            }
+        }
 
         // set 'mail' as default driver
         if (!isset($params['driver'])) {
@@ -52,11 +48,9 @@ class Mail
                 // allow to overwrite default preset settings with custom configs
                 $params = array_merge($preset_params, $params);
             }
-
         }
 
         $transport = static::getTransport($params);
-
         return static::sendMessage($transport, $options);
     }
 

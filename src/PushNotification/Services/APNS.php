@@ -2,7 +2,7 @@
 namespace Hook\PushNotification\Services;
 
 use Hook\Logger\Logger;
-use Hook\Model\AppConfig as AppConfig;
+use Hook\Application\Config as Config;
 
 /**
  * @nodoc
@@ -24,9 +24,9 @@ class APNS implements Service
      */
     public function push($registrations, $data)
     {
-        $apns_environment = AppConfig::get('push.apns.environment', 'sandbox');
-        $apns_certificate_file = AppConfig::get('push.apns.cert.file', false);
-        $apns_certificate_pass = AppConfig::get('push.apns.cert.pass', false);
+        $apns_environment = Config::get('push.apns.environment', 'sandbox');
+        $apns_certificate_file = Config::get('push.apns.cert.file', false);
+        $apns_certificate_pass = Config::get('push.apns.cert.pass', false);
 
         if (!$apns_certificate_file) {
             throw new \Exception("APNS config error: 'push.apns.cert.file' not set.");
