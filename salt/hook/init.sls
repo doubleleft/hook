@@ -12,6 +12,7 @@ hook-deps:
       - npm
       - nodejs
       - nodejs-legacy
+      - php5-cli
 
 get-composer:
   cmd.run:
@@ -19,7 +20,7 @@ get-composer:
     - unless: test -f /usr/local/bin/composer
     - cwd: /root/
     - require:
-      - pkg: php_cli
+      - pkg: hook-deps
 
 install-composer:
   cmd.wait:
@@ -29,12 +30,12 @@ install-composer:
       - cmd: get-composer
 
 install-hook:
-  cmd.run:
+  cmd.watch:
     - name: make
     - user: {{ user }}
     - cwd: {{ www_root }}
-    - require:
-      - pkg: hook-deps
+    - watch:
+      - cmd: test ! -d {{ www_root }}/vendor
 
 {% if user != 'vagrant' %}
 {{ www_root }}/public/storage:
