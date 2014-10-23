@@ -31,8 +31,10 @@ class AuthToken extends Model
      */
     public static function current()
     {
-        if (static::$_current === null) {
-            static::$_current = static::where('token', Request::header('X-Auth-Token', Input::get('X-Auth-Token')))
+        $token = Request::header('X-Auth-Token', Input::get('X-Auth-Token'));
+
+        if (static::$_current === null && $token) {
+            static::$_current = static::where('token', $token)
                 ->where('expire_at', '>=', Carbon::now())
                 ->first();
         }

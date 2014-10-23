@@ -152,15 +152,21 @@ class Auth extends Collection
     }
 
     protected function isUpdateAllowed() {
-        $auth_token = AuthToken::current();
 
         //
         // Allow updates only when:
         // - Is using 'server' context.
+        // - Is using 'commandline' context.
         // - Authenticated user is updating it's own data
         //
-        return Context::getKey()->isServer() || Context::getKey()->isCommandline() ||
-            ($auth_token && $auth_token->auth_id == $this->_id);
+        return Context::getKey()->isServer() ||
+            Context::getKey()->isCommandline() ||
+            $this->isAuthenticated();
+    }
+
+    protected function isAuthenticated()  {
+        $auth_token = AuthToken::current();
+        return $auth_token && $auth_token->auth_id == $this->_id;
     }
 
     /**
