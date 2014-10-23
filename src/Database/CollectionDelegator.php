@@ -55,19 +55,18 @@ class CollectionDelegator implements IteratorAggregate
     {
         // force plural collection names.
         $name = str_plural($name);
-        $is_collection = true;
+        $is_collection = (!isset(static::$custom_collections[$name]));
 
         if ($name == "modules") {
             throw new UnauthorizedException("not_authorized");
         }
 
-        $query = null;
-        if (isset(static::$custom_collections[$name])) {
-            $query = call_user_func(array(static::$custom_collections[$name], 'query'));
-            $query->getModel()->setTable($name);
-            $is_collection = false;
-        } else {
+        if ($is_collection) {
             $query = Collection::from($name);
+        } else {
+            $tmp_query = call_user_func(array(static::$custom_collections[$name], 'query'));
+            $tmp_query->getModel()->setTable($name);
+            $query = $tmp_query->getModel()->newQuery();
         }
 
         $this->name = $name;
