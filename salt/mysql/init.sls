@@ -16,12 +16,6 @@ mysql:
   pkg.installed:
     - name: mysql-server
 
-  service.running:
-    - enable: True
-    - require:
-      - pkg: mysql-server
-
-mysql_debconf:
   debconf.set:
     - name: mysql-server
     - data:
@@ -29,9 +23,8 @@ mysql_debconf:
         'mysql-server/root_password_again': {'type': 'password', 'value': '{{ mysql_root_password }}'}
         'mysql-server/start_on_boot': {'type': 'boolean', 'value': 'true'}
 
-mysql:
   service.running:
-    - name: mysql
+    - enable: True
     - require:
       - pkg: mysql-server
 {% endif %}
