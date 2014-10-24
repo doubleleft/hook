@@ -12,10 +12,11 @@
 {% endif %}
 
 {% if not grains['host'] in ['ddll','staging','odesmistificador'] %}
-mysql-server:
-  pkg.installed
+mysql:
+  pkg.installed:
+    - name: mysql-server
+
   service.running:
-    - name: mysql
     - enable: True
     - require:
       - pkg: mysql-server
