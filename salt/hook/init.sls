@@ -30,12 +30,15 @@ install-composer:
       - cmd: get-composer
 
 install-hook:
+  file.exists:
+    - name: {{ www_root }}/vendor
+
   cmd.watch:
     - name: make
     - user: {{ user }}
     - cwd: {{ www_root }}
     - watch:
-      - cmd: test ! -d {{ www_root }}/vendor
+      - file: install-hook
 
 {% if user != 'vagrant' %}
 {{ www_root }}/public/storage:
