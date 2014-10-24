@@ -46,6 +46,12 @@ class Auth extends Collection
     {
         if (static::$_current === null) {
             if ($token = AuthToken::current()) {
+                //
+                // TODO: (known bug)
+                // When accessing $token->auth inside an observer other than `auth`,
+                // the table name of the query is being equals to the observer itself.
+                //
+                $token->auth(); // this resets the target querying table name
                 static::$_current = $token->auth;
             }
         }
