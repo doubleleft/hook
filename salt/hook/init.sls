@@ -30,7 +30,7 @@ install-composer:
       - cmd: get-composer
 
 install-hook:
-  file.exists:
+  file.missing:
     - name: {{ www_root }}/vendor
 
   cmd.watch:
