@@ -40,7 +40,7 @@ install-hook:
 {% if user != 'vagrant' %}
 {{ www_root }}/public/storage:
   file.directory:
-    - user: {{ user }}
+    - user: www-data
     - group: www-data
     - mode: 775
     - makedirs: True
@@ -63,5 +63,4 @@ install-hook:
     - template: jinja
     - require:
       - cmd: install-hook
-
 
