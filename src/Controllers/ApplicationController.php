@@ -11,6 +11,7 @@ use Hook\Package;
 use Hook\Application\Context;
 use Hook\Application\Config;
 use Hook\Exceptions\UnauthorizedException;
+use Hook\Exceptions\NotAllowedException;
 
 use Carbon\Carbon;
 
@@ -56,7 +57,12 @@ class ApplicationController extends HookController {
     }
 
     public function logs() {
-        $file_path = storage_dir() . '/logs.txt';
+        $file_path = storage_dir() . 'logs.txt';
+
+        if (!file_exists($file_path)) {
+            throw new NotAllowedException("Logs not allowed in this server.");
+        }
+
         $is_tail = (Input::get('tail')) ? '-f ' : '';
         $lines = Input::get('n', 40);
 
