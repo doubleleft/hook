@@ -17,24 +17,25 @@ hook-deps:
 get-composer:
   cmd.run:
     - name: 'CURL=`which curl`; $CURL -sS https://getcomposer.org/installer | php'
-    - unless: test -f /usr/local/bin/composer
-    - cwd: /root/
+    - unless: test -f {{ www_proj }}/composer.phar
+    - cwd: {{ www_proj }}
     - require:
       - pkg: hook-deps
 
-install-composer:
-  cmd.wait:
-    - name: mv /root/composer.phar /usr/local/bin/composer
-    - cwd: /root
-    - watch:
+  file.managed:
+    - name: {{ www_proj }}/composer.phar
+    - user: {{ user }}
+    - mode: 0755
+    - require: 
       - cmd: get-composer
 
 install-hook:
-  cmd.run:
-    - name: make
-    - user: {{ user }}
-    - cwd: {{ www_root }}
-    - onlyif: test ! -d {{ www_root }}/vendor
+  composer.installed:
+    - composer: {{ www_proj }}/composer.phar
+    - no_dev: true
+    - prefer_dist: true
+    - require: 
+      - file: get-composer
 
 {% if user != 'vagrant' %}
 {{ www_root }}/public/storage:
