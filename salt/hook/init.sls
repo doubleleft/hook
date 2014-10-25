@@ -29,6 +29,15 @@ get-composer:
     - require: 
       - cmd: get-composer
 
+check-composer:
+  cmd.run:
+    - name: php composer.phar self-update
+    - user: {{ user }}
+    - cwd: {{ www_root }}
+    - require:
+      - file: get-composer
+    - onlyif: php composer.phar status | grep 'build of composer is over 30 days old' > /dev/null 2>&1 
+
 install-hook:
   composer.installed:
     - name: {{ www_root }}
