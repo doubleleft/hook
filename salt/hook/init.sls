@@ -31,6 +31,7 @@ get-composer:
 
 install-hook:
   composer.installed:
+    - name: {{ www_root }}
     - composer: {{ www_root }}/composer.phar
     - no_dev: true
     - prefer_dist: true
