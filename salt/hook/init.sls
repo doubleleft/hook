@@ -72,5 +72,5 @@ install-hook:
       - backup: minion
     - template: jinja
     - require:
-      - cmd: install-hook
+      - composer: install-hook
 
