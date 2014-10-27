@@ -54,7 +54,13 @@ class Manager {
     protected static function createComposerJson($packages) {
         $composer_json = str_replace("\/", '/', json_encode(array(
             'config' => array('vendor-dir' => self::VENDOR_DIR),
-            'require' => $packages
+            'require' => $packages,
+            // TODO: improve here
+            // windows-azure needs pear repository
+            'repositories' => array(array(
+                'type' => 'pear',
+                'url' => 'http://pear.php.net'
+            ))
         )));
         return file_put_contents(storage_dir() . '/composer.json', $composer_json);
     }
