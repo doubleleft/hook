@@ -225,7 +225,7 @@ class CollectionDelegator implements IteratorAggregate
      */
     public function group()
     {
-        $this->query->groupBy(func_get_args());
+        call_user_func_array(array($this->query, 'groupBy'), func_get_args());
         return $this;
     }
 
