@@ -22,20 +22,14 @@ get-composer:
     - require:
       - pkg: hook-deps
 
-  file.managed:
-    - name: {{ www_root }}/composer.phar
-    - user: {{ user }}
-    - mode: 0755
-    - require: 
-      - cmd: get-composer
-
 check-composer:
   cmd.run:
     - name: php composer.phar self-update
     - user: {{ user }}
     - cwd: {{ www_root }}
     - require:
-      - file: get-composer
+      - cmd: get-composer
+      - pkg: hook-deps
     - onlyif: php composer.phar status | grep 'build of composer is over 30 days old' > /dev/null 2>&1 
 
 install-hook:
@@ -45,7 +39,7 @@ install-hook:
     - no_dev: true
     - prefer_dist: true
     - require: 
-      - file: get-composer
+      - cmd: get-composer
 
 {% if user != 'vagrant' %}
 {{ www_root }}/public/storage:
