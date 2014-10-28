@@ -98,38 +98,41 @@ class ApplicationController extends HookController {
 
     public function deploy() {
         set_time_limit(0);
+        $statuses = array();
 
         // application configs
         $configs = Input::get('config', array());
         $configs['security'] = Input::get('security', array());
-        Config::deploy($configs);
-
-        $collections_migrated = 0;
 
         // Flush cache on deployment
         Cache\Cache::flush();
 
         // Migrate and keep schema cache
+        $collections_migrated = 0;
         foreach(Input::get('schema', array()) as $collection => $config) {
             if (Schema\Builder::migrate(Model\App::collection($collection)->getModel(), $config)) {
                 $collections_migrated += 1;
             }
         }
+        $statuses['schema'] = $collections_migrated;
 
-        return array(
-            // schema
-            'schema' => $collections_migrated,
-
-            // scheduled tasks
-            'schedule' => Model\ScheduledTask::deploy(Input::get('schedule', array())),
-
-            // modules
-            'modules' => Model\Module::deploy(Input::get('modules', array())),
+        // do we have write permission on this server?
+        if (is_writable(storage_dir())) {
+            $statuses['config'] = Config::deploy($configs);
+            $statuses['schedule'] = Model\ScheduledTask::deploy(Input::get('schedule', array()));
 
             // install composer packages
-            'packages' => Package\Manager::install(Input::get('packages', array()))
-        );
+            $statuses['packages'] = Package\Manager::install(Input::get('packages', array()));
+        } else {
+            $statuses['config'] = $without_write_permission_message;
+            $statuses['schedule'] = $without_write_permission_message;
+            $statuses['packages'] = $without_write_permission_message;
+        }
 
+        // modules
+        $statuses['modules'] = Model\Module::deploy(Input::get('modules', array()));
+
+        return $statuses;
     }
 
     public function configs() {

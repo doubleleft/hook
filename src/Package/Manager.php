@@ -25,8 +25,8 @@ class Manager {
         $code = $application->run(new ArrayInput(array('command' => 'install')), $output);
 
         // remove composer.lock
-        if (file_exists(storage_dir() . '/composer.lock')) {
-            unlink(storage_dir() . '/composer.lock');
+        if (file_exists(storage_dir() . 'composer.lock')) {
+            unlink(storage_dir() . 'composer.lock');
         }
 
         // rewind stream to read full contents
@@ -65,7 +65,7 @@ class Manager {
             )),
             'preferred-install' => 'dist'
         )));
-        return file_put_contents(storage_dir() . '/composer.json', $composer_json);
+        return file_put_contents(storage_dir() . 'composer.json', $composer_json);
     }
 
 }
