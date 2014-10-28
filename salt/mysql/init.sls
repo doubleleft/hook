@@ -15,10 +15,8 @@ mysql:
   pkg.installed:
     - name: mysql-server
 
-{% if not salt['grains.get']('mysql:root') %}
   cmd.run:
     - name: salt-call grains.get_or_set_hash 'mysql:root'
-{% endif %}
 
   debconf.set:
     - name: mysql-server
@@ -41,11 +39,11 @@ python-mysqldb:
 
 dbconfig:
   cmd.run:
-    - name: salt-call grains.get_or_set_hash 'mysql:{{ mysql_user }}'
+    - name: salt-call grains.get_or_set_hash '{{ mysql_db }}:{{ mysql_user }}'
 
   mysql_user.present:
     - name: {{ mysql_user }}
-    - password: "{{ salt['grains.get']('mysql:' ~ mysql_user ~ '') }}"
+    - password: "{{ salt['grains.get']('' ~ mysql_db ~ ':' ~ mysql_user ~ '') }}"
     - host: {{ grants_ip }}
     - require:
       - cmd: dbconfig
