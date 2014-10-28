@@ -1,5 +1,4 @@
 {% set user = salt['pillar.get']('project_username','vagrant') %}
-{% set user_home = salt['user.info'](user).home %}
 
 git:
   pkg.installed
@@ -11,7 +10,7 @@ git_https:
     - require: 
       - pkg: git
 
-{{ user_home }}/.ssh/id_rsa:
+/home/{{ user }}/.ssh/id_rsa:
   file.managed:
     - source: salt://base/devops
     - user: {{ user }}
