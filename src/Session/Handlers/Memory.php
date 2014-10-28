@@ -18,12 +18,6 @@ class Memory
         if (isset($params['lock_timeout'])) {
             $this->_lockTimeout = $params['lock_timeout'];
         }
-
-        session_set_save_handler(
-            array($this, 'open'), array($this, 'close'),
-            array($this, 'read'), array($this, 'write'),
-            array($this, 'destroy'), array($this, 'gc')
-        );
     }
 
     public function open($savePath, $sessionName)

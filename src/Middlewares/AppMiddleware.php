@@ -6,6 +6,7 @@ use Hook\Model\AppKey as AppKey;
 use Hook\Model\Module as Module;
 
 use Hook\Package;
+// use Hook\Session;
 use Hook\Application\Context;
 use Hook\Application\Config;
 
@@ -99,6 +100,9 @@ class AppMiddleware extends Slim\Middleware
 
                 // Require custom app packages
                 Package\Manager::autoload();
+
+                // // Register session handler
+                // Session\Handler::register(Config::get('session.handler', 'database'));
 
                 // Compile all route modules
                 if ($custom_routes = Module::where('type', Module::TYPE_ROUTE)->get()) {

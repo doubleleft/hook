@@ -21,6 +21,7 @@ class Router {
         $app->add(new Middlewares\ChannelMiddleware());
         $app->add(new Middlewares\LogMiddleware());
         $app->add(new Middlewares\AuthMiddleware());
+        // $app->add(new Middlewares\SessionMiddleware());
         $app->add(new Middlewares\AppMiddleware());
 
         return static::registerCoreRoutes($app);

@@ -3,7 +3,7 @@ namespace Hook\Storage\Providers;
 
 //
 // add to your packages.yaml:
-// microsoft/windowsazure: dev-master
+// microsoft/windowsazure: 0.4.0
 //
 
 use Hook\Application\Config;
@@ -61,7 +61,6 @@ class WindowsAzure extends Base
     protected function getBlobService() {
         if (!$this->service) {
             $endpoint = Config::get('storage.endpoint_protocol', 'https');
-            if (!$endpoint) { throw new Exception(__CLASS__ . ": 'storage.endpoint_protocol' config is required."); }
 
             $account = Config::get('storage.account');
             if (!$account) { throw new Exception(__CLASS__ . ": 'storage.account' config is required."); }

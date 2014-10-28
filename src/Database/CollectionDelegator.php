@@ -57,8 +57,9 @@ class CollectionDelegator implements IteratorAggregate
         $name = str_plural($name);
         $is_collection = (!isset(static::$custom_collections[$name]));
 
-        if ($name == "modules") {
-            throw new UnauthorizedException("not_authorized");
+        // protected collections
+        if ($name == 'modules' || $name == '__sessions') {
+            throw new UnauthorizedException('not_authorized');
         }
 
         if ($is_collection) {
