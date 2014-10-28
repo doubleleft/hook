@@ -2,8 +2,6 @@
 {% set www_root = salt['pillar.get']('project_path','/vagrant') %}
 {% set user = salt['pillar.get']('project_username','vagrant') %}
 {% set serv_name = grains['id'] %}
-include:
-  - mysql
 
 hook-deps:
   pkg.installed:
