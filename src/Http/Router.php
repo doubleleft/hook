@@ -5,6 +5,11 @@ use Hook\Middlewares;
 class Router {
     protected static $instance;
 
+    /**
+     * Add Hook Middlewares to Slim instance.
+     * @param \Slim\Slim
+     * @return \Slim\Slim;
+     */
     public static function setup($app)
     {
         static::setInstance($app);
@@ -21,7 +26,7 @@ class Router {
         return static::registerCoreRoutes($app);
     }
 
-    public static function registerCoreRoutes($app)
+    protected static function registerCoreRoutes($app)
     {
         // System
         $app->get('/system/time', 'Hook\\Controllers\\SystemController:time');
@@ -124,6 +129,9 @@ class Router {
         }
     }
 
+    /**
+     * @nodoc
+     */
     public static function setInstance($instance) {
         static::$instance = $instance;
     }
