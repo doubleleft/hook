@@ -20,9 +20,10 @@ class Config
     }
 
     public static function deploy($configs = array()) {
-        $previous = require(static::getConfigPath());
-        if ($configs != $previous && is_writable(static::getConfigPath())) {
-            file_put_contents(static::getConfigPath(), '<?php return ' .var_export($configs, true) . ';');
+        $config_file = static::getConfigPath();
+        $previous = file_exists($config_file) ? require($config_file) : array();
+        if ($configs != $previous) {
+            file_put_contents($config_file, '<?php return ' .var_export($configs, true) . ';');
         }
     }
 
