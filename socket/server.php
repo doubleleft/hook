@@ -92,15 +92,8 @@ class PubSubServer implements WampServerInterface
             // 	$message['auth_id'] = $token->auth_id;
             // }
 
-            // By default exclude / eligible message to clients
-            // --------------------------------------------
-            foreach ($topic->getIterator() as $conn) {
-                $is_excluded = !in_array($conn->WAMP->sessionId, $exclude);
-                $is_eligible = count($eligible) === 0 || in_array($conn->WAMP->sessionId, $eligible);
-                if ($is_excluded && $is_eligible) {
-                    $conn->event($topic, $message);
-                }
-            }
+            // Broadcast message to all eligible clients by default
+            $topic->broadcast($message, $exclude, $eligible);
         }
     }
 
