@@ -45,10 +45,7 @@ class ResponseTypeMiddleware extends Slim\Middleware
         }
 
         // only set content-type if it wans't set manually.
-        if (!$this->app->response->headers->get('Content-type')) {
-            $this->app->response->headers->set('Content-type', $content_type);
-        }
-
+        $this->app->response->headers->set('Content-type', $content_type);
         $this->app->response->setBody($body);
     }
 
