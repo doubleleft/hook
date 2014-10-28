@@ -124,9 +124,8 @@ class ApplicationController extends HookController {
             // install composer packages
             $statuses['packages'] = Package\Manager::install(Input::get('packages', array()));
         } else {
-            $statuses['config'] = $without_write_permission_message;
-            $statuses['schedule'] = $without_write_permission_message;
-            $statuses['packages'] = $without_write_permission_message;
+            $error_message = array('error' => 'without write permissions');
+            $statuses['error'] = "Without write permissions. Ignoring 'config', 'schedule' and 'packages'.";
         }
 
         // modules
