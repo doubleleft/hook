@@ -216,7 +216,8 @@ class Builder
 
                             // maybe 'collection' table isn't created here.
                             // TODO: create related table before referencing foreign key.
-                            $t->unsignedInteger($foreign_field)->index();
+                            $column = $t->unsignedInteger($foreign_field)->index();
+                            $column->nullable();
 
                             // $t->foreign($foreign_field)
                             //     ->references('_id')
