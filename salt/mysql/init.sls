@@ -12,11 +12,8 @@
 
 {% if not grains['host'] in ['ddll','staging','odesmistificador'] %}
 mysql:
-  pkg.installed:
-    - name: mysql-server
-
   cmd.run:
-    - name: salt-call grains.get_or_set_hash 'mysql:root'
+    - name: echo '{{ salt["grains.get_or_set_hash"]("mysql:root") }}' > /dev/null 2>&1
 
   debconf.set:
     - name: mysql-server
@@ -24,11 +21,22 @@ mysql:
         'mysql-server/root_password': {'type': 'password', 'value': "{{ salt['grains.get']('mysql:root') }}"}
         'mysql-server/root_password_again': {'type': 'password', 'value': "{{ salt['grains.get']('mysql:root') }}"}
         'mysql-server/start_on_boot': {'type': 'boolean', 'value': 'true'}
+    - require:
+      - cmd: mysql
+
+    - require_in:
+      - pkg: mysql
+
+  pkg.installed:
+    - name: mysql-server
+    - require: 
+      - debconf: mysql
+
 
   service.running:
     - enable: True
     - require:
-      - pkg: mysql-server
+      - pkg: mysql
 {% endif %}
 
 mysql-client:
@@ -39,7 +47,7 @@ python-mysqldb:
 
 dbconfig:
   cmd.run:
-    - name: salt-call grains.get_or_set_hash '{{ mysql_db }}:{{ mysql_user }}'
+    - name: echo "{{ salt['grains.get_or_set_hash']('' ~ mysql_db ~ ':' ~ mysql_user ~ '') }}" > /dev/null 2>&1
 
   mysql_user.present:
     - name: {{ mysql_user }}
