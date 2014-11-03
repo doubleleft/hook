@@ -11,4 +11,4 @@ before_script:
   - travis_retry composer install
 
 script:
-  - ./vendor/bin/phpunit --configuration ./tests/phpunit.xml
+  - ./vendor/bin/phpunit --configuration ./tests/phpunit.xml --testsuite unit

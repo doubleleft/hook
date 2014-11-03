@@ -33,12 +33,13 @@ cat /etc/apache2/sites-available/default
 sudo a2enmod rewrite
 sudo a2enmod actions
 sudo service apache2 restart
-sudo chmod -R 777 ./storage/
+sudo chown -R www-data shared
+sudo chown -R www-data public/storage
 
 # mysql -e 'CREATE DATABASE dlapi;'
 # sed s/%database_name%/myapp_test/ app/config/parameters.ini-dist | sed s/%database_login%/root/ | sed s/%database_password%// > app/config/parameters.ini
 
 # Configure custom domain
-echo "127.0.0.1 dl-api.dev" | sudo tee --append /etc/hosts
+echo "127.0.0.1 hook.dev" | sudo tee --append /etc/hosts
 
 echo "TRAVIS_PHP_VERSION: $TRAVIS_PHP_VERSION"

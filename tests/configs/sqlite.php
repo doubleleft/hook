@@ -2,6 +2,6 @@
 
 return array(
     'driver'   => 'sqlite',
-    'database' => __DIR__ . '/../../storage/hook_tests.sqlite',
+    'database' => __DIR__ . '/../../shared/hook_tests.sqlite',
     'prefix'   => '',
 );

@@ -8,7 +8,7 @@ $_SERVER['REQUEST_URI'] = '';
 $_SERVER['SERVER_NAME'] = 'localhost';
 $_SERVER['SERVER_PORT'] = '80';
 
-$db_driver = getenv('DB_DRIVER') ?: 'mysql';
+$db_driver = getenv('DB_DRIVER') ?: 'sqlite';
 
 $app = require __DIR__ . '/../src/Hook.php';
 
@@ -46,7 +46,7 @@ class HTTP_TestCase extends PHPUnit_Framework_TestCase
 {
     // protected $base_url = 'http://localhost/index.php/';
     // protected $base_url = 'http://localhost/index.php/';
-    protected $base_url = 'http://hook.dev:58790/index.php/';
+    protected $base_url = 'http://hook.dev/public/index.php/';
     protected $app_keys = array();
     protected $app_key = array();
     // protected $base_url = 'http://dl-api.dev/index.php/';
