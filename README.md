@@ -1,4 +1,4 @@
-Welcome to hook ![Build status](https://magnum.travis-ci.com/doubleleft/hook.svg?token=px2fsDaL7WdoeJ9qixdB)
+Welcome to hook ![Build status](https://travis-ci.org/doubleleft/hook.svg?branch=master)
 ===
 
 hook is a extendable Back-end as a Service (BaaS) that includes everything that you need
