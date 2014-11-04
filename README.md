@@ -33,20 +33,20 @@ vagrant up
 
 In order to deploy with Saltstack:
 
-Make sure you already have Salt installed. If not you could do it like this:
+Make sure you already have Salt installed. If not you can do it like this:
 
 ```bash
 curl -L https://bootstrap.saltstack.com | sudo sh
 ```
 
-Our salt formula accept some parameters. You could do like this if deploying through command line:
+Our salt formula accept some parameters. If deploying through command line:
 
 ```bash
 cd your/directory/root/project
 sudo salt-call -c salt state.highstate pillar='{project_path: your/directory/root/path, project_username: your-ssh-username, proj_name: hook, domain_name: hook.mydomain.com}'
 ```
 
-If you are deploying through vagrant itself through [vagrant-linode](https://github.com/displague/vagrant-linode), [vagrant-digitalocean](https://github.com/smdahlen/vagrant-digitalocean) or [vagrant-aws](https://github.com/mitchellh/vagrant-aws) for example, you could fill the salt pillar arguments right into `Vagrantfile`, like this, for ex:
+If you are deploying inside vagrant itself through [vagrant-linode](https://github.com/displague/vagrant-linode), [vagrant-digitalocean](https://github.com/smdahlen/vagrant-digitalocean) or [vagrant-aws](https://github.com/mitchellh/vagrant-aws) for example, you could fill the salt pillar arguments right into `Vagrantfile`, like this, for ex:
 
 ```ruby
   config.vm.provision :salt do |salt|
