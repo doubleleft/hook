@@ -33,6 +33,8 @@ cat /etc/apache2/sites-available/default
 sudo a2enmod rewrite
 sudo a2enmod actions
 sudo service apache2 restart
+
+# apply permissions on writable directories
 sudo chown -R www-data shared
 sudo chown -R www-data public/storage
 
@@ -41,5 +43,8 @@ sudo chown -R www-data public/storage
 
 # Configure custom domain
 echo "127.0.0.1 hook.dev" | sudo tee --append /etc/hosts
+
+# create default app
+curl -XPOST http://hook-stuff.dev/hook/public/index.php/apps --data '{"app":{"name":"travis"}}' > tests/app.json
 
 echo "TRAVIS_PHP_VERSION: $TRAVIS_PHP_VERSION"
