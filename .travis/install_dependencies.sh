@@ -4,7 +4,7 @@
 sudo apt-get install -y --force-yes apache2 libapache2-mod-php5 php5-mysql php5-sqlite
 
 # Configure Apache
-WEBROOT="$(pwd)"
+WEBROOT="$(pwd)/public"
 CGIROOT=`dirname "$(which php-cgi)"`
 echo "WEBROOT: $WEBROOT"
 echo "CGIROOT: $CGIROOT"
