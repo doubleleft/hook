@@ -31,13 +31,22 @@ Type:
 vagrant up
 ```
 
-In order to deploy in a production server with Saltstack, make sure you already have Salt installed. You can install it like this:
+In order to deploy in a production server with [Saltstack](https://github.com/saltstack/salt), make sure you already have Salt installed. You can install it like this:
 
 ```bash
 curl -L https://bootstrap.saltstack.com | sudo sh
 ```
 
-Our salt formula accept some parameters. If deploying through command line:
+Our salt formula accept some parameters. By default it should work out of the box in a Vagrant environment. The default values are setup like this:
+
+```yaml
+project_path: /vagrant
+project_username: vagrant
+proj_name: myproject
+domain_name: localhost
+```
+
+If deploying through command line, you can customize this values like this:
 
 ```bash
 cd your/directory/root/project
