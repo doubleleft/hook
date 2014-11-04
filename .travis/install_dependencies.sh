@@ -45,6 +45,6 @@ sudo chown -R www-data public/storage
 echo "127.0.0.1 hook.dev" | sudo tee --append /etc/hosts
 
 # create default app
-curl -XPOST http://hook-stuff.dev/hook/public/index.php/apps --data '{"app":{"name":"travis"}}' > tests/app.json
+curl -XPOST http://hook.dev/public/index.php/apps --data '{"app":{"name":"travis"}}' > tests/app.json
 
 echo "TRAVIS_PHP_VERSION: $TRAVIS_PHP_VERSION"
