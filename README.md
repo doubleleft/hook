@@ -54,7 +54,7 @@ If you are deploying inside vagrant itself through [vagrant-linode](https://gith
     salt.run_highstate = true
     salt.colorize = true
     salt.pillar({
-      "project_path" => "/srv/hook",
+      "project_path" => "/srv/www/hook",
       "project_username" => "ubuntu",
       "proj_name" => "hook",
       "domain_name" => "hook.mydomain.com"
