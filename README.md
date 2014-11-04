@@ -31,9 +31,7 @@ Type:
 vagrant up
 ```
 
-In order to deploy with Saltstack:
-
-Make sure you already have Salt installed. If not you can do it like this:
+In order to deploy in a production server with Saltstack, make sure you already have Salt installed. You can install it like this:
 
 ```bash
 curl -L https://bootstrap.saltstack.com | sudo sh
