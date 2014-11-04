@@ -1,11 +1,16 @@
 {% set user = salt['pillar.get']('project_username','vagrant') %}
+{% set www_root = salt['pillar.get']('project_path','/vagrant') %}
 
 git:
   pkg.installed
 
-git_https:
-  cmd.run: 
-    - name: git config --global url.ssh://git@github.com/.insteadOf https://github.com/
+git.config_set:
+  module.run:
+    - setting_name: url.https://.insteadOf
+    - setting_value: git://
     - user: {{ user }}
-    - require: 
+    - is_global: True
+    - cwd: {{ www_root }}
+    - require:
       - pkg: git
+

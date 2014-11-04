@@ -1,6 +1,6 @@
 {% set user = salt['pillar.get']('project_username','deploy') %}
 {% set proj_name = salt['pillar.get']('proj_name','myproject') %}
-{% set root = salt['pillar.get']('project_path','/vagrant') %}
+{% set www_root = salt['pillar.get']('project_path','/vagrant') %}
 {% set mysql_user = proj_name|replace('-','')|truncate(15) %}
 {% set mysql_db = mysql_user %}
 
@@ -13,7 +13,8 @@
 {% if not grains['host'] in ['ddll','staging','odesmistificador'] %}
 mysql:
   cmd.run:
-    - name: echo '{{ salt["grains.get_or_set_hash"]("mysql:root") }}' > /dev/null 2>&1
+    - name: salt-call -c salt grains.get_or_set_hash 'mysql:root'
+    - cwd: {{ www_root }}
 
   debconf.set:
     - name: mysql-server
@@ -47,7 +48,8 @@ python-mysqldb:
 
 dbconfig:
   cmd.run:
-    - name: echo "{{ salt['grains.get_or_set_hash']('' ~ mysql_db ~ ':' ~ mysql_user ~ '') }}" > /dev/null 2>&1
+    - name: salt-call -c salt grains.get_or_set_hash '{{ mysql_db }}:{{ mysql_user }}'
+    - cwd: {{ www_root }}
 
   mysql_user.present:
     - name: {{ mysql_user }}
