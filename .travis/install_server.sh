@@ -19,9 +19,9 @@ sudo service nginx restart
 
 # Print nginx configuration
 cat /etc/nginx/sites-available/default
-cat /etc/nginx/fastcgi_params
-echo "nginx error log:"
-cat /var/log/nginx/error.log
+
+echo "php-fpm config:"
+cat ~/.phpenv/versions/$(phpenv version-name)/etc/php-fpm.conf
 
 # apply server permissions
 sudo chown -R www-data $WORKING_DIR/shared
