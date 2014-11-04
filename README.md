@@ -1,5 +1,8 @@
-Welcome to hook ![Build status](https://travis-ci.org/doubleleft/hook.svg?branch=master)
+Welcome to hook
 ===
+
+![Build status](https://travis-ci.org/doubleleft/hook.svg?branch=master)
+[![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/doubleleft/hook?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 hook is a extendable Back-end as a Service (BaaS) that includes everything that you need
 to create the back-end of your application.
@@ -25,7 +28,7 @@ Clone [doubleleft/hook](https://github.com/doubleleft/hook.git) repository, in y
 
 Have a look in Vagrantfile and customize it for your needs.
 
-Type: 
+Type:
 
 ```bash
 vagrant up
