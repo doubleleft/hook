@@ -15,6 +15,9 @@ sudo sed -i -e"s/keepalive_timeout 2/keepalive_timeout 2;\n\tclient_max_body_siz
 cat ./.travis/nginx.conf | sed -e "s,%TRAVIS_BUILD_DIR%,`pwd`/public,g" | sudo tee /etc/nginx/sites-available/default > /dev/null
 sudo service nginx restart
 
+# Print nginx configuration
+cat /etc/nginx/sites-available/default
+
 # apply server permissions
 sudo chown -R www-data shared
 sudo chown -R www-data public/storage
@@ -24,3 +27,4 @@ echo "127.0.0.1 hook.dev" | sudo tee --append /etc/hosts
 
 # create default app
 curl -XPOST http://hook.dev/public/index.php/apps --data '{"app":{"name":"travis"}}' > tests/app.json
+cat tests/app.json
