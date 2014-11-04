@@ -5,6 +5,7 @@ sudo apt-get update -y -q
 sudo apt-get install nginx
 
 # enable php-fpm
+echo "cgi.fix_pathinfo = 1" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
 cp ~/.phpenv/versions/$(phpenv version-name)/etc/php-fpm.conf.default ~/.phpenv/versions/$(phpenv version-name)/etc/php-fpm.conf
 ~/.phpenv/versions/$(phpenv version-name)/sbin/php-fpm
 
