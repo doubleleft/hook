@@ -19,6 +19,7 @@ sudo service nginx restart
 
 # Print nginx configuration
 cat /etc/nginx/sites-available/default
+cat /etc/nginx/fastcgi_params
 
 # apply server permissions
 sudo chown -R www-data $WORKING_DIR/shared
