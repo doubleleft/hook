@@ -36,3 +36,6 @@ curl -XPOST http://hook.dev/public/index.php/apps --data '{"app":{"name":"testin
 # then create default app
 curl -XPOST http://hook.dev/public/index.php/apps --data '{"app":{"name":"travis"}}' > tests/app.json
 cat tests/app.json
+
+echo "nginx logs:"
+cat $WORKING_DIR/shared/logs.txt
