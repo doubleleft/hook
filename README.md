@@ -18,6 +18,50 @@ make
 To create and deploy hook apps, you'll need to clone and install
 [hook-cli](https://github.com/doubleleft/hook-cli.git) (Commandline Interface)
 
+Vagrant/Saltstack
+---
+
+Clone [doubleleft/hook](https://github.com/doubleleft/hook.git) repository, in your `/Projects` dir and cd into it.
+
+Have a look in Vagrantfile and customize it for your needs.
+
+Type: 
+
+```bash
+vagrant up
+```
+
+In order to deploy with Saltstack:
+
+Make sure you already have Salt installed. If not you could do it like this:
+
+```bash
+curl -L https://bootstrap.saltstack.com | sudo sh
+```
+
+Our salt formula accept some parameters. You could do like this if deploying through command line:
+
+```bash
+cd your/directory/root/project
+sudo salt-call -c salt state.highstate pillar='{project_path: your/directory/root/path, project_username: your-ssh-username, proj_name: hook, domain_name: hook.mydomain.com}'
+```
+
+If you are deploying through vagrant itself through [vagrant-linode](https://github.com/displague/vagrant-linode), [vagrant-digitalocean](https://github.com/smdahlen/vagrant-digitalocean) or [vagrant-aws](https://github.com/mitchellh/vagrant-aws) for example, you could fill the salt pillar arguments right into `Vagrantfile`, like this, for ex:
+
+```ruby
+  config.vm.provision :salt do |salt|
+    salt.minion_config = "salt/minion"
+    salt.run_highstate = true
+    salt.colorize = true
+    salt.pillar({
+      "project_path" => "/srv/hook",
+      "project_username" => "ubuntu",
+      "proj_name" => "hook",
+      "domain_name" => "hook.mydomain.com"
+    })
+  end
+```
+
 How to use
 ---
 

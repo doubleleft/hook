@@ -13,7 +13,7 @@
 {% if not grains['host'] in ['ddll','staging','odesmistificador'] %}
 mysql:
   cmd.run:
-    - name: salt-call -c salt grains.get_or_set_hash 'mysql:root'
+    - name: salt-call -c {{ salt['pillar.get']('master:config_dir','/etc/salt') }} grains.get_or_set_hash 'mysql:root'
     - cwd: {{ www_root }}
 
   debconf.set:
@@ -48,7 +48,7 @@ python-mysqldb:
 
 dbconfig:
   cmd.run:
-    - name: salt-call -c salt grains.get_or_set_hash '{{ mysql_db }}:{{ mysql_user }}'
+    - name: salt-call -c {{ salt['pillar.get']('master:config_dir','/etc/salt') }} grains.get_or_set_hash '{{ mysql_db }}:{{ mysql_user }}'
     - cwd: {{ www_root }}
 
   mysql_user.present:
