@@ -1,8 +1,3 @@
-{% set proj_name = salt['pillar.get']('proj_name','myproject') -%}
-{% set mysql_user = proj_name|replace('-','')|truncate(15) -%}
-{% set mysql_db = mysql_user -%}
-{% set mysql_pass = salt['grains.get']('' ~ mysql_db ~ ':' ~ mysql_user ~ '') -%}
-{% set mysql_host = salt['pillar.get']('master:mysql.host','localhost') -%}
 <?php
 
 return array(

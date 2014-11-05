@@ -1,5 +1,7 @@
-{% set user = salt['pillar.get']('project_username','vagrant') %}
+{% set proj_name = salt['pillar.get']('proj_name','myproject') %}
 {% set www_root = salt['pillar.get']('project_path','/vagrant') %}
+{% set user = salt['pillar.get']('project_username','vagrant') %}
+{% set serv_name = grains['id'] %}
 
 git:
   pkg.installed

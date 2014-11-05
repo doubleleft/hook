@@ -1,7 +1,9 @@
-{% set proj_name = salt['pillar.get']('proj_name','myproject') %}
-{% set www_root = salt['pillar.get']('project_path','/vagrant') %}
-{% set user = salt['pillar.get']('project_username','vagrant') %}
-{% set serv_name = grains['id'] %}
+{% import "base.sls" as base with context %}
+
+{% set mysql_user = base.proj_name|replace('-','')|truncate(15) -%}
+{% set mysql_db = mysql_user -%}
+{% set mysql_pass = salt['grains.get']('' ~ mysql_db ~ ':' ~ mysql_user ~ '') -%}
+{% set mysql_host = salt['pillar.get']('master:mysql.host','localhost') -%}
 
 hook-deps:
   pkg.installed:
@@ -15,39 +17,38 @@ hook-deps:
 get-composer:
   cmd.run:
     - name: 'CURL=`which curl`; $CURL -sS https://getcomposer.org/installer | php'
-    - unless: test -f {{ www_root }}/composer.phar
-    - cwd: {{ www_root }}
+    - unless: test -f {{ base.www_root }}/composer.phar
+    - cwd: {{ base.www_root }}
     - require:
       - pkg: hook-deps
 
-check-composer:
+composer-install:
   cmd.run:
     - name: php composer.phar self-update
-    - user: {{ user }}
-    - cwd: {{ www_root }}
+    - user: {{ base.user }}
+    - cwd: {{ base.www_root }}
     - require:
       - cmd: get-composer
       - pkg: hook-deps
     - onlyif: php composer.phar status | grep 'build of composer is over 30 days old' > /dev/null 2>&1 
 
-install-hook:
   composer.installed:
-    - name: {{ www_root }}
-    - composer: {{ www_root }}/composer.phar
+    - name: {{ base.www_root }}
+    - composer: {{ base.www_root }}/composer.phar
     - no_dev: true
     - prefer_dist: true
     - require: 
-      - cmd: get-composer
+      - cmd: composer-install
 
-{% if user != 'vagrant' %}
-{{ www_root }}/public/storage:
+{% if base.user != 'vagrant' %}
+{{ base.www_root }}/public/storage:
   file.directory:
     - user: www-data
     - group: www-data
     - mode: 775
     - makedirs: True
 
-{{ www_root }}/shared:
+{{ base.www_root }}/shared:
   file.directory:
     - user: {{ user }}
     - group: www-data
@@ -55,14 +56,16 @@ install-hook:
     - makedirs: True
 {% endif %}
 
-{{ www_root }}/config/database.php:
+{{ base.www_root }}/config/database.php:
   file.managed:
-    - source:
-      - salt://hook/database.php
-      - user: {{ user }}
-      - mode: 644
-      - backup: minion
+    - source: salt://hook/database.php
+    - user: {{ base.user }}
+    - context: 
+      mysql_host: {{ mysql_host }}
+      mysql_user: {{ mysql_user }}
+      mysql_pass: {{ mysql_pass }}
+      mysql_db: {{ mysql_db }}
     - template: jinja
     - require:
-      - composer: install-hook
+      - composer: composer-install
 
