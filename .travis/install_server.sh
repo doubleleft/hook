@@ -31,14 +31,11 @@ cat /etc/nginx/sites-available/default
 echo "127.0.0.1 hook.dev" | sudo tee --append /etc/hosts
 
 # output trying to create an app to check if API is responding
-curl -XPOST http://hook.dev/public/index.php/apps --data '{"app":{"name":"testing"}}'
+curl -XPOST http://hook.dev/index.php/apps --data '{"app":{"name":"testing"}}'
 
 # then create default app
-curl -XPOST http://hook.dev/public/index.php/apps --data '{"app":{"name":"travis"}}' > tests/app.json
+curl -XPOST http://hook.dev/index.php/apps --data '{"app":{"name":"travis"}}' > tests/app.json
 cat tests/app.json
-
-# debugging
-curl -XGET http://hook.dev/public/test.php
 
 echo "nginx logs:"
 cat $WORKING_DIR/shared/logs.txt
