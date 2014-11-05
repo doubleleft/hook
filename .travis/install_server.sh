@@ -24,9 +24,6 @@ sudo chown -R www-data $WORKING_DIR/public/storage
 
 sudo service nginx restart
 
-# Print nginx configuration
-cat /etc/nginx/sites-available/default
-
 # Configure custom domain
 echo "127.0.0.1 hook.dev" | sudo tee --append /etc/hosts
 
@@ -36,6 +33,3 @@ curl -XPOST http://hook.dev/index.php/apps --data '{"app":{"name":"testing"}}'
 # then create default app
 curl -XPOST http://hook.dev/index.php/apps --data '{"app":{"name":"travis"}}' > tests/app.json
 cat tests/app.json
-
-echo "nginx logs:"
-cat $WORKING_DIR/shared/logs.txt
