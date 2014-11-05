@@ -27,9 +27,6 @@ sudo service nginx restart
 # Print nginx configuration
 cat /etc/nginx/sites-available/default
 
-echo "php-fpm config:"
-cat ~/.phpenv/versions/$(phpenv version-name)/etc/php-fpm.conf
-
 # Configure custom domain
 echo "127.0.0.1 hook.dev" | sudo tee --append /etc/hosts
 
@@ -39,6 +36,9 @@ curl -XPOST http://hook.dev/public/index.php/apps --data '{"app":{"name":"testin
 # then create default app
 curl -XPOST http://hook.dev/public/index.php/apps --data '{"app":{"name":"travis"}}' > tests/app.json
 cat tests/app.json
+
+# debugging
+curl -XGET http://hook.dev/public/test.php
 
 echo "nginx logs:"
 cat $WORKING_DIR/shared/logs.txt
