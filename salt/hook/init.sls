@@ -1,9 +1,5 @@
 {% import "base.sls" as base with context %}
-
-{% set mysql_user = base.proj_name|replace('-','')|truncate(15) -%}
-{% set mysql_db = mysql_user -%}
-{% set mysql_pass = salt['grains.get']('' ~ mysql_db ~ ':' ~ mysql_user ~ '') -%}
-{% set mysql_host = salt['pillar.get']('master:mysql.host','localhost') -%}
+{% import "mysql.sls" as mysql with context %}
 
 hook-deps:
   pkg.installed:
@@ -61,10 +57,10 @@ composer-install:
     - source: salt://hook/database.php
     - user: {{ base.user }}
     - context: 
-      mysql_host: {{ mysql_host }}
-      mysql_user: {{ mysql_user }}
-      mysql_pass: {{ mysql_pass }}
-      mysql_db: {{ mysql_db }}
+      mysql_host: {{ mysql.mysql_host }}
+      mysql_user: {{ mysql.mysql_user }}
+      mysql_pass: {{ mysql.mysql_pass }}
+      mysql_db: {{ mysql.mysql_db }}
     - template: jinja
     - require:
       - composer: composer-install

@@ -2,12 +2,12 @@ base:
   '* and not gateway.doubleleft.com':
     - match: compound
     - mysql
-    - sites.template
+    - nginx.template
     - php_fpm
 
   '*':
     - base
-    - sites.template
+    - nginx.template
     - php_fpm
     - hook
     

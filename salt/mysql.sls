@@ -1,8 +1,9 @@
-{% set user = salt['pillar.get']('project_username','deploy') %}
-{% set proj_name = salt['pillar.get']('proj_name','myproject') %}
-{% set www_root = salt['pillar.get']('project_path','/vagrant') %}
-{% set mysql_user = proj_name|replace('-','')|truncate(15) %}
-{% set mysql_db = mysql_user %}
+{% import "base.sls" as base with context %}
+
+{% set mysql_user = base.proj_name|replace('-','')|truncate(15) -%}
+{% set mysql_db = mysql_user -%}
+{% set mysql_pass = salt['grains.get']('' ~ mysql_db ~ ':' ~ mysql_user ~ '') -%}
+{% set mysql_host = salt['pillar.get']('master:mysql.host','localhost') -%}
 
 {% if grains['host'] in ['odesmistificador'] %}
   {% set grants_ip = salt['network.interfaces']()['eth0']['inet'][0]['address'] %}
@@ -14,7 +15,7 @@
 mysql:
   cmd.run:
     - name: salt-call -c {{ salt['pillar.get']('master:config_dir','/etc/salt') }} grains.get_or_set_hash 'mysql:root'
-    - cwd: {{ www_root }}
+    - cwd: {{ base.www_root }}
 
   debconf.set:
     - name: mysql-server
@@ -49,7 +50,7 @@ python-mysqldb:
 dbconfig:
   cmd.run:
     - name: salt-call -c {{ salt['pillar.get']('master:config_dir','/etc/salt') }} grains.get_or_set_hash '{{ mysql_db }}:{{ mysql_user }}'
-    - cwd: {{ www_root }}
+    - cwd: {{ base.www_root }}
 
   mysql_user.present:
     - name: {{ mysql_user }}
