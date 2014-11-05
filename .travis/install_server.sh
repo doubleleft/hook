@@ -14,7 +14,7 @@ cp ~/.phpenv/versions/$(phpenv version-name)/etc/php-fpm.conf.default ~/.phpenv/
 sudo sed -i -e"s/user www-data;/user root;/" /etc/nginx/nginx.conf
 sudo sed -i -e"s/keepalive_timeout\s*65/keepalive_timeout 2/" /etc/nginx/nginx.conf
 sudo sed -i -e"s/keepalive_timeout 2/keepalive_timeout 2;\n\tclient_max_body_size 3m/" /etc/nginx/nginx.conf
-cat ./.travis/nginx.conf | sed -e "s,%TRAVIS_BUILD_DIR%,$WORKING_DIR/public,g" | sudo tee /etc/nginx/sites-available/default > /dev/null
+cat ./.travis/nginx.conf | sed -e "s,%TRAVIS_BUILD_DIR%,$WORKING_DIR,g" | sudo tee /etc/nginx/sites-available/default > /dev/null
 
 # apply server permissions
 mkdir -p $WORKING_DIR/shared
