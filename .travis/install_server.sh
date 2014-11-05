@@ -17,6 +17,8 @@ sudo sed -i -e"s/keepalive_timeout 2/keepalive_timeout 2;\n\tclient_max_body_siz
 cat ./.travis/nginx.conf | sed -e "s,%TRAVIS_BUILD_DIR%,$WORKING_DIR/public,g" | sudo tee /etc/nginx/sites-available/default > /dev/null
 
 # apply server permissions
+mkdir -p $WORKING_DIR/shared
+touch $WORKING_DIR/shared/logs.txt
 sudo chown -R www-data $WORKING_DIR/shared
 sudo chown -R www-data $WORKING_DIR/public/storage
 
