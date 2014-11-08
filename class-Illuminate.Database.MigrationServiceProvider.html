@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="generator" content="ApiGen 2.8.0" />
+
+	<title>Class Illuminate\Database\MigrationServiceProvider</title>
+
+	<script type="text/javascript" src="resources/combined.js?417754471"></script>
+	<script type="text/javascript" src="elementlist.js?721444666"></script>
+	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
+
+</head>
+
+<body>
+<div id="left">
+	<div id="menu">
+		<a href="index.html" title="Overview"><span>Overview</span></a>
+
+
+		<div id="groups">
+			<h3>Namespaces</h3>
+			<ul>
+				<li><a href="namespace-Hook.html">Hook<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Application.html">Application<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Application.Core.html">Core</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Hook.Auth.html">Auth<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Auth.Providers.html">Providers</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Hook.Cache.html">Cache</a>
+						</li>
+				<li><a href="namespace-Hook.Controllers.html">Controllers</a>
+						</li>
+				<li><a href="namespace-Hook.Database.html">Database<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Database.Schema.html">Schema<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Database.Schema.Grammars.html">Grammars</a>
+						</li>
+							</ul></li></ul></li>
+				<li><a href="namespace-Hook.Encryption.html">Encryption</a>
+						</li>
+				<li><a href="namespace-Hook.Exceptions.html">Exceptions</a>
+						</li>
+				<li><a href="namespace-Hook.Http.html">Http</a>
+						</li>
+				<li><a href="namespace-Hook.Logger.html">Logger</a>
+						</li>
+				<li><a href="namespace-Hook.Mailer.html">Mailer</a>
+						</li>
+				<li><a href="namespace-Hook.Middlewares.html">Middlewares</a>
+						</li>
+				<li><a href="namespace-Hook.Model.html">Model</a>
+						</li>
+				<li><a href="namespace-Hook.Package.html">Package</a>
+						</li>
+				<li><a href="namespace-Hook.Pagination.html">Pagination</a>
+						</li>
+				<li><a href="namespace-Hook.PushNotification.html">PushNotification<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.PushNotification.Services.html">Services</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Hook.Session.html">Session<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Session.Handlers.html">Handlers</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Hook.Storage.html">Storage<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Storage.Providers.html">Providers</a>
+						</li>
+							</ul></li></ul></li>
+				<li class="active"><a href="namespace-Illuminate.html">Illuminate<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Cache.html">Cache<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Cache.Console.html">Console</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Illuminate.Config.html">Config</a>
+						</li>
+				<li><a href="namespace-Illuminate.Container.html">Container</a>
+						</li>
+				<li class="active"><a href="namespace-Illuminate.Database.html">Database<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Database.Capsule.html">Capsule</a>
+						</li>
+				<li><a href="namespace-Illuminate.Database.Connectors.html">Connectors</a>
+						</li>
+				<li><a href="namespace-Illuminate.Database.Console.html">Console<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Database.Console.Migrations.html">Migrations</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Illuminate.Database.Eloquent.html">Eloquent<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Database.Eloquent.Relations.html">Relations</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Illuminate.Database.Migrations.html">Migrations</a>
+						</li>
+				<li><a href="namespace-Illuminate.Database.Query.html">Query<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Database.Query.Grammars.html">Grammars</a>
+						</li>
+				<li><a href="namespace-Illuminate.Database.Query.Processors.html">Processors</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Illuminate.Database.Schema.html">Schema<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Database.Schema.Grammars.html">Grammars</a>
+						</li>
+							</ul></li></ul></li>
+				<li><a href="namespace-Illuminate.Encryption.html">Encryption</a>
+						</li>
+				<li><a href="namespace-Illuminate.Events.html">Events</a>
+						</li>
+				<li><a href="namespace-Illuminate.Filesystem.html">Filesystem</a>
+						</li>
+				<li><a href="namespace-Illuminate.Support.html">Support<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Support.Contracts.html">Contracts</a>
+						</li>
+				<li><a href="namespace-Illuminate.Support.Facades.html">Facades</a>
+						</li>
+							</ul></li></ul></li>
+				<li><a href="namespace-None.html">None</a>
+						</li>
+				<li><a href="namespace-PHP.html">PHP</a>
+						</li>
+				<li><a href="namespace-Slim.html">Slim<span></span></a>
+						<ul>
+				<li><a href="namespace-Slim.Exception.html">Exception</a>
+						</li>
+				<li><a href="namespace-Slim.Helper.html">Helper</a>
+						</li>
+				<li><a href="namespace-Slim.Http.html">Http</a>
+						</li>
+				<li><a href="namespace-Slim.Middleware.html">Middleware</a>
+						</li>
+							</ul></li>
+			</ul>
+		</div>
+
+		<hr />
+
+
+		<div id="elements">
+			<h3>Classes</h3>
+			<ul>
+				<li><a href="class-Illuminate.Database.Connection.html">Connection</a></li>
+				<li><a href="class-Illuminate.Database.ConnectionResolver.html">ConnectionResolver</a></li>
+				<li><a href="class-Illuminate.Database.DatabaseManager.html">DatabaseManager</a></li>
+				<li><a href="class-Illuminate.Database.DatabaseServiceProvider.html">DatabaseServiceProvider</a></li>
+				<li><a href="class-Illuminate.Database.Grammar.html">Grammar</a></li>
+				<li class="active"><a href="class-Illuminate.Database.MigrationServiceProvider.html">MigrationServiceProvider</a></li>
+				<li><a href="class-Illuminate.Database.MySqlConnection.html">MySqlConnection</a></li>
+				<li><a href="class-Illuminate.Database.PostgresConnection.html">PostgresConnection</a></li>
+				<li><a href="class-Illuminate.Database.Seeder.html">Seeder</a></li>
+				<li><a href="class-Illuminate.Database.SeedServiceProvider.html">SeedServiceProvider</a></li>
+				<li><a href="class-Illuminate.Database.SQLiteConnection.html">SQLiteConnection</a></li>
+				<li><a href="class-Illuminate.Database.SqlServerConnection.html">SqlServerConnection</a></li>
+			</ul>
+
+			<h3>Interfaces</h3>
+			<ul>
+				<li><a href="class-Illuminate.Database.ConnectionInterface.html">ConnectionInterface</a></li>
+				<li><a href="class-Illuminate.Database.ConnectionResolverInterface.html">ConnectionResolverInterface</a></li>
+			</ul>
+
+
+			<h3>Exceptions</h3>
+			<ul>
+				<li><a href="class-Illuminate.Database.QueryException.html">QueryException</a></li>
+			</ul>
+
+
+		</div>
+	</div>
+</div>
+
+<div id="splitter"></div>
+
+<div id="right">
+<div id="rightInner">
+	<form id="search">
+		<input type="hidden" name="cx" value="" />
+		<input type="hidden" name="ie" value="UTF-8" />
+		<input type="text" name="q" class="text" />
+		<input type="submit" value="Search" />
+	</form>
+
+	<div id="navigation">
+		<ul>
+			<li>
+				<a href="index.html" title="Overview"><span>Overview</span></a>
+			</li>
+			<li>
+				<a href="namespace-Illuminate.Database.html" title="Summary of Illuminate\Database"><span>Namespace</span></a>
+			</li>
+			<li class="active">
+<span>Class</span>			</li>
+		</ul>
+		<ul>
+			<li>
+				<a href="tree.html" title="Tree view of classes, interfaces, traits and exceptions"><span>Tree</span></a>
+			</li>
+		</ul>
+		<ul>
+		</ul>
+	</div>
+
+<div id="content" class="class">
+	<h1>Class MigrationServiceProvider</h1>
+
+
+
+	<dl class="tree">
+		<dd style="padding-left:0px">
+			<a href="class-Illuminate.Support.ServiceProvider.html"><span>Illuminate\Support\ServiceProvider</span></a>
+			
+			
+			
+		</dd>
+		<dd style="padding-left:30px">
+			<img src="resources/inherit.png" alt="Extended by" />
+<b><span>Illuminate\Database\MigrationServiceProvider</span></b>			
+			
+			
+		</dd>
+	</dl>
+
+
+
+
+
+
+
+
+	<div class="info">
+		
+		
+		<b>Namespace:</b> <a href="namespace-Illuminate.html">Illuminate</a>\<a href="namespace-Illuminate.Database.html">Database</a><br />
+		
+
+		<b>Located at</b> <a href="source-class-Illuminate.Database.MigrationServiceProvider.html#14-207" title="Go to source code">database/Illuminate/Database/MigrationServiceProvider.php</a><br />
+	</div>
+
+
+
+	<table class="summary" id="methods">
+	<caption>Methods summary</caption>
+	<tr data-order="register" id="_register">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_register">#</a>
+		<code><a href="source-class-Illuminate.Database.MigrationServiceProvider.html#23-38" title="Go to source code">register</a>( )</code>
+
+		<div class="description short">
+			
+<p>Register the service provider.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Register the service provider.</p>
+
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="registerRepository" id="_registerRepository">
+
+		<td class="attributes"><code>
+			 protected 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_registerRepository">#</a>
+		<code><a href="source-class-Illuminate.Database.MigrationServiceProvider.html#40-53" title="Go to source code">registerRepository</a>( )</code>
+
+		<div class="description short">
+			
+<p>Register the migration repository service.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Register the migration repository service.</p>
+
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="registerMigrator" id="_registerMigrator">
+
+		<td class="attributes"><code>
+			 protected 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_registerMigrator">#</a>
+		<code><a href="source-class-Illuminate.Database.MigrationServiceProvider.html#55-71" title="Go to source code">registerMigrator</a>( )</code>
+
+		<div class="description short">
+			
+<p>Register the migrator service.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Register the migrator service.</p>
+
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="registerCommands" id="_registerCommands">
+
+		<td class="attributes"><code>
+			 protected 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_registerCommands">#</a>
+		<code><a href="source-class-Illuminate.Database.MigrationServiceProvider.html#73-98" title="Go to source code">registerCommands</a>( )</code>
+
+		<div class="description short">
+			
+<p>Register all of the migration commands.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Register all of the migration commands.</p>
+
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="registerMigrateCommand" id="_registerMigrateCommand">
+
+		<td class="attributes"><code>
+			 protected 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_registerMigrateCommand">#</a>
+		<code><a href="source-class-Illuminate.Database.MigrationServiceProvider.html#100-113" title="Go to source code">registerMigrateCommand</a>( )</code>
+
+		<div class="description short">
+			
+<p>Register the "migrate" migration command.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Register the "migrate" migration command.</p>
+
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="registerRollbackCommand" id="_registerRollbackCommand">
+
+		<td class="attributes"><code>
+			 protected 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_registerRollbackCommand">#</a>
+		<code><a href="source-class-Illuminate.Database.MigrationServiceProvider.html#115-126" title="Go to source code">registerRollbackCommand</a>( )</code>
+
+		<div class="description short">
+			
+<p>Register the "rollback" migration command.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Register the "rollback" migration command.</p>
+
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="registerResetCommand" id="_registerResetCommand">
+
+		<td class="attributes"><code>
+			 protected 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_registerResetCommand">#</a>
+		<code><a href="source-class-Illuminate.Database.MigrationServiceProvider.html#128-139" title="Go to source code">registerResetCommand</a>( )</code>
+
+		<div class="description short">
+			
+<p>Register the "reset" migration command.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Register the "reset" migration command.</p>
+
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="registerRefreshCommand" id="_registerRefreshCommand">
+
+		<td class="attributes"><code>
+			 protected 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_registerRefreshCommand">#</a>
+		<code><a href="source-class-Illuminate.Database.MigrationServiceProvider.html#141-152" title="Go to source code">registerRefreshCommand</a>( )</code>
+
+		<div class="description short">
+			
+<p>Register the "refresh" migration command.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Register the "refresh" migration command.</p>
+
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="registerInstallCommand" id="_registerInstallCommand">
+
+		<td class="attributes"><code>
+			 protected 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_registerInstallCommand">#</a>
+		<code><a href="source-class-Illuminate.Database.MigrationServiceProvider.html#154-165" title="Go to source code">registerInstallCommand</a>( )</code>
+
+		<div class="description short">
+			
+<p>Register the "install" migration command.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Register the "install" migration command.</p>
+
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="registerMakeCommand" id="_registerMakeCommand">
+
+		<td class="attributes"><code>
+			 protected 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_registerMakeCommand">#</a>
+		<code><a href="source-class-Illuminate.Database.MigrationServiceProvider.html#167-190" title="Go to source code">registerMakeCommand</a>( )</code>
+
+		<div class="description short">
+			
+<p>Register the "install" migration command.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Register the "install" migration command.</p>
+
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="provides" id="_provides">
+
+		<td class="attributes"><code>
+			 public 
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_provides">#</a>
+		<code><a href="source-class-Illuminate.Database.MigrationServiceProvider.html#192-205" title="Go to source code">provides</a>( )</code>
+
+		<div class="description short">
+			
+<p>Get the services provided by the provider.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get the services provided by the provider.</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array</code><br />
+				</div>
+
+
+
+				<h4>Overrides</h4>
+				<div class="list"><code><a href="class-Illuminate.Support.ServiceProvider.html#_provides">Illuminate\Support\ServiceProvider::provides()</a></code></div>
+
+		</div>
+		</div></td>
+	</tr>
+	</table>
+
+	<table class="summary inherited">
+	<caption>Methods inherited from <a href="class-Illuminate.Support.ServiceProvider.html#methods">Illuminate\Support\ServiceProvider</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-Illuminate.Support.ServiceProvider.html#___construct">__construct()</a>, 
+			<a href="class-Illuminate.Support.ServiceProvider.html#_boot">boot()</a>, 
+			<a href="class-Illuminate.Support.ServiceProvider.html#_commands">commands()</a>, 
+			<a href="class-Illuminate.Support.ServiceProvider.html#_getAppViewPath">getAppViewPath()</a>, 
+			<a href="class-Illuminate.Support.ServiceProvider.html#_getPackageNamespace">getPackageNamespace()</a>, 
+			<a href="class-Illuminate.Support.ServiceProvider.html#_guessPackagePath">guessPackagePath()</a>, 
+			<a href="class-Illuminate.Support.ServiceProvider.html#_isDeferred">isDeferred()</a>, 
+			<a href="class-Illuminate.Support.ServiceProvider.html#_package">package()</a>, 
+			<a href="class-Illuminate.Support.ServiceProvider.html#_when">when()</a>
+		</code></td>
+	</tr>
+	</table>
+
+
+
+
+
+
+
+
+
+
+
+	<table class="summary" id="properties">
+	<caption>Properties summary</caption>
+	<tr data-order="defer" id="$defer">
+		<td class="attributes"><code>
+			protected  
+			boolean
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Illuminate.Database.MigrationServiceProvider.html#16-21" title="Go to source code"><var>$defer</var></a>
+		</td>
+		<td class="value"><code><span class="php-keyword1">true</span></code></td>
+		<td class="description"><div>
+			<a href="#$defer" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>Indicates if loading of the provider is deferred.</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>Indicates if loading of the provider is deferred.</p>
+
+
+			</div>
+		</div></td>
+	</tr>
+	</table>
+
+	<table class="summary inherited">
+	<caption>Properties inherited from <a href="class-Illuminate.Support.ServiceProvider.html#properties">Illuminate\Support\ServiceProvider</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-Illuminate.Support.ServiceProvider.html#$app"><var>$app</var></a>
+		</code></td>
+	</tr>
+	</table>
+
+
+
+
+
+</div>
+
+	<div id="footer">
+		 API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
+	</div>
+</div>
+</div>
+</body>
+</html>

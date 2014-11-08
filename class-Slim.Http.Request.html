@@ -1,0 +1,2099 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="generator" content="ApiGen 2.8.0" />
+
+	<title>Class Slim\Http\Request</title>
+
+	<script type="text/javascript" src="resources/combined.js?417754471"></script>
+	<script type="text/javascript" src="elementlist.js?721444666"></script>
+	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
+
+</head>
+
+<body>
+<div id="left">
+	<div id="menu">
+		<a href="index.html" title="Overview"><span>Overview</span></a>
+
+
+		<div id="groups">
+			<h3>Namespaces</h3>
+			<ul>
+				<li><a href="namespace-Hook.html">Hook<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Application.html">Application<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Application.Core.html">Core</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Hook.Auth.html">Auth<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Auth.Providers.html">Providers</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Hook.Cache.html">Cache</a>
+						</li>
+				<li><a href="namespace-Hook.Controllers.html">Controllers</a>
+						</li>
+				<li><a href="namespace-Hook.Database.html">Database<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Database.Schema.html">Schema<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Database.Schema.Grammars.html">Grammars</a>
+						</li>
+							</ul></li></ul></li>
+				<li><a href="namespace-Hook.Encryption.html">Encryption</a>
+						</li>
+				<li><a href="namespace-Hook.Exceptions.html">Exceptions</a>
+						</li>
+				<li><a href="namespace-Hook.Http.html">Http</a>
+						</li>
+				<li><a href="namespace-Hook.Logger.html">Logger</a>
+						</li>
+				<li><a href="namespace-Hook.Mailer.html">Mailer</a>
+						</li>
+				<li><a href="namespace-Hook.Middlewares.html">Middlewares</a>
+						</li>
+				<li><a href="namespace-Hook.Model.html">Model</a>
+						</li>
+				<li><a href="namespace-Hook.Package.html">Package</a>
+						</li>
+				<li><a href="namespace-Hook.Pagination.html">Pagination</a>
+						</li>
+				<li><a href="namespace-Hook.PushNotification.html">PushNotification<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.PushNotification.Services.html">Services</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Hook.Session.html">Session<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Session.Handlers.html">Handlers</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Hook.Storage.html">Storage<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Storage.Providers.html">Providers</a>
+						</li>
+							</ul></li></ul></li>
+				<li><a href="namespace-Illuminate.html">Illuminate<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Cache.html">Cache<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Cache.Console.html">Console</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Illuminate.Config.html">Config</a>
+						</li>
+				<li><a href="namespace-Illuminate.Container.html">Container</a>
+						</li>
+				<li><a href="namespace-Illuminate.Database.html">Database<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Database.Capsule.html">Capsule</a>
+						</li>
+				<li><a href="namespace-Illuminate.Database.Connectors.html">Connectors</a>
+						</li>
+				<li><a href="namespace-Illuminate.Database.Console.html">Console<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Database.Console.Migrations.html">Migrations</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Illuminate.Database.Eloquent.html">Eloquent<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Database.Eloquent.Relations.html">Relations</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Illuminate.Database.Migrations.html">Migrations</a>
+						</li>
+				<li><a href="namespace-Illuminate.Database.Query.html">Query<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Database.Query.Grammars.html">Grammars</a>
+						</li>
+				<li><a href="namespace-Illuminate.Database.Query.Processors.html">Processors</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Illuminate.Database.Schema.html">Schema<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Database.Schema.Grammars.html">Grammars</a>
+						</li>
+							</ul></li></ul></li>
+				<li><a href="namespace-Illuminate.Encryption.html">Encryption</a>
+						</li>
+				<li><a href="namespace-Illuminate.Events.html">Events</a>
+						</li>
+				<li><a href="namespace-Illuminate.Filesystem.html">Filesystem</a>
+						</li>
+				<li><a href="namespace-Illuminate.Support.html">Support<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Support.Contracts.html">Contracts</a>
+						</li>
+				<li><a href="namespace-Illuminate.Support.Facades.html">Facades</a>
+						</li>
+							</ul></li></ul></li>
+				<li><a href="namespace-None.html">None</a>
+						</li>
+				<li><a href="namespace-PHP.html">PHP</a>
+						</li>
+				<li class="active"><a href="namespace-Slim.html">Slim<span></span></a>
+						<ul>
+				<li><a href="namespace-Slim.Exception.html">Exception</a>
+						</li>
+				<li><a href="namespace-Slim.Helper.html">Helper</a>
+						</li>
+				<li class="active"><a href="namespace-Slim.Http.html">Http</a>
+						</li>
+				<li><a href="namespace-Slim.Middleware.html">Middleware</a>
+						</li>
+							</ul></li>
+			</ul>
+		</div>
+
+		<hr />
+
+
+		<div id="elements">
+			<h3>Classes</h3>
+			<ul>
+				<li><a href="class-Slim.Http.Cookies.html">Cookies</a></li>
+				<li><a href="class-Slim.Http.Headers.html">Headers</a></li>
+				<li class="active"><a href="class-Slim.Http.Request.html">Request</a></li>
+				<li><a href="class-Slim.Http.Response.html">Response</a></li>
+				<li><a href="class-Slim.Http.Util.html">Util</a></li>
+			</ul>
+
+
+
+
+
+		</div>
+	</div>
+</div>
+
+<div id="splitter"></div>
+
+<div id="right">
+<div id="rightInner">
+	<form id="search">
+		<input type="hidden" name="cx" value="" />
+		<input type="hidden" name="ie" value="UTF-8" />
+		<input type="text" name="q" class="text" />
+		<input type="submit" value="Search" />
+	</form>
+
+	<div id="navigation">
+		<ul>
+			<li>
+				<a href="index.html" title="Overview"><span>Overview</span></a>
+			</li>
+			<li>
+				<a href="namespace-Slim.Http.html" title="Summary of Slim\Http"><span>Namespace</span></a>
+			</li>
+			<li class="active">
+<span>Class</span>			</li>
+		</ul>
+		<ul>
+			<li>
+				<a href="tree.html" title="Tree view of classes, interfaces, traits and exceptions"><span>Tree</span></a>
+			</li>
+		</ul>
+		<ul>
+		</ul>
+	</div>
+
+<div id="content" class="class">
+	<h1>Class Request</h1>
+
+
+	<div class="description">
+	
+<p>Slim HTTP Request</p>
+
+<p>This class provides a human-friendly interface to the Slim environment
+variables; environment variables are passed by reference and will be modified
+directly.</p>
+
+	</div>
+
+
+
+
+
+
+
+
+
+	<div class="info">
+		
+		
+		<b>Namespace:</b> <a href="namespace-Slim.html">Slim</a>\<a href="namespace-Slim.Http.html">Http</a><br />
+		<b>Package:</b> Slim<br />
+
+				<b>Author:</b>
+				Josh Lockhart<br />
+				<b>Since:</b>
+				1.0.0<br />
+		<b>Located at</b> <a href="source-class-Slim.Http.Request.html#35-617" title="Go to source code">Http/Request.php</a><br />
+	</div>
+
+
+
+	<table class="summary" id="methods">
+	<caption>Methods summary</caption>
+	<tr data-order="__construct" id="___construct">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#___construct">#</a>
+		<code><a href="source-class-Slim.Http.Request.html#79-88" title="Go to source code">__construct</a>( <span><code><a href="class-Slim.Environment.html">Slim\Environment</a></code> <var>$env</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Constructor</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Constructor</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$env</var></dt>
+					<dd><code><code><a href="class-Slim.Environment.html">Slim\Environment</a></code></code><br>$env</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getMethod" id="_getMethod">
+
+		<td class="attributes"><code>
+			 public 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getMethod">#</a>
+		<code><a href="source-class-Slim.Http.Request.html#90-97" title="Go to source code">getMethod</a>( )</code>
+
+		<div class="description short">
+			
+<p>Get HTTP method</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get HTTP method</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="isGet" id="_isGet">
+
+		<td class="attributes"><code>
+			 public 
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_isGet">#</a>
+		<code><a href="source-class-Slim.Http.Request.html#99-106" title="Go to source code">isGet</a>( )</code>
+
+		<div class="description short">
+			
+<p>Is this a GET request?</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Is this a GET request?</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="isPost" id="_isPost">
+
+		<td class="attributes"><code>
+			 public 
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_isPost">#</a>
+		<code><a href="source-class-Slim.Http.Request.html#108-115" title="Go to source code">isPost</a>( )</code>
+
+		<div class="description short">
+			
+<p>Is this a POST request?</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Is this a POST request?</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="isPut" id="_isPut">
+
+		<td class="attributes"><code>
+			 public 
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_isPut">#</a>
+		<code><a href="source-class-Slim.Http.Request.html#117-124" title="Go to source code">isPut</a>( )</code>
+
+		<div class="description short">
+			
+<p>Is this a PUT request?</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Is this a PUT request?</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="isPatch" id="_isPatch">
+
+		<td class="attributes"><code>
+			 public 
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_isPatch">#</a>
+		<code><a href="source-class-Slim.Http.Request.html#126-133" title="Go to source code">isPatch</a>( )</code>
+
+		<div class="description short">
+			
+<p>Is this a PATCH request?</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Is this a PATCH request?</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="isDelete" id="_isDelete">
+
+		<td class="attributes"><code>
+			 public 
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_isDelete">#</a>
+		<code><a href="source-class-Slim.Http.Request.html#135-142" title="Go to source code">isDelete</a>( )</code>
+
+		<div class="description short">
+			
+<p>Is this a DELETE request?</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Is this a DELETE request?</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="isHead" id="_isHead">
+
+		<td class="attributes"><code>
+			 public 
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_isHead">#</a>
+		<code><a href="source-class-Slim.Http.Request.html#144-151" title="Go to source code">isHead</a>( )</code>
+
+		<div class="description short">
+			
+<p>Is this a HEAD request?</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Is this a HEAD request?</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="isOptions" id="_isOptions">
+
+		<td class="attributes"><code>
+			 public 
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_isOptions">#</a>
+		<code><a href="source-class-Slim.Http.Request.html#153-160" title="Go to source code">isOptions</a>( )</code>
+
+		<div class="description short">
+			
+<p>Is this a OPTIONS request?</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Is this a OPTIONS request?</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="isAjax" id="_isAjax">
+
+		<td class="attributes"><code>
+			 public 
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_isAjax">#</a>
+		<code><a href="source-class-Slim.Http.Request.html#162-175" title="Go to source code">isAjax</a>( )</code>
+
+		<div class="description short">
+			
+<p>Is this an AJAX request?</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Is this an AJAX request?</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="isXhr" id="_isXhr">
+
+		<td class="attributes"><code>
+			 public 
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_isXhr">#</a>
+		<code><a href="source-class-Slim.Http.Request.html#177-184" title="Go to source code">isXhr</a>( )</code>
+
+		<div class="description short">
+			
+<p>Is this an XHR request? (alias of Slim_Http_Request::isAjax)</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Is this an XHR request? (alias of Slim_Http_Request::isAjax)</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="params" id="_params">
+
+		<td class="attributes"><code>
+			 public 
+			array|mixed|null
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_params">#</a>
+		<code><a href="source-class-Slim.Http.Request.html#186-205" title="Go to source code">params</a>( <span>string <var>$key</var> = <span class="php-keyword1">null</span></span>, <span>mixed <var>$default</var> = <span class="php-keyword1">null</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Fetch GET and POST data</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Fetch GET and POST data</p>
+
+<p>This method returns a union of GET and POST data as a key-value array, or the
+value of the array key if requested; if the array key does not exist, NULL is
+returned, unless there is a default value specified.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$key</var></dt>
+					<dd><code>string</code><br>$key</dd>
+					<dt><var>$default</var></dt>
+					<dd><code>mixed</code><br>$default</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array|mixed|null</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="get" id="_get">
+
+		<td class="attributes"><code>
+			 public 
+			array|mixed|null
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_get">#</a>
+		<code><a href="source-class-Slim.Http.Request.html#207-237" title="Go to source code">get</a>( <span>string <var>$key</var> = <span class="php-keyword1">null</span></span>, <span>mixed <var>$default</var> = <span class="php-keyword1">null</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Fetch GET data</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Fetch GET data</p>
+
+<p>This method returns a key-value array of data sent in the HTTP request query
+string, or the value of the array key if requested; if the array key does not
+exist, NULL is returned.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$key</var></dt>
+					<dd><code>string</code><br>$key</dd>
+					<dt><var>$default</var></dt>
+					<dd><code>mixed</code><br>$default Default return value when key does not exist</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array|mixed|null</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="post" id="_post">
+
+		<td class="attributes"><code>
+			 public 
+			array|mixed|null
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_post">#</a>
+		<code><a href="source-class-Slim.Http.Request.html#239-278" title="Go to source code">post</a>( <span>string <var>$key</var> = <span class="php-keyword1">null</span></span>, <span>mixed <var>$default</var> = <span class="php-keyword1">null</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Fetch POST data</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Fetch POST data</p>
+
+<p>This method returns a key-value array of data sent in the HTTP request body,
+or the value of a hash key if requested; if the array key does not exist, NULL
+is returned.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$key</var></dt>
+					<dd><code>string</code><br>$key</dd>
+					<dt><var>$default</var></dt>
+					<dd><code>mixed</code><br>$default Default return value when key does not exist</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array|mixed|null</code><br />
+				</div>
+
+				<h4>Throws</h4>
+				<div class="list">
+					<code><code><a href="class-RuntimeException.html">RuntimeException</a></code></code><br>If environment input is not available<br />
+				</div>
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="put" id="_put">
+
+		<td class="attributes"><code>
+			 public 
+			array|mixed|null
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_put">#</a>
+		<code><a href="source-class-Slim.Http.Request.html#280-289" title="Go to source code">put</a>( <span>string <var>$key</var> = <span class="php-keyword1">null</span></span>, <span>mixed <var>$default</var> = <span class="php-keyword1">null</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Fetch PUT data (alias for \Slim\Http\Request::post)</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Fetch PUT data (alias for \Slim\Http\Request::post)</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$key</var></dt>
+					<dd><code>string</code><br>$key</dd>
+					<dt><var>$default</var></dt>
+					<dd><code>mixed</code><br>$default Default return value when key does not exist</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array|mixed|null</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="patch" id="_patch">
+
+		<td class="attributes"><code>
+			 public 
+			array|mixed|null
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_patch">#</a>
+		<code><a href="source-class-Slim.Http.Request.html#291-300" title="Go to source code">patch</a>( <span>string <var>$key</var> = <span class="php-keyword1">null</span></span>, <span>mixed <var>$default</var> = <span class="php-keyword1">null</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Fetch PATCH data (alias for \Slim\Http\Request::post)</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Fetch PATCH data (alias for \Slim\Http\Request::post)</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$key</var></dt>
+					<dd><code>string</code><br>$key</dd>
+					<dt><var>$default</var></dt>
+					<dd><code>mixed</code><br>$default Default return value when key does not exist</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array|mixed|null</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="delete" id="_delete">
+
+		<td class="attributes"><code>
+			 public 
+			array|mixed|null
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_delete">#</a>
+		<code><a href="source-class-Slim.Http.Request.html#302-311" title="Go to source code">delete</a>( <span>string <var>$key</var> = <span class="php-keyword1">null</span></span>, <span>mixed <var>$default</var> = <span class="php-keyword1">null</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Fetch DELETE data (alias for \Slim\Http\Request::post)</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Fetch DELETE data (alias for \Slim\Http\Request::post)</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$key</var></dt>
+					<dd><code>string</code><br>$key</dd>
+					<dt><var>$default</var></dt>
+					<dd><code>mixed</code><br>$default Default return value when key does not exist</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array|mixed|null</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="cookies" id="_cookies">
+
+		<td class="attributes"><code>
+			 public 
+			array|string|null
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_cookies">#</a>
+		<code><a href="source-class-Slim.Http.Request.html#313-342" title="Go to source code">cookies</a>( <span>string <var>$key</var> = <span class="php-keyword1">null</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Fetch COOKIE data</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Fetch COOKIE data</p>
+
+<p>This method returns a key-value array of Cookie data sent in the HTTP
+request, or the value of a array key if requested; if the array key does not
+exist, NULL is returned.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$key</var></dt>
+					<dd><code>string</code><br>$key</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array|string|null</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="isFormData" id="_isFormData">
+
+		<td class="attributes"><code>
+			 public 
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_isFormData">#</a>
+		<code><a href="source-class-Slim.Http.Request.html#344-353" title="Go to source code">isFormData</a>( )</code>
+
+		<div class="description short">
+			
+<p>Does the Request body contain parsed form data?</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Does the Request body contain parsed form data?</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="headers" id="_headers">
+
+		<td class="attributes"><code>
+			 public 
+			mixed
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_headers">#</a>
+		<code><a href="source-class-Slim.Http.Request.html#355-391" title="Go to source code">headers</a>( <span>string <var>$key</var> = <span class="php-keyword1">null</span></span>, <span>mixed <var>$default</var> = <span class="php-keyword1">null</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Get Headers</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get Headers</p>
+
+<p>This method returns a key-value array of headers sent in the HTTP request, or
+the value of a hash key if requested; if the array key does not exist, NULL is
+returned.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$key</var></dt>
+					<dd><code>string</code><br>$key</dd>
+					<dt><var>$default</var></dt>
+					<dd><code>mixed</code><br>$default The default value returned if the requested header is not available</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>mixed</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getBody" id="_getBody">
+
+		<td class="attributes"><code>
+			 public 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getBody">#</a>
+		<code><a href="source-class-Slim.Http.Request.html#393-400" title="Go to source code">getBody</a>( )</code>
+
+		<div class="description short">
+			
+<p>Get Body</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get Body</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getContentType" id="_getContentType">
+
+		<td class="attributes"><code>
+			 public 
+			string|null
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getContentType">#</a>
+		<code><a href="source-class-Slim.Http.Request.html#402-409" title="Go to source code">getContentType</a>( )</code>
+
+		<div class="description short">
+			
+<p>Get Content Type</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get Content Type</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string|null</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getMediaType" id="_getMediaType">
+
+		<td class="attributes"><code>
+			 public 
+			string|null
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getMediaType">#</a>
+		<code><a href="source-class-Slim.Http.Request.html#411-425" title="Go to source code">getMediaType</a>( )</code>
+
+		<div class="description short">
+			
+<p>Get Media Type (type/subtype within Content Type header)</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get Media Type (type/subtype within Content Type header)</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string|null</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getMediaTypeParams" id="_getMediaTypeParams">
+
+		<td class="attributes"><code>
+			 public 
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getMediaTypeParams">#</a>
+		<code><a href="source-class-Slim.Http.Request.html#427-445" title="Go to source code">getMediaTypeParams</a>( )</code>
+
+		<div class="description short">
+			
+<p>Get Media Type Params</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get Media Type Params</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getContentCharset" id="_getContentCharset">
+
+		<td class="attributes"><code>
+			 public 
+			string|null
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getContentCharset">#</a>
+		<code><a href="source-class-Slim.Http.Request.html#447-459" title="Go to source code">getContentCharset</a>( )</code>
+
+		<div class="description short">
+			
+<p>Get Content Charset</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get Content Charset</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string|null</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getContentLength" id="_getContentLength">
+
+		<td class="attributes"><code>
+			 public 
+			integer
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getContentLength">#</a>
+		<code><a href="source-class-Slim.Http.Request.html#461-468" title="Go to source code">getContentLength</a>( )</code>
+
+		<div class="description short">
+			
+<p>Get Content-Length</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get Content-Length</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>integer</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getHost" id="_getHost">
+
+		<td class="attributes"><code>
+			 public 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getHost">#</a>
+		<code><a href="source-class-Slim.Http.Request.html#470-487" title="Go to source code">getHost</a>( )</code>
+
+		<div class="description short">
+			
+<p>Get Host</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get Host</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getHostWithPort" id="_getHostWithPort">
+
+		<td class="attributes"><code>
+			 public 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getHostWithPort">#</a>
+		<code><a href="source-class-Slim.Http.Request.html#489-496" title="Go to source code">getHostWithPort</a>( )</code>
+
+		<div class="description short">
+			
+<p>Get Host with Port</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get Host with Port</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getPort" id="_getPort">
+
+		<td class="attributes"><code>
+			 public 
+			integer
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getPort">#</a>
+		<code><a href="source-class-Slim.Http.Request.html#498-505" title="Go to source code">getPort</a>( )</code>
+
+		<div class="description short">
+			
+<p>Get Port</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get Port</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>integer</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getScheme" id="_getScheme">
+
+		<td class="attributes"><code>
+			 public 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getScheme">#</a>
+		<code><a href="source-class-Slim.Http.Request.html#507-514" title="Go to source code">getScheme</a>( )</code>
+
+		<div class="description short">
+			
+<p>Get Scheme (https or http)</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get Scheme (https or http)</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getScriptName" id="_getScriptName">
+
+		<td class="attributes"><code>
+			 public 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getScriptName">#</a>
+		<code><a href="source-class-Slim.Http.Request.html#516-523" title="Go to source code">getScriptName</a>( )</code>
+
+		<div class="description short">
+			
+<p>Get Script Name (physical path)</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get Script Name (physical path)</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getRootUri" id="_getRootUri">
+
+		<td class="attributes"><code>
+			 public 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getRootUri">#</a>
+		<code><a href="source-class-Slim.Http.Request.html#525-532" title="Go to source code">getRootUri</a>( )</code>
+
+		<div class="description short">
+			
+<p>LEGACY: Get Root URI (alias for Slim_Http_Request::getScriptName)</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>LEGACY: Get Root URI (alias for Slim_Http_Request::getScriptName)</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getPath" id="_getPath">
+
+		<td class="attributes"><code>
+			 public 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getPath">#</a>
+		<code><a href="source-class-Slim.Http.Request.html#534-541" title="Go to source code">getPath</a>( )</code>
+
+		<div class="description short">
+			
+<p>Get Path (physical path + virtual path)</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get Path (physical path + virtual path)</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getPathInfo" id="_getPathInfo">
+
+		<td class="attributes"><code>
+			 public 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getPathInfo">#</a>
+		<code><a href="source-class-Slim.Http.Request.html#543-550" title="Go to source code">getPathInfo</a>( )</code>
+
+		<div class="description short">
+			
+<p>Get Path Info (virtual path)</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get Path Info (virtual path)</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getResourceUri" id="_getResourceUri">
+
+		<td class="attributes"><code>
+			 public 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getResourceUri">#</a>
+		<code><a href="source-class-Slim.Http.Request.html#552-559" title="Go to source code">getResourceUri</a>( )</code>
+
+		<div class="description short">
+			
+<p>LEGACY: Get Resource URI (alias for Slim_Http_Request::getPathInfo)</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>LEGACY: Get Resource URI (alias for Slim_Http_Request::getPathInfo)</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getUrl" id="_getUrl">
+
+		<td class="attributes"><code>
+			 public 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getUrl">#</a>
+		<code><a href="source-class-Slim.Http.Request.html#561-573" title="Go to source code">getUrl</a>( )</code>
+
+		<div class="description short">
+			
+<p>Get URL (scheme + host [ + port if non-standard ])</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get URL (scheme + host [ + port if non-standard ])</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getIp" id="_getIp">
+
+		<td class="attributes"><code>
+			 public 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getIp">#</a>
+		<code><a href="source-class-Slim.Http.Request.html#575-589" title="Go to source code">getIp</a>( )</code>
+
+		<div class="description short">
+			
+<p>Get IP</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get IP</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getReferrer" id="_getReferrer">
+
+		<td class="attributes"><code>
+			 public 
+			string|null
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getReferrer">#</a>
+		<code><a href="source-class-Slim.Http.Request.html#591-598" title="Go to source code">getReferrer</a>( )</code>
+
+		<div class="description short">
+			
+<p>Get Referrer</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get Referrer</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string|null</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getReferer" id="_getReferer">
+
+		<td class="attributes"><code>
+			 public 
+			string|null
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getReferer">#</a>
+		<code><a href="source-class-Slim.Http.Request.html#600-607" title="Go to source code">getReferer</a>( )</code>
+
+		<div class="description short">
+			
+<p>Get Referer (for those who can't spell)</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get Referer (for those who can't spell)</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string|null</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getUserAgent" id="_getUserAgent">
+
+		<td class="attributes"><code>
+			 public 
+			string|null
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getUserAgent">#</a>
+		<code><a href="source-class-Slim.Http.Request.html#609-616" title="Go to source code">getUserAgent</a>( )</code>
+
+		<div class="description short">
+			
+<p>Get User Agent</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get User Agent</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string|null</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	</table>
+
+
+
+
+
+
+
+
+	<table class="summary" id="constants">
+	<caption>Constants summary</caption>
+	<tr data-order="METHOD_HEAD" id="METHOD_HEAD">
+
+		<td class="attributes"><code>string</code></td>
+		<td class="name"><code>
+				<a href="source-class-Slim.Http.Request.html#47" title="Go to source code"><b>METHOD_HEAD</b></a>
+		</code></td>
+		<td class="value"><code><span class="php-quote">'HEAD'</span></code></td>
+		<td class="description"><div>
+			<a href="#METHOD_HEAD" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="METHOD_GET" id="METHOD_GET">
+
+		<td class="attributes"><code>string</code></td>
+		<td class="name"><code>
+				<a href="source-class-Slim.Http.Request.html#48" title="Go to source code"><b>METHOD_GET</b></a>
+		</code></td>
+		<td class="value"><code><span class="php-quote">'GET'</span></code></td>
+		<td class="description"><div>
+			<a href="#METHOD_GET" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="METHOD_POST" id="METHOD_POST">
+
+		<td class="attributes"><code>string</code></td>
+		<td class="name"><code>
+				<a href="source-class-Slim.Http.Request.html#49" title="Go to source code"><b>METHOD_POST</b></a>
+		</code></td>
+		<td class="value"><code><span class="php-quote">'POST'</span></code></td>
+		<td class="description"><div>
+			<a href="#METHOD_POST" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="METHOD_PUT" id="METHOD_PUT">
+
+		<td class="attributes"><code>string</code></td>
+		<td class="name"><code>
+				<a href="source-class-Slim.Http.Request.html#50" title="Go to source code"><b>METHOD_PUT</b></a>
+		</code></td>
+		<td class="value"><code><span class="php-quote">'PUT'</span></code></td>
+		<td class="description"><div>
+			<a href="#METHOD_PUT" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="METHOD_PATCH" id="METHOD_PATCH">
+
+		<td class="attributes"><code>string</code></td>
+		<td class="name"><code>
+				<a href="source-class-Slim.Http.Request.html#51" title="Go to source code"><b>METHOD_PATCH</b></a>
+		</code></td>
+		<td class="value"><code><span class="php-quote">'PATCH'</span></code></td>
+		<td class="description"><div>
+			<a href="#METHOD_PATCH" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="METHOD_DELETE" id="METHOD_DELETE">
+
+		<td class="attributes"><code>string</code></td>
+		<td class="name"><code>
+				<a href="source-class-Slim.Http.Request.html#52" title="Go to source code"><b>METHOD_DELETE</b></a>
+		</code></td>
+		<td class="value"><code><span class="php-quote">'DELETE'</span></code></td>
+		<td class="description"><div>
+			<a href="#METHOD_DELETE" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="METHOD_OPTIONS" id="METHOD_OPTIONS">
+
+		<td class="attributes"><code>string</code></td>
+		<td class="name"><code>
+				<a href="source-class-Slim.Http.Request.html#53" title="Go to source code"><b>METHOD_OPTIONS</b></a>
+		</code></td>
+		<td class="value"><code><span class="php-quote">'OPTIONS'</span></code></td>
+		<td class="description"><div>
+			<a href="#METHOD_OPTIONS" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="METHOD_OVERRIDE" id="METHOD_OVERRIDE">
+
+		<td class="attributes"><code>string</code></td>
+		<td class="name"><code>
+				<a href="source-class-Slim.Http.Request.html#54" title="Go to source code"><b>METHOD_OVERRIDE</b></a>
+		</code></td>
+		<td class="value"><code><span class="php-quote">'_METHOD'</span></code></td>
+		<td class="description"><div>
+			<a href="#METHOD_OVERRIDE" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	</table>
+
+
+
+
+	<table class="summary" id="properties">
+	<caption>Properties summary</caption>
+	<tr data-order="formDataMediaTypes" id="$formDataMediaTypes">
+		<td class="attributes"><code>
+			protected static 
+			array
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Slim.Http.Request.html#56-59" title="Go to source code"><var>$formDataMediaTypes</var></a>
+		</td>
+		<td class="value"><code><span class="php-keyword1">array</span>(<span class="php-quote">'application/x-www-form-urlencoded'</span>)</code></td>
+		<td class="description"><div>
+			<a href="#$formDataMediaTypes" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="env" id="$env">
+		<td class="attributes"><code>
+			protected  
+			<code><a href="class-Slim.Environment.html">Slim\Environment</a></code>
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Slim.Http.Request.html#61-65" title="Go to source code"><var>$env</var></a>
+		</td>
+		<td class="value"><code></code></td>
+		<td class="description"><div>
+			<a href="#$env" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>Application Environment</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>Application Environment</p>
+
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="headers" id="$headers">
+		<td class="attributes"><code>
+			public  
+			<code><a href="class-Slim.Http.Headers.html">Slim\Http\Headers</a></code>
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Slim.Http.Request.html#67-71" title="Go to source code"><var>$headers</var></a>
+		</td>
+		<td class="value"><code></code></td>
+		<td class="description"><div>
+			<a href="#$headers" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>HTTP Headers</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>HTTP Headers</p>
+
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="cookies" id="$cookies">
+		<td class="attributes"><code>
+			public  
+			<code><a href="class-Slim.Helper.Set.html">Slim\Helper\Set</a></code>
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Slim.Http.Request.html#73-77" title="Go to source code"><var>$cookies</var></a>
+		</td>
+		<td class="value"><code></code></td>
+		<td class="description"><div>
+			<a href="#$cookies" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>HTTP Cookies</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>HTTP Cookies</p>
+
+
+			</div>
+		</div></td>
+	</tr>
+	</table>
+
+
+
+
+
+
+</div>
+
+	<div id="footer">
+		 API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
+	</div>
+</div>
+</div>
+</body>
+</html>

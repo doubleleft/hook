@@ -1,0 +1,1150 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="generator" content="ApiGen 2.8.0" />
+
+	<title>Class Hook\Database\CollectionDelegator</title>
+
+	<script type="text/javascript" src="resources/combined.js?417754471"></script>
+	<script type="text/javascript" src="elementlist.js?721444666"></script>
+	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
+
+</head>
+
+<body>
+<div id="left">
+	<div id="menu">
+		<a href="index.html" title="Overview"><span>Overview</span></a>
+
+
+		<div id="groups">
+			<h3>Namespaces</h3>
+			<ul>
+				<li class="active"><a href="namespace-Hook.html">Hook<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Application.html">Application<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Application.Core.html">Core</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Hook.Auth.html">Auth<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Auth.Providers.html">Providers</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Hook.Cache.html">Cache</a>
+						</li>
+				<li><a href="namespace-Hook.Controllers.html">Controllers</a>
+						</li>
+				<li class="active"><a href="namespace-Hook.Database.html">Database<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Database.Schema.html">Schema<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Database.Schema.Grammars.html">Grammars</a>
+						</li>
+							</ul></li></ul></li>
+				<li><a href="namespace-Hook.Encryption.html">Encryption</a>
+						</li>
+				<li><a href="namespace-Hook.Exceptions.html">Exceptions</a>
+						</li>
+				<li><a href="namespace-Hook.Http.html">Http</a>
+						</li>
+				<li><a href="namespace-Hook.Logger.html">Logger</a>
+						</li>
+				<li><a href="namespace-Hook.Mailer.html">Mailer</a>
+						</li>
+				<li><a href="namespace-Hook.Middlewares.html">Middlewares</a>
+						</li>
+				<li><a href="namespace-Hook.Model.html">Model</a>
+						</li>
+				<li><a href="namespace-Hook.Package.html">Package</a>
+						</li>
+				<li><a href="namespace-Hook.Pagination.html">Pagination</a>
+						</li>
+				<li><a href="namespace-Hook.PushNotification.html">PushNotification<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.PushNotification.Services.html">Services</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Hook.Session.html">Session<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Session.Handlers.html">Handlers</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Hook.Storage.html">Storage<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Storage.Providers.html">Providers</a>
+						</li>
+							</ul></li></ul></li>
+				<li><a href="namespace-Illuminate.html">Illuminate<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Cache.html">Cache<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Cache.Console.html">Console</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Illuminate.Config.html">Config</a>
+						</li>
+				<li><a href="namespace-Illuminate.Container.html">Container</a>
+						</li>
+				<li><a href="namespace-Illuminate.Database.html">Database<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Database.Capsule.html">Capsule</a>
+						</li>
+				<li><a href="namespace-Illuminate.Database.Connectors.html">Connectors</a>
+						</li>
+				<li><a href="namespace-Illuminate.Database.Console.html">Console<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Database.Console.Migrations.html">Migrations</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Illuminate.Database.Eloquent.html">Eloquent<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Database.Eloquent.Relations.html">Relations</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Illuminate.Database.Migrations.html">Migrations</a>
+						</li>
+				<li><a href="namespace-Illuminate.Database.Query.html">Query<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Database.Query.Grammars.html">Grammars</a>
+						</li>
+				<li><a href="namespace-Illuminate.Database.Query.Processors.html">Processors</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Illuminate.Database.Schema.html">Schema<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Database.Schema.Grammars.html">Grammars</a>
+						</li>
+							</ul></li></ul></li>
+				<li><a href="namespace-Illuminate.Encryption.html">Encryption</a>
+						</li>
+				<li><a href="namespace-Illuminate.Events.html">Events</a>
+						</li>
+				<li><a href="namespace-Illuminate.Filesystem.html">Filesystem</a>
+						</li>
+				<li><a href="namespace-Illuminate.Support.html">Support<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Support.Contracts.html">Contracts</a>
+						</li>
+				<li><a href="namespace-Illuminate.Support.Facades.html">Facades</a>
+						</li>
+							</ul></li></ul></li>
+				<li><a href="namespace-None.html">None</a>
+						</li>
+				<li><a href="namespace-PHP.html">PHP</a>
+						</li>
+				<li><a href="namespace-Slim.html">Slim<span></span></a>
+						<ul>
+				<li><a href="namespace-Slim.Exception.html">Exception</a>
+						</li>
+				<li><a href="namespace-Slim.Helper.html">Helper</a>
+						</li>
+				<li><a href="namespace-Slim.Http.html">Http</a>
+						</li>
+				<li><a href="namespace-Slim.Middleware.html">Middleware</a>
+						</li>
+							</ul></li>
+			</ul>
+		</div>
+
+		<hr />
+
+
+		<div id="elements">
+			<h3>Classes</h3>
+			<ul>
+				<li class="active"><a href="class-Hook.Database.CollectionDelegator.html">CollectionDelegator</a></li>
+				<li><a href="class-Hook.Database.Relationship.html">Relationship</a></li>
+			</ul>
+
+
+
+
+
+		</div>
+	</div>
+</div>
+
+<div id="splitter"></div>
+
+<div id="right">
+<div id="rightInner">
+	<form id="search">
+		<input type="hidden" name="cx" value="" />
+		<input type="hidden" name="ie" value="UTF-8" />
+		<input type="text" name="q" class="text" />
+		<input type="submit" value="Search" />
+	</form>
+
+	<div id="navigation">
+		<ul>
+			<li>
+				<a href="index.html" title="Overview"><span>Overview</span></a>
+			</li>
+			<li>
+				<a href="namespace-Hook.Database.html" title="Summary of Hook\Database"><span>Namespace</span></a>
+			</li>
+			<li class="active">
+<span>Class</span>			</li>
+		</ul>
+		<ul>
+			<li>
+				<a href="tree.html" title="Tree view of classes, interfaces, traits and exceptions"><span>Tree</span></a>
+			</li>
+		</ul>
+		<ul>
+		</ul>
+	</div>
+
+<div id="content" class="class">
+	<h1>Class CollectionDelegator</h1>
+
+
+	<div class="description">
+	
+<p>CollectionDelegator</p>
+
+	</div>
+
+	<dl class="tree">
+		<dd style="padding-left:0px">
+<b><span>Hook\Database\CollectionDelegator</span></b>			
+			 implements 
+				<a href="class-IteratorAggregate.html"><span>IteratorAggregate</span></a>
+			
+			
+		</dd>
+	</dl>
+
+
+
+
+
+
+
+
+	<div class="info">
+		
+		
+		<b>Namespace:</b> <a href="namespace-Hook.html">Hook</a>\<a href="namespace-Hook.Database.html">Database</a><br />
+		
+
+				<b>Author:</b>
+				Endel Dreyer &lt;<a
+href="mailto:edreyer&#64;doubleleft.com">edreyer&#64;<!---->doubleleft.com</a>&gt;<br />
+				<b>Extends:</b>
+				IteratorAggregate<br />
+		<b>Located at</b> <a href="source-class-Hook.Database.CollectionDelegator.html#11-366" title="Go to source code">Database/CollectionDelegator.php</a><br />
+	</div>
+
+
+
+	<table class="summary" id="methods">
+	<caption>Methods summary</caption>
+	<tr data-order="__construct" id="___construct">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#___construct">#</a>
+		<code><a href="source-class-Hook.Database.CollectionDelegator.html#48-76" title="Go to source code">__construct</a>( <span>string <var>$name</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Create a new CollectionDelegator instance.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Create a new CollectionDelegator instance.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$name</var></dt>
+					<dd><code>string</code><br>$name</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getName" id="_getName">
+
+		<td class="attributes"><code>
+			 public 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getName">#</a>
+		<code><a href="source-class-Hook.Database.CollectionDelegator.html#78-85" title="Go to source code">getName</a>( )</code>
+
+		<div class="description short">
+			
+<p>getName</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>getName</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getIterator" id="_getIterator">
+
+		<td class="attributes"><code>
+			 public 
+			<code><a href="class-ArrayIterator.html">ArrayIterator</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getIterator">#</a>
+		<code><a href="source-class-Hook.Database.CollectionDelegator.html#87-94" title="Go to source code">getIterator</a>( )</code>
+
+		<div class="description short">
+			
+<p>Get query items for iteration.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get query items for iteration.</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-ArrayIterator.html">ArrayIterator</a></code></code><br />
+				</div>
+
+
+
+
+				<h4>Implementation of</h4>
+				<div class="list"><code><a href="class-IteratorAggregate.html#_getIterator">IteratorAggregate::getIterator()</a></code></div>
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="each" id="_each">
+
+		<td class="attributes"><code>
+			 public 
+			Database\CollectionDelegator
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_each">#</a>
+		<code><a href="source-class-Hook.Database.CollectionDelegator.html#96-108" title="Go to source code">each</a>( <span><code><a href="class-Closure.html">Closure</a></code> <var>$callback</var></span> )</code>
+
+		<div class="description short">
+			
+<p>each</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>each</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$callback</var></dt>
+					<dd><code><code><a href="class-Closure.html">Closure</a></code></code><br>$callback</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>Database\CollectionDelegator</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="create_new" id="_create_new">
+
+		<td class="attributes"><code>
+			 public 
+			Model\Collection
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_create_new">#</a>
+		<code><a href="source-class-Hook.Database.CollectionDelegator.html#110-128" title="Go to source code">create_new</a>( <span>array <var>$attributes</var> = <span class="php-keyword1">array</span>()</span> )</code>
+
+		<div class="description short">
+			
+<p>Create a new Collection instance. No database operations here.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Create a new Collection instance. No database operations here.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$attributes</var></dt>
+					<dd><code>array</code><br>$attributes attributes</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>Model\Collection</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="create" id="_create">
+
+		<td class="attributes"><code>
+			 public 
+			Model\Collection
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_create">#</a>
+		<code><a href="source-class-Hook.Database.CollectionDelegator.html#130-142" title="Go to source code">create</a>( <span>array <var>$attributes</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Create a new record into the database.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Create a new record into the database.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$attributes</var></dt>
+					<dd><code>array</code><br>$attributes attributes</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>Model\Collection</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="update" id="_update">
+
+		<td class="attributes"><code>
+			 public 
+			integer
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_update">#</a>
+		<code><a href="source-class-Hook.Database.CollectionDelegator.html#144-160" title="Go to source code">update</a>( <span>array <var>$values</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Update a record in the database.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Update a record in the database.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$values</var></dt>
+					<dd><code>array</code><br>$values</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>integer</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="delete" id="_delete">
+
+		<td class="attributes"><code>
+			 public 
+			integer
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_delete">#</a>
+		<code><a href="source-class-Hook.Database.CollectionDelegator.html#162-175" title="Go to source code">delete</a>( <span>mixed <var>$id</var> = <span class="php-keyword1">null</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Delete a record from the database.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Delete a record from the database.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$id</var></dt>
+					<dd><code>mixed</code><br>$id</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>integer</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="remove" id="_remove">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_remove">#</a>
+		<code><a href="source-class-Hook.Database.CollectionDelegator.html#177-184" title="Go to source code">remove</a>( <span>mixed <var>$id</var> = <span class="php-keyword1">null</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Alias to delete</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Alias to delete</p>
+
+
+
+
+
+
+				<h4>See</h4>
+				<div class="list">
+						<code><code><a href="class-Hook.Database.CollectionDelegator.html#_delete">Hook\Database\CollectionDelegator::delete()</a></code></code><br />
+				</div>
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="filter" id="_filter">
+
+		<td class="attributes"><code>
+			 public 
+			Database\CollectionDelegator
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_filter">#</a>
+		<code><a href="source-class-Hook.Database.CollectionDelegator.html#186-219" title="Go to source code">filter</a>( <span>array <var>$filters</var> = <span class="php-keyword1">null</span></span> )</code>
+
+		<div class="description short">
+			
+<p>filter</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>filter</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$filters</var></dt>
+					<dd><code>array</code><br>$filters filters</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>Database\CollectionDelegator</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="group" id="_group">
+
+		<td class="attributes"><code>
+			 public 
+			<code><a href="class-Illuminate.Database.Query.Builder.html">Illuminate\Database\Query\Builder</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_group">#</a>
+		<code><a href="source-class-Hook.Database.CollectionDelegator.html#221-231" title="Go to source code">group</a>( )</code>
+
+		<div class="description short">
+			
+<p>Add a "group by" clause to the query.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Add a "group by" clause to the query.</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-Illuminate.Database.Query.Builder.html">Illuminate\Database\Query\Builder</a></code></code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="sort" id="_sort">
+
+		<td class="attributes"><code>
+			 public 
+			Database\CollectionDelegator
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_sort">#</a>
+		<code><a href="source-class-Hook.Database.CollectionDelegator.html#233-248" title="Go to source code">sort</a>( <span>string <var>$column</var></span>, <span>string|integer <var>$direction</var> = <span class="php-quote">'asc'</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Add an "order by" clause to the query.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Add an "order by" clause to the query.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$column</var></dt>
+					<dd><code>string</code><br>$column</dd>
+					<dt><var>$direction</var></dt>
+					<dd><code>string|integer</code><br>$direction</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>Database\CollectionDelegator</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="chunk" id="_chunk">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_chunk">#</a>
+		<code><a href="source-class-Hook.Database.CollectionDelegator.html#250-285" title="Go to source code">chunk</a>( <span>integer <var>$count</var></span>, <span>callable <var>$callback</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Chunk the results of the query.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Chunk the results of the query.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$count</var></dt>
+					<dd><code>integer</code><br>$count</dd>
+					<dt><var>$callback</var></dt>
+					<dd><code>callable</code><br>$callback</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="get" id="_get">
+
+		<td class="attributes"><code>
+			 public 
+			<code><a href="class-Illuminate.Database.Eloquent.Collection.html">Illuminate\Database\Eloquent\Collection</a></code>|static[]
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_get">#</a>
+		<code><a href="source-class-Hook.Database.CollectionDelegator.html#287-302" title="Go to source code">get</a>( <span>array <var>$columns</var> = <span class="php-keyword1">array</span>(<span class="php-quote">'*'</span>)</span> )</code>
+
+		<div class="description short">
+			
+<p>Execute the query as a "select" statement.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Execute the query as a "select" statement.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$columns</var></dt>
+					<dd><code>array</code><br>$columns</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-Illuminate.Database.Eloquent.Collection.html">Illuminate\Database\Eloquent\Collection</a></code>|static[]</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="toArray" id="_toArray">
+
+		<td class="attributes"><code>
+			 public 
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_toArray">#</a>
+		<code><a href="source-class-Hook.Database.CollectionDelegator.html#304-312" title="Go to source code">toArray</a>( <span>string <var>$columns</var> = <span class="php-keyword1">array</span>(<span class="php-quote">'*'</span>)</span> )</code>
+
+		<div class="description short">
+			
+<p>Shortcut for get+toArray methods.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Shortcut for get+toArray methods.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$columns</var></dt>
+					<dd><code>string</code><br>$columns columns</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="toJson" id="_toJson">
+
+		<td class="attributes"><code>
+			 public 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_toJson">#</a>
+		<code><a href="source-class-Hook.Database.CollectionDelegator.html#314-322" title="Go to source code">toJson</a>( <span>string <var>$columns</var> = <span class="php-keyword1">array</span>(<span class="php-quote">'*'</span>)</span> )</code>
+
+		<div class="description short">
+			
+<p>Shortcut for get+toJson methods.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Shortcut for get+toJson methods.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$columns</var></dt>
+					<dd><code>string</code><br>$columns columns</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="fireEvent" id="_fireEvent">
+
+		<td class="attributes"><code>
+			 protected 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_fireEvent">#</a>
+		<code><a href="source-class-Hook.Database.CollectionDelegator.html#324-332" title="Go to source code">fireEvent</a>( <span>mixed <var>$event</var></span>, <span>mixed <var>$payload</var></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getQueryBuilder" id="_getQueryBuilder">
+
+		<td class="attributes"><code>
+			 public 
+			<code><a href="class-Illuminate.Database.Eloquent.Builder.html">Illuminate\Database\Eloquent\Builder</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getQueryBuilder">#</a>
+		<code><a href="source-class-Hook.Database.CollectionDelegator.html#334-340" title="Go to source code">getQueryBuilder</a>( )</code>
+
+		<div class="description short">
+			
+<p>getQueryBuilder</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>getQueryBuilder</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-Illuminate.Database.Eloquent.Builder.html">Illuminate\Database\Eloquent\Builder</a></code></code><br>| \Illuminate\Database\Query\Builder<br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="__call" id="___call">
+
+		<td class="attributes"><code>
+			 public 
+			Database\CollectionDelegator
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#___call">#</a>
+		<code><a href="source-class-Hook.Database.CollectionDelegator.html#342-364" title="Go to source code">__call</a>( <span>mixed <var>$method</var></span>, <span>mixed <var>$parameters</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Handle Illuminate\Database\Query\Builder methods.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Handle Illuminate\Database\Query\Builder methods.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$method</var></dt>
+					<dd><code>mixed</code><br>$method method</dd>
+					<dt><var>$parameters</var></dt>
+					<dd><code>mixed</code><br>$parameters parameters</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>Database\CollectionDelegator</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	</table>
+
+
+
+
+
+
+
+
+
+
+
+
+	<table class="summary" id="properties">
+	<caption>Properties summary</caption>
+	<tr data-order="name" id="$name">
+		<td class="attributes"><code>
+			protected  
+			string
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Hook.Database.CollectionDelegator.html#18-22" title="Go to source code"><var>$name</var></a>
+		</td>
+		<td class="value"><code></code></td>
+		<td class="description"><div>
+			<a href="#$name" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>name</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>name</p>
+
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="query" id="$query">
+		<td class="attributes"><code>
+			protected  
+			<code><a href="class-Illuminate.Database.Query.Builder.html">Illuminate\Database\Query\Builder</a></code>
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Hook.Database.CollectionDelegator.html#24-28" title="Go to source code"><var>$query</var></a>
+		</td>
+		<td class="value"><code></code></td>
+		<td class="description"><div>
+			<a href="#$query" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>query</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>query</p>
+
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="is_collection" id="$is_collection">
+		<td class="attributes"><code>
+			protected  
+			boolean
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Hook.Database.CollectionDelegator.html#30-34" title="Go to source code"><var>$is_collection</var></a>
+		</td>
+		<td class="value"><code></code></td>
+		<td class="description"><div>
+			<a href="#$is_collection" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>is_collection</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>is_collection</p>
+
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="custom_collections" id="$custom_collections">
+		<td class="attributes"><code>
+			public static 
+			array
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Hook.Database.CollectionDelegator.html#36-46" title="Go to source code"><var>$custom_collections</var></a>
+		</td>
+		<td class="value"><code><span class="php-keyword1">array</span>(
+    <span class="php-quote">'auths'</span> =&gt; <span class="php-quote">'Hook\\Model\\Auth'</span>,
+    <span class="php-quote">'auth_tokens'</span> =&gt; <span class="php-quote">'Hook\\Model\\AuthToken'</span>,
+    <span class="php-quote">'files'</span> =&gt; <span class="php-quote">'Hook\\Model\\File'</span>,
+    <span class="php-quote">'push_messages'</span> =&gt; <span class="php-quote">'Hook\\Model\\PushMessage'</span>,
+    <span class="php-quote">'push_registrations'</span> =&gt; <span class="php-quote">'Hook\\Model\\PushRegistration'</span>,
+)</code></td>
+		<td class="description"><div>
+			<a href="#$custom_collections" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>custom_collections</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>custom_collections</p>
+
+
+			</div>
+		</div></td>
+	</tr>
+	</table>
+
+
+
+
+
+
+</div>
+
+	<div id="footer">
+		 API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
+	</div>
+</div>
+</div>
+</body>
+</html>

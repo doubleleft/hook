@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="generator" content="ApiGen 2.8.0" />
+
+	<title>Class Illuminate\Database\SQLiteConnection</title>
+
+	<script type="text/javascript" src="resources/combined.js?417754471"></script>
+	<script type="text/javascript" src="elementlist.js?721444666"></script>
+	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
+
+</head>
+
+<body>
+<div id="left">
+	<div id="menu">
+		<a href="index.html" title="Overview"><span>Overview</span></a>
+
+
+		<div id="groups">
+			<h3>Namespaces</h3>
+			<ul>
+				<li><a href="namespace-Hook.html">Hook<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Application.html">Application<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Application.Core.html">Core</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Hook.Auth.html">Auth<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Auth.Providers.html">Providers</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Hook.Cache.html">Cache</a>
+						</li>
+				<li><a href="namespace-Hook.Controllers.html">Controllers</a>
+						</li>
+				<li><a href="namespace-Hook.Database.html">Database<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Database.Schema.html">Schema<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Database.Schema.Grammars.html">Grammars</a>
+						</li>
+							</ul></li></ul></li>
+				<li><a href="namespace-Hook.Encryption.html">Encryption</a>
+						</li>
+				<li><a href="namespace-Hook.Exceptions.html">Exceptions</a>
+						</li>
+				<li><a href="namespace-Hook.Http.html">Http</a>
+						</li>
+				<li><a href="namespace-Hook.Logger.html">Logger</a>
+						</li>
+				<li><a href="namespace-Hook.Mailer.html">Mailer</a>
+						</li>
+				<li><a href="namespace-Hook.Middlewares.html">Middlewares</a>
+						</li>
+				<li><a href="namespace-Hook.Model.html">Model</a>
+						</li>
+				<li><a href="namespace-Hook.Package.html">Package</a>
+						</li>
+				<li><a href="namespace-Hook.Pagination.html">Pagination</a>
+						</li>
+				<li><a href="namespace-Hook.PushNotification.html">PushNotification<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.PushNotification.Services.html">Services</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Hook.Session.html">Session<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Session.Handlers.html">Handlers</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Hook.Storage.html">Storage<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Storage.Providers.html">Providers</a>
+						</li>
+							</ul></li></ul></li>
+				<li class="active"><a href="namespace-Illuminate.html">Illuminate<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Cache.html">Cache<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Cache.Console.html">Console</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Illuminate.Config.html">Config</a>
+						</li>
+				<li><a href="namespace-Illuminate.Container.html">Container</a>
+						</li>
+				<li class="active"><a href="namespace-Illuminate.Database.html">Database<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Database.Capsule.html">Capsule</a>
+						</li>
+				<li><a href="namespace-Illuminate.Database.Connectors.html">Connectors</a>
+						</li>
+				<li><a href="namespace-Illuminate.Database.Console.html">Console<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Database.Console.Migrations.html">Migrations</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Illuminate.Database.Eloquent.html">Eloquent<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Database.Eloquent.Relations.html">Relations</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Illuminate.Database.Migrations.html">Migrations</a>
+						</li>
+				<li><a href="namespace-Illuminate.Database.Query.html">Query<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Database.Query.Grammars.html">Grammars</a>
+						</li>
+				<li><a href="namespace-Illuminate.Database.Query.Processors.html">Processors</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Illuminate.Database.Schema.html">Schema<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Database.Schema.Grammars.html">Grammars</a>
+						</li>
+							</ul></li></ul></li>
+				<li><a href="namespace-Illuminate.Encryption.html">Encryption</a>
+						</li>
+				<li><a href="namespace-Illuminate.Events.html">Events</a>
+						</li>
+				<li><a href="namespace-Illuminate.Filesystem.html">Filesystem</a>
+						</li>
+				<li><a href="namespace-Illuminate.Support.html">Support<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Support.Contracts.html">Contracts</a>
+						</li>
+				<li><a href="namespace-Illuminate.Support.Facades.html">Facades</a>
+						</li>
+							</ul></li></ul></li>
+				<li><a href="namespace-None.html">None</a>
+						</li>
+				<li><a href="namespace-PHP.html">PHP</a>
+						</li>
+				<li><a href="namespace-Slim.html">Slim<span></span></a>
+						<ul>
+				<li><a href="namespace-Slim.Exception.html">Exception</a>
+						</li>
+				<li><a href="namespace-Slim.Helper.html">Helper</a>
+						</li>
+				<li><a href="namespace-Slim.Http.html">Http</a>
+						</li>
+				<li><a href="namespace-Slim.Middleware.html">Middleware</a>
+						</li>
+							</ul></li>
+			</ul>
+		</div>
+
+		<hr />
+
+
+		<div id="elements">
+			<h3>Classes</h3>
+			<ul>
+				<li><a href="class-Illuminate.Database.Connection.html">Connection</a></li>
+				<li><a href="class-Illuminate.Database.ConnectionResolver.html">ConnectionResolver</a></li>
+				<li><a href="class-Illuminate.Database.DatabaseManager.html">DatabaseManager</a></li>
+				<li><a href="class-Illuminate.Database.DatabaseServiceProvider.html">DatabaseServiceProvider</a></li>
+				<li><a href="class-Illuminate.Database.Grammar.html">Grammar</a></li>
+				<li><a href="class-Illuminate.Database.MigrationServiceProvider.html">MigrationServiceProvider</a></li>
+				<li><a href="class-Illuminate.Database.MySqlConnection.html">MySqlConnection</a></li>
+				<li><a href="class-Illuminate.Database.PostgresConnection.html">PostgresConnection</a></li>
+				<li><a href="class-Illuminate.Database.Seeder.html">Seeder</a></li>
+				<li><a href="class-Illuminate.Database.SeedServiceProvider.html">SeedServiceProvider</a></li>
+				<li class="active"><a href="class-Illuminate.Database.SQLiteConnection.html">SQLiteConnection</a></li>
+				<li><a href="class-Illuminate.Database.SqlServerConnection.html">SqlServerConnection</a></li>
+			</ul>
+
+			<h3>Interfaces</h3>
+			<ul>
+				<li><a href="class-Illuminate.Database.ConnectionInterface.html">ConnectionInterface</a></li>
+				<li><a href="class-Illuminate.Database.ConnectionResolverInterface.html">ConnectionResolverInterface</a></li>
+			</ul>
+
+
+			<h3>Exceptions</h3>
+			<ul>
+				<li><a href="class-Illuminate.Database.QueryException.html">QueryException</a></li>
+			</ul>
+
+
+		</div>
+	</div>
+</div>
+
+<div id="splitter"></div>
+
+<div id="right">
+<div id="rightInner">
+	<form id="search">
+		<input type="hidden" name="cx" value="" />
+		<input type="hidden" name="ie" value="UTF-8" />
+		<input type="text" name="q" class="text" />
+		<input type="submit" value="Search" />
+	</form>
+
+	<div id="navigation">
+		<ul>
+			<li>
+				<a href="index.html" title="Overview"><span>Overview</span></a>
+			</li>
+			<li>
+				<a href="namespace-Illuminate.Database.html" title="Summary of Illuminate\Database"><span>Namespace</span></a>
+			</li>
+			<li class="active">
+<span>Class</span>			</li>
+		</ul>
+		<ul>
+			<li>
+				<a href="tree.html" title="Tree view of classes, interfaces, traits and exceptions"><span>Tree</span></a>
+			</li>
+		</ul>
+		<ul>
+		</ul>
+	</div>
+
+<div id="content" class="class">
+	<h1>Class SQLiteConnection</h1>
+
+
+
+	<dl class="tree">
+		<dd style="padding-left:0px">
+			<a href="class-Illuminate.Database.Connection.html"><span>Illuminate\Database\Connection</span></a>
+			
+			 implements 
+				<a href="class-Illuminate.Database.ConnectionInterface.html"><span>Illuminate\Database\ConnectionInterface</span></a>
+			
+			
+		</dd>
+		<dd style="padding-left:30px">
+			<img src="resources/inherit.png" alt="Extended by" />
+<b><span>Illuminate\Database\SQLiteConnection</span></b>			
+			
+			
+		</dd>
+	</dl>
+
+
+
+
+
+
+
+
+	<div class="info">
+		
+		
+		<b>Namespace:</b> <a href="namespace-Illuminate.html">Illuminate</a>\<a href="namespace-Illuminate.Database.html">Database</a><br />
+		
+
+		<b>Located at</b> <a href="source-class-Illuminate.Database.SQLiteConnection.html#7-49" title="Go to source code">database/Illuminate/Database/SQLiteConnection.php</a><br />
+	</div>
+
+
+
+	<table class="summary" id="methods">
+	<caption>Methods summary</caption>
+	<tr data-order="getDefaultQueryGrammar" id="_getDefaultQueryGrammar">
+
+		<td class="attributes"><code>
+			 protected 
+			<code><a href="class-Illuminate.Database.Query.Grammars.SQLiteGrammar.html">Illuminate\Database\Query\Grammars\SQLiteGrammar</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getDefaultQueryGrammar">#</a>
+		<code><a href="source-class-Illuminate.Database.SQLiteConnection.html#9-17" title="Go to source code">getDefaultQueryGrammar</a>( )</code>
+
+		<div class="description short">
+			
+<p>Get the default query grammar instance.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get the default query grammar instance.</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-Illuminate.Database.Query.Grammars.SQLiteGrammar.html">Illuminate\Database\Query\Grammars\SQLiteGrammar</a></code></code><br />
+				</div>
+
+
+
+				<h4>Overrides</h4>
+				<div class="list"><code><a href="class-Illuminate.Database.Connection.html#_getDefaultQueryGrammar">Illuminate\Database\Connection::getDefaultQueryGrammar()</a></code></div>
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getDefaultSchemaGrammar" id="_getDefaultSchemaGrammar">
+
+		<td class="attributes"><code>
+			 protected 
+			<code><a href="class-Illuminate.Database.Schema.Grammars.SQLiteGrammar.html">Illuminate\Database\Schema\Grammars\SQLiteGrammar</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getDefaultSchemaGrammar">#</a>
+		<code><a href="source-class-Illuminate.Database.SQLiteConnection.html#19-27" title="Go to source code">getDefaultSchemaGrammar</a>( )</code>
+
+		<div class="description short">
+			
+<p>Get the default schema grammar instance.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get the default schema grammar instance.</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-Illuminate.Database.Schema.Grammars.SQLiteGrammar.html">Illuminate\Database\Schema\Grammars\SQLiteGrammar</a></code></code><br />
+				</div>
+
+
+
+				<h4>Overrides</h4>
+				<div class="list"><code><a href="class-Illuminate.Database.Connection.html#_getDefaultSchemaGrammar">Illuminate\Database\Connection::getDefaultSchemaGrammar()</a></code></div>
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getDefaultPostProcessor" id="_getDefaultPostProcessor">
+
+		<td class="attributes"><code>
+			 protected 
+			<code><a href="class-Illuminate.Database.Query.Processors.Processor.html">Illuminate\Database\Query\Processors\Processor</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getDefaultPostProcessor">#</a>
+		<code><a href="source-class-Illuminate.Database.SQLiteConnection.html#29-37" title="Go to source code">getDefaultPostProcessor</a>( )</code>
+
+		<div class="description short">
+			
+<p>Get the default post processor instance.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get the default post processor instance.</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-Illuminate.Database.Query.Processors.Processor.html">Illuminate\Database\Query\Processors\Processor</a></code></code><br />
+				</div>
+
+
+
+				<h4>Overrides</h4>
+				<div class="list"><code><a href="class-Illuminate.Database.Connection.html#_getDefaultPostProcessor">Illuminate\Database\Connection::getDefaultPostProcessor()</a></code></div>
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getDoctrineDriver" id="_getDoctrineDriver">
+
+		<td class="attributes"><code>
+			 protected 
+			Doctrine\DBAL\Driver\PDOSqlite\Driver
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getDoctrineDriver">#</a>
+		<code><a href="source-class-Illuminate.Database.SQLiteConnection.html#39-47" title="Go to source code">getDoctrineDriver</a>( )</code>
+
+		<div class="description short">
+			
+<p>Get the Doctrine DBAL driver.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get the Doctrine DBAL driver.</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>Doctrine\DBAL\Driver\PDOSqlite\Driver</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	</table>
+
+	<table class="summary inherited">
+	<caption>Methods inherited from <a href="class-Illuminate.Database.Connection.html#methods">Illuminate\Database\Connection</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-Illuminate.Database.Connection.html#___construct">__construct()</a>, 
+			<a href="class-Illuminate.Database.Connection.html#_affectingStatement">affectingStatement()</a>, 
+			<a href="class-Illuminate.Database.Connection.html#_beginTransaction">beginTransaction()</a>, 
+			<a href="class-Illuminate.Database.Connection.html#_commit">commit()</a>, 
+			<a href="class-Illuminate.Database.Connection.html#_delete">delete()</a>, 
+			<a href="class-Illuminate.Database.Connection.html#_disableQueryLog">disableQueryLog()</a>, 
+			<a href="class-Illuminate.Database.Connection.html#_enableQueryLog">enableQueryLog()</a>, 
+			<a href="class-Illuminate.Database.Connection.html#_fireConnectionEvent">fireConnectionEvent()</a>, 
+			<a href="class-Illuminate.Database.Connection.html#_flushQueryLog">flushQueryLog()</a>, 
+			<a href="class-Illuminate.Database.Connection.html#_getCacheManager">getCacheManager()</a>, 
+			<a href="class-Illuminate.Database.Connection.html#_getConfig">getConfig()</a>, 
+			<a href="class-Illuminate.Database.Connection.html#_getDatabaseName">getDatabaseName()</a>, 
+			<a href="class-Illuminate.Database.Connection.html#_getDoctrineColumn">getDoctrineColumn()</a>, 
+			<a href="class-Illuminate.Database.Connection.html#_getDoctrineConnection">getDoctrineConnection()</a>, 
+			<a href="class-Illuminate.Database.Connection.html#_getDoctrineSchemaManager">getDoctrineSchemaManager()</a>, 
+			<a href="class-Illuminate.Database.Connection.html#_getDriverName">getDriverName()</a>, 
+			<a href="class-Illuminate.Database.Connection.html#_getElapsedTime">getElapsedTime()</a>, 
+			<a href="class-Illuminate.Database.Connection.html#_getEventDispatcher">getEventDispatcher()</a>, 
+			<a href="class-Illuminate.Database.Connection.html#_getFetchMode">getFetchMode()</a>, 
+			<a href="class-Illuminate.Database.Connection.html#_getName">getName()</a>, 
+			<a href="class-Illuminate.Database.Connection.html#_getPaginator">getPaginator()</a>, 
+			<a href="class-Illuminate.Database.Connection.html#_getPdo">getPdo()</a>, 
+			<a href="class-Illuminate.Database.Connection.html#_getPostProcessor">getPostProcessor()</a>, 
+			<a href="class-Illuminate.Database.Connection.html#_getQueryGrammar">getQueryGrammar()</a>, 
+			<a href="class-Illuminate.Database.Connection.html#_getQueryLog">getQueryLog()</a>, 
+			<a href="class-Illuminate.Database.Connection.html#_getReadPdo">getReadPdo()</a>, 
+			<a href="class-Illuminate.Database.Connection.html#_getSchemaBuilder">getSchemaBuilder()</a>, 
+			<a href="class-Illuminate.Database.Connection.html#_getSchemaGrammar">getSchemaGrammar()</a>, 
+			<a href="class-Illuminate.Database.Connection.html#_getTablePrefix">getTablePrefix()</a>, 
+			<a href="class-Illuminate.Database.Connection.html#_insert">insert()</a>, 
+			<a href="class-Illuminate.Database.Connection.html#_listen">listen()</a>, 
+			<a href="class-Illuminate.Database.Connection.html#_logQuery">logQuery()</a>, 
+			<a href="class-Illuminate.Database.Connection.html#_logging">logging()</a>, 
+			<a href="class-Illuminate.Database.Connection.html#_prepareBindings">prepareBindings()</a>, 
+			<a href="class-Illuminate.Database.Connection.html#_pretend">pretend()</a>, 
+			<a href="class-Illuminate.Database.Connection.html#_pretending">pretending()</a>, 
+			<a href="class-Illuminate.Database.Connection.html#_raw">raw()</a>, 
+			<a href="class-Illuminate.Database.Connection.html#_rollBack">rollBack()</a>, 
+			<a href="class-Illuminate.Database.Connection.html#_run">run()</a>, 
+			<a href="class-Illuminate.Database.Connection.html#_select">select()</a>, 
+			<a href="class-Illuminate.Database.Connection.html#_selectOne">selectOne()</a>, 
+			<a href="class-Illuminate.Database.Connection.html#_setCacheManager">setCacheManager()</a>, 
+			<a href="class-Illuminate.Database.Connection.html#_setDatabaseName">setDatabaseName()</a>, 
+			<a href="class-Illuminate.Database.Connection.html#_setEventDispatcher">setEventDispatcher()</a>, 
+			<a href="class-Illuminate.Database.Connection.html#_setFetchMode">setFetchMode()</a>, 
+			<a href="class-Illuminate.Database.Connection.html#_setPaginator">setPaginator()</a>, 
+			<a href="class-Illuminate.Database.Connection.html#_setPdo">setPdo()</a>, 
+			<a href="class-Illuminate.Database.Connection.html#_setPostProcessor">setPostProcessor()</a>, 
+			<a href="class-Illuminate.Database.Connection.html#_setQueryGrammar">setQueryGrammar()</a>, 
+			<a href="class-Illuminate.Database.Connection.html#_setReadPdo">setReadPdo()</a>, 
+			<a href="class-Illuminate.Database.Connection.html#_setSchemaGrammar">setSchemaGrammar()</a>, 
+			<a href="class-Illuminate.Database.Connection.html#_setTablePrefix">setTablePrefix()</a>, 
+			<a href="class-Illuminate.Database.Connection.html#_statement">statement()</a>, 
+			<a href="class-Illuminate.Database.Connection.html#_table">table()</a>, 
+			<a href="class-Illuminate.Database.Connection.html#_transaction">transaction()</a>, 
+			<a href="class-Illuminate.Database.Connection.html#_transactionLevel">transactionLevel()</a>, 
+			<a href="class-Illuminate.Database.Connection.html#_unprepared">unprepared()</a>, 
+			<a href="class-Illuminate.Database.Connection.html#_update">update()</a>, 
+			<a href="class-Illuminate.Database.Connection.html#_useDefaultPostProcessor">useDefaultPostProcessor()</a>, 
+			<a href="class-Illuminate.Database.Connection.html#_useDefaultQueryGrammar">useDefaultQueryGrammar()</a>, 
+			<a href="class-Illuminate.Database.Connection.html#_useDefaultSchemaGrammar">useDefaultSchemaGrammar()</a>, 
+			<a href="class-Illuminate.Database.Connection.html#_withTablePrefix">withTablePrefix()</a>
+		</code></td>
+	</tr>
+	</table>
+
+
+
+
+
+
+
+
+
+
+
+
+	<table class="summary inherited">
+	<caption>Properties inherited from <a href="class-Illuminate.Database.Connection.html#properties">Illuminate\Database\Connection</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-Illuminate.Database.Connection.html#$cache"><var>$cache</var></a>, 
+			<a href="class-Illuminate.Database.Connection.html#$config"><var>$config</var></a>, 
+			<a href="class-Illuminate.Database.Connection.html#$database"><var>$database</var></a>, 
+			<a href="class-Illuminate.Database.Connection.html#$events"><var>$events</var></a>, 
+			<a href="class-Illuminate.Database.Connection.html#$fetchMode"><var>$fetchMode</var></a>, 
+			<a href="class-Illuminate.Database.Connection.html#$loggingQueries"><var>$loggingQueries</var></a>, 
+			<a href="class-Illuminate.Database.Connection.html#$paginator"><var>$paginator</var></a>, 
+			<a href="class-Illuminate.Database.Connection.html#$pdo"><var>$pdo</var></a>, 
+			<a href="class-Illuminate.Database.Connection.html#$postProcessor"><var>$postProcessor</var></a>, 
+			<a href="class-Illuminate.Database.Connection.html#$pretending"><var>$pretending</var></a>, 
+			<a href="class-Illuminate.Database.Connection.html#$queryGrammar"><var>$queryGrammar</var></a>, 
+			<a href="class-Illuminate.Database.Connection.html#$queryLog"><var>$queryLog</var></a>, 
+			<a href="class-Illuminate.Database.Connection.html#$readPdo"><var>$readPdo</var></a>, 
+			<a href="class-Illuminate.Database.Connection.html#$schemaGrammar"><var>$schemaGrammar</var></a>, 
+			<a href="class-Illuminate.Database.Connection.html#$tablePrefix"><var>$tablePrefix</var></a>, 
+			<a href="class-Illuminate.Database.Connection.html#$transactions"><var>$transactions</var></a>
+		</code></td>
+	</tr>
+	</table>
+
+
+
+
+
+</div>
+
+	<div id="footer">
+		 API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
+	</div>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="generator" content="ApiGen 2.8.0" />
+
+	<title>Class Illuminate\Database\Eloquent\Relations\MorphOne</title>
+
+	<script type="text/javascript" src="resources/combined.js?417754471"></script>
+	<script type="text/javascript" src="elementlist.js?721444666"></script>
+	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
+
+</head>
+
+<body>
+<div id="left">
+	<div id="menu">
+		<a href="index.html" title="Overview"><span>Overview</span></a>
+
+
+		<div id="groups">
+			<h3>Namespaces</h3>
+			<ul>
+				<li><a href="namespace-Hook.html">Hook<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Application.html">Application<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Application.Core.html">Core</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Hook.Auth.html">Auth<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Auth.Providers.html">Providers</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Hook.Cache.html">Cache</a>
+						</li>
+				<li><a href="namespace-Hook.Controllers.html">Controllers</a>
+						</li>
+				<li><a href="namespace-Hook.Database.html">Database<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Database.Schema.html">Schema<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Database.Schema.Grammars.html">Grammars</a>
+						</li>
+							</ul></li></ul></li>
+				<li><a href="namespace-Hook.Encryption.html">Encryption</a>
+						</li>
+				<li><a href="namespace-Hook.Exceptions.html">Exceptions</a>
+						</li>
+				<li><a href="namespace-Hook.Http.html">Http</a>
+						</li>
+				<li><a href="namespace-Hook.Logger.html">Logger</a>
+						</li>
+				<li><a href="namespace-Hook.Mailer.html">Mailer</a>
+						</li>
+				<li><a href="namespace-Hook.Middlewares.html">Middlewares</a>
+						</li>
+				<li><a href="namespace-Hook.Model.html">Model</a>
+						</li>
+				<li><a href="namespace-Hook.Package.html">Package</a>
+						</li>
+				<li><a href="namespace-Hook.Pagination.html">Pagination</a>
+						</li>
+				<li><a href="namespace-Hook.PushNotification.html">PushNotification<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.PushNotification.Services.html">Services</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Hook.Session.html">Session<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Session.Handlers.html">Handlers</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Hook.Storage.html">Storage<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Storage.Providers.html">Providers</a>
+						</li>
+							</ul></li></ul></li>
+				<li class="active"><a href="namespace-Illuminate.html">Illuminate<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Cache.html">Cache<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Cache.Console.html">Console</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Illuminate.Config.html">Config</a>
+						</li>
+				<li><a href="namespace-Illuminate.Container.html">Container</a>
+						</li>
+				<li class="active"><a href="namespace-Illuminate.Database.html">Database<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Database.Capsule.html">Capsule</a>
+						</li>
+				<li><a href="namespace-Illuminate.Database.Connectors.html">Connectors</a>
+						</li>
+				<li><a href="namespace-Illuminate.Database.Console.html">Console<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Database.Console.Migrations.html">Migrations</a>
+						</li>
+							</ul></li>
+				<li class="active"><a href="namespace-Illuminate.Database.Eloquent.html">Eloquent<span></span></a>
+						<ul>
+				<li class="active"><a href="namespace-Illuminate.Database.Eloquent.Relations.html">Relations</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Illuminate.Database.Migrations.html">Migrations</a>
+						</li>
+				<li><a href="namespace-Illuminate.Database.Query.html">Query<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Database.Query.Grammars.html">Grammars</a>
+						</li>
+				<li><a href="namespace-Illuminate.Database.Query.Processors.html">Processors</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Illuminate.Database.Schema.html">Schema<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Database.Schema.Grammars.html">Grammars</a>
+						</li>
+							</ul></li></ul></li>
+				<li><a href="namespace-Illuminate.Encryption.html">Encryption</a>
+						</li>
+				<li><a href="namespace-Illuminate.Events.html">Events</a>
+						</li>
+				<li><a href="namespace-Illuminate.Filesystem.html">Filesystem</a>
+						</li>
+				<li><a href="namespace-Illuminate.Support.html">Support<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Support.Contracts.html">Contracts</a>
+						</li>
+				<li><a href="namespace-Illuminate.Support.Facades.html">Facades</a>
+						</li>
+							</ul></li></ul></li>
+				<li><a href="namespace-None.html">None</a>
+						</li>
+				<li><a href="namespace-PHP.html">PHP</a>
+						</li>
+				<li><a href="namespace-Slim.html">Slim<span></span></a>
+						<ul>
+				<li><a href="namespace-Slim.Exception.html">Exception</a>
+						</li>
+				<li><a href="namespace-Slim.Helper.html">Helper</a>
+						</li>
+				<li><a href="namespace-Slim.Http.html">Http</a>
+						</li>
+				<li><a href="namespace-Slim.Middleware.html">Middleware</a>
+						</li>
+							</ul></li>
+			</ul>
+		</div>
+
+		<hr />
+
+
+		<div id="elements">
+			<h3>Classes</h3>
+			<ul>
+				<li><a href="class-Illuminate.Database.Eloquent.Relations.BelongsTo.html">BelongsTo</a></li>
+				<li><a href="class-Illuminate.Database.Eloquent.Relations.BelongsToMany.html">BelongsToMany</a></li>
+				<li><a href="class-Illuminate.Database.Eloquent.Relations.HasMany.html">HasMany</a></li>
+				<li><a href="class-Illuminate.Database.Eloquent.Relations.HasManyThrough.html">HasManyThrough</a></li>
+				<li><a href="class-Illuminate.Database.Eloquent.Relations.HasOne.html">HasOne</a></li>
+				<li><a href="class-Illuminate.Database.Eloquent.Relations.HasOneOrMany.html">HasOneOrMany</a></li>
+				<li><a href="class-Illuminate.Database.Eloquent.Relations.MorphMany.html">MorphMany</a></li>
+				<li class="active"><a href="class-Illuminate.Database.Eloquent.Relations.MorphOne.html">MorphOne</a></li>
+				<li><a href="class-Illuminate.Database.Eloquent.Relations.MorphOneOrMany.html">MorphOneOrMany</a></li>
+				<li><a href="class-Illuminate.Database.Eloquent.Relations.MorphPivot.html">MorphPivot</a></li>
+				<li><a href="class-Illuminate.Database.Eloquent.Relations.MorphTo.html">MorphTo</a></li>
+				<li><a href="class-Illuminate.Database.Eloquent.Relations.MorphToMany.html">MorphToMany</a></li>
+				<li><a href="class-Illuminate.Database.Eloquent.Relations.Pivot.html">Pivot</a></li>
+				<li><a href="class-Illuminate.Database.Eloquent.Relations.Relation.html">Relation</a></li>
+			</ul>
+
+
+
+
+
+		</div>
+	</div>
+</div>
+
+<div id="splitter"></div>
+
+<div id="right">
+<div id="rightInner">
+	<form id="search">
+		<input type="hidden" name="cx" value="" />
+		<input type="hidden" name="ie" value="UTF-8" />
+		<input type="text" name="q" class="text" />
+		<input type="submit" value="Search" />
+	</form>
+
+	<div id="navigation">
+		<ul>
+			<li>
+				<a href="index.html" title="Overview"><span>Overview</span></a>
+			</li>
+			<li>
+				<a href="namespace-Illuminate.Database.Eloquent.Relations.html" title="Summary of Illuminate\Database\Eloquent\Relations"><span>Namespace</span></a>
+			</li>
+			<li class="active">
+<span>Class</span>			</li>
+		</ul>
+		<ul>
+			<li>
+				<a href="tree.html" title="Tree view of classes, interfaces, traits and exceptions"><span>Tree</span></a>
+			</li>
+		</ul>
+		<ul>
+		</ul>
+	</div>
+
+<div id="content" class="class">
+	<h1>Class MorphOne</h1>
+
+
+
+	<dl class="tree">
+		<dd style="padding-left:0px">
+			<a href="class-Illuminate.Database.Eloquent.Relations.Relation.html"><span>Illuminate\Database\Eloquent\Relations\Relation</span></a>
+			
+			
+			
+		</dd>
+		<dd style="padding-left:30px">
+			<img src="resources/inherit.png" alt="Extended by" />
+			<a href="class-Illuminate.Database.Eloquent.Relations.HasOneOrMany.html"><span>Illuminate\Database\Eloquent\Relations\HasOneOrMany</span></a>
+			
+			
+			
+		</dd>
+		<dd style="padding-left:60px">
+			<img src="resources/inherit.png" alt="Extended by" />
+			<a href="class-Illuminate.Database.Eloquent.Relations.MorphOneOrMany.html"><span>Illuminate\Database\Eloquent\Relations\MorphOneOrMany</span></a>
+			
+			
+			
+		</dd>
+		<dd style="padding-left:90px">
+			<img src="resources/inherit.png" alt="Extended by" />
+<b><span>Illuminate\Database\Eloquent\Relations\MorphOne</span></b>			
+			
+			
+		</dd>
+	</dl>
+
+
+
+
+
+
+
+
+	<div class="info">
+		
+		
+		<b>Namespace:</b> <a href="namespace-Illuminate.html">Illuminate</a>\<a href="namespace-Illuminate.Database.html">Database</a>\<a href="namespace-Illuminate.Database.Eloquent.html">Eloquent</a>\<a href="namespace-Illuminate.Database.Eloquent.Relations.html">Relations</a><br />
+		
+
+		<b>Located at</b> <a href="source-class-Illuminate.Database.Eloquent.Relations.MorphOne.html#5-47" title="Go to source code">database/Illuminate/Database/Eloquent/Relations/MorphOne.php</a><br />
+	</div>
+
+
+
+	<table class="summary" id="methods">
+	<caption>Methods summary</caption>
+	<tr data-order="getResults" id="_getResults">
+
+		<td class="attributes"><code>
+			 public 
+			mixed
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getResults">#</a>
+		<code><a href="source-class-Illuminate.Database.Eloquent.Relations.MorphOne.html#7-15" title="Go to source code">getResults</a>( )</code>
+
+		<div class="description short">
+			
+<p>Get the results of the relationship.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get the results of the relationship.</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>mixed</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="initRelation" id="_initRelation">
+
+		<td class="attributes"><code>
+			 public 
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_initRelation">#</a>
+		<code><a href="source-class-Illuminate.Database.Eloquent.Relations.MorphOne.html#17-32" title="Go to source code">initRelation</a>( <span>array <var>$models</var></span>, <span>string <var>$relation</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Initialize the relation on a set of models.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Initialize the relation on a set of models.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$models</var></dt>
+					<dd><code>array</code><br>$models</dd>
+					<dt><var>$relation</var></dt>
+					<dd><code>string</code><br>$relation</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="match" id="_match">
+
+		<td class="attributes"><code>
+			 public 
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_match">#</a>
+		<code><a href="source-class-Illuminate.Database.Eloquent.Relations.MorphOne.html#34-45" title="Go to source code">match</a>( <span>array <var>$models</var></span>, <span><code><a href="class-Illuminate.Database.Eloquent.Collection.html">Illuminate\Database\Eloquent\Collection</a></code> <var>$results</var></span>, <span>string <var>$relation</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Match the eagerly loaded results to their parents.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Match the eagerly loaded results to their parents.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$models</var></dt>
+					<dd><code>array</code><br>$models</dd>
+					<dt><var>$results</var></dt>
+					<dd><code><code><a href="class-Illuminate.Database.Eloquent.Collection.html">Illuminate\Database\Eloquent\Collection</a></code></code><br>$results</dd>
+					<dt><var>$relation</var></dt>
+					<dd><code>string</code><br>$relation</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	</table>
+
+	<table class="summary inherited">
+	<caption>Methods inherited from <a href="class-Illuminate.Database.Eloquent.Relations.MorphOneOrMany.html#methods">Illuminate\Database\Eloquent\Relations\MorphOneOrMany</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-Illuminate.Database.Eloquent.Relations.MorphOneOrMany.html#___construct">__construct()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Relations.MorphOneOrMany.html#_addConstraints">addConstraints()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Relations.MorphOneOrMany.html#_addEagerConstraints">addEagerConstraints()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Relations.MorphOneOrMany.html#_create">create()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Relations.MorphOneOrMany.html#_getForeignAttributesForCreate">getForeignAttributesForCreate()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Relations.MorphOneOrMany.html#_getMorphClass">getMorphClass()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Relations.MorphOneOrMany.html#_getMorphType">getMorphType()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Relations.MorphOneOrMany.html#_getPlainMorphType">getPlainMorphType()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Relations.MorphOneOrMany.html#_getRelationCountQuery">getRelationCountQuery()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Relations.MorphOneOrMany.html#_save">save()</a>
+		</code></td>
+	</tr>
+	</table>
+	<table class="summary inherited">
+	<caption>Methods inherited from <a href="class-Illuminate.Database.Eloquent.Relations.HasOneOrMany.html#methods">Illuminate\Database\Eloquent\Relations\HasOneOrMany</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-Illuminate.Database.Eloquent.Relations.HasOneOrMany.html#_buildDictionary">buildDictionary()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Relations.HasOneOrMany.html#_createMany">createMany()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Relations.HasOneOrMany.html#_getForeignKey">getForeignKey()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Relations.HasOneOrMany.html#_getHasCompareKey">getHasCompareKey()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Relations.HasOneOrMany.html#_getParentKey">getParentKey()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Relations.HasOneOrMany.html#_getPlainForeignKey">getPlainForeignKey()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Relations.HasOneOrMany.html#_getQualifiedParentKeyName">getQualifiedParentKeyName()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Relations.HasOneOrMany.html#_getRelationValue">getRelationValue()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Relations.HasOneOrMany.html#_matchMany">matchMany()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Relations.HasOneOrMany.html#_matchOne">matchOne()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Relations.HasOneOrMany.html#_matchOneOrMany">matchOneOrMany()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Relations.HasOneOrMany.html#_saveMany">saveMany()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Relations.HasOneOrMany.html#_update">update()</a>
+		</code></td>
+	</tr>
+	</table>
+	<table class="summary inherited">
+	<caption>Methods inherited from <a href="class-Illuminate.Database.Eloquent.Relations.Relation.html#methods">Illuminate\Database\Eloquent\Relations\Relation</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-Illuminate.Database.Eloquent.Relations.Relation.html#___call">__call()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Relations.Relation.html#_createdAt">createdAt()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Relations.Relation.html#_getBaseQuery">getBaseQuery()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Relations.Relation.html#_getEager">getEager()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Relations.Relation.html#_getKeys">getKeys()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Relations.Relation.html#_getParent">getParent()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Relations.Relation.html#_getQuery">getQuery()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Relations.Relation.html#_getRelated">getRelated()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Relations.Relation.html#_noConstraints">noConstraints()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Relations.Relation.html#_rawUpdate">rawUpdate()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Relations.Relation.html#_relatedUpdatedAt">relatedUpdatedAt()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Relations.Relation.html#_restore">restore()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Relations.Relation.html#_touch">touch()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Relations.Relation.html#_updatedAt">updatedAt()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Relations.Relation.html#_wrap">wrap()</a>
+		</code></td>
+	</tr>
+	</table>
+
+
+
+
+
+
+
+
+
+
+
+
+	<table class="summary inherited">
+	<caption>Properties inherited from <a href="class-Illuminate.Database.Eloquent.Relations.MorphOneOrMany.html#properties">Illuminate\Database\Eloquent\Relations\MorphOneOrMany</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-Illuminate.Database.Eloquent.Relations.MorphOneOrMany.html#$morphClass"><var>$morphClass</var></a>, 
+			<a href="class-Illuminate.Database.Eloquent.Relations.MorphOneOrMany.html#$morphType"><var>$morphType</var></a>
+		</code></td>
+	</tr>
+	</table>
+	<table class="summary inherited">
+	<caption>Properties inherited from <a href="class-Illuminate.Database.Eloquent.Relations.HasOneOrMany.html#properties">Illuminate\Database\Eloquent\Relations\HasOneOrMany</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-Illuminate.Database.Eloquent.Relations.HasOneOrMany.html#$foreignKey"><var>$foreignKey</var></a>, 
+			<a href="class-Illuminate.Database.Eloquent.Relations.HasOneOrMany.html#$localKey"><var>$localKey</var></a>
+		</code></td>
+	</tr>
+	</table>
+	<table class="summary inherited">
+	<caption>Properties inherited from <a href="class-Illuminate.Database.Eloquent.Relations.Relation.html#properties">Illuminate\Database\Eloquent\Relations\Relation</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-Illuminate.Database.Eloquent.Relations.Relation.html#$constraints"><var>$constraints</var></a>, 
+			<a href="class-Illuminate.Database.Eloquent.Relations.Relation.html#$parent"><var>$parent</var></a>, 
+			<a href="class-Illuminate.Database.Eloquent.Relations.Relation.html#$query"><var>$query</var></a>, 
+			<a href="class-Illuminate.Database.Eloquent.Relations.Relation.html#$related"><var>$related</var></a>
+		</code></td>
+	</tr>
+	</table>
+
+
+
+
+
+</div>
+
+	<div id="footer">
+		 API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
+	</div>
+</div>
+</div>
+</body>
+</html>

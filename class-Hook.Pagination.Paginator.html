@@ -1,0 +1,1748 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="generator" content="ApiGen 2.8.0" />
+
+	<title>Class Hook\Pagination\Paginator</title>
+
+	<script type="text/javascript" src="resources/combined.js?417754471"></script>
+	<script type="text/javascript" src="elementlist.js?721444666"></script>
+	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
+
+</head>
+
+<body>
+<div id="left">
+	<div id="menu">
+		<a href="index.html" title="Overview"><span>Overview</span></a>
+
+
+		<div id="groups">
+			<h3>Namespaces</h3>
+			<ul>
+				<li class="active"><a href="namespace-Hook.html">Hook<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Application.html">Application<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Application.Core.html">Core</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Hook.Auth.html">Auth<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Auth.Providers.html">Providers</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Hook.Cache.html">Cache</a>
+						</li>
+				<li><a href="namespace-Hook.Controllers.html">Controllers</a>
+						</li>
+				<li><a href="namespace-Hook.Database.html">Database<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Database.Schema.html">Schema<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Database.Schema.Grammars.html">Grammars</a>
+						</li>
+							</ul></li></ul></li>
+				<li><a href="namespace-Hook.Encryption.html">Encryption</a>
+						</li>
+				<li><a href="namespace-Hook.Exceptions.html">Exceptions</a>
+						</li>
+				<li><a href="namespace-Hook.Http.html">Http</a>
+						</li>
+				<li><a href="namespace-Hook.Logger.html">Logger</a>
+						</li>
+				<li><a href="namespace-Hook.Mailer.html">Mailer</a>
+						</li>
+				<li><a href="namespace-Hook.Middlewares.html">Middlewares</a>
+						</li>
+				<li><a href="namespace-Hook.Model.html">Model</a>
+						</li>
+				<li><a href="namespace-Hook.Package.html">Package</a>
+						</li>
+				<li class="active"><a href="namespace-Hook.Pagination.html">Pagination</a>
+						</li>
+				<li><a href="namespace-Hook.PushNotification.html">PushNotification<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.PushNotification.Services.html">Services</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Hook.Session.html">Session<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Session.Handlers.html">Handlers</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Hook.Storage.html">Storage<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Storage.Providers.html">Providers</a>
+						</li>
+							</ul></li></ul></li>
+				<li><a href="namespace-Illuminate.html">Illuminate<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Cache.html">Cache<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Cache.Console.html">Console</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Illuminate.Config.html">Config</a>
+						</li>
+				<li><a href="namespace-Illuminate.Container.html">Container</a>
+						</li>
+				<li><a href="namespace-Illuminate.Database.html">Database<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Database.Capsule.html">Capsule</a>
+						</li>
+				<li><a href="namespace-Illuminate.Database.Connectors.html">Connectors</a>
+						</li>
+				<li><a href="namespace-Illuminate.Database.Console.html">Console<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Database.Console.Migrations.html">Migrations</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Illuminate.Database.Eloquent.html">Eloquent<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Database.Eloquent.Relations.html">Relations</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Illuminate.Database.Migrations.html">Migrations</a>
+						</li>
+				<li><a href="namespace-Illuminate.Database.Query.html">Query<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Database.Query.Grammars.html">Grammars</a>
+						</li>
+				<li><a href="namespace-Illuminate.Database.Query.Processors.html">Processors</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Illuminate.Database.Schema.html">Schema<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Database.Schema.Grammars.html">Grammars</a>
+						</li>
+							</ul></li></ul></li>
+				<li><a href="namespace-Illuminate.Encryption.html">Encryption</a>
+						</li>
+				<li><a href="namespace-Illuminate.Events.html">Events</a>
+						</li>
+				<li><a href="namespace-Illuminate.Filesystem.html">Filesystem</a>
+						</li>
+				<li><a href="namespace-Illuminate.Support.html">Support<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Support.Contracts.html">Contracts</a>
+						</li>
+				<li><a href="namespace-Illuminate.Support.Facades.html">Facades</a>
+						</li>
+							</ul></li></ul></li>
+				<li><a href="namespace-None.html">None</a>
+						</li>
+				<li><a href="namespace-PHP.html">PHP</a>
+						</li>
+				<li><a href="namespace-Slim.html">Slim<span></span></a>
+						<ul>
+				<li><a href="namespace-Slim.Exception.html">Exception</a>
+						</li>
+				<li><a href="namespace-Slim.Helper.html">Helper</a>
+						</li>
+				<li><a href="namespace-Slim.Http.html">Http</a>
+						</li>
+				<li><a href="namespace-Slim.Middleware.html">Middleware</a>
+						</li>
+							</ul></li>
+			</ul>
+		</div>
+
+		<hr />
+
+
+		<div id="elements">
+			<h3>Classes</h3>
+			<ul>
+				<li><a href="class-Hook.Pagination.Environment.html">Environment</a></li>
+				<li class="active"><a href="class-Hook.Pagination.Paginator.html">Paginator</a></li>
+			</ul>
+
+
+
+
+
+		</div>
+	</div>
+</div>
+
+<div id="splitter"></div>
+
+<div id="right">
+<div id="rightInner">
+	<form id="search">
+		<input type="hidden" name="cx" value="" />
+		<input type="hidden" name="ie" value="UTF-8" />
+		<input type="text" name="q" class="text" />
+		<input type="submit" value="Search" />
+	</form>
+
+	<div id="navigation">
+		<ul>
+			<li>
+				<a href="index.html" title="Overview"><span>Overview</span></a>
+			</li>
+			<li>
+				<a href="namespace-Hook.Pagination.html" title="Summary of Hook\Pagination"><span>Namespace</span></a>
+			</li>
+			<li class="active">
+<span>Class</span>			</li>
+		</ul>
+		<ul>
+			<li>
+				<a href="tree.html" title="Tree view of classes, interfaces, traits and exceptions"><span>Tree</span></a>
+			</li>
+		</ul>
+		<ul>
+		</ul>
+	</div>
+
+<div id="content" class="class">
+	<h1>Class Paginator</h1>
+
+
+
+	<dl class="tree">
+		<dd style="padding-left:0px">
+<b><span>Hook\Pagination\Paginator</span></b>			
+			 implements 
+				<a href="class-Illuminate.Support.Contracts.ArrayableInterface.html"><span>Illuminate\Support\Contracts\ArrayableInterface</span></a>, 
+			
+				<a href="class-ArrayAccess.html"><span>ArrayAccess</span></a>, 
+			
+				<a href="class-Countable.html"><span>Countable</span></a>, 
+			
+				<a href="class-IteratorAggregate.html"><span>IteratorAggregate</span></a>, 
+			
+				<a href="class-Illuminate.Support.Contracts.JsonableInterface.html"><span>Illuminate\Support\Contracts\JsonableInterface</span></a>
+			
+			
+		</dd>
+	</dl>
+
+
+
+
+
+
+
+
+	<div class="info">
+		
+		
+		<b>Namespace:</b> <a href="namespace-Hook.html">Hook</a>\<a href="namespace-Hook.Pagination.html">Pagination</a><br />
+		
+
+		<b>Located at</b> <a href="source-class-Hook.Pagination.Paginator.html#17-460" title="Go to source code">Pagination/Paginator.php</a><br />
+	</div>
+
+
+
+	<table class="summary" id="methods">
+	<caption>Methods summary</caption>
+	<tr data-order="__construct" id="___construct">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#___construct">#</a>
+		<code><a href="source-class-Hook.Pagination.Paginator.html#82-97" title="Go to source code">__construct</a>( <span>Illuminate\Pagination\Environment <var>$env</var></span>, <span>array <var>$items</var></span>, <span>integer <var>$total</var></span>, <span>integer <var>$perPage</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Create a new Paginator instance.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Create a new Paginator instance.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$env</var></dt>
+					<dd><code>Illuminate\Pagination\Environment</code><br>$env</dd>
+					<dt><var>$items</var></dt>
+					<dd><code>array</code><br>$items</dd>
+					<dt><var>$total</var></dt>
+					<dd><code>integer</code><br>$total</dd>
+					<dt><var>$perPage</var></dt>
+					<dd><code>integer</code><br>$perPage</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="setupPaginationContext" id="_setupPaginationContext">
+
+		<td class="attributes"><code>
+			 public 
+			Illuminate\Pagination\Paginator
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_setupPaginationContext">#</a>
+		<code><a href="source-class-Hook.Pagination.Paginator.html#99-111" title="Go to source code">setupPaginationContext</a>( )</code>
+
+		<div class="description short">
+			
+<p>Setup the pagination context (current and last page).</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Setup the pagination context (current and last page).</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>Illuminate\Pagination\Paginator</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="calculateCurrentAndLastPages" id="_calculateCurrentAndLastPages">
+
+		<td class="attributes"><code>
+			 protected 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_calculateCurrentAndLastPages">#</a>
+		<code><a href="source-class-Hook.Pagination.Paginator.html#113-123" title="Go to source code">calculateCurrentAndLastPages</a>( )</code>
+
+		<div class="description short">
+			
+<p>Calculate the current and last pages for this instance.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Calculate the current and last pages for this instance.</p>
+
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="calculateItemRanges" id="_calculateItemRanges">
+
+		<td class="attributes"><code>
+			 protected 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_calculateItemRanges">#</a>
+		<code><a href="source-class-Hook.Pagination.Paginator.html#125-135" title="Go to source code">calculateItemRanges</a>( )</code>
+
+		<div class="description short">
+			
+<p>Calculate the first and last item number for this instance.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Calculate the first and last item number for this instance.</p>
+
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="calculateCurrentPage" id="_calculateCurrentPage">
+
+		<td class="attributes"><code>
+			 protected 
+			integer
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_calculateCurrentPage">#</a>
+		<code><a href="source-class-Hook.Pagination.Paginator.html#137-155" title="Go to source code">calculateCurrentPage</a>( <span>integer <var>$lastPage</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Get the current page for the request.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get the current page for the request.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$lastPage</var></dt>
+					<dd><code>integer</code><br>$lastPage</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>integer</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="isValidPageNumber" id="_isValidPageNumber">
+
+		<td class="attributes"><code>
+			 protected 
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_isValidPageNumber">#</a>
+		<code><a href="source-class-Hook.Pagination.Paginator.html#157-166" title="Go to source code">isValidPageNumber</a>( <span>integer <var>$page</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Determine if the given value is a valid page number.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Determine if the given value is a valid page number.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$page</var></dt>
+					<dd><code>integer</code><br>$page</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="links" id="_links">
+
+		<td class="attributes"><code>
+			 public 
+			Illuminate\View\View
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_links">#</a>
+		<code><a href="source-class-Hook.Pagination.Paginator.html#168-177" title="Go to source code">links</a>( <span>string <var>$view</var> = <span class="php-keyword1">null</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Get the pagination links view.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get the pagination links view.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$view</var></dt>
+					<dd><code>string</code><br>$view</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>Illuminate\View\View</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getUrl" id="_getUrl">
+
+		<td class="attributes"><code>
+			 public 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getUrl">#</a>
+		<code><a href="source-class-Hook.Pagination.Paginator.html#179-199" title="Go to source code">getUrl</a>( <span>integer <var>$page</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Get a URL for a given page number.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get a URL for a given page number.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$page</var></dt>
+					<dd><code>integer</code><br>$page</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="appends" id="_appends">
+
+		<td class="attributes"><code>
+			 public 
+			Illuminate\Pagination\Paginator
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_appends">#</a>
+		<code><a href="source-class-Hook.Pagination.Paginator.html#201-212" title="Go to source code">appends</a>( <span>string <var>$key</var></span>, <span>string <var>$value</var> = <span class="php-keyword1">null</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Add a query string value to the paginator.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Add a query string value to the paginator.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$key</var></dt>
+					<dd><code>string</code><br>$key</dd>
+					<dt><var>$value</var></dt>
+					<dd><code>string</code><br>$value</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>Illuminate\Pagination\Paginator</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="appendArray" id="_appendArray">
+
+		<td class="attributes"><code>
+			 protected 
+			Illuminate\Pagination\Paginator
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_appendArray">#</a>
+		<code><a href="source-class-Hook.Pagination.Paginator.html#214-227" title="Go to source code">appendArray</a>( <span>array <var>$keys</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Add an array of query string values.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Add an array of query string values.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$keys</var></dt>
+					<dd><code>array</code><br>$keys</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>Illuminate\Pagination\Paginator</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="addQuery" id="_addQuery">
+
+		<td class="attributes"><code>
+			 public 
+			Illuminate\Pagination\Paginator
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_addQuery">#</a>
+		<code><a href="source-class-Hook.Pagination.Paginator.html#229-241" title="Go to source code">addQuery</a>( <span>string <var>$key</var></span>, <span>string <var>$value</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Add a query string value to the paginator.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Add a query string value to the paginator.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$key</var></dt>
+					<dd><code>string</code><br>$key</dd>
+					<dt><var>$value</var></dt>
+					<dd><code>string</code><br>$value</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>Illuminate\Pagination\Paginator</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getCurrentPage" id="_getCurrentPage">
+
+		<td class="attributes"><code>
+			 public 
+			integer
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getCurrentPage">#</a>
+		<code><a href="source-class-Hook.Pagination.Paginator.html#243-256" title="Go to source code">getCurrentPage</a>( <span>integer|null <var>$total</var> = <span class="php-keyword1">null</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Get the current page for the request.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get the current page for the request.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$total</var></dt>
+					<dd><code>integer|null</code><br>$total</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>integer</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getLastPage" id="_getLastPage">
+
+		<td class="attributes"><code>
+			 public 
+			integer
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getLastPage">#</a>
+		<code><a href="source-class-Hook.Pagination.Paginator.html#258-266" title="Go to source code">getLastPage</a>( )</code>
+
+		<div class="description short">
+			
+<p>Get the last page that should be available.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get the last page that should be available.</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>integer</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getFrom" id="_getFrom">
+
+		<td class="attributes"><code>
+			 public 
+			integer
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getFrom">#</a>
+		<code><a href="source-class-Hook.Pagination.Paginator.html#268-276" title="Go to source code">getFrom</a>( )</code>
+
+		<div class="description short">
+			
+<p>Get the number of the first item on the paginator.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get the number of the first item on the paginator.</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>integer</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getTo" id="_getTo">
+
+		<td class="attributes"><code>
+			 public 
+			integer
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getTo">#</a>
+		<code><a href="source-class-Hook.Pagination.Paginator.html#278-286" title="Go to source code">getTo</a>( )</code>
+
+		<div class="description short">
+			
+<p>Get the number of the last item on the paginator.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get the number of the last item on the paginator.</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>integer</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getPerPage" id="_getPerPage">
+
+		<td class="attributes"><code>
+			 public 
+			integer
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getPerPage">#</a>
+		<code><a href="source-class-Hook.Pagination.Paginator.html#288-296" title="Go to source code">getPerPage</a>( )</code>
+
+		<div class="description short">
+			
+<p>Get the number of items to be displayed per page.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get the number of items to be displayed per page.</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>integer</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getCollection" id="_getCollection">
+
+		<td class="attributes"><code>
+			 public 
+			<code><a href="class-Illuminate.Support.Collection.html">Illuminate\Support\Collection</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getCollection">#</a>
+		<code><a href="source-class-Hook.Pagination.Paginator.html#298-306" title="Go to source code">getCollection</a>( )</code>
+
+		<div class="description short">
+			
+<p>Get a collection instance containing the items.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get a collection instance containing the items.</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-Illuminate.Support.Collection.html">Illuminate\Support\Collection</a></code></code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getItems" id="_getItems">
+
+		<td class="attributes"><code>
+			 public 
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getItems">#</a>
+		<code><a href="source-class-Hook.Pagination.Paginator.html#308-316" title="Go to source code">getItems</a>( )</code>
+
+		<div class="description short">
+			
+<p>Get the items being paginated.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get the items being paginated.</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="setItems" id="_setItems">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_setItems">#</a>
+		<code><a href="source-class-Hook.Pagination.Paginator.html#318-327" title="Go to source code">setItems</a>( <span>mixed <var>$items</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Set the items being paginated.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Set the items being paginated.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$items</var></dt>
+					<dd><code>mixed</code><br>$items</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getTotal" id="_getTotal">
+
+		<td class="attributes"><code>
+			 public 
+			integer
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getTotal">#</a>
+		<code><a href="source-class-Hook.Pagination.Paginator.html#329-337" title="Go to source code">getTotal</a>( )</code>
+
+		<div class="description short">
+			
+<p>Get the total number of items in the collection.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get the total number of items in the collection.</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>integer</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="setBaseUrl" id="_setBaseUrl">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_setBaseUrl">#</a>
+		<code><a href="source-class-Hook.Pagination.Paginator.html#339-348" title="Go to source code">setBaseUrl</a>( <span>string <var>$baseUrl</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Set the base URL in use by the paginator.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Set the base URL in use by the paginator.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$baseUrl</var></dt>
+					<dd><code>string</code><br>$baseUrl</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getEnvironment" id="_getEnvironment">
+
+		<td class="attributes"><code>
+			 public 
+			Illuminate\Pagination\Environment
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getEnvironment">#</a>
+		<code><a href="source-class-Hook.Pagination.Paginator.html#350-358" title="Go to source code">getEnvironment</a>( )</code>
+
+		<div class="description short">
+			
+<p>Get the pagination environment.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get the pagination environment.</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>Illuminate\Pagination\Environment</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getIterator" id="_getIterator">
+
+		<td class="attributes"><code>
+			 public 
+			<code><a href="class-ArrayIterator.html">ArrayIterator</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getIterator">#</a>
+		<code><a href="source-class-Hook.Pagination.Paginator.html#360-368" title="Go to source code">getIterator</a>( )</code>
+
+		<div class="description short">
+			
+<p>Get an iterator for the items.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get an iterator for the items.</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-ArrayIterator.html">ArrayIterator</a></code></code><br />
+				</div>
+
+
+
+
+				<h4>Implementation of</h4>
+				<div class="list"><code><a href="class-IteratorAggregate.html#_getIterator">IteratorAggregate::getIterator()</a></code></div>
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="isEmpty" id="_isEmpty">
+
+		<td class="attributes"><code>
+			 public 
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_isEmpty">#</a>
+		<code><a href="source-class-Hook.Pagination.Paginator.html#370-378" title="Go to source code">isEmpty</a>( )</code>
+
+		<div class="description short">
+			
+<p>Determine if the list of items is empty or not.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Determine if the list of items is empty or not.</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="count" id="_count">
+
+		<td class="attributes"><code>
+			 public 
+			integer
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_count">#</a>
+		<code><a href="source-class-Hook.Pagination.Paginator.html#380-388" title="Go to source code">count</a>( )</code>
+
+		<div class="description short">
+			
+<p>Get the number of items for the current page.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get the number of items for the current page.</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>integer</code><br />
+				</div>
+
+
+
+
+				<h4>Implementation of</h4>
+				<div class="list"><code><a href="class-Countable.html#_count">Countable::count()</a></code></div>
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="offsetExists" id="_offsetExists">
+
+		<td class="attributes"><code>
+			 public 
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_offsetExists">#</a>
+		<code><a href="source-class-Hook.Pagination.Paginator.html#390-399" title="Go to source code">offsetExists</a>( <span>mixed <var>$key</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Determine if the given item exists.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Determine if the given item exists.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$key</var></dt>
+					<dd><code>mixed</code><br>$key</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br />
+				</div>
+
+
+
+
+				<h4>Implementation of</h4>
+				<div class="list"><code><a href="class-ArrayAccess.html#_offsetExists">ArrayAccess::offsetExists()</a></code></div>
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="offsetGet" id="_offsetGet">
+
+		<td class="attributes"><code>
+			 public 
+			mixed
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_offsetGet">#</a>
+		<code><a href="source-class-Hook.Pagination.Paginator.html#401-410" title="Go to source code">offsetGet</a>( <span>mixed <var>$key</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Get the item at the given offset.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get the item at the given offset.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$key</var></dt>
+					<dd><code>mixed</code><br>$key</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>mixed</code><br />
+				</div>
+
+
+
+
+				<h4>Implementation of</h4>
+				<div class="list"><code><a href="class-ArrayAccess.html#_offsetGet">ArrayAccess::offsetGet()</a></code></div>
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="offsetSet" id="_offsetSet">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_offsetSet">#</a>
+		<code><a href="source-class-Hook.Pagination.Paginator.html#412-422" title="Go to source code">offsetSet</a>( <span>mixed <var>$key</var></span>, <span>mixed <var>$value</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Set the item at the given offset.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Set the item at the given offset.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$key</var></dt>
+					<dd><code>mixed</code><br>$key</dd>
+					<dt><var>$value</var></dt>
+					<dd><code>mixed</code><br>$value</dd>
+				</dl></div>
+
+
+
+
+
+				<h4>Implementation of</h4>
+				<div class="list"><code><a href="class-ArrayAccess.html#_offsetSet">ArrayAccess::offsetSet()</a></code></div>
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="offsetUnset" id="_offsetUnset">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_offsetUnset">#</a>
+		<code><a href="source-class-Hook.Pagination.Paginator.html#424-433" title="Go to source code">offsetUnset</a>( <span>mixed <var>$key</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Unset the item at the given key.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Unset the item at the given key.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$key</var></dt>
+					<dd><code>mixed</code><br>$key</dd>
+				</dl></div>
+
+
+
+
+
+				<h4>Implementation of</h4>
+				<div class="list"><code><a href="class-ArrayAccess.html#_offsetUnset">ArrayAccess::offsetUnset()</a></code></div>
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="toArray" id="_toArray">
+
+		<td class="attributes"><code>
+			 public 
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_toArray">#</a>
+		<code><a href="source-class-Hook.Pagination.Paginator.html#435-447" title="Go to source code">toArray</a>( )</code>
+
+		<div class="description short">
+			
+<p>Get the instance as an array.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get the instance as an array.</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array</code><br />
+				</div>
+
+
+
+
+				<h4>Implementation of</h4>
+				<div class="list"><code><a href="class-Illuminate.Support.Contracts.ArrayableInterface.html#_toArray">Illuminate\Support\Contracts\ArrayableInterface::toArray()</a></code></div>
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="toJson" id="_toJson">
+
+		<td class="attributes"><code>
+			 public 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_toJson">#</a>
+		<code><a href="source-class-Hook.Pagination.Paginator.html#449-458" title="Go to source code">toJson</a>( <span>integer <var>$options</var> = <span class="php-num">0</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Convert the object to its JSON representation.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Convert the object to its JSON representation.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$options</var></dt>
+					<dd><code>integer</code><br>$options</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br />
+				</div>
+
+
+
+
+				<h4>Implementation of</h4>
+				<div class="list"><code><a href="class-Illuminate.Support.Contracts.JsonableInterface.html#_toJson">Illuminate\Support\Contracts\JsonableInterface::toJson()</a></code></div>
+		</div>
+		</div></td>
+	</tr>
+	</table>
+
+
+
+
+
+
+
+
+
+
+
+
+	<table class="summary" id="properties">
+	<caption>Properties summary</caption>
+	<tr data-order="env" id="$env">
+		<td class="attributes"><code>
+			protected  
+			Illuminate\Pagination\Environment
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Hook.Pagination.Paginator.html#19-24" title="Go to source code"><var>$env</var></a>
+		</td>
+		<td class="value"><code></code></td>
+		<td class="description"><div>
+			<a href="#$env" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>The pagination environment.</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>The pagination environment.</p>
+
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="items" id="$items">
+		<td class="attributes"><code>
+			protected  
+			array
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Hook.Pagination.Paginator.html#26-31" title="Go to source code"><var>$items</var></a>
+		</td>
+		<td class="value"><code></code></td>
+		<td class="description"><div>
+			<a href="#$items" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>The items being paginated.</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>The items being paginated.</p>
+
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="total" id="$total">
+		<td class="attributes"><code>
+			protected  
+			integer
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Hook.Pagination.Paginator.html#33-38" title="Go to source code"><var>$total</var></a>
+		</td>
+		<td class="value"><code></code></td>
+		<td class="description"><div>
+			<a href="#$total" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>The total number of items.</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>The total number of items.</p>
+
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="perPage" id="$perPage">
+		<td class="attributes"><code>
+			protected  
+			integer
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Hook.Pagination.Paginator.html#40-45" title="Go to source code"><var>$perPage</var></a>
+		</td>
+		<td class="value"><code></code></td>
+		<td class="description"><div>
+			<a href="#$perPage" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>The amount of items to show per page.</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>The amount of items to show per page.</p>
+
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="currentPage" id="$currentPage">
+		<td class="attributes"><code>
+			protected  
+			integer
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Hook.Pagination.Paginator.html#47-52" title="Go to source code"><var>$currentPage</var></a>
+		</td>
+		<td class="value"><code></code></td>
+		<td class="description"><div>
+			<a href="#$currentPage" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>Get the current page for the request.</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>Get the current page for the request.</p>
+
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="lastPage" id="$lastPage">
+		<td class="attributes"><code>
+			protected  
+			mixed
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Hook.Pagination.Paginator.html#54-59" title="Go to source code"><var>$lastPage</var></a>
+		</td>
+		<td class="value"><code></code></td>
+		<td class="description"><div>
+			<a href="#$lastPage" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>Get the last available page number.</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>Get the last available page number.</p>
+
+
+					<h4>Return</h4>
+					<div class="list">
+							<code>integer</code><br />
+					</div>
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="from" id="$from">
+		<td class="attributes"><code>
+			protected  
+			integer
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Hook.Pagination.Paginator.html#61-66" title="Go to source code"><var>$from</var></a>
+		</td>
+		<td class="value"><code></code></td>
+		<td class="description"><div>
+			<a href="#$from" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>The number of the first item in this range.</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>The number of the first item in this range.</p>
+
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="to" id="$to">
+		<td class="attributes"><code>
+			protected  
+			integer
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Hook.Pagination.Paginator.html#68-73" title="Go to source code"><var>$to</var></a>
+		</td>
+		<td class="value"><code></code></td>
+		<td class="description"><div>
+			<a href="#$to" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>The number of the last item in this range.</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>The number of the last item in this range.</p>
+
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="query" id="$query">
+		<td class="attributes"><code>
+			protected  
+			array
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Hook.Pagination.Paginator.html#75-80" title="Go to source code"><var>$query</var></a>
+		</td>
+		<td class="value"><code><span class="php-keyword1">array</span>()</code></td>
+		<td class="description"><div>
+			<a href="#$query" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>All of the additional query string values.</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>All of the additional query string values.</p>
+
+
+			</div>
+		</div></td>
+	</tr>
+	</table>
+
+
+
+
+
+
+</div>
+
+	<div id="footer">
+		 API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
+	</div>
+</div>
+</div>
+</body>
+</html>

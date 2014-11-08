@@ -1,0 +1,1113 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="generator" content="ApiGen 2.8.0" />
+
+	<title>Class Illuminate\Database\Migrations\Migrator</title>
+
+	<script type="text/javascript" src="resources/combined.js?417754471"></script>
+	<script type="text/javascript" src="elementlist.js?721444666"></script>
+	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
+
+</head>
+
+<body>
+<div id="left">
+	<div id="menu">
+		<a href="index.html" title="Overview"><span>Overview</span></a>
+
+
+		<div id="groups">
+			<h3>Namespaces</h3>
+			<ul>
+				<li><a href="namespace-Hook.html">Hook<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Application.html">Application<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Application.Core.html">Core</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Hook.Auth.html">Auth<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Auth.Providers.html">Providers</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Hook.Cache.html">Cache</a>
+						</li>
+				<li><a href="namespace-Hook.Controllers.html">Controllers</a>
+						</li>
+				<li><a href="namespace-Hook.Database.html">Database<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Database.Schema.html">Schema<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Database.Schema.Grammars.html">Grammars</a>
+						</li>
+							</ul></li></ul></li>
+				<li><a href="namespace-Hook.Encryption.html">Encryption</a>
+						</li>
+				<li><a href="namespace-Hook.Exceptions.html">Exceptions</a>
+						</li>
+				<li><a href="namespace-Hook.Http.html">Http</a>
+						</li>
+				<li><a href="namespace-Hook.Logger.html">Logger</a>
+						</li>
+				<li><a href="namespace-Hook.Mailer.html">Mailer</a>
+						</li>
+				<li><a href="namespace-Hook.Middlewares.html">Middlewares</a>
+						</li>
+				<li><a href="namespace-Hook.Model.html">Model</a>
+						</li>
+				<li><a href="namespace-Hook.Package.html">Package</a>
+						</li>
+				<li><a href="namespace-Hook.Pagination.html">Pagination</a>
+						</li>
+				<li><a href="namespace-Hook.PushNotification.html">PushNotification<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.PushNotification.Services.html">Services</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Hook.Session.html">Session<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Session.Handlers.html">Handlers</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Hook.Storage.html">Storage<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Storage.Providers.html">Providers</a>
+						</li>
+							</ul></li></ul></li>
+				<li class="active"><a href="namespace-Illuminate.html">Illuminate<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Cache.html">Cache<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Cache.Console.html">Console</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Illuminate.Config.html">Config</a>
+						</li>
+				<li><a href="namespace-Illuminate.Container.html">Container</a>
+						</li>
+				<li class="active"><a href="namespace-Illuminate.Database.html">Database<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Database.Capsule.html">Capsule</a>
+						</li>
+				<li><a href="namespace-Illuminate.Database.Connectors.html">Connectors</a>
+						</li>
+				<li><a href="namespace-Illuminate.Database.Console.html">Console<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Database.Console.Migrations.html">Migrations</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Illuminate.Database.Eloquent.html">Eloquent<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Database.Eloquent.Relations.html">Relations</a>
+						</li>
+							</ul></li>
+				<li class="active"><a href="namespace-Illuminate.Database.Migrations.html">Migrations</a>
+						</li>
+				<li><a href="namespace-Illuminate.Database.Query.html">Query<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Database.Query.Grammars.html">Grammars</a>
+						</li>
+				<li><a href="namespace-Illuminate.Database.Query.Processors.html">Processors</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Illuminate.Database.Schema.html">Schema<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Database.Schema.Grammars.html">Grammars</a>
+						</li>
+							</ul></li></ul></li>
+				<li><a href="namespace-Illuminate.Encryption.html">Encryption</a>
+						</li>
+				<li><a href="namespace-Illuminate.Events.html">Events</a>
+						</li>
+				<li><a href="namespace-Illuminate.Filesystem.html">Filesystem</a>
+						</li>
+				<li><a href="namespace-Illuminate.Support.html">Support<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Support.Contracts.html">Contracts</a>
+						</li>
+				<li><a href="namespace-Illuminate.Support.Facades.html">Facades</a>
+						</li>
+							</ul></li></ul></li>
+				<li><a href="namespace-None.html">None</a>
+						</li>
+				<li><a href="namespace-PHP.html">PHP</a>
+						</li>
+				<li><a href="namespace-Slim.html">Slim<span></span></a>
+						<ul>
+				<li><a href="namespace-Slim.Exception.html">Exception</a>
+						</li>
+				<li><a href="namespace-Slim.Helper.html">Helper</a>
+						</li>
+				<li><a href="namespace-Slim.Http.html">Http</a>
+						</li>
+				<li><a href="namespace-Slim.Middleware.html">Middleware</a>
+						</li>
+							</ul></li>
+			</ul>
+		</div>
+
+		<hr />
+
+
+		<div id="elements">
+			<h3>Classes</h3>
+			<ul>
+				<li><a href="class-Illuminate.Database.Migrations.DatabaseMigrationRepository.html">DatabaseMigrationRepository</a></li>
+				<li><a href="class-Illuminate.Database.Migrations.Migration.html">Migration</a></li>
+				<li><a href="class-Illuminate.Database.Migrations.MigrationCreator.html">MigrationCreator</a></li>
+				<li class="active"><a href="class-Illuminate.Database.Migrations.Migrator.html">Migrator</a></li>
+			</ul>
+
+			<h3>Interfaces</h3>
+			<ul>
+				<li><a href="class-Illuminate.Database.Migrations.MigrationRepositoryInterface.html">MigrationRepositoryInterface</a></li>
+			</ul>
+
+
+
+
+		</div>
+	</div>
+</div>
+
+<div id="splitter"></div>
+
+<div id="right">
+<div id="rightInner">
+	<form id="search">
+		<input type="hidden" name="cx" value="" />
+		<input type="hidden" name="ie" value="UTF-8" />
+		<input type="text" name="q" class="text" />
+		<input type="submit" value="Search" />
+	</form>
+
+	<div id="navigation">
+		<ul>
+			<li>
+				<a href="index.html" title="Overview"><span>Overview</span></a>
+			</li>
+			<li>
+				<a href="namespace-Illuminate.Database.Migrations.html" title="Summary of Illuminate\Database\Migrations"><span>Namespace</span></a>
+			</li>
+			<li class="active">
+<span>Class</span>			</li>
+		</ul>
+		<ul>
+			<li>
+				<a href="tree.html" title="Tree view of classes, interfaces, traits and exceptions"><span>Tree</span></a>
+			</li>
+		</ul>
+		<ul>
+		</ul>
+	</div>
+
+<div id="content" class="class">
+	<h1>Class Migrator</h1>
+
+
+
+
+
+
+
+
+
+
+
+	<div class="info">
+		
+		
+		<b>Namespace:</b> <a href="namespace-Illuminate.html">Illuminate</a>\<a href="namespace-Illuminate.Database.html">Database</a>\<a href="namespace-Illuminate.Database.Migrations.html">Migrations</a><br />
+		
+
+		<b>Located at</b> <a href="source-class-Illuminate.Database.Migrations.Migrator.html#6-379" title="Go to source code">database/Illuminate/Database/Migrations/Migrator.php</a><br />
+	</div>
+
+
+
+	<table class="summary" id="methods">
+	<caption>Methods summary</caption>
+	<tr data-order="__construct" id="___construct">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#___construct">#</a>
+		<code><a href="source-class-Illuminate.Database.Migrations.Migrator.html#43-58" title="Go to source code">__construct</a>( <span><code><a href="class-Illuminate.Database.Migrations.MigrationRepositoryInterface.html">Illuminate\Database\Migrations\MigrationRepositoryInterface</a></code> <var>$repository</var></span>, <span><code><a href="class-Illuminate.Database.ConnectionResolverInterface.html">Illuminate\Database\ConnectionResolverInterface</a></code> <var>$resolver</var></span>, <span><code><a href="class-Illuminate.Filesystem.Filesystem.html">Illuminate\Filesystem\Filesystem</a></code> <var>$files</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Create a new migrator instance.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Create a new migrator instance.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$repository</var></dt>
+					<dd><code><code><a href="class-Illuminate.Database.Migrations.MigrationRepositoryInterface.html">Illuminate\Database\Migrations\MigrationRepositoryInterface</a></code></code><br>$repository</dd>
+					<dt><var>$resolver</var></dt>
+					<dd><code><code><a href="class-Illuminate.Database.ConnectionResolverInterface.html">Illuminate\Database\ConnectionResolverInterface</a></code></code><br>$resolver</dd>
+					<dt><var>$files</var></dt>
+					<dd><code><code><a href="class-Illuminate.Filesystem.Filesystem.html">Illuminate\Filesystem\Filesystem</a></code></code><br>$files</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="run" id="_run">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_run">#</a>
+		<code><a href="source-class-Illuminate.Database.Migrations.Migrator.html#60-81" title="Go to source code">run</a>( <span>string <var>$path</var></span>, <span>boolean <var>$pretend</var> = <span class="php-keyword1">false</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Run the outstanding migrations at a given path.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Run the outstanding migrations at a given path.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$path</var></dt>
+					<dd><code>string</code><br>$path</dd>
+					<dt><var>$pretend</var></dt>
+					<dd><code>boolean</code><br>$pretend</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="runMigrationList" id="_runMigrationList">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_runMigrationList">#</a>
+		<code><a href="source-class-Illuminate.Database.Migrations.Migrator.html#83-111" title="Go to source code">runMigrationList</a>( <span>array <var>$migrations</var></span>, <span>boolean <var>$pretend</var> = <span class="php-keyword1">false</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Run an array of migrations.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Run an array of migrations.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$migrations</var></dt>
+					<dd><code>array</code><br>$migrations</dd>
+					<dt><var>$pretend</var></dt>
+					<dd><code>boolean</code><br>$pretend</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="runUp" id="_runUp">
+
+		<td class="attributes"><code>
+			 protected 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_runUp">#</a>
+		<code><a href="source-class-Illuminate.Database.Migrations.Migrator.html#113-141" title="Go to source code">runUp</a>( <span>string <var>$file</var></span>, <span>integer <var>$batch</var></span>, <span>boolean <var>$pretend</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Run "up" a migration instance.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Run "up" a migration instance.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$file</var></dt>
+					<dd><code>string</code><br>$file</dd>
+					<dt><var>$batch</var></dt>
+					<dd><code>integer</code><br>$batch</dd>
+					<dt><var>$pretend</var></dt>
+					<dd><code>boolean</code><br>$pretend</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="rollback" id="_rollback">
+
+		<td class="attributes"><code>
+			 public 
+			integer
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_rollback">#</a>
+		<code><a href="source-class-Illuminate.Database.Migrations.Migrator.html#143-174" title="Go to source code">rollback</a>( <span>boolean <var>$pretend</var> = <span class="php-keyword1">false</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Rollback the last migration operation.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Rollback the last migration operation.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$pretend</var></dt>
+					<dd><code>boolean</code><br>$pretend</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>integer</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="runDown" id="_runDown">
+
+		<td class="attributes"><code>
+			 protected 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_runDown">#</a>
+		<code><a href="source-class-Illuminate.Database.Migrations.Migrator.html#176-205" title="Go to source code">runDown</a>( <span>object <var>$migration</var></span>, <span>boolean <var>$pretend</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Run "down" a migration instance.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Run "down" a migration instance.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$migration</var></dt>
+					<dd><code>object</code><br>$migration</dd>
+					<dt><var>$pretend</var></dt>
+					<dd><code>boolean</code><br>$pretend</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getMigrationFiles" id="_getMigrationFiles">
+
+		<td class="attributes"><code>
+			 public 
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getMigrationFiles">#</a>
+		<code><a href="source-class-Illuminate.Database.Migrations.Migrator.html#207-234" title="Go to source code">getMigrationFiles</a>( <span>string <var>$path</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Get all of the migration files in a given path.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get all of the migration files in a given path.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$path</var></dt>
+					<dd><code>string</code><br>$path</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="requireFiles" id="_requireFiles">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_requireFiles">#</a>
+		<code><a href="source-class-Illuminate.Database.Migrations.Migrator.html#236-245" title="Go to source code">requireFiles</a>( <span>array <var>$path</var></span>, <span>array <var>$files</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Require in all the migration files in a given path.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Require in all the migration files in a given path.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$path</var></dt>
+					<dd><code>array</code><br>$files</dd>
+					<dt><var>$files</var></dt>
+					<dd></dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="pretendToRun" id="_pretendToRun">
+
+		<td class="attributes"><code>
+			 protected 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_pretendToRun">#</a>
+		<code><a href="source-class-Illuminate.Database.Migrations.Migrator.html#247-261" title="Go to source code">pretendToRun</a>( <span>object <var>$migration</var></span>, <span>mixed <var>$method</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Pretend to run the migrations.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Pretend to run the migrations.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$migration</var></dt>
+					<dd><code>object</code><br>$migration</dd>
+					<dt><var>$method</var></dt>
+					<dd></dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getQueries" id="_getQueries">
+
+		<td class="attributes"><code>
+			 protected 
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getQueries">#</a>
+		<code><a href="source-class-Illuminate.Database.Migrations.Migrator.html#263-283" title="Go to source code">getQueries</a>( <span>object <var>$migration</var></span>, <span>string <var>$method</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Get all of the queries that would be run for a migration.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get all of the queries that would be run for a migration.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$migration</var></dt>
+					<dd><code>object</code><br>$migration</dd>
+					<dt><var>$method</var></dt>
+					<dd><code>string</code><br>$method</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="resolve" id="_resolve">
+
+		<td class="attributes"><code>
+			 public 
+			object
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_resolve">#</a>
+		<code><a href="source-class-Illuminate.Database.Migrations.Migrator.html#285-298" title="Go to source code">resolve</a>( <span>string <var>$file</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Resolve a migration instance from a file.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Resolve a migration instance from a file.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$file</var></dt>
+					<dd><code>string</code><br>$file</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>object</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="note" id="_note">
+
+		<td class="attributes"><code>
+			 protected 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_note">#</a>
+		<code><a href="source-class-Illuminate.Database.Migrations.Migrator.html#300-309" title="Go to source code">note</a>( <span>string <var>$message</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Raise a note event for the migrator.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Raise a note event for the migrator.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$message</var></dt>
+					<dd><code>string</code><br>$message</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getNotes" id="_getNotes">
+
+		<td class="attributes"><code>
+			 public 
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getNotes">#</a>
+		<code><a href="source-class-Illuminate.Database.Migrations.Migrator.html#311-319" title="Go to source code">getNotes</a>( )</code>
+
+		<div class="description short">
+			
+<p>Get the notes for the last operation.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get the notes for the last operation.</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="resolveConnection" id="_resolveConnection">
+
+		<td class="attributes"><code>
+			 public 
+			<code><a href="class-Illuminate.Database.Connection.html">Illuminate\Database\Connection</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_resolveConnection">#</a>
+		<code><a href="source-class-Illuminate.Database.Migrations.Migrator.html#321-329" title="Go to source code">resolveConnection</a>( )</code>
+
+		<div class="description short">
+			
+<p>Resolve the database connection instance.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Resolve the database connection instance.</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-Illuminate.Database.Connection.html">Illuminate\Database\Connection</a></code></code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="setConnection" id="_setConnection">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_setConnection">#</a>
+		<code><a href="source-class-Illuminate.Database.Migrations.Migrator.html#331-347" title="Go to source code">setConnection</a>( <span>string <var>$name</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Set the default connection name.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Set the default connection name.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$name</var></dt>
+					<dd><code>string</code><br>$name</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getRepository" id="_getRepository">
+
+		<td class="attributes"><code>
+			 public 
+			<code><a href="class-Illuminate.Database.Migrations.MigrationRepositoryInterface.html">Illuminate\Database\Migrations\MigrationRepositoryInterface</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getRepository">#</a>
+		<code><a href="source-class-Illuminate.Database.Migrations.Migrator.html#349-357" title="Go to source code">getRepository</a>( )</code>
+
+		<div class="description short">
+			
+<p>Get the migration repository instance.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get the migration repository instance.</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-Illuminate.Database.Migrations.MigrationRepositoryInterface.html">Illuminate\Database\Migrations\MigrationRepositoryInterface</a></code></code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="repositoryExists" id="_repositoryExists">
+
+		<td class="attributes"><code>
+			 public 
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_repositoryExists">#</a>
+		<code><a href="source-class-Illuminate.Database.Migrations.Migrator.html#359-367" title="Go to source code">repositoryExists</a>( )</code>
+
+		<div class="description short">
+			
+<p>Determine if the migration repository exists.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Determine if the migration repository exists.</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getFilesystem" id="_getFilesystem">
+
+		<td class="attributes"><code>
+			 public 
+			<code><a href="class-Illuminate.Filesystem.Filesystem.html">Illuminate\Filesystem\Filesystem</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getFilesystem">#</a>
+		<code><a href="source-class-Illuminate.Database.Migrations.Migrator.html#369-377" title="Go to source code">getFilesystem</a>( )</code>
+
+		<div class="description short">
+			
+<p>Get the file system instance.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get the file system instance.</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-Illuminate.Filesystem.Filesystem.html">Illuminate\Filesystem\Filesystem</a></code></code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	</table>
+
+
+
+
+
+
+
+
+
+
+
+
+	<table class="summary" id="properties">
+	<caption>Properties summary</caption>
+	<tr data-order="repository" id="$repository">
+		<td class="attributes"><code>
+			protected  
+			<code><a href="class-Illuminate.Database.Migrations.MigrationRepositoryInterface.html">Illuminate\Database\Migrations\MigrationRepositoryInterface</a></code>
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Illuminate.Database.Migrations.Migrator.html#8-13" title="Go to source code"><var>$repository</var></a>
+		</td>
+		<td class="value"><code></code></td>
+		<td class="description"><div>
+			<a href="#$repository" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>The migration repository implementation.</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>The migration repository implementation.</p>
+
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="files" id="$files">
+		<td class="attributes"><code>
+			protected  
+			<code><a href="class-Illuminate.Filesystem.Filesystem.html">Illuminate\Filesystem\Filesystem</a></code>
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Illuminate.Database.Migrations.Migrator.html#15-20" title="Go to source code"><var>$files</var></a>
+		</td>
+		<td class="value"><code></code></td>
+		<td class="description"><div>
+			<a href="#$files" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>The filesystem instance.</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>The filesystem instance.</p>
+
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="resolver" id="$resolver">
+		<td class="attributes"><code>
+			protected  
+			<code><a href="class-Illuminate.Database.ConnectionResolverInterface.html">Illuminate\Database\ConnectionResolverInterface</a></code>
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Illuminate.Database.Migrations.Migrator.html#22-27" title="Go to source code"><var>$resolver</var></a>
+		</td>
+		<td class="value"><code></code></td>
+		<td class="description"><div>
+			<a href="#$resolver" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>The connection resolver instance.</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>The connection resolver instance.</p>
+
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="connection" id="$connection">
+		<td class="attributes"><code>
+			protected  
+			string
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Illuminate.Database.Migrations.Migrator.html#29-34" title="Go to source code"><var>$connection</var></a>
+		</td>
+		<td class="value"><code></code></td>
+		<td class="description"><div>
+			<a href="#$connection" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>The name of the default connection.</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>The name of the default connection.</p>
+
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="notes" id="$notes">
+		<td class="attributes"><code>
+			protected  
+			array
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Illuminate.Database.Migrations.Migrator.html#36-41" title="Go to source code"><var>$notes</var></a>
+		</td>
+		<td class="value"><code><span class="php-keyword1">array</span>()</code></td>
+		<td class="description"><div>
+			<a href="#$notes" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>The notes for the current operation.</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>The notes for the current operation.</p>
+
+
+			</div>
+		</div></td>
+	</tr>
+	</table>
+
+
+
+
+
+
+</div>
+
+	<div id="footer">
+		 API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
+	</div>
+</div>
+</div>
+</body>
+</html>

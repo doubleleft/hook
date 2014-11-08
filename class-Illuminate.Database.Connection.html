@@ -1,0 +1,3266 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="generator" content="ApiGen 2.8.0" />
+
+	<title>Class Illuminate\Database\Connection</title>
+
+	<script type="text/javascript" src="resources/combined.js?417754471"></script>
+	<script type="text/javascript" src="elementlist.js?721444666"></script>
+	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
+
+</head>
+
+<body>
+<div id="left">
+	<div id="menu">
+		<a href="index.html" title="Overview"><span>Overview</span></a>
+
+
+		<div id="groups">
+			<h3>Namespaces</h3>
+			<ul>
+				<li><a href="namespace-Hook.html">Hook<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Application.html">Application<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Application.Core.html">Core</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Hook.Auth.html">Auth<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Auth.Providers.html">Providers</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Hook.Cache.html">Cache</a>
+						</li>
+				<li><a href="namespace-Hook.Controllers.html">Controllers</a>
+						</li>
+				<li><a href="namespace-Hook.Database.html">Database<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Database.Schema.html">Schema<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Database.Schema.Grammars.html">Grammars</a>
+						</li>
+							</ul></li></ul></li>
+				<li><a href="namespace-Hook.Encryption.html">Encryption</a>
+						</li>
+				<li><a href="namespace-Hook.Exceptions.html">Exceptions</a>
+						</li>
+				<li><a href="namespace-Hook.Http.html">Http</a>
+						</li>
+				<li><a href="namespace-Hook.Logger.html">Logger</a>
+						</li>
+				<li><a href="namespace-Hook.Mailer.html">Mailer</a>
+						</li>
+				<li><a href="namespace-Hook.Middlewares.html">Middlewares</a>
+						</li>
+				<li><a href="namespace-Hook.Model.html">Model</a>
+						</li>
+				<li><a href="namespace-Hook.Package.html">Package</a>
+						</li>
+				<li><a href="namespace-Hook.Pagination.html">Pagination</a>
+						</li>
+				<li><a href="namespace-Hook.PushNotification.html">PushNotification<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.PushNotification.Services.html">Services</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Hook.Session.html">Session<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Session.Handlers.html">Handlers</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Hook.Storage.html">Storage<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Storage.Providers.html">Providers</a>
+						</li>
+							</ul></li></ul></li>
+				<li class="active"><a href="namespace-Illuminate.html">Illuminate<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Cache.html">Cache<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Cache.Console.html">Console</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Illuminate.Config.html">Config</a>
+						</li>
+				<li><a href="namespace-Illuminate.Container.html">Container</a>
+						</li>
+				<li class="active"><a href="namespace-Illuminate.Database.html">Database<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Database.Capsule.html">Capsule</a>
+						</li>
+				<li><a href="namespace-Illuminate.Database.Connectors.html">Connectors</a>
+						</li>
+				<li><a href="namespace-Illuminate.Database.Console.html">Console<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Database.Console.Migrations.html">Migrations</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Illuminate.Database.Eloquent.html">Eloquent<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Database.Eloquent.Relations.html">Relations</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Illuminate.Database.Migrations.html">Migrations</a>
+						</li>
+				<li><a href="namespace-Illuminate.Database.Query.html">Query<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Database.Query.Grammars.html">Grammars</a>
+						</li>
+				<li><a href="namespace-Illuminate.Database.Query.Processors.html">Processors</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Illuminate.Database.Schema.html">Schema<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Database.Schema.Grammars.html">Grammars</a>
+						</li>
+							</ul></li></ul></li>
+				<li><a href="namespace-Illuminate.Encryption.html">Encryption</a>
+						</li>
+				<li><a href="namespace-Illuminate.Events.html">Events</a>
+						</li>
+				<li><a href="namespace-Illuminate.Filesystem.html">Filesystem</a>
+						</li>
+				<li><a href="namespace-Illuminate.Support.html">Support<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Support.Contracts.html">Contracts</a>
+						</li>
+				<li><a href="namespace-Illuminate.Support.Facades.html">Facades</a>
+						</li>
+							</ul></li></ul></li>
+				<li><a href="namespace-None.html">None</a>
+						</li>
+				<li><a href="namespace-PHP.html">PHP</a>
+						</li>
+				<li><a href="namespace-Slim.html">Slim<span></span></a>
+						<ul>
+				<li><a href="namespace-Slim.Exception.html">Exception</a>
+						</li>
+				<li><a href="namespace-Slim.Helper.html">Helper</a>
+						</li>
+				<li><a href="namespace-Slim.Http.html">Http</a>
+						</li>
+				<li><a href="namespace-Slim.Middleware.html">Middleware</a>
+						</li>
+							</ul></li>
+			</ul>
+		</div>
+
+		<hr />
+
+
+		<div id="elements">
+			<h3>Classes</h3>
+			<ul>
+				<li class="active"><a href="class-Illuminate.Database.Connection.html">Connection</a></li>
+				<li><a href="class-Illuminate.Database.ConnectionResolver.html">ConnectionResolver</a></li>
+				<li><a href="class-Illuminate.Database.DatabaseManager.html">DatabaseManager</a></li>
+				<li><a href="class-Illuminate.Database.DatabaseServiceProvider.html">DatabaseServiceProvider</a></li>
+				<li><a href="class-Illuminate.Database.Grammar.html">Grammar</a></li>
+				<li><a href="class-Illuminate.Database.MigrationServiceProvider.html">MigrationServiceProvider</a></li>
+				<li><a href="class-Illuminate.Database.MySqlConnection.html">MySqlConnection</a></li>
+				<li><a href="class-Illuminate.Database.PostgresConnection.html">PostgresConnection</a></li>
+				<li><a href="class-Illuminate.Database.Seeder.html">Seeder</a></li>
+				<li><a href="class-Illuminate.Database.SeedServiceProvider.html">SeedServiceProvider</a></li>
+				<li><a href="class-Illuminate.Database.SQLiteConnection.html">SQLiteConnection</a></li>
+				<li><a href="class-Illuminate.Database.SqlServerConnection.html">SqlServerConnection</a></li>
+			</ul>
+
+			<h3>Interfaces</h3>
+			<ul>
+				<li><a href="class-Illuminate.Database.ConnectionInterface.html">ConnectionInterface</a></li>
+				<li><a href="class-Illuminate.Database.ConnectionResolverInterface.html">ConnectionResolverInterface</a></li>
+			</ul>
+
+
+			<h3>Exceptions</h3>
+			<ul>
+				<li><a href="class-Illuminate.Database.QueryException.html">QueryException</a></li>
+			</ul>
+
+
+		</div>
+	</div>
+</div>
+
+<div id="splitter"></div>
+
+<div id="right">
+<div id="rightInner">
+	<form id="search">
+		<input type="hidden" name="cx" value="" />
+		<input type="hidden" name="ie" value="UTF-8" />
+		<input type="text" name="q" class="text" />
+		<input type="submit" value="Search" />
+	</form>
+
+	<div id="navigation">
+		<ul>
+			<li>
+				<a href="index.html" title="Overview"><span>Overview</span></a>
+			</li>
+			<li>
+				<a href="namespace-Illuminate.Database.html" title="Summary of Illuminate\Database"><span>Namespace</span></a>
+			</li>
+			<li class="active">
+<span>Class</span>			</li>
+		</ul>
+		<ul>
+			<li>
+				<a href="tree.html" title="Tree view of classes, interfaces, traits and exceptions"><span>Tree</span></a>
+			</li>
+		</ul>
+		<ul>
+		</ul>
+	</div>
+
+<div id="content" class="class">
+	<h1>Class Connection</h1>
+
+
+
+	<dl class="tree">
+		<dd style="padding-left:0px">
+<b><span>Illuminate\Database\Connection</span></b>			
+			 implements 
+				<a href="class-Illuminate.Database.ConnectionInterface.html"><span>Illuminate\Database\ConnectionInterface</span></a>
+			
+			
+		</dd>
+	</dl>
+
+
+	<div>
+		<h4>Direct known subclasses</h4>
+			<a href="class-Illuminate.Database.MySqlConnection.html">Illuminate\Database\MySqlConnection</a>, 
+			<a href="class-Illuminate.Database.PostgresConnection.html">Illuminate\Database\PostgresConnection</a>, 
+			<a href="class-Illuminate.Database.SQLiteConnection.html">Illuminate\Database\SQLiteConnection</a>, 
+			<a href="class-Illuminate.Database.SqlServerConnection.html">Illuminate\Database\SqlServerConnection</a>
+	</div>
+
+
+
+
+
+
+	<div class="info">
+		
+		
+		<b>Namespace:</b> <a href="namespace-Illuminate.html">Illuminate</a>\<a href="namespace-Illuminate.Database.html">Database</a><br />
+		
+
+		<b>Located at</b> <a href="source-class-Illuminate.Database.Connection.html#9-1018" title="Go to source code">database/Illuminate/Database/Connection.php</a><br />
+	</div>
+
+
+
+	<table class="summary" id="methods">
+	<caption>Methods summary</caption>
+	<tr data-order="__construct" id="___construct">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#___construct">#</a>
+		<code><a href="source-class-Illuminate.Database.Connection.html#123-151" title="Go to source code">__construct</a>( <span><code><a href="class-PDO.html">PDO</a></code> <var>$pdo</var></span>, <span>string <var>$database</var> = <span class="php-quote">''</span></span>, <span>string <var>$tablePrefix</var> = <span class="php-quote">''</span></span>, <span>array <var>$config</var> = <span class="php-keyword1">array</span>()</span> )</code>
+
+		<div class="description short">
+			
+<p>Create a new database connection instance.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Create a new database connection instance.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$pdo</var></dt>
+					<dd><code><code><a href="class-PDO.html">PDO</a></code></code><br>$pdo</dd>
+					<dt><var>$database</var></dt>
+					<dd><code>string</code><br>$database</dd>
+					<dt><var>$tablePrefix</var></dt>
+					<dd><code>string</code><br>$tablePrefix</dd>
+					<dt><var>$config</var></dt>
+					<dd><code>array</code><br>$config</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="useDefaultQueryGrammar" id="_useDefaultQueryGrammar">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_useDefaultQueryGrammar">#</a>
+		<code><a href="source-class-Illuminate.Database.Connection.html#153-161" title="Go to source code">useDefaultQueryGrammar</a>( )</code>
+
+		<div class="description short">
+			
+<p>Set the query grammar to the default implementation.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Set the query grammar to the default implementation.</p>
+
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getDefaultQueryGrammar" id="_getDefaultQueryGrammar">
+
+		<td class="attributes"><code>
+			 protected 
+			<code><a href="class-Illuminate.Database.Query.Grammars.Grammar.html">Illuminate\Database\Query\Grammars\Grammar</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getDefaultQueryGrammar">#</a>
+		<code><a href="source-class-Illuminate.Database.Connection.html#163-171" title="Go to source code">getDefaultQueryGrammar</a>( )</code>
+
+		<div class="description short">
+			
+<p>Get the default query grammar instance.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get the default query grammar instance.</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-Illuminate.Database.Query.Grammars.Grammar.html">Illuminate\Database\Query\Grammars\Grammar</a></code></code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="useDefaultSchemaGrammar" id="_useDefaultSchemaGrammar">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_useDefaultSchemaGrammar">#</a>
+		<code><a href="source-class-Illuminate.Database.Connection.html#173-181" title="Go to source code">useDefaultSchemaGrammar</a>( )</code>
+
+		<div class="description short">
+			
+<p>Set the schema grammar to the default implementation.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Set the schema grammar to the default implementation.</p>
+
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getDefaultSchemaGrammar" id="_getDefaultSchemaGrammar">
+
+		<td class="attributes"><code>
+			 protected 
+			<code><a href="class-Illuminate.Database.Schema.Grammars.Grammar.html">Illuminate\Database\Schema\Grammars\Grammar</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getDefaultSchemaGrammar">#</a>
+		<code><a href="source-class-Illuminate.Database.Connection.html#183-188" title="Go to source code">getDefaultSchemaGrammar</a>( )</code>
+
+		<div class="description short">
+			
+<p>Get the default schema grammar instance.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get the default schema grammar instance.</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-Illuminate.Database.Schema.Grammars.Grammar.html">Illuminate\Database\Schema\Grammars\Grammar</a></code></code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="useDefaultPostProcessor" id="_useDefaultPostProcessor">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_useDefaultPostProcessor">#</a>
+		<code><a href="source-class-Illuminate.Database.Connection.html#190-198" title="Go to source code">useDefaultPostProcessor</a>( )</code>
+
+		<div class="description short">
+			
+<p>Set the query post processor to the default implementation.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Set the query post processor to the default implementation.</p>
+
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getDefaultPostProcessor" id="_getDefaultPostProcessor">
+
+		<td class="attributes"><code>
+			 protected 
+			<code><a href="class-Illuminate.Database.Query.Processors.Processor.html">Illuminate\Database\Query\Processors\Processor</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getDefaultPostProcessor">#</a>
+		<code><a href="source-class-Illuminate.Database.Connection.html#200-208" title="Go to source code">getDefaultPostProcessor</a>( )</code>
+
+		<div class="description short">
+			
+<p>Get the default post processor instance.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get the default post processor instance.</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-Illuminate.Database.Query.Processors.Processor.html">Illuminate\Database\Query\Processors\Processor</a></code></code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getSchemaBuilder" id="_getSchemaBuilder">
+
+		<td class="attributes"><code>
+			 public 
+			<code><a href="class-Illuminate.Database.Schema.Builder.html">Illuminate\Database\Schema\Builder</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getSchemaBuilder">#</a>
+		<code><a href="source-class-Illuminate.Database.Connection.html#210-220" title="Go to source code">getSchemaBuilder</a>( )</code>
+
+		<div class="description short">
+			
+<p>Get a schema builder instance for the connection.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get a schema builder instance for the connection.</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-Illuminate.Database.Schema.Builder.html">Illuminate\Database\Schema\Builder</a></code></code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="table" id="_table">
+
+		<td class="attributes"><code>
+			 public 
+			<code><a href="class-Illuminate.Database.Query.Builder.html">Illuminate\Database\Query\Builder</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_table">#</a>
+		<code><a href="source-class-Illuminate.Database.Connection.html#222-235" title="Go to source code">table</a>( <span>string <var>$table</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Begin a fluent query against a database table.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Begin a fluent query against a database table.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$table</var></dt>
+					<dd><code>string</code><br>$table</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-Illuminate.Database.Query.Builder.html">Illuminate\Database\Query\Builder</a></code></code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="raw" id="_raw">
+
+		<td class="attributes"><code>
+			 public 
+			<code><a href="class-Illuminate.Database.Query.Expression.html">Illuminate\Database\Query\Expression</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_raw">#</a>
+		<code><a href="source-class-Illuminate.Database.Connection.html#237-246" title="Go to source code">raw</a>( <span>mixed <var>$value</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Get a new raw query expression.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get a new raw query expression.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$value</var></dt>
+					<dd><code>mixed</code><br>$value</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-Illuminate.Database.Query.Expression.html">Illuminate\Database\Query\Expression</a></code></code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="selectOne" id="_selectOne">
+
+		<td class="attributes"><code>
+			 public 
+			mixed
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_selectOne">#</a>
+		<code><a href="source-class-Illuminate.Database.Connection.html#248-260" title="Go to source code">selectOne</a>( <span>string <var>$query</var></span>, <span>array <var>$bindings</var> = <span class="php-keyword1">array</span>()</span> )</code>
+
+		<div class="description short">
+			
+<p>Run a select statement and return a single result.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Run a select statement and return a single result.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$query</var></dt>
+					<dd><code>string</code><br>$query</dd>
+					<dt><var>$bindings</var></dt>
+					<dd><code>array</code><br>$bindings</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>mixed</code><br />
+				</div>
+
+
+
+
+				<h4>Implementation of</h4>
+				<div class="list"><code><a href="class-Illuminate.Database.ConnectionInterface.html#_selectOne">Illuminate\Database\ConnectionInterface::selectOne()</a></code></div>
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="select" id="_select">
+
+		<td class="attributes"><code>
+			 public 
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_select">#</a>
+		<code><a href="source-class-Illuminate.Database.Connection.html#262-284" title="Go to source code">select</a>( <span>string <var>$query</var></span>, <span>array <var>$bindings</var> = <span class="php-keyword1">array</span>()</span> )</code>
+
+		<div class="description short">
+			
+<p>Run a select statement against the database.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Run a select statement against the database.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$query</var></dt>
+					<dd><code>string</code><br>$query</dd>
+					<dt><var>$bindings</var></dt>
+					<dd><code>array</code><br>$bindings</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array</code><br />
+				</div>
+
+
+
+
+				<h4>Implementation of</h4>
+				<div class="list"><code><a href="class-Illuminate.Database.ConnectionInterface.html#_select">Illuminate\Database\ConnectionInterface::select()</a></code></div>
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="insert" id="_insert">
+
+		<td class="attributes"><code>
+			 public 
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_insert">#</a>
+		<code><a href="source-class-Illuminate.Database.Connection.html#286-296" title="Go to source code">insert</a>( <span>string <var>$query</var></span>, <span>array <var>$bindings</var> = <span class="php-keyword1">array</span>()</span> )</code>
+
+		<div class="description short">
+			
+<p>Run an insert statement against the database.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Run an insert statement against the database.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$query</var></dt>
+					<dd><code>string</code><br>$query</dd>
+					<dt><var>$bindings</var></dt>
+					<dd><code>array</code><br>$bindings</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br />
+				</div>
+
+
+
+
+				<h4>Implementation of</h4>
+				<div class="list"><code><a href="class-Illuminate.Database.ConnectionInterface.html#_insert">Illuminate\Database\ConnectionInterface::insert()</a></code></div>
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="update" id="_update">
+
+		<td class="attributes"><code>
+			 public 
+			integer
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_update">#</a>
+		<code><a href="source-class-Illuminate.Database.Connection.html#298-308" title="Go to source code">update</a>( <span>string <var>$query</var></span>, <span>array <var>$bindings</var> = <span class="php-keyword1">array</span>()</span> )</code>
+
+		<div class="description short">
+			
+<p>Run an update statement against the database.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Run an update statement against the database.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$query</var></dt>
+					<dd><code>string</code><br>$query</dd>
+					<dt><var>$bindings</var></dt>
+					<dd><code>array</code><br>$bindings</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>integer</code><br />
+				</div>
+
+
+
+
+				<h4>Implementation of</h4>
+				<div class="list"><code><a href="class-Illuminate.Database.ConnectionInterface.html#_update">Illuminate\Database\ConnectionInterface::update()</a></code></div>
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="delete" id="_delete">
+
+		<td class="attributes"><code>
+			 public 
+			integer
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_delete">#</a>
+		<code><a href="source-class-Illuminate.Database.Connection.html#310-320" title="Go to source code">delete</a>( <span>string <var>$query</var></span>, <span>array <var>$bindings</var> = <span class="php-keyword1">array</span>()</span> )</code>
+
+		<div class="description short">
+			
+<p>Run a delete statement against the database.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Run a delete statement against the database.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$query</var></dt>
+					<dd><code>string</code><br>$query</dd>
+					<dt><var>$bindings</var></dt>
+					<dd><code>array</code><br>$bindings</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>integer</code><br />
+				</div>
+
+
+
+
+				<h4>Implementation of</h4>
+				<div class="list"><code><a href="class-Illuminate.Database.ConnectionInterface.html#_delete">Illuminate\Database\ConnectionInterface::delete()</a></code></div>
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="statement" id="_statement">
+
+		<td class="attributes"><code>
+			 public 
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_statement">#</a>
+		<code><a href="source-class-Illuminate.Database.Connection.html#322-339" title="Go to source code">statement</a>( <span>string <var>$query</var></span>, <span>array <var>$bindings</var> = <span class="php-keyword1">array</span>()</span> )</code>
+
+		<div class="description short">
+			
+<p>Execute an SQL statement and return the boolean result.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Execute an SQL statement and return the boolean result.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$query</var></dt>
+					<dd><code>string</code><br>$query</dd>
+					<dt><var>$bindings</var></dt>
+					<dd><code>array</code><br>$bindings</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br />
+				</div>
+
+
+
+
+				<h4>Implementation of</h4>
+				<div class="list"><code><a href="class-Illuminate.Database.ConnectionInterface.html#_statement">Illuminate\Database\ConnectionInterface::statement()</a></code></div>
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="affectingStatement" id="_affectingStatement">
+
+		<td class="attributes"><code>
+			 public 
+			integer
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_affectingStatement">#</a>
+		<code><a href="source-class-Illuminate.Database.Connection.html#341-363" title="Go to source code">affectingStatement</a>( <span>string <var>$query</var></span>, <span>array <var>$bindings</var> = <span class="php-keyword1">array</span>()</span> )</code>
+
+		<div class="description short">
+			
+<p>Run an SQL statement and get the number of rows affected.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Run an SQL statement and get the number of rows affected.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$query</var></dt>
+					<dd><code>string</code><br>$query</dd>
+					<dt><var>$bindings</var></dt>
+					<dd><code>array</code><br>$bindings</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>integer</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="unprepared" id="_unprepared">
+
+		<td class="attributes"><code>
+			 public 
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_unprepared">#</a>
+		<code><a href="source-class-Illuminate.Database.Connection.html#365-379" title="Go to source code">unprepared</a>( <span>string <var>$query</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Run a raw, unprepared query against the PDO connection.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Run a raw, unprepared query against the PDO connection.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$query</var></dt>
+					<dd><code>string</code><br>$query</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="prepareBindings" id="_prepareBindings">
+
+		<td class="attributes"><code>
+			 public 
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_prepareBindings">#</a>
+		<code><a href="source-class-Illuminate.Database.Connection.html#381-407" title="Go to source code">prepareBindings</a>( <span>array <var>$bindings</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Prepare the query bindings for execution.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Prepare the query bindings for execution.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$bindings</var></dt>
+					<dd><code>array</code><br>$bindings</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="transaction" id="_transaction">
+
+		<td class="attributes"><code>
+			 public 
+			mixed
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_transaction">#</a>
+		<code><a href="source-class-Illuminate.Database.Connection.html#409-442" title="Go to source code">transaction</a>( <span><code><a href="class-Closure.html">Closure</a></code> <var>$callback</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Execute a Closure within a transaction.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Execute a Closure within a transaction.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$callback</var></dt>
+					<dd><code><code><a href="class-Closure.html">Closure</a></code></code><br>$callback</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>mixed</code><br />
+				</div>
+
+				<h4>Throws</h4>
+				<div class="list">
+					<code><code><a href="class-Exception.html">Exception</a></code></code><br />
+				</div>
+
+
+
+				<h4>Implementation of</h4>
+				<div class="list"><code><a href="class-Illuminate.Database.ConnectionInterface.html#_transaction">Illuminate\Database\ConnectionInterface::transaction()</a></code></div>
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="beginTransaction" id="_beginTransaction">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_beginTransaction">#</a>
+		<code><a href="source-class-Illuminate.Database.Connection.html#444-459" title="Go to source code">beginTransaction</a>( )</code>
+
+		<div class="description short">
+			
+<p>Start a new database transaction.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Start a new database transaction.</p>
+
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="commit" id="_commit">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_commit">#</a>
+		<code><a href="source-class-Illuminate.Database.Connection.html#461-473" title="Go to source code">commit</a>( )</code>
+
+		<div class="description short">
+			
+<p>Commit the active database transaction.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Commit the active database transaction.</p>
+
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="rollBack" id="_rollBack">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_rollBack">#</a>
+		<code><a href="source-class-Illuminate.Database.Connection.html#475-494" title="Go to source code">rollBack</a>( )</code>
+
+		<div class="description short">
+			
+<p>Rollback the active database transaction.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Rollback the active database transaction.</p>
+
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="transactionLevel" id="_transactionLevel">
+
+		<td class="attributes"><code>
+			 public 
+			integer
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_transactionLevel">#</a>
+		<code><a href="source-class-Illuminate.Database.Connection.html#496-504" title="Go to source code">transactionLevel</a>( )</code>
+
+		<div class="description short">
+			
+<p>Get the number of active transactions.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get the number of active transactions.</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>integer</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="pretend" id="_pretend">
+
+		<td class="attributes"><code>
+			 public 
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_pretend">#</a>
+		<code><a href="source-class-Illuminate.Database.Connection.html#506-526" title="Go to source code">pretend</a>( <span><code><a href="class-Closure.html">Closure</a></code> <var>$callback</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Execute the given callback in "dry run" mode.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Execute the given callback in "dry run" mode.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$callback</var></dt>
+					<dd><code><code><a href="class-Closure.html">Closure</a></code></code><br>$callback</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="run" id="_run">
+
+		<td class="attributes"><code>
+			 protected 
+			mixed
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_run">#</a>
+		<code><a href="source-class-Illuminate.Database.Connection.html#528-566" title="Go to source code">run</a>( <span>string <var>$query</var></span>, <span>array <var>$bindings</var></span>, <span><code><a href="class-Closure.html">Closure</a></code> <var>$callback</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Run a SQL statement and log its execution context.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Run a SQL statement and log its execution context.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$query</var></dt>
+					<dd><code>string</code><br>$query</dd>
+					<dt><var>$bindings</var></dt>
+					<dd><code>array</code><br>$bindings</dd>
+					<dt><var>$callback</var></dt>
+					<dd><code><code><a href="class-Closure.html">Closure</a></code></code><br>$callback</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>mixed</code><br />
+				</div>
+
+				<h4>Throws</h4>
+				<div class="list">
+					<code><code><a href="class-Illuminate.Database.QueryException.html">Illuminate\Database\QueryException</a></code></code><br />
+				</div>
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="logQuery" id="_logQuery">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_logQuery">#</a>
+		<code><a href="source-class-Illuminate.Database.Connection.html#568-586" title="Go to source code">logQuery</a>( <span>string <var>$query</var></span>, <span>array <var>$bindings</var></span>, <span>mixed <var>$time</var> = <span class="php-keyword1">null</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Log a query in the connection's query log.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Log a query in the connection's query log.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$query</var></dt>
+					<dd><code>string</code><br>$query</dd>
+					<dt><var>$bindings</var></dt>
+					<dd><code>array</code><br>$bindings</dd>
+					<dt><var>$time</var></dt>
+					<dd><code>mixed</code><br>$time</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="listen" id="_listen">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_listen">#</a>
+		<code><a href="source-class-Illuminate.Database.Connection.html#588-600" title="Go to source code">listen</a>( <span><code><a href="class-Closure.html">Closure</a></code> <var>$callback</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Register a database query listener with the connection.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Register a database query listener with the connection.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$callback</var></dt>
+					<dd><code><code><a href="class-Closure.html">Closure</a></code></code><br>$callback</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="fireConnectionEvent" id="_fireConnectionEvent">
+
+		<td class="attributes"><code>
+			 protected 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_fireConnectionEvent">#</a>
+		<code><a href="source-class-Illuminate.Database.Connection.html#602-614" title="Go to source code">fireConnectionEvent</a>( <span>string <var>$event</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Fire an event for this connection.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Fire an event for this connection.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$event</var></dt>
+					<dd><code>string</code><br>$event</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getElapsedTime" id="_getElapsedTime">
+
+		<td class="attributes"><code>
+			 protected 
+			float
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getElapsedTime">#</a>
+		<code><a href="source-class-Illuminate.Database.Connection.html#616-625" title="Go to source code">getElapsedTime</a>( <span>integer <var>$start</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Get the elapsed time since a given starting point.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get the elapsed time since a given starting point.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$start</var></dt>
+					<dd><code>integer</code><br>$start</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>float</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getDoctrineColumn" id="_getDoctrineColumn">
+
+		<td class="attributes"><code>
+			 public 
+			Doctrine\DBAL\Schema\Column
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getDoctrineColumn">#</a>
+		<code><a href="source-class-Illuminate.Database.Connection.html#627-639" title="Go to source code">getDoctrineColumn</a>( <span>string <var>$table</var></span>, <span>string <var>$column</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Get a Doctrine Schema Column instance.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get a Doctrine Schema Column instance.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$table</var></dt>
+					<dd><code>string</code><br>$table</dd>
+					<dt><var>$column</var></dt>
+					<dd><code>string</code><br>$column</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>Doctrine\DBAL\Schema\Column</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getDoctrineSchemaManager" id="_getDoctrineSchemaManager">
+
+		<td class="attributes"><code>
+			 public 
+			Doctrine\DBAL\Schema\AbstractSchemaManager
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getDoctrineSchemaManager">#</a>
+		<code><a href="source-class-Illuminate.Database.Connection.html#641-649" title="Go to source code">getDoctrineSchemaManager</a>( )</code>
+
+		<div class="description short">
+			
+<p>Get the Doctrine DBAL schema manager for the connection.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get the Doctrine DBAL schema manager for the connection.</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>Doctrine\DBAL\Schema\AbstractSchemaManager</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getDoctrineConnection" id="_getDoctrineConnection">
+
+		<td class="attributes"><code>
+			 public 
+			Doctrine\DBAL\Connection
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getDoctrineConnection">#</a>
+		<code><a href="source-class-Illuminate.Database.Connection.html#651-663" title="Go to source code">getDoctrineConnection</a>( )</code>
+
+		<div class="description short">
+			
+<p>Get the Doctrine DBAL database connection instance.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get the Doctrine DBAL database connection instance.</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>Doctrine\DBAL\Connection</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getPdo" id="_getPdo">
+
+		<td class="attributes"><code>
+			 public 
+			<code><a href="class-PDO.html">PDO</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getPdo">#</a>
+		<code><a href="source-class-Illuminate.Database.Connection.html#665-673" title="Go to source code">getPdo</a>( )</code>
+
+		<div class="description short">
+			
+<p>Get the current PDO connection.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get the current PDO connection.</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-PDO.html">PDO</a></code></code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getReadPdo" id="_getReadPdo">
+
+		<td class="attributes"><code>
+			 public 
+			<code><a href="class-PDO.html">PDO</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getReadPdo">#</a>
+		<code><a href="source-class-Illuminate.Database.Connection.html#675-685" title="Go to source code">getReadPdo</a>( )</code>
+
+		<div class="description short">
+			
+<p>Get the current PDO connection used for reading.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get the current PDO connection used for reading.</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-PDO.html">PDO</a></code></code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="setPdo" id="_setPdo">
+
+		<td class="attributes"><code>
+			 public 
+			<code><a href="class-Illuminate.Database.Connection.html">Illuminate\Database\Connection</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_setPdo">#</a>
+		<code><a href="source-class-Illuminate.Database.Connection.html#687-698" title="Go to source code">setPdo</a>( <span><code><a href="class-PDO.html">PDO</a></code> <var>$pdo</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Set the PDO connection.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Set the PDO connection.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$pdo</var></dt>
+					<dd><code><code><a href="class-PDO.html">PDO</a></code></code><br>$pdo</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-Illuminate.Database.Connection.html">Illuminate\Database\Connection</a></code></code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="setReadPdo" id="_setReadPdo">
+
+		<td class="attributes"><code>
+			 public 
+			<code><a href="class-Illuminate.Database.Connection.html">Illuminate\Database\Connection</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_setReadPdo">#</a>
+		<code><a href="source-class-Illuminate.Database.Connection.html#700-711" title="Go to source code">setReadPdo</a>( <span><code><a href="class-PDO.html">PDO</a></code> <var>$pdo</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Set the PDO connection used for reading.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Set the PDO connection used for reading.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$pdo</var></dt>
+					<dd><code><code><a href="class-PDO.html">PDO</a></code></code><br>$pdo</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-Illuminate.Database.Connection.html">Illuminate\Database\Connection</a></code></code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getName" id="_getName">
+
+		<td class="attributes"><code>
+			 public 
+			string|null
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getName">#</a>
+		<code><a href="source-class-Illuminate.Database.Connection.html#713-721" title="Go to source code">getName</a>( )</code>
+
+		<div class="description short">
+			
+<p>Get the database connection name.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get the database connection name.</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string|null</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getConfig" id="_getConfig">
+
+		<td class="attributes"><code>
+			 public 
+			mixed
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getConfig">#</a>
+		<code><a href="source-class-Illuminate.Database.Connection.html#723-732" title="Go to source code">getConfig</a>( <span>string <var>$option</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Get an option from the configuration options.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get an option from the configuration options.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$option</var></dt>
+					<dd><code>string</code><br>$option</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>mixed</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getDriverName" id="_getDriverName">
+
+		<td class="attributes"><code>
+			 public 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getDriverName">#</a>
+		<code><a href="source-class-Illuminate.Database.Connection.html#734-742" title="Go to source code">getDriverName</a>( )</code>
+
+		<div class="description short">
+			
+<p>Get the PDO driver name.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get the PDO driver name.</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getQueryGrammar" id="_getQueryGrammar">
+
+		<td class="attributes"><code>
+			 public 
+			<code><a href="class-Illuminate.Database.Query.Grammars.Grammar.html">Illuminate\Database\Query\Grammars\Grammar</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getQueryGrammar">#</a>
+		<code><a href="source-class-Illuminate.Database.Connection.html#744-752" title="Go to source code">getQueryGrammar</a>( )</code>
+
+		<div class="description short">
+			
+<p>Get the query grammar used by the connection.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get the query grammar used by the connection.</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-Illuminate.Database.Query.Grammars.Grammar.html">Illuminate\Database\Query\Grammars\Grammar</a></code></code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="setQueryGrammar" id="_setQueryGrammar">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_setQueryGrammar">#</a>
+		<code><a href="source-class-Illuminate.Database.Connection.html#754-763" title="Go to source code">setQueryGrammar</a>( <span><code><a href="class-Illuminate.Database.Query.Grammars.Grammar.html">Illuminate\Database\Query\Grammars\Grammar</a></code> <var>$grammar</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Set the query grammar used by the connection.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Set the query grammar used by the connection.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$grammar</var></dt>
+					<dd><code><code><a href="class-Illuminate.Database.Query.Grammars.Grammar.html">Illuminate\Database\Query\Grammars\Grammar</a></code></code></dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getSchemaGrammar" id="_getSchemaGrammar">
+
+		<td class="attributes"><code>
+			 public 
+			<code><a href="class-Illuminate.Database.Query.Grammars.Grammar.html">Illuminate\Database\Query\Grammars\Grammar</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getSchemaGrammar">#</a>
+		<code><a href="source-class-Illuminate.Database.Connection.html#765-773" title="Go to source code">getSchemaGrammar</a>( )</code>
+
+		<div class="description short">
+			
+<p>Get the schema grammar used by the connection.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get the schema grammar used by the connection.</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-Illuminate.Database.Query.Grammars.Grammar.html">Illuminate\Database\Query\Grammars\Grammar</a></code></code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="setSchemaGrammar" id="_setSchemaGrammar">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_setSchemaGrammar">#</a>
+		<code><a href="source-class-Illuminate.Database.Connection.html#775-784" title="Go to source code">setSchemaGrammar</a>( <span><code><a href="class-Illuminate.Database.Schema.Grammars.Grammar.html">Illuminate\Database\Schema\Grammars\Grammar</a></code> <var>$grammar</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Set the schema grammar used by the connection.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Set the schema grammar used by the connection.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$grammar</var></dt>
+					<dd><code><code><a href="class-Illuminate.Database.Schema.Grammars.Grammar.html">Illuminate\Database\Schema\Grammars\Grammar</a></code></code></dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getPostProcessor" id="_getPostProcessor">
+
+		<td class="attributes"><code>
+			 public 
+			<code><a href="class-Illuminate.Database.Query.Processors.Processor.html">Illuminate\Database\Query\Processors\Processor</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getPostProcessor">#</a>
+		<code><a href="source-class-Illuminate.Database.Connection.html#786-794" title="Go to source code">getPostProcessor</a>( )</code>
+
+		<div class="description short">
+			
+<p>Get the query post processor used by the connection.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get the query post processor used by the connection.</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-Illuminate.Database.Query.Processors.Processor.html">Illuminate\Database\Query\Processors\Processor</a></code></code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="setPostProcessor" id="_setPostProcessor">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_setPostProcessor">#</a>
+		<code><a href="source-class-Illuminate.Database.Connection.html#796-805" title="Go to source code">setPostProcessor</a>( <span><code><a href="class-Illuminate.Database.Query.Processors.Processor.html">Illuminate\Database\Query\Processors\Processor</a></code> <var>$processor</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Set the query post processor used by the connection.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Set the query post processor used by the connection.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$processor</var></dt>
+					<dd><code><code><a href="class-Illuminate.Database.Query.Processors.Processor.html">Illuminate\Database\Query\Processors\Processor</a></code></code></dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getEventDispatcher" id="_getEventDispatcher">
+
+		<td class="attributes"><code>
+			 public 
+			<code><a href="class-Illuminate.Events.Dispatcher.html">Illuminate\Events\Dispatcher</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getEventDispatcher">#</a>
+		<code><a href="source-class-Illuminate.Database.Connection.html#807-815" title="Go to source code">getEventDispatcher</a>( )</code>
+
+		<div class="description short">
+			
+<p>Get the event dispatcher used by the connection.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get the event dispatcher used by the connection.</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-Illuminate.Events.Dispatcher.html">Illuminate\Events\Dispatcher</a></code></code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="setEventDispatcher" id="_setEventDispatcher">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_setEventDispatcher">#</a>
+		<code><a href="source-class-Illuminate.Database.Connection.html#817-826" title="Go to source code">setEventDispatcher</a>( <span><code><a href="class-Illuminate.Events.Dispatcher.html">Illuminate\Events\Dispatcher</a></code> <var>$events</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Set the event dispatcher instance on the connection.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Set the event dispatcher instance on the connection.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$events</var></dt>
+					<dd><code><code><a href="class-Illuminate.Events.Dispatcher.html">Illuminate\Events\Dispatcher</a></code></code></dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getPaginator" id="_getPaginator">
+
+		<td class="attributes"><code>
+			 public 
+			Illuminate\Pagination\Environment
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getPaginator">#</a>
+		<code><a href="source-class-Illuminate.Database.Connection.html#828-841" title="Go to source code">getPaginator</a>( )</code>
+
+		<div class="description short">
+			
+<p>Get the paginator environment instance.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get the paginator environment instance.</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>Illuminate\Pagination\Environment</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="setPaginator" id="_setPaginator">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_setPaginator">#</a>
+		<code><a href="source-class-Illuminate.Database.Connection.html#843-852" title="Go to source code">setPaginator</a>( <span>Illuminate\Pagination\Environment|<code><a href="class-Closure.html">Closure</a></code> <var>$paginator</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Set the pagination environment instance.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Set the pagination environment instance.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$paginator</var></dt>
+					<dd><code>Illuminate\Pagination\Environment|<code><a href="class-Closure.html">Closure</a></code></code><br>$paginator</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getCacheManager" id="_getCacheManager">
+
+		<td class="attributes"><code>
+			 public 
+			<code><a href="class-Illuminate.Cache.CacheManager.html">Illuminate\Cache\CacheManager</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getCacheManager">#</a>
+		<code><a href="source-class-Illuminate.Database.Connection.html#854-867" title="Go to source code">getCacheManager</a>( )</code>
+
+		<div class="description short">
+			
+<p>Get the cache manager instance.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get the cache manager instance.</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-Illuminate.Cache.CacheManager.html">Illuminate\Cache\CacheManager</a></code></code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="setCacheManager" id="_setCacheManager">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_setCacheManager">#</a>
+		<code><a href="source-class-Illuminate.Database.Connection.html#869-878" title="Go to source code">setCacheManager</a>( <span><code><a href="class-Illuminate.Cache.CacheManager.html">Illuminate\Cache\CacheManager</a></code>|<code><a href="class-Closure.html">Closure</a></code> <var>$cache</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Set the cache manager instance on the connection.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Set the cache manager instance on the connection.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$cache</var></dt>
+					<dd><code><code><a href="class-Illuminate.Cache.CacheManager.html">Illuminate\Cache\CacheManager</a></code>|<code><a href="class-Closure.html">Closure</a></code></code><br>$cache</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="pretending" id="_pretending">
+
+		<td class="attributes"><code>
+			 public 
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_pretending">#</a>
+		<code><a href="source-class-Illuminate.Database.Connection.html#880-888" title="Go to source code">pretending</a>( )</code>
+
+		<div class="description short">
+			
+<p>Determine if the connection in a "dry run".</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Determine if the connection in a "dry run".</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getFetchMode" id="_getFetchMode">
+
+		<td class="attributes"><code>
+			 public 
+			integer
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getFetchMode">#</a>
+		<code><a href="source-class-Illuminate.Database.Connection.html#890-898" title="Go to source code">getFetchMode</a>( )</code>
+
+		<div class="description short">
+			
+<p>Get the default fetch mode for the connection.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get the default fetch mode for the connection.</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>integer</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="setFetchMode" id="_setFetchMode">
+
+		<td class="attributes"><code>
+			 public 
+			integer
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_setFetchMode">#</a>
+		<code><a href="source-class-Illuminate.Database.Connection.html#900-909" title="Go to source code">setFetchMode</a>( <span>integer <var>$fetchMode</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Set the default fetch mode for the connection.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Set the default fetch mode for the connection.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$fetchMode</var></dt>
+					<dd><code>integer</code><br>$fetchMode</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>integer</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getQueryLog" id="_getQueryLog">
+
+		<td class="attributes"><code>
+			 public 
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getQueryLog">#</a>
+		<code><a href="source-class-Illuminate.Database.Connection.html#911-919" title="Go to source code">getQueryLog</a>( )</code>
+
+		<div class="description short">
+			
+<p>Get the connection query log.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get the connection query log.</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="flushQueryLog" id="_flushQueryLog">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_flushQueryLog">#</a>
+		<code><a href="source-class-Illuminate.Database.Connection.html#921-929" title="Go to source code">flushQueryLog</a>( )</code>
+
+		<div class="description short">
+			
+<p>Clear the query log.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Clear the query log.</p>
+
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="enableQueryLog" id="_enableQueryLog">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_enableQueryLog">#</a>
+		<code><a href="source-class-Illuminate.Database.Connection.html#931-939" title="Go to source code">enableQueryLog</a>( )</code>
+
+		<div class="description short">
+			
+<p>Enable the query log on the connection.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Enable the query log on the connection.</p>
+
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="disableQueryLog" id="_disableQueryLog">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_disableQueryLog">#</a>
+		<code><a href="source-class-Illuminate.Database.Connection.html#941-949" title="Go to source code">disableQueryLog</a>( )</code>
+
+		<div class="description short">
+			
+<p>Disable the query log on the connection.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Disable the query log on the connection.</p>
+
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="logging" id="_logging">
+
+		<td class="attributes"><code>
+			 public 
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_logging">#</a>
+		<code><a href="source-class-Illuminate.Database.Connection.html#951-959" title="Go to source code">logging</a>( )</code>
+
+		<div class="description short">
+			
+<p>Determine whether we're logging queries.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Determine whether we're logging queries.</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getDatabaseName" id="_getDatabaseName">
+
+		<td class="attributes"><code>
+			 public 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getDatabaseName">#</a>
+		<code><a href="source-class-Illuminate.Database.Connection.html#961-969" title="Go to source code">getDatabaseName</a>( )</code>
+
+		<div class="description short">
+			
+<p>Get the name of the connected database.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get the name of the connected database.</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="setDatabaseName" id="_setDatabaseName">
+
+		<td class="attributes"><code>
+			 public 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_setDatabaseName">#</a>
+		<code><a href="source-class-Illuminate.Database.Connection.html#971-980" title="Go to source code">setDatabaseName</a>( <span>string <var>$database</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Set the name of the connected database.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Set the name of the connected database.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$database</var></dt>
+					<dd><code>string</code><br>$database</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getTablePrefix" id="_getTablePrefix">
+
+		<td class="attributes"><code>
+			 public 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getTablePrefix">#</a>
+		<code><a href="source-class-Illuminate.Database.Connection.html#982-990" title="Go to source code">getTablePrefix</a>( )</code>
+
+		<div class="description short">
+			
+<p>Get the table prefix for the connection.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get the table prefix for the connection.</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="setTablePrefix" id="_setTablePrefix">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_setTablePrefix">#</a>
+		<code><a href="source-class-Illuminate.Database.Connection.html#992-1003" title="Go to source code">setTablePrefix</a>( <span>string <var>$prefix</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Set the table prefix in use by the connection.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Set the table prefix in use by the connection.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$prefix</var></dt>
+					<dd><code>string</code><br>$prefix</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="withTablePrefix" id="_withTablePrefix">
+
+		<td class="attributes"><code>
+			 public 
+			<code><a href="class-Illuminate.Database.Grammar.html">Illuminate\Database\Grammar</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_withTablePrefix">#</a>
+		<code><a href="source-class-Illuminate.Database.Connection.html#1005-1016" title="Go to source code">withTablePrefix</a>( <span><code><a href="class-Illuminate.Database.Grammar.html">Illuminate\Database\Grammar</a></code> <var>$grammar</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Set the table prefix and return the grammar.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Set the table prefix and return the grammar.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$grammar</var></dt>
+					<dd><code><code><a href="class-Illuminate.Database.Grammar.html">Illuminate\Database\Grammar</a></code></code><br>$grammar</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-Illuminate.Database.Grammar.html">Illuminate\Database\Grammar</a></code></code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	</table>
+
+
+
+
+
+
+
+
+
+
+
+
+	<table class="summary" id="properties">
+	<caption>Properties summary</caption>
+	<tr data-order="pdo" id="$pdo">
+		<td class="attributes"><code>
+			protected  
+			<code><a href="class-PDO.html">PDO</a></code>
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Illuminate.Database.Connection.html#11-16" title="Go to source code"><var>$pdo</var></a>
+		</td>
+		<td class="value"><code></code></td>
+		<td class="description"><div>
+			<a href="#$pdo" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>The active PDO connection.</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>The active PDO connection.</p>
+
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="readPdo" id="$readPdo">
+		<td class="attributes"><code>
+			protected  
+			<code><a href="class-PDO.html">PDO</a></code>
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Illuminate.Database.Connection.html#18-23" title="Go to source code"><var>$readPdo</var></a>
+		</td>
+		<td class="value"><code></code></td>
+		<td class="description"><div>
+			<a href="#$readPdo" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>The active PDO connection used for reads.</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>The active PDO connection used for reads.</p>
+
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="queryGrammar" id="$queryGrammar">
+		<td class="attributes"><code>
+			protected  
+			<code><a href="class-Illuminate.Database.Query.Grammars.Grammar.html">Illuminate\Database\Query\Grammars\Grammar</a></code>
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Illuminate.Database.Connection.html#25-30" title="Go to source code"><var>$queryGrammar</var></a>
+		</td>
+		<td class="value"><code></code></td>
+		<td class="description"><div>
+			<a href="#$queryGrammar" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>The query grammar implementation.</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>The query grammar implementation.</p>
+
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="schemaGrammar" id="$schemaGrammar">
+		<td class="attributes"><code>
+			protected  
+			<code><a href="class-Illuminate.Database.Schema.Grammars.Grammar.html">Illuminate\Database\Schema\Grammars\Grammar</a></code>
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Illuminate.Database.Connection.html#32-37" title="Go to source code"><var>$schemaGrammar</var></a>
+		</td>
+		<td class="value"><code></code></td>
+		<td class="description"><div>
+			<a href="#$schemaGrammar" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>The schema grammar implementation.</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>The schema grammar implementation.</p>
+
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="postProcessor" id="$postProcessor">
+		<td class="attributes"><code>
+			protected  
+			<code><a href="class-Illuminate.Database.Query.Processors.Processor.html">Illuminate\Database\Query\Processors\Processor</a></code>
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Illuminate.Database.Connection.html#39-44" title="Go to source code"><var>$postProcessor</var></a>
+		</td>
+		<td class="value"><code></code></td>
+		<td class="description"><div>
+			<a href="#$postProcessor" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>The query post processor implementation.</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>The query post processor implementation.</p>
+
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="events" id="$events">
+		<td class="attributes"><code>
+			protected  
+			<code><a href="class-Illuminate.Events.Dispatcher.html">Illuminate\Events\Dispatcher</a></code>
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Illuminate.Database.Connection.html#46-51" title="Go to source code"><var>$events</var></a>
+		</td>
+		<td class="value"><code></code></td>
+		<td class="description"><div>
+			<a href="#$events" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>The event dispatcher instance.</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>The event dispatcher instance.</p>
+
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="paginator" id="$paginator">
+		<td class="attributes"><code>
+			protected  
+			Illuminate\Pagination\Paginator
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Illuminate.Database.Connection.html#53-58" title="Go to source code"><var>$paginator</var></a>
+		</td>
+		<td class="value"><code></code></td>
+		<td class="description"><div>
+			<a href="#$paginator" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>The paginator environment instance.</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>The paginator environment instance.</p>
+
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="cache" id="$cache">
+		<td class="attributes"><code>
+			protected  
+			<code><a href="class-Illuminate.Cache.CacheManager.html">Illuminate\Cache\CacheManager</a></code>
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Illuminate.Database.Connection.html#60-65" title="Go to source code"><var>$cache</var></a>
+		</td>
+		<td class="value"><code></code></td>
+		<td class="description"><div>
+			<a href="#$cache" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>The cache manager instance.</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>The cache manager instance.</p>
+
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="fetchMode" id="$fetchMode">
+		<td class="attributes"><code>
+			protected  
+			integer
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Illuminate.Database.Connection.html#67-72" title="Go to source code"><var>$fetchMode</var></a>
+		</td>
+		<td class="value"><code>Illuminate\Database\PDO::FETCH_ASSOC</code></td>
+		<td class="description"><div>
+			<a href="#$fetchMode" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>The default fetch mode of the connection.</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>The default fetch mode of the connection.</p>
+
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="transactions" id="$transactions">
+		<td class="attributes"><code>
+			protected  
+			integer
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Illuminate.Database.Connection.html#74-79" title="Go to source code"><var>$transactions</var></a>
+		</td>
+		<td class="value"><code><span class="php-num">0</span></code></td>
+		<td class="description"><div>
+			<a href="#$transactions" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>The number of active transactions.</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>The number of active transactions.</p>
+
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="queryLog" id="$queryLog">
+		<td class="attributes"><code>
+			protected  
+			array
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Illuminate.Database.Connection.html#81-86" title="Go to source code"><var>$queryLog</var></a>
+		</td>
+		<td class="value"><code><span class="php-keyword1">array</span>()</code></td>
+		<td class="description"><div>
+			<a href="#$queryLog" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>All of the queries run against the connection.</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>All of the queries run against the connection.</p>
+
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="loggingQueries" id="$loggingQueries">
+		<td class="attributes"><code>
+			protected  
+			boolean
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Illuminate.Database.Connection.html#88-93" title="Go to source code"><var>$loggingQueries</var></a>
+		</td>
+		<td class="value"><code><span class="php-keyword1">true</span></code></td>
+		<td class="description"><div>
+			<a href="#$loggingQueries" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>Indicates whether queries are being logged.</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>Indicates whether queries are being logged.</p>
+
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="pretending" id="$pretending">
+		<td class="attributes"><code>
+			protected  
+			boolean
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Illuminate.Database.Connection.html#95-100" title="Go to source code"><var>$pretending</var></a>
+		</td>
+		<td class="value"><code><span class="php-keyword1">false</span></code></td>
+		<td class="description"><div>
+			<a href="#$pretending" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>Indicates if the connection is in a "dry run".</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>Indicates if the connection is in a "dry run".</p>
+
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="database" id="$database">
+		<td class="attributes"><code>
+			protected  
+			string
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Illuminate.Database.Connection.html#102-107" title="Go to source code"><var>$database</var></a>
+		</td>
+		<td class="value"><code></code></td>
+		<td class="description"><div>
+			<a href="#$database" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>The name of the connected database.</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>The name of the connected database.</p>
+
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="tablePrefix" id="$tablePrefix">
+		<td class="attributes"><code>
+			protected  
+			string
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Illuminate.Database.Connection.html#109-114" title="Go to source code"><var>$tablePrefix</var></a>
+		</td>
+		<td class="value"><code><span class="php-quote">''</span></code></td>
+		<td class="description"><div>
+			<a href="#$tablePrefix" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>The table prefix for the connection.</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>The table prefix for the connection.</p>
+
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="config" id="$config">
+		<td class="attributes"><code>
+			protected  
+			array
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Illuminate.Database.Connection.html#116-121" title="Go to source code"><var>$config</var></a>
+		</td>
+		<td class="value"><code><span class="php-keyword1">array</span>()</code></td>
+		<td class="description"><div>
+			<a href="#$config" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>The database connection configuration options.</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>The database connection configuration options.</p>
+
+
+			</div>
+		</div></td>
+	</tr>
+	</table>
+
+
+
+
+
+
+</div>
+
+	<div id="footer">
+		 API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
+	</div>
+</div>
+</div>
+</body>
+</html>

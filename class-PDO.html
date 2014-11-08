@@ -1,0 +1,2421 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="generator" content="ApiGen 2.8.0" />
+
+	<title>Class PDO</title>
+
+	<script type="text/javascript" src="resources/combined.js?417754471"></script>
+	<script type="text/javascript" src="elementlist.js?721444666"></script>
+	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
+
+</head>
+
+<body>
+<div id="left">
+	<div id="menu">
+		<a href="index.html" title="Overview"><span>Overview</span></a>
+
+
+		<div id="groups">
+			<h3>Namespaces</h3>
+			<ul>
+				<li><a href="namespace-Hook.html">Hook<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Application.html">Application<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Application.Core.html">Core</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Hook.Auth.html">Auth<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Auth.Providers.html">Providers</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Hook.Cache.html">Cache</a>
+						</li>
+				<li><a href="namespace-Hook.Controllers.html">Controllers</a>
+						</li>
+				<li><a href="namespace-Hook.Database.html">Database<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Database.Schema.html">Schema<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Database.Schema.Grammars.html">Grammars</a>
+						</li>
+							</ul></li></ul></li>
+				<li><a href="namespace-Hook.Encryption.html">Encryption</a>
+						</li>
+				<li><a href="namespace-Hook.Exceptions.html">Exceptions</a>
+						</li>
+				<li><a href="namespace-Hook.Http.html">Http</a>
+						</li>
+				<li><a href="namespace-Hook.Logger.html">Logger</a>
+						</li>
+				<li><a href="namespace-Hook.Mailer.html">Mailer</a>
+						</li>
+				<li><a href="namespace-Hook.Middlewares.html">Middlewares</a>
+						</li>
+				<li><a href="namespace-Hook.Model.html">Model</a>
+						</li>
+				<li><a href="namespace-Hook.Package.html">Package</a>
+						</li>
+				<li><a href="namespace-Hook.Pagination.html">Pagination</a>
+						</li>
+				<li><a href="namespace-Hook.PushNotification.html">PushNotification<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.PushNotification.Services.html">Services</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Hook.Session.html">Session<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Session.Handlers.html">Handlers</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Hook.Storage.html">Storage<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Storage.Providers.html">Providers</a>
+						</li>
+							</ul></li></ul></li>
+				<li><a href="namespace-Illuminate.html">Illuminate<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Cache.html">Cache<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Cache.Console.html">Console</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Illuminate.Config.html">Config</a>
+						</li>
+				<li><a href="namespace-Illuminate.Container.html">Container</a>
+						</li>
+				<li><a href="namespace-Illuminate.Database.html">Database<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Database.Capsule.html">Capsule</a>
+						</li>
+				<li><a href="namespace-Illuminate.Database.Connectors.html">Connectors</a>
+						</li>
+				<li><a href="namespace-Illuminate.Database.Console.html">Console<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Database.Console.Migrations.html">Migrations</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Illuminate.Database.Eloquent.html">Eloquent<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Database.Eloquent.Relations.html">Relations</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Illuminate.Database.Migrations.html">Migrations</a>
+						</li>
+				<li><a href="namespace-Illuminate.Database.Query.html">Query<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Database.Query.Grammars.html">Grammars</a>
+						</li>
+				<li><a href="namespace-Illuminate.Database.Query.Processors.html">Processors</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Illuminate.Database.Schema.html">Schema<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Database.Schema.Grammars.html">Grammars</a>
+						</li>
+							</ul></li></ul></li>
+				<li><a href="namespace-Illuminate.Encryption.html">Encryption</a>
+						</li>
+				<li><a href="namespace-Illuminate.Events.html">Events</a>
+						</li>
+				<li><a href="namespace-Illuminate.Filesystem.html">Filesystem</a>
+						</li>
+				<li><a href="namespace-Illuminate.Support.html">Support<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Support.Contracts.html">Contracts</a>
+						</li>
+				<li><a href="namespace-Illuminate.Support.Facades.html">Facades</a>
+						</li>
+							</ul></li></ul></li>
+				<li><a href="namespace-None.html">None</a>
+						</li>
+				<li class="active"><a href="namespace-PHP.html">PHP</a>
+						</li>
+				<li><a href="namespace-Slim.html">Slim<span></span></a>
+						<ul>
+				<li><a href="namespace-Slim.Exception.html">Exception</a>
+						</li>
+				<li><a href="namespace-Slim.Helper.html">Helper</a>
+						</li>
+				<li><a href="namespace-Slim.Http.html">Http</a>
+						</li>
+				<li><a href="namespace-Slim.Middleware.html">Middleware</a>
+						</li>
+							</ul></li>
+			</ul>
+		</div>
+
+		<hr />
+
+
+		<div id="elements">
+			<h3>Classes</h3>
+			<ul>
+				<li><a href="class-ArrayIterator.html">ArrayIterator</a></li>
+				<li><a href="class-CachingIterator.html">CachingIterator</a></li>
+				<li><a href="class-Closure.html">Closure</a></li>
+				<li><a href="class-DateTime.html">DateTime</a></li>
+				<li><a href="class-IteratorIterator.html">IteratorIterator</a></li>
+				<li class="active"><a href="class-PDO.html">PDO</a></li>
+				<li><a href="class-ReflectionParameter.html">ReflectionParameter</a></li>
+				<li><a href="class-SimpleXMLElement.html">SimpleXMLElement</a></li>
+				<li><a href="class-SplFileInfo.html">SplFileInfo</a></li>
+			</ul>
+
+			<h3>Interfaces</h3>
+			<ul>
+				<li><a href="class-ArrayAccess.html">ArrayAccess</a></li>
+				<li><a href="class-Countable.html">Countable</a></li>
+				<li><a href="class-Iterator.html">Iterator</a></li>
+				<li><a href="class-IteratorAggregate.html">IteratorAggregate</a></li>
+				<li><a href="class-OuterIterator.html">OuterIterator</a></li>
+				<li><a href="class-Reflector.html">Reflector</a></li>
+				<li><a href="class-SeekableIterator.html">SeekableIterator</a></li>
+				<li><a href="class-Serializable.html">Serializable</a></li>
+				<li><a href="class-SessionHandlerInterface.html">SessionHandlerInterface</a></li>
+				<li><a href="class-Traversable.html">Traversable</a></li>
+			</ul>
+
+
+			<h3>Exceptions</h3>
+			<ul>
+				<li><a href="class-BadFunctionCallException.html">BadFunctionCallException</a></li>
+				<li><a href="class-BadMethodCallException.html">BadMethodCallException</a></li>
+				<li><a href="class-ErrorException.html">ErrorException</a></li>
+				<li><a href="class-Exception.html">Exception</a></li>
+				<li><a href="class-InvalidArgumentException.html">InvalidArgumentException</a></li>
+				<li><a href="class-LogicException.html">LogicException</a></li>
+				<li><a href="class-PDOException.html">PDOException</a></li>
+				<li><a href="class-RuntimeException.html">RuntimeException</a></li>
+			</ul>
+
+
+		</div>
+	</div>
+</div>
+
+<div id="splitter"></div>
+
+<div id="right">
+<div id="rightInner">
+	<form id="search">
+		<input type="hidden" name="cx" value="" />
+		<input type="hidden" name="ie" value="UTF-8" />
+		<input type="text" name="q" class="text" />
+		<input type="submit" value="Search" />
+	</form>
+
+	<div id="navigation">
+		<ul>
+			<li>
+				<a href="index.html" title="Overview"><span>Overview</span></a>
+			</li>
+			<li>
+				<a href="namespace-PHP.html" title="Summary of PHP"><span>Namespace</span></a>
+			</li>
+			<li class="active">
+<span>Class</span>			</li>
+		</ul>
+		<ul>
+			<li>
+				<a href="tree.html" title="Tree view of classes, interfaces, traits and exceptions"><span>Tree</span></a>
+			</li>
+		</ul>
+		<ul>
+		</ul>
+	</div>
+
+<div id="content" class="class">
+	<h1>Class PDO</h1>
+
+
+
+
+
+
+
+
+
+
+
+	<div class="info">
+		
+		<b>PHP Extension:</b> <a href="http://php.net/manual/book.pdo.php" title="Go to PHP documentation">PDO</a><br />
+		
+		
+
+		<b>Documented at</b> <a href="http://php.net/manual/class.pdo.php" title="Go to PHP documentation">php.net</a><br />
+	</div>
+
+
+
+	<table class="summary" id="methods">
+	<caption>Methods summary</caption>
+	<tr data-order="__construct" id="___construct">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#___construct">#</a>
+		<code><a href="http://php.net/manual/pdo.construct.php" title="Go to PHP documentation">__construct</a>( <span>mixed <var>$dsn</var></span>, <span>mixed <var>$username</var></span>, <span>mixed <var>$passwd</var></span>, <span>mixed <var>$options</var></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="prepare" id="_prepare">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_prepare">#</a>
+		<code><a href="http://php.net/manual/pdo.prepare.php" title="Go to PHP documentation">prepare</a>( <span>mixed <var>$statement</var></span>, <span>mixed <var>$options</var></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="beginTransaction" id="_beginTransaction">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_beginTransaction">#</a>
+		<code><a href="http://php.net/manual/pdo.begintransaction.php" title="Go to PHP documentation">beginTransaction</a>( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="commit" id="_commit">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_commit">#</a>
+		<code><a href="http://php.net/manual/pdo.commit.php" title="Go to PHP documentation">commit</a>( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="rollBack" id="_rollBack">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_rollBack">#</a>
+		<code><a href="http://php.net/manual/pdo.rollback.php" title="Go to PHP documentation">rollBack</a>( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="inTransaction" id="_inTransaction">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_inTransaction">#</a>
+		<code><a href="http://php.net/manual/pdo.intransaction.php" title="Go to PHP documentation">inTransaction</a>( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="setAttribute" id="_setAttribute">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_setAttribute">#</a>
+		<code><a href="http://php.net/manual/pdo.setattribute.php" title="Go to PHP documentation">setAttribute</a>( <span>mixed <var>$attribute</var></span>, <span>mixed <var>$value</var></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="exec" id="_exec">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_exec">#</a>
+		<code><a href="http://php.net/manual/pdo.exec.php" title="Go to PHP documentation">exec</a>( <span>mixed <var>$query</var></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="query" id="_query">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_query">#</a>
+		<code><a href="http://php.net/manual/pdo.query.php" title="Go to PHP documentation">query</a>( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="lastInsertId" id="_lastInsertId">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_lastInsertId">#</a>
+		<code><a href="http://php.net/manual/pdo.lastinsertid.php" title="Go to PHP documentation">lastInsertId</a>( <span>mixed <var>$seqname</var></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="errorCode" id="_errorCode">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_errorCode">#</a>
+		<code><a href="http://php.net/manual/pdo.errorcode.php" title="Go to PHP documentation">errorCode</a>( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="errorInfo" id="_errorInfo">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_errorInfo">#</a>
+		<code><a href="http://php.net/manual/pdo.errorinfo.php" title="Go to PHP documentation">errorInfo</a>( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getAttribute" id="_getAttribute">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getAttribute">#</a>
+		<code><a href="http://php.net/manual/pdo.getattribute.php" title="Go to PHP documentation">getAttribute</a>( <span>mixed <var>$attribute</var></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="quote" id="_quote">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_quote">#</a>
+		<code><a href="http://php.net/manual/pdo.quote.php" title="Go to PHP documentation">quote</a>( <span>mixed <var>$string</var></span>, <span>mixed <var>$paramtype</var></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="__wakeup" id="___wakeup">
+
+		<td class="attributes"><code>
+			final public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#___wakeup">#</a>
+		<code><a href="http://php.net/manual/pdo.wakeup.php" title="Go to PHP documentation">__wakeup</a>( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="__sleep" id="___sleep">
+
+		<td class="attributes"><code>
+			final public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#___sleep">#</a>
+		<code><a href="http://php.net/manual/pdo.sleep.php" title="Go to PHP documentation">__sleep</a>( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getAvailableDrivers" id="_getAvailableDrivers">
+
+		<td class="attributes"><code>
+			 public static
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getAvailableDrivers">#</a>
+		<code><a href="http://php.net/manual/pdo.getavailabledrivers.php" title="Go to PHP documentation">getAvailableDrivers</a>( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	</table>
+
+
+
+
+
+
+
+
+	<table class="summary" id="constants">
+	<caption>Constants summary</caption>
+	<tr data-order="PARAM_BOOL" id="PARAM_BOOL">
+
+		<td class="attributes"><code>integer</code></td>
+		<td class="name"><code>
+				<a href="http://php.net/manual/class.pdo.php#pdo.constants.param-bool" title="Go to PHP documentation"><b>PARAM_BOOL</b></a>
+		</code></td>
+		<td class="value"><code><span class="php-num">5</span></code></td>
+		<td class="description"><div>
+			<a href="#PARAM_BOOL" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="PARAM_NULL" id="PARAM_NULL">
+
+		<td class="attributes"><code>integer</code></td>
+		<td class="name"><code>
+				<a href="http://php.net/manual/class.pdo.php#pdo.constants.param-null" title="Go to PHP documentation"><b>PARAM_NULL</b></a>
+		</code></td>
+		<td class="value"><code><span class="php-num">0</span></code></td>
+		<td class="description"><div>
+			<a href="#PARAM_NULL" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="PARAM_INT" id="PARAM_INT">
+
+		<td class="attributes"><code>integer</code></td>
+		<td class="name"><code>
+				<a href="http://php.net/manual/class.pdo.php#pdo.constants.param-int" title="Go to PHP documentation"><b>PARAM_INT</b></a>
+		</code></td>
+		<td class="value"><code><span class="php-num">1</span></code></td>
+		<td class="description"><div>
+			<a href="#PARAM_INT" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="PARAM_STR" id="PARAM_STR">
+
+		<td class="attributes"><code>integer</code></td>
+		<td class="name"><code>
+				<a href="http://php.net/manual/class.pdo.php#pdo.constants.param-str" title="Go to PHP documentation"><b>PARAM_STR</b></a>
+		</code></td>
+		<td class="value"><code><span class="php-num">2</span></code></td>
+		<td class="description"><div>
+			<a href="#PARAM_STR" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="PARAM_LOB" id="PARAM_LOB">
+
+		<td class="attributes"><code>integer</code></td>
+		<td class="name"><code>
+				<a href="http://php.net/manual/class.pdo.php#pdo.constants.param-lob" title="Go to PHP documentation"><b>PARAM_LOB</b></a>
+		</code></td>
+		<td class="value"><code><span class="php-num">3</span></code></td>
+		<td class="description"><div>
+			<a href="#PARAM_LOB" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="PARAM_STMT" id="PARAM_STMT">
+
+		<td class="attributes"><code>integer</code></td>
+		<td class="name"><code>
+				<a href="http://php.net/manual/class.pdo.php#pdo.constants.param-stmt" title="Go to PHP documentation"><b>PARAM_STMT</b></a>
+		</code></td>
+		<td class="value"><code><span class="php-num">4</span></code></td>
+		<td class="description"><div>
+			<a href="#PARAM_STMT" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="PARAM_INPUT_OUTPUT" id="PARAM_INPUT_OUTPUT">
+
+		<td class="attributes"><code>integer</code></td>
+		<td class="name"><code>
+				<a href="http://php.net/manual/class.pdo.php#pdo.constants.param-input-output" title="Go to PHP documentation"><b>PARAM_INPUT_OUTPUT</b></a>
+		</code></td>
+		<td class="value"><code><span class="php-num">2147483648</span></code></td>
+		<td class="description"><div>
+			<a href="#PARAM_INPUT_OUTPUT" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="PARAM_EVT_ALLOC" id="PARAM_EVT_ALLOC">
+
+		<td class="attributes"><code>integer</code></td>
+		<td class="name"><code>
+				<a href="http://php.net/manual/class.pdo.php#pdo.constants.param-evt-alloc" title="Go to PHP documentation"><b>PARAM_EVT_ALLOC</b></a>
+		</code></td>
+		<td class="value"><code><span class="php-num">0</span></code></td>
+		<td class="description"><div>
+			<a href="#PARAM_EVT_ALLOC" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="PARAM_EVT_FREE" id="PARAM_EVT_FREE">
+
+		<td class="attributes"><code>integer</code></td>
+		<td class="name"><code>
+				<a href="http://php.net/manual/class.pdo.php#pdo.constants.param-evt-free" title="Go to PHP documentation"><b>PARAM_EVT_FREE</b></a>
+		</code></td>
+		<td class="value"><code><span class="php-num">1</span></code></td>
+		<td class="description"><div>
+			<a href="#PARAM_EVT_FREE" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="PARAM_EVT_EXEC_PRE" id="PARAM_EVT_EXEC_PRE">
+
+		<td class="attributes"><code>integer</code></td>
+		<td class="name"><code>
+				<a href="http://php.net/manual/class.pdo.php#pdo.constants.param-evt-exec-pre" title="Go to PHP documentation"><b>PARAM_EVT_EXEC_PRE</b></a>
+		</code></td>
+		<td class="value"><code><span class="php-num">2</span></code></td>
+		<td class="description"><div>
+			<a href="#PARAM_EVT_EXEC_PRE" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="PARAM_EVT_EXEC_POST" id="PARAM_EVT_EXEC_POST">
+
+		<td class="attributes"><code>integer</code></td>
+		<td class="name"><code>
+				<a href="http://php.net/manual/class.pdo.php#pdo.constants.param-evt-exec-post" title="Go to PHP documentation"><b>PARAM_EVT_EXEC_POST</b></a>
+		</code></td>
+		<td class="value"><code><span class="php-num">3</span></code></td>
+		<td class="description"><div>
+			<a href="#PARAM_EVT_EXEC_POST" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="PARAM_EVT_FETCH_PRE" id="PARAM_EVT_FETCH_PRE">
+
+		<td class="attributes"><code>integer</code></td>
+		<td class="name"><code>
+				<a href="http://php.net/manual/class.pdo.php#pdo.constants.param-evt-fetch-pre" title="Go to PHP documentation"><b>PARAM_EVT_FETCH_PRE</b></a>
+		</code></td>
+		<td class="value"><code><span class="php-num">4</span></code></td>
+		<td class="description"><div>
+			<a href="#PARAM_EVT_FETCH_PRE" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="PARAM_EVT_FETCH_POST" id="PARAM_EVT_FETCH_POST">
+
+		<td class="attributes"><code>integer</code></td>
+		<td class="name"><code>
+				<a href="http://php.net/manual/class.pdo.php#pdo.constants.param-evt-fetch-post" title="Go to PHP documentation"><b>PARAM_EVT_FETCH_POST</b></a>
+		</code></td>
+		<td class="value"><code><span class="php-num">5</span></code></td>
+		<td class="description"><div>
+			<a href="#PARAM_EVT_FETCH_POST" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="PARAM_EVT_NORMALIZE" id="PARAM_EVT_NORMALIZE">
+
+		<td class="attributes"><code>integer</code></td>
+		<td class="name"><code>
+				<a href="http://php.net/manual/class.pdo.php#pdo.constants.param-evt-normalize" title="Go to PHP documentation"><b>PARAM_EVT_NORMALIZE</b></a>
+		</code></td>
+		<td class="value"><code><span class="php-num">6</span></code></td>
+		<td class="description"><div>
+			<a href="#PARAM_EVT_NORMALIZE" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="FETCH_LAZY" id="FETCH_LAZY">
+
+		<td class="attributes"><code>integer</code></td>
+		<td class="name"><code>
+				<a href="http://php.net/manual/class.pdo.php#pdo.constants.fetch-lazy" title="Go to PHP documentation"><b>FETCH_LAZY</b></a>
+		</code></td>
+		<td class="value"><code><span class="php-num">1</span></code></td>
+		<td class="description"><div>
+			<a href="#FETCH_LAZY" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="FETCH_ASSOC" id="FETCH_ASSOC">
+
+		<td class="attributes"><code>integer</code></td>
+		<td class="name"><code>
+				<a href="http://php.net/manual/class.pdo.php#pdo.constants.fetch-assoc" title="Go to PHP documentation"><b>FETCH_ASSOC</b></a>
+		</code></td>
+		<td class="value"><code><span class="php-num">2</span></code></td>
+		<td class="description"><div>
+			<a href="#FETCH_ASSOC" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="FETCH_NUM" id="FETCH_NUM">
+
+		<td class="attributes"><code>integer</code></td>
+		<td class="name"><code>
+				<a href="http://php.net/manual/class.pdo.php#pdo.constants.fetch-num" title="Go to PHP documentation"><b>FETCH_NUM</b></a>
+		</code></td>
+		<td class="value"><code><span class="php-num">3</span></code></td>
+		<td class="description"><div>
+			<a href="#FETCH_NUM" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="FETCH_BOTH" id="FETCH_BOTH">
+
+		<td class="attributes"><code>integer</code></td>
+		<td class="name"><code>
+				<a href="http://php.net/manual/class.pdo.php#pdo.constants.fetch-both" title="Go to PHP documentation"><b>FETCH_BOTH</b></a>
+		</code></td>
+		<td class="value"><code><span class="php-num">4</span></code></td>
+		<td class="description"><div>
+			<a href="#FETCH_BOTH" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="FETCH_OBJ" id="FETCH_OBJ">
+
+		<td class="attributes"><code>integer</code></td>
+		<td class="name"><code>
+				<a href="http://php.net/manual/class.pdo.php#pdo.constants.fetch-obj" title="Go to PHP documentation"><b>FETCH_OBJ</b></a>
+		</code></td>
+		<td class="value"><code><span class="php-num">5</span></code></td>
+		<td class="description"><div>
+			<a href="#FETCH_OBJ" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="FETCH_BOUND" id="FETCH_BOUND">
+
+		<td class="attributes"><code>integer</code></td>
+		<td class="name"><code>
+				<a href="http://php.net/manual/class.pdo.php#pdo.constants.fetch-bound" title="Go to PHP documentation"><b>FETCH_BOUND</b></a>
+		</code></td>
+		<td class="value"><code><span class="php-num">6</span></code></td>
+		<td class="description"><div>
+			<a href="#FETCH_BOUND" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="FETCH_COLUMN" id="FETCH_COLUMN">
+
+		<td class="attributes"><code>integer</code></td>
+		<td class="name"><code>
+				<a href="http://php.net/manual/class.pdo.php#pdo.constants.fetch-column" title="Go to PHP documentation"><b>FETCH_COLUMN</b></a>
+		</code></td>
+		<td class="value"><code><span class="php-num">7</span></code></td>
+		<td class="description"><div>
+			<a href="#FETCH_COLUMN" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="FETCH_CLASS" id="FETCH_CLASS">
+
+		<td class="attributes"><code>integer</code></td>
+		<td class="name"><code>
+				<a href="http://php.net/manual/class.pdo.php#pdo.constants.fetch-class" title="Go to PHP documentation"><b>FETCH_CLASS</b></a>
+		</code></td>
+		<td class="value"><code><span class="php-num">8</span></code></td>
+		<td class="description"><div>
+			<a href="#FETCH_CLASS" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="FETCH_INTO" id="FETCH_INTO">
+
+		<td class="attributes"><code>integer</code></td>
+		<td class="name"><code>
+				<a href="http://php.net/manual/class.pdo.php#pdo.constants.fetch-into" title="Go to PHP documentation"><b>FETCH_INTO</b></a>
+		</code></td>
+		<td class="value"><code><span class="php-num">9</span></code></td>
+		<td class="description"><div>
+			<a href="#FETCH_INTO" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="FETCH_FUNC" id="FETCH_FUNC">
+
+		<td class="attributes"><code>integer</code></td>
+		<td class="name"><code>
+				<a href="http://php.net/manual/class.pdo.php#pdo.constants.fetch-func" title="Go to PHP documentation"><b>FETCH_FUNC</b></a>
+		</code></td>
+		<td class="value"><code><span class="php-num">10</span></code></td>
+		<td class="description"><div>
+			<a href="#FETCH_FUNC" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="FETCH_GROUP" id="FETCH_GROUP">
+
+		<td class="attributes"><code>integer</code></td>
+		<td class="name"><code>
+				<a href="http://php.net/manual/class.pdo.php#pdo.constants.fetch-group" title="Go to PHP documentation"><b>FETCH_GROUP</b></a>
+		</code></td>
+		<td class="value"><code><span class="php-num">65536</span></code></td>
+		<td class="description"><div>
+			<a href="#FETCH_GROUP" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="FETCH_UNIQUE" id="FETCH_UNIQUE">
+
+		<td class="attributes"><code>integer</code></td>
+		<td class="name"><code>
+				<a href="http://php.net/manual/class.pdo.php#pdo.constants.fetch-unique" title="Go to PHP documentation"><b>FETCH_UNIQUE</b></a>
+		</code></td>
+		<td class="value"><code><span class="php-num">196608</span></code></td>
+		<td class="description"><div>
+			<a href="#FETCH_UNIQUE" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="FETCH_KEY_PAIR" id="FETCH_KEY_PAIR">
+
+		<td class="attributes"><code>integer</code></td>
+		<td class="name"><code>
+				<a href="http://php.net/manual/class.pdo.php#pdo.constants.fetch-key-pair" title="Go to PHP documentation"><b>FETCH_KEY_PAIR</b></a>
+		</code></td>
+		<td class="value"><code><span class="php-num">12</span></code></td>
+		<td class="description"><div>
+			<a href="#FETCH_KEY_PAIR" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="FETCH_CLASSTYPE" id="FETCH_CLASSTYPE">
+
+		<td class="attributes"><code>integer</code></td>
+		<td class="name"><code>
+				<a href="http://php.net/manual/class.pdo.php#pdo.constants.fetch-classtype" title="Go to PHP documentation"><b>FETCH_CLASSTYPE</b></a>
+		</code></td>
+		<td class="value"><code><span class="php-num">262144</span></code></td>
+		<td class="description"><div>
+			<a href="#FETCH_CLASSTYPE" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="FETCH_SERIALIZE" id="FETCH_SERIALIZE">
+
+		<td class="attributes"><code>integer</code></td>
+		<td class="name"><code>
+				<a href="http://php.net/manual/class.pdo.php#pdo.constants.fetch-serialize" title="Go to PHP documentation"><b>FETCH_SERIALIZE</b></a>
+		</code></td>
+		<td class="value"><code><span class="php-num">524288</span></code></td>
+		<td class="description"><div>
+			<a href="#FETCH_SERIALIZE" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="FETCH_PROPS_LATE" id="FETCH_PROPS_LATE">
+
+		<td class="attributes"><code>integer</code></td>
+		<td class="name"><code>
+				<a href="http://php.net/manual/class.pdo.php#pdo.constants.fetch-props-late" title="Go to PHP documentation"><b>FETCH_PROPS_LATE</b></a>
+		</code></td>
+		<td class="value"><code><span class="php-num">1048576</span></code></td>
+		<td class="description"><div>
+			<a href="#FETCH_PROPS_LATE" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="FETCH_NAMED" id="FETCH_NAMED">
+
+		<td class="attributes"><code>integer</code></td>
+		<td class="name"><code>
+				<a href="http://php.net/manual/class.pdo.php#pdo.constants.fetch-named" title="Go to PHP documentation"><b>FETCH_NAMED</b></a>
+		</code></td>
+		<td class="value"><code><span class="php-num">11</span></code></td>
+		<td class="description"><div>
+			<a href="#FETCH_NAMED" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="ATTR_AUTOCOMMIT" id="ATTR_AUTOCOMMIT">
+
+		<td class="attributes"><code>integer</code></td>
+		<td class="name"><code>
+				<a href="http://php.net/manual/class.pdo.php#pdo.constants.attr-autocommit" title="Go to PHP documentation"><b>ATTR_AUTOCOMMIT</b></a>
+		</code></td>
+		<td class="value"><code><span class="php-num">0</span></code></td>
+		<td class="description"><div>
+			<a href="#ATTR_AUTOCOMMIT" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="ATTR_PREFETCH" id="ATTR_PREFETCH">
+
+		<td class="attributes"><code>integer</code></td>
+		<td class="name"><code>
+				<a href="http://php.net/manual/class.pdo.php#pdo.constants.attr-prefetch" title="Go to PHP documentation"><b>ATTR_PREFETCH</b></a>
+		</code></td>
+		<td class="value"><code><span class="php-num">1</span></code></td>
+		<td class="description"><div>
+			<a href="#ATTR_PREFETCH" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="ATTR_TIMEOUT" id="ATTR_TIMEOUT">
+
+		<td class="attributes"><code>integer</code></td>
+		<td class="name"><code>
+				<a href="http://php.net/manual/class.pdo.php#pdo.constants.attr-timeout" title="Go to PHP documentation"><b>ATTR_TIMEOUT</b></a>
+		</code></td>
+		<td class="value"><code><span class="php-num">2</span></code></td>
+		<td class="description"><div>
+			<a href="#ATTR_TIMEOUT" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="ATTR_ERRMODE" id="ATTR_ERRMODE">
+
+		<td class="attributes"><code>integer</code></td>
+		<td class="name"><code>
+				<a href="http://php.net/manual/class.pdo.php#pdo.constants.attr-errmode" title="Go to PHP documentation"><b>ATTR_ERRMODE</b></a>
+		</code></td>
+		<td class="value"><code><span class="php-num">3</span></code></td>
+		<td class="description"><div>
+			<a href="#ATTR_ERRMODE" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="ATTR_SERVER_VERSION" id="ATTR_SERVER_VERSION">
+
+		<td class="attributes"><code>integer</code></td>
+		<td class="name"><code>
+				<a href="http://php.net/manual/class.pdo.php#pdo.constants.attr-server-version" title="Go to PHP documentation"><b>ATTR_SERVER_VERSION</b></a>
+		</code></td>
+		<td class="value"><code><span class="php-num">4</span></code></td>
+		<td class="description"><div>
+			<a href="#ATTR_SERVER_VERSION" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="ATTR_CLIENT_VERSION" id="ATTR_CLIENT_VERSION">
+
+		<td class="attributes"><code>integer</code></td>
+		<td class="name"><code>
+				<a href="http://php.net/manual/class.pdo.php#pdo.constants.attr-client-version" title="Go to PHP documentation"><b>ATTR_CLIENT_VERSION</b></a>
+		</code></td>
+		<td class="value"><code><span class="php-num">5</span></code></td>
+		<td class="description"><div>
+			<a href="#ATTR_CLIENT_VERSION" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="ATTR_SERVER_INFO" id="ATTR_SERVER_INFO">
+
+		<td class="attributes"><code>integer</code></td>
+		<td class="name"><code>
+				<a href="http://php.net/manual/class.pdo.php#pdo.constants.attr-server-info" title="Go to PHP documentation"><b>ATTR_SERVER_INFO</b></a>
+		</code></td>
+		<td class="value"><code><span class="php-num">6</span></code></td>
+		<td class="description"><div>
+			<a href="#ATTR_SERVER_INFO" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="ATTR_CONNECTION_STATUS" id="ATTR_CONNECTION_STATUS">
+
+		<td class="attributes"><code>integer</code></td>
+		<td class="name"><code>
+				<a href="http://php.net/manual/class.pdo.php#pdo.constants.attr-connection-status" title="Go to PHP documentation"><b>ATTR_CONNECTION_STATUS</b></a>
+		</code></td>
+		<td class="value"><code><span class="php-num">7</span></code></td>
+		<td class="description"><div>
+			<a href="#ATTR_CONNECTION_STATUS" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="ATTR_CASE" id="ATTR_CASE">
+
+		<td class="attributes"><code>integer</code></td>
+		<td class="name"><code>
+				<a href="http://php.net/manual/class.pdo.php#pdo.constants.attr-case" title="Go to PHP documentation"><b>ATTR_CASE</b></a>
+		</code></td>
+		<td class="value"><code><span class="php-num">8</span></code></td>
+		<td class="description"><div>
+			<a href="#ATTR_CASE" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="ATTR_CURSOR_NAME" id="ATTR_CURSOR_NAME">
+
+		<td class="attributes"><code>integer</code></td>
+		<td class="name"><code>
+				<a href="http://php.net/manual/class.pdo.php#pdo.constants.attr-cursor-name" title="Go to PHP documentation"><b>ATTR_CURSOR_NAME</b></a>
+		</code></td>
+		<td class="value"><code><span class="php-num">9</span></code></td>
+		<td class="description"><div>
+			<a href="#ATTR_CURSOR_NAME" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="ATTR_CURSOR" id="ATTR_CURSOR">
+
+		<td class="attributes"><code>integer</code></td>
+		<td class="name"><code>
+				<a href="http://php.net/manual/class.pdo.php#pdo.constants.attr-cursor" title="Go to PHP documentation"><b>ATTR_CURSOR</b></a>
+		</code></td>
+		<td class="value"><code><span class="php-num">10</span></code></td>
+		<td class="description"><div>
+			<a href="#ATTR_CURSOR" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="ATTR_ORACLE_NULLS" id="ATTR_ORACLE_NULLS">
+
+		<td class="attributes"><code>integer</code></td>
+		<td class="name"><code>
+				<a href="http://php.net/manual/class.pdo.php#pdo.constants.attr-oracle-nulls" title="Go to PHP documentation"><b>ATTR_ORACLE_NULLS</b></a>
+		</code></td>
+		<td class="value"><code><span class="php-num">11</span></code></td>
+		<td class="description"><div>
+			<a href="#ATTR_ORACLE_NULLS" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="ATTR_PERSISTENT" id="ATTR_PERSISTENT">
+
+		<td class="attributes"><code>integer</code></td>
+		<td class="name"><code>
+				<a href="http://php.net/manual/class.pdo.php#pdo.constants.attr-persistent" title="Go to PHP documentation"><b>ATTR_PERSISTENT</b></a>
+		</code></td>
+		<td class="value"><code><span class="php-num">12</span></code></td>
+		<td class="description"><div>
+			<a href="#ATTR_PERSISTENT" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="ATTR_STATEMENT_CLASS" id="ATTR_STATEMENT_CLASS">
+
+		<td class="attributes"><code>integer</code></td>
+		<td class="name"><code>
+				<a href="http://php.net/manual/class.pdo.php#pdo.constants.attr-statement-class" title="Go to PHP documentation"><b>ATTR_STATEMENT_CLASS</b></a>
+		</code></td>
+		<td class="value"><code><span class="php-num">13</span></code></td>
+		<td class="description"><div>
+			<a href="#ATTR_STATEMENT_CLASS" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="ATTR_FETCH_TABLE_NAMES" id="ATTR_FETCH_TABLE_NAMES">
+
+		<td class="attributes"><code>integer</code></td>
+		<td class="name"><code>
+				<a href="http://php.net/manual/class.pdo.php#pdo.constants.attr-fetch-table-names" title="Go to PHP documentation"><b>ATTR_FETCH_TABLE_NAMES</b></a>
+		</code></td>
+		<td class="value"><code><span class="php-num">14</span></code></td>
+		<td class="description"><div>
+			<a href="#ATTR_FETCH_TABLE_NAMES" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="ATTR_FETCH_CATALOG_NAMES" id="ATTR_FETCH_CATALOG_NAMES">
+
+		<td class="attributes"><code>integer</code></td>
+		<td class="name"><code>
+				<a href="http://php.net/manual/class.pdo.php#pdo.constants.attr-fetch-catalog-names" title="Go to PHP documentation"><b>ATTR_FETCH_CATALOG_NAMES</b></a>
+		</code></td>
+		<td class="value"><code><span class="php-num">15</span></code></td>
+		<td class="description"><div>
+			<a href="#ATTR_FETCH_CATALOG_NAMES" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="ATTR_DRIVER_NAME" id="ATTR_DRIVER_NAME">
+
+		<td class="attributes"><code>integer</code></td>
+		<td class="name"><code>
+				<a href="http://php.net/manual/class.pdo.php#pdo.constants.attr-driver-name" title="Go to PHP documentation"><b>ATTR_DRIVER_NAME</b></a>
+		</code></td>
+		<td class="value"><code><span class="php-num">16</span></code></td>
+		<td class="description"><div>
+			<a href="#ATTR_DRIVER_NAME" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="ATTR_STRINGIFY_FETCHES" id="ATTR_STRINGIFY_FETCHES">
+
+		<td class="attributes"><code>integer</code></td>
+		<td class="name"><code>
+				<a href="http://php.net/manual/class.pdo.php#pdo.constants.attr-stringify-fetches" title="Go to PHP documentation"><b>ATTR_STRINGIFY_FETCHES</b></a>
+		</code></td>
+		<td class="value"><code><span class="php-num">17</span></code></td>
+		<td class="description"><div>
+			<a href="#ATTR_STRINGIFY_FETCHES" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="ATTR_MAX_COLUMN_LEN" id="ATTR_MAX_COLUMN_LEN">
+
+		<td class="attributes"><code>integer</code></td>
+		<td class="name"><code>
+				<a href="http://php.net/manual/class.pdo.php#pdo.constants.attr-max-column-len" title="Go to PHP documentation"><b>ATTR_MAX_COLUMN_LEN</b></a>
+		</code></td>
+		<td class="value"><code><span class="php-num">18</span></code></td>
+		<td class="description"><div>
+			<a href="#ATTR_MAX_COLUMN_LEN" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="ATTR_EMULATE_PREPARES" id="ATTR_EMULATE_PREPARES">
+
+		<td class="attributes"><code>integer</code></td>
+		<td class="name"><code>
+				<a href="http://php.net/manual/class.pdo.php#pdo.constants.attr-emulate-prepares" title="Go to PHP documentation"><b>ATTR_EMULATE_PREPARES</b></a>
+		</code></td>
+		<td class="value"><code><span class="php-num">20</span></code></td>
+		<td class="description"><div>
+			<a href="#ATTR_EMULATE_PREPARES" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="ATTR_DEFAULT_FETCH_MODE" id="ATTR_DEFAULT_FETCH_MODE">
+
+		<td class="attributes"><code>integer</code></td>
+		<td class="name"><code>
+				<a href="http://php.net/manual/class.pdo.php#pdo.constants.attr-default-fetch-mode" title="Go to PHP documentation"><b>ATTR_DEFAULT_FETCH_MODE</b></a>
+		</code></td>
+		<td class="value"><code><span class="php-num">19</span></code></td>
+		<td class="description"><div>
+			<a href="#ATTR_DEFAULT_FETCH_MODE" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="ERRMODE_SILENT" id="ERRMODE_SILENT">
+
+		<td class="attributes"><code>integer</code></td>
+		<td class="name"><code>
+				<a href="http://php.net/manual/class.pdo.php#pdo.constants.errmode-silent" title="Go to PHP documentation"><b>ERRMODE_SILENT</b></a>
+		</code></td>
+		<td class="value"><code><span class="php-num">0</span></code></td>
+		<td class="description"><div>
+			<a href="#ERRMODE_SILENT" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="ERRMODE_WARNING" id="ERRMODE_WARNING">
+
+		<td class="attributes"><code>integer</code></td>
+		<td class="name"><code>
+				<a href="http://php.net/manual/class.pdo.php#pdo.constants.errmode-warning" title="Go to PHP documentation"><b>ERRMODE_WARNING</b></a>
+		</code></td>
+		<td class="value"><code><span class="php-num">1</span></code></td>
+		<td class="description"><div>
+			<a href="#ERRMODE_WARNING" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="ERRMODE_EXCEPTION" id="ERRMODE_EXCEPTION">
+
+		<td class="attributes"><code>integer</code></td>
+		<td class="name"><code>
+				<a href="http://php.net/manual/class.pdo.php#pdo.constants.errmode-exception" title="Go to PHP documentation"><b>ERRMODE_EXCEPTION</b></a>
+		</code></td>
+		<td class="value"><code><span class="php-num">2</span></code></td>
+		<td class="description"><div>
+			<a href="#ERRMODE_EXCEPTION" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="CASE_NATURAL" id="CASE_NATURAL">
+
+		<td class="attributes"><code>integer</code></td>
+		<td class="name"><code>
+				<a href="http://php.net/manual/class.pdo.php#pdo.constants.case-natural" title="Go to PHP documentation"><b>CASE_NATURAL</b></a>
+		</code></td>
+		<td class="value"><code><span class="php-num">0</span></code></td>
+		<td class="description"><div>
+			<a href="#CASE_NATURAL" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="CASE_LOWER" id="CASE_LOWER">
+
+		<td class="attributes"><code>integer</code></td>
+		<td class="name"><code>
+				<a href="http://php.net/manual/class.pdo.php#pdo.constants.case-lower" title="Go to PHP documentation"><b>CASE_LOWER</b></a>
+		</code></td>
+		<td class="value"><code><span class="php-num">2</span></code></td>
+		<td class="description"><div>
+			<a href="#CASE_LOWER" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="CASE_UPPER" id="CASE_UPPER">
+
+		<td class="attributes"><code>integer</code></td>
+		<td class="name"><code>
+				<a href="http://php.net/manual/class.pdo.php#pdo.constants.case-upper" title="Go to PHP documentation"><b>CASE_UPPER</b></a>
+		</code></td>
+		<td class="value"><code><span class="php-num">1</span></code></td>
+		<td class="description"><div>
+			<a href="#CASE_UPPER" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="NULL_NATURAL" id="NULL_NATURAL">
+
+		<td class="attributes"><code>integer</code></td>
+		<td class="name"><code>
+				<a href="http://php.net/manual/class.pdo.php#pdo.constants.null-natural" title="Go to PHP documentation"><b>NULL_NATURAL</b></a>
+		</code></td>
+		<td class="value"><code><span class="php-num">0</span></code></td>
+		<td class="description"><div>
+			<a href="#NULL_NATURAL" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="NULL_EMPTY_STRING" id="NULL_EMPTY_STRING">
+
+		<td class="attributes"><code>integer</code></td>
+		<td class="name"><code>
+				<a href="http://php.net/manual/class.pdo.php#pdo.constants.null-empty-string" title="Go to PHP documentation"><b>NULL_EMPTY_STRING</b></a>
+		</code></td>
+		<td class="value"><code><span class="php-num">1</span></code></td>
+		<td class="description"><div>
+			<a href="#NULL_EMPTY_STRING" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="NULL_TO_STRING" id="NULL_TO_STRING">
+
+		<td class="attributes"><code>integer</code></td>
+		<td class="name"><code>
+				<a href="http://php.net/manual/class.pdo.php#pdo.constants.null-to-string" title="Go to PHP documentation"><b>NULL_TO_STRING</b></a>
+		</code></td>
+		<td class="value"><code><span class="php-num">2</span></code></td>
+		<td class="description"><div>
+			<a href="#NULL_TO_STRING" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="ERR_NONE" id="ERR_NONE">
+
+		<td class="attributes"><code>string</code></td>
+		<td class="name"><code>
+				<a href="http://php.net/manual/class.pdo.php#pdo.constants.err-none" title="Go to PHP documentation"><b>ERR_NONE</b></a>
+		</code></td>
+		<td class="value"><code><span class="php-quote">'00000'</span></code></td>
+		<td class="description"><div>
+			<a href="#ERR_NONE" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="FETCH_ORI_NEXT" id="FETCH_ORI_NEXT">
+
+		<td class="attributes"><code>integer</code></td>
+		<td class="name"><code>
+				<a href="http://php.net/manual/class.pdo.php#pdo.constants.fetch-ori-next" title="Go to PHP documentation"><b>FETCH_ORI_NEXT</b></a>
+		</code></td>
+		<td class="value"><code><span class="php-num">0</span></code></td>
+		<td class="description"><div>
+			<a href="#FETCH_ORI_NEXT" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="FETCH_ORI_PRIOR" id="FETCH_ORI_PRIOR">
+
+		<td class="attributes"><code>integer</code></td>
+		<td class="name"><code>
+				<a href="http://php.net/manual/class.pdo.php#pdo.constants.fetch-ori-prior" title="Go to PHP documentation"><b>FETCH_ORI_PRIOR</b></a>
+		</code></td>
+		<td class="value"><code><span class="php-num">1</span></code></td>
+		<td class="description"><div>
+			<a href="#FETCH_ORI_PRIOR" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="FETCH_ORI_FIRST" id="FETCH_ORI_FIRST">
+
+		<td class="attributes"><code>integer</code></td>
+		<td class="name"><code>
+				<a href="http://php.net/manual/class.pdo.php#pdo.constants.fetch-ori-first" title="Go to PHP documentation"><b>FETCH_ORI_FIRST</b></a>
+		</code></td>
+		<td class="value"><code><span class="php-num">2</span></code></td>
+		<td class="description"><div>
+			<a href="#FETCH_ORI_FIRST" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="FETCH_ORI_LAST" id="FETCH_ORI_LAST">
+
+		<td class="attributes"><code>integer</code></td>
+		<td class="name"><code>
+				<a href="http://php.net/manual/class.pdo.php#pdo.constants.fetch-ori-last" title="Go to PHP documentation"><b>FETCH_ORI_LAST</b></a>
+		</code></td>
+		<td class="value"><code><span class="php-num">3</span></code></td>
+		<td class="description"><div>
+			<a href="#FETCH_ORI_LAST" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="FETCH_ORI_ABS" id="FETCH_ORI_ABS">
+
+		<td class="attributes"><code>integer</code></td>
+		<td class="name"><code>
+				<a href="http://php.net/manual/class.pdo.php#pdo.constants.fetch-ori-abs" title="Go to PHP documentation"><b>FETCH_ORI_ABS</b></a>
+		</code></td>
+		<td class="value"><code><span class="php-num">4</span></code></td>
+		<td class="description"><div>
+			<a href="#FETCH_ORI_ABS" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="FETCH_ORI_REL" id="FETCH_ORI_REL">
+
+		<td class="attributes"><code>integer</code></td>
+		<td class="name"><code>
+				<a href="http://php.net/manual/class.pdo.php#pdo.constants.fetch-ori-rel" title="Go to PHP documentation"><b>FETCH_ORI_REL</b></a>
+		</code></td>
+		<td class="value"><code><span class="php-num">5</span></code></td>
+		<td class="description"><div>
+			<a href="#FETCH_ORI_REL" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="CURSOR_FWDONLY" id="CURSOR_FWDONLY">
+
+		<td class="attributes"><code>integer</code></td>
+		<td class="name"><code>
+				<a href="http://php.net/manual/class.pdo.php#pdo.constants.cursor-fwdonly" title="Go to PHP documentation"><b>CURSOR_FWDONLY</b></a>
+		</code></td>
+		<td class="value"><code><span class="php-num">0</span></code></td>
+		<td class="description"><div>
+			<a href="#CURSOR_FWDONLY" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="CURSOR_SCROLL" id="CURSOR_SCROLL">
+
+		<td class="attributes"><code>integer</code></td>
+		<td class="name"><code>
+				<a href="http://php.net/manual/class.pdo.php#pdo.constants.cursor-scroll" title="Go to PHP documentation"><b>CURSOR_SCROLL</b></a>
+		</code></td>
+		<td class="value"><code><span class="php-num">1</span></code></td>
+		<td class="description"><div>
+			<a href="#CURSOR_SCROLL" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="MYSQL_ATTR_USE_BUFFERED_QUERY" id="MYSQL_ATTR_USE_BUFFERED_QUERY">
+
+		<td class="attributes"><code>integer</code></td>
+		<td class="name"><code>
+				<a href="http://php.net/manual/class.pdo.php#pdo.constants.mysql-attr-use-buffered-query" title="Go to PHP documentation"><b>MYSQL_ATTR_USE_BUFFERED_QUERY</b></a>
+		</code></td>
+		<td class="value"><code><span class="php-num">1000</span></code></td>
+		<td class="description"><div>
+			<a href="#MYSQL_ATTR_USE_BUFFERED_QUERY" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="MYSQL_ATTR_LOCAL_INFILE" id="MYSQL_ATTR_LOCAL_INFILE">
+
+		<td class="attributes"><code>integer</code></td>
+		<td class="name"><code>
+				<a href="http://php.net/manual/class.pdo.php#pdo.constants.mysql-attr-local-infile" title="Go to PHP documentation"><b>MYSQL_ATTR_LOCAL_INFILE</b></a>
+		</code></td>
+		<td class="value"><code><span class="php-num">1001</span></code></td>
+		<td class="description"><div>
+			<a href="#MYSQL_ATTR_LOCAL_INFILE" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="MYSQL_ATTR_INIT_COMMAND" id="MYSQL_ATTR_INIT_COMMAND">
+
+		<td class="attributes"><code>integer</code></td>
+		<td class="name"><code>
+				<a href="http://php.net/manual/class.pdo.php#pdo.constants.mysql-attr-init-command" title="Go to PHP documentation"><b>MYSQL_ATTR_INIT_COMMAND</b></a>
+		</code></td>
+		<td class="value"><code><span class="php-num">1002</span></code></td>
+		<td class="description"><div>
+			<a href="#MYSQL_ATTR_INIT_COMMAND" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="MYSQL_ATTR_COMPRESS" id="MYSQL_ATTR_COMPRESS">
+
+		<td class="attributes"><code>integer</code></td>
+		<td class="name"><code>
+				<a href="http://php.net/manual/class.pdo.php#pdo.constants.mysql-attr-compress" title="Go to PHP documentation"><b>MYSQL_ATTR_COMPRESS</b></a>
+		</code></td>
+		<td class="value"><code><span class="php-num">1003</span></code></td>
+		<td class="description"><div>
+			<a href="#MYSQL_ATTR_COMPRESS" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="MYSQL_ATTR_DIRECT_QUERY" id="MYSQL_ATTR_DIRECT_QUERY">
+
+		<td class="attributes"><code>integer</code></td>
+		<td class="name"><code>
+				<a href="http://php.net/manual/class.pdo.php#pdo.constants.mysql-attr-direct-query" title="Go to PHP documentation"><b>MYSQL_ATTR_DIRECT_QUERY</b></a>
+		</code></td>
+		<td class="value"><code><span class="php-num">1004</span></code></td>
+		<td class="description"><div>
+			<a href="#MYSQL_ATTR_DIRECT_QUERY" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="MYSQL_ATTR_FOUND_ROWS" id="MYSQL_ATTR_FOUND_ROWS">
+
+		<td class="attributes"><code>integer</code></td>
+		<td class="name"><code>
+				<a href="http://php.net/manual/class.pdo.php#pdo.constants.mysql-attr-found-rows" title="Go to PHP documentation"><b>MYSQL_ATTR_FOUND_ROWS</b></a>
+		</code></td>
+		<td class="value"><code><span class="php-num">1005</span></code></td>
+		<td class="description"><div>
+			<a href="#MYSQL_ATTR_FOUND_ROWS" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="MYSQL_ATTR_IGNORE_SPACE" id="MYSQL_ATTR_IGNORE_SPACE">
+
+		<td class="attributes"><code>integer</code></td>
+		<td class="name"><code>
+				<a href="http://php.net/manual/class.pdo.php#pdo.constants.mysql-attr-ignore-space" title="Go to PHP documentation"><b>MYSQL_ATTR_IGNORE_SPACE</b></a>
+		</code></td>
+		<td class="value"><code><span class="php-num">1006</span></code></td>
+		<td class="description"><div>
+			<a href="#MYSQL_ATTR_IGNORE_SPACE" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="MYSQL_ATTR_SSL_KEY" id="MYSQL_ATTR_SSL_KEY">
+
+		<td class="attributes"><code>integer</code></td>
+		<td class="name"><code>
+				<a href="http://php.net/manual/class.pdo.php#pdo.constants.mysql-attr-ssl-key" title="Go to PHP documentation"><b>MYSQL_ATTR_SSL_KEY</b></a>
+		</code></td>
+		<td class="value"><code><span class="php-num">1007</span></code></td>
+		<td class="description"><div>
+			<a href="#MYSQL_ATTR_SSL_KEY" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="MYSQL_ATTR_SSL_CERT" id="MYSQL_ATTR_SSL_CERT">
+
+		<td class="attributes"><code>integer</code></td>
+		<td class="name"><code>
+				<a href="http://php.net/manual/class.pdo.php#pdo.constants.mysql-attr-ssl-cert" title="Go to PHP documentation"><b>MYSQL_ATTR_SSL_CERT</b></a>
+		</code></td>
+		<td class="value"><code><span class="php-num">1008</span></code></td>
+		<td class="description"><div>
+			<a href="#MYSQL_ATTR_SSL_CERT" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="MYSQL_ATTR_SSL_CA" id="MYSQL_ATTR_SSL_CA">
+
+		<td class="attributes"><code>integer</code></td>
+		<td class="name"><code>
+				<a href="http://php.net/manual/class.pdo.php#pdo.constants.mysql-attr-ssl-ca" title="Go to PHP documentation"><b>MYSQL_ATTR_SSL_CA</b></a>
+		</code></td>
+		<td class="value"><code><span class="php-num">1009</span></code></td>
+		<td class="description"><div>
+			<a href="#MYSQL_ATTR_SSL_CA" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="MYSQL_ATTR_SSL_CAPATH" id="MYSQL_ATTR_SSL_CAPATH">
+
+		<td class="attributes"><code>integer</code></td>
+		<td class="name"><code>
+				<a href="http://php.net/manual/class.pdo.php#pdo.constants.mysql-attr-ssl-capath" title="Go to PHP documentation"><b>MYSQL_ATTR_SSL_CAPATH</b></a>
+		</code></td>
+		<td class="value"><code><span class="php-num">1010</span></code></td>
+		<td class="description"><div>
+			<a href="#MYSQL_ATTR_SSL_CAPATH" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="MYSQL_ATTR_SSL_CIPHER" id="MYSQL_ATTR_SSL_CIPHER">
+
+		<td class="attributes"><code>integer</code></td>
+		<td class="name"><code>
+				<a href="http://php.net/manual/class.pdo.php#pdo.constants.mysql-attr-ssl-cipher" title="Go to PHP documentation"><b>MYSQL_ATTR_SSL_CIPHER</b></a>
+		</code></td>
+		<td class="value"><code><span class="php-num">1011</span></code></td>
+		<td class="description"><div>
+			<a href="#MYSQL_ATTR_SSL_CIPHER" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	</table>
+
+
+
+
+
+
+
+
+
+
+</div>
+
+	<div id="footer">
+		 API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
+	</div>
+</div>
+</div>
+</body>
+</html>

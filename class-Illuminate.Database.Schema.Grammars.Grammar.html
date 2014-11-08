@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="generator" content="ApiGen 2.8.0" />
+
+	<title>Class Illuminate\Database\Schema\Grammars\Grammar</title>
+
+	<script type="text/javascript" src="resources/combined.js?417754471"></script>
+	<script type="text/javascript" src="elementlist.js?721444666"></script>
+	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
+
+</head>
+
+<body>
+<div id="left">
+	<div id="menu">
+		<a href="index.html" title="Overview"><span>Overview</span></a>
+
+
+		<div id="groups">
+			<h3>Namespaces</h3>
+			<ul>
+				<li><a href="namespace-Hook.html">Hook<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Application.html">Application<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Application.Core.html">Core</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Hook.Auth.html">Auth<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Auth.Providers.html">Providers</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Hook.Cache.html">Cache</a>
+						</li>
+				<li><a href="namespace-Hook.Controllers.html">Controllers</a>
+						</li>
+				<li><a href="namespace-Hook.Database.html">Database<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Database.Schema.html">Schema<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Database.Schema.Grammars.html">Grammars</a>
+						</li>
+							</ul></li></ul></li>
+				<li><a href="namespace-Hook.Encryption.html">Encryption</a>
+						</li>
+				<li><a href="namespace-Hook.Exceptions.html">Exceptions</a>
+						</li>
+				<li><a href="namespace-Hook.Http.html">Http</a>
+						</li>
+				<li><a href="namespace-Hook.Logger.html">Logger</a>
+						</li>
+				<li><a href="namespace-Hook.Mailer.html">Mailer</a>
+						</li>
+				<li><a href="namespace-Hook.Middlewares.html">Middlewares</a>
+						</li>
+				<li><a href="namespace-Hook.Model.html">Model</a>
+						</li>
+				<li><a href="namespace-Hook.Package.html">Package</a>
+						</li>
+				<li><a href="namespace-Hook.Pagination.html">Pagination</a>
+						</li>
+				<li><a href="namespace-Hook.PushNotification.html">PushNotification<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.PushNotification.Services.html">Services</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Hook.Session.html">Session<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Session.Handlers.html">Handlers</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Hook.Storage.html">Storage<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Storage.Providers.html">Providers</a>
+						</li>
+							</ul></li></ul></li>
+				<li class="active"><a href="namespace-Illuminate.html">Illuminate<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Cache.html">Cache<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Cache.Console.html">Console</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Illuminate.Config.html">Config</a>
+						</li>
+				<li><a href="namespace-Illuminate.Container.html">Container</a>
+						</li>
+				<li class="active"><a href="namespace-Illuminate.Database.html">Database<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Database.Capsule.html">Capsule</a>
+						</li>
+				<li><a href="namespace-Illuminate.Database.Connectors.html">Connectors</a>
+						</li>
+				<li><a href="namespace-Illuminate.Database.Console.html">Console<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Database.Console.Migrations.html">Migrations</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Illuminate.Database.Eloquent.html">Eloquent<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Database.Eloquent.Relations.html">Relations</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Illuminate.Database.Migrations.html">Migrations</a>
+						</li>
+				<li><a href="namespace-Illuminate.Database.Query.html">Query<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Database.Query.Grammars.html">Grammars</a>
+						</li>
+				<li><a href="namespace-Illuminate.Database.Query.Processors.html">Processors</a>
+						</li>
+							</ul></li>
+				<li class="active"><a href="namespace-Illuminate.Database.Schema.html">Schema<span></span></a>
+						<ul>
+				<li class="active"><a href="namespace-Illuminate.Database.Schema.Grammars.html">Grammars</a>
+						</li>
+							</ul></li></ul></li>
+				<li><a href="namespace-Illuminate.Encryption.html">Encryption</a>
+						</li>
+				<li><a href="namespace-Illuminate.Events.html">Events</a>
+						</li>
+				<li><a href="namespace-Illuminate.Filesystem.html">Filesystem</a>
+						</li>
+				<li><a href="namespace-Illuminate.Support.html">Support<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Support.Contracts.html">Contracts</a>
+						</li>
+				<li><a href="namespace-Illuminate.Support.Facades.html">Facades</a>
+						</li>
+							</ul></li></ul></li>
+				<li><a href="namespace-None.html">None</a>
+						</li>
+				<li><a href="namespace-PHP.html">PHP</a>
+						</li>
+				<li><a href="namespace-Slim.html">Slim<span></span></a>
+						<ul>
+				<li><a href="namespace-Slim.Exception.html">Exception</a>
+						</li>
+				<li><a href="namespace-Slim.Helper.html">Helper</a>
+						</li>
+				<li><a href="namespace-Slim.Http.html">Http</a>
+						</li>
+				<li><a href="namespace-Slim.Middleware.html">Middleware</a>
+						</li>
+							</ul></li>
+			</ul>
+		</div>
+
+		<hr />
+
+
+		<div id="elements">
+			<h3>Classes</h3>
+			<ul>
+				<li class="active"><a href="class-Illuminate.Database.Schema.Grammars.Grammar.html">Grammar</a></li>
+				<li><a href="class-Illuminate.Database.Schema.Grammars.MySqlGrammar.html">MySqlGrammar</a></li>
+				<li><a href="class-Illuminate.Database.Schema.Grammars.PostgresGrammar.html">PostgresGrammar</a></li>
+				<li><a href="class-Illuminate.Database.Schema.Grammars.SQLiteGrammar.html">SQLiteGrammar</a></li>
+				<li><a href="class-Illuminate.Database.Schema.Grammars.SqlServerGrammar.html">SqlServerGrammar</a></li>
+			</ul>
+
+
+
+
+
+		</div>
+	</div>
+</div>
+
+<div id="splitter"></div>
+
+<div id="right">
+<div id="rightInner">
+	<form id="search">
+		<input type="hidden" name="cx" value="" />
+		<input type="hidden" name="ie" value="UTF-8" />
+		<input type="text" name="q" class="text" />
+		<input type="submit" value="Search" />
+	</form>
+
+	<div id="navigation">
+		<ul>
+			<li>
+				<a href="index.html" title="Overview"><span>Overview</span></a>
+			</li>
+			<li>
+				<a href="namespace-Illuminate.Database.Schema.Grammars.html" title="Summary of Illuminate\Database\Schema\Grammars"><span>Namespace</span></a>
+			</li>
+			<li class="active">
+<span>Class</span>			</li>
+		</ul>
+		<ul>
+			<li>
+				<a href="tree.html" title="Tree view of classes, interfaces, traits and exceptions"><span>Tree</span></a>
+			</li>
+		</ul>
+		<ul>
+		</ul>
+	</div>
+
+<div id="content" class="class">
+	<h1>Class Grammar</h1>
+
+
+
+	<dl class="tree">
+		<dd style="padding-left:0px">
+			<a href="class-Illuminate.Database.Grammar.html"><span>Illuminate\Database\Grammar</span></a>
+			
+			
+			
+		</dd>
+		<dd style="padding-left:30px">
+			<img src="resources/inherit.png" alt="Extended by" />
+<b><span>Illuminate\Database\Schema\Grammars\Grammar</span></b>			
+			
+			
+		</dd>
+	</dl>
+
+
+	<div>
+		<h4>Direct known subclasses</h4>
+			<a href="class-Illuminate.Database.Schema.Grammars.MySqlGrammar.html">Illuminate\Database\Schema\Grammars\MySqlGrammar</a>, 
+			<a href="class-Illuminate.Database.Schema.Grammars.PostgresGrammar.html">Illuminate\Database\Schema\Grammars\PostgresGrammar</a>, 
+			<a href="class-Illuminate.Database.Schema.Grammars.SQLiteGrammar.html">Illuminate\Database\Schema\Grammars\SQLiteGrammar</a>, 
+			<a href="class-Illuminate.Database.Schema.Grammars.SqlServerGrammar.html">Illuminate\Database\Schema\Grammars\SqlServerGrammar</a>
+	</div>
+
+	<div>
+		<h4>Indirect known subclasses</h4>
+			<a href="class-Hook.Database.Schema.Grammars.MySqlGrammar.html">Hook\Database\Schema\Grammars\MySqlGrammar</a>, 
+			<a href="class-Hook.Database.Schema.Grammars.PostgresGrammar.html">Hook\Database\Schema\Grammars\PostgresGrammar</a>, 
+			<a href="class-Hook.Database.Schema.Grammars.SQLiteGrammar.html">Hook\Database\Schema\Grammars\SQLiteGrammar</a>, 
+			<a href="class-Hook.Database.Schema.Grammars.SqlServerGrammar.html">Hook\Database\Schema\Grammars\SqlServerGrammar</a>
+	</div>
+
+
+
+
+
+	<div class="info">
+		<b>Abstract</b><br />
+		
+		<b>Namespace:</b> <a href="namespace-Illuminate.html">Illuminate</a>\<a href="namespace-Illuminate.Database.html">Database</a>\<a href="namespace-Illuminate.Database.Schema.html">Schema</a>\<a href="namespace-Illuminate.Database.Schema.Grammars.html">Grammars</a><br />
+		
+
+		<b>Located at</b> <a href="source-class-Illuminate.Database.Schema.Grammars.Grammar.html#12-269" title="Go to source code">database/Illuminate/Database/Schema/Grammars/Grammar.php</a><br />
+	</div>
+
+
+
+	<table class="summary" id="methods">
+	<caption>Methods summary</caption>
+	<tr data-order="compileRenameColumn" id="_compileRenameColumn">
+
+		<td class="attributes"><code>
+			 public 
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_compileRenameColumn">#</a>
+		<code><a href="source-class-Illuminate.Database.Schema.Grammars.Grammar.html#14-33" title="Go to source code">compileRenameColumn</a>( <span><code><a href="class-Illuminate.Database.Schema.Blueprint.html">Illuminate\Database\Schema\Blueprint</a></code> <var>$blueprint</var></span>, <span><code><a href="class-Illuminate.Support.Fluent.html">Illuminate\Support\Fluent</a></code> <var>$command</var></span>, <span><code><a href="class-Illuminate.Database.Connection.html">Illuminate\Database\Connection</a></code> <var>$connection</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Compile a rename column command.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Compile a rename column command.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$blueprint</var></dt>
+					<dd><code><code><a href="class-Illuminate.Database.Schema.Blueprint.html">Illuminate\Database\Schema\Blueprint</a></code></code><br>$blueprint</dd>
+					<dt><var>$command</var></dt>
+					<dd><code><code><a href="class-Illuminate.Support.Fluent.html">Illuminate\Support\Fluent</a></code></code><br>$command</dd>
+					<dt><var>$connection</var></dt>
+					<dd><code><code><a href="class-Illuminate.Database.Connection.html">Illuminate\Database\Connection</a></code></code><br>$connection</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getRenamedDiff" id="_getRenamedDiff">
+
+		<td class="attributes"><code>
+			 protected 
+			Doctrine\DBAL\Schema\TableDiff
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getRenamedDiff">#</a>
+		<code><a href="source-class-Illuminate.Database.Schema.Grammars.Grammar.html#35-49" title="Go to source code">getRenamedDiff</a>( <span><code><a href="class-Illuminate.Database.Schema.Blueprint.html">Illuminate\Database\Schema\Blueprint</a></code> <var>$blueprint</var></span>, <span><code><a href="class-Illuminate.Support.Fluent.html">Illuminate\Support\Fluent</a></code> <var>$command</var></span>, <span>Doctrine\DBAL\Schema\Column <var>$column</var></span>, <span>Doctrine\DBAL\Schema\AbstractSchemaManager <var>$schema</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Get a new column instance with the new column name.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get a new column instance with the new column name.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$blueprint</var></dt>
+					<dd><code><code><a href="class-Illuminate.Database.Schema.Blueprint.html">Illuminate\Database\Schema\Blueprint</a></code></code><br>$blueprint</dd>
+					<dt><var>$command</var></dt>
+					<dd><code><code><a href="class-Illuminate.Support.Fluent.html">Illuminate\Support\Fluent</a></code></code><br>$command</dd>
+					<dt><var>$column</var></dt>
+					<dd><code>Doctrine\DBAL\Schema\Column</code><br>$column</dd>
+					<dt><var>$schema</var></dt>
+					<dd><code>Doctrine\DBAL\Schema\AbstractSchemaManager</code><br>$schema</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>Doctrine\DBAL\Schema\TableDiff</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="setRenamedColumns" id="_setRenamedColumns">
+
+		<td class="attributes"><code>
+			 protected 
+			Doctrine\DBAL\Schema\TableDiff
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_setRenamedColumns">#</a>
+		<code><a href="source-class-Illuminate.Database.Schema.Grammars.Grammar.html#51-66" title="Go to source code">setRenamedColumns</a>( <span>Doctrine\DBAL\Schema\TableDiff <var>$tableDiff</var></span>, <span><code><a href="class-Illuminate.Support.Fluent.html">Illuminate\Support\Fluent</a></code> <var>$command</var></span>, <span>Doctrine\DBAL\Schema\Column <var>$column</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Set the renamed columns on the table diff.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Set the renamed columns on the table diff.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$tableDiff</var></dt>
+					<dd><code>Doctrine\DBAL\Schema\TableDiff</code><br>$tableDiff</dd>
+					<dt><var>$command</var></dt>
+					<dd><code><code><a href="class-Illuminate.Support.Fluent.html">Illuminate\Support\Fluent</a></code></code><br>$command</dd>
+					<dt><var>$column</var></dt>
+					<dd><code>Doctrine\DBAL\Schema\Column</code><br>$column</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>Doctrine\DBAL\Schema\TableDiff</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="compileForeign" id="_compileForeign">
+
+		<td class="attributes"><code>
+			 public 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_compileForeign">#</a>
+		<code><a href="source-class-Illuminate.Database.Schema.Grammars.Grammar.html#68-106" title="Go to source code">compileForeign</a>( <span><code><a href="class-Illuminate.Database.Schema.Blueprint.html">Illuminate\Database\Schema\Blueprint</a></code> <var>$blueprint</var></span>, <span><code><a href="class-Illuminate.Support.Fluent.html">Illuminate\Support\Fluent</a></code> <var>$command</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Compile a foreign key command.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Compile a foreign key command.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$blueprint</var></dt>
+					<dd><code><code><a href="class-Illuminate.Database.Schema.Blueprint.html">Illuminate\Database\Schema\Blueprint</a></code></code><br>$blueprint</dd>
+					<dt><var>$command</var></dt>
+					<dd><code><code><a href="class-Illuminate.Support.Fluent.html">Illuminate\Support\Fluent</a></code></code><br>$command</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getColumns" id="_getColumns">
+
+		<td class="attributes"><code>
+			 protected 
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getColumns">#</a>
+		<code><a href="source-class-Illuminate.Database.Schema.Grammars.Grammar.html#108-129" title="Go to source code">getColumns</a>( <span><code><a href="class-Illuminate.Database.Schema.Blueprint.html">Illuminate\Database\Schema\Blueprint</a></code> <var>$blueprint</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Compile the blueprint's column definitions.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Compile the blueprint's column definitions.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$blueprint</var></dt>
+					<dd><code><code><a href="class-Illuminate.Database.Schema.Blueprint.html">Illuminate\Database\Schema\Blueprint</a></code></code><br>$blueprint</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="addModifiers" id="_addModifiers">
+
+		<td class="attributes"><code>
+			 protected 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_addModifiers">#</a>
+		<code><a href="source-class-Illuminate.Database.Schema.Grammars.Grammar.html#131-150" title="Go to source code">addModifiers</a>( <span>string <var>$sql</var></span>, <span><code><a href="class-Illuminate.Database.Schema.Blueprint.html">Illuminate\Database\Schema\Blueprint</a></code> <var>$blueprint</var></span>, <span><code><a href="class-Illuminate.Support.Fluent.html">Illuminate\Support\Fluent</a></code> <var>$column</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Add the column modifiers to the definition.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Add the column modifiers to the definition.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$sql</var></dt>
+					<dd><code>string</code><br>$sql</dd>
+					<dt><var>$blueprint</var></dt>
+					<dd><code><code><a href="class-Illuminate.Database.Schema.Blueprint.html">Illuminate\Database\Schema\Blueprint</a></code></code><br>$blueprint</dd>
+					<dt><var>$column</var></dt>
+					<dd><code><code><a href="class-Illuminate.Support.Fluent.html">Illuminate\Support\Fluent</a></code></code><br>$column</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getCommandByName" id="_getCommandByName">
+
+		<td class="attributes"><code>
+			 protected 
+			<code><a href="class-Illuminate.Support.Fluent.html">Illuminate\Support\Fluent</a></code>|null
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getCommandByName">#</a>
+		<code><a href="source-class-Illuminate.Database.Schema.Grammars.Grammar.html#152-166" title="Go to source code">getCommandByName</a>( <span><code><a href="class-Illuminate.Database.Schema.Blueprint.html">Illuminate\Database\Schema\Blueprint</a></code> <var>$blueprint</var></span>, <span>mixed <var>$name</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Get the primary key command if it exists on the blueprint.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get the primary key command if it exists on the blueprint.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$blueprint</var></dt>
+					<dd><code><code><a href="class-Illuminate.Database.Schema.Blueprint.html">Illuminate\Database\Schema\Blueprint</a></code></code><br>$blueprint</dd>
+					<dt><var>$name</var></dt>
+					<dd></dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-Illuminate.Support.Fluent.html">Illuminate\Support\Fluent</a></code>|null</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getCommandsByName" id="_getCommandsByName">
+
+		<td class="attributes"><code>
+			 protected 
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getCommandsByName">#</a>
+		<code><a href="source-class-Illuminate.Database.Schema.Grammars.Grammar.html#168-181" title="Go to source code">getCommandsByName</a>( <span><code><a href="class-Illuminate.Database.Schema.Blueprint.html">Illuminate\Database\Schema\Blueprint</a></code> <var>$blueprint</var></span>, <span>string <var>$name</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Get all of the commands with a given name.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get all of the commands with a given name.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$blueprint</var></dt>
+					<dd><code><code><a href="class-Illuminate.Database.Schema.Blueprint.html">Illuminate\Database\Schema\Blueprint</a></code></code><br>$blueprint</dd>
+					<dt><var>$name</var></dt>
+					<dd><code>string</code><br>$name</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getType" id="_getType">
+
+		<td class="attributes"><code>
+			 protected 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getType">#</a>
+		<code><a href="source-class-Illuminate.Database.Schema.Grammars.Grammar.html#183-192" title="Go to source code">getType</a>( <span><code><a href="class-Illuminate.Support.Fluent.html">Illuminate\Support\Fluent</a></code> <var>$column</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Get the SQL for the column data type.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get the SQL for the column data type.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$column</var></dt>
+					<dd><code><code><a href="class-Illuminate.Support.Fluent.html">Illuminate\Support\Fluent</a></code></code><br>$column</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="prefixArray" id="_prefixArray">
+
+		<td class="attributes"><code>
+			 public 
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_prefixArray">#</a>
+		<code><a href="source-class-Illuminate.Database.Schema.Grammars.Grammar.html#194-208" title="Go to source code">prefixArray</a>( <span>string <var>$prefix</var></span>, <span>array <var>$values</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Add a prefix to an array of values.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Add a prefix to an array of values.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$prefix</var></dt>
+					<dd><code>string</code><br>$prefix</dd>
+					<dt><var>$values</var></dt>
+					<dd><code>array</code><br>$values</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="wrapTable" id="_wrapTable">
+
+		<td class="attributes"><code>
+			 public 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_wrapTable">#</a>
+		<code><a href="source-class-Illuminate.Database.Schema.Grammars.Grammar.html#210-221" title="Go to source code">wrapTable</a>( <span>mixed <var>$table</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Wrap a table in keyword identifiers.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Wrap a table in keyword identifiers.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$table</var></dt>
+					<dd><code>mixed</code><br>$table</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br />
+				</div>
+
+
+
+				<h4>Overrides</h4>
+				<div class="list"><code><a href="class-Illuminate.Database.Grammar.html#_wrapTable">Illuminate\Database\Grammar::wrapTable()</a></code></div>
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="wrap" id="_wrap">
+
+		<td class="attributes"><code>
+			 public 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_wrap">#</a>
+		<code><a href="source-class-Illuminate.Database.Schema.Grammars.Grammar.html#223-234" title="Go to source code">wrap</a>( <span>string <var>$value</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Wrap a value in keyword identifiers.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Wrap a value in keyword identifiers.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$value</var></dt>
+					<dd><code>string</code><br>$value</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br />
+				</div>
+
+
+
+				<h4>Overrides</h4>
+				<div class="list"><code><a href="class-Illuminate.Database.Grammar.html#_wrap">Illuminate\Database\Grammar::wrap()</a></code></div>
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getDefaultValue" id="_getDefaultValue">
+
+		<td class="attributes"><code>
+			 protected 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getDefaultValue">#</a>
+		<code><a href="source-class-Illuminate.Database.Schema.Grammars.Grammar.html#236-249" title="Go to source code">getDefaultValue</a>( <span>mixed <var>$value</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Format a value so that it can be used in "default" clauses.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Format a value so that it can be used in "default" clauses.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$value</var></dt>
+					<dd><code>mixed</code><br>$value</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getDoctrineTableDiff" id="_getDoctrineTableDiff">
+
+		<td class="attributes"><code>
+			 protected 
+			Doctrine\DBAL\Schema\TableDiff
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getDoctrineTableDiff">#</a>
+		<code><a href="source-class-Illuminate.Database.Schema.Grammars.Grammar.html#251-267" title="Go to source code">getDoctrineTableDiff</a>( <span><code><a href="class-Illuminate.Database.Schema.Blueprint.html">Illuminate\Database\Schema\Blueprint</a></code> <var>$blueprint</var></span>, <span>Doctrine\DBAL\Schema\AbstractSchemaManager <var>$schema</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Create an empty Doctrine DBAL TableDiff from the Blueprint.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Create an empty Doctrine DBAL TableDiff from the Blueprint.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$blueprint</var></dt>
+					<dd><code><code><a href="class-Illuminate.Database.Schema.Blueprint.html">Illuminate\Database\Schema\Blueprint</a></code></code><br>$blueprint</dd>
+					<dt><var>$schema</var></dt>
+					<dd><code>Doctrine\DBAL\Schema\AbstractSchemaManager</code><br>$schema</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>Doctrine\DBAL\Schema\TableDiff</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	</table>
+
+	<table class="summary inherited">
+	<caption>Methods inherited from <a href="class-Illuminate.Database.Grammar.html#methods">Illuminate\Database\Grammar</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-Illuminate.Database.Grammar.html#_columnize">columnize()</a>, 
+			<a href="class-Illuminate.Database.Grammar.html#_getDateFormat">getDateFormat()</a>, 
+			<a href="class-Illuminate.Database.Grammar.html#_getTablePrefix">getTablePrefix()</a>, 
+			<a href="class-Illuminate.Database.Grammar.html#_getValue">getValue()</a>, 
+			<a href="class-Illuminate.Database.Grammar.html#_isExpression">isExpression()</a>, 
+			<a href="class-Illuminate.Database.Grammar.html#_parameter">parameter()</a>, 
+			<a href="class-Illuminate.Database.Grammar.html#_parameterize">parameterize()</a>, 
+			<a href="class-Illuminate.Database.Grammar.html#_setTablePrefix">setTablePrefix()</a>, 
+			<a href="class-Illuminate.Database.Grammar.html#_wrapArray">wrapArray()</a>, 
+			<a href="class-Illuminate.Database.Grammar.html#_wrapValue">wrapValue()</a>
+		</code></td>
+	</tr>
+	</table>
+
+
+
+
+
+
+
+
+
+
+
+
+	<table class="summary inherited">
+	<caption>Properties inherited from <a href="class-Illuminate.Database.Grammar.html#properties">Illuminate\Database\Grammar</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-Illuminate.Database.Grammar.html#$tablePrefix"><var>$tablePrefix</var></a>
+		</code></td>
+	</tr>
+	</table>
+
+
+
+
+
+</div>
+
+	<div id="footer">
+		 API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
+	</div>
+</div>
+</div>
+</body>
+</html>

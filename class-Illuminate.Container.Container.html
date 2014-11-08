@@ -1,0 +1,2174 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="generator" content="ApiGen 2.8.0" />
+
+	<title>Class Illuminate\Container\Container</title>
+
+	<script type="text/javascript" src="resources/combined.js?417754471"></script>
+	<script type="text/javascript" src="elementlist.js?721444666"></script>
+	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
+
+</head>
+
+<body>
+<div id="left">
+	<div id="menu">
+		<a href="index.html" title="Overview"><span>Overview</span></a>
+
+
+		<div id="groups">
+			<h3>Namespaces</h3>
+			<ul>
+				<li><a href="namespace-Hook.html">Hook<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Application.html">Application<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Application.Core.html">Core</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Hook.Auth.html">Auth<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Auth.Providers.html">Providers</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Hook.Cache.html">Cache</a>
+						</li>
+				<li><a href="namespace-Hook.Controllers.html">Controllers</a>
+						</li>
+				<li><a href="namespace-Hook.Database.html">Database<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Database.Schema.html">Schema<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Database.Schema.Grammars.html">Grammars</a>
+						</li>
+							</ul></li></ul></li>
+				<li><a href="namespace-Hook.Encryption.html">Encryption</a>
+						</li>
+				<li><a href="namespace-Hook.Exceptions.html">Exceptions</a>
+						</li>
+				<li><a href="namespace-Hook.Http.html">Http</a>
+						</li>
+				<li><a href="namespace-Hook.Logger.html">Logger</a>
+						</li>
+				<li><a href="namespace-Hook.Mailer.html">Mailer</a>
+						</li>
+				<li><a href="namespace-Hook.Middlewares.html">Middlewares</a>
+						</li>
+				<li><a href="namespace-Hook.Model.html">Model</a>
+						</li>
+				<li><a href="namespace-Hook.Package.html">Package</a>
+						</li>
+				<li><a href="namespace-Hook.Pagination.html">Pagination</a>
+						</li>
+				<li><a href="namespace-Hook.PushNotification.html">PushNotification<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.PushNotification.Services.html">Services</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Hook.Session.html">Session<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Session.Handlers.html">Handlers</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Hook.Storage.html">Storage<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Storage.Providers.html">Providers</a>
+						</li>
+							</ul></li></ul></li>
+				<li class="active"><a href="namespace-Illuminate.html">Illuminate<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Cache.html">Cache<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Cache.Console.html">Console</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Illuminate.Config.html">Config</a>
+						</li>
+				<li class="active"><a href="namespace-Illuminate.Container.html">Container</a>
+						</li>
+				<li><a href="namespace-Illuminate.Database.html">Database<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Database.Capsule.html">Capsule</a>
+						</li>
+				<li><a href="namespace-Illuminate.Database.Connectors.html">Connectors</a>
+						</li>
+				<li><a href="namespace-Illuminate.Database.Console.html">Console<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Database.Console.Migrations.html">Migrations</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Illuminate.Database.Eloquent.html">Eloquent<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Database.Eloquent.Relations.html">Relations</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Illuminate.Database.Migrations.html">Migrations</a>
+						</li>
+				<li><a href="namespace-Illuminate.Database.Query.html">Query<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Database.Query.Grammars.html">Grammars</a>
+						</li>
+				<li><a href="namespace-Illuminate.Database.Query.Processors.html">Processors</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Illuminate.Database.Schema.html">Schema<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Database.Schema.Grammars.html">Grammars</a>
+						</li>
+							</ul></li></ul></li>
+				<li><a href="namespace-Illuminate.Encryption.html">Encryption</a>
+						</li>
+				<li><a href="namespace-Illuminate.Events.html">Events</a>
+						</li>
+				<li><a href="namespace-Illuminate.Filesystem.html">Filesystem</a>
+						</li>
+				<li><a href="namespace-Illuminate.Support.html">Support<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Support.Contracts.html">Contracts</a>
+						</li>
+				<li><a href="namespace-Illuminate.Support.Facades.html">Facades</a>
+						</li>
+							</ul></li></ul></li>
+				<li><a href="namespace-None.html">None</a>
+						</li>
+				<li><a href="namespace-PHP.html">PHP</a>
+						</li>
+				<li><a href="namespace-Slim.html">Slim<span></span></a>
+						<ul>
+				<li><a href="namespace-Slim.Exception.html">Exception</a>
+						</li>
+				<li><a href="namespace-Slim.Helper.html">Helper</a>
+						</li>
+				<li><a href="namespace-Slim.Http.html">Http</a>
+						</li>
+				<li><a href="namespace-Slim.Middleware.html">Middleware</a>
+						</li>
+							</ul></li>
+			</ul>
+		</div>
+
+		<hr />
+
+
+		<div id="elements">
+			<h3>Classes</h3>
+			<ul>
+				<li class="active"><a href="class-Illuminate.Container.Container.html">Container</a></li>
+			</ul>
+
+
+
+			<h3>Exceptions</h3>
+			<ul>
+				<li><a href="class-Illuminate.Container.BindingResolutionException.html">BindingResolutionException</a></li>
+			</ul>
+
+
+		</div>
+	</div>
+</div>
+
+<div id="splitter"></div>
+
+<div id="right">
+<div id="rightInner">
+	<form id="search">
+		<input type="hidden" name="cx" value="" />
+		<input type="hidden" name="ie" value="UTF-8" />
+		<input type="text" name="q" class="text" />
+		<input type="submit" value="Search" />
+	</form>
+
+	<div id="navigation">
+		<ul>
+			<li>
+				<a href="index.html" title="Overview"><span>Overview</span></a>
+			</li>
+			<li>
+				<a href="namespace-Illuminate.Container.html" title="Summary of Illuminate\Container"><span>Namespace</span></a>
+			</li>
+			<li class="active">
+<span>Class</span>			</li>
+		</ul>
+		<ul>
+			<li>
+				<a href="tree.html" title="Tree view of classes, interfaces, traits and exceptions"><span>Tree</span></a>
+			</li>
+		</ul>
+		<ul>
+		</ul>
+	</div>
+
+<div id="content" class="class">
+	<h1>Class Container</h1>
+
+
+
+	<dl class="tree">
+		<dd style="padding-left:0px">
+<b><span>Illuminate\Container\Container</span></b>			
+			 implements 
+				<a href="class-ArrayAccess.html"><span>ArrayAccess</span></a>
+			
+			
+		</dd>
+	</dl>
+
+
+
+
+
+
+
+
+	<div class="info">
+		
+		
+		<b>Namespace:</b> <a href="namespace-Illuminate.html">Illuminate</a>\<a href="namespace-Illuminate.Container.html">Container</a><br />
+		
+
+		<b>Located at</b> <a href="source-class-Illuminate.Container.Container.html#10-848" title="Go to source code">container/Illuminate/Container/Container.php</a><br />
+	</div>
+
+
+
+	<table class="summary" id="methods">
+	<caption>Methods summary</caption>
+	<tr data-order="resolvable" id="_resolvable">
+
+		<td class="attributes"><code>
+			 protected 
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_resolvable">#</a>
+		<code><a href="source-class-Illuminate.Container.Container.html#61-70" title="Go to source code">resolvable</a>( <span>string <var>$abstract</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Determine if a given string is resolvable.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Determine if a given string is resolvable.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$abstract</var></dt>
+					<dd><code>string</code><br>$abstract</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="bound" id="_bound">
+
+		<td class="attributes"><code>
+			 public 
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_bound">#</a>
+		<code><a href="source-class-Illuminate.Container.Container.html#72-81" title="Go to source code">bound</a>( <span>string <var>$abstract</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Determine if the given abstract type has been bound.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Determine if the given abstract type has been bound.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$abstract</var></dt>
+					<dd><code>string</code><br>$abstract</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="isAlias" id="_isAlias">
+
+		<td class="attributes"><code>
+			 public 
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_isAlias">#</a>
+		<code><a href="source-class-Illuminate.Container.Container.html#83-92" title="Go to source code">isAlias</a>( <span>string <var>$name</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Determine if a given string is an alias.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Determine if a given string is an alias.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$name</var></dt>
+					<dd><code>string</code><br>$name</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="bind" id="_bind">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_bind">#</a>
+		<code><a href="source-class-Illuminate.Container.Container.html#94-143" title="Go to source code">bind</a>( <span>string <var>$abstract</var></span>, <span><code><a href="class-Closure.html">Closure</a></code>|string|null <var>$concrete</var> = <span class="php-keyword1">null</span></span>, <span>boolean <var>$shared</var> = <span class="php-keyword1">false</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Register a binding with the container.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Register a binding with the container.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$abstract</var></dt>
+					<dd><code>string</code><br>$abstract</dd>
+					<dt><var>$concrete</var></dt>
+					<dd><code><code><a href="class-Closure.html">Closure</a></code>|string|null</code><br>$concrete</dd>
+					<dt><var>$shared</var></dt>
+					<dd><code>boolean</code><br>$shared</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getClosure" id="_getClosure">
+
+		<td class="attributes"><code>
+			 protected 
+			<code><a href="class-Closure.html">Closure</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getClosure">#</a>
+		<code><a href="source-class-Illuminate.Container.Container.html#145-160" title="Go to source code">getClosure</a>( <span>string <var>$abstract</var></span>, <span>string <var>$concrete</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Get the Closure to be used when building a type.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get the Closure to be used when building a type.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$abstract</var></dt>
+					<dd><code>string</code><br>$abstract</dd>
+					<dt><var>$concrete</var></dt>
+					<dd><code>string</code><br>$concrete</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-Closure.html">Closure</a></code></code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="bindIf" id="_bindIf">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_bindIf">#</a>
+		<code><a href="source-class-Illuminate.Container.Container.html#162-176" title="Go to source code">bindIf</a>( <span>string <var>$abstract</var></span>, <span><code><a href="class-Closure.html">Closure</a></code>|string|null <var>$concrete</var> = <span class="php-keyword1">null</span></span>, <span>boolean <var>$shared</var> = <span class="php-keyword1">false</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Register a binding if it hasn't already been registered.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Register a binding if it hasn't already been registered.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$abstract</var></dt>
+					<dd><code>string</code><br>$abstract</dd>
+					<dt><var>$concrete</var></dt>
+					<dd><code><code><a href="class-Closure.html">Closure</a></code>|string|null</code><br>$concrete</dd>
+					<dt><var>$shared</var></dt>
+					<dd><code>boolean</code><br>$shared</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="singleton" id="_singleton">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_singleton">#</a>
+		<code><a href="source-class-Illuminate.Container.Container.html#178-188" title="Go to source code">singleton</a>( <span>string <var>$abstract</var></span>, <span><code><a href="class-Closure.html">Closure</a></code>|string|null <var>$concrete</var> = <span class="php-keyword1">null</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Register a shared binding in the container.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Register a shared binding in the container.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$abstract</var></dt>
+					<dd><code>string</code><br>$abstract</dd>
+					<dt><var>$concrete</var></dt>
+					<dd><code><code><a href="class-Closure.html">Closure</a></code>|string|null</code><br>$concrete</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="share" id="_share">
+
+		<td class="attributes"><code>
+			 public 
+			<code><a href="class-Closure.html">Closure</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_share">#</a>
+		<code><a href="source-class-Illuminate.Container.Container.html#190-212" title="Go to source code">share</a>( <span><code><a href="class-Closure.html">Closure</a></code> <var>$closure</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Wrap a Closure such that it is shared.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Wrap a Closure such that it is shared.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$closure</var></dt>
+					<dd><code><code><a href="class-Closure.html">Closure</a></code></code><br>$closure</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-Closure.html">Closure</a></code></code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="bindShared" id="_bindShared">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_bindShared">#</a>
+		<code><a href="source-class-Illuminate.Container.Container.html#214-224" title="Go to source code">bindShared</a>( <span>string <var>$abstract</var></span>, <span><code><a href="class-Closure.html">Closure</a></code> <var>$closure</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Bind a shared Closure into the container.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Bind a shared Closure into the container.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$abstract</var></dt>
+					<dd><code>string</code><br>$abstract</dd>
+					<dt><var>$closure</var></dt>
+					<dd><code><code><a href="class-Closure.html">Closure</a></code></code><br>$closure</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="extend" id="_extend">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_extend">#</a>
+		<code><a href="source-class-Illuminate.Container.Container.html#226-254" title="Go to source code">extend</a>( <span>string <var>$abstract</var></span>, <span><code><a href="class-Closure.html">Closure</a></code> <var>$closure</var></span> )</code>
+
+		<div class="description short">
+			
+<p>"Extend" an abstract type in the container.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>"Extend" an abstract type in the container.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$abstract</var></dt>
+					<dd><code>string</code><br>$abstract</dd>
+					<dt><var>$closure</var></dt>
+					<dd><code><code><a href="class-Closure.html">Closure</a></code></code><br>$closure</dd>
+				</dl></div>
+
+
+				<h4>Throws</h4>
+				<div class="list">
+					<code><code><a href="class-InvalidArgumentException.html">InvalidArgumentException</a></code></code><br />
+				</div>
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getExtender" id="_getExtender">
+
+		<td class="attributes"><code>
+			 protected 
+			<code><a href="class-Closure.html">Closure</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getExtender">#</a>
+		<code><a href="source-class-Illuminate.Container.Container.html#256-274" title="Go to source code">getExtender</a>( <span>string <var>$abstract</var></span>, <span><code><a href="class-Closure.html">Closure</a></code> <var>$closure</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Get an extender Closure for resolving a type.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get an extender Closure for resolving a type.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$abstract</var></dt>
+					<dd><code>string</code><br>$abstract</dd>
+					<dt><var>$closure</var></dt>
+					<dd><code><code><a href="class-Closure.html">Closure</a></code></code><br>$closure</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-Closure.html">Closure</a></code></code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="instance" id="_instance">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_instance">#</a>
+		<code><a href="source-class-Illuminate.Container.Container.html#276-308" title="Go to source code">instance</a>( <span>string <var>$abstract</var></span>, <span>mixed <var>$instance</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Register an existing instance as shared in the container.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Register an existing instance as shared in the container.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$abstract</var></dt>
+					<dd><code>string</code><br>$abstract</dd>
+					<dt><var>$instance</var></dt>
+					<dd><code>mixed</code><br>$instance</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="alias" id="_alias">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_alias">#</a>
+		<code><a href="source-class-Illuminate.Container.Container.html#310-320" title="Go to source code">alias</a>( <span>string <var>$abstract</var></span>, <span>string <var>$alias</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Alias a type to a shorter name.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Alias a type to a shorter name.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$abstract</var></dt>
+					<dd><code>string</code><br>$abstract</dd>
+					<dt><var>$alias</var></dt>
+					<dd><code>string</code><br>$alias</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="extractAlias" id="_extractAlias">
+
+		<td class="attributes"><code>
+			 protected 
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_extractAlias">#</a>
+		<code><a href="source-class-Illuminate.Container.Container.html#322-331" title="Go to source code">extractAlias</a>( <span>array <var>$definition</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Extract the type and alias from a given definition.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Extract the type and alias from a given definition.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$definition</var></dt>
+					<dd><code>array</code><br>$definition</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="rebinding" id="_rebinding">
+
+		<td class="attributes"><code>
+			 public 
+			mixed
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_rebinding">#</a>
+		<code><a href="source-class-Illuminate.Container.Container.html#333-345" title="Go to source code">rebinding</a>( <span>string <var>$abstract</var></span>, <span><code><a href="class-Closure.html">Closure</a></code> <var>$callback</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Bind a new callback to an abstract's rebind event.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Bind a new callback to an abstract's rebind event.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$abstract</var></dt>
+					<dd><code>string</code><br>$abstract</dd>
+					<dt><var>$callback</var></dt>
+					<dd><code><code><a href="class-Closure.html">Closure</a></code></code><br>$callback</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>mixed</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="refresh" id="_refresh">
+
+		<td class="attributes"><code>
+			 public 
+			mixed
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_refresh">#</a>
+		<code><a href="source-class-Illuminate.Container.Container.html#347-361" title="Go to source code">refresh</a>( <span>string <var>$abstract</var></span>, <span>mixed <var>$target</var></span>, <span>string <var>$method</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Refresh an instance on the given target and method.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Refresh an instance on the given target and method.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$abstract</var></dt>
+					<dd><code>string</code><br>$abstract</dd>
+					<dt><var>$target</var></dt>
+					<dd><code>mixed</code><br>$target</dd>
+					<dt><var>$method</var></dt>
+					<dd><code>string</code><br>$method</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>mixed</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="rebound" id="_rebound">
+
+		<td class="attributes"><code>
+			 protected 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_rebound">#</a>
+		<code><a href="source-class-Illuminate.Container.Container.html#363-377" title="Go to source code">rebound</a>( <span>string <var>$abstract</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Fire the "rebound" callbacks for the given abstract type.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Fire the "rebound" callbacks for the given abstract type.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$abstract</var></dt>
+					<dd><code>string</code><br>$abstract</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getReboundCallbacks" id="_getReboundCallbacks">
+
+		<td class="attributes"><code>
+			 protected 
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getReboundCallbacks">#</a>
+		<code><a href="source-class-Illuminate.Container.Container.html#379-395" title="Go to source code">getReboundCallbacks</a>( <span>string <var>$abstract</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Get the rebound callbacks for a given type.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get the rebound callbacks for a given type.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$abstract</var></dt>
+					<dd><code>string</code><br>$abstract</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="make" id="_make">
+
+		<td class="attributes"><code>
+			 public 
+			mixed
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_make">#</a>
+		<code><a href="source-class-Illuminate.Container.Container.html#397-443" title="Go to source code">make</a>( <span>string <var>$abstract</var></span>, <span>array <var>$parameters</var> = <span class="php-keyword1">array</span>()</span> )</code>
+
+		<div class="description short">
+			
+<p>Resolve the given type from the container.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Resolve the given type from the container.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$abstract</var></dt>
+					<dd><code>string</code><br>$abstract</dd>
+					<dt><var>$parameters</var></dt>
+					<dd><code>array</code><br>$parameters</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>mixed</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getConcrete" id="_getConcrete">
+
+		<td class="attributes"><code>
+			 protected 
+			mixed
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getConcrete">#</a>
+		<code><a href="source-class-Illuminate.Container.Container.html#445-469" title="Go to source code">getConcrete</a>( <span>string <var>$abstract</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Get the concrete type for a given abstract.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get the concrete type for a given abstract.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$abstract</var></dt>
+					<dd><code>string</code><br>$abstract</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>mixed</code><br>$concrete<br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="missingLeadingSlash" id="_missingLeadingSlash">
+
+		<td class="attributes"><code>
+			 protected 
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_missingLeadingSlash">#</a>
+		<code><a href="source-class-Illuminate.Container.Container.html#471-480" title="Go to source code">missingLeadingSlash</a>( <span>string <var>$abstract</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Determine if the given abstract has a leading slash.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Determine if the given abstract has a leading slash.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$abstract</var></dt>
+					<dd><code>string</code><br>$abstract</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="build" id="_build">
+
+		<td class="attributes"><code>
+			 public 
+			mixed
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_build">#</a>
+		<code><a href="source-class-Illuminate.Container.Container.html#482-537" title="Go to source code">build</a>( <span>string <var>$concrete</var></span>, <span>array <var>$parameters</var> = <span class="php-keyword1">array</span>()</span> )</code>
+
+		<div class="description short">
+			
+<p>Instantiate a concrete instance of the given type.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Instantiate a concrete instance of the given type.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$concrete</var></dt>
+					<dd><code>string</code><br>$concrete</dd>
+					<dt><var>$parameters</var></dt>
+					<dd><code>array</code><br>$parameters</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>mixed</code><br />
+				</div>
+
+				<h4>Throws</h4>
+				<div class="list">
+					<code><code><a href="class-Illuminate.Container.BindingResolutionException.html">Illuminate\Container\BindingResolutionException</a></code></code><br />
+				</div>
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getDependencies" id="_getDependencies">
+
+		<td class="attributes"><code>
+			 protected 
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getDependencies">#</a>
+		<code><a href="source-class-Illuminate.Container.Container.html#539-572" title="Go to source code">getDependencies</a>( <span>array <var>$parameters</var></span>, <span>array <var>$primitives</var> = <span class="php-keyword1">array</span>()</span> )</code>
+
+		<div class="description short">
+			
+<p>Resolve all of the dependencies from the ReflectionParameters.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Resolve all of the dependencies from the ReflectionParameters.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$parameters</var></dt>
+					<dd><code>array</code><br>$parameters</dd>
+					<dt><var>$primitives</var></dt>
+					<dd><code>array</code><br>$primitives</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="resolveNonClass" id="_resolveNonClass">
+
+		<td class="attributes"><code>
+			 protected 
+			mixed
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_resolveNonClass">#</a>
+		<code><a href="source-class-Illuminate.Container.Container.html#574-594" title="Go to source code">resolveNonClass</a>( <span><code><a href="class-ReflectionParameter.html">ReflectionParameter</a></code> <var>$parameter</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Resolve a non-class hinted dependency.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Resolve a non-class hinted dependency.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$parameter</var></dt>
+					<dd><code><code><a href="class-ReflectionParameter.html">ReflectionParameter</a></code></code><br>$parameter</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>mixed</code><br />
+				</div>
+
+				<h4>Throws</h4>
+				<div class="list">
+					<code><code><a href="class-Illuminate.Container.BindingResolutionException.html">Illuminate\Container\BindingResolutionException</a></code></code><br />
+				</div>
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="resolveClass" id="_resolveClass">
+
+		<td class="attributes"><code>
+			 protected 
+			mixed
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_resolveClass">#</a>
+		<code><a href="source-class-Illuminate.Container.Container.html#596-625" title="Go to source code">resolveClass</a>( <span><code><a href="class-ReflectionParameter.html">ReflectionParameter</a></code> <var>$parameter</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Resolve a class based dependency from the container.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Resolve a class based dependency from the container.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$parameter</var></dt>
+					<dd><code><code><a href="class-ReflectionParameter.html">ReflectionParameter</a></code></code><br>$parameter</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>mixed</code><br />
+				</div>
+
+				<h4>Throws</h4>
+				<div class="list">
+					<code><code><a href="class-Illuminate.Container.BindingResolutionException.html">Illuminate\Container\BindingResolutionException</a></code></code><br />
+				</div>
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="keyParametersByArgument" id="_keyParametersByArgument">
+
+		<td class="attributes"><code>
+			 protected 
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_keyParametersByArgument">#</a>
+		<code><a href="source-class-Illuminate.Container.Container.html#627-648" title="Go to source code">keyParametersByArgument</a>( <span>array <var>$dependencies</var></span>, <span>array <var>$parameters</var></span> )</code>
+
+		<div class="description short">
+			
+<p>If extra parameters are passed by numeric ID, rekey them by argument
+name.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>If extra parameters are passed by numeric ID, rekey them by argument
+name.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$dependencies</var></dt>
+					<dd><code>array</code><br>$dependencies</dd>
+					<dt><var>$parameters</var></dt>
+					<dd><code>array</code><br>$parameters</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="resolving" id="_resolving">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_resolving">#</a>
+		<code><a href="source-class-Illuminate.Container.Container.html#650-660" title="Go to source code">resolving</a>( <span>string <var>$abstract</var></span>, <span><code><a href="class-Closure.html">Closure</a></code> <var>$callback</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Register a new resolving callback.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Register a new resolving callback.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$abstract</var></dt>
+					<dd><code>string</code><br>$abstract</dd>
+					<dt><var>$callback</var></dt>
+					<dd><code><code><a href="class-Closure.html">Closure</a></code></code><br>$callback</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="resolvingAny" id="_resolvingAny">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_resolvingAny">#</a>
+		<code><a href="source-class-Illuminate.Container.Container.html#662-671" title="Go to source code">resolvingAny</a>( <span><code><a href="class-Closure.html">Closure</a></code> <var>$callback</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Register a new resolving callback for all types.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Register a new resolving callback for all types.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$callback</var></dt>
+					<dd><code><code><a href="class-Closure.html">Closure</a></code></code><br>$callback</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="fireResolvingCallbacks" id="_fireResolvingCallbacks">
+
+		<td class="attributes"><code>
+			 protected 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_fireResolvingCallbacks">#</a>
+		<code><a href="source-class-Illuminate.Container.Container.html#673-687" title="Go to source code">fireResolvingCallbacks</a>( <span>mixed <var>$abstract</var></span>, <span>mixed <var>$object</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Fire all of the resolving callbacks.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Fire all of the resolving callbacks.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$abstract</var></dt>
+					<dd><code>mixed</code><br>$object</dd>
+					<dt><var>$object</var></dt>
+					<dd></dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="fireCallbackArray" id="_fireCallbackArray">
+
+		<td class="attributes"><code>
+			 protected 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_fireCallbackArray">#</a>
+		<code><a href="source-class-Illuminate.Container.Container.html#689-701" title="Go to source code">fireCallbackArray</a>( <span>mixed <var>$object</var></span>, <span>array <var>$callbacks</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Fire an array of callbacks with an object.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Fire an array of callbacks with an object.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$object</var></dt>
+					<dd><code>mixed</code><br>$object</dd>
+					<dt><var>$callbacks</var></dt>
+					<dd><code>array</code><br>$callbacks</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="isShared" id="_isShared">
+
+		<td class="attributes"><code>
+			 public 
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_isShared">#</a>
+		<code><a href="source-class-Illuminate.Container.Container.html#703-721" title="Go to source code">isShared</a>( <span>string <var>$abstract</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Determine if a given type is shared.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Determine if a given type is shared.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$abstract</var></dt>
+					<dd><code>string</code><br>$abstract</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="isBuildable" id="_isBuildable">
+
+		<td class="attributes"><code>
+			 protected 
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_isBuildable">#</a>
+		<code><a href="source-class-Illuminate.Container.Container.html#723-733" title="Go to source code">isBuildable</a>( <span>mixed <var>$concrete</var></span>, <span>string <var>$abstract</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Determine if the given concrete is buildable.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Determine if the given concrete is buildable.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$concrete</var></dt>
+					<dd><code>mixed</code><br>$concrete</dd>
+					<dt><var>$abstract</var></dt>
+					<dd><code>string</code><br>$abstract</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getAlias" id="_getAlias">
+
+		<td class="attributes"><code>
+			 protected 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getAlias">#</a>
+		<code><a href="source-class-Illuminate.Container.Container.html#735-744" title="Go to source code">getAlias</a>( <span>string <var>$abstract</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Get the alias for an abstract if available.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get the alias for an abstract if available.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$abstract</var></dt>
+					<dd><code>string</code><br>$abstract</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getBindings" id="_getBindings">
+
+		<td class="attributes"><code>
+			 public 
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getBindings">#</a>
+		<code><a href="source-class-Illuminate.Container.Container.html#746-754" title="Go to source code">getBindings</a>( )</code>
+
+		<div class="description short">
+			
+<p>Get the container's bindings.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get the container's bindings.</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="dropStaleInstances" id="_dropStaleInstances">
+
+		<td class="attributes"><code>
+			 protected 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_dropStaleInstances">#</a>
+		<code><a href="source-class-Illuminate.Container.Container.html#756-767" title="Go to source code">dropStaleInstances</a>( <span>string <var>$abstract</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Drop all of the stale instances and aliases.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Drop all of the stale instances and aliases.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$abstract</var></dt>
+					<dd><code>string</code><br>$abstract</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="forgetInstance" id="_forgetInstance">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_forgetInstance">#</a>
+		<code><a href="source-class-Illuminate.Container.Container.html#769-778" title="Go to source code">forgetInstance</a>( <span>string <var>$abstract</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Remove a resolved instance from the instance cache.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Remove a resolved instance from the instance cache.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$abstract</var></dt>
+					<dd><code>string</code><br>$abstract</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="forgetInstances" id="_forgetInstances">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_forgetInstances">#</a>
+		<code><a href="source-class-Illuminate.Container.Container.html#780-788" title="Go to source code">forgetInstances</a>( )</code>
+
+		<div class="description short">
+			
+<p>Clear all of the instances from the container.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Clear all of the instances from the container.</p>
+
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="offsetExists" id="_offsetExists">
+
+		<td class="attributes"><code>
+			 public 
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_offsetExists">#</a>
+		<code><a href="source-class-Illuminate.Container.Container.html#790-799" title="Go to source code">offsetExists</a>( <span>string <var>$key</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Determine if a given offset exists.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Determine if a given offset exists.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$key</var></dt>
+					<dd><code>string</code><br>$key</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br />
+				</div>
+
+
+
+
+				<h4>Implementation of</h4>
+				<div class="list"><code><a href="class-ArrayAccess.html#_offsetExists">ArrayAccess::offsetExists()</a></code></div>
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="offsetGet" id="_offsetGet">
+
+		<td class="attributes"><code>
+			 public 
+			mixed
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_offsetGet">#</a>
+		<code><a href="source-class-Illuminate.Container.Container.html#801-810" title="Go to source code">offsetGet</a>( <span>string <var>$key</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Get the value at a given offset.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get the value at a given offset.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$key</var></dt>
+					<dd><code>string</code><br>$key</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>mixed</code><br />
+				</div>
+
+
+
+
+				<h4>Implementation of</h4>
+				<div class="list"><code><a href="class-ArrayAccess.html#_offsetGet">ArrayAccess::offsetGet()</a></code></div>
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="offsetSet" id="_offsetSet">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_offsetSet">#</a>
+		<code><a href="source-class-Illuminate.Container.Container.html#812-833" title="Go to source code">offsetSet</a>( <span>string <var>$key</var></span>, <span>mixed <var>$value</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Set the value at a given offset.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Set the value at a given offset.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$key</var></dt>
+					<dd><code>string</code><br>$key</dd>
+					<dt><var>$value</var></dt>
+					<dd><code>mixed</code><br>$value</dd>
+				</dl></div>
+
+
+
+
+
+				<h4>Implementation of</h4>
+				<div class="list"><code><a href="class-ArrayAccess.html#_offsetSet">ArrayAccess::offsetSet()</a></code></div>
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="offsetUnset" id="_offsetUnset">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_offsetUnset">#</a>
+		<code><a href="source-class-Illuminate.Container.Container.html#835-846" title="Go to source code">offsetUnset</a>( <span>string <var>$key</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Unset the value at a given offset.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Unset the value at a given offset.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$key</var></dt>
+					<dd><code>string</code><br>$key</dd>
+				</dl></div>
+
+
+
+
+
+				<h4>Implementation of</h4>
+				<div class="list"><code><a href="class-ArrayAccess.html#_offsetUnset">ArrayAccess::offsetUnset()</a></code></div>
+		</div>
+		</div></td>
+	</tr>
+	</table>
+
+
+
+
+
+
+
+
+
+
+
+
+	<table class="summary" id="properties">
+	<caption>Properties summary</caption>
+	<tr data-order="resolved" id="$resolved">
+		<td class="attributes"><code>
+			protected  
+			array
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Illuminate.Container.Container.html#12-17" title="Go to source code"><var>$resolved</var></a>
+		</td>
+		<td class="value"><code><span class="php-keyword1">array</span>()</code></td>
+		<td class="description"><div>
+			<a href="#$resolved" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>An array of the types that have been resolved.</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>An array of the types that have been resolved.</p>
+
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="bindings" id="$bindings">
+		<td class="attributes"><code>
+			protected  
+			array
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Illuminate.Container.Container.html#19-24" title="Go to source code"><var>$bindings</var></a>
+		</td>
+		<td class="value"><code><span class="php-keyword1">array</span>()</code></td>
+		<td class="description"><div>
+			<a href="#$bindings" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>The container's bindings.</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>The container's bindings.</p>
+
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="instances" id="$instances">
+		<td class="attributes"><code>
+			protected  
+			array
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Illuminate.Container.Container.html#26-31" title="Go to source code"><var>$instances</var></a>
+		</td>
+		<td class="value"><code><span class="php-keyword1">array</span>()</code></td>
+		<td class="description"><div>
+			<a href="#$instances" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>The container's shared instances.</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>The container's shared instances.</p>
+
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="aliases" id="$aliases">
+		<td class="attributes"><code>
+			protected  
+			array
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Illuminate.Container.Container.html#33-38" title="Go to source code"><var>$aliases</var></a>
+		</td>
+		<td class="value"><code><span class="php-keyword1">array</span>()</code></td>
+		<td class="description"><div>
+			<a href="#$aliases" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>The registered type aliases.</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>The registered type aliases.</p>
+
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="reboundCallbacks" id="$reboundCallbacks">
+		<td class="attributes"><code>
+			protected  
+			array
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Illuminate.Container.Container.html#40-45" title="Go to source code"><var>$reboundCallbacks</var></a>
+		</td>
+		<td class="value"><code><span class="php-keyword1">array</span>()</code></td>
+		<td class="description"><div>
+			<a href="#$reboundCallbacks" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>All of the registered rebound callbacks.</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>All of the registered rebound callbacks.</p>
+
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="resolvingCallbacks" id="$resolvingCallbacks">
+		<td class="attributes"><code>
+			protected  
+			array
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Illuminate.Container.Container.html#47-52" title="Go to source code"><var>$resolvingCallbacks</var></a>
+		</td>
+		<td class="value"><code><span class="php-keyword1">array</span>()</code></td>
+		<td class="description"><div>
+			<a href="#$resolvingCallbacks" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>All of the registered resolving callbacks.</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>All of the registered resolving callbacks.</p>
+
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="globalResolvingCallbacks" id="$globalResolvingCallbacks">
+		<td class="attributes"><code>
+			protected  
+			array
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Illuminate.Container.Container.html#54-59" title="Go to source code"><var>$globalResolvingCallbacks</var></a>
+		</td>
+		<td class="value"><code><span class="php-keyword1">array</span>()</code></td>
+		<td class="description"><div>
+			<a href="#$globalResolvingCallbacks" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>All of the global resolving callbacks.</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>All of the global resolving callbacks.</p>
+
+
+			</div>
+		</div></td>
+	</tr>
+	</table>
+
+
+
+
+
+
+</div>
+
+	<div id="footer">
+		 API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
+	</div>
+</div>
+</div>
+</body>
+</html>

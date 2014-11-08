@@ -1,0 +1,1103 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="generator" content="ApiGen 2.8.0" />
+
+	<title>Class Illuminate\Database\Capsule\Manager</title>
+
+	<script type="text/javascript" src="resources/combined.js?417754471"></script>
+	<script type="text/javascript" src="elementlist.js?721444666"></script>
+	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
+
+</head>
+
+<body>
+<div id="left">
+	<div id="menu">
+		<a href="index.html" title="Overview"><span>Overview</span></a>
+
+
+		<div id="groups">
+			<h3>Namespaces</h3>
+			<ul>
+				<li><a href="namespace-Hook.html">Hook<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Application.html">Application<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Application.Core.html">Core</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Hook.Auth.html">Auth<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Auth.Providers.html">Providers</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Hook.Cache.html">Cache</a>
+						</li>
+				<li><a href="namespace-Hook.Controllers.html">Controllers</a>
+						</li>
+				<li><a href="namespace-Hook.Database.html">Database<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Database.Schema.html">Schema<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Database.Schema.Grammars.html">Grammars</a>
+						</li>
+							</ul></li></ul></li>
+				<li><a href="namespace-Hook.Encryption.html">Encryption</a>
+						</li>
+				<li><a href="namespace-Hook.Exceptions.html">Exceptions</a>
+						</li>
+				<li><a href="namespace-Hook.Http.html">Http</a>
+						</li>
+				<li><a href="namespace-Hook.Logger.html">Logger</a>
+						</li>
+				<li><a href="namespace-Hook.Mailer.html">Mailer</a>
+						</li>
+				<li><a href="namespace-Hook.Middlewares.html">Middlewares</a>
+						</li>
+				<li><a href="namespace-Hook.Model.html">Model</a>
+						</li>
+				<li><a href="namespace-Hook.Package.html">Package</a>
+						</li>
+				<li><a href="namespace-Hook.Pagination.html">Pagination</a>
+						</li>
+				<li><a href="namespace-Hook.PushNotification.html">PushNotification<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.PushNotification.Services.html">Services</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Hook.Session.html">Session<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Session.Handlers.html">Handlers</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Hook.Storage.html">Storage<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Storage.Providers.html">Providers</a>
+						</li>
+							</ul></li></ul></li>
+				<li class="active"><a href="namespace-Illuminate.html">Illuminate<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Cache.html">Cache<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Cache.Console.html">Console</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Illuminate.Config.html">Config</a>
+						</li>
+				<li><a href="namespace-Illuminate.Container.html">Container</a>
+						</li>
+				<li class="active"><a href="namespace-Illuminate.Database.html">Database<span></span></a>
+						<ul>
+				<li class="active"><a href="namespace-Illuminate.Database.Capsule.html">Capsule</a>
+						</li>
+				<li><a href="namespace-Illuminate.Database.Connectors.html">Connectors</a>
+						</li>
+				<li><a href="namespace-Illuminate.Database.Console.html">Console<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Database.Console.Migrations.html">Migrations</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Illuminate.Database.Eloquent.html">Eloquent<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Database.Eloquent.Relations.html">Relations</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Illuminate.Database.Migrations.html">Migrations</a>
+						</li>
+				<li><a href="namespace-Illuminate.Database.Query.html">Query<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Database.Query.Grammars.html">Grammars</a>
+						</li>
+				<li><a href="namespace-Illuminate.Database.Query.Processors.html">Processors</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Illuminate.Database.Schema.html">Schema<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Database.Schema.Grammars.html">Grammars</a>
+						</li>
+							</ul></li></ul></li>
+				<li><a href="namespace-Illuminate.Encryption.html">Encryption</a>
+						</li>
+				<li><a href="namespace-Illuminate.Events.html">Events</a>
+						</li>
+				<li><a href="namespace-Illuminate.Filesystem.html">Filesystem</a>
+						</li>
+				<li><a href="namespace-Illuminate.Support.html">Support<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Support.Contracts.html">Contracts</a>
+						</li>
+				<li><a href="namespace-Illuminate.Support.Facades.html">Facades</a>
+						</li>
+							</ul></li></ul></li>
+				<li><a href="namespace-None.html">None</a>
+						</li>
+				<li><a href="namespace-PHP.html">PHP</a>
+						</li>
+				<li><a href="namespace-Slim.html">Slim<span></span></a>
+						<ul>
+				<li><a href="namespace-Slim.Exception.html">Exception</a>
+						</li>
+				<li><a href="namespace-Slim.Helper.html">Helper</a>
+						</li>
+				<li><a href="namespace-Slim.Http.html">Http</a>
+						</li>
+				<li><a href="namespace-Slim.Middleware.html">Middleware</a>
+						</li>
+							</ul></li>
+			</ul>
+		</div>
+
+		<hr />
+
+
+		<div id="elements">
+			<h3>Classes</h3>
+			<ul>
+				<li class="active"><a href="class-Illuminate.Database.Capsule.Manager.html">Manager</a></li>
+			</ul>
+
+
+
+
+
+		</div>
+	</div>
+</div>
+
+<div id="splitter"></div>
+
+<div id="right">
+<div id="rightInner">
+	<form id="search">
+		<input type="hidden" name="cx" value="" />
+		<input type="hidden" name="ie" value="UTF-8" />
+		<input type="text" name="q" class="text" />
+		<input type="submit" value="Search" />
+	</form>
+
+	<div id="navigation">
+		<ul>
+			<li>
+				<a href="index.html" title="Overview"><span>Overview</span></a>
+			</li>
+			<li>
+				<a href="namespace-Illuminate.Database.Capsule.html" title="Summary of Illuminate\Database\Capsule"><span>Namespace</span></a>
+			</li>
+			<li class="active">
+<span>Class</span>			</li>
+		</ul>
+		<ul>
+			<li>
+				<a href="tree.html" title="Tree view of classes, interfaces, traits and exceptions"><span>Tree</span></a>
+			</li>
+		</ul>
+		<ul>
+		</ul>
+	</div>
+
+<div id="content" class="class">
+	<h1>Class Manager</h1>
+
+
+
+
+
+
+
+
+
+
+
+	<div class="info">
+		
+		
+		<b>Namespace:</b> <a href="namespace-Illuminate.html">Illuminate</a>\<a href="namespace-Illuminate.Database.html">Database</a>\<a href="namespace-Illuminate.Database.Capsule.html">Capsule</a><br />
+		
+
+		<b>Located at</b> <a href="source-class-Illuminate.Database.Capsule.Manager.html#12-286" title="Go to source code">database/Illuminate/Database/Capsule/Manager.php</a><br />
+	</div>
+
+
+
+	<table class="summary" id="methods">
+	<caption>Methods summary</caption>
+	<tr data-order="__construct" id="___construct">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#___construct">#</a>
+		<code><a href="source-class-Illuminate.Database.Capsule.Manager.html#35-51" title="Go to source code">__construct</a>( <span><code><a href="class-Illuminate.Container.Container.html">Illuminate\Container\Container</a></code> <var>$container</var> = <span class="php-keyword1">null</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Create a new database capsule manager.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Create a new database capsule manager.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$container</var></dt>
+					<dd><code><code><a href="class-Illuminate.Container.Container.html">Illuminate\Container\Container</a></code>|null</code><br>$container</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="setupContainer" id="_setupContainer">
+
+		<td class="attributes"><code>
+			 protected 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_setupContainer">#</a>
+		<code><a href="source-class-Illuminate.Database.Capsule.Manager.html#53-67" title="Go to source code">setupContainer</a>( <span><code><a href="class-Illuminate.Container.Container.html">Illuminate\Container\Container</a></code>|null <var>$container</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Setup the IoC container instance.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Setup the IoC container instance.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$container</var></dt>
+					<dd><code><code><a href="class-Illuminate.Container.Container.html">Illuminate\Container\Container</a></code>|null</code><br>$container</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="setupDefaultConfiguration" id="_setupDefaultConfiguration">
+
+		<td class="attributes"><code>
+			 protected 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_setupDefaultConfiguration">#</a>
+		<code><a href="source-class-Illuminate.Database.Capsule.Manager.html#69-79" title="Go to source code">setupDefaultConfiguration</a>( )</code>
+
+		<div class="description short">
+			
+<p>Setup the default database configuration options.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Setup the default database configuration options.</p>
+
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="setupManager" id="_setupManager">
+
+		<td class="attributes"><code>
+			 protected 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_setupManager">#</a>
+		<code><a href="source-class-Illuminate.Database.Capsule.Manager.html#81-91" title="Go to source code">setupManager</a>( )</code>
+
+		<div class="description short">
+			
+<p>Build the database manager instance.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Build the database manager instance.</p>
+
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="connection" id="_connection">
+
+		<td class="attributes"><code>
+			 public static
+			<code><a href="class-Illuminate.Database.Connection.html">Illuminate\Database\Connection</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_connection">#</a>
+		<code><a href="source-class-Illuminate.Database.Capsule.Manager.html#93-102" title="Go to source code">connection</a>( <span>string <var>$connection</var> = <span class="php-keyword1">null</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Get a connection instance from the global manager.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get a connection instance from the global manager.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$connection</var></dt>
+					<dd><code>string</code><br>$connection</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-Illuminate.Database.Connection.html">Illuminate\Database\Connection</a></code></code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="table" id="_table">
+
+		<td class="attributes"><code>
+			 public static
+			<code><a href="class-Illuminate.Database.Query.Builder.html">Illuminate\Database\Query\Builder</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_table">#</a>
+		<code><a href="source-class-Illuminate.Database.Capsule.Manager.html#104-114" title="Go to source code">table</a>( <span>string <var>$table</var></span>, <span>string <var>$connection</var> = <span class="php-keyword1">null</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Get a fluent query builder instance.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get a fluent query builder instance.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$table</var></dt>
+					<dd><code>string</code><br>$table</dd>
+					<dt><var>$connection</var></dt>
+					<dd><code>string</code><br>$connection</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-Illuminate.Database.Query.Builder.html">Illuminate\Database\Query\Builder</a></code></code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="schema" id="_schema">
+
+		<td class="attributes"><code>
+			 public static
+			<code><a href="class-Illuminate.Database.Schema.Builder.html">Illuminate\Database\Schema\Builder</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_schema">#</a>
+		<code><a href="source-class-Illuminate.Database.Capsule.Manager.html#116-125" title="Go to source code">schema</a>( <span>string <var>$connection</var> = <span class="php-keyword1">null</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Get a schema builder instance.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get a schema builder instance.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$connection</var></dt>
+					<dd><code>string</code><br>$connection</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-Illuminate.Database.Schema.Builder.html">Illuminate\Database\Schema\Builder</a></code></code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getConnection" id="_getConnection">
+
+		<td class="attributes"><code>
+			 public 
+			<code><a href="class-Illuminate.Database.Connection.html">Illuminate\Database\Connection</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getConnection">#</a>
+		<code><a href="source-class-Illuminate.Database.Capsule.Manager.html#127-136" title="Go to source code">getConnection</a>( <span>string <var>$name</var> = <span class="php-keyword1">null</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Get a registered connection instance.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get a registered connection instance.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$name</var></dt>
+					<dd><code>string</code><br>$name</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-Illuminate.Database.Connection.html">Illuminate\Database\Connection</a></code></code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="addConnection" id="_addConnection">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_addConnection">#</a>
+		<code><a href="source-class-Illuminate.Database.Capsule.Manager.html#138-152" title="Go to source code">addConnection</a>( <span>array <var>$config</var></span>, <span>string <var>$name</var> = <span class="php-quote">'default'</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Register a connection with the manager.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Register a connection with the manager.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$config</var></dt>
+					<dd><code>array</code><br>$config</dd>
+					<dt><var>$name</var></dt>
+					<dd><code>string</code><br>$name</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="bootEloquent" id="_bootEloquent">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_bootEloquent">#</a>
+		<code><a href="source-class-Illuminate.Database.Capsule.Manager.html#154-170" title="Go to source code">bootEloquent</a>( )</code>
+
+		<div class="description short">
+			
+<p>Bootstrap Eloquent so it is ready for usage.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Bootstrap Eloquent so it is ready for usage.</p>
+
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="setFetchMode" id="_setFetchMode">
+
+		<td class="attributes"><code>
+			 public 
+			<code><a href="class-Illuminate.Database.Capsule.Manager.html">Illuminate\Database\Capsule\Manager</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_setFetchMode">#</a>
+		<code><a href="source-class-Illuminate.Database.Capsule.Manager.html#172-183" title="Go to source code">setFetchMode</a>( <span>integer <var>$fetchMode</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Set the fetch mode for the database connections.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Set the fetch mode for the database connections.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$fetchMode</var></dt>
+					<dd><code>integer</code><br>$fetchMode</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-Illuminate.Database.Capsule.Manager.html">Illuminate\Database\Capsule\Manager</a></code></code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="setAsGlobal" id="_setAsGlobal">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_setAsGlobal">#</a>
+		<code><a href="source-class-Illuminate.Database.Capsule.Manager.html#185-193" title="Go to source code">setAsGlobal</a>( )</code>
+
+		<div class="description short">
+			
+<p>Make this capsule instance available globally.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Make this capsule instance available globally.</p>
+
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getDatabaseManager" id="_getDatabaseManager">
+
+		<td class="attributes"><code>
+			 public 
+			Illuminate\Database\Manager
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getDatabaseManager">#</a>
+		<code><a href="source-class-Illuminate.Database.Capsule.Manager.html#195-203" title="Go to source code">getDatabaseManager</a>( )</code>
+
+		<div class="description short">
+			
+<p>Get the database manager instance.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get the database manager instance.</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>Illuminate\Database\Manager</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getEventDispatcher" id="_getEventDispatcher">
+
+		<td class="attributes"><code>
+			 public 
+			<code><a href="class-Illuminate.Events.Dispatcher.html">Illuminate\Events\Dispatcher</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getEventDispatcher">#</a>
+		<code><a href="source-class-Illuminate.Database.Capsule.Manager.html#205-216" title="Go to source code">getEventDispatcher</a>( )</code>
+
+		<div class="description short">
+			
+<p>Get the current event dispatcher instance.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get the current event dispatcher instance.</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-Illuminate.Events.Dispatcher.html">Illuminate\Events\Dispatcher</a></code></code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="setEventDispatcher" id="_setEventDispatcher">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_setEventDispatcher">#</a>
+		<code><a href="source-class-Illuminate.Database.Capsule.Manager.html#218-227" title="Go to source code">setEventDispatcher</a>( <span><code><a href="class-Illuminate.Events.Dispatcher.html">Illuminate\Events\Dispatcher</a></code> <var>$dispatcher</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Set the event dispatcher instance to be used by connections.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Set the event dispatcher instance to be used by connections.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$dispatcher</var></dt>
+					<dd><code><code><a href="class-Illuminate.Events.Dispatcher.html">Illuminate\Events\Dispatcher</a></code></code><br>$dispatcher</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getCacheManager" id="_getCacheManager">
+
+		<td class="attributes"><code>
+			 public 
+			Illuminate\Cache\Manager
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getCacheManager">#</a>
+		<code><a href="source-class-Illuminate.Database.Capsule.Manager.html#229-240" title="Go to source code">getCacheManager</a>( )</code>
+
+		<div class="description short">
+			
+<p>Get the current cache manager instance.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get the current cache manager instance.</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>Illuminate\Cache\Manager</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="setCacheManager" id="_setCacheManager">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_setCacheManager">#</a>
+		<code><a href="source-class-Illuminate.Database.Capsule.Manager.html#242-251" title="Go to source code">setCacheManager</a>( <span><code><a href="class-Illuminate.Cache.CacheManager.html">Illuminate\Cache\CacheManager</a></code> <var>$cache</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Set the cache manager to be used by connections.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Set the cache manager to be used by connections.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$cache</var></dt>
+					<dd><code><code><a href="class-Illuminate.Cache.CacheManager.html">Illuminate\Cache\CacheManager</a></code></code><br>$cache</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getContainer" id="_getContainer">
+
+		<td class="attributes"><code>
+			 public 
+			<code><a href="class-Illuminate.Container.Container.html">Illuminate\Container\Container</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getContainer">#</a>
+		<code><a href="source-class-Illuminate.Database.Capsule.Manager.html#253-261" title="Go to source code">getContainer</a>( )</code>
+
+		<div class="description short">
+			
+<p>Get the IoC container instance.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get the IoC container instance.</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-Illuminate.Container.Container.html">Illuminate\Container\Container</a></code></code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="setContainer" id="_setContainer">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_setContainer">#</a>
+		<code><a href="source-class-Illuminate.Database.Capsule.Manager.html#263-272" title="Go to source code">setContainer</a>( <span><code><a href="class-Illuminate.Container.Container.html">Illuminate\Container\Container</a></code> <var>$container</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Set the IoC container instance.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Set the IoC container instance.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$container</var></dt>
+					<dd><code><code><a href="class-Illuminate.Container.Container.html">Illuminate\Container\Container</a></code></code><br>$container</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="__callStatic" id="___callStatic">
+
+		<td class="attributes"><code>
+			 public static
+			mixed
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#___callStatic">#</a>
+		<code><a href="source-class-Illuminate.Database.Capsule.Manager.html#274-284" title="Go to source code">__callStatic</a>( <span>string <var>$method</var></span>, <span>array <var>$parameters</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Dynamically pass methods to the default connection.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Dynamically pass methods to the default connection.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$method</var></dt>
+					<dd><code>string</code><br>$method</dd>
+					<dt><var>$parameters</var></dt>
+					<dd><code>array</code><br>$parameters</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>mixed</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	</table>
+
+
+
+
+
+
+
+
+
+
+
+
+	<table class="summary" id="properties">
+	<caption>Properties summary</caption>
+	<tr data-order="instance" id="$instance">
+		<td class="attributes"><code>
+			protected static 
+			<code><a href="class-Illuminate.Database.Capsule.Manager.html">Illuminate\Database\Capsule\Manager</a></code>
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Illuminate.Database.Capsule.Manager.html#14-19" title="Go to source code"><var>$instance</var></a>
+		</td>
+		<td class="value"><code></code></td>
+		<td class="description"><div>
+			<a href="#$instance" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>The current globally used instance.</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>The current globally used instance.</p>
+
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="manager" id="$manager">
+		<td class="attributes"><code>
+			protected  
+			<code><a href="class-Illuminate.Database.DatabaseManager.html">Illuminate\Database\DatabaseManager</a></code>
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Illuminate.Database.Capsule.Manager.html#21-26" title="Go to source code"><var>$manager</var></a>
+		</td>
+		<td class="value"><code></code></td>
+		<td class="description"><div>
+			<a href="#$manager" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>The database manager instance.</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>The database manager instance.</p>
+
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="container" id="$container">
+		<td class="attributes"><code>
+			protected  
+			<code><a href="class-Illuminate.Container.Container.html">Illuminate\Container\Container</a></code>
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Illuminate.Database.Capsule.Manager.html#28-33" title="Go to source code"><var>$container</var></a>
+		</td>
+		<td class="value"><code></code></td>
+		<td class="description"><div>
+			<a href="#$container" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>The container instance.</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>The container instance.</p>
+
+
+			</div>
+		</div></td>
+	</tr>
+	</table>
+
+
+
+
+
+
+</div>
+
+	<div id="footer">
+		 API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
+	</div>
+</div>
+</div>
+</body>
+</html>

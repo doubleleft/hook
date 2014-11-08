@@ -1,0 +1,1049 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="generator" content="ApiGen 2.8.0" />
+
+	<title>Class Hook\Model\Auth</title>
+
+	<script type="text/javascript" src="resources/combined.js?417754471"></script>
+	<script type="text/javascript" src="elementlist.js?721444666"></script>
+	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
+
+</head>
+
+<body>
+<div id="left">
+	<div id="menu">
+		<a href="index.html" title="Overview"><span>Overview</span></a>
+
+
+		<div id="groups">
+			<h3>Namespaces</h3>
+			<ul>
+				<li class="active"><a href="namespace-Hook.html">Hook<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Application.html">Application<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Application.Core.html">Core</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Hook.Auth.html">Auth<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Auth.Providers.html">Providers</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Hook.Cache.html">Cache</a>
+						</li>
+				<li><a href="namespace-Hook.Controllers.html">Controllers</a>
+						</li>
+				<li><a href="namespace-Hook.Database.html">Database<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Database.Schema.html">Schema<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Database.Schema.Grammars.html">Grammars</a>
+						</li>
+							</ul></li></ul></li>
+				<li><a href="namespace-Hook.Encryption.html">Encryption</a>
+						</li>
+				<li><a href="namespace-Hook.Exceptions.html">Exceptions</a>
+						</li>
+				<li><a href="namespace-Hook.Http.html">Http</a>
+						</li>
+				<li><a href="namespace-Hook.Logger.html">Logger</a>
+						</li>
+				<li><a href="namespace-Hook.Mailer.html">Mailer</a>
+						</li>
+				<li><a href="namespace-Hook.Middlewares.html">Middlewares</a>
+						</li>
+				<li class="active"><a href="namespace-Hook.Model.html">Model</a>
+						</li>
+				<li><a href="namespace-Hook.Package.html">Package</a>
+						</li>
+				<li><a href="namespace-Hook.Pagination.html">Pagination</a>
+						</li>
+				<li><a href="namespace-Hook.PushNotification.html">PushNotification<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.PushNotification.Services.html">Services</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Hook.Session.html">Session<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Session.Handlers.html">Handlers</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Hook.Storage.html">Storage<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Storage.Providers.html">Providers</a>
+						</li>
+							</ul></li></ul></li>
+				<li><a href="namespace-Illuminate.html">Illuminate<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Cache.html">Cache<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Cache.Console.html">Console</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Illuminate.Config.html">Config</a>
+						</li>
+				<li><a href="namespace-Illuminate.Container.html">Container</a>
+						</li>
+				<li><a href="namespace-Illuminate.Database.html">Database<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Database.Capsule.html">Capsule</a>
+						</li>
+				<li><a href="namespace-Illuminate.Database.Connectors.html">Connectors</a>
+						</li>
+				<li><a href="namespace-Illuminate.Database.Console.html">Console<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Database.Console.Migrations.html">Migrations</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Illuminate.Database.Eloquent.html">Eloquent<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Database.Eloquent.Relations.html">Relations</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Illuminate.Database.Migrations.html">Migrations</a>
+						</li>
+				<li><a href="namespace-Illuminate.Database.Query.html">Query<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Database.Query.Grammars.html">Grammars</a>
+						</li>
+				<li><a href="namespace-Illuminate.Database.Query.Processors.html">Processors</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Illuminate.Database.Schema.html">Schema<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Database.Schema.Grammars.html">Grammars</a>
+						</li>
+							</ul></li></ul></li>
+				<li><a href="namespace-Illuminate.Encryption.html">Encryption</a>
+						</li>
+				<li><a href="namespace-Illuminate.Events.html">Events</a>
+						</li>
+				<li><a href="namespace-Illuminate.Filesystem.html">Filesystem</a>
+						</li>
+				<li><a href="namespace-Illuminate.Support.html">Support<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Support.Contracts.html">Contracts</a>
+						</li>
+				<li><a href="namespace-Illuminate.Support.Facades.html">Facades</a>
+						</li>
+							</ul></li></ul></li>
+				<li><a href="namespace-None.html">None</a>
+						</li>
+				<li><a href="namespace-PHP.html">PHP</a>
+						</li>
+				<li><a href="namespace-Slim.html">Slim<span></span></a>
+						<ul>
+				<li><a href="namespace-Slim.Exception.html">Exception</a>
+						</li>
+				<li><a href="namespace-Slim.Helper.html">Helper</a>
+						</li>
+				<li><a href="namespace-Slim.Http.html">Http</a>
+						</li>
+				<li><a href="namespace-Slim.Middleware.html">Middleware</a>
+						</li>
+							</ul></li>
+			</ul>
+		</div>
+
+		<hr />
+
+
+		<div id="elements">
+			<h3>Classes</h3>
+			<ul>
+				<li><a href="class-Hook.Model.App.html">App</a></li>
+				<li><a href="class-Hook.Model.AppKey.html">AppKey</a></li>
+				<li class="active"><a href="class-Hook.Model.Auth.html">Auth</a></li>
+				<li><a href="class-Hook.Model.AuthIdentity.html">AuthIdentity</a></li>
+				<li><a href="class-Hook.Model.AuthToken.html">AuthToken</a></li>
+				<li><a href="class-Hook.Model.ChannelMessage.html">ChannelMessage</a></li>
+				<li><a href="class-Hook.Model.Collection.html">Collection</a></li>
+				<li><a href="class-Hook.Model.DynamicModel.html">DynamicModel</a></li>
+				<li><a href="class-Hook.Model.File.html">File</a></li>
+				<li><a href="class-Hook.Model.KeyValue.html">KeyValue</a></li>
+				<li><a href="class-Hook.Model.Model.html">Model</a></li>
+				<li><a href="class-Hook.Model.Module.html">Module</a></li>
+				<li><a href="class-Hook.Model.ModuleCompiler.html">ModuleCompiler</a></li>
+				<li><a href="class-Hook.Model.PushMessage.html">PushMessage</a></li>
+				<li><a href="class-Hook.Model.PushRegistration.html">PushRegistration</a></li>
+				<li><a href="class-Hook.Model.RequestLog.html">RequestLog</a></li>
+				<li><a href="class-Hook.Model.ScheduledTask.html">ScheduledTask</a></li>
+			</ul>
+
+
+
+
+
+		</div>
+	</div>
+</div>
+
+<div id="splitter"></div>
+
+<div id="right">
+<div id="rightInner">
+	<form id="search">
+		<input type="hidden" name="cx" value="" />
+		<input type="hidden" name="ie" value="UTF-8" />
+		<input type="text" name="q" class="text" />
+		<input type="submit" value="Search" />
+	</form>
+
+	<div id="navigation">
+		<ul>
+			<li>
+				<a href="index.html" title="Overview"><span>Overview</span></a>
+			</li>
+			<li>
+				<a href="namespace-Hook.Model.html" title="Summary of Hook\Model"><span>Namespace</span></a>
+			</li>
+			<li class="active">
+<span>Class</span>			</li>
+		</ul>
+		<ul>
+			<li>
+				<a href="tree.html" title="Tree view of classes, interfaces, traits and exceptions"><span>Tree</span></a>
+			</li>
+		</ul>
+		<ul>
+		</ul>
+	</div>
+
+<div id="content" class="class">
+	<h1>Class Auth</h1>
+
+
+	<div class="description">
+	
+<p>Auth</p>
+
+	</div>
+
+	<dl class="tree">
+		<dd style="padding-left:0px">
+DLModel
+			
+			
+		</dd>
+		<dd style="padding-left:30px">
+			<img src="resources/inherit.png" alt="Extended by" />
+			<a href="class-Hook.Model.Model.html"><span>Hook\Model\Model</span></a>
+			
+			
+			
+		</dd>
+		<dd style="padding-left:60px">
+			<img src="resources/inherit.png" alt="Extended by" />
+			<a href="class-Hook.Model.DynamicModel.html"><span>Hook\Model\DynamicModel</span></a>
+			
+			
+			
+		</dd>
+		<dd style="padding-left:90px">
+			<img src="resources/inherit.png" alt="Extended by" />
+			<a href="class-Hook.Model.Collection.html"><span>Hook\Model\Collection</span></a>
+			
+			
+			
+		</dd>
+		<dd style="padding-left:120px">
+			<img src="resources/inherit.png" alt="Extended by" />
+<b><span>Hook\Model\Auth</span></b>			
+			
+			
+		</dd>
+	</dl>
+
+
+
+
+
+
+
+
+	<div class="info">
+		
+		
+		<b>Namespace:</b> <a href="namespace-Hook.html">Hook</a>\<a href="namespace-Hook.Model.html">Model</a><br />
+		
+
+				<b>Uses:</b>
+				<code><code><a href="class-Hook.Model.Collection.html">Hook\Model\Collection</a></code></code> <br />
+		<b>Located at</b> <a href="source-class-Hook.Model.Auth.html#10-194" title="Go to source code">Model/Auth.php</a><br />
+	</div>
+
+
+
+	<table class="summary" id="methods">
+	<caption>Methods summary</caption>
+	<tr data-order="boot" id="_boot">
+
+		<td class="attributes"><code>
+			 public static
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_boot">#</a>
+		<code><a href="source-class-Hook.Model.Auth.html#34-38" title="Go to source code">boot</a>( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+				<h4>Overrides</h4>
+				<div class="list"><code><a href="class-Hook.Model.Collection.html#_boot">Hook\Model\Collection::boot()</a></code></div>
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="current" id="_current">
+
+		<td class="attributes"><code>
+			 public static
+			<code><a href="class-Hook.Model.Auth.html">Hook\Model\Auth</a></code>|null
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_current">#</a>
+		<code><a href="source-class-Hook.Model.Auth.html#40-60" title="Go to source code">current</a>( )</code>
+
+		<div class="description short">
+			
+<p>current - get current active Auth instance</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>current - get current active Auth instance</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-Hook.Model.Auth.html">Hook\Model\Auth</a></code>|null</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="tokens" id="_tokens">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_tokens">#</a>
+		<code><a href="source-class-Hook.Model.Auth.html#62-65" title="Go to source code">tokens</a>( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="identities" id="_identities">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_identities">#</a>
+		<code><a href="source-class-Hook.Model.Auth.html#67-70" title="Go to source code">identities</a>( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="generateToken" id="_generateToken">
+
+		<td class="attributes"><code>
+			 public 
+			<code><a href="class-Hook.Model.AuthToken.html">Hook\Model\AuthToken</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_generateToken">#</a>
+		<code><a href="source-class-Hook.Model.Auth.html#72-79" title="Go to source code">generateToken</a>( )</code>
+
+		<div class="description short">
+			
+<p>generateToken</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>generateToken</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-Hook.Model.AuthToken.html">Hook\Model\AuthToken</a></code></code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="generateForgotPasswordToken" id="_generateForgotPasswordToken">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_generateForgotPasswordToken">#</a>
+		<code><a href="source-class-Hook.Model.Auth.html#81-89" title="Go to source code">generateForgotPasswordToken</a>( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="resetPassword" id="_resetPassword">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_resetPassword">#</a>
+		<code><a href="source-class-Hook.Model.Auth.html#91-107" title="Go to source code">resetPassword</a>( <span>mixed <var>$newPassword</var></span> )</code>
+
+		<div class="description short">
+			
+<p>resetPassword</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>resetPassword</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$newPassword</var></dt>
+					<dd><code>mixed</code><br>$newPassword newPassword</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="isForgotPasswordTokenExpired" id="_isForgotPasswordTokenExpired">
+
+		<td class="attributes"><code>
+			 protected 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_isForgotPasswordTokenExpired">#</a>
+		<code><a href="source-class-Hook.Model.Auth.html#109-112" title="Go to source code">isForgotPasswordTokenExpired</a>( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="toArray" id="_toArray">
+
+		<td class="attributes"><code>
+			 public 
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_toArray">#</a>
+		<code><a href="source-class-Hook.Model.Auth.html#114-125" title="Go to source code">toArray</a>( )</code>
+
+		<div class="description short">
+			
+<p>toArray. Modules may define a custom toArray method.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>toArray. Modules may define a custom toArray method.</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array</code><br />
+				</div>
+
+
+
+				<h4>Overrides</h4>
+				<div class="list"><code><a href="class-Hook.Model.Collection.html#_toArray">Hook\Model\Collection::toArray()</a></code></div>
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="dataWithToken" id="_dataWithToken">
+
+		<td class="attributes"><code>
+			 public 
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_dataWithToken">#</a>
+		<code><a href="source-class-Hook.Model.Auth.html#127-140" title="Go to source code">dataWithToken</a>( )</code>
+
+		<div class="description short">
+			
+<p>dataWithToken</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>dataWithToken</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="beforeSave" id="_beforeSave">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_beforeSave">#</a>
+		<code><a href="source-class-Hook.Model.Auth.html#146-158" title="Go to source code">beforeSave</a>( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+				<h4>Overrides</h4>
+				<div class="list"><code><a href="class-Hook.Model.Collection.html#_beforeSave">Hook\Model\Collection::beforeSave()</a></code></div>
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="isUpdateAllowed" id="_isUpdateAllowed">
+
+		<td class="attributes"><code>
+			 protected 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_isUpdateAllowed">#</a>
+		<code><a href="source-class-Hook.Model.Auth.html#160-171" title="Go to source code">isUpdateAllowed</a>( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="isAuthenticated" id="_isAuthenticated">
+
+		<td class="attributes"><code>
+			 protected 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_isAuthenticated">#</a>
+		<code><a href="source-class-Hook.Model.Auth.html#173-176" title="Go to source code">isAuthenticated</a>( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="password_hash" id="_password_hash">
+
+		<td class="attributes"><code>
+			 public static
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_password_hash">#</a>
+		<code><a href="source-class-Hook.Model.Auth.html#178-192" title="Go to source code">password_hash</a>( <span>string <var>$password</var></span>, <span>string <var>$salt</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Generate sha1 hash of a password, using 'salt' and 'pepper' (Config)</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Generate sha1 hash of a password, using 'salt' and 'pepper' (Config)</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$password</var></dt>
+					<dd><code>string</code><br>$password</dd>
+					<dt><var>$salt</var></dt>
+					<dd><code>string</code><br>$salt</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	</table>
+
+	<table class="summary inherited">
+	<caption>Methods inherited from <a href="class-Hook.Model.Collection.html#methods">Hook\Model\Collection</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-Hook.Model.Collection.html#___construct">__construct()</a>, 
+			<a href="class-Hook.Model.Collection.html#_fireModelEvent">fireModelEvent()</a>, 
+			<a href="class-Hook.Model.Collection.html#_from">from()</a>, 
+			<a href="class-Hook.Model.Collection.html#_getObserver">getObserver()</a>, 
+			<a href="class-Hook.Model.Collection.html#_hasAttachedFiles">hasAttachedFiles()</a>, 
+			<a href="class-Hook.Model.Collection.html#_isModified">isModified()</a>, 
+			<a href="class-Hook.Model.Collection.html#_loadObserver">loadObserver()</a>, 
+			<a href="class-Hook.Model.Collection.html#_registerModelEvent">registerModelEvent()</a>, 
+			<a href="class-Hook.Model.Collection.html#_setAttachedFilesAttribute">setAttachedFilesAttribute()</a>, 
+			<a href="class-Hook.Model.Collection.html#_uploadAttachedFiles">uploadAttachedFiles()</a>
+		</code></td>
+	</tr>
+	</table>
+	<table class="summary inherited">
+	<caption>Methods inherited from <a href="class-Hook.Model.DynamicModel.html#methods">Hook\Model\DynamicModel</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-Hook.Model.DynamicModel.html#___call">__call()</a>, 
+			<a href="class-Hook.Model.DynamicModel.html#_afterSave">afterSave()</a>, 
+			<a href="class-Hook.Model.DynamicModel.html#_beforeCreate">beforeCreate()</a>, 
+			<a href="class-Hook.Model.DynamicModel.html#_createRelatedFields">createRelatedFields()</a>, 
+			<a href="class-Hook.Model.DynamicModel.html#_extractRelatedFields">extractRelatedFields()</a>, 
+			<a href="class-Hook.Model.DynamicModel.html#_registerDefaultEvents">registerDefaultEvents()</a>
+		</code></td>
+	</tr>
+	</table>
+
+
+
+
+
+
+
+	<table class="summary" id="constants">
+	<caption>Constants summary</caption>
+	<tr data-order="FORGOT_PASSWORD_FIELD" id="FORGOT_PASSWORD_FIELD">
+
+		<td class="attributes"><code>string</code></td>
+		<td class="name"><code>
+				<a href="source-class-Hook.Model.Auth.html#17" title="Go to source code"><b>FORGOT_PASSWORD_FIELD</b></a>
+		</code></td>
+		<td class="value"><code><span class="php-quote">'forgot_password_token'</span></code></td>
+		<td class="description"><div>
+			<a href="#FORGOT_PASSWORD_FIELD" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="FORGOT_PASSWORD_EXPIRATION_FIELD" id="FORGOT_PASSWORD_EXPIRATION_FIELD">
+
+		<td class="attributes"><code>string</code></td>
+		<td class="name"><code>
+				<a href="source-class-Hook.Model.Auth.html#18" title="Go to source code"><b>FORGOT_PASSWORD_EXPIRATION_FIELD</b></a>
+		</code></td>
+		<td class="value"><code><span class="php-quote">'forgot_password_expiration'</span></code></td>
+		<td class="description"><div>
+			<a href="#FORGOT_PASSWORD_EXPIRATION_FIELD" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="FORGOT_PASSWORD_EXPIRATION_TIME" id="FORGOT_PASSWORD_EXPIRATION_TIME">
+
+		<td class="attributes"><code>integer</code></td>
+		<td class="name"><code>
+				<a href="source-class-Hook.Model.Auth.html#19" title="Go to source code"><b>FORGOT_PASSWORD_EXPIRATION_TIME</b></a>
+		</code></td>
+		<td class="value"><code><span class="php-num">14400</span></code></td>
+		<td class="description"><div>
+			<a href="#FORGOT_PASSWORD_EXPIRATION_TIME" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	</table>
+
+	<table class="summary inherited">
+	<caption>Constants inherited from <a href="class-Hook.Model.Collection.html#constants">Hook\Model\Collection</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-Hook.Model.Collection.html#ATTACHED_FILES"><b>ATTACHED_FILES</b></a>
+		</code></td>
+	</tr>
+	</table>
+
+
+
+	<table class="summary" id="properties">
+	<caption>Properties summary</caption>
+	<tr data-order="table" id="$table">
+		<td class="attributes"><code>
+			protected  
+			string
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Hook.Model.Auth.html#21" title="Go to source code"><var>$table</var></a>
+		</td>
+		<td class="value"><code><span class="php-quote">'auths'</span></code></td>
+		<td class="description"><div>
+			<a href="#$table" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="dates" id="$dates">
+		<td class="attributes"><code>
+			protected  
+			array
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Hook.Model.Auth.html#22" title="Go to source code"><var>$dates</var></a>
+		</td>
+		<td class="value"><code><span class="php-keyword1">array</span>(self::FORGOT_PASSWORD_EXPIRATION_FIELD)</code></td>
+		<td class="description"><div>
+			<a href="#$dates" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="guarded" id="$guarded">
+		<td class="attributes"><code>
+			protected  
+			array
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Hook.Model.Auth.html#25" title="Go to source code"><var>$guarded</var></a>
+		</td>
+		<td class="value"><code><span class="php-keyword1">array</span>(<span class="php-quote">'password_salt'</span>, <span class="php-quote">'forgot_password_token'</span>, <span class="php-quote">'forgot_password_expiration'</span>, <span class="php-quote">'deleted_at'</span>)</code></td>
+		<td class="description"><div>
+			<a href="#$guarded" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="hidden" id="$hidden">
+		<td class="attributes"><code>
+			protected  
+			array
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Hook.Model.Auth.html#26" title="Go to source code"><var>$hidden</var></a>
+		</td>
+		<td class="value"><code><span class="php-keyword1">array</span>(<span class="php-quote">'password'</span>, <span class="php-quote">'password_salt'</span>, <span class="php-quote">'forgot_password_token'</span>, <span class="php-quote">'forgot_password_expiration'</span>, <span class="php-quote">'deleted_at'</span>)</code></td>
+		<td class="description"><div>
+			<a href="#$hidden" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="isTrustedAction" id="$isTrustedAction">
+		<td class="attributes"><code>
+			protected  
+			boolean
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Hook.Model.Auth.html#30" title="Go to source code"><var>$isTrustedAction</var></a>
+		</td>
+		<td class="value"><code><span class="php-keyword1">false</span></code></td>
+		<td class="description"><div>
+			<a href="#$isTrustedAction" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="_current" id="$_current">
+		<td class="attributes"><code>
+			public static 
+			mixed
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Hook.Model.Auth.html#32" title="Go to source code"><var>$_current</var></a>
+		</td>
+		<td class="value"><code><span class="php-keyword1">null</span></code></td>
+		<td class="description"><div>
+			<a href="#$_current" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	</table>
+
+	<table class="summary inherited">
+	<caption>Properties inherited from <a href="class-Hook.Model.Collection.html#properties">Hook\Model\Collection</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-Hook.Model.Collection.html#$_attached_files"><var>$_attached_files</var></a>, 
+			<a href="class-Hook.Model.Collection.html#$lastTableName"><var>$lastTableName</var></a>, 
+			<a href="class-Hook.Model.Collection.html#$observers"><var>$observers</var></a>
+		</code></td>
+	</tr>
+	</table>
+	<table class="summary inherited">
+	<caption>Properties inherited from <a href="class-Hook.Model.DynamicModel.html#properties">Hook\Model\DynamicModel</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-Hook.Model.DynamicModel.html#$booted"><var>$booted</var></a>, 
+			<a href="class-Hook.Model.DynamicModel.html#$observables"><var>$observables</var></a>, 
+			<a href="class-Hook.Model.DynamicModel.html#$relatedFields"><var>$relatedFields</var></a>, 
+			<a href="class-Hook.Model.DynamicModel.html#$softDelete"><var>$softDelete</var></a>
+		</code></td>
+	</tr>
+	</table>
+	<table class="summary inherited">
+	<caption>Properties inherited from <a href="class-Hook.Model.Model.html#properties">Hook\Model\Model</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-Hook.Model.Model.html#$primaryKey"><var>$primaryKey</var></a>
+		</code></td>
+	</tr>
+	</table>
+
+
+
+
+
+</div>
+
+	<div id="footer">
+		 API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
+	</div>
+</div>
+</div>
+</body>
+</html>

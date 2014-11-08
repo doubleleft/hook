@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="generator" content="ApiGen 2.8.0" />
+
+	<title>Class Illuminate\Database\Connectors\ConnectionFactory</title>
+
+	<script type="text/javascript" src="resources/combined.js?417754471"></script>
+	<script type="text/javascript" src="elementlist.js?721444666"></script>
+	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
+
+</head>
+
+<body>
+<div id="left">
+	<div id="menu">
+		<a href="index.html" title="Overview"><span>Overview</span></a>
+
+
+		<div id="groups">
+			<h3>Namespaces</h3>
+			<ul>
+				<li><a href="namespace-Hook.html">Hook<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Application.html">Application<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Application.Core.html">Core</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Hook.Auth.html">Auth<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Auth.Providers.html">Providers</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Hook.Cache.html">Cache</a>
+						</li>
+				<li><a href="namespace-Hook.Controllers.html">Controllers</a>
+						</li>
+				<li><a href="namespace-Hook.Database.html">Database<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Database.Schema.html">Schema<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Database.Schema.Grammars.html">Grammars</a>
+						</li>
+							</ul></li></ul></li>
+				<li><a href="namespace-Hook.Encryption.html">Encryption</a>
+						</li>
+				<li><a href="namespace-Hook.Exceptions.html">Exceptions</a>
+						</li>
+				<li><a href="namespace-Hook.Http.html">Http</a>
+						</li>
+				<li><a href="namespace-Hook.Logger.html">Logger</a>
+						</li>
+				<li><a href="namespace-Hook.Mailer.html">Mailer</a>
+						</li>
+				<li><a href="namespace-Hook.Middlewares.html">Middlewares</a>
+						</li>
+				<li><a href="namespace-Hook.Model.html">Model</a>
+						</li>
+				<li><a href="namespace-Hook.Package.html">Package</a>
+						</li>
+				<li><a href="namespace-Hook.Pagination.html">Pagination</a>
+						</li>
+				<li><a href="namespace-Hook.PushNotification.html">PushNotification<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.PushNotification.Services.html">Services</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Hook.Session.html">Session<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Session.Handlers.html">Handlers</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Hook.Storage.html">Storage<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Storage.Providers.html">Providers</a>
+						</li>
+							</ul></li></ul></li>
+				<li class="active"><a href="namespace-Illuminate.html">Illuminate<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Cache.html">Cache<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Cache.Console.html">Console</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Illuminate.Config.html">Config</a>
+						</li>
+				<li><a href="namespace-Illuminate.Container.html">Container</a>
+						</li>
+				<li class="active"><a href="namespace-Illuminate.Database.html">Database<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Database.Capsule.html">Capsule</a>
+						</li>
+				<li class="active"><a href="namespace-Illuminate.Database.Connectors.html">Connectors</a>
+						</li>
+				<li><a href="namespace-Illuminate.Database.Console.html">Console<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Database.Console.Migrations.html">Migrations</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Illuminate.Database.Eloquent.html">Eloquent<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Database.Eloquent.Relations.html">Relations</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Illuminate.Database.Migrations.html">Migrations</a>
+						</li>
+				<li><a href="namespace-Illuminate.Database.Query.html">Query<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Database.Query.Grammars.html">Grammars</a>
+						</li>
+				<li><a href="namespace-Illuminate.Database.Query.Processors.html">Processors</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Illuminate.Database.Schema.html">Schema<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Database.Schema.Grammars.html">Grammars</a>
+						</li>
+							</ul></li></ul></li>
+				<li><a href="namespace-Illuminate.Encryption.html">Encryption</a>
+						</li>
+				<li><a href="namespace-Illuminate.Events.html">Events</a>
+						</li>
+				<li><a href="namespace-Illuminate.Filesystem.html">Filesystem</a>
+						</li>
+				<li><a href="namespace-Illuminate.Support.html">Support<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Support.Contracts.html">Contracts</a>
+						</li>
+				<li><a href="namespace-Illuminate.Support.Facades.html">Facades</a>
+						</li>
+							</ul></li></ul></li>
+				<li><a href="namespace-None.html">None</a>
+						</li>
+				<li><a href="namespace-PHP.html">PHP</a>
+						</li>
+				<li><a href="namespace-Slim.html">Slim<span></span></a>
+						<ul>
+				<li><a href="namespace-Slim.Exception.html">Exception</a>
+						</li>
+				<li><a href="namespace-Slim.Helper.html">Helper</a>
+						</li>
+				<li><a href="namespace-Slim.Http.html">Http</a>
+						</li>
+				<li><a href="namespace-Slim.Middleware.html">Middleware</a>
+						</li>
+							</ul></li>
+			</ul>
+		</div>
+
+		<hr />
+
+
+		<div id="elements">
+			<h3>Classes</h3>
+			<ul>
+				<li class="active"><a href="class-Illuminate.Database.Connectors.ConnectionFactory.html">ConnectionFactory</a></li>
+				<li><a href="class-Illuminate.Database.Connectors.Connector.html">Connector</a></li>
+				<li><a href="class-Illuminate.Database.Connectors.MySqlConnector.html">MySqlConnector</a></li>
+				<li><a href="class-Illuminate.Database.Connectors.PostgresConnector.html">PostgresConnector</a></li>
+				<li><a href="class-Illuminate.Database.Connectors.SQLiteConnector.html">SQLiteConnector</a></li>
+				<li><a href="class-Illuminate.Database.Connectors.SqlServerConnector.html">SqlServerConnector</a></li>
+			</ul>
+
+			<h3>Interfaces</h3>
+			<ul>
+				<li><a href="class-Illuminate.Database.Connectors.ConnectorInterface.html">ConnectorInterface</a></li>
+			</ul>
+
+
+
+
+		</div>
+	</div>
+</div>
+
+<div id="splitter"></div>
+
+<div id="right">
+<div id="rightInner">
+	<form id="search">
+		<input type="hidden" name="cx" value="" />
+		<input type="hidden" name="ie" value="UTF-8" />
+		<input type="text" name="q" class="text" />
+		<input type="submit" value="Search" />
+	</form>
+
+	<div id="navigation">
+		<ul>
+			<li>
+				<a href="index.html" title="Overview"><span>Overview</span></a>
+			</li>
+			<li>
+				<a href="namespace-Illuminate.Database.Connectors.html" title="Summary of Illuminate\Database\Connectors"><span>Namespace</span></a>
+			</li>
+			<li class="active">
+<span>Class</span>			</li>
+		</ul>
+		<ul>
+			<li>
+				<a href="tree.html" title="Tree view of classes, interfaces, traits and exceptions"><span>Tree</span></a>
+			</li>
+		</ul>
+		<ul>
+		</ul>
+	</div>
+
+<div id="content" class="class">
+	<h1>Class ConnectionFactory</h1>
+
+
+
+
+
+
+
+
+
+
+
+	<div class="info">
+		
+		
+		<b>Namespace:</b> <a href="namespace-Illuminate.html">Illuminate</a>\<a href="namespace-Illuminate.Database.html">Database</a>\<a href="namespace-Illuminate.Database.Connectors.html">Connectors</a><br />
+		
+
+		<b>Located at</b> <a href="source-class-Illuminate.Database.Connectors.ConnectionFactory.html#10-234" title="Go to source code">database/Illuminate/Database/Connectors/ConnectionFactory.php</a><br />
+	</div>
+
+
+
+	<table class="summary" id="methods">
+	<caption>Methods summary</caption>
+	<tr data-order="__construct" id="___construct">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#___construct">#</a>
+		<code><a href="source-class-Illuminate.Database.Connectors.ConnectionFactory.html#19-28" title="Go to source code">__construct</a>( <span><code><a href="class-Illuminate.Container.Container.html">Illuminate\Container\Container</a></code> <var>$container</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Create a new connection factory instance.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Create a new connection factory instance.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$container</var></dt>
+					<dd><code><code><a href="class-Illuminate.Container.Container.html">Illuminate\Container\Container</a></code></code><br>$container</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="make" id="_make">
+
+		<td class="attributes"><code>
+			 public 
+			<code><a href="class-Illuminate.Database.Connection.html">Illuminate\Database\Connection</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_make">#</a>
+		<code><a href="source-class-Illuminate.Database.Connectors.ConnectionFactory.html#30-49" title="Go to source code">make</a>( <span>array <var>$config</var></span>, <span>string <var>$name</var> = <span class="php-keyword1">null</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Establish a PDO connection based on the configuration.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Establish a PDO connection based on the configuration.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$config</var></dt>
+					<dd><code>array</code><br>$config</dd>
+					<dt><var>$name</var></dt>
+					<dd><code>string</code><br>$name</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-Illuminate.Database.Connection.html">Illuminate\Database\Connection</a></code></code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="createSingleConnection" id="_createSingleConnection">
+
+		<td class="attributes"><code>
+			 protected 
+			<code><a href="class-Illuminate.Database.Connection.html">Illuminate\Database\Connection</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_createSingleConnection">#</a>
+		<code><a href="source-class-Illuminate.Database.Connectors.ConnectionFactory.html#51-62" title="Go to source code">createSingleConnection</a>( <span>array <var>$config</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Create a single database connection instance.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Create a single database connection instance.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$config</var></dt>
+					<dd><code>array</code><br>$config</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-Illuminate.Database.Connection.html">Illuminate\Database\Connection</a></code></code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="createReadWriteConnection" id="_createReadWriteConnection">
+
+		<td class="attributes"><code>
+			 protected 
+			<code><a href="class-Illuminate.Database.Connection.html">Illuminate\Database\Connection</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_createReadWriteConnection">#</a>
+		<code><a href="source-class-Illuminate.Database.Connectors.ConnectionFactory.html#64-75" title="Go to source code">createReadWriteConnection</a>( <span>array <var>$config</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Create a single database connection instance.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Create a single database connection instance.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$config</var></dt>
+					<dd><code>array</code><br>$config</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-Illuminate.Database.Connection.html">Illuminate\Database\Connection</a></code></code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="createReadPdo" id="_createReadPdo">
+
+		<td class="attributes"><code>
+			 protected 
+			<code><a href="class-PDO.html">PDO</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_createReadPdo">#</a>
+		<code><a href="source-class-Illuminate.Database.Connectors.ConnectionFactory.html#77-88" title="Go to source code">createReadPdo</a>( <span>array <var>$config</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Create a new PDO instance for reading.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Create a new PDO instance for reading.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$config</var></dt>
+					<dd><code>array</code><br>$config</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-PDO.html">PDO</a></code></code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getReadConfig" id="_getReadConfig">
+
+		<td class="attributes"><code>
+			 protected 
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getReadConfig">#</a>
+		<code><a href="source-class-Illuminate.Database.Connectors.ConnectionFactory.html#90-101" title="Go to source code">getReadConfig</a>( <span>array <var>$config</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Get the read configuration for a read / write connection.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get the read configuration for a read / write connection.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$config</var></dt>
+					<dd><code>array</code><br>$config</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getWriteConfig" id="_getWriteConfig">
+
+		<td class="attributes"><code>
+			 protected 
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getWriteConfig">#</a>
+		<code><a href="source-class-Illuminate.Database.Connectors.ConnectionFactory.html#103-114" title="Go to source code">getWriteConfig</a>( <span>array <var>$config</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Get the read configuration for a read / write connection.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get the read configuration for a read / write connection.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$config</var></dt>
+					<dd><code>array</code><br>$config</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getReadWriteConfig" id="_getReadWriteConfig">
+
+		<td class="attributes"><code>
+			 protected 
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getReadWriteConfig">#</a>
+		<code><a href="source-class-Illuminate.Database.Connectors.ConnectionFactory.html#116-133" title="Go to source code">getReadWriteConfig</a>( <span>array <var>$config</var></span>, <span>string <var>$type</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Get a read / write level configuration.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get a read / write level configuration.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$config</var></dt>
+					<dd><code>array</code><br>$config</dd>
+					<dt><var>$type</var></dt>
+					<dd><code>string</code><br>$type</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="mergeReadWriteConfig" id="_mergeReadWriteConfig">
+
+		<td class="attributes"><code>
+			 protected 
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_mergeReadWriteConfig">#</a>
+		<code><a href="source-class-Illuminate.Database.Connectors.ConnectionFactory.html#135-145" title="Go to source code">mergeReadWriteConfig</a>( <span>array <var>$config</var></span>, <span>array <var>$merge</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Merge a configuration for a read / write connection.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Merge a configuration for a read / write connection.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$config</var></dt>
+					<dd><code>array</code><br>$config</dd>
+					<dt><var>$merge</var></dt>
+					<dd><code>array</code><br>$merge</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="parseConfig" id="_parseConfig">
+
+		<td class="attributes"><code>
+			 protected 
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_parseConfig">#</a>
+		<code><a href="source-class-Illuminate.Database.Connectors.ConnectionFactory.html#147-157" title="Go to source code">parseConfig</a>( <span>array <var>$config</var></span>, <span>string <var>$name</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Parse and prepare the database configuration.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Parse and prepare the database configuration.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$config</var></dt>
+					<dd><code>array</code><br>$config</dd>
+					<dt><var>$name</var></dt>
+					<dd><code>string</code><br>$name</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="createConnector" id="_createConnector">
+
+		<td class="attributes"><code>
+			 public 
+			<code><a href="class-Illuminate.Database.Connectors.ConnectorInterface.html">Illuminate\Database\Connectors\ConnectorInterface</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_createConnector">#</a>
+		<code><a href="source-class-Illuminate.Database.Connectors.ConnectionFactory.html#159-195" title="Go to source code">createConnector</a>( <span>array <var>$config</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Create a connector instance based on the configuration.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Create a connector instance based on the configuration.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$config</var></dt>
+					<dd><code>array</code><br>$config</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-Illuminate.Database.Connectors.ConnectorInterface.html">Illuminate\Database\Connectors\ConnectorInterface</a></code></code><br />
+				</div>
+
+				<h4>Throws</h4>
+				<div class="list">
+					<code><code><a href="class-InvalidArgumentException.html">InvalidArgumentException</a></code></code><br />
+				</div>
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="createConnection" id="_createConnection">
+
+		<td class="attributes"><code>
+			 protected 
+			<code><a href="class-Illuminate.Database.Connection.html">Illuminate\Database\Connection</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_createConnection">#</a>
+		<code><a href="source-class-Illuminate.Database.Connectors.ConnectionFactory.html#197-232" title="Go to source code">createConnection</a>( <span>string <var>$driver</var></span>, <span><code><a href="class-PDO.html">PDO</a></code> <var>$connection</var></span>, <span>string <var>$database</var></span>, <span>string <var>$prefix</var> = <span class="php-quote">''</span></span>, <span>array <var>$config</var> = <span class="php-keyword1">array</span>()</span> )</code>
+
+		<div class="description short">
+			
+<p>Create a new connection instance.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Create a new connection instance.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$driver</var></dt>
+					<dd><code>string</code><br>$driver</dd>
+					<dt><var>$connection</var></dt>
+					<dd><code><code><a href="class-PDO.html">PDO</a></code></code><br>$connection</dd>
+					<dt><var>$database</var></dt>
+					<dd><code>string</code><br>$database</dd>
+					<dt><var>$prefix</var></dt>
+					<dd><code>string</code><br>$prefix</dd>
+					<dt><var>$config</var></dt>
+					<dd><code>array</code><br>$config</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-Illuminate.Database.Connection.html">Illuminate\Database\Connection</a></code></code><br />
+				</div>
+
+				<h4>Throws</h4>
+				<div class="list">
+					<code><code><a href="class-InvalidArgumentException.html">InvalidArgumentException</a></code></code><br />
+				</div>
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	</table>
+
+
+
+
+
+
+
+
+
+
+
+
+	<table class="summary" id="properties">
+	<caption>Properties summary</caption>
+	<tr data-order="container" id="$container">
+		<td class="attributes"><code>
+			protected  
+			<code><a href="class-Illuminate.Container.Container.html">Illuminate\Container\Container</a></code>
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Illuminate.Database.Connectors.ConnectionFactory.html#12-17" title="Go to source code"><var>$container</var></a>
+		</td>
+		<td class="value"><code></code></td>
+		<td class="description"><div>
+			<a href="#$container" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>The IoC container instance.</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>The IoC container instance.</p>
+
+
+			</div>
+		</div></td>
+	</tr>
+	</table>
+
+
+
+
+
+
+</div>
+
+	<div id="footer">
+		 API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
+	</div>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="generator" content="ApiGen 2.8.0" />
+
+	<title>Class Illuminate\Cache\CacheManager</title>
+
+	<script type="text/javascript" src="resources/combined.js?417754471"></script>
+	<script type="text/javascript" src="elementlist.js?721444666"></script>
+	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
+
+</head>
+
+<body>
+<div id="left">
+	<div id="menu">
+		<a href="index.html" title="Overview"><span>Overview</span></a>
+
+
+		<div id="groups">
+			<h3>Namespaces</h3>
+			<ul>
+				<li><a href="namespace-Hook.html">Hook<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Application.html">Application<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Application.Core.html">Core</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Hook.Auth.html">Auth<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Auth.Providers.html">Providers</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Hook.Cache.html">Cache</a>
+						</li>
+				<li><a href="namespace-Hook.Controllers.html">Controllers</a>
+						</li>
+				<li><a href="namespace-Hook.Database.html">Database<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Database.Schema.html">Schema<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Database.Schema.Grammars.html">Grammars</a>
+						</li>
+							</ul></li></ul></li>
+				<li><a href="namespace-Hook.Encryption.html">Encryption</a>
+						</li>
+				<li><a href="namespace-Hook.Exceptions.html">Exceptions</a>
+						</li>
+				<li><a href="namespace-Hook.Http.html">Http</a>
+						</li>
+				<li><a href="namespace-Hook.Logger.html">Logger</a>
+						</li>
+				<li><a href="namespace-Hook.Mailer.html">Mailer</a>
+						</li>
+				<li><a href="namespace-Hook.Middlewares.html">Middlewares</a>
+						</li>
+				<li><a href="namespace-Hook.Model.html">Model</a>
+						</li>
+				<li><a href="namespace-Hook.Package.html">Package</a>
+						</li>
+				<li><a href="namespace-Hook.Pagination.html">Pagination</a>
+						</li>
+				<li><a href="namespace-Hook.PushNotification.html">PushNotification<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.PushNotification.Services.html">Services</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Hook.Session.html">Session<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Session.Handlers.html">Handlers</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Hook.Storage.html">Storage<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Storage.Providers.html">Providers</a>
+						</li>
+							</ul></li></ul></li>
+				<li class="active"><a href="namespace-Illuminate.html">Illuminate<span></span></a>
+						<ul>
+				<li class="active"><a href="namespace-Illuminate.Cache.html">Cache<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Cache.Console.html">Console</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Illuminate.Config.html">Config</a>
+						</li>
+				<li><a href="namespace-Illuminate.Container.html">Container</a>
+						</li>
+				<li><a href="namespace-Illuminate.Database.html">Database<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Database.Capsule.html">Capsule</a>
+						</li>
+				<li><a href="namespace-Illuminate.Database.Connectors.html">Connectors</a>
+						</li>
+				<li><a href="namespace-Illuminate.Database.Console.html">Console<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Database.Console.Migrations.html">Migrations</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Illuminate.Database.Eloquent.html">Eloquent<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Database.Eloquent.Relations.html">Relations</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Illuminate.Database.Migrations.html">Migrations</a>
+						</li>
+				<li><a href="namespace-Illuminate.Database.Query.html">Query<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Database.Query.Grammars.html">Grammars</a>
+						</li>
+				<li><a href="namespace-Illuminate.Database.Query.Processors.html">Processors</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Illuminate.Database.Schema.html">Schema<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Database.Schema.Grammars.html">Grammars</a>
+						</li>
+							</ul></li></ul></li>
+				<li><a href="namespace-Illuminate.Encryption.html">Encryption</a>
+						</li>
+				<li><a href="namespace-Illuminate.Events.html">Events</a>
+						</li>
+				<li><a href="namespace-Illuminate.Filesystem.html">Filesystem</a>
+						</li>
+				<li><a href="namespace-Illuminate.Support.html">Support<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Support.Contracts.html">Contracts</a>
+						</li>
+				<li><a href="namespace-Illuminate.Support.Facades.html">Facades</a>
+						</li>
+							</ul></li></ul></li>
+				<li><a href="namespace-None.html">None</a>
+						</li>
+				<li><a href="namespace-PHP.html">PHP</a>
+						</li>
+				<li><a href="namespace-Slim.html">Slim<span></span></a>
+						<ul>
+				<li><a href="namespace-Slim.Exception.html">Exception</a>
+						</li>
+				<li><a href="namespace-Slim.Helper.html">Helper</a>
+						</li>
+				<li><a href="namespace-Slim.Http.html">Http</a>
+						</li>
+				<li><a href="namespace-Slim.Middleware.html">Middleware</a>
+						</li>
+							</ul></li>
+			</ul>
+		</div>
+
+		<hr />
+
+
+		<div id="elements">
+			<h3>Classes</h3>
+			<ul>
+				<li><a href="class-Illuminate.Cache.ApcStore.html">ApcStore</a></li>
+				<li><a href="class-Illuminate.Cache.ApcWrapper.html">ApcWrapper</a></li>
+				<li><a href="class-Illuminate.Cache.ArrayStore.html">ArrayStore</a></li>
+				<li class="active"><a href="class-Illuminate.Cache.CacheManager.html">CacheManager</a></li>
+				<li><a href="class-Illuminate.Cache.CacheServiceProvider.html">CacheServiceProvider</a></li>
+				<li><a href="class-Illuminate.Cache.DatabaseStore.html">DatabaseStore</a></li>
+				<li><a href="class-Illuminate.Cache.FileStore.html">FileStore</a></li>
+				<li><a href="class-Illuminate.Cache.MemcachedConnector.html">MemcachedConnector</a></li>
+				<li><a href="class-Illuminate.Cache.MemcachedStore.html">MemcachedStore</a></li>
+				<li><a href="class-Illuminate.Cache.RedisStore.html">RedisStore</a></li>
+				<li><a href="class-Illuminate.Cache.RedisTaggedCache.html">RedisTaggedCache</a></li>
+				<li><a href="class-Illuminate.Cache.Repository.html">Repository</a></li>
+				<li><a href="class-Illuminate.Cache.TaggableStore.html">TaggableStore</a></li>
+				<li><a href="class-Illuminate.Cache.TaggedCache.html">TaggedCache</a></li>
+				<li><a href="class-Illuminate.Cache.TagSet.html">TagSet</a></li>
+				<li><a href="class-Illuminate.Cache.WinCacheStore.html">WinCacheStore</a></li>
+				<li><a href="class-Illuminate.Cache.XCacheStore.html">XCacheStore</a></li>
+			</ul>
+
+			<h3>Interfaces</h3>
+			<ul>
+				<li><a href="class-Illuminate.Cache.StoreInterface.html">StoreInterface</a></li>
+			</ul>
+
+
+
+
+		</div>
+	</div>
+</div>
+
+<div id="splitter"></div>
+
+<div id="right">
+<div id="rightInner">
+	<form id="search">
+		<input type="hidden" name="cx" value="" />
+		<input type="hidden" name="ie" value="UTF-8" />
+		<input type="text" name="q" class="text" />
+		<input type="submit" value="Search" />
+	</form>
+
+	<div id="navigation">
+		<ul>
+			<li>
+				<a href="index.html" title="Overview"><span>Overview</span></a>
+			</li>
+			<li>
+				<a href="namespace-Illuminate.Cache.html" title="Summary of Illuminate\Cache"><span>Namespace</span></a>
+			</li>
+			<li class="active">
+<span>Class</span>			</li>
+		</ul>
+		<ul>
+			<li>
+				<a href="tree.html" title="Tree view of classes, interfaces, traits and exceptions"><span>Tree</span></a>
+			</li>
+		</ul>
+		<ul>
+		</ul>
+	</div>
+
+<div id="content" class="class">
+	<h1>Class CacheManager</h1>
+
+
+
+	<dl class="tree">
+		<dd style="padding-left:0px">
+			<a href="class-Illuminate.Support.Manager.html"><span>Illuminate\Support\Manager</span></a>
+			
+			
+			
+		</dd>
+		<dd style="padding-left:30px">
+			<img src="resources/inherit.png" alt="Extended by" />
+<b><span>Illuminate\Cache\CacheManager</span></b>			
+			
+			
+		</dd>
+	</dl>
+
+
+
+
+
+
+
+
+	<div class="info">
+		
+		
+		<b>Namespace:</b> <a href="namespace-Illuminate.html">Illuminate</a>\<a href="namespace-Illuminate.Cache.html">Cache</a><br />
+		
+
+		<b>Located at</b> <a href="source-class-Illuminate.Cache.CacheManager.html#5-171" title="Go to source code">cache/Illuminate/Cache/CacheManager.php</a><br />
+	</div>
+
+
+
+	<table class="summary" id="methods">
+	<caption>Methods summary</caption>
+	<tr data-order="createApcDriver" id="_createApcDriver">
+
+		<td class="attributes"><code>
+			 protected 
+			<code><a href="class-Illuminate.Cache.ApcStore.html">Illuminate\Cache\ApcStore</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_createApcDriver">#</a>
+		<code><a href="source-class-Illuminate.Cache.CacheManager.html#7-15" title="Go to source code">createApcDriver</a>( )</code>
+
+		<div class="description short">
+			
+<p>Create an instance of the APC cache driver.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Create an instance of the APC cache driver.</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-Illuminate.Cache.ApcStore.html">Illuminate\Cache\ApcStore</a></code></code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="createArrayDriver" id="_createArrayDriver">
+
+		<td class="attributes"><code>
+			 protected 
+			<code><a href="class-Illuminate.Cache.ArrayStore.html">Illuminate\Cache\ArrayStore</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_createArrayDriver">#</a>
+		<code><a href="source-class-Illuminate.Cache.CacheManager.html#17-25" title="Go to source code">createArrayDriver</a>( )</code>
+
+		<div class="description short">
+			
+<p>Create an instance of the array cache driver.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Create an instance of the array cache driver.</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-Illuminate.Cache.ArrayStore.html">Illuminate\Cache\ArrayStore</a></code></code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="createFileDriver" id="_createFileDriver">
+
+		<td class="attributes"><code>
+			 protected 
+			<code><a href="class-Illuminate.Cache.FileStore.html">Illuminate\Cache\FileStore</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_createFileDriver">#</a>
+		<code><a href="source-class-Illuminate.Cache.CacheManager.html#27-37" title="Go to source code">createFileDriver</a>( )</code>
+
+		<div class="description short">
+			
+<p>Create an instance of the file cache driver.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Create an instance of the file cache driver.</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-Illuminate.Cache.FileStore.html">Illuminate\Cache\FileStore</a></code></code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="createMemcachedDriver" id="_createMemcachedDriver">
+
+		<td class="attributes"><code>
+			 protected 
+			<code><a href="class-Illuminate.Cache.MemcachedStore.html">Illuminate\Cache\MemcachedStore</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_createMemcachedDriver">#</a>
+		<code><a href="source-class-Illuminate.Cache.CacheManager.html#39-51" title="Go to source code">createMemcachedDriver</a>( )</code>
+
+		<div class="description short">
+			
+<p>Create an instance of the Memcached cache driver.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Create an instance of the Memcached cache driver.</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-Illuminate.Cache.MemcachedStore.html">Illuminate\Cache\MemcachedStore</a></code></code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="createWincacheDriver" id="_createWincacheDriver">
+
+		<td class="attributes"><code>
+			 protected 
+			<code><a href="class-Illuminate.Cache.WinCacheStore.html">Illuminate\Cache\WinCacheStore</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_createWincacheDriver">#</a>
+		<code><a href="source-class-Illuminate.Cache.CacheManager.html#53-61" title="Go to source code">createWincacheDriver</a>( )</code>
+
+		<div class="description short">
+			
+<p>Create an instance of the WinCache cache driver.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Create an instance of the WinCache cache driver.</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-Illuminate.Cache.WinCacheStore.html">Illuminate\Cache\WinCacheStore</a></code></code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="createXcacheDriver" id="_createXcacheDriver">
+
+		<td class="attributes"><code>
+			 protected 
+			<code><a href="class-Illuminate.Cache.WinCacheStore.html">Illuminate\Cache\WinCacheStore</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_createXcacheDriver">#</a>
+		<code><a href="source-class-Illuminate.Cache.CacheManager.html#63-71" title="Go to source code">createXcacheDriver</a>( )</code>
+
+		<div class="description short">
+			
+<p>Create an instance of the XCache cache driver.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Create an instance of the XCache cache driver.</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-Illuminate.Cache.WinCacheStore.html">Illuminate\Cache\WinCacheStore</a></code></code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="createRedisDriver" id="_createRedisDriver">
+
+		<td class="attributes"><code>
+			 protected 
+			<code><a href="class-Illuminate.Cache.RedisStore.html">Illuminate\Cache\RedisStore</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_createRedisDriver">#</a>
+		<code><a href="source-class-Illuminate.Cache.CacheManager.html#73-83" title="Go to source code">createRedisDriver</a>( )</code>
+
+		<div class="description short">
+			
+<p>Create an instance of the Redis cache driver.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Create an instance of the Redis cache driver.</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-Illuminate.Cache.RedisStore.html">Illuminate\Cache\RedisStore</a></code></code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="createDatabaseDriver" id="_createDatabaseDriver">
+
+		<td class="attributes"><code>
+			 protected 
+			<code><a href="class-Illuminate.Cache.DatabaseStore.html">Illuminate\Cache\DatabaseStore</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_createDatabaseDriver">#</a>
+		<code><a href="source-class-Illuminate.Cache.CacheManager.html#85-104" title="Go to source code">createDatabaseDriver</a>( )</code>
+
+		<div class="description short">
+			
+<p>Create an instance of the database cache driver.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Create an instance of the database cache driver.</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-Illuminate.Cache.DatabaseStore.html">Illuminate\Cache\DatabaseStore</a></code></code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getDatabaseConnection" id="_getDatabaseConnection">
+
+		<td class="attributes"><code>
+			 protected 
+			<code><a href="class-Illuminate.Database.Connection.html">Illuminate\Database\Connection</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getDatabaseConnection">#</a>
+		<code><a href="source-class-Illuminate.Cache.CacheManager.html#106-116" title="Go to source code">getDatabaseConnection</a>( )</code>
+
+		<div class="description short">
+			
+<p>Get the database connection for the database driver.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get the database connection for the database driver.</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-Illuminate.Database.Connection.html">Illuminate\Database\Connection</a></code></code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getPrefix" id="_getPrefix">
+
+		<td class="attributes"><code>
+			 public 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getPrefix">#</a>
+		<code><a href="source-class-Illuminate.Cache.CacheManager.html#118-126" title="Go to source code">getPrefix</a>( )</code>
+
+		<div class="description short">
+			
+<p>Get the cache "prefix" value.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get the cache "prefix" value.</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="setPrefix" id="_setPrefix">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_setPrefix">#</a>
+		<code><a href="source-class-Illuminate.Cache.CacheManager.html#128-137" title="Go to source code">setPrefix</a>( <span>string <var>$name</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Set the cache "prefix" value.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Set the cache "prefix" value.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$name</var></dt>
+					<dd><code>string</code><br>$name</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="repository" id="_repository">
+
+		<td class="attributes"><code>
+			 protected 
+			<code><a href="class-Illuminate.Cache.Repository.html">Illuminate\Cache\Repository</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_repository">#</a>
+		<code><a href="source-class-Illuminate.Cache.CacheManager.html#139-148" title="Go to source code">repository</a>( <span><code><a href="class-Illuminate.Cache.StoreInterface.html">Illuminate\Cache\StoreInterface</a></code> <var>$store</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Create a new cache repository with the given implementation.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Create a new cache repository with the given implementation.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$store</var></dt>
+					<dd><code><code><a href="class-Illuminate.Cache.StoreInterface.html">Illuminate\Cache\StoreInterface</a></code></code><br>$store</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-Illuminate.Cache.Repository.html">Illuminate\Cache\Repository</a></code></code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getDefaultDriver" id="_getDefaultDriver">
+
+		<td class="attributes"><code>
+			 public 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getDefaultDriver">#</a>
+		<code><a href="source-class-Illuminate.Cache.CacheManager.html#150-158" title="Go to source code">getDefaultDriver</a>( )</code>
+
+		<div class="description short">
+			
+<p>Get the default cache driver name.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get the default cache driver name.</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="setDefaultDriver" id="_setDefaultDriver">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_setDefaultDriver">#</a>
+		<code><a href="source-class-Illuminate.Cache.CacheManager.html#160-169" title="Go to source code">setDefaultDriver</a>( <span>string <var>$name</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Set the default cache driver name.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Set the default cache driver name.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$name</var></dt>
+					<dd><code>string</code><br>$name</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	</table>
+
+	<table class="summary inherited">
+	<caption>Methods inherited from <a href="class-Illuminate.Support.Manager.html#methods">Illuminate\Support\Manager</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-Illuminate.Support.Manager.html#___call">__call()</a>, 
+			<a href="class-Illuminate.Support.Manager.html#___construct">__construct()</a>, 
+			<a href="class-Illuminate.Support.Manager.html#_callCustomCreator">callCustomCreator()</a>, 
+			<a href="class-Illuminate.Support.Manager.html#_createDriver">createDriver()</a>, 
+			<a href="class-Illuminate.Support.Manager.html#_driver">driver()</a>, 
+			<a href="class-Illuminate.Support.Manager.html#_extend">extend()</a>, 
+			<a href="class-Illuminate.Support.Manager.html#_getDrivers">getDrivers()</a>
+		</code></td>
+	</tr>
+	</table>
+
+
+
+
+
+
+
+
+
+
+
+
+	<table class="summary inherited">
+	<caption>Properties inherited from <a href="class-Illuminate.Support.Manager.html#properties">Illuminate\Support\Manager</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-Illuminate.Support.Manager.html#$app"><var>$app</var></a>, 
+			<a href="class-Illuminate.Support.Manager.html#$customCreators"><var>$customCreators</var></a>, 
+			<a href="class-Illuminate.Support.Manager.html#$drivers"><var>$drivers</var></a>
+		</code></td>
+	</tr>
+	</table>
+
+
+
+
+
+</div>
+
+	<div id="footer">
+		 API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
+	</div>
+</div>
+</div>
+</body>
+</html>

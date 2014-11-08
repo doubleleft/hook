@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="generator" content="ApiGen 2.8.0" />
+	<meta name="robots" content="noindex" />
+
+	<title>File Middlewares/AppMiddleware.php</title>
+
+	<script type="text/javascript" src="resources/combined.js?417754471"></script>
+	<script type="text/javascript" src="elementlist.js?721444666"></script>
+	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
+
+</head>
+
+<body>
+<div id="left">
+	<div id="menu">
+		<a href="index.html" title="Overview"><span>Overview</span></a>
+
+
+		<div id="groups">
+			<h3>Namespaces</h3>
+			<ul>
+				<li class="active"><a href="namespace-Hook.html">Hook<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Application.html">Application<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Application.Core.html">Core</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Hook.Auth.html">Auth<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Auth.Providers.html">Providers</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Hook.Cache.html">Cache</a>
+						</li>
+				<li><a href="namespace-Hook.Controllers.html">Controllers</a>
+						</li>
+				<li><a href="namespace-Hook.Database.html">Database<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Database.Schema.html">Schema<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Database.Schema.Grammars.html">Grammars</a>
+						</li>
+							</ul></li></ul></li>
+				<li><a href="namespace-Hook.Encryption.html">Encryption</a>
+						</li>
+				<li><a href="namespace-Hook.Exceptions.html">Exceptions</a>
+						</li>
+				<li><a href="namespace-Hook.Http.html">Http</a>
+						</li>
+				<li><a href="namespace-Hook.Logger.html">Logger</a>
+						</li>
+				<li><a href="namespace-Hook.Mailer.html">Mailer</a>
+						</li>
+				<li class="active"><a href="namespace-Hook.Middlewares.html">Middlewares</a>
+						</li>
+				<li><a href="namespace-Hook.Model.html">Model</a>
+						</li>
+				<li><a href="namespace-Hook.Package.html">Package</a>
+						</li>
+				<li><a href="namespace-Hook.Pagination.html">Pagination</a>
+						</li>
+				<li><a href="namespace-Hook.PushNotification.html">PushNotification<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.PushNotification.Services.html">Services</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Hook.Session.html">Session<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Session.Handlers.html">Handlers</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Hook.Storage.html">Storage<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Storage.Providers.html">Providers</a>
+						</li>
+							</ul></li></ul></li>
+				<li><a href="namespace-Illuminate.html">Illuminate<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Cache.html">Cache<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Cache.Console.html">Console</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Illuminate.Config.html">Config</a>
+						</li>
+				<li><a href="namespace-Illuminate.Container.html">Container</a>
+						</li>
+				<li><a href="namespace-Illuminate.Database.html">Database<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Database.Capsule.html">Capsule</a>
+						</li>
+				<li><a href="namespace-Illuminate.Database.Connectors.html">Connectors</a>
+						</li>
+				<li><a href="namespace-Illuminate.Database.Console.html">Console<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Database.Console.Migrations.html">Migrations</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Illuminate.Database.Eloquent.html">Eloquent<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Database.Eloquent.Relations.html">Relations</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Illuminate.Database.Migrations.html">Migrations</a>
+						</li>
+				<li><a href="namespace-Illuminate.Database.Query.html">Query<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Database.Query.Grammars.html">Grammars</a>
+						</li>
+				<li><a href="namespace-Illuminate.Database.Query.Processors.html">Processors</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Illuminate.Database.Schema.html">Schema<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Database.Schema.Grammars.html">Grammars</a>
+						</li>
+							</ul></li></ul></li>
+				<li><a href="namespace-Illuminate.Encryption.html">Encryption</a>
+						</li>
+				<li><a href="namespace-Illuminate.Events.html">Events</a>
+						</li>
+				<li><a href="namespace-Illuminate.Filesystem.html">Filesystem</a>
+						</li>
+				<li><a href="namespace-Illuminate.Support.html">Support<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Support.Contracts.html">Contracts</a>
+						</li>
+				<li><a href="namespace-Illuminate.Support.Facades.html">Facades</a>
+						</li>
+							</ul></li></ul></li>
+				<li><a href="namespace-None.html">None</a>
+						</li>
+				<li><a href="namespace-PHP.html">PHP</a>
+						</li>
+				<li><a href="namespace-Slim.html">Slim<span></span></a>
+						<ul>
+				<li><a href="namespace-Slim.Exception.html">Exception</a>
+						</li>
+				<li><a href="namespace-Slim.Helper.html">Helper</a>
+						</li>
+				<li><a href="namespace-Slim.Http.html">Http</a>
+						</li>
+				<li><a href="namespace-Slim.Middleware.html">Middleware</a>
+						</li>
+							</ul></li>
+			</ul>
+		</div>
+
+		<hr />
+
+
+		<div id="elements">
+			<h3>Classes</h3>
+			<ul>
+				<li class="active"><a href="class-Hook.Middlewares.AppMiddleware.html">AppMiddleware</a></li>
+				<li><a href="class-Hook.Middlewares.AuthMiddleware.html">AuthMiddleware</a></li>
+				<li><a href="class-Hook.Middlewares.ChannelMiddleware.html">ChannelMiddleware</a></li>
+				<li><a href="class-Hook.Middlewares.EncryptionMiddleware.html">EncryptionMiddleware</a></li>
+				<li><a href="class-Hook.Middlewares.LogMiddleware.html">LogMiddleware</a></li>
+				<li><a href="class-Hook.Middlewares.ResponseTypeMiddleware.html">ResponseTypeMiddleware</a></li>
+				<li><a href="class-Hook.Middlewares.SessionMiddleware.html">SessionMiddleware</a></li>
+			</ul>
+
+
+
+
+
+		</div>
+	</div>
+</div>
+
+<div id="splitter"></div>
+
+<div id="right">
+<div id="rightInner">
+	<form id="search">
+		<input type="hidden" name="cx" value="" />
+		<input type="hidden" name="ie" value="UTF-8" />
+		<input type="text" name="q" class="text" />
+		<input type="submit" value="Search" />
+	</form>
+
+	<div id="navigation">
+		<ul>
+			<li>
+				<a href="index.html" title="Overview"><span>Overview</span></a>
+			</li>
+			<li>
+				<a href="namespace-Hook.Middlewares.html" title="Summary of Hook\Middlewares"><span>Namespace</span></a>
+			</li>
+			<li>
+				<a href="class-Hook.Middlewares.AppMiddleware.html" title="Summary of Hook\Middlewares\AppMiddleware"><span>Class</span></a>
+			</li>
+		</ul>
+		<ul>
+			<li>
+				<a href="tree.html" title="Tree view of classes, interfaces, traits and exceptions"><span>Tree</span></a>
+			</li>
+		</ul>
+		<ul>
+		</ul>
+	</div>
+
+<pre><code><span id="1" class="l"><a class="l" href="#1">  1: </a><span class="xlang">&lt;?php</span>
+</span><span id="2" class="l"><a class="l" href="#2">  2: </a><span class="php-keyword1">namespace</span> Hook\Middlewares;
+</span><span id="3" class="l"><a class="l" href="#3">  3: </a>
+</span><span id="4" class="l"><a class="l" href="#4">  4: </a><span class="php-keyword1">use</span> Slim;
+</span><span id="5" class="l"><a class="l" href="#5">  5: </a><span class="php-keyword1">use</span> Hook\Model\AppKey <span class="php-keyword1">as</span> AppKey;
+</span><span id="6" class="l"><a class="l" href="#6">  6: </a><span class="php-keyword1">use</span> Hook\Model\Module <span class="php-keyword1">as</span> Module;
+</span><span id="7" class="l"><a class="l" href="#7">  7: </a>
+</span><span id="8" class="l"><a class="l" href="#8">  8: </a><span class="php-keyword1">use</span> Hook\Package;
+</span><span id="9" class="l"><a class="l" href="#9">  9: </a><span class="php-comment">// use Hook\Session;</span>
+</span><span id="10" class="l"><a class="l" href="#10"> 10: </a><span class="php-keyword1">use</span> Hook\Application\Context;
+</span><span id="11" class="l"><a class="l" href="#11"> 11: </a><span class="php-keyword1">use</span> Hook\Application\Config;
+</span><span id="12" class="l"><a class="l" href="#12"> 12: </a>
+</span><span id="13" class="l"><a class="l" href="#13"> 13: </a><span class="php-keyword1">use</span> Hook\Exceptions\NotAllowedException <span class="php-keyword1">as</span> NotAllowedException;
+</span><span id="14" class="l"><a class="l" href="#14"> 14: </a>
+</span><span id="15" class="l"><a class="l" href="#15"> 15: </a><span class="php-keyword1">class</span> <a id="AppMiddleware" href="#AppMiddleware">AppMiddleware</a> <span class="php-keyword1">extends</span> Slim\Middleware
+</span><span id="16" class="l"><a class="l" href="#16"> 16: </a>{
+</span><span id="17" class="l"><a class="l" href="#17"> 17: </a>
+</span><span id="18" class="l"><a class="l" href="#18"> 18: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">static</span> <span class="php-keyword1">function</span> <a id="_decode_query_string" href="#_decode_query_string">decode_query_string</a>()
+</span><span id="19" class="l"><a class="l" href="#19"> 19: </a>    {
+</span><span id="20" class="l"><a class="l" href="#20"> 20: </a>        <span class="php-var">$app</span> = Slim\Slim::getInstance();
+</span><span id="21" class="l"><a class="l" href="#21"> 21: </a>
+</span><span id="22" class="l"><a class="l" href="#22"> 22: </a>        <span class="php-comment">// Parse incoming JSON QUERY_STRING</span>
+</span><span id="23" class="l"><a class="l" href="#23"> 23: </a>        <span class="php-comment">// OBS: that's pretty much an uggly thing, but we need data types here.</span>
+</span><span id="24" class="l"><a class="l" href="#24"> 24: </a>        <span class="php-comment">// Every param is string on query string (srsly?)</span>
+</span><span id="25" class="l"><a class="l" href="#25"> 25: </a>        <span class="php-var">$query_string</span> = <span class="php-var">$app</span>-&gt;environment-&gt;offsetGet(<span class="php-quote">'QUERY_STRING'</span>);
+</span><span id="26" class="l"><a class="l" href="#26"> 26: </a>        <span class="php-var">$query_data</span> = <span class="php-keyword1">array</span>();
+</span><span id="27" class="l"><a class="l" href="#27"> 27: </a>
+</span><span id="28" class="l"><a class="l" href="#28"> 28: </a>        <span class="php-keyword1">if</span> (<span class="php-keyword2">strlen</span>(<span class="php-var">$query_string</span>)&gt;<span class="php-num">0</span>) {
+</span><span id="29" class="l"><a class="l" href="#29"> 29: </a>            <span class="php-var">$query_data</span> = <span class="php-keyword1">array</span>();
+</span><span id="30" class="l"><a class="l" href="#30"> 30: </a>            <span class="php-keyword2">parse_str</span>(<span class="php-var">$query_string</span>, <span class="php-var">$query_params</span>);
+</span><span id="31" class="l"><a class="l" href="#31"> 31: </a>
+</span><span id="32" class="l"><a class="l" href="#32"> 32: </a>            <span class="php-comment">// Remove json data from query params (which just have key as param)</span>
+</span><span id="33" class="l"><a class="l" href="#33"> 33: </a>            <span class="php-var">$last_param</span> = <span class="php-keyword2">end</span>(<span class="php-var">$query_params</span>);
+</span><span id="34" class="l"><a class="l" href="#34"> 34: </a>            <span class="php-keyword1">if</span> (<span class="php-keyword2">is_array</span>(<span class="php-var">$last_param</span>) &amp;&amp; <span class="php-keyword2">end</span>(<span class="php-var">$last_param</span>) === <span class="php-quote">&quot;&quot;</span>) {
+</span><span id="35" class="l"><a class="l" href="#35"> 35: </a>                <span class="php-keyword2">array_pop</span>(<span class="php-var">$query_params</span>);
+</span><span id="36" class="l"><a class="l" href="#36"> 36: </a>            }
+</span><span id="37" class="l"><a class="l" href="#37"> 37: </a>
+</span><span id="38" class="l"><a class="l" href="#38"> 38: </a>            <span class="php-comment">// Decode JSON data from query params</span>
+</span><span id="39" class="l"><a class="l" href="#39"> 39: </a>            <span class="php-keyword1">if</span> (<span class="php-keyword2">preg_match</span>(<span class="php-quote">'/({[^$]+)/'</span>, <span class="php-keyword2">urldecode</span>(<span class="php-var">$query_string</span>), <span class="php-var">$query</span>)) {
+</span><span id="40" class="l"><a class="l" href="#40"> 40: </a>                <span class="php-var">$query_data</span> = <span class="php-keyword2">json_decode</span>(<span class="php-keyword2">urldecode</span>(<span class="php-var">$query</span>[<span class="php-num">1</span>]), <span class="php-keyword1">true</span>) ?: <span class="php-keyword1">array</span>();
+</span><span id="41" class="l"><a class="l" href="#41"> 41: </a>            }
+</span><span id="42" class="l"><a class="l" href="#42"> 42: </a>
+</span><span id="43" class="l"><a class="l" href="#43"> 43: </a>            <span class="php-comment">// Parse remaining regular string variables</span>
+</span><span id="44" class="l"><a class="l" href="#44"> 44: </a>            <span class="php-var">$query_data</span> = <span class="php-keyword2">array_merge</span>(<span class="php-var">$query_data</span>, <span class="php-var">$query_params</span>);
+</span><span id="45" class="l"><a class="l" href="#45"> 45: </a>
+</span><span id="46" class="l"><a class="l" href="#46"> 46: </a>            <span class="php-var">$app</span>-&gt;environment-&gt;offsetSet(<span class="php-quote">'slim.request.query_hash'</span>, <span class="php-var">$query_data</span>);
+</span><span id="47" class="l"><a class="l" href="#47"> 47: </a>        }
+</span><span id="48" class="l"><a class="l" href="#48"> 48: </a>
+</span><span id="49" class="l"><a class="l" href="#49"> 49: </a>        <span class="php-keyword1">return</span> <span class="php-var">$query_data</span>;
+</span><span id="50" class="l"><a class="l" href="#50"> 50: </a>    }
+</span><span id="51" class="l"><a class="l" href="#51"> 51: </a>
+</span><span id="52" class="l"><a class="l" href="#52"> 52: </a>    <span class="php-keyword1">public</span> <span class="php-keyword1">function</span> <a id="_call" href="#_call">call</a>()
+</span><span id="53" class="l"><a class="l" href="#53"> 53: </a>    {
+</span><span id="54" class="l"><a class="l" href="#54"> 54: </a>        <span class="php-comment">// The Slim application</span>
+</span><span id="55" class="l"><a class="l" href="#55"> 55: </a>        <span class="php-var">$app</span> = <span class="php-var">$this</span>-&gt;app;
+</span><span id="56" class="l"><a class="l" href="#56"> 56: </a>
+</span><span id="57" class="l"><a class="l" href="#57"> 57: </a>        self::decode_query_string();
+</span><span id="58" class="l"><a class="l" href="#58"> 58: </a>
+</span><span id="59" class="l"><a class="l" href="#59"> 59: </a>        <span class="php-var">$origin</span> = <span class="php-var">$app</span>-&gt;request-&gt;headers-&gt;get(<span class="php-quote">'ORIGIN'</span>, <span class="php-quote">'*'</span>);
+</span><span id="60" class="l"><a class="l" href="#60"> 60: </a>
+</span><span id="61" class="l"><a class="l" href="#61"> 61: </a>        <span class="php-comment">// Always keep connection open</span>
+</span><span id="62" class="l"><a class="l" href="#62"> 62: </a>        <span class="php-var">$app</span>-&gt;response-&gt;headers-&gt;set(<span class="php-quote">'Connection'</span>, <span class="php-quote">'Keep-Alive'</span>);
+</span><span id="63" class="l"><a class="l" href="#63"> 63: </a>
+</span><span id="64" class="l"><a class="l" href="#64"> 64: </a>        <span class="php-comment">// Allow Cross-Origin Resource Sharing</span>
+</span><span id="65" class="l"><a class="l" href="#65"> 65: </a>        <span class="php-var">$app</span>-&gt;response-&gt;headers-&gt;set(<span class="php-quote">'Access-Control-Allow-Credentials'</span>, <span class="php-quote">'true'</span>);
+</span><span id="66" class="l"><a class="l" href="#66"> 66: </a>        <span class="php-var">$app</span>-&gt;response-&gt;headers-&gt;set(<span class="php-quote">'Access-Control-Allow-Methods'</span>, <span class="php-quote">'GET, PUT, POST, DELETE'</span>);
+</span><span id="67" class="l"><a class="l" href="#67"> 67: </a>        <span class="php-var">$app</span>-&gt;response-&gt;headers-&gt;set(<span class="php-quote">'Access-Control-Allow-Headers'</span>, <span class="php-quote">'x-app-id, x-app-key, x-auth-token, content-type, user-agent, accept'</span>);
+</span><span id="68" class="l"><a class="l" href="#68"> 68: </a>
+</span><span id="69" class="l"><a class="l" href="#69"> 69: </a>        <span class="php-keyword1">if</span> (<span class="php-var">$app</span>-&gt;request-&gt;isOptions()) {
+</span><span id="70" class="l"><a class="l" href="#70"> 70: </a>            <span class="php-comment">// Always allow OPTIONS requests.</span>
+</span><span id="71" class="l"><a class="l" href="#71"> 71: </a>            <span class="php-var">$app</span>-&gt;response-&gt;headers-&gt;set(<span class="php-quote">'Access-Control-Allow-Origin'</span>, <span class="php-var">$origin</span>);
+</span><span id="72" class="l"><a class="l" href="#72"> 72: </a>
+</span><span id="73" class="l"><a class="l" href="#73"> 73: </a>        } <span class="php-keyword1">else</span> {
+</span><span id="74" class="l"><a class="l" href="#74"> 74: </a>            <span class="php-comment">// Get application key</span>
+</span><span id="75" class="l"><a class="l" href="#75"> 75: </a>            <span class="php-var">$app_key</span> = Context::validateKey(
+</span><span id="76" class="l"><a class="l" href="#76"> 76: </a>                <span class="php-var">$app</span>-&gt;request-&gt;headers-&gt;get(<span class="php-quote">'X-App-Id'</span>) ?: <span class="php-var">$app</span>-&gt;request-&gt;get(<span class="php-quote">'X-App-Id'</span>),
+</span><span id="77" class="l"><a class="l" href="#77"> 77: </a>                <span class="php-var">$app</span>-&gt;request-&gt;headers-&gt;get(<span class="php-quote">'X-App-Key'</span>) ?: <span class="php-var">$app</span>-&gt;request-&gt;get(<span class="php-quote">'X-App-Key'</span>)
+</span><span id="78" class="l"><a class="l" href="#78"> 78: </a>            );
+</span><span id="79" class="l"><a class="l" href="#79"> 79: </a>
+</span><span id="80" class="l"><a class="l" href="#80"> 80: </a>            <span class="php-keyword1">if</span> (<span class="php-var">$app_key</span>) {
+</span><span id="81" class="l"><a class="l" href="#81"> 81: </a>
+</span><span id="82" class="l"><a class="l" href="#82"> 82: </a>                <span class="php-comment">// Check the application key allowed origins, and block if necessary.</span>
+</span><span id="83" class="l"><a class="l" href="#83"> 83: </a>                <span class="php-keyword1">if</span> (<span class="php-var">$app_key</span>-&gt;isBrowser()) {
+</span><span id="84" class="l"><a class="l" href="#84"> 84: </a>                    <span class="php-var">$app</span>-&gt;response-&gt;headers-&gt;set(<span class="php-quote">'Access-Control-Allow-Origin'</span>, <span class="php-var">$origin</span>);
+</span><span id="85" class="l"><a class="l" href="#85"> 85: </a>
+</span><span id="86" class="l"><a class="l" href="#86"> 86: </a>                    <span class="php-var">$request_origin</span> = <span class="php-keyword2">preg_replace</span>(<span class="php-quote">&quot;/https?:\/\//&quot;</span>, <span class="php-quote">&quot;&quot;</span>, <span class="php-var">$origin</span>);
+</span><span id="87" class="l"><a class="l" href="#87"> 87: </a>                    <span class="php-var">$allowed_origins</span> = Config::get(<span class="php-quote">'security.allowed_origins'</span>, <span class="php-keyword1">array</span>(<span class="php-var">$request_origin</span>));
+</span><span id="88" class="l"><a class="l" href="#88"> 88: </a>                    <span class="php-var">$is_origin_allowed</span> = <span class="php-keyword2">array_filter</span>(<span class="php-var">$allowed_origins</span>, <span class="php-keyword1">function</span>(<span class="php-var">$allowed_origin</span>) <span class="php-keyword1">use</span> (&amp;<span class="php-var">$request_origin</span>) {
+</span><span id="89" class="l"><a class="l" href="#89"> 89: </a>                        <span class="php-keyword1">return</span> <span class="php-keyword2">fnmatch</span>(<span class="php-var">$allowed_origin</span>, <span class="php-var">$request_origin</span>);
+</span><span id="90" class="l"><a class="l" href="#90"> 90: </a>                    });
+</span><span id="91" class="l"><a class="l" href="#91"> 91: </a>
+</span><span id="92" class="l"><a class="l" href="#92"> 92: </a>                    <span class="php-keyword1">if</span> (<span class="php-keyword2">count</span>(<span class="php-var">$is_origin_allowed</span>) == <span class="php-num">0</span>) {
+</span><span id="93" class="l"><a class="l" href="#93"> 93: </a>                        <span class="php-comment">// throw new NotAllowedException(&quot;origin_not_allowed&quot;);</span>
+</span><span id="94" class="l"><a class="l" href="#94"> 94: </a>                        <span class="php-var">$app</span>-&gt;response-&gt;setStatus(<span class="php-num">403</span>); <span class="php-comment">// forbidden</span>
+</span><span id="95" class="l"><a class="l" href="#95"> 95: </a>                        <span class="php-var">$app</span>-&gt;response-&gt;headers-&gt;set(<span class="php-quote">'Content-type'</span>, <span class="php-quote">'application/json'</span>);
+</span><span id="96" class="l"><a class="l" href="#96"> 96: </a>                        <span class="php-var">$app</span>-&gt;response-&gt;setBody(<span class="php-keyword2">json_encode</span>(<span class="php-keyword1">array</span>(<span class="php-quote">'error'</span> =&gt; <span class="php-quote">&quot;origin_not_allowed&quot;</span>)));
+</span><span id="97" class="l"><a class="l" href="#97"> 97: </a>                        <span class="php-keyword1">return</span>;
+</span><span id="98" class="l"><a class="l" href="#98"> 98: </a>                    }
+</span><span id="99" class="l"><a class="l" href="#99"> 99: </a>                }
+</span><span id="100" class="l"><a class="l" href="#100">100: </a>
+</span><span id="101" class="l"><a class="l" href="#101">101: </a>                <span class="php-comment">// Require custom app packages</span>
+</span><span id="102" class="l"><a class="l" href="#102">102: </a>                Package\Manager::autoload();
+</span><span id="103" class="l"><a class="l" href="#103">103: </a>
+</span><span id="104" class="l"><a class="l" href="#104">104: </a>                <span class="php-comment">// // Register session handler</span>
+</span><span id="105" class="l"><a class="l" href="#105">105: </a>                <span class="php-comment">// Session\Handler::register(Config::get('session.handler', 'database'));</span>
+</span><span id="106" class="l"><a class="l" href="#106">106: </a>
+</span><span id="107" class="l"><a class="l" href="#107">107: </a>                <span class="php-comment">// Compile all route modules</span>
+</span><span id="108" class="l"><a class="l" href="#108">108: </a>                <span class="php-keyword1">if</span> (<span class="php-var">$custom_routes</span> = Module::where(<span class="php-quote">'type'</span>, Module::TYPE_ROUTE)-&gt;get()) {
+</span><span id="109" class="l"><a class="l" href="#109">109: </a>                    <span class="php-keyword1">foreach</span> (<span class="php-var">$custom_routes</span> <span class="php-keyword1">as</span> <span class="php-var">$custom_route</span>) {
+</span><span id="110" class="l"><a class="l" href="#110">110: </a>                        <span class="php-var">$custom_route</span>-&gt;compile();
+</span><span id="111" class="l"><a class="l" href="#111">111: </a>                    }
+</span><span id="112" class="l"><a class="l" href="#112">112: </a>                }
+</span><span id="113" class="l"><a class="l" href="#113">113: </a>            } <span class="php-keyword1">else</span> <span class="php-keyword1">if</span> (!\Hook\Controllers\ApplicationController::isRootOperation()) {
+</span><span id="114" class="l"><a class="l" href="#114">114: </a>                <span class="php-var">$app</span>-&gt;response-&gt;setStatus(<span class="php-num">403</span>);
+</span><span id="115" class="l"><a class="l" href="#115">115: </a>                <span class="php-var">$app</span>-&gt;response-&gt;setBody(<span class="php-keyword2">json_encode</span>(<span class="php-keyword1">array</span>(<span class="php-quote">'error'</span> =&gt; <span class="php-quote">&quot;Invalid credentials.&quot;</span>)));
+</span><span id="116" class="l"><a class="l" href="#116">116: </a>
+</span><span id="117" class="l"><a class="l" href="#117">117: </a>                <span class="php-keyword1">return</span>;
+</span><span id="118" class="l"><a class="l" href="#118">118: </a>            }
+</span><span id="119" class="l"><a class="l" href="#119">119: </a>
+</span><span id="120" class="l"><a class="l" href="#120">120: </a>            <span class="php-comment">//</span>
+</span><span id="121" class="l"><a class="l" href="#121">121: </a>            <span class="php-comment">// Parse incoming JSON data</span>
+</span><span id="122" class="l"><a class="l" href="#122">122: </a>            <span class="php-keyword1">if</span> (<span class="php-var">$app</span>-&gt;request-&gt;isPost() || <span class="php-var">$app</span>-&gt;request-&gt;isPut() || <span class="php-var">$app</span>-&gt;request-&gt;isDelete()) {
+</span><span id="123" class="l"><a class="l" href="#123">123: </a>                <span class="php-var">$input_data</span> = <span class="php-var">$app</span>-&gt;environment-&gt;offsetGet(<span class="php-quote">'slim.input'</span>);
+</span><span id="124" class="l"><a class="l" href="#124">124: </a>                <span class="php-var">$app</span>-&gt;environment-&gt;offsetSet(<span class="php-quote">'slim.request.form_hash'</span>, <span class="php-keyword2">json_decode</span>(<span class="php-var">$input_data</span>, <span class="php-keyword1">true</span>));
+</span><span id="125" class="l"><a class="l" href="#125">125: </a>            }
+</span><span id="126" class="l"><a class="l" href="#126">126: </a>
+</span><span id="127" class="l"><a class="l" href="#127">127: </a>            <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;<span class="php-keyword2">next</span>-&gt;call();
+</span><span id="128" class="l"><a class="l" href="#128">128: </a>        }
+</span><span id="129" class="l"><a class="l" href="#129">129: </a>    }
+</span><span id="130" class="l"><a class="l" href="#130">130: </a>
+</span><span id="131" class="l"><a class="l" href="#131">131: </a>}
+</span><span id="132" class="l"><a class="l" href="#132">132: </a></span></code></pre>
+
+	<div id="footer">
+		 API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
+	</div>
+</div>
+</div>
+</body>
+</html>

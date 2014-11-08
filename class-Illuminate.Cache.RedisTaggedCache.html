@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="generator" content="ApiGen 2.8.0" />
+
+	<title>Class Illuminate\Cache\RedisTaggedCache</title>
+
+	<script type="text/javascript" src="resources/combined.js?417754471"></script>
+	<script type="text/javascript" src="elementlist.js?721444666"></script>
+	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
+
+</head>
+
+<body>
+<div id="left">
+	<div id="menu">
+		<a href="index.html" title="Overview"><span>Overview</span></a>
+
+
+		<div id="groups">
+			<h3>Namespaces</h3>
+			<ul>
+				<li><a href="namespace-Hook.html">Hook<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Application.html">Application<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Application.Core.html">Core</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Hook.Auth.html">Auth<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Auth.Providers.html">Providers</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Hook.Cache.html">Cache</a>
+						</li>
+				<li><a href="namespace-Hook.Controllers.html">Controllers</a>
+						</li>
+				<li><a href="namespace-Hook.Database.html">Database<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Database.Schema.html">Schema<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Database.Schema.Grammars.html">Grammars</a>
+						</li>
+							</ul></li></ul></li>
+				<li><a href="namespace-Hook.Encryption.html">Encryption</a>
+						</li>
+				<li><a href="namespace-Hook.Exceptions.html">Exceptions</a>
+						</li>
+				<li><a href="namespace-Hook.Http.html">Http</a>
+						</li>
+				<li><a href="namespace-Hook.Logger.html">Logger</a>
+						</li>
+				<li><a href="namespace-Hook.Mailer.html">Mailer</a>
+						</li>
+				<li><a href="namespace-Hook.Middlewares.html">Middlewares</a>
+						</li>
+				<li><a href="namespace-Hook.Model.html">Model</a>
+						</li>
+				<li><a href="namespace-Hook.Package.html">Package</a>
+						</li>
+				<li><a href="namespace-Hook.Pagination.html">Pagination</a>
+						</li>
+				<li><a href="namespace-Hook.PushNotification.html">PushNotification<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.PushNotification.Services.html">Services</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Hook.Session.html">Session<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Session.Handlers.html">Handlers</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Hook.Storage.html">Storage<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Storage.Providers.html">Providers</a>
+						</li>
+							</ul></li></ul></li>
+				<li class="active"><a href="namespace-Illuminate.html">Illuminate<span></span></a>
+						<ul>
+				<li class="active"><a href="namespace-Illuminate.Cache.html">Cache<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Cache.Console.html">Console</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Illuminate.Config.html">Config</a>
+						</li>
+				<li><a href="namespace-Illuminate.Container.html">Container</a>
+						</li>
+				<li><a href="namespace-Illuminate.Database.html">Database<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Database.Capsule.html">Capsule</a>
+						</li>
+				<li><a href="namespace-Illuminate.Database.Connectors.html">Connectors</a>
+						</li>
+				<li><a href="namespace-Illuminate.Database.Console.html">Console<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Database.Console.Migrations.html">Migrations</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Illuminate.Database.Eloquent.html">Eloquent<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Database.Eloquent.Relations.html">Relations</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Illuminate.Database.Migrations.html">Migrations</a>
+						</li>
+				<li><a href="namespace-Illuminate.Database.Query.html">Query<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Database.Query.Grammars.html">Grammars</a>
+						</li>
+				<li><a href="namespace-Illuminate.Database.Query.Processors.html">Processors</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Illuminate.Database.Schema.html">Schema<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Database.Schema.Grammars.html">Grammars</a>
+						</li>
+							</ul></li></ul></li>
+				<li><a href="namespace-Illuminate.Encryption.html">Encryption</a>
+						</li>
+				<li><a href="namespace-Illuminate.Events.html">Events</a>
+						</li>
+				<li><a href="namespace-Illuminate.Filesystem.html">Filesystem</a>
+						</li>
+				<li><a href="namespace-Illuminate.Support.html">Support<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Support.Contracts.html">Contracts</a>
+						</li>
+				<li><a href="namespace-Illuminate.Support.Facades.html">Facades</a>
+						</li>
+							</ul></li></ul></li>
+				<li><a href="namespace-None.html">None</a>
+						</li>
+				<li><a href="namespace-PHP.html">PHP</a>
+						</li>
+				<li><a href="namespace-Slim.html">Slim<span></span></a>
+						<ul>
+				<li><a href="namespace-Slim.Exception.html">Exception</a>
+						</li>
+				<li><a href="namespace-Slim.Helper.html">Helper</a>
+						</li>
+				<li><a href="namespace-Slim.Http.html">Http</a>
+						</li>
+				<li><a href="namespace-Slim.Middleware.html">Middleware</a>
+						</li>
+							</ul></li>
+			</ul>
+		</div>
+
+		<hr />
+
+
+		<div id="elements">
+			<h3>Classes</h3>
+			<ul>
+				<li><a href="class-Illuminate.Cache.ApcStore.html">ApcStore</a></li>
+				<li><a href="class-Illuminate.Cache.ApcWrapper.html">ApcWrapper</a></li>
+				<li><a href="class-Illuminate.Cache.ArrayStore.html">ArrayStore</a></li>
+				<li><a href="class-Illuminate.Cache.CacheManager.html">CacheManager</a></li>
+				<li><a href="class-Illuminate.Cache.CacheServiceProvider.html">CacheServiceProvider</a></li>
+				<li><a href="class-Illuminate.Cache.DatabaseStore.html">DatabaseStore</a></li>
+				<li><a href="class-Illuminate.Cache.FileStore.html">FileStore</a></li>
+				<li><a href="class-Illuminate.Cache.MemcachedConnector.html">MemcachedConnector</a></li>
+				<li><a href="class-Illuminate.Cache.MemcachedStore.html">MemcachedStore</a></li>
+				<li><a href="class-Illuminate.Cache.RedisStore.html">RedisStore</a></li>
+				<li class="active"><a href="class-Illuminate.Cache.RedisTaggedCache.html">RedisTaggedCache</a></li>
+				<li><a href="class-Illuminate.Cache.Repository.html">Repository</a></li>
+				<li><a href="class-Illuminate.Cache.TaggableStore.html">TaggableStore</a></li>
+				<li><a href="class-Illuminate.Cache.TaggedCache.html">TaggedCache</a></li>
+				<li><a href="class-Illuminate.Cache.TagSet.html">TagSet</a></li>
+				<li><a href="class-Illuminate.Cache.WinCacheStore.html">WinCacheStore</a></li>
+				<li><a href="class-Illuminate.Cache.XCacheStore.html">XCacheStore</a></li>
+			</ul>
+
+			<h3>Interfaces</h3>
+			<ul>
+				<li><a href="class-Illuminate.Cache.StoreInterface.html">StoreInterface</a></li>
+			</ul>
+
+
+
+
+		</div>
+	</div>
+</div>
+
+<div id="splitter"></div>
+
+<div id="right">
+<div id="rightInner">
+	<form id="search">
+		<input type="hidden" name="cx" value="" />
+		<input type="hidden" name="ie" value="UTF-8" />
+		<input type="text" name="q" class="text" />
+		<input type="submit" value="Search" />
+	</form>
+
+	<div id="navigation">
+		<ul>
+			<li>
+				<a href="index.html" title="Overview"><span>Overview</span></a>
+			</li>
+			<li>
+				<a href="namespace-Illuminate.Cache.html" title="Summary of Illuminate\Cache"><span>Namespace</span></a>
+			</li>
+			<li class="active">
+<span>Class</span>			</li>
+		</ul>
+		<ul>
+			<li>
+				<a href="tree.html" title="Tree view of classes, interfaces, traits and exceptions"><span>Tree</span></a>
+			</li>
+		</ul>
+		<ul>
+		</ul>
+	</div>
+
+<div id="content" class="class">
+	<h1>Class RedisTaggedCache</h1>
+
+
+
+	<dl class="tree">
+		<dd style="padding-left:0px">
+			<a href="class-Illuminate.Cache.TaggedCache.html"><span>Illuminate\Cache\TaggedCache</span></a>
+			
+			 implements 
+				<a href="class-Illuminate.Cache.StoreInterface.html"><span>Illuminate\Cache\StoreInterface</span></a>
+			
+			
+		</dd>
+		<dd style="padding-left:30px">
+			<img src="resources/inherit.png" alt="Extended by" />
+<b><span>Illuminate\Cache\RedisTaggedCache</span></b>			
+			
+			
+		</dd>
+	</dl>
+
+
+
+
+
+
+
+
+	<div class="info">
+		
+		
+		<b>Namespace:</b> <a href="namespace-Illuminate.html">Illuminate</a>\<a href="namespace-Illuminate.Cache.html">Cache</a><br />
+		
+
+		<b>Located at</b> <a href="source-class-Illuminate.Cache.RedisTaggedCache.html#3-90" title="Go to source code">cache/Illuminate/Cache/RedisTaggedCache.php</a><br />
+	</div>
+
+
+
+	<table class="summary" id="methods">
+	<caption>Methods summary</caption>
+	<tr data-order="forever" id="_forever">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_forever">#</a>
+		<code><a href="source-class-Illuminate.Cache.RedisTaggedCache.html#5-17" title="Go to source code">forever</a>( <span>string <var>$key</var></span>, <span>mixed <var>$value</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Store an item in the cache indefinitely.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Store an item in the cache indefinitely.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$key</var></dt>
+					<dd><code>string</code><br>$key</dd>
+					<dt><var>$value</var></dt>
+					<dd><code>mixed</code><br>$value</dd>
+				</dl></div>
+
+
+
+
+				<h4>Overrides</h4>
+				<div class="list"><code><a href="class-Illuminate.Cache.TaggedCache.html#_forever">Illuminate\Cache\TaggedCache::forever()</a></code></div>
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="flush" id="_flush">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_flush">#</a>
+		<code><a href="source-class-Illuminate.Cache.RedisTaggedCache.html#19-29" title="Go to source code">flush</a>( )</code>
+
+		<div class="description short">
+			
+<p>Remove all items from the cache.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Remove all items from the cache.</p>
+
+
+
+
+
+
+
+				<h4>Overrides</h4>
+				<div class="list"><code><a href="class-Illuminate.Cache.TaggedCache.html#_flush">Illuminate\Cache\TaggedCache::flush()</a></code></div>
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="pushForeverKeys" id="_pushForeverKeys">
+
+		<td class="attributes"><code>
+			 protected 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_pushForeverKeys">#</a>
+		<code><a href="source-class-Illuminate.Cache.RedisTaggedCache.html#31-46" title="Go to source code">pushForeverKeys</a>( <span>string <var>$namespace</var></span>, <span>string <var>$key</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Store a copy of the full key for each namespace segment.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Store a copy of the full key for each namespace segment.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$namespace</var></dt>
+					<dd><code>string</code><br>$namespace</dd>
+					<dt><var>$key</var></dt>
+					<dd><code>string</code><br>$key</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="deleteForeverKeys" id="_deleteForeverKeys">
+
+		<td class="attributes"><code>
+			 protected 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_deleteForeverKeys">#</a>
+		<code><a href="source-class-Illuminate.Cache.RedisTaggedCache.html#48-61" title="Go to source code">deleteForeverKeys</a>( )</code>
+
+		<div class="description short">
+			
+<p>Delete all of the items that were stored forever.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Delete all of the items that were stored forever.</p>
+
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="deleteForeverValues" id="_deleteForeverValues">
+
+		<td class="attributes"><code>
+			 protected 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_deleteForeverValues">#</a>
+		<code><a href="source-class-Illuminate.Cache.RedisTaggedCache.html#63-77" title="Go to source code">deleteForeverValues</a>( <span>string <var>$foreverKey</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Delete all of the keys that have been stored forever.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Delete all of the keys that have been stored forever.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$foreverKey</var></dt>
+					<dd><code>string</code><br>$foreverKey</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="foreverKey" id="_foreverKey">
+
+		<td class="attributes"><code>
+			 protected 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_foreverKey">#</a>
+		<code><a href="source-class-Illuminate.Cache.RedisTaggedCache.html#79-88" title="Go to source code">foreverKey</a>( <span>string <var>$segment</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Get the forever reference key for the segment.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get the forever reference key for the segment.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$segment</var></dt>
+					<dd><code>string</code><br>$segment</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	</table>
+
+	<table class="summary inherited">
+	<caption>Methods inherited from <a href="class-Illuminate.Cache.TaggedCache.html#methods">Illuminate\Cache\TaggedCache</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-Illuminate.Cache.TaggedCache.html#___construct">__construct()</a>, 
+			<a href="class-Illuminate.Cache.TaggedCache.html#_add">add()</a>, 
+			<a href="class-Illuminate.Cache.TaggedCache.html#_decrement">decrement()</a>, 
+			<a href="class-Illuminate.Cache.TaggedCache.html#_forget">forget()</a>, 
+			<a href="class-Illuminate.Cache.TaggedCache.html#_get">get()</a>, 
+			<a href="class-Illuminate.Cache.TaggedCache.html#_getPrefix">getPrefix()</a>, 
+			<a href="class-Illuminate.Cache.TaggedCache.html#_has">has()</a>, 
+			<a href="class-Illuminate.Cache.TaggedCache.html#_increment">increment()</a>, 
+			<a href="class-Illuminate.Cache.TaggedCache.html#_put">put()</a>, 
+			<a href="class-Illuminate.Cache.TaggedCache.html#_remember">remember()</a>, 
+			<a href="class-Illuminate.Cache.TaggedCache.html#_rememberForever">rememberForever()</a>, 
+			<a href="class-Illuminate.Cache.TaggedCache.html#_sear">sear()</a>, 
+			<a href="class-Illuminate.Cache.TaggedCache.html#_taggedItemKey">taggedItemKey()</a>
+		</code></td>
+	</tr>
+	</table>
+
+
+
+
+
+
+
+
+
+
+
+
+	<table class="summary inherited">
+	<caption>Properties inherited from <a href="class-Illuminate.Cache.TaggedCache.html#properties">Illuminate\Cache\TaggedCache</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-Illuminate.Cache.TaggedCache.html#$store"><var>$store</var></a>, 
+			<a href="class-Illuminate.Cache.TaggedCache.html#$tags"><var>$tags</var></a>
+		</code></td>
+	</tr>
+	</table>
+
+
+
+
+
+</div>
+
+	<div id="footer">
+		 API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
+	</div>
+</div>
+</div>
+</body>
+</html>

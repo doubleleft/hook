@@ -1,0 +1,1019 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="generator" content="ApiGen 2.8.0" />
+
+	<title>Class Illuminate\Database\Eloquent\Relations\Pivot</title>
+
+	<script type="text/javascript" src="resources/combined.js?417754471"></script>
+	<script type="text/javascript" src="elementlist.js?721444666"></script>
+	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
+
+</head>
+
+<body>
+<div id="left">
+	<div id="menu">
+		<a href="index.html" title="Overview"><span>Overview</span></a>
+
+
+		<div id="groups">
+			<h3>Namespaces</h3>
+			<ul>
+				<li><a href="namespace-Hook.html">Hook<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Application.html">Application<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Application.Core.html">Core</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Hook.Auth.html">Auth<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Auth.Providers.html">Providers</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Hook.Cache.html">Cache</a>
+						</li>
+				<li><a href="namespace-Hook.Controllers.html">Controllers</a>
+						</li>
+				<li><a href="namespace-Hook.Database.html">Database<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Database.Schema.html">Schema<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Database.Schema.Grammars.html">Grammars</a>
+						</li>
+							</ul></li></ul></li>
+				<li><a href="namespace-Hook.Encryption.html">Encryption</a>
+						</li>
+				<li><a href="namespace-Hook.Exceptions.html">Exceptions</a>
+						</li>
+				<li><a href="namespace-Hook.Http.html">Http</a>
+						</li>
+				<li><a href="namespace-Hook.Logger.html">Logger</a>
+						</li>
+				<li><a href="namespace-Hook.Mailer.html">Mailer</a>
+						</li>
+				<li><a href="namespace-Hook.Middlewares.html">Middlewares</a>
+						</li>
+				<li><a href="namespace-Hook.Model.html">Model</a>
+						</li>
+				<li><a href="namespace-Hook.Package.html">Package</a>
+						</li>
+				<li><a href="namespace-Hook.Pagination.html">Pagination</a>
+						</li>
+				<li><a href="namespace-Hook.PushNotification.html">PushNotification<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.PushNotification.Services.html">Services</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Hook.Session.html">Session<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Session.Handlers.html">Handlers</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Hook.Storage.html">Storage<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Storage.Providers.html">Providers</a>
+						</li>
+							</ul></li></ul></li>
+				<li class="active"><a href="namespace-Illuminate.html">Illuminate<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Cache.html">Cache<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Cache.Console.html">Console</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Illuminate.Config.html">Config</a>
+						</li>
+				<li><a href="namespace-Illuminate.Container.html">Container</a>
+						</li>
+				<li class="active"><a href="namespace-Illuminate.Database.html">Database<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Database.Capsule.html">Capsule</a>
+						</li>
+				<li><a href="namespace-Illuminate.Database.Connectors.html">Connectors</a>
+						</li>
+				<li><a href="namespace-Illuminate.Database.Console.html">Console<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Database.Console.Migrations.html">Migrations</a>
+						</li>
+							</ul></li>
+				<li class="active"><a href="namespace-Illuminate.Database.Eloquent.html">Eloquent<span></span></a>
+						<ul>
+				<li class="active"><a href="namespace-Illuminate.Database.Eloquent.Relations.html">Relations</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Illuminate.Database.Migrations.html">Migrations</a>
+						</li>
+				<li><a href="namespace-Illuminate.Database.Query.html">Query<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Database.Query.Grammars.html">Grammars</a>
+						</li>
+				<li><a href="namespace-Illuminate.Database.Query.Processors.html">Processors</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Illuminate.Database.Schema.html">Schema<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Database.Schema.Grammars.html">Grammars</a>
+						</li>
+							</ul></li></ul></li>
+				<li><a href="namespace-Illuminate.Encryption.html">Encryption</a>
+						</li>
+				<li><a href="namespace-Illuminate.Events.html">Events</a>
+						</li>
+				<li><a href="namespace-Illuminate.Filesystem.html">Filesystem</a>
+						</li>
+				<li><a href="namespace-Illuminate.Support.html">Support<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Support.Contracts.html">Contracts</a>
+						</li>
+				<li><a href="namespace-Illuminate.Support.Facades.html">Facades</a>
+						</li>
+							</ul></li></ul></li>
+				<li><a href="namespace-None.html">None</a>
+						</li>
+				<li><a href="namespace-PHP.html">PHP</a>
+						</li>
+				<li><a href="namespace-Slim.html">Slim<span></span></a>
+						<ul>
+				<li><a href="namespace-Slim.Exception.html">Exception</a>
+						</li>
+				<li><a href="namespace-Slim.Helper.html">Helper</a>
+						</li>
+				<li><a href="namespace-Slim.Http.html">Http</a>
+						</li>
+				<li><a href="namespace-Slim.Middleware.html">Middleware</a>
+						</li>
+							</ul></li>
+			</ul>
+		</div>
+
+		<hr />
+
+
+		<div id="elements">
+			<h3>Classes</h3>
+			<ul>
+				<li><a href="class-Illuminate.Database.Eloquent.Relations.BelongsTo.html">BelongsTo</a></li>
+				<li><a href="class-Illuminate.Database.Eloquent.Relations.BelongsToMany.html">BelongsToMany</a></li>
+				<li><a href="class-Illuminate.Database.Eloquent.Relations.HasMany.html">HasMany</a></li>
+				<li><a href="class-Illuminate.Database.Eloquent.Relations.HasManyThrough.html">HasManyThrough</a></li>
+				<li><a href="class-Illuminate.Database.Eloquent.Relations.HasOne.html">HasOne</a></li>
+				<li><a href="class-Illuminate.Database.Eloquent.Relations.HasOneOrMany.html">HasOneOrMany</a></li>
+				<li><a href="class-Illuminate.Database.Eloquent.Relations.MorphMany.html">MorphMany</a></li>
+				<li><a href="class-Illuminate.Database.Eloquent.Relations.MorphOne.html">MorphOne</a></li>
+				<li><a href="class-Illuminate.Database.Eloquent.Relations.MorphOneOrMany.html">MorphOneOrMany</a></li>
+				<li><a href="class-Illuminate.Database.Eloquent.Relations.MorphPivot.html">MorphPivot</a></li>
+				<li><a href="class-Illuminate.Database.Eloquent.Relations.MorphTo.html">MorphTo</a></li>
+				<li><a href="class-Illuminate.Database.Eloquent.Relations.MorphToMany.html">MorphToMany</a></li>
+				<li class="active"><a href="class-Illuminate.Database.Eloquent.Relations.Pivot.html">Pivot</a></li>
+				<li><a href="class-Illuminate.Database.Eloquent.Relations.Relation.html">Relation</a></li>
+			</ul>
+
+
+
+
+
+		</div>
+	</div>
+</div>
+
+<div id="splitter"></div>
+
+<div id="right">
+<div id="rightInner">
+	<form id="search">
+		<input type="hidden" name="cx" value="" />
+		<input type="hidden" name="ie" value="UTF-8" />
+		<input type="text" name="q" class="text" />
+		<input type="submit" value="Search" />
+	</form>
+
+	<div id="navigation">
+		<ul>
+			<li>
+				<a href="index.html" title="Overview"><span>Overview</span></a>
+			</li>
+			<li>
+				<a href="namespace-Illuminate.Database.Eloquent.Relations.html" title="Summary of Illuminate\Database\Eloquent\Relations"><span>Namespace</span></a>
+			</li>
+			<li class="active">
+<span>Class</span>			</li>
+		</ul>
+		<ul>
+			<li>
+				<a href="tree.html" title="Tree view of classes, interfaces, traits and exceptions"><span>Tree</span></a>
+			</li>
+		</ul>
+		<ul>
+		</ul>
+	</div>
+
+<div id="content" class="class">
+	<h1>Class Pivot</h1>
+
+
+
+	<dl class="tree">
+		<dd style="padding-left:0px">
+			<a href="class-Illuminate.Database.Eloquent.Model.html"><span>Illuminate\Database\Eloquent\Model</span></a>
+			
+			 implements 
+				<a href="class-ArrayAccess.html"><span>ArrayAccess</span></a>, 
+			
+				<a href="class-Illuminate.Support.Contracts.ArrayableInterface.html"><span>Illuminate\Support\Contracts\ArrayableInterface</span></a>, 
+			
+				<a href="class-Illuminate.Support.Contracts.JsonableInterface.html"><span>Illuminate\Support\Contracts\JsonableInterface</span></a>
+			
+			
+		</dd>
+		<dd style="padding-left:30px">
+			<img src="resources/inherit.png" alt="Extended by" />
+<b><span>Illuminate\Database\Eloquent\Relations\Pivot</span></b>			
+			
+			
+		</dd>
+	</dl>
+
+
+	<div>
+		<h4>Direct known subclasses</h4>
+			<a href="class-Illuminate.Database.Eloquent.Relations.MorphPivot.html">Illuminate\Database\Eloquent\Relations\MorphPivot</a>
+	</div>
+
+
+
+
+
+
+	<div class="info">
+		
+		
+		<b>Namespace:</b> <a href="namespace-Illuminate.html">Illuminate</a>\<a href="namespace-Illuminate.Database.html">Database</a>\<a href="namespace-Illuminate.Database.Eloquent.html">Eloquent</a>\<a href="namespace-Illuminate.Database.Eloquent.Relations.html">Relations</a><br />
+		
+
+		<b>Located at</b> <a href="source-class-Illuminate.Database.Eloquent.Relations.Pivot.html#6-171" title="Go to source code">database/Illuminate/Database/Eloquent/Relations/Pivot.php</a><br />
+	</div>
+
+
+
+	<table class="summary" id="methods">
+	<caption>Methods summary</caption>
+	<tr data-order="__construct" id="___construct">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#___construct">#</a>
+		<code><a href="source-class-Illuminate.Database.Eloquent.Relations.Pivot.html#36-66" title="Go to source code">__construct</a>( <span><code><a href="class-Illuminate.Database.Eloquent.Model.html">Illuminate\Database\Eloquent\Model</a></code> <var>$parent</var></span>, <span>array <var>$attributes</var></span>, <span>string <var>$table</var></span>, <span>boolean <var>$exists</var> = <span class="php-keyword1">false</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Create a new pivot model instance.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Create a new pivot model instance.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$parent</var></dt>
+					<dd><code><code><a href="class-Illuminate.Database.Eloquent.Model.html">Illuminate\Database\Eloquent\Model</a></code></code><br>$parent</dd>
+					<dt><var>$attributes</var></dt>
+					<dd><code>array</code><br>$attributes</dd>
+					<dt><var>$table</var></dt>
+					<dd><code>string</code><br>$table</dd>
+					<dt><var>$exists</var></dt>
+					<dd><code>boolean</code><br>$exists</dd>
+				</dl></div>
+
+
+
+
+				<h4>Overrides</h4>
+				<div class="list"><code><a href="class-Illuminate.Database.Eloquent.Model.html#___construct">Illuminate\Database\Eloquent\Model::__construct()</a></code></div>
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="setKeysForSaveQuery" id="_setKeysForSaveQuery">
+
+		<td class="attributes"><code>
+			 protected 
+			<code><a href="class-Illuminate.Database.Eloquent.Builder.html">Illuminate\Database\Eloquent\Builder</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_setKeysForSaveQuery">#</a>
+		<code><a href="source-class-Illuminate.Database.Eloquent.Relations.Pivot.html#68-79" title="Go to source code">setKeysForSaveQuery</a>( <span><code><a href="class-Illuminate.Database.Eloquent.Builder.html">Illuminate\Database\Eloquent\Builder</a></code> <var>$query</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Set the keys for a save update query.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Set the keys for a save update query.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$query</var></dt>
+					<dd><code><code><a href="class-Illuminate.Database.Eloquent.Builder.html">Illuminate\Database\Eloquent\Builder</a></code></code></dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-Illuminate.Database.Eloquent.Builder.html">Illuminate\Database\Eloquent\Builder</a></code></code><br />
+				</div>
+
+
+
+				<h4>Overrides</h4>
+				<div class="list"><code><a href="class-Illuminate.Database.Eloquent.Model.html#_setKeysForSaveQuery">Illuminate\Database\Eloquent\Model::setKeysForSaveQuery()</a></code></div>
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="delete" id="_delete">
+
+		<td class="attributes"><code>
+			 public 
+			integer
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_delete">#</a>
+		<code><a href="source-class-Illuminate.Database.Eloquent.Relations.Pivot.html#81-89" title="Go to source code">delete</a>( )</code>
+
+		<div class="description short">
+			
+<p>Delete the pivot model record from the database.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Delete the pivot model record from the database.</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>integer</code><br />
+				</div>
+
+
+
+				<h4>Overrides</h4>
+				<div class="list"><code><a href="class-Illuminate.Database.Eloquent.Model.html#_delete">Illuminate\Database\Eloquent\Model::delete()</a></code></div>
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getDeleteQuery" id="_getDeleteQuery">
+
+		<td class="attributes"><code>
+			 protected 
+			<code><a href="class-Illuminate.Database.Eloquent.Builder.html">Illuminate\Database\Eloquent\Builder</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getDeleteQuery">#</a>
+		<code><a href="source-class-Illuminate.Database.Eloquent.Relations.Pivot.html#91-103" title="Go to source code">getDeleteQuery</a>( )</code>
+
+		<div class="description short">
+			
+<p>Get the query builder for a delete operation on the pivot.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get the query builder for a delete operation on the pivot.</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-Illuminate.Database.Eloquent.Builder.html">Illuminate\Database\Eloquent\Builder</a></code></code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getForeignKey" id="_getForeignKey">
+
+		<td class="attributes"><code>
+			 public 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getForeignKey">#</a>
+		<code><a href="source-class-Illuminate.Database.Eloquent.Relations.Pivot.html#105-113" title="Go to source code">getForeignKey</a>( )</code>
+
+		<div class="description short">
+			
+<p>Get the foreign key column name.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get the foreign key column name.</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br />
+				</div>
+
+
+
+				<h4>Overrides</h4>
+				<div class="list"><code><a href="class-Illuminate.Database.Eloquent.Model.html#_getForeignKey">Illuminate\Database\Eloquent\Model::getForeignKey()</a></code></div>
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getOtherKey" id="_getOtherKey">
+
+		<td class="attributes"><code>
+			 public 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getOtherKey">#</a>
+		<code><a href="source-class-Illuminate.Database.Eloquent.Relations.Pivot.html#115-123" title="Go to source code">getOtherKey</a>( )</code>
+
+		<div class="description short">
+			
+<p>Get the "other key" column name.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get the "other key" column name.</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="setPivotKeys" id="_setPivotKeys">
+
+		<td class="attributes"><code>
+			 public 
+			<code><a href="class-Illuminate.Database.Eloquent.Relations.Pivot.html">Illuminate\Database\Eloquent\Relations\Pivot</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_setPivotKeys">#</a>
+		<code><a href="source-class-Illuminate.Database.Eloquent.Relations.Pivot.html#125-139" title="Go to source code">setPivotKeys</a>( <span>string <var>$foreignKey</var></span>, <span>string <var>$otherKey</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Set the key names for the pivot model instance.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Set the key names for the pivot model instance.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$foreignKey</var></dt>
+					<dd><code>string</code><br>$foreignKey</dd>
+					<dt><var>$otherKey</var></dt>
+					<dd><code>string</code><br>$otherKey</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-Illuminate.Database.Eloquent.Relations.Pivot.html">Illuminate\Database\Eloquent\Relations\Pivot</a></code></code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="hasTimestampAttributes" id="_hasTimestampAttributes">
+
+		<td class="attributes"><code>
+			 public 
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_hasTimestampAttributes">#</a>
+		<code><a href="source-class-Illuminate.Database.Eloquent.Relations.Pivot.html#141-149" title="Go to source code">hasTimestampAttributes</a>( )</code>
+
+		<div class="description short">
+			
+<p>Determine if the pivot model has timestamp attributes.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Determine if the pivot model has timestamp attributes.</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getCreatedAtColumn" id="_getCreatedAtColumn">
+
+		<td class="attributes"><code>
+			 public 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getCreatedAtColumn">#</a>
+		<code><a href="source-class-Illuminate.Database.Eloquent.Relations.Pivot.html#151-159" title="Go to source code">getCreatedAtColumn</a>( )</code>
+
+		<div class="description short">
+			
+<p>Get the name of the "created at" column.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get the name of the "created at" column.</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br />
+				</div>
+
+
+
+				<h4>Overrides</h4>
+				<div class="list"><code><a href="class-Illuminate.Database.Eloquent.Model.html#_getCreatedAtColumn">Illuminate\Database\Eloquent\Model::getCreatedAtColumn()</a></code></div>
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getUpdatedAtColumn" id="_getUpdatedAtColumn">
+
+		<td class="attributes"><code>
+			 public 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getUpdatedAtColumn">#</a>
+		<code><a href="source-class-Illuminate.Database.Eloquent.Relations.Pivot.html#161-169" title="Go to source code">getUpdatedAtColumn</a>( )</code>
+
+		<div class="description short">
+			
+<p>Get the name of the "updated at" column.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get the name of the "updated at" column.</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br />
+				</div>
+
+
+
+				<h4>Overrides</h4>
+				<div class="list"><code><a href="class-Illuminate.Database.Eloquent.Model.html#_getUpdatedAtColumn">Illuminate\Database\Eloquent\Model::getUpdatedAtColumn()</a></code></div>
+
+		</div>
+		</div></td>
+	</tr>
+	</table>
+
+	<table class="summary inherited">
+	<caption>Methods inherited from <a href="class-Illuminate.Database.Eloquent.Model.html#methods">Illuminate\Database\Eloquent\Model</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-Illuminate.Database.Eloquent.Model.html#___call">__call()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#___callStatic">__callStatic()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#___get">__get()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#___isset">__isset()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#___set">__set()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#___toString">__toString()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#___unset">__unset()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#___wakeup">__wakeup()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_all">all()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_asDateTime">asDateTime()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_attributesToArray">attributesToArray()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_belongsTo">belongsTo()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_belongsToMany">belongsToMany()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_boot">boot()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_bootIfNotBooted">bootIfNotBooted()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_create">create()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_created">created()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_creating">creating()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_decrement">decrement()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_deleted">deleted()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_deleting">deleting()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_destroy">destroy()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_fill">fill()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_fillable">fillable()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_fillableFromArray">fillableFromArray()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_find">find()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_findOrFail">findOrFail()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_findOrNew">findOrNew()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_finishSave">finishSave()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_fireModelEvent">fireModelEvent()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_firstByAttributes">firstByAttributes()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_firstOrCreate">firstOrCreate()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_firstOrNew">firstOrNew()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_flushEventListeners">flushEventListeners()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_forceDelete">forceDelete()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_freshTimestamp">freshTimestamp()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_freshTimestampString">freshTimestampString()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_fromDateTime">fromDateTime()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_getArrayableAttributes">getArrayableAttributes()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_getArrayableItems">getArrayableItems()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_getArrayableRelations">getArrayableRelations()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_getAttribute">getAttribute()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_getAttributeFromArray">getAttributeFromArray()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_getAttributeValue">getAttributeValue()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_getAttributes">getAttributes()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_getBelongsToManyCaller">getBelongsToManyCaller()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_getConnection">getConnection()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_getConnectionName">getConnectionName()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_getConnectionResolver">getConnectionResolver()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_getDateFormat">getDateFormat()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_getDates">getDates()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_getDeletedAtColumn">getDeletedAtColumn()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_getDirty">getDirty()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_getEventDispatcher">getEventDispatcher()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_getFillable">getFillable()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_getHidden">getHidden()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_getIncrementing">getIncrementing()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_getKey">getKey()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_getKeyForSaveQuery">getKeyForSaveQuery()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_getKeyName">getKeyName()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_getMorphClass">getMorphClass()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_getMorphs">getMorphs()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_getMutatedAttributes">getMutatedAttributes()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_getObservableEvents">getObservableEvents()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_getOriginal">getOriginal()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_getPerPage">getPerPage()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_getQualifiedDeletedAtColumn">getQualifiedDeletedAtColumn()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_getQualifiedKeyName">getQualifiedKeyName()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_getRelation">getRelation()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_getRelations">getRelations()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_getRelationshipFromMethod">getRelationshipFromMethod()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_getTable">getTable()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_getTouchedRelations">getTouchedRelations()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_guard">guard()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_hasGetMutator">hasGetMutator()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_hasMany">hasMany()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_hasManyThrough">hasManyThrough()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_hasOne">hasOne()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_hasSetMutator">hasSetMutator()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_hydrate">hydrate()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_hydrateRaw">hydrateRaw()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_increment">increment()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_incrementOrDecrement">incrementOrDecrement()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_insertAndSetId">insertAndSetId()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_isDirty">isDirty()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_isFillable">isFillable()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_isGuarded">isGuarded()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_isSoftDeleting">isSoftDeleting()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_joiningTable">joiningTable()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_load">load()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_morphMany">morphMany()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_morphOne">morphOne()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_morphTo">morphTo()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_morphToMany">morphToMany()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_morphedByMany">morphedByMany()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_mutateAttribute">mutateAttribute()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_mutateAttributeForArray">mutateAttributeForArray()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_newBaseQueryBuilder">newBaseQueryBuilder()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_newCollection">newCollection()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_newEloquentBuilder">newEloquentBuilder()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_newFromBuilder">newFromBuilder()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_newInstance">newInstance()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_newPivot">newPivot()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_newQuery">newQuery()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_newQueryWithDeleted">newQueryWithDeleted()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_observe">observe()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_offsetExists">offsetExists()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_offsetGet">offsetGet()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_offsetSet">offsetSet()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_offsetUnset">offsetUnset()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_on">on()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_onlyTrashed">onlyTrashed()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_originalIsNumericallyEquivalent">originalIsNumericallyEquivalent()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_performDeleteOnModel">performDeleteOnModel()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_performInsert">performInsert()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_performUpdate">performUpdate()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_push">push()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_query">query()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_registerModelEvent">registerModelEvent()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_reguard">reguard()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_relationsToArray">relationsToArray()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_removeTableFromKey">removeTableFromKey()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_replicate">replicate()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_resolveConnection">resolveConnection()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_restore">restore()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_restored">restored()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_restoring">restoring()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_save">save()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_saved">saved()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_saving">saving()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_setAppends">setAppends()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_setAttribute">setAttribute()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_setConnection">setConnection()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_setConnectionResolver">setConnectionResolver()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_setCreatedAt">setCreatedAt()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_setEventDispatcher">setEventDispatcher()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_setHidden">setHidden()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_setIncrementing">setIncrementing()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_setPerPage">setPerPage()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_setRawAttributes">setRawAttributes()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_setRelation">setRelation()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_setRelations">setRelations()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_setSoftDeleting">setSoftDeleting()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_setTable">setTable()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_setTouchedRelations">setTouchedRelations()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_setUnguardState">setUnguardState()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_setUpdatedAt">setUpdatedAt()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_setVisible">setVisible()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_syncOriginal">syncOriginal()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_toArray">toArray()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_toJson">toJson()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_totallyGuarded">totallyGuarded()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_touch">touch()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_touchOwners">touchOwners()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_touches">touches()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_trashed">trashed()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_unguard">unguard()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_unsetConnectionResolver">unsetConnectionResolver()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_unsetEventDispatcher">unsetEventDispatcher()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_update">update()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_updateTimestamps">updateTimestamps()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_updated">updated()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_updating">updating()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_usesTimestamps">usesTimestamps()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_with">with()</a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#_withTrashed">withTrashed()</a>
+		</code></td>
+	</tr>
+	</table>
+
+
+
+
+
+
+
+
+	<table class="summary inherited">
+	<caption>Constants inherited from <a href="class-Illuminate.Database.Eloquent.Model.html#constants">Illuminate\Database\Eloquent\Model</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-Illuminate.Database.Eloquent.Model.html#CREATED_AT"><b>CREATED_AT</b></a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#DELETED_AT"><b>DELETED_AT</b></a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#UPDATED_AT"><b>UPDATED_AT</b></a>
+		</code></td>
+	</tr>
+	</table>
+
+
+
+	<table class="summary" id="properties">
+	<caption>Properties summary</caption>
+	<tr data-order="parent" id="$parent">
+		<td class="attributes"><code>
+			protected  
+			<code><a href="class-Illuminate.Database.Eloquent.Model.html">Illuminate\Database\Eloquent\Model</a></code>
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Illuminate.Database.Eloquent.Relations.Pivot.html#8-13" title="Go to source code"><var>$parent</var></a>
+		</td>
+		<td class="value"><code></code></td>
+		<td class="description"><div>
+			<a href="#$parent" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>The parent model of the relationship.</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>The parent model of the relationship.</p>
+
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="foreignKey" id="$foreignKey">
+		<td class="attributes"><code>
+			protected  
+			string
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Illuminate.Database.Eloquent.Relations.Pivot.html#15-20" title="Go to source code"><var>$foreignKey</var></a>
+		</td>
+		<td class="value"><code></code></td>
+		<td class="description"><div>
+			<a href="#$foreignKey" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>The name of the foreign key column.</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>The name of the foreign key column.</p>
+
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="otherKey" id="$otherKey">
+		<td class="attributes"><code>
+			protected  
+			string
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Illuminate.Database.Eloquent.Relations.Pivot.html#22-27" title="Go to source code"><var>$otherKey</var></a>
+		</td>
+		<td class="value"><code></code></td>
+		<td class="description"><div>
+			<a href="#$otherKey" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>The name of the "other key" column.</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>The name of the "other key" column.</p>
+
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="guarded" id="$guarded">
+		<td class="attributes"><code>
+			protected  
+			array
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Illuminate.Database.Eloquent.Relations.Pivot.html#29-34" title="Go to source code"><var>$guarded</var></a>
+		</td>
+		<td class="value"><code><span class="php-keyword1">array</span>()</code></td>
+		<td class="description"><div>
+			<a href="#$guarded" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>The attributes that aren't mass assignable.</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>The attributes that aren't mass assignable.</p>
+
+
+			</div>
+		</div></td>
+	</tr>
+	</table>
+
+	<table class="summary inherited">
+	<caption>Properties inherited from <a href="class-Illuminate.Database.Eloquent.Model.html#properties">Illuminate\Database\Eloquent\Model</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-Illuminate.Database.Eloquent.Model.html#$appends"><var>$appends</var></a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#$attributes"><var>$attributes</var></a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#$booted"><var>$booted</var></a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#$connection"><var>$connection</var></a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#$dates"><var>$dates</var></a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#$dispatcher"><var>$dispatcher</var></a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#$exists"><var>$exists</var></a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#$fillable"><var>$fillable</var></a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#$hidden"><var>$hidden</var></a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#$incrementing"><var>$incrementing</var></a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#$manyMethods"><var>$manyMethods</var></a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#$morphClass"><var>$morphClass</var></a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#$mutatorCache"><var>$mutatorCache</var></a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#$observables"><var>$observables</var></a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#$original"><var>$original</var></a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#$perPage"><var>$perPage</var></a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#$primaryKey"><var>$primaryKey</var></a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#$relations"><var>$relations</var></a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#$resolver"><var>$resolver</var></a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#$snakeAttributes"><var>$snakeAttributes</var></a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#$softDelete"><var>$softDelete</var></a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#$table"><var>$table</var></a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#$timestamps"><var>$timestamps</var></a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#$touches"><var>$touches</var></a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#$unguarded"><var>$unguarded</var></a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#$visible"><var>$visible</var></a>, 
+			<a href="class-Illuminate.Database.Eloquent.Model.html#$with"><var>$with</var></a>
+		</code></td>
+	</tr>
+	</table>
+
+
+
+
+
+</div>
+
+	<div id="footer">
+		 API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
+	</div>
+</div>
+</div>
+</body>
+</html>

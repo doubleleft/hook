@@ -1,0 +1,2538 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="generator" content="ApiGen 2.8.0" />
+
+	<title>Class Illuminate\Database\Eloquent\Builder</title>
+
+	<script type="text/javascript" src="resources/combined.js?417754471"></script>
+	<script type="text/javascript" src="elementlist.js?721444666"></script>
+	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
+
+</head>
+
+<body>
+<div id="left">
+	<div id="menu">
+		<a href="index.html" title="Overview"><span>Overview</span></a>
+
+
+		<div id="groups">
+			<h3>Namespaces</h3>
+			<ul>
+				<li><a href="namespace-Hook.html">Hook<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Application.html">Application<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Application.Core.html">Core</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Hook.Auth.html">Auth<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Auth.Providers.html">Providers</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Hook.Cache.html">Cache</a>
+						</li>
+				<li><a href="namespace-Hook.Controllers.html">Controllers</a>
+						</li>
+				<li><a href="namespace-Hook.Database.html">Database<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Database.Schema.html">Schema<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Database.Schema.Grammars.html">Grammars</a>
+						</li>
+							</ul></li></ul></li>
+				<li><a href="namespace-Hook.Encryption.html">Encryption</a>
+						</li>
+				<li><a href="namespace-Hook.Exceptions.html">Exceptions</a>
+						</li>
+				<li><a href="namespace-Hook.Http.html">Http</a>
+						</li>
+				<li><a href="namespace-Hook.Logger.html">Logger</a>
+						</li>
+				<li><a href="namespace-Hook.Mailer.html">Mailer</a>
+						</li>
+				<li><a href="namespace-Hook.Middlewares.html">Middlewares</a>
+						</li>
+				<li><a href="namespace-Hook.Model.html">Model</a>
+						</li>
+				<li><a href="namespace-Hook.Package.html">Package</a>
+						</li>
+				<li><a href="namespace-Hook.Pagination.html">Pagination</a>
+						</li>
+				<li><a href="namespace-Hook.PushNotification.html">PushNotification<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.PushNotification.Services.html">Services</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Hook.Session.html">Session<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Session.Handlers.html">Handlers</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Hook.Storage.html">Storage<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Storage.Providers.html">Providers</a>
+						</li>
+							</ul></li></ul></li>
+				<li class="active"><a href="namespace-Illuminate.html">Illuminate<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Cache.html">Cache<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Cache.Console.html">Console</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Illuminate.Config.html">Config</a>
+						</li>
+				<li><a href="namespace-Illuminate.Container.html">Container</a>
+						</li>
+				<li class="active"><a href="namespace-Illuminate.Database.html">Database<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Database.Capsule.html">Capsule</a>
+						</li>
+				<li><a href="namespace-Illuminate.Database.Connectors.html">Connectors</a>
+						</li>
+				<li><a href="namespace-Illuminate.Database.Console.html">Console<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Database.Console.Migrations.html">Migrations</a>
+						</li>
+							</ul></li>
+				<li class="active"><a href="namespace-Illuminate.Database.Eloquent.html">Eloquent<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Database.Eloquent.Relations.html">Relations</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Illuminate.Database.Migrations.html">Migrations</a>
+						</li>
+				<li><a href="namespace-Illuminate.Database.Query.html">Query<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Database.Query.Grammars.html">Grammars</a>
+						</li>
+				<li><a href="namespace-Illuminate.Database.Query.Processors.html">Processors</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Illuminate.Database.Schema.html">Schema<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Database.Schema.Grammars.html">Grammars</a>
+						</li>
+							</ul></li></ul></li>
+				<li><a href="namespace-Illuminate.Encryption.html">Encryption</a>
+						</li>
+				<li><a href="namespace-Illuminate.Events.html">Events</a>
+						</li>
+				<li><a href="namespace-Illuminate.Filesystem.html">Filesystem</a>
+						</li>
+				<li><a href="namespace-Illuminate.Support.html">Support<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Support.Contracts.html">Contracts</a>
+						</li>
+				<li><a href="namespace-Illuminate.Support.Facades.html">Facades</a>
+						</li>
+							</ul></li></ul></li>
+				<li><a href="namespace-None.html">None</a>
+						</li>
+				<li><a href="namespace-PHP.html">PHP</a>
+						</li>
+				<li><a href="namespace-Slim.html">Slim<span></span></a>
+						<ul>
+				<li><a href="namespace-Slim.Exception.html">Exception</a>
+						</li>
+				<li><a href="namespace-Slim.Helper.html">Helper</a>
+						</li>
+				<li><a href="namespace-Slim.Http.html">Http</a>
+						</li>
+				<li><a href="namespace-Slim.Middleware.html">Middleware</a>
+						</li>
+							</ul></li>
+			</ul>
+		</div>
+
+		<hr />
+
+
+		<div id="elements">
+			<h3>Classes</h3>
+			<ul>
+				<li class="active"><a href="class-Illuminate.Database.Eloquent.Builder.html">Builder</a></li>
+				<li><a href="class-Illuminate.Database.Eloquent.Collection.html">Collection</a></li>
+				<li><a href="class-Illuminate.Database.Eloquent.Model.html">Model</a></li>
+			</ul>
+
+
+
+			<h3>Exceptions</h3>
+			<ul>
+				<li><a href="class-Illuminate.Database.Eloquent.MassAssignmentException.html">MassAssignmentException</a></li>
+				<li><a href="class-Illuminate.Database.Eloquent.ModelNotFoundException.html">ModelNotFoundException</a></li>
+			</ul>
+
+
+		</div>
+	</div>
+</div>
+
+<div id="splitter"></div>
+
+<div id="right">
+<div id="rightInner">
+	<form id="search">
+		<input type="hidden" name="cx" value="" />
+		<input type="hidden" name="ie" value="UTF-8" />
+		<input type="text" name="q" class="text" />
+		<input type="submit" value="Search" />
+	</form>
+
+	<div id="navigation">
+		<ul>
+			<li>
+				<a href="index.html" title="Overview"><span>Overview</span></a>
+			</li>
+			<li>
+				<a href="namespace-Illuminate.Database.Eloquent.html" title="Summary of Illuminate\Database\Eloquent"><span>Namespace</span></a>
+			</li>
+			<li class="active">
+<span>Class</span>			</li>
+		</ul>
+		<ul>
+			<li>
+				<a href="tree.html" title="Tree view of classes, interfaces, traits and exceptions"><span>Tree</span></a>
+			</li>
+		</ul>
+		<ul>
+		</ul>
+	</div>
+
+<div id="content" class="class">
+	<h1>Class Builder</h1>
+
+
+
+
+
+
+
+
+
+
+
+	<div class="info">
+		
+		
+		<b>Namespace:</b> <a href="namespace-Illuminate.html">Illuminate</a>\<a href="namespace-Illuminate.Database.html">Database</a>\<a href="namespace-Illuminate.Database.Eloquent.html">Eloquent</a><br />
+		
+
+		<b>Located at</b> <a href="source-class-Illuminate.Database.Eloquent.Builder.html#8-935" title="Go to source code">database/Illuminate/Database/Eloquent/Builder.php</a><br />
+	</div>
+
+
+
+	<table class="summary" id="methods">
+	<caption>Methods summary</caption>
+	<tr data-order="__construct" id="___construct">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#___construct">#</a>
+		<code><a href="source-class-Illuminate.Database.Eloquent.Builder.html#41-50" title="Go to source code">__construct</a>( <span><code><a href="class-Illuminate.Database.Query.Builder.html">Illuminate\Database\Query\Builder</a></code> <var>$query</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Create a new Eloquent query builder instance.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Create a new Eloquent query builder instance.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$query</var></dt>
+					<dd><code><code><a href="class-Illuminate.Database.Query.Builder.html">Illuminate\Database\Query\Builder</a></code></code><br>$query</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="find" id="_find">
+
+		<td class="attributes"><code>
+			 public 
+			<code><a href="class-Illuminate.Database.Eloquent.Model.html">Illuminate\Database\Eloquent\Model</a></code>|static|null
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_find">#</a>
+		<code><a href="source-class-Illuminate.Database.Eloquent.Builder.html#52-69" title="Go to source code">find</a>( <span>mixed <var>$id</var></span>, <span>array <var>$columns</var> = <span class="php-keyword1">array</span>(<span class="php-quote">'*'</span>)</span> )</code>
+
+		<div class="description short">
+			
+<p>Find a model by its primary key.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Find a model by its primary key.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$id</var></dt>
+					<dd><code>mixed</code><br>$id</dd>
+					<dt><var>$columns</var></dt>
+					<dd><code>array</code><br>$columns</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-Illuminate.Database.Eloquent.Model.html">Illuminate\Database\Eloquent\Model</a></code>|static|null</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="findMany" id="_findMany">
+
+		<td class="attributes"><code>
+			 public 
+			<code><a href="class-Illuminate.Database.Eloquent.Model.html">Illuminate\Database\Eloquent\Model</a></code>|<code><a href="class-Illuminate.Database.Eloquent.Collection.html">Illuminate\Database\Eloquent\Collection</a></code>|static
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_findMany">#</a>
+		<code><a href="source-class-Illuminate.Database.Eloquent.Builder.html#71-85" title="Go to source code">findMany</a>( <span>array <var>$id</var></span>, <span>array <var>$columns</var> = <span class="php-keyword1">array</span>(<span class="php-quote">'*'</span>)</span> )</code>
+
+		<div class="description short">
+			
+<p>Find a model by its primary key.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Find a model by its primary key.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$id</var></dt>
+					<dd><code>array</code><br>$id</dd>
+					<dt><var>$columns</var></dt>
+					<dd><code>array</code><br>$columns</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-Illuminate.Database.Eloquent.Model.html">Illuminate\Database\Eloquent\Model</a></code>|<code><a href="class-Illuminate.Database.Eloquent.Collection.html">Illuminate\Database\Eloquent\Collection</a></code>|static</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="findOrFail" id="_findOrFail">
+
+		<td class="attributes"><code>
+			 public 
+			<code><a href="class-Illuminate.Database.Eloquent.Model.html">Illuminate\Database\Eloquent\Model</a></code>|static
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_findOrFail">#</a>
+		<code><a href="source-class-Illuminate.Database.Eloquent.Builder.html#87-101" title="Go to source code">findOrFail</a>( <span>mixed <var>$id</var></span>, <span>array <var>$columns</var> = <span class="php-keyword1">array</span>(<span class="php-quote">'*'</span>)</span> )</code>
+
+		<div class="description short">
+			
+<p>Find a model by its primary key or throw an exception.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Find a model by its primary key or throw an exception.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$id</var></dt>
+					<dd><code>mixed</code><br>$id</dd>
+					<dt><var>$columns</var></dt>
+					<dd><code>array</code><br>$columns</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-Illuminate.Database.Eloquent.Model.html">Illuminate\Database\Eloquent\Model</a></code>|static</code><br />
+				</div>
+
+				<h4>Throws</h4>
+				<div class="list">
+					<code><code><a href="class-Illuminate.Database.Eloquent.ModelNotFoundException.html">Illuminate\Database\Eloquent\ModelNotFoundException</a></code></code><br />
+				</div>
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="first" id="_first">
+
+		<td class="attributes"><code>
+			 public 
+			<code><a href="class-Illuminate.Database.Eloquent.Model.html">Illuminate\Database\Eloquent\Model</a></code>|static|null
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_first">#</a>
+		<code><a href="source-class-Illuminate.Database.Eloquent.Builder.html#103-112" title="Go to source code">first</a>( <span>array <var>$columns</var> = <span class="php-keyword1">array</span>(<span class="php-quote">'*'</span>)</span> )</code>
+
+		<div class="description short">
+			
+<p>Execute the query and get the first result.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Execute the query and get the first result.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$columns</var></dt>
+					<dd><code>array</code><br>$columns</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-Illuminate.Database.Eloquent.Model.html">Illuminate\Database\Eloquent\Model</a></code>|static|null</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="firstOrFail" id="_firstOrFail">
+
+		<td class="attributes"><code>
+			 public 
+			<code><a href="class-Illuminate.Database.Eloquent.Model.html">Illuminate\Database\Eloquent\Model</a></code>|static
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_firstOrFail">#</a>
+		<code><a href="source-class-Illuminate.Database.Eloquent.Builder.html#114-127" title="Go to source code">firstOrFail</a>( <span>array <var>$columns</var> = <span class="php-keyword1">array</span>(<span class="php-quote">'*'</span>)</span> )</code>
+
+		<div class="description short">
+			
+<p>Execute the query and get the first result or throw an exception.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Execute the query and get the first result or throw an exception.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$columns</var></dt>
+					<dd><code>array</code><br>$columns</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-Illuminate.Database.Eloquent.Model.html">Illuminate\Database\Eloquent\Model</a></code>|static</code><br />
+				</div>
+
+				<h4>Throws</h4>
+				<div class="list">
+					<code><code><a href="class-Illuminate.Database.Eloquent.ModelNotFoundException.html">Illuminate\Database\Eloquent\ModelNotFoundException</a></code></code><br />
+				</div>
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="get" id="_get">
+
+		<td class="attributes"><code>
+			 public 
+			<code><a href="class-Illuminate.Database.Eloquent.Collection.html">Illuminate\Database\Eloquent\Collection</a></code>|static[]
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_get">#</a>
+		<code><a href="source-class-Illuminate.Database.Eloquent.Builder.html#129-148" title="Go to source code">get</a>( <span>array <var>$columns</var> = <span class="php-keyword1">array</span>(<span class="php-quote">'*'</span>)</span> )</code>
+
+		<div class="description short">
+			
+<p>Execute the query as a "select" statement.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Execute the query as a "select" statement.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$columns</var></dt>
+					<dd><code>array</code><br>$columns</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-Illuminate.Database.Eloquent.Collection.html">Illuminate\Database\Eloquent\Collection</a></code>|static[]</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="pluck" id="_pluck">
+
+		<td class="attributes"><code>
+			 public 
+			mixed
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_pluck">#</a>
+		<code><a href="source-class-Illuminate.Database.Eloquent.Builder.html#150-161" title="Go to source code">pluck</a>( <span>string <var>$column</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Pluck a single column from the database.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Pluck a single column from the database.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$column</var></dt>
+					<dd><code>string</code><br>$column</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>mixed</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="chunk" id="_chunk">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_chunk">#</a>
+		<code><a href="source-class-Illuminate.Database.Eloquent.Builder.html#163-185" title="Go to source code">chunk</a>( <span>integer <var>$count</var></span>, <span>callable <var>$callback</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Chunk the results of the query.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Chunk the results of the query.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$count</var></dt>
+					<dd><code>integer</code><br>$count</dd>
+					<dt><var>$callback</var></dt>
+					<dd><code>callable</code><br>$callback</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="lists" id="_lists">
+
+		<td class="attributes"><code>
+			 public 
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_lists">#</a>
+		<code><a href="source-class-Illuminate.Database.Eloquent.Builder.html#187-212" title="Go to source code">lists</a>( <span>string <var>$column</var></span>, <span>string <var>$key</var> = <span class="php-keyword1">null</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Get an array with the values of a given column.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get an array with the values of a given column.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$column</var></dt>
+					<dd><code>string</code><br>$column</dd>
+					<dt><var>$key</var></dt>
+					<dd><code>string</code><br>$key</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="paginate" id="_paginate">
+
+		<td class="attributes"><code>
+			 public 
+			Illuminate\Pagination\Paginator
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_paginate">#</a>
+		<code><a href="source-class-Illuminate.Database.Eloquent.Builder.html#214-235" title="Go to source code">paginate</a>( <span>integer <var>$perPage</var> = <span class="php-keyword1">null</span></span>, <span>array <var>$columns</var> = <span class="php-keyword1">array</span>(<span class="php-quote">'*'</span>)</span> )</code>
+
+		<div class="description short">
+			
+<p>Get a paginator for the "select" statement.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get a paginator for the "select" statement.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$perPage</var></dt>
+					<dd><code>integer</code><br>$perPage</dd>
+					<dt><var>$columns</var></dt>
+					<dd><code>array</code><br>$columns</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>Illuminate\Pagination\Paginator</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="groupedPaginate" id="_groupedPaginate">
+
+		<td class="attributes"><code>
+			 protected 
+			Illuminate\Pagination\Paginator
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_groupedPaginate">#</a>
+		<code><a href="source-class-Illuminate.Database.Eloquent.Builder.html#237-250" title="Go to source code">groupedPaginate</a>( <span>Illuminate\Pagination\Environment <var>$paginator</var></span>, <span>integer <var>$perPage</var></span>, <span>array <var>$columns</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Get a paginator for a grouped statement.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get a paginator for a grouped statement.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$paginator</var></dt>
+					<dd><code>Illuminate\Pagination\Environment</code><br>$paginator</dd>
+					<dt><var>$perPage</var></dt>
+					<dd><code>integer</code><br>$perPage</dd>
+					<dt><var>$columns</var></dt>
+					<dd><code>array</code><br>$columns</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>Illuminate\Pagination\Paginator</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="ungroupedPaginate" id="_ungroupedPaginate">
+
+		<td class="attributes"><code>
+			 protected 
+			Illuminate\Pagination\Paginator
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_ungroupedPaginate">#</a>
+		<code><a href="source-class-Illuminate.Database.Eloquent.Builder.html#252-272" title="Go to source code">ungroupedPaginate</a>( <span>Illuminate\Pagination\Environment <var>$paginator</var></span>, <span>integer <var>$perPage</var></span>, <span>array <var>$columns</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Get a paginator for an ungrouped statement.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get a paginator for an ungrouped statement.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$paginator</var></dt>
+					<dd><code>Illuminate\Pagination\Environment</code><br>$paginator</dd>
+					<dt><var>$perPage</var></dt>
+					<dd><code>integer</code><br>$perPage</dd>
+					<dt><var>$columns</var></dt>
+					<dd><code>array</code><br>$columns</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>Illuminate\Pagination\Paginator</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="update" id="_update">
+
+		<td class="attributes"><code>
+			 public 
+			integer
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_update">#</a>
+		<code><a href="source-class-Illuminate.Database.Eloquent.Builder.html#274-283" title="Go to source code">update</a>( <span>array <var>$values</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Update a record in the database.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Update a record in the database.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$values</var></dt>
+					<dd><code>array</code><br>$values</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>integer</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="increment" id="_increment">
+
+		<td class="attributes"><code>
+			 public 
+			integer
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_increment">#</a>
+		<code><a href="source-class-Illuminate.Database.Eloquent.Builder.html#285-298" title="Go to source code">increment</a>( <span>string <var>$column</var></span>, <span>integer <var>$amount</var> = <span class="php-num">1</span></span>, <span>array <var>$extra</var> = <span class="php-keyword1">array</span>()</span> )</code>
+
+		<div class="description short">
+			
+<p>Increment a column's value by a given amount.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Increment a column's value by a given amount.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$column</var></dt>
+					<dd><code>string</code><br>$column</dd>
+					<dt><var>$amount</var></dt>
+					<dd><code>integer</code><br>$amount</dd>
+					<dt><var>$extra</var></dt>
+					<dd><code>array</code><br>$extra</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>integer</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="decrement" id="_decrement">
+
+		<td class="attributes"><code>
+			 public 
+			integer
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_decrement">#</a>
+		<code><a href="source-class-Illuminate.Database.Eloquent.Builder.html#300-313" title="Go to source code">decrement</a>( <span>string <var>$column</var></span>, <span>integer <var>$amount</var> = <span class="php-num">1</span></span>, <span>array <var>$extra</var> = <span class="php-keyword1">array</span>()</span> )</code>
+
+		<div class="description short">
+			
+<p>Decrement a column's value by a given amount.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Decrement a column's value by a given amount.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$column</var></dt>
+					<dd><code>string</code><br>$column</dd>
+					<dt><var>$amount</var></dt>
+					<dd><code>integer</code><br>$amount</dd>
+					<dt><var>$extra</var></dt>
+					<dd><code>array</code><br>$extra</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>integer</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="addUpdatedAtColumn" id="_addUpdatedAtColumn">
+
+		<td class="attributes"><code>
+			 protected 
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_addUpdatedAtColumn">#</a>
+		<code><a href="source-class-Illuminate.Database.Eloquent.Builder.html#315-328" title="Go to source code">addUpdatedAtColumn</a>( <span>array <var>$values</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Add the "updated at" column to an array of values.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Add the "updated at" column to an array of values.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$values</var></dt>
+					<dd><code>array</code><br>$values</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="delete" id="_delete">
+
+		<td class="attributes"><code>
+			 public 
+			integer
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_delete">#</a>
+		<code><a href="source-class-Illuminate.Database.Eloquent.Builder.html#330-345" title="Go to source code">delete</a>( )</code>
+
+		<div class="description short">
+			
+<p>Delete a record from the database.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Delete a record from the database.</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>integer</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="softDelete" id="_softDelete">
+
+		<td class="attributes"><code>
+			 protected 
+			integer
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_softDelete">#</a>
+		<code><a href="source-class-Illuminate.Database.Eloquent.Builder.html#347-357" title="Go to source code">softDelete</a>( )</code>
+
+		<div class="description short">
+			
+<p>Soft delete the record in the database.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Soft delete the record in the database.</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>integer</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="forceDelete" id="_forceDelete">
+
+		<td class="attributes"><code>
+			 public 
+			integer
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_forceDelete">#</a>
+		<code><a href="source-class-Illuminate.Database.Eloquent.Builder.html#359-367" title="Go to source code">forceDelete</a>( )</code>
+
+		<div class="description short">
+			
+<p>Force a delete on a set of soft deleted models.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Force a delete on a set of soft deleted models.</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>integer</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="restore" id="_restore">
+
+		<td class="attributes"><code>
+			 public 
+			integer
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_restore">#</a>
+		<code><a href="source-class-Illuminate.Database.Eloquent.Builder.html#369-382" title="Go to source code">restore</a>( )</code>
+
+		<div class="description short">
+			
+<p>Restore the soft-deleted model instances.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Restore the soft-deleted model instances.</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>integer</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="withTrashed" id="_withTrashed">
+
+		<td class="attributes"><code>
+			 public 
+			<code><a href="class-Illuminate.Database.Eloquent.Builder.html">Illuminate\Database\Eloquent\Builder</a></code>|static
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_withTrashed">#</a>
+		<code><a href="source-class-Illuminate.Database.Eloquent.Builder.html#384-407" title="Go to source code">withTrashed</a>( )</code>
+
+		<div class="description short">
+			
+<p>Include the soft deleted models in the results.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Include the soft deleted models in the results.</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-Illuminate.Database.Eloquent.Builder.html">Illuminate\Database\Eloquent\Builder</a></code>|static</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="onlyTrashed" id="_onlyTrashed">
+
+		<td class="attributes"><code>
+			 public 
+			<code><a href="class-Illuminate.Database.Eloquent.Builder.html">Illuminate\Database\Eloquent\Builder</a></code>|static
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_onlyTrashed">#</a>
+		<code><a href="source-class-Illuminate.Database.Eloquent.Builder.html#409-421" title="Go to source code">onlyTrashed</a>( )</code>
+
+		<div class="description short">
+			
+<p>Force the result set to only included soft deletes.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Force the result set to only included soft deletes.</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-Illuminate.Database.Eloquent.Builder.html">Illuminate\Database\Eloquent\Builder</a></code>|static</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="isSoftDeleteConstraint" id="_isSoftDeleteConstraint">
+
+		<td class="attributes"><code>
+			 protected 
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_isSoftDeleteConstraint">#</a>
+		<code><a href="source-class-Illuminate.Database.Eloquent.Builder.html#423-433" title="Go to source code">isSoftDeleteConstraint</a>( <span>array <var>$where</var></span>, <span>string <var>$column</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Determine if the given where clause is a soft delete constraint.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Determine if the given where clause is a soft delete constraint.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$where</var></dt>
+					<dd><code>array</code><br>$where</dd>
+					<dt><var>$column</var></dt>
+					<dd><code>string</code><br>$column</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getModels" id="_getModels">
+
+		<td class="attributes"><code>
+			 public 
+			array|static[]
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getModels">#</a>
+		<code><a href="source-class-Illuminate.Database.Eloquent.Builder.html#435-463" title="Go to source code">getModels</a>( <span>array <var>$columns</var> = <span class="php-keyword1">array</span>(<span class="php-quote">'*'</span>)</span> )</code>
+
+		<div class="description short">
+			
+<p>Get the hydrated models without eager loading.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get the hydrated models without eager loading.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$columns</var></dt>
+					<dd><code>array</code><br>$columns</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array|static[]</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="eagerLoadRelations" id="_eagerLoadRelations">
+
+		<td class="attributes"><code>
+			 public 
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_eagerLoadRelations">#</a>
+		<code><a href="source-class-Illuminate.Database.Eloquent.Builder.html#465-485" title="Go to source code">eagerLoadRelations</a>( <span>array <var>$models</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Eager load the relationships for the models.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Eager load the relationships for the models.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$models</var></dt>
+					<dd><code>array</code><br>$models</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="loadRelation" id="_loadRelation">
+
+		<td class="attributes"><code>
+			 protected 
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_loadRelation">#</a>
+		<code><a href="source-class-Illuminate.Database.Eloquent.Builder.html#487-514" title="Go to source code">loadRelation</a>( <span>array <var>$models</var></span>, <span>string <var>$name</var></span>, <span><code><a href="class-Closure.html">Closure</a></code> <var>$constraints</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Eagerly load the relationship on a set of models.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Eagerly load the relationship on a set of models.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$models</var></dt>
+					<dd><code>array</code><br>$models</dd>
+					<dt><var>$name</var></dt>
+					<dd><code>string</code><br>$name</dd>
+					<dt><var>$constraints</var></dt>
+					<dd><code><code><a href="class-Closure.html">Closure</a></code></code><br>$constraints</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getRelation" id="_getRelation">
+
+		<td class="attributes"><code>
+			 public 
+			<code><a href="class-Illuminate.Database.Eloquent.Relations.Relation.html">Illuminate\Database\Eloquent\Relations\Relation</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getRelation">#</a>
+		<code><a href="source-class-Illuminate.Database.Eloquent.Builder.html#516-545" title="Go to source code">getRelation</a>( <span>string <var>$relation</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Get the relation instance for the given relation name.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get the relation instance for the given relation name.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$relation</var></dt>
+					<dd><code>string</code><br>$relation</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-Illuminate.Database.Eloquent.Relations.Relation.html">Illuminate\Database\Eloquent\Relations\Relation</a></code></code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="nestedRelations" id="_nestedRelations">
+
+		<td class="attributes"><code>
+			 protected 
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_nestedRelations">#</a>
+		<code><a href="source-class-Illuminate.Database.Eloquent.Builder.html#547-569" title="Go to source code">nestedRelations</a>( <span>string <var>$relation</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Get the deeply nested relations for a given top-level relation.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get the deeply nested relations for a given top-level relation.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$relation</var></dt>
+					<dd><code>string</code><br>$relation</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="isNested" id="_isNested">
+
+		<td class="attributes"><code>
+			 protected 
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_isNested">#</a>
+		<code><a href="source-class-Illuminate.Database.Eloquent.Builder.html#571-583" title="Go to source code">isNested</a>( <span>string <var>$name</var></span>, <span>string <var>$relation</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Determine if the relationship is nested.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Determine if the relationship is nested.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$name</var></dt>
+					<dd><code>string</code><br>$name</dd>
+					<dt><var>$relation</var></dt>
+					<dd><code>string</code><br>$relation</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="where" id="_where">
+
+		<td class="attributes"><code>
+			 public 
+			<code><a href="class-Illuminate.Database.Eloquent.Builder.html">Illuminate\Database\Eloquent\Builder</a></code>|static
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_where">#</a>
+		<code><a href="source-class-Illuminate.Database.Eloquent.Builder.html#585-610" title="Go to source code">where</a>( <span>string <var>$column</var></span>, <span>string <var>$operator</var> = <span class="php-keyword1">null</span></span>, <span>mixed <var>$value</var> = <span class="php-keyword1">null</span></span>, <span>string <var>$boolean</var> = <span class="php-quote">'and'</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Add a basic where clause to the query.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Add a basic where clause to the query.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$column</var></dt>
+					<dd><code>string</code><br>$column</dd>
+					<dt><var>$operator</var></dt>
+					<dd><code>string</code><br>$operator</dd>
+					<dt><var>$value</var></dt>
+					<dd><code>mixed</code><br>$value</dd>
+					<dt><var>$boolean</var></dt>
+					<dd><code>string</code><br>$boolean</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-Illuminate.Database.Eloquent.Builder.html">Illuminate\Database\Eloquent\Builder</a></code>|static</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="orWhere" id="_orWhere">
+
+		<td class="attributes"><code>
+			 public 
+			<code><a href="class-Illuminate.Database.Eloquent.Builder.html">Illuminate\Database\Eloquent\Builder</a></code>|static
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_orWhere">#</a>
+		<code><a href="source-class-Illuminate.Database.Eloquent.Builder.html#612-623" title="Go to source code">orWhere</a>( <span>string <var>$column</var></span>, <span>string <var>$operator</var> = <span class="php-keyword1">null</span></span>, <span>mixed <var>$value</var> = <span class="php-keyword1">null</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Add an "or where" clause to the query.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Add an "or where" clause to the query.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$column</var></dt>
+					<dd><code>string</code><br>$column</dd>
+					<dt><var>$operator</var></dt>
+					<dd><code>string</code><br>$operator</dd>
+					<dt><var>$value</var></dt>
+					<dd><code>mixed</code><br>$value</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-Illuminate.Database.Eloquent.Builder.html">Illuminate\Database\Eloquent\Builder</a></code>|static</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="has" id="_has">
+
+		<td class="attributes"><code>
+			 public 
+			<code><a href="class-Illuminate.Database.Eloquent.Builder.html">Illuminate\Database\Eloquent\Builder</a></code>|static
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_has">#</a>
+		<code><a href="source-class-Illuminate.Database.Eloquent.Builder.html#625-644" title="Go to source code">has</a>( <span>string <var>$relation</var></span>, <span>string <var>$operator</var> = <span class="php-quote">'&gt;='</span></span>, <span>integer <var>$count</var> = <span class="php-num">1</span></span>, <span>string <var>$boolean</var> = <span class="php-quote">'and'</span></span>, <span><code><a href="class-Closure.html">Closure</a></code> <var>$callback</var> = <span class="php-keyword1">null</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Add a relationship count condition to the query.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Add a relationship count condition to the query.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$relation</var></dt>
+					<dd><code>string</code><br>$relation</dd>
+					<dt><var>$operator</var></dt>
+					<dd><code>string</code><br>$operator</dd>
+					<dt><var>$count</var></dt>
+					<dd><code>integer</code><br>$count</dd>
+					<dt><var>$boolean</var></dt>
+					<dd><code>string</code><br>$boolean</dd>
+					<dt><var>$callback</var></dt>
+					<dd><code><code><a href="class-Closure.html">Closure</a></code></code><br>$callback</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-Illuminate.Database.Eloquent.Builder.html">Illuminate\Database\Eloquent\Builder</a></code>|static</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="whereHas" id="_whereHas">
+
+		<td class="attributes"><code>
+			 public 
+			<code><a href="class-Illuminate.Database.Eloquent.Builder.html">Illuminate\Database\Eloquent\Builder</a></code>|static
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_whereHas">#</a>
+		<code><a href="source-class-Illuminate.Database.Eloquent.Builder.html#646-658" title="Go to source code">whereHas</a>( <span>string <var>$relation</var></span>, <span><code><a href="class-Closure.html">Closure</a></code> <var>$callback</var></span>, <span>string <var>$operator</var> = <span class="php-quote">'&gt;='</span></span>, <span>integer <var>$count</var> = <span class="php-num">1</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Add a relationship count condition to the query with where clauses.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Add a relationship count condition to the query with where clauses.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$relation</var></dt>
+					<dd><code>string</code><br>$relation</dd>
+					<dt><var>$callback</var></dt>
+					<dd><code><code><a href="class-Closure.html">Closure</a></code></code><br>$callback</dd>
+					<dt><var>$operator</var></dt>
+					<dd><code>string</code><br>$operator</dd>
+					<dt><var>$count</var></dt>
+					<dd><code>integer</code><br>$count</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-Illuminate.Database.Eloquent.Builder.html">Illuminate\Database\Eloquent\Builder</a></code>|static</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="orHas" id="_orHas">
+
+		<td class="attributes"><code>
+			 public 
+			<code><a href="class-Illuminate.Database.Eloquent.Builder.html">Illuminate\Database\Eloquent\Builder</a></code>|static
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_orHas">#</a>
+		<code><a href="source-class-Illuminate.Database.Eloquent.Builder.html#660-671" title="Go to source code">orHas</a>( <span>string <var>$relation</var></span>, <span>string <var>$operator</var> = <span class="php-quote">'&gt;='</span></span>, <span>integer <var>$count</var> = <span class="php-num">1</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Add a relationship count condition to the query with an "or".</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Add a relationship count condition to the query with an "or".</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$relation</var></dt>
+					<dd><code>string</code><br>$relation</dd>
+					<dt><var>$operator</var></dt>
+					<dd><code>string</code><br>$operator</dd>
+					<dt><var>$count</var></dt>
+					<dd><code>integer</code><br>$count</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-Illuminate.Database.Eloquent.Builder.html">Illuminate\Database\Eloquent\Builder</a></code>|static</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="orWhereHas" id="_orWhereHas">
+
+		<td class="attributes"><code>
+			 public 
+			<code><a href="class-Illuminate.Database.Eloquent.Builder.html">Illuminate\Database\Eloquent\Builder</a></code>|static
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_orWhereHas">#</a>
+		<code><a href="source-class-Illuminate.Database.Eloquent.Builder.html#673-685" title="Go to source code">orWhereHas</a>( <span>string <var>$relation</var></span>, <span><code><a href="class-Closure.html">Closure</a></code> <var>$callback</var></span>, <span>string <var>$operator</var> = <span class="php-quote">'&gt;='</span></span>, <span>integer <var>$count</var> = <span class="php-num">1</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Add a relationship count condition to the query with where clauses and an
+"or".</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Add a relationship count condition to the query with where clauses and an
+"or".</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$relation</var></dt>
+					<dd><code>string</code><br>$relation</dd>
+					<dt><var>$callback</var></dt>
+					<dd><code><code><a href="class-Closure.html">Closure</a></code></code><br>$callback</dd>
+					<dt><var>$operator</var></dt>
+					<dd><code>string</code><br>$operator</dd>
+					<dt><var>$count</var></dt>
+					<dd><code>integer</code><br>$count</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-Illuminate.Database.Eloquent.Builder.html">Illuminate\Database\Eloquent\Builder</a></code>|static</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="addHasWhere" id="_addHasWhere">
+
+		<td class="attributes"><code>
+			 protected 
+			<code><a href="class-Illuminate.Database.Eloquent.Builder.html">Illuminate\Database\Eloquent\Builder</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_addHasWhere">#</a>
+		<code><a href="source-class-Illuminate.Database.Eloquent.Builder.html#687-707" title="Go to source code">addHasWhere</a>( <span><code><a href="class-Illuminate.Database.Eloquent.Builder.html">Illuminate\Database\Eloquent\Builder</a></code> <var>$hasQuery</var></span>, <span><code><a href="class-Illuminate.Database.Eloquent.Relations.Relation.html">Illuminate\Database\Eloquent\Relations\Relation</a></code> <var>$relation</var></span>, <span>string <var>$operator</var></span>, <span>integer <var>$count</var></span>, <span>string <var>$boolean</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Add the "has" condition where clause to the query.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Add the "has" condition where clause to the query.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$hasQuery</var></dt>
+					<dd><code><code><a href="class-Illuminate.Database.Eloquent.Builder.html">Illuminate\Database\Eloquent\Builder</a></code></code><br>$hasQuery</dd>
+					<dt><var>$relation</var></dt>
+					<dd><code><code><a href="class-Illuminate.Database.Eloquent.Relations.Relation.html">Illuminate\Database\Eloquent\Relations\Relation</a></code></code><br>$relation</dd>
+					<dt><var>$operator</var></dt>
+					<dd><code>string</code><br>$operator</dd>
+					<dt><var>$count</var></dt>
+					<dd><code>integer</code><br>$count</dd>
+					<dt><var>$boolean</var></dt>
+					<dd><code>string</code><br>$boolean</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-Illuminate.Database.Eloquent.Builder.html">Illuminate\Database\Eloquent\Builder</a></code></code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="mergeWheresToHas" id="_mergeWheresToHas">
+
+		<td class="attributes"><code>
+			 protected 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_mergeWheresToHas">#</a>
+		<code><a href="source-class-Illuminate.Database.Eloquent.Builder.html#709-728" title="Go to source code">mergeWheresToHas</a>( <span><code><a href="class-Illuminate.Database.Eloquent.Builder.html">Illuminate\Database\Eloquent\Builder</a></code> <var>$hasQuery</var></span>, <span><code><a href="class-Illuminate.Database.Eloquent.Relations.Relation.html">Illuminate\Database\Eloquent\Relations\Relation</a></code> <var>$relation</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Merge the "wheres" from a relation query to a has query.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Merge the "wheres" from a relation query to a has query.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$hasQuery</var></dt>
+					<dd><code><code><a href="class-Illuminate.Database.Eloquent.Builder.html">Illuminate\Database\Eloquent\Builder</a></code></code><br>$hasQuery</dd>
+					<dt><var>$relation</var></dt>
+					<dd><code><code><a href="class-Illuminate.Database.Eloquent.Relations.Relation.html">Illuminate\Database\Eloquent\Relations\Relation</a></code></code><br>$relation</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getHasRelationQuery" id="_getHasRelationQuery">
+
+		<td class="attributes"><code>
+			 protected 
+			<code><a href="class-Illuminate.Database.Eloquent.Builder.html">Illuminate\Database\Eloquent\Builder</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getHasRelationQuery">#</a>
+		<code><a href="source-class-Illuminate.Database.Eloquent.Builder.html#730-744" title="Go to source code">getHasRelationQuery</a>( <span>string <var>$relation</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Get the "has relation" base query instance.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get the "has relation" base query instance.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$relation</var></dt>
+					<dd><code>string</code><br>$relation</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-Illuminate.Database.Eloquent.Builder.html">Illuminate\Database\Eloquent\Builder</a></code></code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="with" id="_with">
+
+		<td class="attributes"><code>
+			 public 
+			<code><a href="class-Illuminate.Database.Eloquent.Builder.html">Illuminate\Database\Eloquent\Builder</a></code>|static
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_with">#</a>
+		<code><a href="source-class-Illuminate.Database.Eloquent.Builder.html#746-761" title="Go to source code">with</a>( <span>dynamic <var>$relations</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Set the relationships that should be eager loaded.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Set the relationships that should be eager loaded.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$relations</var></dt>
+					<dd><code>dynamic</code><br>$relations</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-Illuminate.Database.Eloquent.Builder.html">Illuminate\Database\Eloquent\Builder</a></code>|static</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="parseRelations" id="_parseRelations">
+
+		<td class="attributes"><code>
+			 protected 
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_parseRelations">#</a>
+		<code><a href="source-class-Illuminate.Database.Eloquent.Builder.html#763-794" title="Go to source code">parseRelations</a>( <span>array <var>$relations</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Parse a list of relations into individuals.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Parse a list of relations into individuals.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$relations</var></dt>
+					<dd><code>array</code><br>$relations</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="parseNested" id="_parseNested">
+
+		<td class="attributes"><code>
+			 protected 
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_parseNested">#</a>
+		<code><a href="source-class-Illuminate.Database.Eloquent.Builder.html#796-821" title="Go to source code">parseNested</a>( <span>string <var>$name</var></span>, <span>array <var>$results</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Parse the nested relationships in a relation.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Parse the nested relationships in a relation.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$name</var></dt>
+					<dd><code>string</code><br>$name</dd>
+					<dt><var>$results</var></dt>
+					<dd><code>array</code><br>$results</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="callScope" id="_callScope">
+
+		<td class="attributes"><code>
+			 protected 
+			<code><a href="class-Illuminate.Database.Query.Builder.html">Illuminate\Database\Query\Builder</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_callScope">#</a>
+		<code><a href="source-class-Illuminate.Database.Eloquent.Builder.html#823-835" title="Go to source code">callScope</a>( <span>string <var>$scope</var></span>, <span>array <var>$parameters</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Call the given model scope on the underlying model.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Call the given model scope on the underlying model.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$scope</var></dt>
+					<dd><code>string</code><br>$scope</dd>
+					<dt><var>$parameters</var></dt>
+					<dd><code>array</code><br>$parameters</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-Illuminate.Database.Query.Builder.html">Illuminate\Database\Query\Builder</a></code></code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getQuery" id="_getQuery">
+
+		<td class="attributes"><code>
+			 public 
+			<code><a href="class-Illuminate.Database.Query.Builder.html">Illuminate\Database\Query\Builder</a></code>|static
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getQuery">#</a>
+		<code><a href="source-class-Illuminate.Database.Eloquent.Builder.html#837-845" title="Go to source code">getQuery</a>( )</code>
+
+		<div class="description short">
+			
+<p>Get the underlying query builder instance.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get the underlying query builder instance.</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-Illuminate.Database.Query.Builder.html">Illuminate\Database\Query\Builder</a></code>|static</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="setQuery" id="_setQuery">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_setQuery">#</a>
+		<code><a href="source-class-Illuminate.Database.Eloquent.Builder.html#847-856" title="Go to source code">setQuery</a>( <span><code><a href="class-Illuminate.Database.Query.Builder.html">Illuminate\Database\Query\Builder</a></code> <var>$query</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Set the underlying query builder instance.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Set the underlying query builder instance.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$query</var></dt>
+					<dd><code><code><a href="class-Illuminate.Database.Query.Builder.html">Illuminate\Database\Query\Builder</a></code></code><br>$query</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getEagerLoads" id="_getEagerLoads">
+
+		<td class="attributes"><code>
+			 public 
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getEagerLoads">#</a>
+		<code><a href="source-class-Illuminate.Database.Eloquent.Builder.html#858-866" title="Go to source code">getEagerLoads</a>( )</code>
+
+		<div class="description short">
+			
+<p>Get the relationships being eagerly loaded.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get the relationships being eagerly loaded.</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="setEagerLoads" id="_setEagerLoads">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_setEagerLoads">#</a>
+		<code><a href="source-class-Illuminate.Database.Eloquent.Builder.html#868-877" title="Go to source code">setEagerLoads</a>( <span>array <var>$eagerLoad</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Set the relationships being eagerly loaded.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Set the relationships being eagerly loaded.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$eagerLoad</var></dt>
+					<dd><code>array</code><br>$eagerLoad</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getModel" id="_getModel">
+
+		<td class="attributes"><code>
+			 public 
+			<code><a href="class-Illuminate.Database.Eloquent.Model.html">Illuminate\Database\Eloquent\Model</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getModel">#</a>
+		<code><a href="source-class-Illuminate.Database.Eloquent.Builder.html#879-887" title="Go to source code">getModel</a>( )</code>
+
+		<div class="description short">
+			
+<p>Get the model instance being queried.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get the model instance being queried.</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-Illuminate.Database.Eloquent.Model.html">Illuminate\Database\Eloquent\Model</a></code></code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="setModel" id="_setModel">
+
+		<td class="attributes"><code>
+			 public 
+			<code><a href="class-Illuminate.Database.Eloquent.Builder.html">Illuminate\Database\Eloquent\Builder</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_setModel">#</a>
+		<code><a href="source-class-Illuminate.Database.Eloquent.Builder.html#889-902" title="Go to source code">setModel</a>( <span><code><a href="class-Illuminate.Database.Eloquent.Model.html">Illuminate\Database\Eloquent\Model</a></code> <var>$model</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Set a model instance for the model being queried.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Set a model instance for the model being queried.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$model</var></dt>
+					<dd><code><code><a href="class-Illuminate.Database.Eloquent.Model.html">Illuminate\Database\Eloquent\Model</a></code></code><br>$model</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-Illuminate.Database.Eloquent.Builder.html">Illuminate\Database\Eloquent\Builder</a></code></code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="__call" id="___call">
+
+		<td class="attributes"><code>
+			 public 
+			mixed
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#___call">#</a>
+		<code><a href="source-class-Illuminate.Database.Eloquent.Builder.html#904-923" title="Go to source code">__call</a>( <span>string <var>$method</var></span>, <span>array <var>$parameters</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Dynamically handle calls into the query instance.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Dynamically handle calls into the query instance.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$method</var></dt>
+					<dd><code>string</code><br>$method</dd>
+					<dt><var>$parameters</var></dt>
+					<dd><code>array</code><br>$parameters</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>mixed</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="__clone" id="___clone">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#___clone">#</a>
+		<code><a href="source-class-Illuminate.Database.Eloquent.Builder.html#925-933" title="Go to source code">__clone</a>( )</code>
+
+		<div class="description short">
+			
+<p>Force a clone of the underlying query builder when cloning.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Force a clone of the underlying query builder when cloning.</p>
+
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	</table>
+
+
+
+
+
+
+
+
+
+
+
+
+	<table class="summary" id="properties">
+	<caption>Properties summary</caption>
+	<tr data-order="query" id="$query">
+		<td class="attributes"><code>
+			protected  
+			<code><a href="class-Illuminate.Database.Query.Builder.html">Illuminate\Database\Query\Builder</a></code>
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Illuminate.Database.Eloquent.Builder.html#10-15" title="Go to source code"><var>$query</var></a>
+		</td>
+		<td class="value"><code></code></td>
+		<td class="description"><div>
+			<a href="#$query" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>The base query builder instance.</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>The base query builder instance.</p>
+
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="model" id="$model">
+		<td class="attributes"><code>
+			protected  
+			<code><a href="class-Illuminate.Database.Eloquent.Model.html">Illuminate\Database\Eloquent\Model</a></code>
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Illuminate.Database.Eloquent.Builder.html#17-22" title="Go to source code"><var>$model</var></a>
+		</td>
+		<td class="value"><code></code></td>
+		<td class="description"><div>
+			<a href="#$model" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>The model being queried.</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>The model being queried.</p>
+
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="eagerLoad" id="$eagerLoad">
+		<td class="attributes"><code>
+			protected  
+			array
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Illuminate.Database.Eloquent.Builder.html#24-29" title="Go to source code"><var>$eagerLoad</var></a>
+		</td>
+		<td class="value"><code><span class="php-keyword1">array</span>()</code></td>
+		<td class="description"><div>
+			<a href="#$eagerLoad" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>The relationships that should be eager loaded.</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>The relationships that should be eager loaded.</p>
+
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="passthru" id="$passthru">
+		<td class="attributes"><code>
+			protected  
+			array
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Illuminate.Database.Eloquent.Builder.html#31-39" title="Go to source code"><var>$passthru</var></a>
+		</td>
+		<td class="value"><code><span class="php-keyword1">array</span>(
+	<span class="php-quote">'toSql'</span>, <span class="php-quote">'lists'</span>, <span class="php-quote">'insert'</span>, <span class="php-quote">'insertGetId'</span>, <span class="php-quote">'pluck'</span>, <span class="php-quote">'count'</span>,
+	<span class="php-quote">'min'</span>, <span class="php-quote">'max'</span>, <span class="php-quote">'avg'</span>, <span class="php-quote">'sum'</span>, <span class="php-quote">'exists'</span>, <span class="php-quote">'getBindings'</span>,
+)</code></td>
+		<td class="description"><div>
+			<a href="#$passthru" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>The methods that should be returned from query builder.</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>The methods that should be returned from query builder.</p>
+
+
+			</div>
+		</div></td>
+	</tr>
+	</table>
+
+
+
+
+
+
+</div>
+
+	<div id="footer">
+		 API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
+	</div>
+</div>
+</div>
+</body>
+</html>

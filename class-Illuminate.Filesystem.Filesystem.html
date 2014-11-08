@@ -1,0 +1,1342 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="generator" content="ApiGen 2.8.0" />
+
+	<title>Class Illuminate\Filesystem\Filesystem</title>
+
+	<script type="text/javascript" src="resources/combined.js?417754471"></script>
+	<script type="text/javascript" src="elementlist.js?721444666"></script>
+	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
+
+</head>
+
+<body>
+<div id="left">
+	<div id="menu">
+		<a href="index.html" title="Overview"><span>Overview</span></a>
+
+
+		<div id="groups">
+			<h3>Namespaces</h3>
+			<ul>
+				<li><a href="namespace-Hook.html">Hook<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Application.html">Application<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Application.Core.html">Core</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Hook.Auth.html">Auth<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Auth.Providers.html">Providers</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Hook.Cache.html">Cache</a>
+						</li>
+				<li><a href="namespace-Hook.Controllers.html">Controllers</a>
+						</li>
+				<li><a href="namespace-Hook.Database.html">Database<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Database.Schema.html">Schema<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Database.Schema.Grammars.html">Grammars</a>
+						</li>
+							</ul></li></ul></li>
+				<li><a href="namespace-Hook.Encryption.html">Encryption</a>
+						</li>
+				<li><a href="namespace-Hook.Exceptions.html">Exceptions</a>
+						</li>
+				<li><a href="namespace-Hook.Http.html">Http</a>
+						</li>
+				<li><a href="namespace-Hook.Logger.html">Logger</a>
+						</li>
+				<li><a href="namespace-Hook.Mailer.html">Mailer</a>
+						</li>
+				<li><a href="namespace-Hook.Middlewares.html">Middlewares</a>
+						</li>
+				<li><a href="namespace-Hook.Model.html">Model</a>
+						</li>
+				<li><a href="namespace-Hook.Package.html">Package</a>
+						</li>
+				<li><a href="namespace-Hook.Pagination.html">Pagination</a>
+						</li>
+				<li><a href="namespace-Hook.PushNotification.html">PushNotification<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.PushNotification.Services.html">Services</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Hook.Session.html">Session<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Session.Handlers.html">Handlers</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Hook.Storage.html">Storage<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Storage.Providers.html">Providers</a>
+						</li>
+							</ul></li></ul></li>
+				<li class="active"><a href="namespace-Illuminate.html">Illuminate<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Cache.html">Cache<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Cache.Console.html">Console</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Illuminate.Config.html">Config</a>
+						</li>
+				<li><a href="namespace-Illuminate.Container.html">Container</a>
+						</li>
+				<li><a href="namespace-Illuminate.Database.html">Database<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Database.Capsule.html">Capsule</a>
+						</li>
+				<li><a href="namespace-Illuminate.Database.Connectors.html">Connectors</a>
+						</li>
+				<li><a href="namespace-Illuminate.Database.Console.html">Console<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Database.Console.Migrations.html">Migrations</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Illuminate.Database.Eloquent.html">Eloquent<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Database.Eloquent.Relations.html">Relations</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Illuminate.Database.Migrations.html">Migrations</a>
+						</li>
+				<li><a href="namespace-Illuminate.Database.Query.html">Query<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Database.Query.Grammars.html">Grammars</a>
+						</li>
+				<li><a href="namespace-Illuminate.Database.Query.Processors.html">Processors</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Illuminate.Database.Schema.html">Schema<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Database.Schema.Grammars.html">Grammars</a>
+						</li>
+							</ul></li></ul></li>
+				<li><a href="namespace-Illuminate.Encryption.html">Encryption</a>
+						</li>
+				<li><a href="namespace-Illuminate.Events.html">Events</a>
+						</li>
+				<li class="active"><a href="namespace-Illuminate.Filesystem.html">Filesystem</a>
+						</li>
+				<li><a href="namespace-Illuminate.Support.html">Support<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Support.Contracts.html">Contracts</a>
+						</li>
+				<li><a href="namespace-Illuminate.Support.Facades.html">Facades</a>
+						</li>
+							</ul></li></ul></li>
+				<li><a href="namespace-None.html">None</a>
+						</li>
+				<li><a href="namespace-PHP.html">PHP</a>
+						</li>
+				<li><a href="namespace-Slim.html">Slim<span></span></a>
+						<ul>
+				<li><a href="namespace-Slim.Exception.html">Exception</a>
+						</li>
+				<li><a href="namespace-Slim.Helper.html">Helper</a>
+						</li>
+				<li><a href="namespace-Slim.Http.html">Http</a>
+						</li>
+				<li><a href="namespace-Slim.Middleware.html">Middleware</a>
+						</li>
+							</ul></li>
+			</ul>
+		</div>
+
+		<hr />
+
+
+		<div id="elements">
+			<h3>Classes</h3>
+			<ul>
+				<li class="active"><a href="class-Illuminate.Filesystem.Filesystem.html">Filesystem</a></li>
+				<li><a href="class-Illuminate.Filesystem.FilesystemServiceProvider.html">FilesystemServiceProvider</a></li>
+			</ul>
+
+
+
+			<h3>Exceptions</h3>
+			<ul>
+				<li><a href="class-Illuminate.Filesystem.FileNotFoundException.html">FileNotFoundException</a></li>
+			</ul>
+
+
+		</div>
+	</div>
+</div>
+
+<div id="splitter"></div>
+
+<div id="right">
+<div id="rightInner">
+	<form id="search">
+		<input type="hidden" name="cx" value="" />
+		<input type="hidden" name="ie" value="UTF-8" />
+		<input type="text" name="q" class="text" />
+		<input type="submit" value="Search" />
+	</form>
+
+	<div id="navigation">
+		<ul>
+			<li>
+				<a href="index.html" title="Overview"><span>Overview</span></a>
+			</li>
+			<li>
+				<a href="namespace-Illuminate.Filesystem.html" title="Summary of Illuminate\Filesystem"><span>Namespace</span></a>
+			</li>
+			<li class="active">
+<span>Class</span>			</li>
+		</ul>
+		<ul>
+			<li>
+				<a href="tree.html" title="Tree view of classes, interfaces, traits and exceptions"><span>Tree</span></a>
+			</li>
+		</ul>
+		<ul>
+		</ul>
+	</div>
+
+<div id="content" class="class">
+	<h1>Class Filesystem</h1>
+
+
+
+
+
+
+
+
+
+
+
+	<div class="info">
+		
+		
+		<b>Namespace:</b> <a href="namespace-Illuminate.html">Illuminate</a>\<a href="namespace-Illuminate.Filesystem.html">Filesystem</a><br />
+		
+
+		<b>Located at</b> <a href="source-class-Illuminate.Filesystem.Filesystem.html#8-406" title="Go to source code">filesystem/Illuminate/Filesystem/Filesystem.php</a><br />
+	</div>
+
+
+
+	<table class="summary" id="methods">
+	<caption>Methods summary</caption>
+	<tr data-order="exists" id="_exists">
+
+		<td class="attributes"><code>
+			 public 
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_exists">#</a>
+		<code><a href="source-class-Illuminate.Filesystem.Filesystem.html#10-19" title="Go to source code">exists</a>( <span>string <var>$path</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Determine if a file exists.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Determine if a file exists.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$path</var></dt>
+					<dd><code>string</code><br>$path</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="get" id="_get">
+
+		<td class="attributes"><code>
+			 public 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_get">#</a>
+		<code><a href="source-class-Illuminate.Filesystem.Filesystem.html#21-34" title="Go to source code">get</a>( <span>string <var>$path</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Get the contents of a file.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get the contents of a file.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$path</var></dt>
+					<dd><code>string</code><br>$path</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br />
+				</div>
+
+				<h4>Throws</h4>
+				<div class="list">
+					<code><code><a href="class-Illuminate.Filesystem.FileNotFoundException.html">Illuminate\Filesystem\FileNotFoundException</a></code></code><br />
+				</div>
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getRequire" id="_getRequire">
+
+		<td class="attributes"><code>
+			 public 
+			mixed
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getRequire">#</a>
+		<code><a href="source-class-Illuminate.Filesystem.Filesystem.html#36-49" title="Go to source code">getRequire</a>( <span>string <var>$path</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Get the returned value of a file.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get the returned value of a file.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$path</var></dt>
+					<dd><code>string</code><br>$path</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>mixed</code><br />
+				</div>
+
+				<h4>Throws</h4>
+				<div class="list">
+					<code><code><a href="class-Illuminate.Filesystem.FileNotFoundException.html">Illuminate\Filesystem\FileNotFoundException</a></code></code><br />
+				</div>
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="requireOnce" id="_requireOnce">
+
+		<td class="attributes"><code>
+			 public 
+			mixed
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_requireOnce">#</a>
+		<code><a href="source-class-Illuminate.Filesystem.Filesystem.html#51-60" title="Go to source code">requireOnce</a>( <span>string <var>$file</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Require the given file once.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Require the given file once.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$file</var></dt>
+					<dd><code>string</code><br>$file</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>mixed</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="put" id="_put">
+
+		<td class="attributes"><code>
+			 public 
+			integer
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_put">#</a>
+		<code><a href="source-class-Illuminate.Filesystem.Filesystem.html#62-72" title="Go to source code">put</a>( <span>string <var>$path</var></span>, <span>string <var>$contents</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Write the contents of a file.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Write the contents of a file.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$path</var></dt>
+					<dd><code>string</code><br>$path</dd>
+					<dt><var>$contents</var></dt>
+					<dd><code>string</code><br>$contents</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>integer</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="prepend" id="_prepend">
+
+		<td class="attributes"><code>
+			 public 
+			integer
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_prepend">#</a>
+		<code><a href="source-class-Illuminate.Filesystem.Filesystem.html#74-91" title="Go to source code">prepend</a>( <span>string <var>$path</var></span>, <span>string <var>$data</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Prepend to a file.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Prepend to a file.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$path</var></dt>
+					<dd><code>string</code><br>$path</dd>
+					<dt><var>$data</var></dt>
+					<dd><code>string</code><br>$data</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>integer</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="append" id="_append">
+
+		<td class="attributes"><code>
+			 public 
+			integer
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_append">#</a>
+		<code><a href="source-class-Illuminate.Filesystem.Filesystem.html#93-103" title="Go to source code">append</a>( <span>string <var>$path</var></span>, <span>string <var>$data</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Append to a file.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Append to a file.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$path</var></dt>
+					<dd><code>string</code><br>$path</dd>
+					<dt><var>$data</var></dt>
+					<dd><code>string</code><br>$data</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>integer</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="delete" id="_delete">
+
+		<td class="attributes"><code>
+			 public 
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_delete">#</a>
+		<code><a href="source-class-Illuminate.Filesystem.Filesystem.html#105-120" title="Go to source code">delete</a>( <span>string|array <var>$paths</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Delete the file at a given path.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Delete the file at a given path.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$paths</var></dt>
+					<dd><code>string|array</code><br>$paths</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="move" id="_move">
+
+		<td class="attributes"><code>
+			 public 
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_move">#</a>
+		<code><a href="source-class-Illuminate.Filesystem.Filesystem.html#122-132" title="Go to source code">move</a>( <span>string <var>$path</var></span>, <span>string <var>$target</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Move a file to a new location.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Move a file to a new location.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$path</var></dt>
+					<dd><code>string</code><br>$path</dd>
+					<dt><var>$target</var></dt>
+					<dd><code>string</code><br>$target</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="copy" id="_copy">
+
+		<td class="attributes"><code>
+			 public 
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_copy">#</a>
+		<code><a href="source-class-Illuminate.Filesystem.Filesystem.html#134-144" title="Go to source code">copy</a>( <span>string <var>$path</var></span>, <span>string <var>$target</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Copy a file to a new location.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Copy a file to a new location.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$path</var></dt>
+					<dd><code>string</code><br>$path</dd>
+					<dt><var>$target</var></dt>
+					<dd><code>string</code><br>$target</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="extension" id="_extension">
+
+		<td class="attributes"><code>
+			 public 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_extension">#</a>
+		<code><a href="source-class-Illuminate.Filesystem.Filesystem.html#146-155" title="Go to source code">extension</a>( <span>string <var>$path</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Extract the file extension from a file path.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Extract the file extension from a file path.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$path</var></dt>
+					<dd><code>string</code><br>$path</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="type" id="_type">
+
+		<td class="attributes"><code>
+			 public 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_type">#</a>
+		<code><a href="source-class-Illuminate.Filesystem.Filesystem.html#157-166" title="Go to source code">type</a>( <span>string <var>$path</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Get the file type of a given file.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get the file type of a given file.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$path</var></dt>
+					<dd><code>string</code><br>$path</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="size" id="_size">
+
+		<td class="attributes"><code>
+			 public 
+			integer
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_size">#</a>
+		<code><a href="source-class-Illuminate.Filesystem.Filesystem.html#168-177" title="Go to source code">size</a>( <span>string <var>$path</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Get the file size of a given file.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get the file size of a given file.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$path</var></dt>
+					<dd><code>string</code><br>$path</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>integer</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="lastModified" id="_lastModified">
+
+		<td class="attributes"><code>
+			 public 
+			integer
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_lastModified">#</a>
+		<code><a href="source-class-Illuminate.Filesystem.Filesystem.html#179-188" title="Go to source code">lastModified</a>( <span>string <var>$path</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Get the file's last modification time.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get the file's last modification time.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$path</var></dt>
+					<dd><code>string</code><br>$path</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>integer</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="isDirectory" id="_isDirectory">
+
+		<td class="attributes"><code>
+			 public 
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_isDirectory">#</a>
+		<code><a href="source-class-Illuminate.Filesystem.Filesystem.html#190-199" title="Go to source code">isDirectory</a>( <span>string <var>$directory</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Determine if the given path is a directory.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Determine if the given path is a directory.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$directory</var></dt>
+					<dd><code>string</code><br>$directory</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="isWritable" id="_isWritable">
+
+		<td class="attributes"><code>
+			 public 
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_isWritable">#</a>
+		<code><a href="source-class-Illuminate.Filesystem.Filesystem.html#201-210" title="Go to source code">isWritable</a>( <span>string <var>$path</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Determine if the given path is writable.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Determine if the given path is writable.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$path</var></dt>
+					<dd><code>string</code><br>$path</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="isFile" id="_isFile">
+
+		<td class="attributes"><code>
+			 public 
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_isFile">#</a>
+		<code><a href="source-class-Illuminate.Filesystem.Filesystem.html#212-221" title="Go to source code">isFile</a>( <span>string <var>$file</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Determine if the given path is a file.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Determine if the given path is a file.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$file</var></dt>
+					<dd><code>string</code><br>$file</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="glob" id="_glob">
+
+		<td class="attributes"><code>
+			 public 
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_glob">#</a>
+		<code><a href="source-class-Illuminate.Filesystem.Filesystem.html#223-233" title="Go to source code">glob</a>( <span>string <var>$pattern</var></span>, <span>integer <var>$flags</var> = <span class="php-num">0</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Find path names matching a given pattern.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Find path names matching a given pattern.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$pattern</var></dt>
+					<dd><code>string</code><br>$pattern</dd>
+					<dt><var>$flags</var></dt>
+					<dd><code>integer</code><br>$flags</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="files" id="_files">
+
+		<td class="attributes"><code>
+			 public 
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_files">#</a>
+		<code><a href="source-class-Illuminate.Filesystem.Filesystem.html#235-254" title="Go to source code">files</a>( <span>string <var>$directory</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Get an array of all files in a directory.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get an array of all files in a directory.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$directory</var></dt>
+					<dd><code>string</code><br>$directory</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="allFiles" id="_allFiles">
+
+		<td class="attributes"><code>
+			 public 
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_allFiles">#</a>
+		<code><a href="source-class-Illuminate.Filesystem.Filesystem.html#256-265" title="Go to source code">allFiles</a>( <span>string <var>$directory</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Get all of the files from the given directory (recursive).</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get all of the files from the given directory (recursive).</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$directory</var></dt>
+					<dd><code>string</code><br>$directory</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="directories" id="_directories">
+
+		<td class="attributes"><code>
+			 public 
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_directories">#</a>
+		<code><a href="source-class-Illuminate.Filesystem.Filesystem.html#267-283" title="Go to source code">directories</a>( <span>string <var>$directory</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Get all of the directories within a given directory.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get all of the directories within a given directory.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$directory</var></dt>
+					<dd><code>string</code><br>$directory</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="makeDirectory" id="_makeDirectory">
+
+		<td class="attributes"><code>
+			 public 
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_makeDirectory">#</a>
+		<code><a href="source-class-Illuminate.Filesystem.Filesystem.html#285-304" title="Go to source code">makeDirectory</a>( <span>string <var>$path</var></span>, <span>integer <var>$mode</var> = <span class="php-num">0777</span></span>, <span>boolean <var>$recursive</var> = <span class="php-keyword1">false</span></span>, <span>boolean <var>$force</var> = <span class="php-keyword1">false</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Create a directory.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Create a directory.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$path</var></dt>
+					<dd><code>string</code><br>$path</dd>
+					<dt><var>$mode</var></dt>
+					<dd><code>integer</code><br>$mode</dd>
+					<dt><var>$recursive</var></dt>
+					<dd><code>boolean</code><br>$recursive</dd>
+					<dt><var>$force</var></dt>
+					<dd><code>boolean</code><br>$force</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="copyDirectory" id="_copyDirectory">
+
+		<td class="attributes"><code>
+			 public 
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_copyDirectory">#</a>
+		<code><a href="source-class-Illuminate.Filesystem.Filesystem.html#306-354" title="Go to source code">copyDirectory</a>( <span>string <var>$directory</var></span>, <span>string <var>$destination</var></span>, <span>integer <var>$options</var> = <span class="php-keyword1">null</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Copy a directory from one location to another.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Copy a directory from one location to another.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$directory</var></dt>
+					<dd><code>string</code><br>$directory</dd>
+					<dt><var>$destination</var></dt>
+					<dd><code>string</code><br>$destination</dd>
+					<dt><var>$options</var></dt>
+					<dd><code>integer</code><br>$options</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="deleteDirectory" id="_deleteDirectory">
+
+		<td class="attributes"><code>
+			 public 
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_deleteDirectory">#</a>
+		<code><a href="source-class-Illuminate.Filesystem.Filesystem.html#356-393" title="Go to source code">deleteDirectory</a>( <span>string <var>$directory</var></span>, <span>boolean <var>$preserve</var> = <span class="php-keyword1">false</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Recursively delete a directory.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Recursively delete a directory.</p>
+
+<p>The directory itself may be optionally preserved.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$directory</var></dt>
+					<dd><code>string</code><br>$directory</dd>
+					<dt><var>$preserve</var></dt>
+					<dd><code>boolean</code><br>$preserve</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="cleanDirectory" id="_cleanDirectory">
+
+		<td class="attributes"><code>
+			 public 
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_cleanDirectory">#</a>
+		<code><a href="source-class-Illuminate.Filesystem.Filesystem.html#395-404" title="Go to source code">cleanDirectory</a>( <span>string <var>$directory</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Empty the specified directory of all files and folders.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Empty the specified directory of all files and folders.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$directory</var></dt>
+					<dd><code>string</code><br>$directory</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+	<div id="footer">
+		 API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
+	</div>
+</div>
+</div>
+</body>
+</html>

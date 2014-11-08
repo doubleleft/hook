@@ -1,0 +1,1453 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="generator" content="ApiGen 2.8.0" />
+
+	<title>Class Slim\Log</title>
+
+	<script type="text/javascript" src="resources/combined.js?417754471"></script>
+	<script type="text/javascript" src="elementlist.js?721444666"></script>
+	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
+
+</head>
+
+<body>
+<div id="left">
+	<div id="menu">
+		<a href="index.html" title="Overview"><span>Overview</span></a>
+
+
+		<div id="groups">
+			<h3>Namespaces</h3>
+			<ul>
+				<li><a href="namespace-Hook.html">Hook<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Application.html">Application<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Application.Core.html">Core</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Hook.Auth.html">Auth<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Auth.Providers.html">Providers</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Hook.Cache.html">Cache</a>
+						</li>
+				<li><a href="namespace-Hook.Controllers.html">Controllers</a>
+						</li>
+				<li><a href="namespace-Hook.Database.html">Database<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Database.Schema.html">Schema<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Database.Schema.Grammars.html">Grammars</a>
+						</li>
+							</ul></li></ul></li>
+				<li><a href="namespace-Hook.Encryption.html">Encryption</a>
+						</li>
+				<li><a href="namespace-Hook.Exceptions.html">Exceptions</a>
+						</li>
+				<li><a href="namespace-Hook.Http.html">Http</a>
+						</li>
+				<li><a href="namespace-Hook.Logger.html">Logger</a>
+						</li>
+				<li><a href="namespace-Hook.Mailer.html">Mailer</a>
+						</li>
+				<li><a href="namespace-Hook.Middlewares.html">Middlewares</a>
+						</li>
+				<li><a href="namespace-Hook.Model.html">Model</a>
+						</li>
+				<li><a href="namespace-Hook.Package.html">Package</a>
+						</li>
+				<li><a href="namespace-Hook.Pagination.html">Pagination</a>
+						</li>
+				<li><a href="namespace-Hook.PushNotification.html">PushNotification<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.PushNotification.Services.html">Services</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Hook.Session.html">Session<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Session.Handlers.html">Handlers</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Hook.Storage.html">Storage<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Storage.Providers.html">Providers</a>
+						</li>
+							</ul></li></ul></li>
+				<li><a href="namespace-Illuminate.html">Illuminate<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Cache.html">Cache<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Cache.Console.html">Console</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Illuminate.Config.html">Config</a>
+						</li>
+				<li><a href="namespace-Illuminate.Container.html">Container</a>
+						</li>
+				<li><a href="namespace-Illuminate.Database.html">Database<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Database.Capsule.html">Capsule</a>
+						</li>
+				<li><a href="namespace-Illuminate.Database.Connectors.html">Connectors</a>
+						</li>
+				<li><a href="namespace-Illuminate.Database.Console.html">Console<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Database.Console.Migrations.html">Migrations</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Illuminate.Database.Eloquent.html">Eloquent<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Database.Eloquent.Relations.html">Relations</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Illuminate.Database.Migrations.html">Migrations</a>
+						</li>
+				<li><a href="namespace-Illuminate.Database.Query.html">Query<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Database.Query.Grammars.html">Grammars</a>
+						</li>
+				<li><a href="namespace-Illuminate.Database.Query.Processors.html">Processors</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Illuminate.Database.Schema.html">Schema<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Database.Schema.Grammars.html">Grammars</a>
+						</li>
+							</ul></li></ul></li>
+				<li><a href="namespace-Illuminate.Encryption.html">Encryption</a>
+						</li>
+				<li><a href="namespace-Illuminate.Events.html">Events</a>
+						</li>
+				<li><a href="namespace-Illuminate.Filesystem.html">Filesystem</a>
+						</li>
+				<li><a href="namespace-Illuminate.Support.html">Support<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Support.Contracts.html">Contracts</a>
+						</li>
+				<li><a href="namespace-Illuminate.Support.Facades.html">Facades</a>
+						</li>
+							</ul></li></ul></li>
+				<li><a href="namespace-None.html">None</a>
+						</li>
+				<li><a href="namespace-PHP.html">PHP</a>
+						</li>
+				<li class="active"><a href="namespace-Slim.html">Slim<span></span></a>
+						<ul>
+				<li><a href="namespace-Slim.Exception.html">Exception</a>
+						</li>
+				<li><a href="namespace-Slim.Helper.html">Helper</a>
+						</li>
+				<li><a href="namespace-Slim.Http.html">Http</a>
+						</li>
+				<li><a href="namespace-Slim.Middleware.html">Middleware</a>
+						</li>
+							</ul></li>
+			</ul>
+		</div>
+
+		<hr />
+
+
+		<div id="elements">
+			<h3>Classes</h3>
+			<ul>
+				<li><a href="class-Slim.Environment.html">Environment</a></li>
+				<li class="active"><a href="class-Slim.Log.html">Log</a></li>
+				<li><a href="class-Slim.LogWriter.html">LogWriter</a></li>
+				<li><a href="class-Slim.Middleware.html">Middleware</a></li>
+				<li><a href="class-Slim.Route.html">Route</a></li>
+				<li><a href="class-Slim.Router.html">Router</a></li>
+				<li><a href="class-Slim.Slim.html">Slim</a></li>
+				<li><a href="class-Slim.View.html">View</a></li>
+			</ul>
+
+
+
+
+
+		</div>
+	</div>
+</div>
+
+<div id="splitter"></div>
+
+<div id="right">
+<div id="rightInner">
+	<form id="search">
+		<input type="hidden" name="cx" value="" />
+		<input type="hidden" name="ie" value="UTF-8" />
+		<input type="text" name="q" class="text" />
+		<input type="submit" value="Search" />
+	</form>
+
+	<div id="navigation">
+		<ul>
+			<li>
+				<a href="index.html" title="Overview"><span>Overview</span></a>
+			</li>
+			<li>
+				<a href="namespace-Slim.html" title="Summary of Slim"><span>Namespace</span></a>
+			</li>
+			<li class="active">
+<span>Class</span>			</li>
+		</ul>
+		<ul>
+			<li>
+				<a href="tree.html" title="Tree view of classes, interfaces, traits and exceptions"><span>Tree</span></a>
+			</li>
+		</ul>
+		<ul>
+		</ul>
+	</div>
+
+<div id="content" class="class">
+	<h1>Class Log</h1>
+
+
+	<div class="description">
+	
+<p>Log</p>
+
+<p>This is the primary logger for a Slim application. You may provide a Log
+Writer in conjunction with this Log to write to various output destinations
+(e.g. a file). This class provides this interface:</p>
+
+<p>debug( mixed $object, array $context ) info( mixed $object, array $context )
+notice( mixed $object, array $context ) warning( mixed $object, array $context )
+error( mixed $object, array $context ) critical( mixed $object, array $context )
+alert( mixed $object, array $context ) emergency( mixed $object, array $context
+) log( mixed $level, mixed $object, array $context )</p>
+
+<p>This class assumes only that your Log Writer has a public
+<code>write()</code> method that accepts any object as its one and only
+argument. The Log Writer class may write or send its argument anywhere: a file,
+STDERR, a remote web API, etc. The possibilities are endless.</p>
+
+	</div>
+
+
+
+
+
+
+
+
+
+	<div class="info">
+		
+		
+		<b>Namespace:</b> <a href="namespace-Slim.html">Slim</a><br />
+		<b>Package:</b> Slim<br />
+
+				<b>Author:</b>
+				Josh Lockhart<br />
+				<b>Since:</b>
+				1.0.0<br />
+		<b>Located at</b> <a href="source-class-Slim.Log.html#35-349" title="Go to source code">Log.php</a><br />
+	</div>
+
+
+
+	<table class="summary" id="methods">
+	<caption>Methods summary</caption>
+	<tr data-order="__construct" id="___construct">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#___construct">#</a>
+		<code><a href="source-class-Slim.Log.html#102-111" title="Go to source code">__construct</a>( <span>mixed <var>$writer</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Constructor</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Constructor</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$writer</var></dt>
+					<dd><code>mixed</code><br>$writer</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getEnabled" id="_getEnabled">
+
+		<td class="attributes"><code>
+			 public 
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getEnabled">#</a>
+		<code><a href="source-class-Slim.Log.html#113-120" title="Go to source code">getEnabled</a>( )</code>
+
+		<div class="description short">
+			
+<p>Is logging enabled?</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Is logging enabled?</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="setEnabled" id="_setEnabled">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_setEnabled">#</a>
+		<code><a href="source-class-Slim.Log.html#122-133" title="Go to source code">setEnabled</a>( <span>boolean <var>$enabled</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Enable or disable logging</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Enable or disable logging</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$enabled</var></dt>
+					<dd><code>boolean</code><br>$enabled</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="setLevel" id="_setLevel">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_setLevel">#</a>
+		<code><a href="source-class-Slim.Log.html#135-146" title="Go to source code">setLevel</a>( <span>integer <var>$level</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Set level</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Set level</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$level</var></dt>
+					<dd><code>integer</code><br>$level</dd>
+				</dl></div>
+
+
+				<h4>Throws</h4>
+				<div class="list">
+					<code><code><a href="class-InvalidArgumentException.html">InvalidArgumentException</a></code></code><br>If invalid log level specified<br />
+				</div>
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getLevel" id="_getLevel">
+
+		<td class="attributes"><code>
+			 public 
+			integer
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getLevel">#</a>
+		<code><a href="source-class-Slim.Log.html#148-155" title="Go to source code">getLevel</a>( )</code>
+
+		<div class="description short">
+			
+<p>Get level</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get level</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>integer</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="setWriter" id="_setWriter">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_setWriter">#</a>
+		<code><a href="source-class-Slim.Log.html#157-164" title="Go to source code">setWriter</a>( <span>mixed <var>$writer</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Set writer</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Set writer</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$writer</var></dt>
+					<dd><code>mixed</code><br>$writer</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getWriter" id="_getWriter">
+
+		<td class="attributes"><code>
+			 public 
+			mixed
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getWriter">#</a>
+		<code><a href="source-class-Slim.Log.html#166-173" title="Go to source code">getWriter</a>( )</code>
+
+		<div class="description short">
+			
+<p>Get writer</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get writer</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>mixed</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="isEnabled" id="_isEnabled">
+
+		<td class="attributes"><code>
+			 public 
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_isEnabled">#</a>
+		<code><a href="source-class-Slim.Log.html#175-182" title="Go to source code">isEnabled</a>( )</code>
+
+		<div class="description short">
+			
+<p>Is logging enabled?</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Is logging enabled?</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="debug" id="_debug">
+
+		<td class="attributes"><code>
+			 public 
+			mixed|boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_debug">#</a>
+		<code><a href="source-class-Slim.Log.html#184-193" title="Go to source code">debug</a>( <span>mixed <var>$object</var></span>, <span>array <var>$context</var> = <span class="php-keyword1">array</span>()</span> )</code>
+
+		<div class="description short">
+			
+<p>Log debug message</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Log debug message</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$object</var></dt>
+					<dd><code>mixed</code><br>$object</dd>
+					<dt><var>$context</var></dt>
+					<dd><code>array</code><br>$context</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>mixed|boolean</code><br>What the Logger returns, or false if Logger not set or not enabled<br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="info" id="_info">
+
+		<td class="attributes"><code>
+			 public 
+			mixed|boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_info">#</a>
+		<code><a href="source-class-Slim.Log.html#195-204" title="Go to source code">info</a>( <span>mixed <var>$object</var></span>, <span>array <var>$context</var> = <span class="php-keyword1">array</span>()</span> )</code>
+
+		<div class="description short">
+			
+<p>Log info message</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Log info message</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$object</var></dt>
+					<dd><code>mixed</code><br>$object</dd>
+					<dt><var>$context</var></dt>
+					<dd><code>array</code><br>$context</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>mixed|boolean</code><br>What the Logger returns, or false if Logger not set or not enabled<br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="notice" id="_notice">
+
+		<td class="attributes"><code>
+			 public 
+			mixed|boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_notice">#</a>
+		<code><a href="source-class-Slim.Log.html#206-215" title="Go to source code">notice</a>( <span>mixed <var>$object</var></span>, <span>array <var>$context</var> = <span class="php-keyword1">array</span>()</span> )</code>
+
+		<div class="description short">
+			
+<p>Log notice message</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Log notice message</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$object</var></dt>
+					<dd><code>mixed</code><br>$object</dd>
+					<dt><var>$context</var></dt>
+					<dd><code>array</code><br>$context</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>mixed|boolean</code><br>What the Logger returns, or false if Logger not set or not enabled<br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="warning" id="_warning">
+
+		<td class="attributes"><code>
+			 public 
+			mixed|boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_warning">#</a>
+		<code><a href="source-class-Slim.Log.html#217-226" title="Go to source code">warning</a>( <span>mixed <var>$object</var></span>, <span>array <var>$context</var> = <span class="php-keyword1">array</span>()</span> )</code>
+
+		<div class="description short">
+			
+<p>Log warning message</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Log warning message</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$object</var></dt>
+					<dd><code>mixed</code><br>$object</dd>
+					<dt><var>$context</var></dt>
+					<dd><code>array</code><br>$context</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>mixed|boolean</code><br>What the Logger returns, or false if Logger not set or not enabled<br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="warn" id="_warn">
+
+		<td class="attributes"><code>
+			 public 
+			mixed|boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_warn">#</a>
+		<code><a href="source-class-Slim.Log.html#228-238" title="Go to source code">warn</a>( <span>mixed <var>$object</var></span>, <span>array <var>$context</var> = <span class="php-keyword1">array</span>()</span> )</code>
+
+		<div class="description short">
+			
+<p>DEPRECATED for function warning Log warning message</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>DEPRECATED for function warning Log warning message</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$object</var></dt>
+					<dd><code>mixed</code><br>$object</dd>
+					<dt><var>$context</var></dt>
+					<dd><code>array</code><br>$context</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>mixed|boolean</code><br>What the Logger returns, or false if Logger not set or not enabled<br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="error" id="_error">
+
+		<td class="attributes"><code>
+			 public 
+			mixed|boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_error">#</a>
+		<code><a href="source-class-Slim.Log.html#240-249" title="Go to source code">error</a>( <span>mixed <var>$object</var></span>, <span>array <var>$context</var> = <span class="php-keyword1">array</span>()</span> )</code>
+
+		<div class="description short">
+			
+<p>Log error message</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Log error message</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$object</var></dt>
+					<dd><code>mixed</code><br>$object</dd>
+					<dt><var>$context</var></dt>
+					<dd><code>array</code><br>$context</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>mixed|boolean</code><br>What the Logger returns, or false if Logger not set or not enabled<br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="critical" id="_critical">
+
+		<td class="attributes"><code>
+			 public 
+			mixed|boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_critical">#</a>
+		<code><a href="source-class-Slim.Log.html#251-260" title="Go to source code">critical</a>( <span>mixed <var>$object</var></span>, <span>array <var>$context</var> = <span class="php-keyword1">array</span>()</span> )</code>
+
+		<div class="description short">
+			
+<p>Log critical message</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Log critical message</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$object</var></dt>
+					<dd><code>mixed</code><br>$object</dd>
+					<dt><var>$context</var></dt>
+					<dd><code>array</code><br>$context</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>mixed|boolean</code><br>What the Logger returns, or false if Logger not set or not enabled<br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="fatal" id="_fatal">
+
+		<td class="attributes"><code>
+			 public 
+			mixed|boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_fatal">#</a>
+		<code><a href="source-class-Slim.Log.html#262-272" title="Go to source code">fatal</a>( <span>mixed <var>$object</var></span>, <span>array <var>$context</var> = <span class="php-keyword1">array</span>()</span> )</code>
+
+		<div class="description short">
+			
+<p>DEPRECATED for function critical Log fatal message</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>DEPRECATED for function critical Log fatal message</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$object</var></dt>
+					<dd><code>mixed</code><br>$object</dd>
+					<dt><var>$context</var></dt>
+					<dd><code>array</code><br>$context</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>mixed|boolean</code><br>What the Logger returns, or false if Logger not set or not enabled<br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="alert" id="_alert">
+
+		<td class="attributes"><code>
+			 public 
+			mixed|boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_alert">#</a>
+		<code><a href="source-class-Slim.Log.html#274-283" title="Go to source code">alert</a>( <span>mixed <var>$object</var></span>, <span>array <var>$context</var> = <span class="php-keyword1">array</span>()</span> )</code>
+
+		<div class="description short">
+			
+<p>Log alert message</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Log alert message</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$object</var></dt>
+					<dd><code>mixed</code><br>$object</dd>
+					<dt><var>$context</var></dt>
+					<dd><code>array</code><br>$context</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>mixed|boolean</code><br>What the Logger returns, or false if Logger not set or not enabled<br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="emergency" id="_emergency">
+
+		<td class="attributes"><code>
+			 public 
+			mixed|boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_emergency">#</a>
+		<code><a href="source-class-Slim.Log.html#285-294" title="Go to source code">emergency</a>( <span>mixed <var>$object</var></span>, <span>array <var>$context</var> = <span class="php-keyword1">array</span>()</span> )</code>
+
+		<div class="description short">
+			
+<p>Log emergency message</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Log emergency message</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$object</var></dt>
+					<dd><code>mixed</code><br>$object</dd>
+					<dt><var>$context</var></dt>
+					<dd><code>array</code><br>$context</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>mixed|boolean</code><br>What the Logger returns, or false if Logger not set or not enabled<br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="log" id="_log">
+
+		<td class="attributes"><code>
+			 public 
+			mixed|boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_log">#</a>
+		<code><a href="source-class-Slim.Log.html#296-321" title="Go to source code">log</a>( <span>mixed <var>$level</var></span>, <span>mixed <var>$object</var></span>, <span>array <var>$context</var> = <span class="php-keyword1">array</span>()</span> )</code>
+
+		<div class="description short">
+			
+<p>Log message</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Log message</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$level</var></dt>
+					<dd><code>mixed</code><br>$level</dd>
+					<dt><var>$object</var></dt>
+					<dd><code>mixed</code><br>$object</dd>
+					<dt><var>$context</var></dt>
+					<dd><code>array</code><br>$context</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>mixed|boolean</code><br>What the Logger returns, or false if Logger not set or not enabled<br />
+				</div>
+
+				<h4>Throws</h4>
+				<div class="list">
+					<code><code><a href="class-InvalidArgumentException.html">InvalidArgumentException</a></code></code><br>If invalid log level<br />
+				</div>
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="write" id="_write">
+
+		<td class="attributes"><code>
+			 protected 
+			integer|boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_write">#</a>
+		<code><a href="source-class-Slim.Log.html#323-333" title="Go to source code">write</a>( <span>mixed <var>$object</var></span>, <span>integer <var>$level</var></span> )</code>
+
+		<div class="description short">
+			
+<p>DEPRECATED for function log Log message</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>DEPRECATED for function log Log message</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$object</var></dt>
+					<dd><code>mixed</code><br>$object The object to log</dd>
+					<dt><var>$level</var></dt>
+					<dd><code>integer</code><br>$level The message level</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>integer|boolean</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="interpolate" id="_interpolate">
+
+		<td class="attributes"><code>
+			 protected 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_interpolate">#</a>
+		<code><a href="source-class-Slim.Log.html#335-348" title="Go to source code">interpolate</a>( <span>mixed <var>$message</var></span>, <span>array <var>$context</var> = <span class="php-keyword1">array</span>()</span> )</code>
+
+		<div class="description short">
+			
+<p>Interpolate log message</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Interpolate log message</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$message</var></dt>
+					<dd><code>mixed</code><br>$message The log message</dd>
+					<dt><var>$context</var></dt>
+					<dd><code>array</code><br>$context An array of placeholder values</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br>The processed string<br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	</table>
+
+
+
+
+
+
+
+
+	<table class="summary" id="constants">
+	<caption>Constants summary</caption>
+	<tr data-order="EMERGENCY" id="EMERGENCY">
+
+		<td class="attributes"><code>integer</code></td>
+		<td class="name"><code>
+				<a href="source-class-Slim.Log.html#63" title="Go to source code"><b>EMERGENCY</b></a>
+		</code></td>
+		<td class="value"><code><span class="php-num">1</span></code></td>
+		<td class="description"><div>
+			<a href="#EMERGENCY" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="ALERT" id="ALERT">
+
+		<td class="attributes"><code>integer</code></td>
+		<td class="name"><code>
+				<a href="source-class-Slim.Log.html#64" title="Go to source code"><b>ALERT</b></a>
+		</code></td>
+		<td class="value"><code><span class="php-num">2</span></code></td>
+		<td class="description"><div>
+			<a href="#ALERT" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="CRITICAL" id="CRITICAL">
+
+		<td class="attributes"><code>integer</code></td>
+		<td class="name"><code>
+				<a href="source-class-Slim.Log.html#65" title="Go to source code"><b>CRITICAL</b></a>
+		</code></td>
+		<td class="value"><code><span class="php-num">3</span></code></td>
+		<td class="description"><div>
+			<a href="#CRITICAL" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="FATAL" id="FATAL">
+
+		<td class="attributes"><code>integer</code></td>
+		<td class="name"><code>
+				<a href="source-class-Slim.Log.html#66" title="Go to source code"><b>FATAL</b></a>
+		</code></td>
+		<td class="value"><code><span class="php-num">3</span></code></td>
+		<td class="description"><div>
+			<a href="#FATAL" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="ERROR" id="ERROR">
+
+		<td class="attributes"><code>integer</code></td>
+		<td class="name"><code>
+				<a href="source-class-Slim.Log.html#67" title="Go to source code"><b>ERROR</b></a>
+		</code></td>
+		<td class="value"><code><span class="php-num">4</span></code></td>
+		<td class="description"><div>
+			<a href="#ERROR" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="WARN" id="WARN">
+
+		<td class="attributes"><code>integer</code></td>
+		<td class="name"><code>
+				<a href="source-class-Slim.Log.html#68" title="Go to source code"><b>WARN</b></a>
+		</code></td>
+		<td class="value"><code><span class="php-num">5</span></code></td>
+		<td class="description"><div>
+			<a href="#WARN" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="NOTICE" id="NOTICE">
+
+		<td class="attributes"><code>integer</code></td>
+		<td class="name"><code>
+				<a href="source-class-Slim.Log.html#69" title="Go to source code"><b>NOTICE</b></a>
+		</code></td>
+		<td class="value"><code><span class="php-num">6</span></code></td>
+		<td class="description"><div>
+			<a href="#NOTICE" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="INFO" id="INFO">
+
+		<td class="attributes"><code>integer</code></td>
+		<td class="name"><code>
+				<a href="source-class-Slim.Log.html#70" title="Go to source code"><b>INFO</b></a>
+		</code></td>
+		<td class="value"><code><span class="php-num">7</span></code></td>
+		<td class="description"><div>
+			<a href="#INFO" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="DEBUG" id="DEBUG">
+
+		<td class="attributes"><code>integer</code></td>
+		<td class="name"><code>
+				<a href="source-class-Slim.Log.html#71" title="Go to source code"><b>DEBUG</b></a>
+		</code></td>
+		<td class="value"><code><span class="php-num">8</span></code></td>
+		<td class="description"><div>
+			<a href="#DEBUG" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	</table>
+
+
+
+
+	<table class="summary" id="properties">
+	<caption>Properties summary</caption>
+	<tr data-order="levels" id="$levels">
+		<td class="attributes"><code>
+			protected static 
+			array
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Slim.Log.html#73-85" title="Go to source code"><var>$levels</var></a>
+		</td>
+		<td class="value"><code><span class="php-keyword1">array</span>(
+    self::EMERGENCY =&gt; <span class="php-quote">'EMERGENCY'</span>,
+    self::ALERT     =&gt; <span class="php-quote">'ALERT'</span>,
+    self::CRITICAL  =&gt; <span class="php-quote">'CRITICAL'</span>,
+    self::ERROR     =&gt; <span class="php-quote">'ERROR'</span>,
+    self::WARN      =&gt; <span class="php-quote">'WARNING'</span>,
+    self::NOTICE    =&gt; <span class="php-quote">'NOTICE'</span>,
+    self::INFO      =&gt; <span class="php-quote">'INFO'</span>,
+    self::DEBUG     =&gt; <span class="php-quote">'DEBUG'</span>
+)</code></td>
+		<td class="description"><div>
+			<a href="#$levels" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="writer" id="$writer">
+		<td class="attributes"><code>
+			protected  
+			mixed
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Slim.Log.html#87-90" title="Go to source code"><var>$writer</var></a>
+		</td>
+		<td class="value"><code></code></td>
+		<td class="description"><div>
+			<a href="#$writer" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="enabled" id="$enabled">
+		<td class="attributes"><code>
+			protected  
+			boolean
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Slim.Log.html#92-95" title="Go to source code"><var>$enabled</var></a>
+		</td>
+		<td class="value"><code></code></td>
+		<td class="description"><div>
+			<a href="#$enabled" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="level" id="$level">
+		<td class="attributes"><code>
+			protected  
+			integer
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Slim.Log.html#97-100" title="Go to source code"><var>$level</var></a>
+		</td>
+		<td class="value"><code></code></td>
+		<td class="description"><div>
+			<a href="#$level" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	</table>
+
+
+
+
+
+
+</div>
+
+	<div id="footer">
+		 API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
+	</div>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,2176 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="generator" content="ApiGen 2.8.0" />
+
+	<title>Class Illuminate\Database\Query\Grammars\Grammar</title>
+
+	<script type="text/javascript" src="resources/combined.js?417754471"></script>
+	<script type="text/javascript" src="elementlist.js?721444666"></script>
+	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
+
+</head>
+
+<body>
+<div id="left">
+	<div id="menu">
+		<a href="index.html" title="Overview"><span>Overview</span></a>
+
+
+		<div id="groups">
+			<h3>Namespaces</h3>
+			<ul>
+				<li><a href="namespace-Hook.html">Hook<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Application.html">Application<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Application.Core.html">Core</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Hook.Auth.html">Auth<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Auth.Providers.html">Providers</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Hook.Cache.html">Cache</a>
+						</li>
+				<li><a href="namespace-Hook.Controllers.html">Controllers</a>
+						</li>
+				<li><a href="namespace-Hook.Database.html">Database<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Database.Schema.html">Schema<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Database.Schema.Grammars.html">Grammars</a>
+						</li>
+							</ul></li></ul></li>
+				<li><a href="namespace-Hook.Encryption.html">Encryption</a>
+						</li>
+				<li><a href="namespace-Hook.Exceptions.html">Exceptions</a>
+						</li>
+				<li><a href="namespace-Hook.Http.html">Http</a>
+						</li>
+				<li><a href="namespace-Hook.Logger.html">Logger</a>
+						</li>
+				<li><a href="namespace-Hook.Mailer.html">Mailer</a>
+						</li>
+				<li><a href="namespace-Hook.Middlewares.html">Middlewares</a>
+						</li>
+				<li><a href="namespace-Hook.Model.html">Model</a>
+						</li>
+				<li><a href="namespace-Hook.Package.html">Package</a>
+						</li>
+				<li><a href="namespace-Hook.Pagination.html">Pagination</a>
+						</li>
+				<li><a href="namespace-Hook.PushNotification.html">PushNotification<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.PushNotification.Services.html">Services</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Hook.Session.html">Session<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Session.Handlers.html">Handlers</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Hook.Storage.html">Storage<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Storage.Providers.html">Providers</a>
+						</li>
+							</ul></li></ul></li>
+				<li class="active"><a href="namespace-Illuminate.html">Illuminate<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Cache.html">Cache<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Cache.Console.html">Console</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Illuminate.Config.html">Config</a>
+						</li>
+				<li><a href="namespace-Illuminate.Container.html">Container</a>
+						</li>
+				<li class="active"><a href="namespace-Illuminate.Database.html">Database<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Database.Capsule.html">Capsule</a>
+						</li>
+				<li><a href="namespace-Illuminate.Database.Connectors.html">Connectors</a>
+						</li>
+				<li><a href="namespace-Illuminate.Database.Console.html">Console<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Database.Console.Migrations.html">Migrations</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Illuminate.Database.Eloquent.html">Eloquent<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Database.Eloquent.Relations.html">Relations</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Illuminate.Database.Migrations.html">Migrations</a>
+						</li>
+				<li class="active"><a href="namespace-Illuminate.Database.Query.html">Query<span></span></a>
+						<ul>
+				<li class="active"><a href="namespace-Illuminate.Database.Query.Grammars.html">Grammars</a>
+						</li>
+				<li><a href="namespace-Illuminate.Database.Query.Processors.html">Processors</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Illuminate.Database.Schema.html">Schema<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Database.Schema.Grammars.html">Grammars</a>
+						</li>
+							</ul></li></ul></li>
+				<li><a href="namespace-Illuminate.Encryption.html">Encryption</a>
+						</li>
+				<li><a href="namespace-Illuminate.Events.html">Events</a>
+						</li>
+				<li><a href="namespace-Illuminate.Filesystem.html">Filesystem</a>
+						</li>
+				<li><a href="namespace-Illuminate.Support.html">Support<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Support.Contracts.html">Contracts</a>
+						</li>
+				<li><a href="namespace-Illuminate.Support.Facades.html">Facades</a>
+						</li>
+							</ul></li></ul></li>
+				<li><a href="namespace-None.html">None</a>
+						</li>
+				<li><a href="namespace-PHP.html">PHP</a>
+						</li>
+				<li><a href="namespace-Slim.html">Slim<span></span></a>
+						<ul>
+				<li><a href="namespace-Slim.Exception.html">Exception</a>
+						</li>
+				<li><a href="namespace-Slim.Helper.html">Helper</a>
+						</li>
+				<li><a href="namespace-Slim.Http.html">Http</a>
+						</li>
+				<li><a href="namespace-Slim.Middleware.html">Middleware</a>
+						</li>
+							</ul></li>
+			</ul>
+		</div>
+
+		<hr />
+
+
+		<div id="elements">
+			<h3>Classes</h3>
+			<ul>
+				<li class="active"><a href="class-Illuminate.Database.Query.Grammars.Grammar.html">Grammar</a></li>
+				<li><a href="class-Illuminate.Database.Query.Grammars.MySqlGrammar.html">MySqlGrammar</a></li>
+				<li><a href="class-Illuminate.Database.Query.Grammars.PostgresGrammar.html">PostgresGrammar</a></li>
+				<li><a href="class-Illuminate.Database.Query.Grammars.SQLiteGrammar.html">SQLiteGrammar</a></li>
+				<li><a href="class-Illuminate.Database.Query.Grammars.SqlServerGrammar.html">SqlServerGrammar</a></li>
+			</ul>
+
+
+
+
+
+		</div>
+	</div>
+</div>
+
+<div id="splitter"></div>
+
+<div id="right">
+<div id="rightInner">
+	<form id="search">
+		<input type="hidden" name="cx" value="" />
+		<input type="hidden" name="ie" value="UTF-8" />
+		<input type="text" name="q" class="text" />
+		<input type="submit" value="Search" />
+	</form>
+
+	<div id="navigation">
+		<ul>
+			<li>
+				<a href="index.html" title="Overview"><span>Overview</span></a>
+			</li>
+			<li>
+				<a href="namespace-Illuminate.Database.Query.Grammars.html" title="Summary of Illuminate\Database\Query\Grammars"><span>Namespace</span></a>
+			</li>
+			<li class="active">
+<span>Class</span>			</li>
+		</ul>
+		<ul>
+			<li>
+				<a href="tree.html" title="Tree view of classes, interfaces, traits and exceptions"><span>Tree</span></a>
+			</li>
+		</ul>
+		<ul>
+		</ul>
+	</div>
+
+<div id="content" class="class">
+	<h1>Class Grammar</h1>
+
+
+
+	<dl class="tree">
+		<dd style="padding-left:0px">
+			<a href="class-Illuminate.Database.Grammar.html"><span>Illuminate\Database\Grammar</span></a>
+			
+			
+			
+		</dd>
+		<dd style="padding-left:30px">
+			<img src="resources/inherit.png" alt="Extended by" />
+<b><span>Illuminate\Database\Query\Grammars\Grammar</span></b>			
+			
+			
+		</dd>
+	</dl>
+
+
+	<div>
+		<h4>Direct known subclasses</h4>
+			<a href="class-Illuminate.Database.Query.Grammars.MySqlGrammar.html">Illuminate\Database\Query\Grammars\MySqlGrammar</a>, 
+			<a href="class-Illuminate.Database.Query.Grammars.PostgresGrammar.html">Illuminate\Database\Query\Grammars\PostgresGrammar</a>, 
+			<a href="class-Illuminate.Database.Query.Grammars.SQLiteGrammar.html">Illuminate\Database\Query\Grammars\SQLiteGrammar</a>, 
+			<a href="class-Illuminate.Database.Query.Grammars.SqlServerGrammar.html">Illuminate\Database\Query\Grammars\SqlServerGrammar</a>
+	</div>
+
+
+
+
+
+
+	<div class="info">
+		
+		
+		<b>Namespace:</b> <a href="namespace-Illuminate.html">Illuminate</a>\<a href="namespace-Illuminate.Database.html">Database</a>\<a href="namespace-Illuminate.Database.Query.html">Query</a>\<a href="namespace-Illuminate.Database.Query.Grammars.html">Grammars</a><br />
+		
+
+		<b>Located at</b> <a href="source-class-Illuminate.Database.Query.Grammars.Grammar.html#6-724" title="Go to source code">database/Illuminate/Database/Query/Grammars/Grammar.php</a><br />
+	</div>
+
+
+
+	<table class="summary" id="methods">
+	<caption>Methods summary</caption>
+	<tr data-order="compileSelect" id="_compileSelect">
+
+		<td class="attributes"><code>
+			 public 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_compileSelect">#</a>
+		<code><a href="source-class-Illuminate.Database.Query.Grammars.Grammar.html#28-39" title="Go to source code">compileSelect</a>( <span><code><a href="class-Illuminate.Database.Query.Builder.html">Illuminate\Database\Query\Builder</a></code> <var>$query</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Compile a select query into SQL.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Compile a select query into SQL.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$query</var></dt>
+					<dd><code><code><a href="class-Illuminate.Database.Query.Builder.html">Illuminate\Database\Query\Builder</a></code></code></dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="compileComponents" id="_compileComponents">
+
+		<td class="attributes"><code>
+			 protected 
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_compileComponents">#</a>
+		<code><a href="source-class-Illuminate.Database.Query.Grammars.Grammar.html#41-65" title="Go to source code">compileComponents</a>( <span><code><a href="class-Illuminate.Database.Query.Builder.html">Illuminate\Database\Query\Builder</a></code> <var>$query</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Compile the components necessary for a select clause.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Compile the components necessary for a select clause.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$query</var></dt>
+					<dd><code><code><a href="class-Illuminate.Database.Query.Builder.html">Illuminate\Database\Query\Builder</a></code></code></dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="compileAggregate" id="_compileAggregate">
+
+		<td class="attributes"><code>
+			 protected 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_compileAggregate">#</a>
+		<code><a href="source-class-Illuminate.Database.Query.Grammars.Grammar.html#67-87" title="Go to source code">compileAggregate</a>( <span><code><a href="class-Illuminate.Database.Query.Builder.html">Illuminate\Database\Query\Builder</a></code> <var>$query</var></span>, <span>array <var>$aggregate</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Compile an aggregated select clause.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Compile an aggregated select clause.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$query</var></dt>
+					<dd><code><code><a href="class-Illuminate.Database.Query.Builder.html">Illuminate\Database\Query\Builder</a></code></code><br>$query</dd>
+					<dt><var>$aggregate</var></dt>
+					<dd><code>array</code><br>$aggregate</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="compileColumns" id="_compileColumns">
+
+		<td class="attributes"><code>
+			 protected 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_compileColumns">#</a>
+		<code><a href="source-class-Illuminate.Database.Query.Grammars.Grammar.html#89-106" title="Go to source code">compileColumns</a>( <span><code><a href="class-Illuminate.Database.Query.Builder.html">Illuminate\Database\Query\Builder</a></code> <var>$query</var></span>, <span>array <var>$columns</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Compile the "select *" portion of the query.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Compile the "select *" portion of the query.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$query</var></dt>
+					<dd><code><code><a href="class-Illuminate.Database.Query.Builder.html">Illuminate\Database\Query\Builder</a></code></code><br>$query</dd>
+					<dt><var>$columns</var></dt>
+					<dd><code>array</code><br>$columns</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="compileFrom" id="_compileFrom">
+
+		<td class="attributes"><code>
+			 protected 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_compileFrom">#</a>
+		<code><a href="source-class-Illuminate.Database.Query.Grammars.Grammar.html#108-118" title="Go to source code">compileFrom</a>( <span><code><a href="class-Illuminate.Database.Query.Builder.html">Illuminate\Database\Query\Builder</a></code> <var>$query</var></span>, <span>string <var>$table</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Compile the "from" portion of the query.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Compile the "from" portion of the query.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$query</var></dt>
+					<dd><code><code><a href="class-Illuminate.Database.Query.Builder.html">Illuminate\Database\Query\Builder</a></code></code><br>$query</dd>
+					<dt><var>$table</var></dt>
+					<dd><code>string</code><br>$table</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="compileJoins" id="_compileJoins">
+
+		<td class="attributes"><code>
+			 protected 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_compileJoins">#</a>
+		<code><a href="source-class-Illuminate.Database.Query.Grammars.Grammar.html#120-161" title="Go to source code">compileJoins</a>( <span><code><a href="class-Illuminate.Database.Query.Builder.html">Illuminate\Database\Query\Builder</a></code> <var>$query</var></span>, <span>array <var>$joins</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Compile the "join" portions of the query.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Compile the "join" portions of the query.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$query</var></dt>
+					<dd><code><code><a href="class-Illuminate.Database.Query.Builder.html">Illuminate\Database\Query\Builder</a></code></code><br>$query</dd>
+					<dt><var>$joins</var></dt>
+					<dd><code>array</code><br>$joins</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="compileJoinConstraint" id="_compileJoinConstraint">
+
+		<td class="attributes"><code>
+			 protected 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_compileJoinConstraint">#</a>
+		<code><a href="source-class-Illuminate.Database.Query.Grammars.Grammar.html#163-176" title="Go to source code">compileJoinConstraint</a>( <span>array <var>$clause</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Create a join clause constraint segment.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Create a join clause constraint segment.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$clause</var></dt>
+					<dd><code>array</code><br>$clause</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="compileWheres" id="_compileWheres">
+
+		<td class="attributes"><code>
+			 protected 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_compileWheres">#</a>
+		<code><a href="source-class-Illuminate.Database.Query.Grammars.Grammar.html#178-211" title="Go to source code">compileWheres</a>( <span><code><a href="class-Illuminate.Database.Query.Builder.html">Illuminate\Database\Query\Builder</a></code> <var>$query</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Compile the "where" portions of the query.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Compile the "where" portions of the query.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$query</var></dt>
+					<dd><code><code><a href="class-Illuminate.Database.Query.Builder.html">Illuminate\Database\Query\Builder</a></code></code><br>$query</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="whereNested" id="_whereNested">
+
+		<td class="attributes"><code>
+			 protected 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_whereNested">#</a>
+		<code><a href="source-class-Illuminate.Database.Query.Grammars.Grammar.html#213-225" title="Go to source code">whereNested</a>( <span><code><a href="class-Illuminate.Database.Query.Builder.html">Illuminate\Database\Query\Builder</a></code> <var>$query</var></span>, <span>array <var>$where</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Compile a nested where clause.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Compile a nested where clause.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$query</var></dt>
+					<dd><code><code><a href="class-Illuminate.Database.Query.Builder.html">Illuminate\Database\Query\Builder</a></code></code><br>$query</dd>
+					<dt><var>$where</var></dt>
+					<dd><code>array</code><br>$where</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="whereSub" id="_whereSub">
+
+		<td class="attributes"><code>
+			 protected 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_whereSub">#</a>
+		<code><a href="source-class-Illuminate.Database.Query.Grammars.Grammar.html#227-239" title="Go to source code">whereSub</a>( <span><code><a href="class-Illuminate.Database.Query.Builder.html">Illuminate\Database\Query\Builder</a></code> <var>$query</var></span>, <span>array <var>$where</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Compile a where condition with a sub-select.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Compile a where condition with a sub-select.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$query</var></dt>
+					<dd><code><code><a href="class-Illuminate.Database.Query.Builder.html">Illuminate\Database\Query\Builder</a></code></code><br>$query</dd>
+					<dt><var>$where</var></dt>
+					<dd><code>array</code><br>$where</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="whereBasic" id="_whereBasic">
+
+		<td class="attributes"><code>
+			 protected 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_whereBasic">#</a>
+		<code><a href="source-class-Illuminate.Database.Query.Grammars.Grammar.html#241-253" title="Go to source code">whereBasic</a>( <span><code><a href="class-Illuminate.Database.Query.Builder.html">Illuminate\Database\Query\Builder</a></code> <var>$query</var></span>, <span>array <var>$where</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Compile a basic where clause.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Compile a basic where clause.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$query</var></dt>
+					<dd><code><code><a href="class-Illuminate.Database.Query.Builder.html">Illuminate\Database\Query\Builder</a></code></code><br>$query</dd>
+					<dt><var>$where</var></dt>
+					<dd><code>array</code><br>$where</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="whereBetween" id="_whereBetween">
+
+		<td class="attributes"><code>
+			 protected 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_whereBetween">#</a>
+		<code><a href="source-class-Illuminate.Database.Query.Grammars.Grammar.html#255-267" title="Go to source code">whereBetween</a>( <span><code><a href="class-Illuminate.Database.Query.Builder.html">Illuminate\Database\Query\Builder</a></code> <var>$query</var></span>, <span>array <var>$where</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Compile a "between" where clause.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Compile a "between" where clause.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$query</var></dt>
+					<dd><code><code><a href="class-Illuminate.Database.Query.Builder.html">Illuminate\Database\Query\Builder</a></code></code><br>$query</dd>
+					<dt><var>$where</var></dt>
+					<dd><code>array</code><br>$where</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="whereExists" id="_whereExists">
+
+		<td class="attributes"><code>
+			 protected 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_whereExists">#</a>
+		<code><a href="source-class-Illuminate.Database.Query.Grammars.Grammar.html#269-279" title="Go to source code">whereExists</a>( <span><code><a href="class-Illuminate.Database.Query.Builder.html">Illuminate\Database\Query\Builder</a></code> <var>$query</var></span>, <span>array <var>$where</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Compile a where exists clause.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Compile a where exists clause.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$query</var></dt>
+					<dd><code><code><a href="class-Illuminate.Database.Query.Builder.html">Illuminate\Database\Query\Builder</a></code></code><br>$query</dd>
+					<dt><var>$where</var></dt>
+					<dd><code>array</code><br>$where</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="whereNotExists" id="_whereNotExists">
+
+		<td class="attributes"><code>
+			 protected 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_whereNotExists">#</a>
+		<code><a href="source-class-Illuminate.Database.Query.Grammars.Grammar.html#281-291" title="Go to source code">whereNotExists</a>( <span><code><a href="class-Illuminate.Database.Query.Builder.html">Illuminate\Database\Query\Builder</a></code> <var>$query</var></span>, <span>array <var>$where</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Compile a where exists clause.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Compile a where exists clause.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$query</var></dt>
+					<dd><code><code><a href="class-Illuminate.Database.Query.Builder.html">Illuminate\Database\Query\Builder</a></code></code><br>$query</dd>
+					<dt><var>$where</var></dt>
+					<dd><code>array</code><br>$where</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="whereIn" id="_whereIn">
+
+		<td class="attributes"><code>
+			 protected 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_whereIn">#</a>
+		<code><a href="source-class-Illuminate.Database.Query.Grammars.Grammar.html#293-305" title="Go to source code">whereIn</a>( <span><code><a href="class-Illuminate.Database.Query.Builder.html">Illuminate\Database\Query\Builder</a></code> <var>$query</var></span>, <span>array <var>$where</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Compile a "where in" clause.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Compile a "where in" clause.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$query</var></dt>
+					<dd><code><code><a href="class-Illuminate.Database.Query.Builder.html">Illuminate\Database\Query\Builder</a></code></code><br>$query</dd>
+					<dt><var>$where</var></dt>
+					<dd><code>array</code><br>$where</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="whereNotIn" id="_whereNotIn">
+
+		<td class="attributes"><code>
+			 protected 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_whereNotIn">#</a>
+		<code><a href="source-class-Illuminate.Database.Query.Grammars.Grammar.html#307-319" title="Go to source code">whereNotIn</a>( <span><code><a href="class-Illuminate.Database.Query.Builder.html">Illuminate\Database\Query\Builder</a></code> <var>$query</var></span>, <span>array <var>$where</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Compile a "where not in" clause.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Compile a "where not in" clause.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$query</var></dt>
+					<dd><code><code><a href="class-Illuminate.Database.Query.Builder.html">Illuminate\Database\Query\Builder</a></code></code><br>$query</dd>
+					<dt><var>$where</var></dt>
+					<dd><code>array</code><br>$where</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="whereInSub" id="_whereInSub">
+
+		<td class="attributes"><code>
+			 protected 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_whereInSub">#</a>
+		<code><a href="source-class-Illuminate.Database.Query.Grammars.Grammar.html#321-333" title="Go to source code">whereInSub</a>( <span><code><a href="class-Illuminate.Database.Query.Builder.html">Illuminate\Database\Query\Builder</a></code> <var>$query</var></span>, <span>array <var>$where</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Compile a where in sub-select clause.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Compile a where in sub-select clause.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$query</var></dt>
+					<dd><code><code><a href="class-Illuminate.Database.Query.Builder.html">Illuminate\Database\Query\Builder</a></code></code><br>$query</dd>
+					<dt><var>$where</var></dt>
+					<dd><code>array</code><br>$where</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="whereNotInSub" id="_whereNotInSub">
+
+		<td class="attributes"><code>
+			 protected 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_whereNotInSub">#</a>
+		<code><a href="source-class-Illuminate.Database.Query.Grammars.Grammar.html#335-347" title="Go to source code">whereNotInSub</a>( <span><code><a href="class-Illuminate.Database.Query.Builder.html">Illuminate\Database\Query\Builder</a></code> <var>$query</var></span>, <span>array <var>$where</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Compile a where not in sub-select clause.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Compile a where not in sub-select clause.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$query</var></dt>
+					<dd><code><code><a href="class-Illuminate.Database.Query.Builder.html">Illuminate\Database\Query\Builder</a></code></code><br>$query</dd>
+					<dt><var>$where</var></dt>
+					<dd><code>array</code><br>$where</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="whereNull" id="_whereNull">
+
+		<td class="attributes"><code>
+			 protected 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_whereNull">#</a>
+		<code><a href="source-class-Illuminate.Database.Query.Grammars.Grammar.html#349-359" title="Go to source code">whereNull</a>( <span><code><a href="class-Illuminate.Database.Query.Builder.html">Illuminate\Database\Query\Builder</a></code> <var>$query</var></span>, <span>array <var>$where</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Compile a "where null" clause.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Compile a "where null" clause.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$query</var></dt>
+					<dd><code><code><a href="class-Illuminate.Database.Query.Builder.html">Illuminate\Database\Query\Builder</a></code></code><br>$query</dd>
+					<dt><var>$where</var></dt>
+					<dd><code>array</code><br>$where</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="whereNotNull" id="_whereNotNull">
+
+		<td class="attributes"><code>
+			 protected 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_whereNotNull">#</a>
+		<code><a href="source-class-Illuminate.Database.Query.Grammars.Grammar.html#361-371" title="Go to source code">whereNotNull</a>( <span><code><a href="class-Illuminate.Database.Query.Builder.html">Illuminate\Database\Query\Builder</a></code> <var>$query</var></span>, <span>array <var>$where</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Compile a "where not null" clause.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Compile a "where not null" clause.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$query</var></dt>
+					<dd><code><code><a href="class-Illuminate.Database.Query.Builder.html">Illuminate\Database\Query\Builder</a></code></code><br>$query</dd>
+					<dt><var>$where</var></dt>
+					<dd><code>array</code><br>$where</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="whereDay" id="_whereDay">
+
+		<td class="attributes"><code>
+			 protected 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_whereDay">#</a>
+		<code><a href="source-class-Illuminate.Database.Query.Grammars.Grammar.html#373-383" title="Go to source code">whereDay</a>( <span><code><a href="class-Illuminate.Database.Query.Builder.html">Illuminate\Database\Query\Builder</a></code> <var>$query</var></span>, <span>array <var>$where</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Compile a "where day" clause.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Compile a "where day" clause.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$query</var></dt>
+					<dd><code><code><a href="class-Illuminate.Database.Query.Builder.html">Illuminate\Database\Query\Builder</a></code></code><br>$query</dd>
+					<dt><var>$where</var></dt>
+					<dd><code>array</code><br>$where</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="whereMonth" id="_whereMonth">
+
+		<td class="attributes"><code>
+			 protected 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_whereMonth">#</a>
+		<code><a href="source-class-Illuminate.Database.Query.Grammars.Grammar.html#385-395" title="Go to source code">whereMonth</a>( <span><code><a href="class-Illuminate.Database.Query.Builder.html">Illuminate\Database\Query\Builder</a></code> <var>$query</var></span>, <span>array <var>$where</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Compile a "where month" clause.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Compile a "where month" clause.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$query</var></dt>
+					<dd><code><code><a href="class-Illuminate.Database.Query.Builder.html">Illuminate\Database\Query\Builder</a></code></code><br>$query</dd>
+					<dt><var>$where</var></dt>
+					<dd><code>array</code><br>$where</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="whereYear" id="_whereYear">
+
+		<td class="attributes"><code>
+			 protected 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_whereYear">#</a>
+		<code><a href="source-class-Illuminate.Database.Query.Grammars.Grammar.html#397-407" title="Go to source code">whereYear</a>( <span><code><a href="class-Illuminate.Database.Query.Builder.html">Illuminate\Database\Query\Builder</a></code> <var>$query</var></span>, <span>array <var>$where</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Compile a "where year" clause.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Compile a "where year" clause.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$query</var></dt>
+					<dd><code><code><a href="class-Illuminate.Database.Query.Builder.html">Illuminate\Database\Query\Builder</a></code></code><br>$query</dd>
+					<dt><var>$where</var></dt>
+					<dd><code>array</code><br>$where</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="dateBasedWhere" id="_dateBasedWhere">
+
+		<td class="attributes"><code>
+			 protected 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_dateBasedWhere">#</a>
+		<code><a href="source-class-Illuminate.Database.Query.Grammars.Grammar.html#409-422" title="Go to source code">dateBasedWhere</a>( <span>string <var>$type</var></span>, <span><code><a href="class-Illuminate.Database.Query.Builder.html">Illuminate\Database\Query\Builder</a></code> <var>$query</var></span>, <span>array <var>$where</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Compile a date based where clause.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Compile a date based where clause.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$type</var></dt>
+					<dd><code>string</code><br>$type</dd>
+					<dt><var>$query</var></dt>
+					<dd><code><code><a href="class-Illuminate.Database.Query.Builder.html">Illuminate\Database\Query\Builder</a></code></code><br>$query</dd>
+					<dt><var>$where</var></dt>
+					<dd><code>array</code><br>$where</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="whereRaw" id="_whereRaw">
+
+		<td class="attributes"><code>
+			 protected 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_whereRaw">#</a>
+		<code><a href="source-class-Illuminate.Database.Query.Grammars.Grammar.html#424-434" title="Go to source code">whereRaw</a>( <span><code><a href="class-Illuminate.Database.Query.Builder.html">Illuminate\Database\Query\Builder</a></code> <var>$query</var></span>, <span>array <var>$where</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Compile a raw where clause.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Compile a raw where clause.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$query</var></dt>
+					<dd><code><code><a href="class-Illuminate.Database.Query.Builder.html">Illuminate\Database\Query\Builder</a></code></code><br>$query</dd>
+					<dt><var>$where</var></dt>
+					<dd><code>array</code><br>$where</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="compileGroups" id="_compileGroups">
+
+		<td class="attributes"><code>
+			 protected 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_compileGroups">#</a>
+		<code><a href="source-class-Illuminate.Database.Query.Grammars.Grammar.html#436-446" title="Go to source code">compileGroups</a>( <span><code><a href="class-Illuminate.Database.Query.Builder.html">Illuminate\Database\Query\Builder</a></code> <var>$query</var></span>, <span>array <var>$groups</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Compile the "group by" portions of the query.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Compile the "group by" portions of the query.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$query</var></dt>
+					<dd><code><code><a href="class-Illuminate.Database.Query.Builder.html">Illuminate\Database\Query\Builder</a></code></code><br>$query</dd>
+					<dt><var>$groups</var></dt>
+					<dd><code>array</code><br>$groups</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="compileHavings" id="_compileHavings">
+
+		<td class="attributes"><code>
+			 protected 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_compileHavings">#</a>
+		<code><a href="source-class-Illuminate.Database.Query.Grammars.Grammar.html#448-460" title="Go to source code">compileHavings</a>( <span><code><a href="class-Illuminate.Database.Query.Builder.html">Illuminate\Database\Query\Builder</a></code> <var>$query</var></span>, <span>array <var>$havings</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Compile the "having" portions of the query.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Compile the "having" portions of the query.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$query</var></dt>
+					<dd><code><code><a href="class-Illuminate.Database.Query.Builder.html">Illuminate\Database\Query\Builder</a></code></code><br>$query</dd>
+					<dt><var>$havings</var></dt>
+					<dd><code>array</code><br>$havings</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="compileHaving" id="_compileHaving">
+
+		<td class="attributes"><code>
+			 protected 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_compileHaving">#</a>
+		<code><a href="source-class-Illuminate.Database.Query.Grammars.Grammar.html#462-479" title="Go to source code">compileHaving</a>( <span>array <var>$having</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Compile a single having clause.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Compile a single having clause.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$having</var></dt>
+					<dd><code>array</code><br>$having</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="compileBasicHaving" id="_compileBasicHaving">
+
+		<td class="attributes"><code>
+			 protected 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_compileBasicHaving">#</a>
+		<code><a href="source-class-Illuminate.Database.Query.Grammars.Grammar.html#481-494" title="Go to source code">compileBasicHaving</a>( <span>array <var>$having</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Compile a basic having clause.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Compile a basic having clause.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$having</var></dt>
+					<dd><code>array</code><br>$having</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="compileOrders" id="_compileOrders">
+
+		<td class="attributes"><code>
+			 protected 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_compileOrders">#</a>
+		<code><a href="source-class-Illuminate.Database.Query.Grammars.Grammar.html#496-514" title="Go to source code">compileOrders</a>( <span><code><a href="class-Illuminate.Database.Query.Builder.html">Illuminate\Database\Query\Builder</a></code> <var>$query</var></span>, <span>array <var>$orders</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Compile the "order by" portions of the query.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Compile the "order by" portions of the query.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$query</var></dt>
+					<dd><code><code><a href="class-Illuminate.Database.Query.Builder.html">Illuminate\Database\Query\Builder</a></code></code><br>$query</dd>
+					<dt><var>$orders</var></dt>
+					<dd><code>array</code><br>$orders</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="compileLimit" id="_compileLimit">
+
+		<td class="attributes"><code>
+			 protected 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_compileLimit">#</a>
+		<code><a href="source-class-Illuminate.Database.Query.Grammars.Grammar.html#516-526" title="Go to source code">compileLimit</a>( <span><code><a href="class-Illuminate.Database.Query.Builder.html">Illuminate\Database\Query\Builder</a></code> <var>$query</var></span>, <span>integer <var>$limit</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Compile the "limit" portions of the query.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Compile the "limit" portions of the query.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$query</var></dt>
+					<dd><code><code><a href="class-Illuminate.Database.Query.Builder.html">Illuminate\Database\Query\Builder</a></code></code><br>$query</dd>
+					<dt><var>$limit</var></dt>
+					<dd><code>integer</code><br>$limit</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="compileOffset" id="_compileOffset">
+
+		<td class="attributes"><code>
+			 protected 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_compileOffset">#</a>
+		<code><a href="source-class-Illuminate.Database.Query.Grammars.Grammar.html#528-538" title="Go to source code">compileOffset</a>( <span><code><a href="class-Illuminate.Database.Query.Builder.html">Illuminate\Database\Query\Builder</a></code> <var>$query</var></span>, <span>integer <var>$offset</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Compile the "offset" portions of the query.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Compile the "offset" portions of the query.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$query</var></dt>
+					<dd><code><code><a href="class-Illuminate.Database.Query.Builder.html">Illuminate\Database\Query\Builder</a></code></code><br>$query</dd>
+					<dt><var>$offset</var></dt>
+					<dd><code>integer</code><br>$offset</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="compileUnions" id="_compileUnions">
+
+		<td class="attributes"><code>
+			 protected 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_compileUnions">#</a>
+		<code><a href="source-class-Illuminate.Database.Query.Grammars.Grammar.html#540-556" title="Go to source code">compileUnions</a>( <span><code><a href="class-Illuminate.Database.Query.Builder.html">Illuminate\Database\Query\Builder</a></code> <var>$query</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Compile the "union" queries attached to the main query.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Compile the "union" queries attached to the main query.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$query</var></dt>
+					<dd><code><code><a href="class-Illuminate.Database.Query.Builder.html">Illuminate\Database\Query\Builder</a></code></code><br>$query</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="compileUnion" id="_compileUnion">
+
+		<td class="attributes"><code>
+			 protected 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_compileUnion">#</a>
+		<code><a href="source-class-Illuminate.Database.Query.Grammars.Grammar.html#558-569" title="Go to source code">compileUnion</a>( <span>array <var>$union</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Compile a single union statement.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Compile a single union statement.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$union</var></dt>
+					<dd><code>array</code><br>$union</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="compileInsert" id="_compileInsert">
+
+		<td class="attributes"><code>
+			 public 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_compileInsert">#</a>
+		<code><a href="source-class-Illuminate.Database.Query.Grammars.Grammar.html#571-602" title="Go to source code">compileInsert</a>( <span><code><a href="class-Illuminate.Database.Query.Builder.html">Illuminate\Database\Query\Builder</a></code> <var>$query</var></span>, <span>array <var>$values</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Compile an insert statement into SQL.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Compile an insert statement into SQL.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$query</var></dt>
+					<dd><code><code><a href="class-Illuminate.Database.Query.Builder.html">Illuminate\Database\Query\Builder</a></code></code><br>$query</dd>
+					<dt><var>$values</var></dt>
+					<dd><code>array</code><br>$values</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="compileInsertGetId" id="_compileInsertGetId">
+
+		<td class="attributes"><code>
+			 public 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_compileInsertGetId">#</a>
+		<code><a href="source-class-Illuminate.Database.Query.Grammars.Grammar.html#604-615" title="Go to source code">compileInsertGetId</a>( <span><code><a href="class-Illuminate.Database.Query.Builder.html">Illuminate\Database\Query\Builder</a></code> <var>$query</var></span>, <span>array <var>$values</var></span>, <span>string <var>$sequence</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Compile an insert and get ID statement into SQL.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Compile an insert and get ID statement into SQL.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$query</var></dt>
+					<dd><code><code><a href="class-Illuminate.Database.Query.Builder.html">Illuminate\Database\Query\Builder</a></code></code><br>$query</dd>
+					<dt><var>$values</var></dt>
+					<dd><code>array</code><br>$values</dd>
+					<dt><var>$sequence</var></dt>
+					<dd><code>string</code><br>$sequence</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="compileUpdate" id="_compileUpdate">
+
+		<td class="attributes"><code>
+			 public 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_compileUpdate">#</a>
+		<code><a href="source-class-Illuminate.Database.Query.Grammars.Grammar.html#617-658" title="Go to source code">compileUpdate</a>( <span><code><a href="class-Illuminate.Database.Query.Builder.html">Illuminate\Database\Query\Builder</a></code> <var>$query</var></span>, <span>array <var>$values</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Compile an update statement into SQL.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Compile an update statement into SQL.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$query</var></dt>
+					<dd><code><code><a href="class-Illuminate.Database.Query.Builder.html">Illuminate\Database\Query\Builder</a></code></code><br>$query</dd>
+					<dt><var>$values</var></dt>
+					<dd><code>array</code><br>$values</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="compileDelete" id="_compileDelete">
+
+		<td class="attributes"><code>
+			 public 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_compileDelete">#</a>
+		<code><a href="source-class-Illuminate.Database.Query.Grammars.Grammar.html#660-674" title="Go to source code">compileDelete</a>( <span><code><a href="class-Illuminate.Database.Query.Builder.html">Illuminate\Database\Query\Builder</a></code> <var>$query</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Compile a delete statement into SQL.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Compile a delete statement into SQL.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$query</var></dt>
+					<dd><code><code><a href="class-Illuminate.Database.Query.Builder.html">Illuminate\Database\Query\Builder</a></code></code><br>$query</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="compileTruncate" id="_compileTruncate">
+
+		<td class="attributes"><code>
+			 public 
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_compileTruncate">#</a>
+		<code><a href="source-class-Illuminate.Database.Query.Grammars.Grammar.html#676-685" title="Go to source code">compileTruncate</a>( <span><code><a href="class-Illuminate.Database.Query.Builder.html">Illuminate\Database\Query\Builder</a></code> <var>$query</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Compile a truncate table statement into SQL.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Compile a truncate table statement into SQL.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$query</var></dt>
+					<dd><code><code><a href="class-Illuminate.Database.Query.Builder.html">Illuminate\Database\Query\Builder</a></code></code><br>$query</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="compileLock" id="_compileLock">
+
+		<td class="attributes"><code>
+			 protected 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_compileLock">#</a>
+		<code><a href="source-class-Illuminate.Database.Query.Grammars.Grammar.html#687-697" title="Go to source code">compileLock</a>( <span><code><a href="class-Illuminate.Database.Query.Builder.html">Illuminate\Database\Query\Builder</a></code> <var>$query</var></span>, <span>boolean|string <var>$value</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Compile the lock into SQL.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Compile the lock into SQL.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$query</var></dt>
+					<dd><code><code><a href="class-Illuminate.Database.Query.Builder.html">Illuminate\Database\Query\Builder</a></code></code><br>$query</dd>
+					<dt><var>$value</var></dt>
+					<dd><code>boolean|string</code><br>$value</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="concatenate" id="_concatenate">
+
+		<td class="attributes"><code>
+			 protected 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_concatenate">#</a>
+		<code><a href="source-class-Illuminate.Database.Query.Grammars.Grammar.html#699-711" title="Go to source code">concatenate</a>( <span>array <var>$segments</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Concatenate an array of segments, removing empties.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Concatenate an array of segments, removing empties.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$segments</var></dt>
+					<dd><code>array</code><br>$segments</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="removeLeadingBoolean" id="_removeLeadingBoolean">
+
+		<td class="attributes"><code>
+			 protected 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_removeLeadingBoolean">#</a>
+		<code><a href="source-class-Illuminate.Database.Query.Grammars.Grammar.html#713-722" title="Go to source code">removeLeadingBoolean</a>( <span>string <var>$value</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Remove the leading boolean from a statement.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Remove the leading boolean from a statement.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$value</var></dt>
+					<dd><code>string</code><br>$value</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	</table>
+
+	<table class="summary inherited">
+	<caption>Methods inherited from <a href="class-Illuminate.Database.Grammar.html#methods">Illuminate\Database\Grammar</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-Illuminate.Database.Grammar.html#_columnize">columnize()</a>, 
+			<a href="class-Illuminate.Database.Grammar.html#_getDateFormat">getDateFormat()</a>, 
+			<a href="class-Illuminate.Database.Grammar.html#_getTablePrefix">getTablePrefix()</a>, 
+			<a href="class-Illuminate.Database.Grammar.html#_getValue">getValue()</a>, 
+			<a href="class-Illuminate.Database.Grammar.html#_isExpression">isExpression()</a>, 
+			<a href="class-Illuminate.Database.Grammar.html#_parameter">parameter()</a>, 
+			<a href="class-Illuminate.Database.Grammar.html#_parameterize">parameterize()</a>, 
+			<a href="class-Illuminate.Database.Grammar.html#_setTablePrefix">setTablePrefix()</a>, 
+			<a href="class-Illuminate.Database.Grammar.html#_wrap">wrap()</a>, 
+			<a href="class-Illuminate.Database.Grammar.html#_wrapArray">wrapArray()</a>, 
+			<a href="class-Illuminate.Database.Grammar.html#_wrapTable">wrapTable()</a>, 
+			<a href="class-Illuminate.Database.Grammar.html#_wrapValue">wrapValue()</a>
+		</code></td>
+	</tr>
+	</table>
+
+
+
+
+
+
+
+
+
+
+
+	<table class="summary" id="properties">
+	<caption>Properties summary</caption>
+	<tr data-order="selectComponents" id="$selectComponents">
+		<td class="attributes"><code>
+			protected  
+			array
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Illuminate.Database.Query.Grammars.Grammar.html#8-26" title="Go to source code"><var>$selectComponents</var></a>
+		</td>
+		<td class="value"><code><span class="php-keyword1">array</span>(
+	<span class="php-quote">'aggregate'</span>,
+	<span class="php-quote">'columns'</span>,
+	<span class="php-quote">'from'</span>,
+	<span class="php-quote">'joins'</span>,
+	<span class="php-quote">'wheres'</span>,
+	<span class="php-quote">'groups'</span>,
+	<span class="php-quote">'havings'</span>,
+	<span class="php-quote">'orders'</span>,
+	<span class="php-quote">'limit'</span>,
+	<span class="php-quote">'offset'</span>,
+	<span class="php-quote">'unions'</span>,
+	<span class="php-quote">'lock'</span>,
+)</code></td>
+		<td class="description"><div>
+			<a href="#$selectComponents" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>The components that make up a select clause.</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>The components that make up a select clause.</p>
+
+
+			</div>
+		</div></td>
+	</tr>
+	</table>
+
+	<table class="summary inherited">
+	<caption>Properties inherited from <a href="class-Illuminate.Database.Grammar.html#properties">Illuminate\Database\Grammar</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-Illuminate.Database.Grammar.html#$tablePrefix"><var>$tablePrefix</var></a>
+		</code></td>
+	</tr>
+	</table>
+
+
+
+
+
+</div>
+
+	<div id="footer">
+		 API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
+	</div>
+</div>
+</div>
+</body>
+</html>

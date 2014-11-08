@@ -1,0 +1,2442 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="generator" content="ApiGen 2.8.0" />
+
+	<title>Class Illuminate\Support\Collection</title>
+
+	<script type="text/javascript" src="resources/combined.js?417754471"></script>
+	<script type="text/javascript" src="elementlist.js?721444666"></script>
+	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
+
+</head>
+
+<body>
+<div id="left">
+	<div id="menu">
+		<a href="index.html" title="Overview"><span>Overview</span></a>
+
+
+		<div id="groups">
+			<h3>Namespaces</h3>
+			<ul>
+				<li><a href="namespace-Hook.html">Hook<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Application.html">Application<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Application.Core.html">Core</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Hook.Auth.html">Auth<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Auth.Providers.html">Providers</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Hook.Cache.html">Cache</a>
+						</li>
+				<li><a href="namespace-Hook.Controllers.html">Controllers</a>
+						</li>
+				<li><a href="namespace-Hook.Database.html">Database<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Database.Schema.html">Schema<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Database.Schema.Grammars.html">Grammars</a>
+						</li>
+							</ul></li></ul></li>
+				<li><a href="namespace-Hook.Encryption.html">Encryption</a>
+						</li>
+				<li><a href="namespace-Hook.Exceptions.html">Exceptions</a>
+						</li>
+				<li><a href="namespace-Hook.Http.html">Http</a>
+						</li>
+				<li><a href="namespace-Hook.Logger.html">Logger</a>
+						</li>
+				<li><a href="namespace-Hook.Mailer.html">Mailer</a>
+						</li>
+				<li><a href="namespace-Hook.Middlewares.html">Middlewares</a>
+						</li>
+				<li><a href="namespace-Hook.Model.html">Model</a>
+						</li>
+				<li><a href="namespace-Hook.Package.html">Package</a>
+						</li>
+				<li><a href="namespace-Hook.Pagination.html">Pagination</a>
+						</li>
+				<li><a href="namespace-Hook.PushNotification.html">PushNotification<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.PushNotification.Services.html">Services</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Hook.Session.html">Session<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Session.Handlers.html">Handlers</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Hook.Storage.html">Storage<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Storage.Providers.html">Providers</a>
+						</li>
+							</ul></li></ul></li>
+				<li class="active"><a href="namespace-Illuminate.html">Illuminate<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Cache.html">Cache<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Cache.Console.html">Console</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Illuminate.Config.html">Config</a>
+						</li>
+				<li><a href="namespace-Illuminate.Container.html">Container</a>
+						</li>
+				<li><a href="namespace-Illuminate.Database.html">Database<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Database.Capsule.html">Capsule</a>
+						</li>
+				<li><a href="namespace-Illuminate.Database.Connectors.html">Connectors</a>
+						</li>
+				<li><a href="namespace-Illuminate.Database.Console.html">Console<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Database.Console.Migrations.html">Migrations</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Illuminate.Database.Eloquent.html">Eloquent<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Database.Eloquent.Relations.html">Relations</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Illuminate.Database.Migrations.html">Migrations</a>
+						</li>
+				<li><a href="namespace-Illuminate.Database.Query.html">Query<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Database.Query.Grammars.html">Grammars</a>
+						</li>
+				<li><a href="namespace-Illuminate.Database.Query.Processors.html">Processors</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Illuminate.Database.Schema.html">Schema<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Database.Schema.Grammars.html">Grammars</a>
+						</li>
+							</ul></li></ul></li>
+				<li><a href="namespace-Illuminate.Encryption.html">Encryption</a>
+						</li>
+				<li><a href="namespace-Illuminate.Events.html">Events</a>
+						</li>
+				<li><a href="namespace-Illuminate.Filesystem.html">Filesystem</a>
+						</li>
+				<li class="active"><a href="namespace-Illuminate.Support.html">Support<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Support.Contracts.html">Contracts</a>
+						</li>
+				<li><a href="namespace-Illuminate.Support.Facades.html">Facades</a>
+						</li>
+							</ul></li></ul></li>
+				<li><a href="namespace-None.html">None</a>
+						</li>
+				<li><a href="namespace-PHP.html">PHP</a>
+						</li>
+				<li><a href="namespace-Slim.html">Slim<span></span></a>
+						<ul>
+				<li><a href="namespace-Slim.Exception.html">Exception</a>
+						</li>
+				<li><a href="namespace-Slim.Helper.html">Helper</a>
+						</li>
+				<li><a href="namespace-Slim.Http.html">Http</a>
+						</li>
+				<li><a href="namespace-Slim.Middleware.html">Middleware</a>
+						</li>
+							</ul></li>
+			</ul>
+		</div>
+
+		<hr />
+
+
+		<div id="elements">
+			<h3>Classes</h3>
+			<ul>
+				<li><a href="class-Illuminate.Support.ClassLoader.html">ClassLoader</a></li>
+				<li class="active"><a href="class-Illuminate.Support.Collection.html">Collection</a></li>
+				<li><a href="class-Illuminate.Support.Fluent.html">Fluent</a></li>
+				<li><a href="class-Illuminate.Support.Manager.html">Manager</a></li>
+				<li><a href="class-Illuminate.Support.MessageBag.html">MessageBag</a></li>
+				<li><a href="class-Illuminate.Support.NamespacedItemResolver.html">NamespacedItemResolver</a></li>
+				<li><a href="class-Illuminate.Support.Pluralizer.html">Pluralizer</a></li>
+				<li><a href="class-Illuminate.Support.SerializableClosure.html">SerializableClosure</a></li>
+				<li><a href="class-Illuminate.Support.ServiceProvider.html">ServiceProvider</a></li>
+				<li><a href="class-Illuminate.Support.Str.html">Str</a></li>
+			</ul>
+
+
+
+
+
+		</div>
+	</div>
+</div>
+
+<div id="splitter"></div>
+
+<div id="right">
+<div id="rightInner">
+	<form id="search">
+		<input type="hidden" name="cx" value="" />
+		<input type="hidden" name="ie" value="UTF-8" />
+		<input type="text" name="q" class="text" />
+		<input type="submit" value="Search" />
+	</form>
+
+	<div id="navigation">
+		<ul>
+			<li>
+				<a href="index.html" title="Overview"><span>Overview</span></a>
+			</li>
+			<li>
+				<a href="namespace-Illuminate.Support.html" title="Summary of Illuminate\Support"><span>Namespace</span></a>
+			</li>
+			<li class="active">
+<span>Class</span>			</li>
+		</ul>
+		<ul>
+			<li>
+				<a href="tree.html" title="Tree view of classes, interfaces, traits and exceptions"><span>Tree</span></a>
+			</li>
+		</ul>
+		<ul>
+		</ul>
+	</div>
+
+<div id="content" class="class">
+	<h1>Class Collection</h1>
+
+
+
+	<dl class="tree">
+		<dd style="padding-left:0px">
+<b><span>Illuminate\Support\Collection</span></b>			
+			 implements 
+				<a href="class-ArrayAccess.html"><span>ArrayAccess</span></a>, 
+			
+				<a href="class-Illuminate.Support.Contracts.ArrayableInterface.html"><span>Illuminate\Support\Contracts\ArrayableInterface</span></a>, 
+			
+				<a href="class-Countable.html"><span>Countable</span></a>, 
+			
+				<a href="class-IteratorAggregate.html"><span>IteratorAggregate</span></a>, 
+			
+				<a href="class-Illuminate.Support.Contracts.JsonableInterface.html"><span>Illuminate\Support\Contracts\JsonableInterface</span></a>
+			
+			
+		</dd>
+	</dl>
+
+
+	<div>
+		<h4>Direct known subclasses</h4>
+			<a href="class-Illuminate.Database.Eloquent.Collection.html">Illuminate\Database\Eloquent\Collection</a>
+	</div>
+
+
+
+
+
+
+	<div class="info">
+		
+		
+		<b>Namespace:</b> <a href="namespace-Illuminate.html">Illuminate</a>\<a href="namespace-Illuminate.Support.html">Support</a><br />
+		
+
+		<b>Located at</b> <a href="source-class-Illuminate.Support.Collection.html#12-717" title="Go to source code">support/Illuminate/Support/Collection.php</a><br />
+	</div>
+
+
+
+	<table class="summary" id="methods">
+	<caption>Methods summary</caption>
+	<tr data-order="__construct" id="___construct">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#___construct">#</a>
+		<code><a href="source-class-Illuminate.Support.Collection.html#21-30" title="Go to source code">__construct</a>( <span>array <var>$items</var> = <span class="php-keyword1">array</span>()</span> )</code>
+
+		<div class="description short">
+			
+<p>Create a new collection.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Create a new collection.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$items</var></dt>
+					<dd><code>array</code><br>$items</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="make" id="_make">
+
+		<td class="attributes"><code>
+			 public static
+			<code><a href="class-Illuminate.Support.Collection.html">Illuminate\Support\Collection</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_make">#</a>
+		<code><a href="source-class-Illuminate.Support.Collection.html#32-45" title="Go to source code">make</a>( <span>mixed <var>$items</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Create a new collection instance if the value isn't one already.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Create a new collection instance if the value isn't one already.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$items</var></dt>
+					<dd><code>mixed</code><br>$items</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-Illuminate.Support.Collection.html">Illuminate\Support\Collection</a></code></code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="all" id="_all">
+
+		<td class="attributes"><code>
+			 public 
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_all">#</a>
+		<code><a href="source-class-Illuminate.Support.Collection.html#47-55" title="Go to source code">all</a>( )</code>
+
+		<div class="description short">
+			
+<p>Get all of the items in the collection.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get all of the items in the collection.</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="collapse" id="_collapse">
+
+		<td class="attributes"><code>
+			 public 
+			<code><a href="class-Illuminate.Support.Collection.html">Illuminate\Support\Collection</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_collapse">#</a>
+		<code><a href="source-class-Illuminate.Support.Collection.html#57-72" title="Go to source code">collapse</a>( )</code>
+
+		<div class="description short">
+			
+<p>Collapse the collection items into a single array.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Collapse the collection items into a single array.</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-Illuminate.Support.Collection.html">Illuminate\Support\Collection</a></code></code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="diff" id="_diff">
+
+		<td class="attributes"><code>
+			 public 
+			<code><a href="class-Illuminate.Support.Collection.html">Illuminate\Support\Collection</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_diff">#</a>
+		<code><a href="source-class-Illuminate.Support.Collection.html#74-83" title="Go to source code">diff</a>( <span><code><a href="class-Illuminate.Support.Collection.html">Illuminate\Support\Collection</a></code>|<code><a href="class-Illuminate.Support.Contracts.ArrayableInterface.html">Illuminate\Support\Contracts\ArrayableInterface</a></code>|array <var>$items</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Diff the collection with the given items.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Diff the collection with the given items.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$items</var></dt>
+					<dd><code><code><a href="class-Illuminate.Support.Collection.html">Illuminate\Support\Collection</a></code>|<code><a href="class-Illuminate.Support.Contracts.ArrayableInterface.html">Illuminate\Support\Contracts\ArrayableInterface</a></code>|array</code><br>$items</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-Illuminate.Support.Collection.html">Illuminate\Support\Collection</a></code></code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="each" id="_each">
+
+		<td class="attributes"><code>
+			 public 
+			<code><a href="class-Illuminate.Support.Collection.html">Illuminate\Support\Collection</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_each">#</a>
+		<code><a href="source-class-Illuminate.Support.Collection.html#85-96" title="Go to source code">each</a>( <span><code><a href="class-Closure.html">Closure</a></code> <var>$callback</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Execute a callback over each item.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Execute a callback over each item.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$callback</var></dt>
+					<dd><code><code><a href="class-Closure.html">Closure</a></code></code><br>$callback</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-Illuminate.Support.Collection.html">Illuminate\Support\Collection</a></code></code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="fetch" id="_fetch">
+
+		<td class="attributes"><code>
+			 public 
+			<code><a href="class-Illuminate.Support.Collection.html">Illuminate\Support\Collection</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_fetch">#</a>
+		<code><a href="source-class-Illuminate.Support.Collection.html#98-107" title="Go to source code">fetch</a>( <span>string <var>$key</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Fetch a nested element of the collection.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Fetch a nested element of the collection.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$key</var></dt>
+					<dd><code>string</code><br>$key</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-Illuminate.Support.Collection.html">Illuminate\Support\Collection</a></code></code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="filter" id="_filter">
+
+		<td class="attributes"><code>
+			 public 
+			<code><a href="class-Illuminate.Support.Collection.html">Illuminate\Support\Collection</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_filter">#</a>
+		<code><a href="source-class-Illuminate.Support.Collection.html#109-118" title="Go to source code">filter</a>( <span><code><a href="class-Closure.html">Closure</a></code> <var>$callback</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Run a filter over each of the items.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Run a filter over each of the items.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$callback</var></dt>
+					<dd><code><code><a href="class-Closure.html">Closure</a></code></code><br>$callback</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-Illuminate.Support.Collection.html">Illuminate\Support\Collection</a></code></code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="first" id="_first">
+
+		<td class="attributes"><code>
+			 public 
+			mixed|null
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_first">#</a>
+		<code><a href="source-class-Illuminate.Support.Collection.html#120-137" title="Go to source code">first</a>( <span><code><a href="class-Closure.html">Closure</a></code> <var>$callback</var> = <span class="php-keyword1">null</span></span>, <span>mixed <var>$default</var> = <span class="php-keyword1">null</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Get the first item from the collection.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get the first item from the collection.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$callback</var></dt>
+					<dd><code><code><a href="class-Closure.html">Closure</a></code></code><br>$callback</dd>
+					<dt><var>$default</var></dt>
+					<dd><code>mixed</code><br>$default</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>mixed|null</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="flatten" id="_flatten">
+
+		<td class="attributes"><code>
+			 public 
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_flatten">#</a>
+		<code><a href="source-class-Illuminate.Support.Collection.html#139-147" title="Go to source code">flatten</a>( )</code>
+
+		<div class="description short">
+			
+<p>Get a flattened array of the items in the collection.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get a flattened array of the items in the collection.</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="forget" id="_forget">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_forget">#</a>
+		<code><a href="source-class-Illuminate.Support.Collection.html#149-158" title="Go to source code">forget</a>( <span>mixed <var>$key</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Remove an item from the collection by key.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Remove an item from the collection by key.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$key</var></dt>
+					<dd><code>mixed</code><br>$key</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="get" id="_get">
+
+		<td class="attributes"><code>
+			 public 
+			mixed
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_get">#</a>
+		<code><a href="source-class-Illuminate.Support.Collection.html#160-175" title="Go to source code">get</a>( <span>mixed <var>$key</var></span>, <span>mixed <var>$default</var> = <span class="php-keyword1">null</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Get an item from the collection by key.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get an item from the collection by key.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$key</var></dt>
+					<dd><code>mixed</code><br>$key</dd>
+					<dt><var>$default</var></dt>
+					<dd><code>mixed</code><br>$default</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>mixed</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="groupBy" id="_groupBy">
+
+		<td class="attributes"><code>
+			 public 
+			<code><a href="class-Illuminate.Support.Collection.html">Illuminate\Support\Collection</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_groupBy">#</a>
+		<code><a href="source-class-Illuminate.Support.Collection.html#177-195" title="Go to source code">groupBy</a>( <span>callable|string <var>$groupBy</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Group an associative array by a field or Closure value.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Group an associative array by a field or Closure value.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$groupBy</var></dt>
+					<dd><code>callable|string</code><br>$groupBy</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-Illuminate.Support.Collection.html">Illuminate\Support\Collection</a></code></code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="has" id="_has">
+
+		<td class="attributes"><code>
+			 public 
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_has">#</a>
+		<code><a href="source-class-Illuminate.Support.Collection.html#197-206" title="Go to source code">has</a>( <span>mixed <var>$key</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Determine if an item exists in the collection by key.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Determine if an item exists in the collection by key.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$key</var></dt>
+					<dd><code>mixed</code><br>$key</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="implode" id="_implode">
+
+		<td class="attributes"><code>
+			 public 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_implode">#</a>
+		<code><a href="source-class-Illuminate.Support.Collection.html#208-220" title="Go to source code">implode</a>( <span>string <var>$value</var></span>, <span>string <var>$glue</var> = <span class="php-keyword1">null</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Concatenate values of a given key as a string.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Concatenate values of a given key as a string.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$value</var></dt>
+					<dd><code>string</code><br>$value</dd>
+					<dt><var>$glue</var></dt>
+					<dd><code>string</code><br>$glue</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="intersect" id="_intersect">
+
+		<td class="attributes"><code>
+			 public 
+			<code><a href="class-Illuminate.Support.Collection.html">Illuminate\Support\Collection</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_intersect">#</a>
+		<code><a href="source-class-Illuminate.Support.Collection.html#222-231" title="Go to source code">intersect</a>( <span><code><a href="class-Illuminate.Support.Collection.html">Illuminate\Support\Collection</a></code>|<code><a href="class-Illuminate.Support.Contracts.ArrayableInterface.html">Illuminate\Support\Contracts\ArrayableInterface</a></code>|array <var>$items</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Intersect the collection with the given items.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Intersect the collection with the given items.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$items</var></dt>
+					<dd><code><code><a href="class-Illuminate.Support.Collection.html">Illuminate\Support\Collection</a></code>|<code><a href="class-Illuminate.Support.Contracts.ArrayableInterface.html">Illuminate\Support\Contracts\ArrayableInterface</a></code>|array</code><br>$items</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-Illuminate.Support.Collection.html">Illuminate\Support\Collection</a></code></code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="isEmpty" id="_isEmpty">
+
+		<td class="attributes"><code>
+			 public 
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_isEmpty">#</a>
+		<code><a href="source-class-Illuminate.Support.Collection.html#233-241" title="Go to source code">isEmpty</a>( )</code>
+
+		<div class="description short">
+			
+<p>Determine if the collection is empty or not.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Determine if the collection is empty or not.</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="last" id="_last">
+
+		<td class="attributes"><code>
+			 public 
+			mixed|null
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_last">#</a>
+		<code><a href="source-class-Illuminate.Support.Collection.html#243-251" title="Go to source code">last</a>( )</code>
+
+		<div class="description short">
+			
+<p>Get the last item from the collection.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get the last item from the collection.</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>mixed|null</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="lists" id="_lists">
+
+		<td class="attributes"><code>
+			 public 
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_lists">#</a>
+		<code><a href="source-class-Illuminate.Support.Collection.html#253-263" title="Go to source code">lists</a>( <span>string <var>$value</var></span>, <span>string <var>$key</var> = <span class="php-keyword1">null</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Get an array with the values of a given key.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get an array with the values of a given key.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$value</var></dt>
+					<dd><code>string</code><br>$value</dd>
+					<dt><var>$key</var></dt>
+					<dd><code>string</code><br>$key</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="map" id="_map">
+
+		<td class="attributes"><code>
+			 public 
+			<code><a href="class-Illuminate.Support.Collection.html">Illuminate\Support\Collection</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_map">#</a>
+		<code><a href="source-class-Illuminate.Support.Collection.html#265-274" title="Go to source code">map</a>( <span><code><a href="class-Closure.html">Closure</a></code> <var>$callback</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Run a map over each of the items.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Run a map over each of the items.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$callback</var></dt>
+					<dd><code><code><a href="class-Closure.html">Closure</a></code></code><br>$callback</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-Illuminate.Support.Collection.html">Illuminate\Support\Collection</a></code></code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="merge" id="_merge">
+
+		<td class="attributes"><code>
+			 public 
+			<code><a href="class-Illuminate.Support.Collection.html">Illuminate\Support\Collection</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_merge">#</a>
+		<code><a href="source-class-Illuminate.Support.Collection.html#276-285" title="Go to source code">merge</a>( <span><code><a href="class-Illuminate.Support.Collection.html">Illuminate\Support\Collection</a></code>|<code><a href="class-Illuminate.Support.Contracts.ArrayableInterface.html">Illuminate\Support\Contracts\ArrayableInterface</a></code>|array <var>$items</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Merge the collection with the given items.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Merge the collection with the given items.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$items</var></dt>
+					<dd><code><code><a href="class-Illuminate.Support.Collection.html">Illuminate\Support\Collection</a></code>|<code><a href="class-Illuminate.Support.Contracts.ArrayableInterface.html">Illuminate\Support\Contracts\ArrayableInterface</a></code>|array</code><br>$items</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-Illuminate.Support.Collection.html">Illuminate\Support\Collection</a></code></code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="pop" id="_pop">
+
+		<td class="attributes"><code>
+			 public 
+			mixed|null
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_pop">#</a>
+		<code><a href="source-class-Illuminate.Support.Collection.html#287-295" title="Go to source code">pop</a>( )</code>
+
+		<div class="description short">
+			
+<p>Get and remove the last item from the collection.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get and remove the last item from the collection.</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>mixed|null</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="prepend" id="_prepend">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_prepend">#</a>
+		<code><a href="source-class-Illuminate.Support.Collection.html#297-306" title="Go to source code">prepend</a>( <span>mixed <var>$value</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Push an item onto the beginning of the collection.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Push an item onto the beginning of the collection.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$value</var></dt>
+					<dd><code>mixed</code><br>$value</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="push" id="_push">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_push">#</a>
+		<code><a href="source-class-Illuminate.Support.Collection.html#308-317" title="Go to source code">push</a>( <span>mixed <var>$value</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Push an item onto the end of the collection.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Push an item onto the end of the collection.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$value</var></dt>
+					<dd><code>mixed</code><br>$value</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="pull" id="_pull">
+
+		<td class="attributes"><code>
+			 public 
+			mixed
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_pull">#</a>
+		<code><a href="source-class-Illuminate.Support.Collection.html#319-329" title="Go to source code">pull</a>( <span>mixed <var>$key</var></span>, <span>mixed <var>$default</var> = <span class="php-keyword1">null</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Pulls an item from the collection.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Pulls an item from the collection.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$key</var></dt>
+					<dd><code>mixed</code><br>$key</dd>
+					<dt><var>$default</var></dt>
+					<dd><code>mixed</code><br>$default</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>mixed</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="put" id="_put">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_put">#</a>
+		<code><a href="source-class-Illuminate.Support.Collection.html#331-341" title="Go to source code">put</a>( <span>mixed <var>$key</var></span>, <span>mixed <var>$value</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Put an item in the collection by key.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Put an item in the collection by key.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$key</var></dt>
+					<dd><code>mixed</code><br>$key</dd>
+					<dt><var>$value</var></dt>
+					<dd><code>mixed</code><br>$value</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="reduce" id="_reduce">
+
+		<td class="attributes"><code>
+			 public 
+			mixed
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_reduce">#</a>
+		<code><a href="source-class-Illuminate.Support.Collection.html#343-353" title="Go to source code">reduce</a>( <span>callable <var>$callback</var></span>, <span>mixed <var>$initial</var> = <span class="php-keyword1">null</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Reduce the collection to a single value.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Reduce the collection to a single value.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$callback</var></dt>
+					<dd><code>callable</code><br>$callback</dd>
+					<dt><var>$initial</var></dt>
+					<dd><code>mixed</code><br>$initial</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>mixed</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="random" id="_random">
+
+		<td class="attributes"><code>
+			 public 
+			mixed
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_random">#</a>
+		<code><a href="source-class-Illuminate.Support.Collection.html#355-366" title="Go to source code">random</a>( <span>integer <var>$amount</var> = <span class="php-num">1</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Get one or more items randomly from the collection.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get one or more items randomly from the collection.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$amount</var></dt>
+					<dd><code>integer</code><br>$amount</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>mixed</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="reverse" id="_reverse">
+
+		<td class="attributes"><code>
+			 public 
+			<code><a href="class-Illuminate.Support.Collection.html">Illuminate\Support\Collection</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_reverse">#</a>
+		<code><a href="source-class-Illuminate.Support.Collection.html#368-376" title="Go to source code">reverse</a>( )</code>
+
+		<div class="description short">
+			
+<p>Reverse items order.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Reverse items order.</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-Illuminate.Support.Collection.html">Illuminate\Support\Collection</a></code></code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="shift" id="_shift">
+
+		<td class="attributes"><code>
+			 public 
+			mixed|null
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_shift">#</a>
+		<code><a href="source-class-Illuminate.Support.Collection.html#378-386" title="Go to source code">shift</a>( )</code>
+
+		<div class="description short">
+			
+<p>Get and remove the first item from the collection.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get and remove the first item from the collection.</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>mixed|null</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="slice" id="_slice">
+
+		<td class="attributes"><code>
+			 public 
+			<code><a href="class-Illuminate.Support.Collection.html">Illuminate\Support\Collection</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_slice">#</a>
+		<code><a href="source-class-Illuminate.Support.Collection.html#388-399" title="Go to source code">slice</a>( <span>integer <var>$offset</var></span>, <span>integer <var>$length</var> = <span class="php-keyword1">null</span></span>, <span>boolean <var>$preserveKeys</var> = <span class="php-keyword1">false</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Slice the underlying collection array.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Slice the underlying collection array.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$offset</var></dt>
+					<dd><code>integer</code><br>$offset</dd>
+					<dt><var>$length</var></dt>
+					<dd><code>integer</code><br>$length</dd>
+					<dt><var>$preserveKeys</var></dt>
+					<dd><code>boolean</code><br>$preserveKeys</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-Illuminate.Support.Collection.html">Illuminate\Support\Collection</a></code></code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="chunk" id="_chunk">
+
+		<td class="attributes"><code>
+			 public 
+			<code><a href="class-Illuminate.Support.Collection.html">Illuminate\Support\Collection</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_chunk">#</a>
+		<code><a href="source-class-Illuminate.Support.Collection.html#401-418" title="Go to source code">chunk</a>( <span>integer <var>$size</var></span>, <span>boolean <var>$preserveKeys</var> = <span class="php-keyword1">false</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Chunk the underlying collection array.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Chunk the underlying collection array.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$size</var></dt>
+					<dd><code>integer</code><br>$size</dd>
+					<dt><var>$preserveKeys</var></dt>
+					<dd><code>boolean</code><br>$preserveKeys</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-Illuminate.Support.Collection.html">Illuminate\Support\Collection</a></code></code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="sort" id="_sort">
+
+		<td class="attributes"><code>
+			 public 
+			<code><a href="class-Illuminate.Support.Collection.html">Illuminate\Support\Collection</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_sort">#</a>
+		<code><a href="source-class-Illuminate.Support.Collection.html#420-431" title="Go to source code">sort</a>( <span><code><a href="class-Closure.html">Closure</a></code> <var>$callback</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Sort through each item with a callback.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Sort through each item with a callback.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$callback</var></dt>
+					<dd><code><code><a href="class-Closure.html">Closure</a></code></code><br>$callback</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-Illuminate.Support.Collection.html">Illuminate\Support\Collection</a></code></code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="sortBy" id="_sortBy">
+
+		<td class="attributes"><code>
+			 public 
+			<code><a href="class-Illuminate.Support.Collection.html">Illuminate\Support\Collection</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_sortBy">#</a>
+		<code><a href="source-class-Illuminate.Support.Collection.html#433-470" title="Go to source code">sortBy</a>( <span><code><a href="class-Closure.html">Closure</a></code>|string <var>$callback</var></span>, <span>integer <var>$options</var> = SORT_REGULAR</span>, <span>boolean <var>$descending</var> = <span class="php-keyword1">false</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Sort the collection using the given Closure.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Sort the collection using the given Closure.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$callback</var></dt>
+					<dd><code><code><a href="class-Closure.html">Closure</a></code>|string</code><br>$callback</dd>
+					<dt><var>$options</var></dt>
+					<dd><code>integer</code><br>$options</dd>
+					<dt><var>$descending</var></dt>
+					<dd><code>boolean</code><br>$descending</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-Illuminate.Support.Collection.html">Illuminate\Support\Collection</a></code></code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="sortByDesc" id="_sortByDesc">
+
+		<td class="attributes"><code>
+			 public 
+			<code><a href="class-Illuminate.Support.Collection.html">Illuminate\Support\Collection</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_sortByDesc">#</a>
+		<code><a href="source-class-Illuminate.Support.Collection.html#472-482" title="Go to source code">sortByDesc</a>( <span><code><a href="class-Closure.html">Closure</a></code>|string <var>$callback</var></span>, <span>integer <var>$options</var> = SORT_REGULAR</span> )</code>
+
+		<div class="description short">
+			
+<p>Sort the collection in descending order using the given Closure.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Sort the collection in descending order using the given Closure.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$callback</var></dt>
+					<dd><code><code><a href="class-Closure.html">Closure</a></code>|string</code><br>$callback</dd>
+					<dt><var>$options</var></dt>
+					<dd><code>integer</code><br>$options</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-Illuminate.Support.Collection.html">Illuminate\Support\Collection</a></code></code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="splice" id="_splice">
+
+		<td class="attributes"><code>
+			 public 
+			<code><a href="class-Illuminate.Support.Collection.html">Illuminate\Support\Collection</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_splice">#</a>
+		<code><a href="source-class-Illuminate.Support.Collection.html#484-495" title="Go to source code">splice</a>( <span>integer <var>$offset</var></span>, <span>integer <var>$length</var> = <span class="php-num">0</span></span>, <span>mixed <var>$replacement</var> = <span class="php-keyword1">array</span>()</span> )</code>
+
+		<div class="description short">
+			
+<p>Splice portion of the underlying collection array.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Splice portion of the underlying collection array.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$offset</var></dt>
+					<dd><code>integer</code><br>$offset</dd>
+					<dt><var>$length</var></dt>
+					<dd><code>integer</code><br>$length</dd>
+					<dt><var>$replacement</var></dt>
+					<dd><code>mixed</code><br>$replacement</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-Illuminate.Support.Collection.html">Illuminate\Support\Collection</a></code></code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="sum" id="_sum">
+
+		<td class="attributes"><code>
+			 public 
+			mixed
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_sum">#</a>
+		<code><a href="source-class-Illuminate.Support.Collection.html#497-516" title="Go to source code">sum</a>( <span><code><a href="class-Closure.html">Closure</a></code> <var>$callback</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Get the sum of the given values.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get the sum of the given values.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$callback</var></dt>
+					<dd><code><code><a href="class-Closure.html">Closure</a></code></code><br>$callback</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>mixed</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="take" id="_take">
+
+		<td class="attributes"><code>
+			 public 
+			<code><a href="class-Illuminate.Support.Collection.html">Illuminate\Support\Collection</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_take">#</a>
+		<code><a href="source-class-Illuminate.Support.Collection.html#518-529" title="Go to source code">take</a>( <span>integer <var>$limit</var> = <span class="php-keyword1">null</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Take the first or last {$limit} items.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Take the first or last {$limit} items.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$limit</var></dt>
+					<dd><code>integer</code><br>$limit</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-Illuminate.Support.Collection.html">Illuminate\Support\Collection</a></code></code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="transform" id="_transform">
+
+		<td class="attributes"><code>
+			 public 
+			<code><a href="class-Illuminate.Support.Collection.html">Illuminate\Support\Collection</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_transform">#</a>
+		<code><a href="source-class-Illuminate.Support.Collection.html#531-542" title="Go to source code">transform</a>( <span><code><a href="class-Closure.html">Closure</a></code> <var>$callback</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Transform each item in the collection using a callback.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Transform each item in the collection using a callback.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$callback</var></dt>
+					<dd><code><code><a href="class-Closure.html">Closure</a></code></code><br>$callback</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-Illuminate.Support.Collection.html">Illuminate\Support\Collection</a></code></code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="unique" id="_unique">
+
+		<td class="attributes"><code>
+			 public 
+			<code><a href="class-Illuminate.Support.Collection.html">Illuminate\Support\Collection</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_unique">#</a>
+		<code><a href="source-class-Illuminate.Support.Collection.html#544-552" title="Go to source code">unique</a>( )</code>
+
+		<div class="description short">
+			
+<p>Return only unique items from the collection array.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Return only unique items from the collection array.</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-Illuminate.Support.Collection.html">Illuminate\Support\Collection</a></code></code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="values" id="_values">
+
+		<td class="attributes"><code>
+			 public 
+			<code><a href="class-Illuminate.Support.Collection.html">Illuminate\Support\Collection</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_values">#</a>
+		<code><a href="source-class-Illuminate.Support.Collection.html#554-564" title="Go to source code">values</a>( )</code>
+
+		<div class="description short">
+			
+<p>Reset the keys on the underlying array.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Reset the keys on the underlying array.</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-Illuminate.Support.Collection.html">Illuminate\Support\Collection</a></code></code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="valueRetriever" id="_valueRetriever">
+
+		<td class="attributes"><code>
+			 protected 
+			<code><a href="class-Closure.html">Closure</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_valueRetriever">#</a>
+		<code><a href="source-class-Illuminate.Support.Collection.html#566-578" title="Go to source code">valueRetriever</a>( <span>string <var>$value</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Get a value retrieving callback.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get a value retrieving callback.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$value</var></dt>
+					<dd><code>string</code><br>$value</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-Closure.html">Closure</a></code></code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="toArray" id="_toArray">
+
+		<td class="attributes"><code>
+			 public 
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_toArray">#</a>
+		<code><a href="source-class-Illuminate.Support.Collection.html#580-592" title="Go to source code">toArray</a>( )</code>
+
+		<div class="description short">
+			
+<p>Get the collection of items as a plain array.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get the collection of items as a plain array.</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array</code><br />
+				</div>
+
+
+
+
+				<h4>Implementation of</h4>
+				<div class="list"><code><a href="class-Illuminate.Support.Contracts.ArrayableInterface.html#_toArray">Illuminate\Support\Contracts\ArrayableInterface::toArray()</a></code></div>
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="toJson" id="_toJson">
+
+		<td class="attributes"><code>
+			 public 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_toJson">#</a>
+		<code><a href="source-class-Illuminate.Support.Collection.html#594-603" title="Go to source code">toJson</a>( <span>integer <var>$options</var> = <span class="php-num">0</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Get the collection of items as JSON.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get the collection of items as JSON.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$options</var></dt>
+					<dd><code>integer</code><br>$options</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br />
+				</div>
+
+
+
+
+				<h4>Implementation of</h4>
+				<div class="list"><code><a href="class-Illuminate.Support.Contracts.JsonableInterface.html#_toJson">Illuminate\Support\Contracts\JsonableInterface::toJson()</a></code></div>
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getIterator" id="_getIterator">
+
+		<td class="attributes"><code>
+			 public 
+			<code><a href="class-ArrayIterator.html">ArrayIterator</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getIterator">#</a>
+		<code><a href="source-class-Illuminate.Support.Collection.html#605-613" title="Go to source code">getIterator</a>( )</code>
+
+		<div class="description short">
+			
+<p>Get an iterator for the items.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get an iterator for the items.</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-ArrayIterator.html">ArrayIterator</a></code></code><br />
+				</div>
+
+
+
+
+				<h4>Implementation of</h4>
+				<div class="list"><code><a href="class-IteratorAggregate.html#_getIterator">IteratorAggregate::getIterator()</a></code></div>
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getCachingIterator" id="_getCachingIterator">
+
+		<td class="attributes"><code>
+			 public 
+			<code><a href="class-CachingIterator.html">CachingIterator</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getCachingIterator">#</a>
+		<code><a href="source-class-Illuminate.Support.Collection.html#615-623" title="Go to source code">getCachingIterator</a>( <span>mixed <var>$flags</var> = Illuminate\Support\CachingIterator::CALL_TOSTRING</span> )</code>
+
+		<div class="description short">
+			
+<p>Get a CachingIterator instance.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get a CachingIterator instance.</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-CachingIterator.html">CachingIterator</a></code></code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="count" id="_count">
+
+		<td class="attributes"><code>
+			 public 
+			integer
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_count">#</a>
+		<code><a href="source-class-Illuminate.Support.Collection.html#625-633" title="Go to source code">count</a>( )</code>
+
+		<div class="description short">
+			
+<p>Count the number of items in the collection.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Count the number of items in the collection.</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>integer</code><br />
+				</div>
+
+
+
+
+				<h4>Implementation of</h4>
+				<div class="list"><code><a href="class-Countable.html#_count">Countable::count()</a></code></div>
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="offsetExists" id="_offsetExists">
+
+		<td class="attributes"><code>
+			 public 
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_offsetExists">#</a>
+		<code><a href="source-class-Illuminate.Support.Collection.html#635-644" title="Go to source code">offsetExists</a>( <span>mixed <var>$key</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Determine if an item exists at an offset.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Determine if an item exists at an offset.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$key</var></dt>
+					<dd><code>mixed</code><br>$key</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br />
+				</div>
+
+
+
+
+				<h4>Implementation of</h4>
+				<div class="list"><code><a href="class-ArrayAccess.html#_offsetExists">ArrayAccess::offsetExists()</a></code></div>
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="offsetGet" id="_offsetGet">
+
+		<td class="attributes"><code>
+			 public 
+			mixed
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_offsetGet">#</a>
+		<code><a href="source-class-Illuminate.Support.Collection.html#646-655" title="Go to source code">offsetGet</a>( <span>mixed <var>$key</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Get an item at a given offset.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get an item at a given offset.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$key</var></dt>
+					<dd><code>mixed</code><br>$key</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>mixed</code><br />
+				</div>
+
+
+
+
+				<h4>Implementation of</h4>
+				<div class="list"><code><a href="class-ArrayAccess.html#_offsetGet">ArrayAccess::offsetGet()</a></code></div>
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="offsetSet" id="_offsetSet">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_offsetSet">#</a>
+		<code><a href="source-class-Illuminate.Support.Collection.html#657-674" title="Go to source code">offsetSet</a>( <span>mixed <var>$key</var></span>, <span>mixed <var>$value</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Set the item at a given offset.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Set the item at a given offset.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$key</var></dt>
+					<dd><code>mixed</code><br>$key</dd>
+					<dt><var>$value</var></dt>
+					<dd><code>mixed</code><br>$value</dd>
+				</dl></div>
+
+
+
+
+
+				<h4>Implementation of</h4>
+				<div class="list"><code><a href="class-ArrayAccess.html#_offsetSet">ArrayAccess::offsetSet()</a></code></div>
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="offsetUnset" id="_offsetUnset">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_offsetUnset">#</a>
+		<code><a href="source-class-Illuminate.Support.Collection.html#676-685" title="Go to source code">offsetUnset</a>( <span>string <var>$key</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Unset the item at a given offset.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Unset the item at a given offset.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$key</var></dt>
+					<dd><code>string</code><br>$key</dd>
+				</dl></div>
+
+
+
+
+
+				<h4>Implementation of</h4>
+				<div class="list"><code><a href="class-ArrayAccess.html#_offsetUnset">ArrayAccess::offsetUnset()</a></code></div>
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="__toString" id="___toString">
+
+		<td class="attributes"><code>
+			 public 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#___toString">#</a>
+		<code><a href="source-class-Illuminate.Support.Collection.html#687-695" title="Go to source code">__toString</a>( )</code>
+
+		<div class="description short">
+			
+<p>Convert the collection to its string representation.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Convert the collection to its string representation.</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	</table>
+
+
+
+
+
+
+
+
+
+
+
+
+	<table class="summary" id="properties">
+	<caption>Properties summary</caption>
+	<tr data-order="items" id="$items">
+		<td class="attributes"><code>
+			protected  
+			array
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Illuminate.Support.Collection.html#14-19" title="Go to source code"><var>$items</var></a>
+		</td>
+		<td class="value"><code><span class="php-keyword1">array</span>()</code></td>
+		<td class="description"><div>
+			<a href="#$items" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>The items contained in the collection.</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>The items contained in the collection.</p>
+
+
+			</div>
+		</div></td>
+	</tr>
+	</table>
+
+
+
+
+
+
+</div>
+
+	<div id="footer">
+		 API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
+	</div>
+</div>
+</div>
+</body>
+</html>

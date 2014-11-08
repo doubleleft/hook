@@ -1,0 +1,1642 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="generator" content="ApiGen 2.8.0" />
+
+	<title>Class Slim\Route</title>
+
+	<script type="text/javascript" src="resources/combined.js?417754471"></script>
+	<script type="text/javascript" src="elementlist.js?721444666"></script>
+	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
+
+</head>
+
+<body>
+<div id="left">
+	<div id="menu">
+		<a href="index.html" title="Overview"><span>Overview</span></a>
+
+
+		<div id="groups">
+			<h3>Namespaces</h3>
+			<ul>
+				<li><a href="namespace-Hook.html">Hook<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Application.html">Application<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Application.Core.html">Core</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Hook.Auth.html">Auth<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Auth.Providers.html">Providers</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Hook.Cache.html">Cache</a>
+						</li>
+				<li><a href="namespace-Hook.Controllers.html">Controllers</a>
+						</li>
+				<li><a href="namespace-Hook.Database.html">Database<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Database.Schema.html">Schema<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Database.Schema.Grammars.html">Grammars</a>
+						</li>
+							</ul></li></ul></li>
+				<li><a href="namespace-Hook.Encryption.html">Encryption</a>
+						</li>
+				<li><a href="namespace-Hook.Exceptions.html">Exceptions</a>
+						</li>
+				<li><a href="namespace-Hook.Http.html">Http</a>
+						</li>
+				<li><a href="namespace-Hook.Logger.html">Logger</a>
+						</li>
+				<li><a href="namespace-Hook.Mailer.html">Mailer</a>
+						</li>
+				<li><a href="namespace-Hook.Middlewares.html">Middlewares</a>
+						</li>
+				<li><a href="namespace-Hook.Model.html">Model</a>
+						</li>
+				<li><a href="namespace-Hook.Package.html">Package</a>
+						</li>
+				<li><a href="namespace-Hook.Pagination.html">Pagination</a>
+						</li>
+				<li><a href="namespace-Hook.PushNotification.html">PushNotification<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.PushNotification.Services.html">Services</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Hook.Session.html">Session<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Session.Handlers.html">Handlers</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Hook.Storage.html">Storage<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Storage.Providers.html">Providers</a>
+						</li>
+							</ul></li></ul></li>
+				<li><a href="namespace-Illuminate.html">Illuminate<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Cache.html">Cache<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Cache.Console.html">Console</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Illuminate.Config.html">Config</a>
+						</li>
+				<li><a href="namespace-Illuminate.Container.html">Container</a>
+						</li>
+				<li><a href="namespace-Illuminate.Database.html">Database<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Database.Capsule.html">Capsule</a>
+						</li>
+				<li><a href="namespace-Illuminate.Database.Connectors.html">Connectors</a>
+						</li>
+				<li><a href="namespace-Illuminate.Database.Console.html">Console<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Database.Console.Migrations.html">Migrations</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Illuminate.Database.Eloquent.html">Eloquent<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Database.Eloquent.Relations.html">Relations</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Illuminate.Database.Migrations.html">Migrations</a>
+						</li>
+				<li><a href="namespace-Illuminate.Database.Query.html">Query<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Database.Query.Grammars.html">Grammars</a>
+						</li>
+				<li><a href="namespace-Illuminate.Database.Query.Processors.html">Processors</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Illuminate.Database.Schema.html">Schema<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Database.Schema.Grammars.html">Grammars</a>
+						</li>
+							</ul></li></ul></li>
+				<li><a href="namespace-Illuminate.Encryption.html">Encryption</a>
+						</li>
+				<li><a href="namespace-Illuminate.Events.html">Events</a>
+						</li>
+				<li><a href="namespace-Illuminate.Filesystem.html">Filesystem</a>
+						</li>
+				<li><a href="namespace-Illuminate.Support.html">Support<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Support.Contracts.html">Contracts</a>
+						</li>
+				<li><a href="namespace-Illuminate.Support.Facades.html">Facades</a>
+						</li>
+							</ul></li></ul></li>
+				<li><a href="namespace-None.html">None</a>
+						</li>
+				<li><a href="namespace-PHP.html">PHP</a>
+						</li>
+				<li class="active"><a href="namespace-Slim.html">Slim<span></span></a>
+						<ul>
+				<li><a href="namespace-Slim.Exception.html">Exception</a>
+						</li>
+				<li><a href="namespace-Slim.Helper.html">Helper</a>
+						</li>
+				<li><a href="namespace-Slim.Http.html">Http</a>
+						</li>
+				<li><a href="namespace-Slim.Middleware.html">Middleware</a>
+						</li>
+							</ul></li>
+			</ul>
+		</div>
+
+		<hr />
+
+
+		<div id="elements">
+			<h3>Classes</h3>
+			<ul>
+				<li><a href="class-Slim.Environment.html">Environment</a></li>
+				<li><a href="class-Slim.Log.html">Log</a></li>
+				<li><a href="class-Slim.LogWriter.html">LogWriter</a></li>
+				<li><a href="class-Slim.Middleware.html">Middleware</a></li>
+				<li class="active"><a href="class-Slim.Route.html">Route</a></li>
+				<li><a href="class-Slim.Router.html">Router</a></li>
+				<li><a href="class-Slim.Slim.html">Slim</a></li>
+				<li><a href="class-Slim.View.html">View</a></li>
+			</ul>
+
+
+
+
+
+		</div>
+	</div>
+</div>
+
+<div id="splitter"></div>
+
+<div id="right">
+<div id="rightInner">
+	<form id="search">
+		<input type="hidden" name="cx" value="" />
+		<input type="hidden" name="ie" value="UTF-8" />
+		<input type="text" name="q" class="text" />
+		<input type="submit" value="Search" />
+	</form>
+
+	<div id="navigation">
+		<ul>
+			<li>
+				<a href="index.html" title="Overview"><span>Overview</span></a>
+			</li>
+			<li>
+				<a href="namespace-Slim.html" title="Summary of Slim"><span>Namespace</span></a>
+			</li>
+			<li class="active">
+<span>Class</span>			</li>
+		</ul>
+		<ul>
+			<li>
+				<a href="tree.html" title="Tree view of classes, interfaces, traits and exceptions"><span>Tree</span></a>
+			</li>
+		</ul>
+		<ul>
+		</ul>
+	</div>
+
+<div id="content" class="class">
+	<h1>Class Route</h1>
+
+
+	<div class="description">
+	
+<p>Route</p>
+
+	</div>
+
+
+
+
+
+
+
+
+
+	<div class="info">
+		
+		
+		<b>Namespace:</b> <a href="namespace-Slim.html">Slim</a><br />
+		<b>Package:</b> Slim<br />
+
+				<b>Author:</b>
+				Josh Lockhart, Thomas Bley<br />
+				<b>Since:</b>
+				1.0.0<br />
+		<b>Located at</b> <a href="source-class-Slim.Route.html#35-465" title="Go to source code">Route.php</a><br />
+	</div>
+
+
+
+	<table class="summary" id="methods">
+	<caption>Methods summary</caption>
+	<tr data-order="__construct" id="___construct">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#___construct">#</a>
+		<code><a href="source-class-Slim.Route.html#98-110" title="Go to source code">__construct</a>( <span>string <var>$pattern</var></span>, <span>mixed <var>$callable</var></span>, <span>boolean <var>$caseSensitive</var> = <span class="php-keyword1">true</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Constructor</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Constructor</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$pattern</var></dt>
+					<dd><code>string</code><br>$pattern The URL pattern (e.g. "/books/:id")</dd>
+					<dt><var>$callable</var></dt>
+					<dd><code>mixed</code><br>$callable Anything that returns TRUE for is_callable()</dd>
+					<dt><var>$caseSensitive</var></dt>
+					<dd><code>boolean</code><br>$caseSensitive Whether or not this route should be matched in a case-sensitive
+manner</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="setDefaultConditions" id="_setDefaultConditions">
+
+		<td class="attributes"><code>
+			 public static
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_setDefaultConditions">#</a>
+		<code><a href="source-class-Slim.Route.html#112-119" title="Go to source code">setDefaultConditions</a>( <span>array <var>$defaultConditions</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Set default route conditions for all instances</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Set default route conditions for all instances</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$defaultConditions</var></dt>
+					<dd><code>array</code><br>$defaultConditions</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getDefaultConditions" id="_getDefaultConditions">
+
+		<td class="attributes"><code>
+			 public static
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getDefaultConditions">#</a>
+		<code><a href="source-class-Slim.Route.html#121-128" title="Go to source code">getDefaultConditions</a>( )</code>
+
+		<div class="description short">
+			
+<p>Get default route conditions for all instances</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get default route conditions for all instances</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getPattern" id="_getPattern">
+
+		<td class="attributes"><code>
+			 public 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getPattern">#</a>
+		<code><a href="source-class-Slim.Route.html#130-137" title="Go to source code">getPattern</a>( )</code>
+
+		<div class="description short">
+			
+<p>Get route pattern</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get route pattern</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="setPattern" id="_setPattern">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_setPattern">#</a>
+		<code><a href="source-class-Slim.Route.html#139-146" title="Go to source code">setPattern</a>( <span>string <var>$pattern</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Set route pattern</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Set route pattern</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$pattern</var></dt>
+					<dd><code>string</code><br>$pattern</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getCallable" id="_getCallable">
+
+		<td class="attributes"><code>
+			 public 
+			mixed
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getCallable">#</a>
+		<code><a href="source-class-Slim.Route.html#148-155" title="Go to source code">getCallable</a>( )</code>
+
+		<div class="description short">
+			
+<p>Get route callable</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get route callable</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>mixed</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="setCallable" id="_setCallable">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_setCallable">#</a>
+		<code><a href="source-class-Slim.Route.html#157-182" title="Go to source code">setCallable</a>( <span>mixed <var>$callable</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Set route callable</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Set route callable</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$callable</var></dt>
+					<dd><code>mixed</code><br>$callable</dd>
+				</dl></div>
+
+
+				<h4>Throws</h4>
+				<div class="list">
+					<code><code><a href="class-InvalidArgumentException.html">InvalidArgumentException</a></code></code><br>If argument is not callable<br />
+				</div>
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getConditions" id="_getConditions">
+
+		<td class="attributes"><code>
+			 public 
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getConditions">#</a>
+		<code><a href="source-class-Slim.Route.html#184-191" title="Go to source code">getConditions</a>( )</code>
+
+		<div class="description short">
+			
+<p>Get route conditions</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get route conditions</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="setConditions" id="_setConditions">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_setConditions">#</a>
+		<code><a href="source-class-Slim.Route.html#193-200" title="Go to source code">setConditions</a>( <span>array <var>$conditions</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Set route conditions</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Set route conditions</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$conditions</var></dt>
+					<dd><code>array</code><br>$conditions</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getName" id="_getName">
+
+		<td class="attributes"><code>
+			 public 
+			string|null
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getName">#</a>
+		<code><a href="source-class-Slim.Route.html#202-209" title="Go to source code">getName</a>( )</code>
+
+		<div class="description short">
+			
+<p>Get route name</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get route name</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string|null</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="setName" id="_setName">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_setName">#</a>
+		<code><a href="source-class-Slim.Route.html#211-218" title="Go to source code">setName</a>( <span>string <var>$name</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Set route name</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Set route name</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$name</var></dt>
+					<dd><code>string</code><br>$name</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getParams" id="_getParams">
+
+		<td class="attributes"><code>
+			 public 
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getParams">#</a>
+		<code><a href="source-class-Slim.Route.html#220-227" title="Go to source code">getParams</a>( )</code>
+
+		<div class="description short">
+			
+<p>Get route parameters</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get route parameters</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="setParams" id="_setParams">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_setParams">#</a>
+		<code><a href="source-class-Slim.Route.html#229-236" title="Go to source code">setParams</a>( <span>array <var>$params</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Set route parameters</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Set route parameters</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$params</var></dt>
+					<dd><code>array</code><br>$params</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getParam" id="_getParam">
+
+		<td class="attributes"><code>
+			 public 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getParam">#</a>
+		<code><a href="source-class-Slim.Route.html#238-251" title="Go to source code">getParam</a>( <span>string <var>$index</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Get route parameter value</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get route parameter value</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$index</var></dt>
+					<dd><code>string</code><br>$index Name of URL parameter</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br />
+				</div>
+
+				<h4>Throws</h4>
+				<div class="list">
+					<code><code><a href="class-InvalidArgumentException.html">InvalidArgumentException</a></code></code><br>If route parameter does not exist at index<br />
+				</div>
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="setParam" id="_setParam">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_setParam">#</a>
+		<code><a href="source-class-Slim.Route.html#253-265" title="Go to source code">setParam</a>( <span>string <var>$index</var></span>, <span>mixed <var>$value</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Set route parameter value</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Set route parameter value</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$index</var></dt>
+					<dd><code>string</code><br>$index Name of URL parameter</dd>
+					<dt><var>$value</var></dt>
+					<dd><code>mixed</code><br>$value The new parameter value</dd>
+				</dl></div>
+
+
+				<h4>Throws</h4>
+				<div class="list">
+					<code><code><a href="class-InvalidArgumentException.html">InvalidArgumentException</a></code></code><br>If route parameter does not exist at index<br />
+				</div>
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="setHttpMethods" id="_setHttpMethods">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_setHttpMethods">#</a>
+		<code><a href="source-class-Slim.Route.html#267-274" title="Go to source code">setHttpMethods</a>( )</code>
+
+		<div class="description short">
+			
+<p>Add supported HTTP method(s)</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Add supported HTTP method(s)</p>
+
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getHttpMethods" id="_getHttpMethods">
+
+		<td class="attributes"><code>
+			 public 
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getHttpMethods">#</a>
+		<code><a href="source-class-Slim.Route.html#276-283" title="Go to source code">getHttpMethods</a>( )</code>
+
+		<div class="description short">
+			
+<p>Get supported HTTP methods</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get supported HTTP methods</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="appendHttpMethods" id="_appendHttpMethods">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_appendHttpMethods">#</a>
+		<code><a href="source-class-Slim.Route.html#285-292" title="Go to source code">appendHttpMethods</a>( )</code>
+
+		<div class="description short">
+			
+<p>Append supported HTTP methods</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Append supported HTTP methods</p>
+
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="via" id="_via">
+
+		<td class="attributes"><code>
+			 public 
+			<code><a href="class-Slim.Route.html">Slim\Route</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_via">#</a>
+		<code><a href="source-class-Slim.Route.html#294-304" title="Go to source code">via</a>( )</code>
+
+		<div class="description short">
+			
+<p>Append supported HTTP methods (alias for Route::appendHttpMethods)</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Append supported HTTP methods (alias for Route::appendHttpMethods)</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-Slim.Route.html">Slim\Route</a></code></code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="supportsHttpMethod" id="_supportsHttpMethod">
+
+		<td class="attributes"><code>
+			 public 
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_supportsHttpMethod">#</a>
+		<code><a href="source-class-Slim.Route.html#306-314" title="Go to source code">supportsHttpMethod</a>( <span>string <var>$method</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Detect support for an HTTP method</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Detect support for an HTTP method</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$method</var></dt>
+					<dd><code>string</code><br>$method</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getMiddleware" id="_getMiddleware">
+
+		<td class="attributes"><code>
+			 public 
+			array[Callable]
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getMiddleware">#</a>
+		<code><a href="source-class-Slim.Route.html#316-323" title="Go to source code">getMiddleware</a>( )</code>
+
+		<div class="description short">
+			
+<p>Get middleware</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get middleware</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array[Callable]</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="setMiddleware" id="_setMiddleware">
+
+		<td class="attributes"><code>
+			 public 
+			<code><a href="class-Slim.Route.html">Slim\Route</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_setMiddleware">#</a>
+		<code><a href="source-class-Slim.Route.html#325-355" title="Go to source code">setMiddleware</a>( <span>Callable|array[Callable] <var>$middleware</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Set middleware</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Set middleware</p>
+
+<p>This method allows middleware to be assigned to a specific Route. If the
+method argument <code>is_callable</code> (including callable arrays!), we
+directly append the argument to <code>$this-&gt;middleware</code>. Else, we
+assume the argument is an array of callables and merge the array with
+<code>$this-&gt;middleware</code>. Each middleware is checked for is_callable()
+and an InvalidArgumentException is thrown immediately if it isn't.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$middleware</var></dt>
+					<dd><code>Callable|array[Callable]</code></dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-Slim.Route.html">Slim\Route</a></code></code><br />
+				</div>
+
+				<h4>Throws</h4>
+				<div class="list">
+					<code><code><a href="class-InvalidArgumentException.html">InvalidArgumentException</a></code></code><br>If argument is not callable or not an array of callables.<br />
+				</div>
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="matches" id="_matches">
+
+		<td class="attributes"><code>
+			 public 
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_matches">#</a>
+		<code><a href="source-class-Slim.Route.html#357-401" title="Go to source code">matches</a>( <span>string <var>$resourceUri</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Matches URI?</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Matches URI?</p>
+
+<p>Parse this route's pattern, and then compare it to an HTTP resource URI This
+method was modeled after the techniques demonstrated by Dan Sosedoff at:</p>
+
+<p><a
+href="http://blog.sosedoff.com/2009/09/20/rails-like-php-url-router/">http://blog.sosedoff.com/2009/09/20/rails-like-php-url-router/</a></p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$resourceUri</var></dt>
+					<dd><code>string</code><br>$resourceUri A Request URI</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="matchesCallback" id="_matchesCallback">
+
+		<td class="attributes"><code>
+			 protected 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_matchesCallback">#</a>
+		<code><a href="source-class-Slim.Route.html#403-421" title="Go to source code">matchesCallback</a>( <span>array <var>$m</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Convert a URL parameter (e.g. ":id", ":id+") into a regular expression</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Convert a URL parameter (e.g. ":id", ":id+") into a regular expression</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$m</var></dt>
+					<dd><code>array</code><br>$m URL parameters</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br>Regular expression for URL parameter<br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="name" id="_name">
+
+		<td class="attributes"><code>
+			 public 
+			<code><a href="class-Slim.Route.html">Slim\Route</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_name">#</a>
+		<code><a href="source-class-Slim.Route.html#423-433" title="Go to source code">name</a>( <span>string <var>$name</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Set route name</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Set route name</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$name</var></dt>
+					<dd><code>string</code><br>$name The name of the route</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-Slim.Route.html">Slim\Route</a></code></code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="conditions" id="_conditions">
+
+		<td class="attributes"><code>
+			 public 
+			<code><a href="class-Slim.Route.html">Slim\Route</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_conditions">#</a>
+		<code><a href="source-class-Slim.Route.html#435-445" title="Go to source code">conditions</a>( <span>array <var>$conditions</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Merge route conditions</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Merge route conditions</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$conditions</var></dt>
+					<dd><code>array</code><br>$conditions Key-value array of URL parameter conditions</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-Slim.Route.html">Slim\Route</a></code></code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="dispatch" id="_dispatch">
+
+		<td class="attributes"><code>
+			 public 
+			mixed
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_dispatch">#</a>
+		<code><a href="source-class-Slim.Route.html#447-464" title="Go to source code">dispatch</a>( )</code>
+
+		<div class="description short">
+			
+<p>Dispatch route</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Dispatch route</p>
+
+<p>This method invokes the route object's callable. If middleware is registered
+for the route, each callable middleware is invoked in the order specified.</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>mixed</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	</table>
+
+
+
+
+
+
+
+
+
+
+
+
+	<table class="summary" id="properties">
+	<caption>Properties summary</caption>
+	<tr data-order="pattern" id="$pattern">
+		<td class="attributes"><code>
+			protected  
+			string
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Slim.Route.html#43-46" title="Go to source code"><var>$pattern</var></a>
+		</td>
+		<td class="value"><code></code></td>
+		<td class="description"><div>
+			<a href="#$pattern" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>The route pattern (e.g. "/books/:id")</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>The route pattern (e.g. "/books/:id")</p>
+
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="callable" id="$callable">
+		<td class="attributes"><code>
+			protected  
+			mixed
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Slim.Route.html#48-51" title="Go to source code"><var>$callable</var></a>
+		</td>
+		<td class="value"><code></code></td>
+		<td class="description"><div>
+			<a href="#$callable" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>The route callable</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>The route callable</p>
+
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="conditions" id="$conditions">
+		<td class="attributes"><code>
+			protected  
+			array
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Slim.Route.html#53-56" title="Go to source code"><var>$conditions</var></a>
+		</td>
+		<td class="value"><code><span class="php-keyword1">array</span>()</code></td>
+		<td class="description"><div>
+			<a href="#$conditions" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>Conditions for this route's URL parameters</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>Conditions for this route's URL parameters</p>
+
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="defaultConditions" id="$defaultConditions">
+		<td class="attributes"><code>
+			protected static 
+			array
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Slim.Route.html#58-61" title="Go to source code"><var>$defaultConditions</var></a>
+		</td>
+		<td class="value"><code><span class="php-keyword1">array</span>()</code></td>
+		<td class="description"><div>
+			<a href="#$defaultConditions" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>Default conditions applied to all route instances</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>Default conditions applied to all route instances</p>
+
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="name" id="$name">
+		<td class="attributes"><code>
+			protected  
+			string
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Slim.Route.html#63-66" title="Go to source code"><var>$name</var></a>
+		</td>
+		<td class="value"><code></code></td>
+		<td class="description"><div>
+			<a href="#$name" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>The name of this route (optional)</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>The name of this route (optional)</p>
+
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="params" id="$params">
+		<td class="attributes"><code>
+			protected  
+			array
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Slim.Route.html#68-71" title="Go to source code"><var>$params</var></a>
+		</td>
+		<td class="value"><code><span class="php-keyword1">array</span>()</code></td>
+		<td class="description"><div>
+			<a href="#$params" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>Key-value array of URL parameters</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>Key-value array of URL parameters</p>
+
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="paramNames" id="$paramNames">
+		<td class="attributes"><code>
+			protected  
+			array
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Slim.Route.html#73-76" title="Go to source code"><var>$paramNames</var></a>
+		</td>
+		<td class="value"><code><span class="php-keyword1">array</span>()</code></td>
+		<td class="description"><div>
+			<a href="#$paramNames" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>value array of URL parameter names</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>value array of URL parameter names</p>
+
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="paramNamesPath" id="$paramNamesPath">
+		<td class="attributes"><code>
+			protected  
+			array
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Slim.Route.html#78-81" title="Go to source code"><var>$paramNamesPath</var></a>
+		</td>
+		<td class="value"><code><span class="php-keyword1">array</span>()</code></td>
+		<td class="description"><div>
+			<a href="#$paramNamesPath" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>key array of URL parameter names with + at the end</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>key array of URL parameter names with + at the end</p>
+
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="methods" id="$methods">
+		<td class="attributes"><code>
+			protected  
+			array
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Slim.Route.html#83-86" title="Go to source code"><var>$methods</var></a>
+		</td>
+		<td class="value"><code><span class="php-keyword1">array</span>()</code></td>
+		<td class="description"><div>
+			<a href="#$methods" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>HTTP methods supported by this Route</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>HTTP methods supported by this Route</p>
+
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="middleware" id="$middleware">
+		<td class="attributes"><code>
+			protected  
+			array[Callable]
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Slim.Route.html#88-91" title="Go to source code"><var>$middleware</var></a>
+		</td>
+		<td class="value"><code><span class="php-keyword1">array</span>()</code></td>
+		<td class="description"><div>
+			<a href="#$middleware" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>Middleware to be run before only this route instance</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>Middleware to be run before only this route instance</p>
+
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="caseSensitive" id="$caseSensitive">
+		<td class="attributes"><code>
+			protected  
+			boolean
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Slim.Route.html#93-96" title="Go to source code"><var>$caseSensitive</var></a>
+		</td>
+		<td class="value"><code></code></td>
+		<td class="description"><div>
+			<a href="#$caseSensitive" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>Whether or not this route should be matched in a case-sensitive manner</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>Whether or not this route should be matched in a case-sensitive manner</p>
+
+
+			</div>
+		</div></td>
+	</tr>
+	</table>
+
+
+
+
+
+
+</div>
+
+	<div id="footer">
+		 API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
+	</div>
+</div>
+</div>
+</body>
+</html>

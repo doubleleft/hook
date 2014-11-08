@@ -1,0 +1,1017 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="generator" content="ApiGen 2.8.0" />
+
+	<title>Class Illuminate\Database\Eloquent\Collection</title>
+
+	<script type="text/javascript" src="resources/combined.js?417754471"></script>
+	<script type="text/javascript" src="elementlist.js?721444666"></script>
+	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
+
+</head>
+
+<body>
+<div id="left">
+	<div id="menu">
+		<a href="index.html" title="Overview"><span>Overview</span></a>
+
+
+		<div id="groups">
+			<h3>Namespaces</h3>
+			<ul>
+				<li><a href="namespace-Hook.html">Hook<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Application.html">Application<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Application.Core.html">Core</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Hook.Auth.html">Auth<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Auth.Providers.html">Providers</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Hook.Cache.html">Cache</a>
+						</li>
+				<li><a href="namespace-Hook.Controllers.html">Controllers</a>
+						</li>
+				<li><a href="namespace-Hook.Database.html">Database<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Database.Schema.html">Schema<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Database.Schema.Grammars.html">Grammars</a>
+						</li>
+							</ul></li></ul></li>
+				<li><a href="namespace-Hook.Encryption.html">Encryption</a>
+						</li>
+				<li><a href="namespace-Hook.Exceptions.html">Exceptions</a>
+						</li>
+				<li><a href="namespace-Hook.Http.html">Http</a>
+						</li>
+				<li><a href="namespace-Hook.Logger.html">Logger</a>
+						</li>
+				<li><a href="namespace-Hook.Mailer.html">Mailer</a>
+						</li>
+				<li><a href="namespace-Hook.Middlewares.html">Middlewares</a>
+						</li>
+				<li><a href="namespace-Hook.Model.html">Model</a>
+						</li>
+				<li><a href="namespace-Hook.Package.html">Package</a>
+						</li>
+				<li><a href="namespace-Hook.Pagination.html">Pagination</a>
+						</li>
+				<li><a href="namespace-Hook.PushNotification.html">PushNotification<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.PushNotification.Services.html">Services</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Hook.Session.html">Session<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Session.Handlers.html">Handlers</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Hook.Storage.html">Storage<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Storage.Providers.html">Providers</a>
+						</li>
+							</ul></li></ul></li>
+				<li class="active"><a href="namespace-Illuminate.html">Illuminate<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Cache.html">Cache<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Cache.Console.html">Console</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Illuminate.Config.html">Config</a>
+						</li>
+				<li><a href="namespace-Illuminate.Container.html">Container</a>
+						</li>
+				<li class="active"><a href="namespace-Illuminate.Database.html">Database<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Database.Capsule.html">Capsule</a>
+						</li>
+				<li><a href="namespace-Illuminate.Database.Connectors.html">Connectors</a>
+						</li>
+				<li><a href="namespace-Illuminate.Database.Console.html">Console<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Database.Console.Migrations.html">Migrations</a>
+						</li>
+							</ul></li>
+				<li class="active"><a href="namespace-Illuminate.Database.Eloquent.html">Eloquent<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Database.Eloquent.Relations.html">Relations</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Illuminate.Database.Migrations.html">Migrations</a>
+						</li>
+				<li><a href="namespace-Illuminate.Database.Query.html">Query<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Database.Query.Grammars.html">Grammars</a>
+						</li>
+				<li><a href="namespace-Illuminate.Database.Query.Processors.html">Processors</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Illuminate.Database.Schema.html">Schema<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Database.Schema.Grammars.html">Grammars</a>
+						</li>
+							</ul></li></ul></li>
+				<li><a href="namespace-Illuminate.Encryption.html">Encryption</a>
+						</li>
+				<li><a href="namespace-Illuminate.Events.html">Events</a>
+						</li>
+				<li><a href="namespace-Illuminate.Filesystem.html">Filesystem</a>
+						</li>
+				<li><a href="namespace-Illuminate.Support.html">Support<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Support.Contracts.html">Contracts</a>
+						</li>
+				<li><a href="namespace-Illuminate.Support.Facades.html">Facades</a>
+						</li>
+							</ul></li></ul></li>
+				<li><a href="namespace-None.html">None</a>
+						</li>
+				<li><a href="namespace-PHP.html">PHP</a>
+						</li>
+				<li><a href="namespace-Slim.html">Slim<span></span></a>
+						<ul>
+				<li><a href="namespace-Slim.Exception.html">Exception</a>
+						</li>
+				<li><a href="namespace-Slim.Helper.html">Helper</a>
+						</li>
+				<li><a href="namespace-Slim.Http.html">Http</a>
+						</li>
+				<li><a href="namespace-Slim.Middleware.html">Middleware</a>
+						</li>
+							</ul></li>
+			</ul>
+		</div>
+
+		<hr />
+
+
+		<div id="elements">
+			<h3>Classes</h3>
+			<ul>
+				<li><a href="class-Illuminate.Database.Eloquent.Builder.html">Builder</a></li>
+				<li class="active"><a href="class-Illuminate.Database.Eloquent.Collection.html">Collection</a></li>
+				<li><a href="class-Illuminate.Database.Eloquent.Model.html">Model</a></li>
+			</ul>
+
+
+
+			<h3>Exceptions</h3>
+			<ul>
+				<li><a href="class-Illuminate.Database.Eloquent.MassAssignmentException.html">MassAssignmentException</a></li>
+				<li><a href="class-Illuminate.Database.Eloquent.ModelNotFoundException.html">ModelNotFoundException</a></li>
+			</ul>
+
+
+		</div>
+	</div>
+</div>
+
+<div id="splitter"></div>
+
+<div id="right">
+<div id="rightInner">
+	<form id="search">
+		<input type="hidden" name="cx" value="" />
+		<input type="hidden" name="ie" value="UTF-8" />
+		<input type="text" name="q" class="text" />
+		<input type="submit" value="Search" />
+	</form>
+
+	<div id="navigation">
+		<ul>
+			<li>
+				<a href="index.html" title="Overview"><span>Overview</span></a>
+			</li>
+			<li>
+				<a href="namespace-Illuminate.Database.Eloquent.html" title="Summary of Illuminate\Database\Eloquent"><span>Namespace</span></a>
+			</li>
+			<li class="active">
+<span>Class</span>			</li>
+		</ul>
+		<ul>
+			<li>
+				<a href="tree.html" title="Tree view of classes, interfaces, traits and exceptions"><span>Tree</span></a>
+			</li>
+		</ul>
+		<ul>
+		</ul>
+	</div>
+
+<div id="content" class="class">
+	<h1>Class Collection</h1>
+
+
+
+	<dl class="tree">
+		<dd style="padding-left:0px">
+			<a href="class-Illuminate.Support.Collection.html"><span>Illuminate\Support\Collection</span></a>
+			
+			 implements 
+				<a href="class-ArrayAccess.html"><span>ArrayAccess</span></a>, 
+			
+				<a href="class-Illuminate.Support.Contracts.ArrayableInterface.html"><span>Illuminate\Support\Contracts\ArrayableInterface</span></a>, 
+			
+				<a href="class-Countable.html"><span>Countable</span></a>, 
+			
+				<a href="class-IteratorAggregate.html"><span>IteratorAggregate</span></a>, 
+			
+				<a href="class-Illuminate.Support.Contracts.JsonableInterface.html"><span>Illuminate\Support\Contracts\JsonableInterface</span></a>
+			
+			
+		</dd>
+		<dd style="padding-left:30px">
+			<img src="resources/inherit.png" alt="Extended by" />
+<b><span>Illuminate\Database\Eloquent\Collection</span></b>			
+			
+			
+		</dd>
+	</dl>
+
+
+
+
+
+
+
+
+	<div class="info">
+		
+		
+		<b>Namespace:</b> <a href="namespace-Illuminate.html">Illuminate</a>\<a href="namespace-Illuminate.Database.html">Database</a>\<a href="namespace-Illuminate.Database.Eloquent.html">Eloquent</a><br />
+		
+
+		<b>Located at</b> <a href="source-class-Illuminate.Database.Eloquent.Collection.html#5-253" title="Go to source code">database/Illuminate/Database/Eloquent/Collection.php</a><br />
+	</div>
+
+
+
+	<table class="summary" id="methods">
+	<caption>Methods summary</caption>
+	<tr data-order="find" id="_find">
+
+		<td class="attributes"><code>
+			 public 
+			<code><a href="class-Illuminate.Database.Eloquent.Model.html">Illuminate\Database\Eloquent\Model</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_find">#</a>
+		<code><a href="source-class-Illuminate.Database.Eloquent.Collection.html#7-26" title="Go to source code">find</a>( <span>mixed <var>$key</var></span>, <span>mixed <var>$default</var> = <span class="php-keyword1">null</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Find a model in the collection by key.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Find a model in the collection by key.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$key</var></dt>
+					<dd><code>mixed</code><br>$key</dd>
+					<dt><var>$default</var></dt>
+					<dd><code>mixed</code><br>$default</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-Illuminate.Database.Eloquent.Model.html">Illuminate\Database\Eloquent\Model</a></code></code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="load" id="_load">
+
+		<td class="attributes"><code>
+			 public 
+			<code><a href="class-Illuminate.Database.Eloquent.Collection.html">Illuminate\Database\Eloquent\Collection</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_load">#</a>
+		<code><a href="source-class-Illuminate.Database.Eloquent.Collection.html#28-46" title="Go to source code">load</a>( <span>dynamic <var>$relations</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Load a set of relationships onto the collection.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Load a set of relationships onto the collection.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$relations</var></dt>
+					<dd><code>dynamic</code><br>$relations</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-Illuminate.Database.Eloquent.Collection.html">Illuminate\Database\Eloquent\Collection</a></code></code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="add" id="_add">
+
+		<td class="attributes"><code>
+			 public 
+			<code><a href="class-Illuminate.Database.Eloquent.Collection.html">Illuminate\Database\Eloquent\Collection</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_add">#</a>
+		<code><a href="source-class-Illuminate.Database.Eloquent.Collection.html#48-59" title="Go to source code">add</a>( <span>mixed <var>$item</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Add an item to the collection.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Add an item to the collection.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$item</var></dt>
+					<dd><code>mixed</code><br>$item</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-Illuminate.Database.Eloquent.Collection.html">Illuminate\Database\Eloquent\Collection</a></code></code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="contains" id="_contains">
+
+		<td class="attributes"><code>
+			 public 
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_contains">#</a>
+		<code><a href="source-class-Illuminate.Database.Eloquent.Collection.html#61-70" title="Go to source code">contains</a>( <span>mixed <var>$key</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Determine if a key exists in the collection.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Determine if a key exists in the collection.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$key</var></dt>
+					<dd><code>mixed</code><br>$key</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="fetch" id="_fetch">
+
+		<td class="attributes"><code>
+			 public 
+			<code><a href="class-Illuminate.Support.Collection.html">Illuminate\Support\Collection</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_fetch">#</a>
+		<code><a href="source-class-Illuminate.Database.Eloquent.Collection.html#72-81" title="Go to source code">fetch</a>( <span>string <var>$key</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Fetch a nested element of the collection.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Fetch a nested element of the collection.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$key</var></dt>
+					<dd><code>string</code><br>$key</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-Illuminate.Support.Collection.html">Illuminate\Support\Collection</a></code></code><br />
+				</div>
+
+
+
+				<h4>Overrides</h4>
+				<div class="list"><code><a href="class-Illuminate.Support.Collection.html#_fetch">Illuminate\Support\Collection::fetch()</a></code></div>
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="max" id="_max">
+
+		<td class="attributes"><code>
+			 public 
+			mixed
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_max">#</a>
+		<code><a href="source-class-Illuminate.Database.Eloquent.Collection.html#83-95" title="Go to source code">max</a>( <span>string <var>$key</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Get the max value of a given key.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get the max value of a given key.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$key</var></dt>
+					<dd><code>string</code><br>$key</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>mixed</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="min" id="_min">
+
+		<td class="attributes"><code>
+			 public 
+			mixed
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_min">#</a>
+		<code><a href="source-class-Illuminate.Database.Eloquent.Collection.html#97-109" title="Go to source code">min</a>( <span>string <var>$key</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Get the min value of a given key.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get the min value of a given key.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$key</var></dt>
+					<dd><code>string</code><br>$key</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>mixed</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="modelKeys" id="_modelKeys">
+
+		<td class="attributes"><code>
+			 public 
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_modelKeys">#</a>
+		<code><a href="source-class-Illuminate.Database.Eloquent.Collection.html#111-119" title="Go to source code">modelKeys</a>( )</code>
+
+		<div class="description short">
+			
+<p>Get the array of primary keys</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get the array of primary keys</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="merge" id="_merge">
+
+		<td class="attributes"><code>
+			 public 
+			<code><a href="class-Illuminate.Support.Collection.html">Illuminate\Support\Collection</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_merge">#</a>
+		<code><a href="source-class-Illuminate.Database.Eloquent.Collection.html#121-137" title="Go to source code">merge</a>( <span><code><a href="class-Illuminate.Support.Collection.html">Illuminate\Support\Collection</a></code>|<code><a href="class-Illuminate.Support.Contracts.ArrayableInterface.html">Illuminate\Support\Contracts\ArrayableInterface</a></code>|array <var>$collection</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Merge the collection with the given items.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Merge the collection with the given items.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$collection</var></dt>
+					<dd><code><code><a href="class-Illuminate.Support.Collection.html">Illuminate\Support\Collection</a></code>|<code><a href="class-Illuminate.Support.Contracts.ArrayableInterface.html">Illuminate\Support\Contracts\ArrayableInterface</a></code>|array</code><br>$items</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-Illuminate.Support.Collection.html">Illuminate\Support\Collection</a></code></code><br />
+				</div>
+
+
+
+				<h4>Overrides</h4>
+				<div class="list"><code><a href="class-Illuminate.Support.Collection.html#_merge">Illuminate\Support\Collection::merge()</a></code></div>
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="diff" id="_diff">
+
+		<td class="attributes"><code>
+			 public 
+			<code><a href="class-Illuminate.Support.Collection.html">Illuminate\Support\Collection</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_diff">#</a>
+		<code><a href="source-class-Illuminate.Database.Eloquent.Collection.html#139-160" title="Go to source code">diff</a>( <span><code><a href="class-Illuminate.Support.Collection.html">Illuminate\Support\Collection</a></code>|<code><a href="class-Illuminate.Support.Contracts.ArrayableInterface.html">Illuminate\Support\Contracts\ArrayableInterface</a></code>|array <var>$collection</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Diff the collection with the given items.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Diff the collection with the given items.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$collection</var></dt>
+					<dd><code><code><a href="class-Illuminate.Support.Collection.html">Illuminate\Support\Collection</a></code>|<code><a href="class-Illuminate.Support.Contracts.ArrayableInterface.html">Illuminate\Support\Contracts\ArrayableInterface</a></code>|array</code><br>$items</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-Illuminate.Support.Collection.html">Illuminate\Support\Collection</a></code></code><br />
+				</div>
+
+
+
+				<h4>Overrides</h4>
+				<div class="list"><code><a href="class-Illuminate.Support.Collection.html#_diff">Illuminate\Support\Collection::diff()</a></code></div>
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="intersect" id="_intersect">
+
+		<td class="attributes"><code>
+			 public 
+			<code><a href="class-Illuminate.Support.Collection.html">Illuminate\Support\Collection</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_intersect">#</a>
+		<code><a href="source-class-Illuminate.Database.Eloquent.Collection.html#162-183" title="Go to source code">intersect</a>( <span><code><a href="class-Illuminate.Support.Collection.html">Illuminate\Support\Collection</a></code>|<code><a href="class-Illuminate.Support.Contracts.ArrayableInterface.html">Illuminate\Support\Contracts\ArrayableInterface</a></code>|array <var>$collection</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Intersect the collection with the given items.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Intersect the collection with the given items.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$collection</var></dt>
+					<dd><code><code><a href="class-Illuminate.Support.Collection.html">Illuminate\Support\Collection</a></code>|<code><a href="class-Illuminate.Support.Contracts.ArrayableInterface.html">Illuminate\Support\Contracts\ArrayableInterface</a></code>|array</code><br>$items</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-Illuminate.Support.Collection.html">Illuminate\Support\Collection</a></code></code><br />
+				</div>
+
+
+
+				<h4>Overrides</h4>
+				<div class="list"><code><a href="class-Illuminate.Support.Collection.html#_intersect">Illuminate\Support\Collection::intersect()</a></code></div>
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="unique" id="_unique">
+
+		<td class="attributes"><code>
+			 public 
+			<code><a href="class-Illuminate.Support.Collection.html">Illuminate\Support\Collection</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_unique">#</a>
+		<code><a href="source-class-Illuminate.Database.Eloquent.Collection.html#185-195" title="Go to source code">unique</a>( )</code>
+
+		<div class="description short">
+			
+<p>Return only unique items from the collection.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Return only unique items from the collection.</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-Illuminate.Support.Collection.html">Illuminate\Support\Collection</a></code></code><br />
+				</div>
+
+
+
+				<h4>Overrides</h4>
+				<div class="list"><code><a href="class-Illuminate.Support.Collection.html#_unique">Illuminate\Support\Collection::unique()</a></code></div>
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="only" id="_only">
+
+		<td class="attributes"><code>
+			 public 
+			<code><a href="class-Illuminate.Support.Collection.html">Illuminate\Support\Collection</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_only">#</a>
+		<code><a href="source-class-Illuminate.Database.Eloquent.Collection.html#197-208" title="Go to source code">only</a>( <span>mixed <var>$keys</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Returns only the models from the collection with the specified keys.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Returns only the models from the collection with the specified keys.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$keys</var></dt>
+					<dd><code>mixed</code><br>$keys</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-Illuminate.Support.Collection.html">Illuminate\Support\Collection</a></code></code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="except" id="_except">
+
+		<td class="attributes"><code>
+			 public 
+			<code><a href="class-Illuminate.Support.Collection.html">Illuminate\Support\Collection</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_except">#</a>
+		<code><a href="source-class-Illuminate.Database.Eloquent.Collection.html#210-221" title="Go to source code">except</a>( <span>mixed <var>$keys</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Returns all models in the collection except the models with specified
+keys.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Returns all models in the collection except the models with specified
+keys.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$keys</var></dt>
+					<dd><code>mixed</code><br>$keys</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-Illuminate.Support.Collection.html">Illuminate\Support\Collection</a></code></code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getDictionary" id="_getDictionary">
+
+		<td class="attributes"><code>
+			 public 
+			array
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getDictionary">#</a>
+		<code><a href="source-class-Illuminate.Database.Eloquent.Collection.html#223-241" title="Go to source code">getDictionary</a>( <span><code><a href="class-Illuminate.Support.Collection.html">Illuminate\Support\Collection</a></code> <var>$collection</var> = <span class="php-keyword1">null</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Get a dictionary keyed by primary keys.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get a dictionary keyed by primary keys.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$collection</var></dt>
+					<dd><code><code><a href="class-Illuminate.Support.Collection.html">Illuminate\Support\Collection</a></code></code><br>$collection</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="toBase" id="_toBase">
+
+		<td class="attributes"><code>
+			 public 
+			<code><a href="class-Illuminate.Support.Collection.html">Illuminate\Support\Collection</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_toBase">#</a>
+		<code><a href="source-class-Illuminate.Database.Eloquent.Collection.html#243-251" title="Go to source code">toBase</a>( )</code>
+
+		<div class="description short">
+			
+<p>Get a base Support collection instance from this collection.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get a base Support collection instance from this collection.</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-Illuminate.Support.Collection.html">Illuminate\Support\Collection</a></code></code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	</table>
+
+	<table class="summary inherited">
+	<caption>Methods inherited from <a href="class-Illuminate.Support.Collection.html#methods">Illuminate\Support\Collection</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-Illuminate.Support.Collection.html#___construct">__construct()</a>, 
+			<a href="class-Illuminate.Support.Collection.html#___toString">__toString()</a>, 
+			<a href="class-Illuminate.Support.Collection.html#_all">all()</a>, 
+			<a href="class-Illuminate.Support.Collection.html#_chunk">chunk()</a>, 
+			<a href="class-Illuminate.Support.Collection.html#_collapse">collapse()</a>, 
+			<a href="class-Illuminate.Support.Collection.html#_count">count()</a>, 
+			<a href="class-Illuminate.Support.Collection.html#_each">each()</a>, 
+			<a href="class-Illuminate.Support.Collection.html#_filter">filter()</a>, 
+			<a href="class-Illuminate.Support.Collection.html#_first">first()</a>, 
+			<a href="class-Illuminate.Support.Collection.html#_flatten">flatten()</a>, 
+			<a href="class-Illuminate.Support.Collection.html#_forget">forget()</a>, 
+			<a href="class-Illuminate.Support.Collection.html#_get">get()</a>, 
+			<a href="class-Illuminate.Support.Collection.html#_getCachingIterator">getCachingIterator()</a>, 
+			<a href="class-Illuminate.Support.Collection.html#_getIterator">getIterator()</a>, 
+			<a href="class-Illuminate.Support.Collection.html#_groupBy">groupBy()</a>, 
+			<a href="class-Illuminate.Support.Collection.html#_has">has()</a>, 
+			<a href="class-Illuminate.Support.Collection.html#_implode">implode()</a>, 
+			<a href="class-Illuminate.Support.Collection.html#_isEmpty">isEmpty()</a>, 
+			<a href="class-Illuminate.Support.Collection.html#_last">last()</a>, 
+			<a href="class-Illuminate.Support.Collection.html#_lists">lists()</a>, 
+			<a href="class-Illuminate.Support.Collection.html#_make">make()</a>, 
+			<a href="class-Illuminate.Support.Collection.html#_map">map()</a>, 
+			<a href="class-Illuminate.Support.Collection.html#_offsetExists">offsetExists()</a>, 
+			<a href="class-Illuminate.Support.Collection.html#_offsetGet">offsetGet()</a>, 
+			<a href="class-Illuminate.Support.Collection.html#_offsetSet">offsetSet()</a>, 
+			<a href="class-Illuminate.Support.Collection.html#_offsetUnset">offsetUnset()</a>, 
+			<a href="class-Illuminate.Support.Collection.html#_pop">pop()</a>, 
+			<a href="class-Illuminate.Support.Collection.html#_prepend">prepend()</a>, 
+			<a href="class-Illuminate.Support.Collection.html#_pull">pull()</a>, 
+			<a href="class-Illuminate.Support.Collection.html#_push">push()</a>, 
+			<a href="class-Illuminate.Support.Collection.html#_put">put()</a>, 
+			<a href="class-Illuminate.Support.Collection.html#_random">random()</a>, 
+			<a href="class-Illuminate.Support.Collection.html#_reduce">reduce()</a>, 
+			<a href="class-Illuminate.Support.Collection.html#_reverse">reverse()</a>, 
+			<a href="class-Illuminate.Support.Collection.html#_shift">shift()</a>, 
+			<a href="class-Illuminate.Support.Collection.html#_slice">slice()</a>, 
+			<a href="class-Illuminate.Support.Collection.html#_sort">sort()</a>, 
+			<a href="class-Illuminate.Support.Collection.html#_sortBy">sortBy()</a>, 
+			<a href="class-Illuminate.Support.Collection.html#_sortByDesc">sortByDesc()</a>, 
+			<a href="class-Illuminate.Support.Collection.html#_splice">splice()</a>, 
+			<a href="class-Illuminate.Support.Collection.html#_sum">sum()</a>, 
+			<a href="class-Illuminate.Support.Collection.html#_take">take()</a>, 
+			<a href="class-Illuminate.Support.Collection.html#_toArray">toArray()</a>, 
+			<a href="class-Illuminate.Support.Collection.html#_toJson">toJson()</a>, 
+			<a href="class-Illuminate.Support.Collection.html#_transform">transform()</a>, 
+			<a href="class-Illuminate.Support.Collection.html#_valueRetriever">valueRetriever()</a>, 
+			<a href="class-Illuminate.Support.Collection.html#_values">values()</a>
+		</code></td>
+	</tr>
+	</table>
+
+
+
+
+
+
+
+
+
+
+
+
+	<table class="summary inherited">
+	<caption>Properties inherited from <a href="class-Illuminate.Support.Collection.html#properties">Illuminate\Support\Collection</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-Illuminate.Support.Collection.html#$items"><var>$items</var></a>
+		</code></td>
+	</tr>
+	</table>
+
+
+
+
+
+</div>
+
+	<div id="footer">
+		 API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
+	</div>
+</div>
+</div>
+</body>
+</html>

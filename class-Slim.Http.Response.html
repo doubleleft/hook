@@ -1,0 +1,1777 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="generator" content="ApiGen 2.8.0" />
+
+	<title>Class Slim\Http\Response</title>
+
+	<script type="text/javascript" src="resources/combined.js?417754471"></script>
+	<script type="text/javascript" src="elementlist.js?721444666"></script>
+	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
+
+</head>
+
+<body>
+<div id="left">
+	<div id="menu">
+		<a href="index.html" title="Overview"><span>Overview</span></a>
+
+
+		<div id="groups">
+			<h3>Namespaces</h3>
+			<ul>
+				<li><a href="namespace-Hook.html">Hook<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Application.html">Application<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Application.Core.html">Core</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Hook.Auth.html">Auth<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Auth.Providers.html">Providers</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Hook.Cache.html">Cache</a>
+						</li>
+				<li><a href="namespace-Hook.Controllers.html">Controllers</a>
+						</li>
+				<li><a href="namespace-Hook.Database.html">Database<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Database.Schema.html">Schema<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Database.Schema.Grammars.html">Grammars</a>
+						</li>
+							</ul></li></ul></li>
+				<li><a href="namespace-Hook.Encryption.html">Encryption</a>
+						</li>
+				<li><a href="namespace-Hook.Exceptions.html">Exceptions</a>
+						</li>
+				<li><a href="namespace-Hook.Http.html">Http</a>
+						</li>
+				<li><a href="namespace-Hook.Logger.html">Logger</a>
+						</li>
+				<li><a href="namespace-Hook.Mailer.html">Mailer</a>
+						</li>
+				<li><a href="namespace-Hook.Middlewares.html">Middlewares</a>
+						</li>
+				<li><a href="namespace-Hook.Model.html">Model</a>
+						</li>
+				<li><a href="namespace-Hook.Package.html">Package</a>
+						</li>
+				<li><a href="namespace-Hook.Pagination.html">Pagination</a>
+						</li>
+				<li><a href="namespace-Hook.PushNotification.html">PushNotification<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.PushNotification.Services.html">Services</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Hook.Session.html">Session<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Session.Handlers.html">Handlers</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Hook.Storage.html">Storage<span></span></a>
+						<ul>
+				<li><a href="namespace-Hook.Storage.Providers.html">Providers</a>
+						</li>
+							</ul></li></ul></li>
+				<li><a href="namespace-Illuminate.html">Illuminate<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Cache.html">Cache<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Cache.Console.html">Console</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Illuminate.Config.html">Config</a>
+						</li>
+				<li><a href="namespace-Illuminate.Container.html">Container</a>
+						</li>
+				<li><a href="namespace-Illuminate.Database.html">Database<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Database.Capsule.html">Capsule</a>
+						</li>
+				<li><a href="namespace-Illuminate.Database.Connectors.html">Connectors</a>
+						</li>
+				<li><a href="namespace-Illuminate.Database.Console.html">Console<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Database.Console.Migrations.html">Migrations</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Illuminate.Database.Eloquent.html">Eloquent<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Database.Eloquent.Relations.html">Relations</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Illuminate.Database.Migrations.html">Migrations</a>
+						</li>
+				<li><a href="namespace-Illuminate.Database.Query.html">Query<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Database.Query.Grammars.html">Grammars</a>
+						</li>
+				<li><a href="namespace-Illuminate.Database.Query.Processors.html">Processors</a>
+						</li>
+							</ul></li>
+				<li><a href="namespace-Illuminate.Database.Schema.html">Schema<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Database.Schema.Grammars.html">Grammars</a>
+						</li>
+							</ul></li></ul></li>
+				<li><a href="namespace-Illuminate.Encryption.html">Encryption</a>
+						</li>
+				<li><a href="namespace-Illuminate.Events.html">Events</a>
+						</li>
+				<li><a href="namespace-Illuminate.Filesystem.html">Filesystem</a>
+						</li>
+				<li><a href="namespace-Illuminate.Support.html">Support<span></span></a>
+						<ul>
+				<li><a href="namespace-Illuminate.Support.Contracts.html">Contracts</a>
+						</li>
+				<li><a href="namespace-Illuminate.Support.Facades.html">Facades</a>
+						</li>
+							</ul></li></ul></li>
+				<li><a href="namespace-None.html">None</a>
+						</li>
+				<li><a href="namespace-PHP.html">PHP</a>
+						</li>
+				<li class="active"><a href="namespace-Slim.html">Slim<span></span></a>
+						<ul>
+				<li><a href="namespace-Slim.Exception.html">Exception</a>
+						</li>
+				<li><a href="namespace-Slim.Helper.html">Helper</a>
+						</li>
+				<li class="active"><a href="namespace-Slim.Http.html">Http</a>
+						</li>
+				<li><a href="namespace-Slim.Middleware.html">Middleware</a>
+						</li>
+							</ul></li>
+			</ul>
+		</div>
+
+		<hr />
+
+
+		<div id="elements">
+			<h3>Classes</h3>
+			<ul>
+				<li><a href="class-Slim.Http.Cookies.html">Cookies</a></li>
+				<li><a href="class-Slim.Http.Headers.html">Headers</a></li>
+				<li><a href="class-Slim.Http.Request.html">Request</a></li>
+				<li class="active"><a href="class-Slim.Http.Response.html">Response</a></li>
+				<li><a href="class-Slim.Http.Util.html">Util</a></li>
+			</ul>
+
+
+
+
+
+		</div>
+	</div>
+</div>
+
+<div id="splitter"></div>
+
+<div id="right">
+<div id="rightInner">
+	<form id="search">
+		<input type="hidden" name="cx" value="" />
+		<input type="hidden" name="ie" value="UTF-8" />
+		<input type="text" name="q" class="text" />
+		<input type="submit" value="Search" />
+	</form>
+
+	<div id="navigation">
+		<ul>
+			<li>
+				<a href="index.html" title="Overview"><span>Overview</span></a>
+			</li>
+			<li>
+				<a href="namespace-Slim.Http.html" title="Summary of Slim\Http"><span>Namespace</span></a>
+			</li>
+			<li class="active">
+<span>Class</span>			</li>
+		</ul>
+		<ul>
+			<li>
+				<a href="tree.html" title="Tree view of classes, interfaces, traits and exceptions"><span>Tree</span></a>
+			</li>
+		</ul>
+		<ul>
+		</ul>
+	</div>
+
+<div id="content" class="class">
+	<h1>Class Response</h1>
+
+
+	<div class="description">
+	
+<p>Response</p>
+
+<p>This is a simple abstraction over top an HTTP response. This provides methods
+to set the HTTP status, the HTTP headers, and the HTTP body.</p>
+
+	</div>
+
+	<dl class="tree">
+		<dd style="padding-left:0px">
+<b><span>Slim\Http\Response</span></b>			
+			 implements 
+				<a href="class-ArrayAccess.html"><span>ArrayAccess</span></a>, 
+			
+				<a href="class-Countable.html"><span>Countable</span></a>, 
+			
+				<a href="class-IteratorAggregate.html"><span>IteratorAggregate</span></a>
+			
+			
+		</dd>
+	</dl>
+
+
+
+
+
+
+
+
+	<div class="info">
+		
+		
+		<b>Namespace:</b> <a href="namespace-Slim.html">Slim</a>\<a href="namespace-Slim.Http.html">Http</a><br />
+		<b>Package:</b> Slim<br />
+
+				<b>Author:</b>
+				Josh Lockhart<br />
+				<b>Since:</b>
+				1.0.0<br />
+		<b>Located at</b> <a href="source-class-Slim.Http.Response.html#35-512" title="Go to source code">Http/Response.php</a><br />
+	</div>
+
+
+
+	<table class="summary" id="methods">
+	<caption>Methods summary</caption>
+	<tr data-order="__construct" id="___construct">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#___construct">#</a>
+		<code><a href="source-class-Slim.Http.Response.html#128-141" title="Go to source code">__construct</a>( <span>string <var>$body</var> = <span class="php-quote">''</span></span>, <span>integer <var>$status</var> = <span class="php-num">200</span></span>, <span><code><a href="class-Slim.Http.Headers.html">Slim\Http\Headers</a></code>|array <var>$headers</var> = <span class="php-keyword1">array</span>()</span> )</code>
+
+		<div class="description short">
+			
+<p>Constructor</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Constructor</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$body</var></dt>
+					<dd><code>string</code><br>$body The HTTP response body</dd>
+					<dt><var>$status</var></dt>
+					<dd><code>integer</code><br>$status The HTTP response status</dd>
+					<dt><var>$headers</var></dt>
+					<dd><code><code><a href="class-Slim.Http.Headers.html">Slim\Http\Headers</a></code>|array</code><br>$headers The HTTP response headers</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getStatus" id="_getStatus">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getStatus">#</a>
+		<code><a href="source-class-Slim.Http.Response.html#143-146" title="Go to source code">getStatus</a>( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="setStatus" id="_setStatus">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_setStatus">#</a>
+		<code><a href="source-class-Slim.Http.Response.html#148-151" title="Go to source code">setStatus</a>( <span>mixed <var>$status</var></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="status" id="_status">
+
+		<td class="attributes"><code>
+			 public 
+			integer
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_status">#</a>
+		<code><a href="source-class-Slim.Http.Response.html#153-167" title="Go to source code">status</a>( <span>integer|null <var>$status</var> = <span class="php-keyword1">null</span></span> )</code>
+
+		<div class="description short">
+			
+<p>DEPRECATION WARNING! Use <code>getStatus</code> or <code>setStatus</code>
+instead.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>DEPRECATION WARNING! Use <code>getStatus</code> or <code>setStatus</code>
+instead.</p>
+
+<p>Get and set status</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$status</var></dt>
+					<dd><code>integer|null</code><br>$status</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>integer</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="header" id="_header">
+
+		<td class="attributes"><code>
+			 public 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_header">#</a>
+		<code><a href="source-class-Slim.Http.Response.html#169-184" title="Go to source code">header</a>( <span>string <var>$name</var></span>, <span>string|null <var>$value</var> = <span class="php-keyword1">null</span></span> )</code>
+
+		<div class="description short">
+			
+<p>DEPRECATION WARNING! Access <code>headers</code> property directly.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>DEPRECATION WARNING! Access <code>headers</code> property directly.</p>
+
+<p>Get and set header</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$name</var></dt>
+					<dd><code>string</code><br>$name Header name</dd>
+					<dt><var>$value</var></dt>
+					<dd><code>string|null</code><br>$value Header value</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br>Header value<br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="headers" id="_headers">
+
+		<td class="attributes"><code>
+			 public 
+			<code><a href="class-Slim.Http.Headers.html">Slim\Http\Headers</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_headers">#</a>
+		<code><a href="source-class-Slim.Http.Response.html#186-195" title="Go to source code">headers</a>( )</code>
+
+		<div class="description short">
+			
+<p>DEPRECATION WARNING! Access <code>headers</code> property directly.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>DEPRECATION WARNING! Access <code>headers</code> property directly.</p>
+
+<p>Get headers</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-Slim.Http.Headers.html">Slim\Http\Headers</a></code></code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getBody" id="_getBody">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getBody">#</a>
+		<code><a href="source-class-Slim.Http.Response.html#197-200" title="Go to source code">getBody</a>( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="setBody" id="_setBody">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_setBody">#</a>
+		<code><a href="source-class-Slim.Http.Response.html#202-205" title="Go to source code">setBody</a>( <span>mixed <var>$content</var></span> )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="body" id="_body">
+
+		<td class="attributes"><code>
+			 public 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_body">#</a>
+		<code><a href="source-class-Slim.Http.Response.html#207-221" title="Go to source code">body</a>( <span>string|null <var>$body</var> = <span class="php-keyword1">null</span></span> )</code>
+
+		<div class="description short">
+			
+<p>DEPRECATION WARNING! use <code>getBody</code> or <code>setBody</code>
+instead.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>DEPRECATION WARNING! use <code>getBody</code> or <code>setBody</code>
+instead.</p>
+
+<p>Get and set body</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$body</var></dt>
+					<dd><code>string|null</code><br>$body Content of HTTP response body</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="write" id="_write">
+
+		<td class="attributes"><code>
+			 public 
+			string
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_write">#</a>
+		<code><a href="source-class-Slim.Http.Response.html#223-239" title="Go to source code">write</a>( <span>string <var>$body</var></span>, <span>boolean <var>$replace</var> = <span class="php-keyword1">false</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Append HTTP response body</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Append HTTP response body</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$body</var></dt>
+					<dd><code>string</code><br>$body Content to append to the current HTTP response body</dd>
+					<dt><var>$replace</var></dt>
+					<dd><code>boolean</code><br>$replace Overwrite existing response body?</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string</code><br>The updated HTTP response body<br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getLength" id="_getLength">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getLength">#</a>
+		<code><a href="source-class-Slim.Http.Response.html#241-244" title="Go to source code">getLength</a>( )</code>
+
+		<div class="description short">
+			
+		</div>
+
+		<div class="description detailed hidden">
+			
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="length" id="_length">
+
+		<td class="attributes"><code>
+			 public 
+			integer
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_length">#</a>
+		<code><a href="source-class-Slim.Http.Response.html#246-260" title="Go to source code">length</a>( <span>integer|null <var>$length</var> = <span class="php-keyword1">null</span></span> )</code>
+
+		<div class="description short">
+			
+<p>DEPRECATION WARNING! Use <code>getLength</code> or <code>write</code> or
+<code>body</code> instead.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>DEPRECATION WARNING! Use <code>getLength</code> or <code>write</code> or
+<code>body</code> instead.</p>
+
+<p>Get and set length</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$length</var></dt>
+					<dd><code>integer|null</code><br>$length</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>integer</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="finalize" id="_finalize">
+
+		<td class="attributes"><code>
+			 public 
+			array[int
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_finalize">#</a>
+		<code><a href="source-class-Slim.Http.Response.html#262-281" title="Go to source code">finalize</a>( )</code>
+
+		<div class="description short">
+			
+<p>Finalize</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Finalize</p>
+
+<p>This prepares this response and returns an array of [status, headers, body].
+This array is passed to outer middleware if available or directly to the Slim
+run method.</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>array[int</code><br>status, array headers, string body]<br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="setCookie" id="_setCookie">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_setCookie">#</a>
+		<code><a href="source-class-Slim.Http.Response.html#283-302" title="Go to source code">setCookie</a>( <span>string <var>$name</var></span>, <span>string|array <var>$value</var></span> )</code>
+
+		<div class="description short">
+			
+<p>DEPRECATION WARNING! Access <code>cookies</code> property directly.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>DEPRECATION WARNING! Access <code>cookies</code> property directly.</p>
+
+<p>Set cookie</p>
+
+<p>Instead of using PHP's <code>setcookie()</code> function, Slim manually
+constructs the HTTP <code>Set-Cookie</code> header on its own and delegates this
+responsibility to the <code>Slim_Http_Util</code> class. This response's header
+is passed by reference to the utility class and is directly modified. By not
+relying on PHP's native implementation, Slim allows middleware the opportunity
+to massage or analyze the raw header before the response is ultimately delivered
+to the HTTP client.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$name</var></dt>
+					<dd><code>string</code><br>$name The name of the cookie</dd>
+					<dt><var>$value</var></dt>
+					<dd><code>string|array</code><br>$value If string, the value of cookie; if array, properties for cookie
+including: value, expire, path, domain, secure, httponly</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="deleteCookie" id="_deleteCookie">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_deleteCookie">#</a>
+		<code><a href="source-class-Slim.Http.Response.html#304-328" title="Go to source code">deleteCookie</a>( <span>string <var>$name</var></span>, <span>array <var>$settings</var> = <span class="php-keyword1">array</span>()</span> )</code>
+
+		<div class="description short">
+			
+<p>DEPRECATION WARNING! Access <code>cookies</code> property directly.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>DEPRECATION WARNING! Access <code>cookies</code> property directly.</p>
+
+<p>Delete cookie</p>
+
+<p>Instead of using PHP's <code>setcookie()</code> function, Slim manually
+constructs the HTTP <code>Set-Cookie</code> header on its own and delegates this
+responsibility to the <code>Slim_Http_Util</code> class. This response's header
+is passed by reference to the utility class and is directly modified. By not
+relying on PHP's native implementation, Slim allows middleware the opportunity
+to massage or analyze the raw header before the response is ultimately delivered
+to the HTTP client.</p>
+
+<p>This method will set a cookie with the given name that has an expiration time
+in the past; this will prompt the HTTP client to invalidate and remove the
+client-side cookie. Optionally, you may also pass a key/value array as the
+second argument. If the "domain" key is present in this array, only the Cookie
+with the given name AND domain will be removed. The invalidating cookie sent
+with this response will adopt all properties of the second argument.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$name</var></dt>
+					<dd><code>string</code><br>$name The name of the cookie</dd>
+					<dt><var>$settings</var></dt>
+					<dd><code>array</code><br>$settings Properties for cookie including: value, expire, path, domain, secure,
+httponly</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="redirect" id="_redirect">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_redirect">#</a>
+		<code><a href="source-class-Slim.Http.Response.html#330-343" title="Go to source code">redirect</a>( <span>string <var>$url</var></span>, <span>integer <var>$status</var> = <span class="php-num">302</span></span> )</code>
+
+		<div class="description short">
+			
+<p>Redirect</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Redirect</p>
+
+<p>This method prepares this response to return an HTTP Redirect response to the
+HTTP client.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$url</var></dt>
+					<dd><code>string</code><br>$url The redirect destination</dd>
+					<dt><var>$status</var></dt>
+					<dd><code>integer</code><br>$status The redirect HTTP status code</dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="isEmpty" id="_isEmpty">
+
+		<td class="attributes"><code>
+			 public 
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_isEmpty">#</a>
+		<code><a href="source-class-Slim.Http.Response.html#345-352" title="Go to source code">isEmpty</a>( )</code>
+
+		<div class="description short">
+			
+<p>Helpers: Empty?</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Helpers: Empty?</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="isInformational" id="_isInformational">
+
+		<td class="attributes"><code>
+			 public 
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_isInformational">#</a>
+		<code><a href="source-class-Slim.Http.Response.html#354-361" title="Go to source code">isInformational</a>( )</code>
+
+		<div class="description short">
+			
+<p>Helpers: Informational?</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Helpers: Informational?</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="isOk" id="_isOk">
+
+		<td class="attributes"><code>
+			 public 
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_isOk">#</a>
+		<code><a href="source-class-Slim.Http.Response.html#363-370" title="Go to source code">isOk</a>( )</code>
+
+		<div class="description short">
+			
+<p>Helpers: OK?</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Helpers: OK?</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="isSuccessful" id="_isSuccessful">
+
+		<td class="attributes"><code>
+			 public 
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_isSuccessful">#</a>
+		<code><a href="source-class-Slim.Http.Response.html#372-379" title="Go to source code">isSuccessful</a>( )</code>
+
+		<div class="description short">
+			
+<p>Helpers: Successful?</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Helpers: Successful?</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="isRedirect" id="_isRedirect">
+
+		<td class="attributes"><code>
+			 public 
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_isRedirect">#</a>
+		<code><a href="source-class-Slim.Http.Response.html#381-388" title="Go to source code">isRedirect</a>( )</code>
+
+		<div class="description short">
+			
+<p>Helpers: Redirect?</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Helpers: Redirect?</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="isRedirection" id="_isRedirection">
+
+		<td class="attributes"><code>
+			 public 
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_isRedirection">#</a>
+		<code><a href="source-class-Slim.Http.Response.html#390-397" title="Go to source code">isRedirection</a>( )</code>
+
+		<div class="description short">
+			
+<p>Helpers: Redirection?</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Helpers: Redirection?</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="isForbidden" id="_isForbidden">
+
+		<td class="attributes"><code>
+			 public 
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_isForbidden">#</a>
+		<code><a href="source-class-Slim.Http.Response.html#399-406" title="Go to source code">isForbidden</a>( )</code>
+
+		<div class="description short">
+			
+<p>Helpers: Forbidden?</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Helpers: Forbidden?</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="isNotFound" id="_isNotFound">
+
+		<td class="attributes"><code>
+			 public 
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_isNotFound">#</a>
+		<code><a href="source-class-Slim.Http.Response.html#408-415" title="Go to source code">isNotFound</a>( )</code>
+
+		<div class="description short">
+			
+<p>Helpers: Not Found?</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Helpers: Not Found?</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="isClientError" id="_isClientError">
+
+		<td class="attributes"><code>
+			 public 
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_isClientError">#</a>
+		<code><a href="source-class-Slim.Http.Response.html#417-424" title="Go to source code">isClientError</a>( )</code>
+
+		<div class="description short">
+			
+<p>Helpers: Client error?</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Helpers: Client error?</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="isServerError" id="_isServerError">
+
+		<td class="attributes"><code>
+			 public 
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_isServerError">#</a>
+		<code><a href="source-class-Slim.Http.Response.html#426-433" title="Go to source code">isServerError</a>( )</code>
+
+		<div class="description short">
+			
+<p>Helpers: Server Error?</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Helpers: Server Error?</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="offsetExists" id="_offsetExists">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_offsetExists">#</a>
+		<code><a href="source-class-Slim.Http.Response.html#440-446" title="Go to source code">offsetExists</a>( <span>mixed <var>$offset</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Array Access: Offset Exists</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Array Access: Offset Exists</p>
+
+
+
+
+
+
+
+
+				<h4>Implementation of</h4>
+				<div class="list"><code><a href="class-ArrayAccess.html#_offsetExists">ArrayAccess::offsetExists()</a></code></div>
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="offsetGet" id="_offsetGet">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_offsetGet">#</a>
+		<code><a href="source-class-Slim.Http.Response.html#448-454" title="Go to source code">offsetGet</a>( <span>mixed <var>$offset</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Array Access: Offset Get</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Array Access: Offset Get</p>
+
+
+
+
+
+
+
+
+				<h4>Implementation of</h4>
+				<div class="list"><code><a href="class-ArrayAccess.html#_offsetGet">ArrayAccess::offsetGet()</a></code></div>
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="offsetSet" id="_offsetSet">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_offsetSet">#</a>
+		<code><a href="source-class-Slim.Http.Response.html#456-462" title="Go to source code">offsetSet</a>( <span>mixed <var>$offset</var></span>, <span>mixed <var>$value</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Array Access: Offset Set</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Array Access: Offset Set</p>
+
+
+
+
+
+
+
+
+				<h4>Implementation of</h4>
+				<div class="list"><code><a href="class-ArrayAccess.html#_offsetSet">ArrayAccess::offsetSet()</a></code></div>
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="offsetUnset" id="_offsetUnset">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_offsetUnset">#</a>
+		<code><a href="source-class-Slim.Http.Response.html#464-470" title="Go to source code">offsetUnset</a>( <span>mixed <var>$offset</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Array Access: Offset Unset</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Array Access: Offset Unset</p>
+
+
+
+
+
+
+
+
+				<h4>Implementation of</h4>
+				<div class="list"><code><a href="class-ArrayAccess.html#_offsetUnset">ArrayAccess::offsetUnset()</a></code></div>
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="count" id="_count">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_count">#</a>
+		<code><a href="source-class-Slim.Http.Response.html#472-481" title="Go to source code">count</a>( )</code>
+
+		<div class="description short">
+			
+<p>DEPRECATION WARNING! Countable interface will be removed from
+\Slim\Http\Response. Call <code>count</code> on <code>headers</code> or
+<code>cookies</code> properties directly.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>DEPRECATION WARNING! Countable interface will be removed from
+\Slim\Http\Response. Call <code>count</code> on <code>headers</code> or
+<code>cookies</code> properties directly.</p>
+
+<p>Countable: Count</p>
+
+
+
+
+
+
+
+
+				<h4>Implementation of</h4>
+				<div class="list"><code><a href="class-Countable.html#_count">Countable::count()</a></code></div>
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getIterator" id="_getIterator">
+
+		<td class="attributes"><code>
+			 public 
+			<code><a href="class-Slim.Http.Headers.html">Slim\Http\Headers</a></code>
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getIterator">#</a>
+		<code><a href="source-class-Slim.Http.Response.html#483-497" title="Go to source code">getIterator</a>( )</code>
+
+		<div class="description short">
+			
+<p>DEPRECATION WARNING! IteratorAggregate interface will be removed from
+\Slim\Http\Response. Iterate <code>headers</code> or <code>cookies</code>
+properties directly.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>DEPRECATION WARNING! IteratorAggregate interface will be removed from
+\Slim\Http\Response. Iterate <code>headers</code> or <code>cookies</code>
+properties directly.</p>
+
+<p>Get Iterator</p>
+
+<p>This returns the contained <code>\Slim\Http\Headers</code> instance which is
+itself iterable.</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code><code><a href="class-Slim.Http.Headers.html">Slim\Http\Headers</a></code></code><br />
+				</div>
+
+
+
+
+				<h4>Implementation of</h4>
+				<div class="list"><code><a href="class-IteratorAggregate.html#_getIterator">IteratorAggregate::getIterator()</a></code></div>
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getMessageForCode" id="_getMessageForCode">
+
+		<td class="attributes"><code>
+			 public static
+			string|null
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getMessageForCode">#</a>
+		<code><a href="source-class-Slim.Http.Response.html#499-511" title="Go to source code">getMessageForCode</a>( <span>integer <var>$status</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Get message for HTTP status code</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Get message for HTTP status code</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$status</var></dt>
+					<dd><code>integer</code><br>$status</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>string|null</code><br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	</table>
+
+
+
+
+
+
+
+
+
+
+
+
+	<table class="summary" id="properties">
+	<caption>Properties summary</caption>
+	<tr data-order="status" id="$status">
+		<td class="attributes"><code>
+			protected  
+			integer
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Slim.Http.Response.html#48-51" title="Go to source code"><var>$status</var></a>
+		</td>
+		<td class="value"><code></code></td>
+		<td class="description"><div>
+			<a href="#$status" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>HTTP status code</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>HTTP status code</p>
+
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="headers" id="$headers">
+		<td class="attributes"><code>
+			public  
+			<code><a href="class-Slim.Http.Headers.html">Slim\Http\Headers</a></code>
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Slim.Http.Response.html#53-56" title="Go to source code"><var>$headers</var></a>
+		</td>
+		<td class="value"><code></code></td>
+		<td class="description"><div>
+			<a href="#$headers" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="cookies" id="$cookies">
+		<td class="attributes"><code>
+			public  
+			<code><a href="class-Slim.Http.Cookies.html">Slim\Http\Cookies</a></code>
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Slim.Http.Response.html#58-61" title="Go to source code"><var>$cookies</var></a>
+		</td>
+		<td class="value"><code></code></td>
+		<td class="description"><div>
+			<a href="#$cookies" class="anchor">#</a>
+
+			<div class="description short">
+				
+			</div>
+
+			<div class="description detailed hidden">
+				
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="body" id="$body">
+		<td class="attributes"><code>
+			protected  
+			string
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Slim.Http.Response.html#63-66" title="Go to source code"><var>$body</var></a>
+		</td>
+		<td class="value"><code></code></td>
+		<td class="description"><div>
+			<a href="#$body" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>HTTP response body</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>HTTP response body</p>
+
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="length" id="$length">
+		<td class="attributes"><code>
+			protected  
+			integer
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Slim.Http.Response.html#68-71" title="Go to source code"><var>$length</var></a>
+		</td>
+		<td class="value"><code></code></td>
+		<td class="description"><div>
+			<a href="#$length" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>Length of HTTP response body</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>Length of HTTP response body</p>
+
+
+			</div>
+		</div></td>
+	</tr>
+	<tr data-order="messages" id="$messages">
+		<td class="attributes"><code>
+			protected static 
+			array
+		</code></td>
+
+		<td class="name">
+				<a href="source-class-Slim.Http.Response.html#73-126" title="Go to source code"><var>$messages</var></a>
+		</td>
+		<td class="value"><code><span class="php-keyword1">array</span>(
+    <span class="php-comment">//Informational 1xx</span>
+    <span class="php-num">100</span> =&gt; <span class="php-quote">'100 Continue'</span>,
+    <span class="php-num">101</span> =&gt; <span class="php-quote">'101 Switching Protocols'</span>,
+    <span class="php-comment">//Successful 2xx</span>
+    <span class="php-num">200</span> =&gt; <span class="php-quote">'200 OK'</span>,
+    <span class="php-num">201</span> =&gt; <span class="php-quote">'201 Created'</span>,
+    <span class="php-num">202</span> =&gt; <span class="php-quote">'202 Accepted'</span>,
+    <span class="php-num">203</span> =&gt; <span class="php-quote">'203 Non-Authoritative Information'</span>,
+    <span class="php-num">204</span> =&gt; <span class="php-quote">'204 No Content'</span>,
+    <span class="php-num">205</span> =&gt; <span class="php-quote">'205 Reset Content'</span>,
+    <span class="php-num">206</span> =&gt; <span class="php-quote">'206 Partial Content'</span>,
+    <span class="php-comment">//Redirection 3xx</span>
+    <span class="php-num">300</span> =&gt; <span class="php-quote">'300 Multiple Choices'</span>,
+    <span class="php-num">301</span> =&gt; <span class="php-quote">'301 Moved Permanently'</span>,
+    <span class="php-num">302</span> =&gt; <span class="php-quote">'302 Found'</span>,
+    <span class="php-num">303</span> =&gt; <span class="php-quote">'303 See Other'</span>,
+    <span class="php-num">304</span> =&gt; <span class="php-quote">'304 Not Modified'</span>,
+    <span class="php-num">305</span> =&gt; <span class="php-quote">'305 Use Proxy'</span>,
+    <span class="php-num">306</span> =&gt; <span class="php-quote">'306 (Unused)'</span>,
+    <span class="php-num">307</span> =&gt; <span class="php-quote">'307 Temporary Redirect'</span>,
+    <span class="php-comment">//Client Error 4xx</span>
+    <span class="php-num">400</span> =&gt; <span class="php-quote">'400 Bad Request'</span>,
+    <span class="php-num">401</span> =&gt; <span class="php-quote">'401 Unauthorized'</span>,
+    <span class="php-num">402</span> =&gt; <span class="php-quote">'402 Payment Required'</span>,
+    <span class="php-num">403</span> =&gt; <span class="php-quote">'403 Forbidden'</span>,
+    <span class="php-num">404</span> =&gt; <span class="php-quote">'404 Not Found'</span>,
+    <span class="php-num">405</span> =&gt; <span class="php-quote">'405 Method Not Allowed'</span>,
+    <span class="php-num">406</span> =&gt; <span class="php-quote">'406 Not Acceptable'</span>,
+    <span class="php-num">407</span> =&gt; <span class="php-quote">'407 Proxy Authentication Required'</span>,
+    <span class="php-num">408</span> =&gt; <span class="php-quote">'408 Request Timeout'</span>,
+    <span class="php-num">409</span> =&gt; <span class="php-quote">'409 Conflict'</span>,
+    <span class="php-num">410</span> =&gt; <span class="php-quote">'410 Gone'</span>,
+    <span class="php-num">411</span> =&gt; <span class="php-quote">'411 Length Required'</span>,
+    <span class="php-num">412</span> =&gt; <span class="php-quote">'412 Precondition Failed'</span>,
+    <span class="php-num">413</span> =&gt; <span class="php-quote">'413 Request Entity Too Large'</span>,
+    <span class="php-num">414</span> =&gt; <span class="php-quote">'414 Request-URI Too Long'</span>,
+    <span class="php-num">415</span> =&gt; <span class="php-quote">'415 Unsupported Media Type'</span>,
+    <span class="php-num">416</span> =&gt; <span class="php-quote">'416 Requested Range Not Satisfiable'</span>,
+    <span class="php-num">417</span> =&gt; <span class="php-quote">'417 Expectation Failed'</span>,
+    <span class="php-num">418</span> =&gt; <span class="php-quote">'418 I\'m a teapot'</span>,
+    <span class="php-num">422</span> =&gt; <span class="php-quote">'422 Unprocessable Entity'</span>,
+    <span class="php-num">423</span> =&gt; <span class="php-quote">'423 Locked'</span>,
+    <span class="php-comment">//Server Error 5xx</span>
+    <span class="php-num">500</span> =&gt; <span class="php-quote">'500 Internal Server Error'</span>,
+    <span class="php-num">501</span> =&gt; <span class="php-quote">'501 Not Implemented'</span>,
+    <span class="php-num">502</span> =&gt; <span class="php-quote">'502 Bad Gateway'</span>,
+    <span class="php-num">503</span> =&gt; <span class="php-quote">'503 Service Unavailable'</span>,
+    <span class="php-num">504</span> =&gt; <span class="php-quote">'504 Gateway Timeout'</span>,
+    <span class="php-num">505</span> =&gt; <span class="php-quote">'505 HTTP Version Not Supported'</span>
+)</code></td>
+		<td class="description"><div>
+			<a href="#$messages" class="anchor">#</a>
+
+			<div class="description short">
+				
+<p>HTTP response codes and messages</p>
+
+			</div>
+
+			<div class="description detailed hidden">
+				
+<p>HTTP response codes and messages</p>
+
+
+			</div>
+		</div></td>
+	</tr>
+	</table>
+
+
+
+
+
+
+</div>
+
+	<div id="footer">
+		 API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
+	</div>
+</div>
+</div>
+</body>
+</html>
