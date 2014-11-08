@@ -36,13 +36,14 @@ machine.
 How to use
 ---
 
-Use the following command to create a new application from the commandine. It
-will output 4 access keys to use with one of the [client
-implementations](#client-implementations) available.
+Use the following command to create a new application from the commandine.
 
 ```
 hook app:new my-app --endpoint http://localhost/hook/public/index.php/
 ```
+
+It will output access keys to use in the front-end. Checkout this example using
+[JavaScript](https://github.com/doubleleft/hook-javascript#how-to-use) frontend.
 
 Take a look at the [documentation](https://github.com/doubleleft/hook/wiki) for
 more details.
