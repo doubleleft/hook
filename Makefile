@@ -38,12 +38,15 @@ test:
 	# DB_DRIVER=sqlsrv ./vendor/bin/phpunit --configuration ./tests/phpunit.xml
 
 docs:
-	mkdir -p documentation
-	php -d memory_limit=512M ${APIGEN_PATH}/apigen.php --destination documentation --debug \
+	mkdir -p ../hook-docs
+	rm -rf ../hook-docs/*
+	php -d memory_limit=512M ${APIGEN_PATH}/apigen.php --destination ../hook-docs --debug \
 																--exclude */tests/* \
 																--exclude */Tests/* \
 																--source ./src/ \
 																--source ./vendor/illuminate \
 																--source ./vendor/slim/slim/Slim
 	open documentation/index.html
+	git init ../hook-docs
+	cd ../hook-docs && git remote add origin git@github.com:doubleleft/hook.git && git checkout -b gh-pages && git add .  && git commit -m "update public documentation" && git push origin gh-pages -f
 	# --source ./vendor/guzzlehttp/guzzle/src \
