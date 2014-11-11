@@ -1,22 +1,32 @@
 Welcome to hook
 ===
 
-![Build status](https://travis-ci.org/doubleleft/hook.svg?branch=master)
+[![Build status](https://travis-ci.org/doubleleft/hook.svg?branch=master)](https://travis-ci.org/doubleleft/hook)
 [![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/doubleleft/hook?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-hook is a extendable Back-end as a Service (BaaS) that includes everything that
-you need to create the back-end of your application.
+hook is a extendable multitenant Back-end as a Service (BaaS) that provides
+data persistance, authentication, real-time communication and much more to
+create the back-end of your web or mobile application.
 
+It follows the same principles from [nobackend](http://nobackend.org/), [hoodie.js](https://github.com/hoodiehq/hoodie.js) and [Parse](http://parse.com)
+
+**Requirements**: PHP 5.4+
+
+- [Features](#features)
 - [Installation](#installation)
 - [How to use](#how-to-use)
 - [Documentation](https://github.com/doubleleft/hook/wiki)
-- [Client implementations](#client-implementations)
+- [Front-end integration](#front-end-integration)
 
-
-Requirements
+Features
 ---
 
-- PHP 5.4+
+- Multitenancy (same instance may be used for many apps)
+- User authentication (register, login, reset password)
+- Data persistance through `collections`
+- Data storage through [many providers](https://github.com/doubleleft/hook/wiki/Storage-providers)
+- Real-time communication through [WAMP](http://wamp.ws) subprotocol (WebSockets).
+- [Package management](https://github.com/doubleleft/hook/wiki/Composer-dependencies) through composer
 
 Installation
 ---
@@ -48,8 +58,10 @@ It will output access keys to use in the front-end. Checkout this example using
 Take a look at the [documentation](https://github.com/doubleleft/hook/wiki) for
 more details.
 
-Client implementations
+Front-end Integration
 ---
+
+Reduce the gap between backend and frontend development:
 
 - [JavaScript](https://github.com/doubleleft/hook-javascript) ([docs](http://doubleleft.github.io/hook-javascript))
 - [Android](https://github.com/doubleleft/hook-android) (_docs missing_)
@@ -62,4 +74,4 @@ Client implementations
 License
 ---
 
-MIT. Please see LICENSE file.
+MIT.
