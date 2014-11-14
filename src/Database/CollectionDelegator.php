@@ -150,13 +150,17 @@ class CollectionDelegator implements IteratorAggregate
     public function update(array $values)
     {
         $allowed = $this->fireEvent('updating_multiple', array($this, $values));
+
         if ($allowed === false) {
             return false;
         } elseif (is_array($allowed)) {
             $values = $allowed;
         }
 
-        return $this->query->update($values);
+        $result = $this->query->update($values);
+        $this->fireEvent('updated_multiple', array($this, $values));
+
+        return $result;
     }
 
     /**
@@ -171,7 +175,10 @@ class CollectionDelegator implements IteratorAggregate
             return false;
         }
 
-        return $this->query->delete($id);
+        $result = $this->query->delete($id);
+        $this->fireEvent('deleted_multiple', $this);
+
+        return $result;
     }
 
     /**

@@ -64,12 +64,12 @@ Front-end Integration
 Reduce the gap between backend and frontend development:
 
 - [JavaScript](https://github.com/doubleleft/hook-javascript) ([docs](http://doubleleft.github.io/hook-javascript))
-- [Android](https://github.com/doubleleft/hook-android) (_docs missing_)
-- [iOS](https://github.com/doubleleft/hook-ios) (_docs missing_)
-- [C++](https://github.com/doubleleft/hook-cpp) (_docs missing_)
-- [Ruby](https://github.com/doubleleft/hook-ruby) (_docs missing_)
+- [C# / Unity3D](https://github.com/doubleleft/hook-csharp) (_docs missing_)
 - [PHP](https://github.com/doubleleft/hook-php) ([docs](http://doubleleft.github.io/hook-php))
-- [C#](https://github.com/doubleleft/hook-csharp) (_docs missing_)
+- [Ruby](https://github.com/doubleleft/hook-ruby) ([docs](http://doubleleft.github.io/hook-ruby/))
+- Java/Android (soon)
+- ObjectiveC/iOS (soon)
+- C++ (soon)
 
 License
 ---
