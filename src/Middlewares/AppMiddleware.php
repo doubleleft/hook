@@ -64,7 +64,7 @@ class AppMiddleware extends Slim\Middleware
         // Allow Cross-Origin Resource Sharing
         $app->response->headers->set('Access-Control-Allow-Credentials', 'true');
         $app->response->headers->set('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE');
-        $app->response->headers->set('Access-Control-Allow-Headers', 'x-app-id, x-app-key, x-auth-token, content-type, user-agent, accept');
+        $app->response->headers->set('Access-Control-Allow-Headers', 'x-app-id, x-app-key, x-auth-token, x-http-method-override, content-type, user-agent, accept');
 
         if ($app->request->isOptions()) {
             // Always allow OPTIONS requests.

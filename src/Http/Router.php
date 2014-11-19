@@ -23,6 +23,7 @@ class Router {
         $app->add(new Middlewares\AuthMiddleware());
         // $app->add(new Middlewares\SessionMiddleware());
         $app->add(new Middlewares\AppMiddleware());
+        $app->add(new Middlewares\MethodOverride());
 
         return static::registerCoreRoutes($app);
     }
