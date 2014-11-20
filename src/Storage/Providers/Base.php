@@ -16,6 +16,11 @@ class Base
         throw new NotImplementedException("'read' not implemented on this provider.");
     }
 
+    public function realpath($file)
+    {
+        throw new NotImplementedException("'realpath' not implemented on this provider.");
+    }
+
     public function upload($file, $options = array())
     {
         $filename = md5($file['name']) . uniqid() . "." . pathinfo($file['name'], PATHINFO_EXTENSION);

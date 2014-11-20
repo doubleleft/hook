@@ -20,7 +20,11 @@ class Filesystem extends Base
     }
 
     public function read($file) {
-        return file_get_contents(storage_dir(true) . $file->name);
+        return file_get_contents($this->realpath($file));
+    }
+
+    public function realpath($file) {
+        return storage_dir(true) . $file->name;
     }
 
 }

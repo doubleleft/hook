@@ -28,6 +28,11 @@ class File extends Model
         return Provider::get($provider)->read($this);
     }
 
+    public function getRealpathAttribute() {
+        $provider = Config::get('storage.provider', 'filesystem');
+        return Provider::get($provider)->realpath($this);
+    }
+
     public function beforeCreate()
     {
         if ($this->file) {
