@@ -11,6 +11,11 @@ class Base
         throw new NotImplementedException("'store' not implemented on this provider.");
     }
 
+    public function read($file)
+    {
+        throw new NotImplementedException("'read' not implemented on this provider.");
+    }
+
     public function upload($file, $options = array())
     {
         $filename = md5($file['name']) . uniqid() . "." . pathinfo($file['name'], PATHINFO_EXTENSION);

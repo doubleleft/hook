@@ -19,4 +19,8 @@ class Filesystem extends Base
         }
     }
 
+    public function read($file) {
+        return file_get_contents(storage_dir(true) . $file->name);
+    }
+
 }
