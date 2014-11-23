@@ -1,5 +1,6 @@
 <?php
 use Hook\Model\App;
+use Hook\Database\Schema\Cache as SchemaCache;
 
 class CollectionJsonTest extends TestCase
 {

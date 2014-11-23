@@ -21,6 +21,7 @@ class Collection extends DynamicModel
     protected $_attached_files;
 
     protected $hidden = array('deleted_at');
+    protected $schema;
 
     public static function boot()
     {
@@ -82,9 +83,9 @@ class Collection extends DynamicModel
 
         // Configure date fields to output /
         $table_name = $this->getTable();
-        $schema = Schema\Cache::get($table_name);
-        if ($schema && isset($schema['attributes'])) {
-            foreach($schema['attributes'] as $attribute) {
+        $this->schema = Schema\Cache::get($table_name);
+        if ($this->schema && isset($this->schema['attributes'])) {
+            foreach($this->schema['attributes'] as $attribute) {
                 if (isset($attribute['type']) && $attribute['type'] == 'timestamp') {
                     array_push($this->dates, $attribute['name']);
                 }
@@ -92,7 +93,6 @@ class Collection extends DynamicModel
         }
 
         parent::__construct($attributes);
-
         static::loadObserver($table_name);
     }
 
@@ -121,8 +121,17 @@ class Collection extends DynamicModel
     public function toArray()
     {
         $array = parent::toArray();
-        $observer = static::getObserver($this->getTable());
 
+        // Typecast every known field with it's respective data-type.
+        // Integer, float and boolean fields may vary accourding to the
+        // database engine
+        if (isset($this->schema['attributes'])) {
+            foreach($this->schema['attributes'] as $attribute) {
+                @settype($array[$attribute['name']], $attribute['type']);
+            }
+        }
+
+        $observer = static::getObserver($this->getTable());
         if ($observer) {
             if (method_exists($observer, 'toArray')) {
                 return $observer->toArray($this, $array);
