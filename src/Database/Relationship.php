@@ -54,7 +54,8 @@ class Relationship
         // eval is evil. But it's necessary here since Eloquent\Model
         // will try to instantiate the 'related class' without constructor params.
         if (!class_exists($related_klass)) {
-            eval("class {$related_klass} extends Hook\Model\Collection { protected \$table = '{$related_table}'; }");
+            $related_model_class = get_class($related_model);
+            eval("class {$related_klass} extends {$related_model_class} { protected \$table = '{$related_table}'; }");
         }
 
         switch ($relation_type) {
