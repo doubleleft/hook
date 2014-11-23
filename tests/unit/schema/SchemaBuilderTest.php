@@ -66,6 +66,31 @@ class SchemaBuilderTest extends TestCase
 
     }
 
+    public function testModifyField()
+    {
+        Schema\Builder::migrate(App::collection('modify')->getModel(), array(
+            'attributes' => array(array(
+                'name' => "field",
+                'type' => "string"
+            ))
+        ));
+
+        App::collection('modify')->create(array('field' => "5"));
+        $data = App::collection('modify')->first()->toArray();
+        $this->assertTrue($data['field'] == "5");
+
+        Schema\Builder::migrate(App::collection('modify')->getModel(), array(
+            'attributes' => array(array(
+                'name' => "field",
+                'type' => "integer",
+                'index' => true
+            ))
+        ));
+        $data = App::collection('modify')->first()->toArray();
+        $this->assertTrue($data['field'] == 5);
+
+    }
+
 }
 
 

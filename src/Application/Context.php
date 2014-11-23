@@ -4,6 +4,7 @@ use Hook\Model\App;
 use Hook\Model\AppKey;
 
 use Hook\Http\Router;
+use Hook\Cache\Cache;
 
 /**
  * Context
@@ -93,7 +94,7 @@ class Context
         static::setTablePrefix($connection->getTablePrefix() . $prefix);
 
         // set cache prefix
-        $connection->getCacheManager()->setPrefix($prefix);
+        Cache::getManager()->setPrefix($prefix);
     }
 
     /**

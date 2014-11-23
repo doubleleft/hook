@@ -153,7 +153,7 @@ class Builder
 
                     $default = array_remove($attribute, 'default');
                     $index = array_remove($attribute, 'index');
-                    $unique = array_remove($attribute, 'unique') || $index == 'unique';
+                    $unique = array_remove($attribute, 'unique') || $index === 'unique';
                     $required = array_remove($attribute, 'required');
 
                     // spatial indexes are NOT NULL by default
@@ -165,10 +165,7 @@ class Builder
                         continue;
                     }
 
-                    // Skip if column already exists
-                    if (!$is_creating && in_array($field_name, array_map('strtolower', $table_columns))) {
-                        continue;
-                    }
+                    $column_exists = (!$is_creating && in_array($field_name, array_map('strtolower', $table_columns)));
 
                     if (count($attribute) > 0) {
                         // the remaining attributes on field definition are
@@ -188,6 +185,13 @@ class Builder
                     // columns are nullable unless specified as 'required'
                     if ($nullable) { $column->nullable(); }
 
+                    // apply change if column already exists (MODIFY statement)
+                    if ($column_exists) { $column->change(); }
+
+                    //
+                    // Apply indexes
+                    //
+
                     if ($index == 'spatial') {
                         // apply geospatial index, only MyISQL
                         $t->spatialIndex($field_name);
@@ -203,6 +207,9 @@ class Builder
                     }
                 }
 
+                //
+                // Apply relationships
+                //
                 foreach($config['relationships'] as $relation => $fields) {
                     // only create field on belongs_to relationships
                     if ($relation == "belongs_to") {

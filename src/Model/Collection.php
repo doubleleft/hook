@@ -180,11 +180,11 @@ class Collection extends DynamicModel
     // @override
     // http://laravel.com/api/source-class-Illuminate.Database.Eloquent.Model.html#_registerModelEvent
     //
-    protected static function registerModelEvent($event, $callback)
+    protected static function registerModelEvent($event, $callback, $priority = 0)
     {
         if (isset(static::$dispatcher)) {
             $name = static::$lastTableName;
-            static::$dispatcher->listen("eloquent.{$event}: {$name}", $callback);
+            static::$dispatcher->listen("eloquent.{$event}: {$name}", $callback, $priority);
         }
     }
 
