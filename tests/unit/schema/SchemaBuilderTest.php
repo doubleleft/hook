@@ -13,7 +13,7 @@ class SchemaBuilderTest extends TestCase
         parent::setUp();
     }
 
-    public function testMigrate()
+    public function testMigrateRelationship()
     {
         Cache::flush();
 
@@ -25,10 +25,45 @@ class SchemaBuilderTest extends TestCase
             'relationships' => array('has_many' => array('contacts'))
         ));
 
-        SchemaCache::flush();
-
         $author = App::collection('authors')->create(array('name' => "Rasmus Lerdorf"));
         $this->assertTrue(get_class($author->contacts()) == "Illuminate\\Database\\Eloquent\\Relations\\HasMany");
+    }
+
+    public function testMigrateFields()
+    {
+        Cache::flush();
+
+        $attributes = array(
+            array(
+                'name' => "default_is_string"
+            ),
+            array(
+                'name' => "string",
+                'type' => "string"
+            ),
+            array(
+                'name' => "int",
+                'type' => "integer"
+            ),
+            array(
+                'name' => "float",
+                'type' => "float"
+            ),
+            array(
+                'name' => "boolean",
+                'type' => "boolean"
+            ),
+        );
+
+        // books / authors / contacts
+        Schema\Builder::migrate(App::collection('schema')->getModel(), array(
+            'attributes' => $attributes
+        ));
+
+        $dump = Schema\Builder::dump();
+        $this->assertTrue(count($dump['schemas']['attributes']) == 5);
+        $this->assertTrue($dump['schemas']['attributes'] == $attributes);
+
     }
 
 }

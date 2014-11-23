@@ -3,7 +3,6 @@
 use Hook\Model\App as App;
 use Hook\Database\Schema as Schema;
 use Hook\Cache\Cache as Cache;
-use Hook\Database\Schema\Cache as SchemaCache;
 
 class CollectionRelationshipTest extends TestCase
 {
@@ -24,7 +23,6 @@ class CollectionRelationshipTest extends TestCase
         Schema\Builder::migrate(App::collection('books')->getModel(), array(
             'relationships' => array('belongs_to' => array('author'))
         ));
-        SchemaCache::flush();
 
         // clear tables before running tests
         App::collection('authors')->truncate();
@@ -48,7 +46,6 @@ class CollectionRelationshipTest extends TestCase
         Schema\Builder::migrate(App::collection('teams')->getModel(), array(
             'relationships' => array('has_many' => 'matches')
         ));
-        SchemaCache::flush();
 
         App::collection('teams')->truncate();
         App::collection('matches')->truncate();
