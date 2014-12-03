@@ -37,6 +37,7 @@ class File extends Model
     {
         if ($this->file) {
             $provider = Config::get('storage.provider', 'filesystem');
+            $contents = null;
 
             if ($base64 = static::base64($this->file)) {
                 preg_match('/\/([a-z\.-]+)/', $base64[1], $ext);
@@ -44,17 +45,16 @@ class File extends Model
 
                 $this->name = sha1(uniqid(rand(), true)) . '.' . $extension;
                 $this->mime = $base64[1];
-                $this->path = Provider::get($provider)->store($this->name, base64_decode($base64[3]), array(
-                    'mime' => $this->mime // some storage providers need to know the file mime type
-                ));
-
+                $contents = base64_decode($base64[3]);
             } else {
-                $this->name = $this->file['name'];
+                $this->name = md5($this->file['name']) . uniqid() . "." . pathinfo($this->file['name'], PATHINFO_EXTENSION);
                 $this->mime = $this->file['type'];
-                $this->path = Provider::get($provider)->upload($this->file, array(
-                    'mime' => $this->mime // some storage providers need to know the file mime type
-                ));
+                $contents = file_get_contents($this->file['tmp_name']);
             }
+
+            $this->path = Provider::get($provider)->store($this->name, $contents, array(
+                'mime' => $this->mime // some storage providers need to know the file mime type
+            ));
             unset($this->attributes['file']);
         }
     }
