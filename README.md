@@ -65,6 +65,7 @@ Reduce the gap between backend and frontend development:
 
 - [JavaScript](https://github.com/doubleleft/hook-javascript) ([docs](http://doubleleft.github.io/hook-javascript))
 - [C# / Unity3D](https://github.com/doubleleft/hook-csharp) (_docs missing_)
+- [Corona SDK](https://github.com/doubleleft/hook-corona-sdk) (_docs missing_)
 - [PHP](https://github.com/doubleleft/hook-php) ([docs](http://doubleleft.github.io/hook-php))
 - [Ruby](https://github.com/doubleleft/hook-ruby) ([docs](http://doubleleft.github.io/hook-ruby/))
 - Java/Android (soon)
