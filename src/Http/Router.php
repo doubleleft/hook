@@ -37,6 +37,7 @@ class Router {
         // Collections
         $app->get('/collection/:name', 'Hook\\Controllers\\CollectionController:index');
         $app->post('/collection/:name', 'Hook\\Controllers\\CollectionController:store');
+        $app->get('/collection/:name/:id', 'Hook\\Controllers\\CollectionController:show');
         $app->put('/collection/:name', 'Hook\\Controllers\\CollectionController:put');
         $app->put('/collection/:name/:id', 'Hook\\Controllers\\CollectionController:put');
         $app->post('/collection/:name/:id', 'Hook\\Controllers\\CollectionController:post');
