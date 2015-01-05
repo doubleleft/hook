@@ -10,7 +10,7 @@ create the back-end of your web or mobile application.
 
 It follows the same principles from [nobackend](http://nobackend.org/), [hoodie.js](https://github.com/hoodiehq/hoodie.js) and [Parse](http://parse.com)
 
-**Requirements**: PHP 5.4+
+**Requirements**: PHP 5.4+, or [PHP 5.3](https://github.com/doubleleft/hook/wiki/Deploying-on-PHP-5.3).
 
 - [Features](#features)
 - [Installation](#installation)

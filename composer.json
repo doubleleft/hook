@@ -13,7 +13,7 @@
   },
   "require": {
     "php": ">=5.4.0",
-    "composer/composer": "dev-master",
+    "composer/composer": "1.0.0-alpha9",
     "endel/Slim": "dev-master",
     "doctrine/dbal" : "2.*",
     "illuminate/database": "4.1.*",
@@ -40,5 +40,5 @@
     "post-install-cmd": [ ]
   },
   "bin-dir": "bin",
-  "minimum-stability": "dev"
+  "minimum-stability": "stable"
 }
