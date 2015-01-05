@@ -40,6 +40,17 @@ class AppMiddleware extends Slim\Middleware
                 $query_data = json_decode(urldecode($query[1]), true) ?: array();
             }
 
+            //
+            // FIXME:
+            // workaround for using opauth/google provider on OAuthController.
+            // See OAuthController#fixOauthStrategiesCallback method.
+            //
+
+            if (isset($query_params['state'])) {
+                parse_str(urldecode($query_params['state']), $state);
+                $query_params = array_merge($query_params, $state);
+            }
+
             // Parse remaining regular string variables
             $query_data = array_merge($query_data, $query_params);
 

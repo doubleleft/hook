@@ -7,7 +7,9 @@ use Hook\Application\Config;
 use Hook\Model\Auth;
 use Hook\Model\AuthIdentity;
 
+use Hook\Http\Request;
 use Hook\Http\Response;
+use Hook\Http\Input;
 
 use Opauth;
 
@@ -105,18 +107,39 @@ class OAuthController extends HookController {
     }
 
     protected function fixOauthStrategiesCallback($opauth, $query_params) {
-        // append query_params to every strategy callback
+        //
+        // FIXME:
+        // ----
+        //
+        // What a workaround here, huh?
+        // I think we should remove opauth/opauth and implement it our own with
+        // Guzzle.
+        //
+        // Also AppMiddleware#decode_query_string must be cleaned up because of this.
+        //
+
         foreach($opauth->env['Strategy'] as $name => $configs) {
-            $opauth->env['Strategy'][$name]['redirect_uri'] = '{complete_url_to_strategy}int_callback' . $query_params;
-            $opauth->env['Strategy'][$name]['oauth_callback'] = '{complete_url_to_strategy}oauth_callback' . $query_params;
+            // append query_params to every strategy callback
+
+            if ($name == 'Google') {
+                // Google doesn't accept additional query params on their callback URL. That's sad.
+                $opauth->env['Strategy'][$name]['redirect_uri'] = '{complete_url_to_strategy}oauth2callback'; //. $query_params;
+                $opauth->env['Strategy'][$name]['state'] = urlencode(substr($query_params, 1));
+
+            } else {
+                $opauth->env['Strategy'][$name]['redirect_uri'] = '{complete_url_to_strategy}int_callback' . $query_params;
+                $opauth->env['Strategy'][$name]['oauth_callback'] = '{complete_url_to_strategy}oauth_callback' . $query_params;
+            }
         }
     }
 
     protected function getQueryParams() {
         $keep_query_keys = array_filter(array('X-App-Id', 'X-App-Key'), function($param) {
-            return isset($_GET[$param]);
+            return Request::get($param);
         });
-        $keep_query_values = array_map(function($param) { return $_GET[$param]; }, $keep_query_keys);
+        $keep_query_values = array_map(function($param) {
+            return Request::get($param);
+        }, $keep_query_keys);
         return '?' . http_build_query(array_combine($keep_query_keys, $keep_query_values));
     }
 
