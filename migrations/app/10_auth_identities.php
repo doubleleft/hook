@@ -2,7 +2,9 @@
 
 return array('auth_identities' => function ($t) {
     $t->increments('_id');
-    $t->integer('auth_id');
+    $t->integer('auth_id')
+        ->references('_id')->on('auths')
+        ->onDelete('cascade');
     $t->string('provider', 20);
     $t->string('uid', 60);
 
