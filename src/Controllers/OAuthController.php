@@ -36,23 +36,37 @@ class OAuthController extends HookController {
                 throw new UnauthorizedException($opauth['error']['raw']);
             }
 
-            $auth = $opauth['auth'];
+            $opauth_data = $opauth['auth'];
 
             $identity = AuthIdentity::firstOrNew(array(
-                'provider' => strtolower($auth['provider']),
-                'uid' => $auth['uid'],
+                'provider' => strtolower($opauth_data['provider']),
+                'uid' => $opauth_data['uid'],
             ));
 
             if (!$identity->auth_id) {
+
                 // cleanup nested infos before registering it
-                foreach($auth['info'] as $key => $value) {
+                foreach($opauth_data['info'] as $key => $value) {
                     if (is_array($value)) {
-                        unset($auth['info'][$key]);
+                        unset($opauth_data['info'][$key]);
                     }
                 }
 
                 // register new auth
-                $auth = Auth::create($auth['info']);
+                if (isset($opauth_data['info']['email'])) {
+                    $auth = Auth::firstOrNew(array('email' => $opauth_data['info']['email']));
+
+                    // If is a new user, fill and save with auth data
+                    if (!$auth->_id) {
+                        $auth->fill($opauth_data['info']);
+                        $auth->save();
+                    }
+
+                } else {
+                    // creating auth entry without email
+                    $auth = Auth::create($opauth_data['info']);
+                }
+
                 $identity->auth_id = $auth->_id;
                 $identity->save();
             } else {
@@ -125,6 +139,10 @@ class OAuthController extends HookController {
                 // Google doesn't accept additional query params on their callback URL. That's sad.
                 $opauth->env['Strategy'][$name]['redirect_uri'] = '{complete_url_to_strategy}oauth2callback'; //. $query_params;
                 $opauth->env['Strategy'][$name]['state'] = urlencode(substr($query_params, 1));
+
+            } else if ($name == 'Facebook') {
+                $opauth->env['Strategy'][$name]['scope'] = 'email';
+                $opauth->env['Strategy'][$name]['redirect_uri'] = '{complete_url_to_strategy}int_callback' . $query_params;
 
             } else {
                 $opauth->env['Strategy'][$name]['redirect_uri'] = '{complete_url_to_strategy}int_callback' . $query_params;
