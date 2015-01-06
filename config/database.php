@@ -14,7 +14,7 @@ return array(
     // 'host'     => '127.0.0.1',
     // 'username' => 'root',
     // 'password' => '',
-    // 'database' => 'dlapi',
+    // 'database' => 'hook',
     // 'collation' => 'utf8_general_ci',
     // 'charset' => 'utf8'
 
@@ -25,7 +25,7 @@ return array(
     // 'username' => 'postgres',
     // 'charset' => 'utf-8',
     // 'password' => '',
-    // 'database' => 'dlapi',
+    // 'database' => 'hook',
 
     // // MongoDB
     // // -------
