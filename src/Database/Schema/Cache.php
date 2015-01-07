@@ -1,7 +1,7 @@
 <?php namespace Hook\Database\Schema;
 
 use Hook\Cache\Cache as Store;
-use Hook\Encryption\Encrypter as Encrypter;
+use Hook\Security\Encryption\Encrypter as Encrypter;
 
 use Illuminate\Cache\CacheManager;
 

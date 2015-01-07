@@ -1,6 +1,8 @@
 <?php
 namespace Hook\Model;
 
+use Hook\Model\Observer\SecurityObserver;
+
 use Hook\Database\Schema as Schema;
 use Hook\Database\Relationship as Relationship;
 use Hook\Exceptions\BadRequestException as BadRequestException;
@@ -13,6 +15,7 @@ class DynamicModel extends Model
 {
     protected static $booted = array();
 
+    protected $securityObserver;
     protected $guarded = array('created_at');
 
     protected $observables = array('updating_multiple', 'deleting_multiple');
@@ -22,6 +25,10 @@ class DynamicModel extends Model
 
     protected static function registerDefaultEvents($table=null)
     {
+        // default security observer
+        $this->securityObserver = new SecurityObserver();
+        static::observe($this->securityObserver);
+
         if (is_null($table)) {
             // register events using class name
             static::saving(function ($model) { $model->beforeSave(); });
@@ -40,11 +47,17 @@ class DynamicModel extends Model
 
     /**
      * isModified
+     * @deprecated use isDirty instead
      * @return bool
      */
     public function isModified()
     {
-        return count($this->getDirty()) > 0;
+        return $this->isDirty();
+    }
+
+    public function toArray()
+    {
+        return parent::toArray();
     }
 
     //

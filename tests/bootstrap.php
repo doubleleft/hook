@@ -11,6 +11,7 @@ $_SERVER['SERVER_PORT'] = '80';
 $db_driver = getenv('DB_DRIVER') ?: 'sqlite';
 
 $app = require __DIR__ . '/../src/Hook.php';
+Hook\Http\Router::setInstance($app);
 
 $app->config('database', require(__DIR__ . "/configs/{$db_driver}.php"));
 $app->config('paths', require(__DIR__ . '/../config/paths.php'));

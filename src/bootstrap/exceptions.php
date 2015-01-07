@@ -1,5 +1,4 @@
-<?php
-namespace Hook\Exceptions;
+<?php namespace Hook\Exceptions;
 use \Exception as Exception;
 
 // Exception descriptions extracted from:
@@ -14,6 +13,7 @@ use \Exception as Exception;
 class BadRequestException extends Exception
 {
     protected $code = 400;
+    protected $message = 'bad_request';
 }
 
 /**
@@ -24,6 +24,7 @@ class BadRequestException extends Exception
 class UnauthorizedException extends Exception
 {
     protected $code = 401;
+    protected $message = 'unauthorized';
 }
 
 /**
@@ -34,6 +35,7 @@ class UnauthorizedException extends Exception
 class ForbiddenException extends Exception
 {
     protected $code = 403;
+    protected $message = 'forbidden';
 }
 
 /**
@@ -44,6 +46,7 @@ class ForbiddenException extends Exception
 class NotFoundException extends Exception
 {
     protected $code = 404;
+    protected $message = 'not_found';
 }
 
 /**
@@ -54,6 +57,7 @@ class NotFoundException extends Exception
 class NotAllowedException extends Exception
 {
     protected $code = 405;
+    protected $message = 'not_allowed';
 }
 
 /**
@@ -64,6 +68,7 @@ class NotAllowedException extends Exception
 class MethodFailureException extends Exception
 {
     protected $code = 424;
+    protected $message = 'method_failure';
 }
 
 /**
@@ -74,6 +79,7 @@ class MethodFailureException extends Exception
 class InternalException extends Exception
 {
     protected $code = 500;
+    protected $message = 'internal_error';
 }
 
 /**
@@ -84,6 +90,7 @@ class InternalException extends Exception
 class NotImplementedException extends Exception
 {
     protected $code = 501;
+    protected $message = 'not_implemented';
 }
 
 /**
@@ -95,4 +102,5 @@ class NotImplementedException extends Exception
 class ServiceUnavailableException extends Exception
 {
     protected $code = 503;
+    protected $message = 'service_unavailable';
 }

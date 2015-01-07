@@ -1,5 +1,7 @@
 <?php
-$db_config = \Slim\Slim::getInstance()->config('database');
+use Hook\Http\Router;
+
+$db_config = Router::config('database');
 
 $container = new Illuminate\Container\Container();
 $event_dispatcher = new Illuminate\Events\Dispatcher($container);
@@ -53,7 +55,7 @@ $connection->setEventDispatcher($event_dispatcher);
 
 // Setup cache manager
 $connection->setCacheManager(function () {
-    $cache_driver = \Slim\Slim::getInstance()->config('cache');
+    $cache_driver = Router::config('cache');
 
     if ($cache_driver == "filesystem") {
         $config = array(
@@ -67,7 +69,7 @@ $connection->setCacheManager(function () {
     } else if ($cache_driver == "database") {
         $config = array(
             'db' => \DLModel::getConnectionResolver(),
-            'encrypter' => Hook\Encryption\Encrypter::getInstance(),
+            'encrypter' => Hook\Security\Encryption\Encrypter::getInstance(),
             'config' => array(
                 'cache.driver' => 'database',
                 'cache.connection' => 'default',

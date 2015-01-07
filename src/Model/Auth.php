@@ -146,7 +146,7 @@ class Auth extends Collection
     public function beforeSave()
     {
         if ($this->_id && !$this->isTrustedAction && !$this->isUpdateAllowed()) {
-            throw new ForbiddenException("not_allowed");
+            throw new ForbiddenException();
         }
 
         // Update password
