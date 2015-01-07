@@ -7,6 +7,7 @@ class Role {
 
     protected $builtInRoles = array('all', 'owner');
     protected $defaults = array(
+        'crud' => null,
         'create' => 'all',
         'read' => 'all',
         'update' => 'owner',
@@ -26,7 +27,7 @@ class Role {
     public function isAllowed($model, $action)
     {
         $this->token = AuthToken::current();
-        $role = $this->getRoleConfig($model, 'create');
+        $role = $this->getRoleConfig($model, 'crud') ?: $this->getRoleConfig($model, 'create');
 
         if (in_array($role, $this->builtInRoles)) {
             return call_user_func_array(array($this, 'check' . ucfirst($role)), array($model));
