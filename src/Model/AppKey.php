@@ -1,6 +1,8 @@
 <?php
 namespace Hook\Model;
 
+use Hook\Application\Context;
+
 /**
  * AppKey
  */
@@ -17,6 +19,11 @@ class AppKey extends Model
     {
         parent::boot();
         static::saving(function ($instance) { $instance->beforeSave(); });
+    }
+
+    public static function current()
+    {
+        return Context::getKey();
     }
 
     public function app() {

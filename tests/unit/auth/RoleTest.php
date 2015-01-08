@@ -3,10 +3,14 @@
 use Hook\Auth\Role;
 use Hook\Model\App;
 use Hook\Model\AuthToken;
+use Hook\Model\AppKey;
 use Hook\Application\Config;
+
+use Hook\Application\Context;
 
 class RoleTest extends TestCase {
     protected $defaults;
+    protected $lastKey;
 
     public function __construct()
     {
@@ -14,6 +18,18 @@ class RoleTest extends TestCase {
 
         $role = Role::getInstance();
         $this->defaults = $role->getDefaultConfig();
+    }
+
+    public function setUp()
+    {
+        // only browser/server/device keys are affected by Role system.
+        AppKey::current()->type = AppKey::TYPE_BROWSER;
+    }
+
+    public function tearDown()
+    {
+        // restore commandline key
+        AppKey::current()->type = AppKey::TYPE_CLI;
     }
 
     public function testDefaults()

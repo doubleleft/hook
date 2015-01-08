@@ -1,5 +1,6 @@
 <?php namespace Hook\Auth;
 
+use Hook\Model\AppKey;
 use Hook\Model\AuthToken;
 use Hook\Application\Config;
 
@@ -27,6 +28,11 @@ class Role {
 
     public static function isAllowed($model, $action)
     {
+        // commandline always have full-access
+        if (AppKey::current()->isCommandline()) {
+            return true;
+        }
+
         $instance = static::getInstance();
         $instance->token = AuthToken::current();
         $role = $instance->getConfig($model, 'crud') ?: $instance->getConfig($model, $action);
