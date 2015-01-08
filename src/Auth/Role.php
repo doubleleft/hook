@@ -67,7 +67,7 @@ class Role {
 
     protected function getTableName($model)
     {
-        return is_string($model) ? $model : $model->getTable();
+        return is_string($model) ? str_plural($model) : $model->getTable();
     }
 
     public static function __callStatic($method, $arguments)

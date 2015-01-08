@@ -37,22 +37,23 @@ class RoleTest extends TestCase {
      */
     public function testOwnerReadException()
     {
-        $this->setConfig('books', 'read', 'owner');
+        $this->setConfig(App::collection('restricted_content')->getTable(), 'read', 'owner');
 
-        App::collection('books')->create(array('name' => "Read exception"));
-        App::collection('books')->first()->toArray();
+        App::collection('restricted_content')->create(array('name' => "Read exception"));
+        App::collection('restricted_content')->first()->toArray();
+        var_dump(App::collection('restricted_content')->first()->toArray());
     }
 
     public function testOwnerReadSuccess()
     {
-        $this->setConfig('books', 'read', 'owner');
+        $this->setConfig(App::collection('restricted_content')->getTable(), 'read', 'owner');
 
         $auth_id = 1;
-        App::collection('books')->create(array(
+        App::collection('restricted_content')->create(array(
             'name' => "Read success",
             'auth_id' => $auth_id
         ));
-        App::collection('books')->create(array(
+        App::collection('restricted_content')->create(array(
             'name' => "Read fail",
             'auth_id' => 2
         ));
@@ -61,11 +62,11 @@ class RoleTest extends TestCase {
         $auth_token = new AuthToken(array('auth_id' => $auth_id));
         AuthToken::setCurrent($auth_token);
 
-        $this->assertTrue(is_array(App::collection('books')->where('auth_id', 1)->first()->toArray()));
+        $this->assertTrue(is_array(App::collection('restricted_content')->where('auth_id', 1)->first()->toArray()));
 
         // wrong auth_id, throw exception
         $this->setExpectedException('Hook\Exceptions\NotAllowedException');
-        App::collection('books')->where('auth_id', 2)->first()->toArray();
+        App::collection('restricted_content')->where('auth_id', 2)->first()->toArray();
     }
 
     protected function setConfig($collection, $action, $config)
