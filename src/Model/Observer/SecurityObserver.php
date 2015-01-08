@@ -3,7 +3,8 @@
 use Hook\Auth\Role;
 use Hook\Exceptions\NotAllowedException;
 
-class SecurityObserver {
+class SecurityObserver
+{
 
     public function toArray($model, $array)
     {

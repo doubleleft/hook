@@ -14,8 +14,8 @@ use Hook\Exceptions\BadRequestException as BadRequestException;
 class DynamicModel extends Model
 {
     protected static $booted = array();
+    protected static $securityObserver;
 
-    protected $securityObserver;
     protected $guarded = array('created_at');
 
     protected $observables = array('updating_multiple', 'deleting_multiple');
@@ -25,10 +25,6 @@ class DynamicModel extends Model
 
     protected static function registerDefaultEvents($table=null)
     {
-        // default security observer
-        $this->securityObserver = new SecurityObserver();
-        static::observe($this->securityObserver);
-
         if (is_null($table)) {
             // register events using class name
             static::saving(function ($model) { $model->beforeSave(); });
@@ -42,6 +38,17 @@ class DynamicModel extends Model
             static::saving(function ($model) { $model->beforeSave(); });
             static::saved(function ($model) { $model->afterSave(); });
             static::creating(function ($model) { $model->beforeCreate(); });
+        }
+
+        // register security observer
+        if (!isset(static::$securityObserver)) {
+            static::$securityObserver = new SecurityObserver();
+            $className = get_class(static::$securityObserver);
+            static::registerModelEvent('creating', $className.'@creating');
+            static::registerModelEvent('updating', $className.'@updating');
+            static::registerModelEvent('updating_multiple', $className.'@updating_multiple');
+            static::registerModelEvent('deleting', $className.'@deleting');
+            static::registerModelEvent('deleting_multiple', $className.'@deleting_multiple');
         }
     }
 
@@ -57,7 +64,7 @@ class DynamicModel extends Model
 
     public function toArray()
     {
-        return parent::toArray();
+        return static::$securityObserver->toArray($this, parent::toArray());
     }
 
     //

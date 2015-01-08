@@ -1,5 +1,4 @@
-<?php
-namespace Hook\Model;
+<?php namespace Hook\Model;
 
 use Hook\Http\Request;
 use Hook\Http\Input;

@@ -1,6 +1,7 @@
 <?php namespace Hook\Auth;
 
 use Hook\Model\AuthToken;
+use Hook\Application\Config;
 
 class Role {
     protected static $instance;
@@ -24,17 +25,23 @@ class Role {
         return static::$instance;
     }
 
-    public function isAllowed($model, $action)
+    public static function isAllowed($model, $action)
     {
-        $this->token = AuthToken::current();
-        $role = $this->getRoleConfig($model, 'crud') ?: $this->getRoleConfig($model, 'create');
+        $instance = static::getInstance();
+        $instance->token = AuthToken::current();
+        $role = $instance->getConfig($model, 'crud') ?: $instance->getConfig($model, $action);
 
-        if (in_array($role, $this->builtInRoles)) {
-            return call_user_func_array(array($this, 'check' . ucfirst($role)), array($model));
+        if (in_array($role, $instance->builtInRoles)) {
+            return call_user_func_array(array($instance, 'check' . ucfirst($role)), array($model));
 
         } else {
-            return $this->checkRole($role);
+            return $instance->checkRole($role);
         }
+    }
+
+    public function getDefaultConfig()
+    {
+        return $this->defaults;
     }
 
     protected function checkAll($model)
@@ -53,14 +60,19 @@ class Role {
         return ($this->token && $this->token->role == $role);
     }
 
-    protected function getRoleConfig($model, $action)
+    protected function getConfig($model, $action)
     {
-        return Config::get('security.collections.' . $model->getTable() . '.' . $action, $this->defaults[$action]);
+        return Config::get('security.collections.' . $this->getTableName($model) . '.' . $action, $this->defaults[$action]);
+    }
+
+    protected function getTableName($model)
+    {
+        return is_string($model) ? $model : $model->getTable();
     }
 
     public static function __callStatic($method, $arguments)
     {
-        return call_user_func_array(array(static::getInstance(), $method), $arguments);
+        return call_user_func_array(array(static::getInstance(), '_'. $method), $arguments);
     }
 
 }
