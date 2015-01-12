@@ -254,6 +254,21 @@ class CollectionDelegator implements IteratorAggregate
         return $this;
     }
 
+
+	/**
+	 * Set the relationships that should be eager loaded.
+	 *
+	 * @param  mixed  $relations
+	 * @return $this
+	 */
+    public function join($relations)
+    {
+        $this->query->with(func_get_args());
+
+        return $this;
+    }
+
+
     /**
      * Chunk the results of the query.
      *
