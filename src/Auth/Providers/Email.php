@@ -21,6 +21,7 @@ class Email extends Base
 
         // let's create a new authentication
         $user = new Auth;
+        $user->setTrustedAction(true);
 
         // set email/password directly due mass-assignment prevention
         $user->email = $data['email'];
