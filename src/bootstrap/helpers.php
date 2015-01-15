@@ -90,7 +90,7 @@ function rmdir_r($dir) {
 /**
  * String functions
  */
-function str_slug($title, $separator = '') {
+function str_slug($title, $separator = '-') {
     // requires "patchwork/utf8"
     return \Illuminate\Support\Str::slug($title, $separator);
 }
