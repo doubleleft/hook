@@ -44,7 +44,6 @@ class OAuthController extends HookController {
             ));
 
             if (!$identity->auth_id) {
-
                 // cleanup nested infos before registering it
                 foreach($opauth_data['info'] as $key => $value) {
                     if (is_array($value)) {
@@ -58,6 +57,7 @@ class OAuthController extends HookController {
 
                     // If is a new user, fill and save with auth data
                     if (!$auth->_id) {
+                        $auth->setTrustedAction(true);
                         $auth->fill($opauth_data['info']);
                         $auth->save();
                     }
@@ -69,6 +69,7 @@ class OAuthController extends HookController {
 
                 $identity->auth_id = $auth->_id;
                 $identity->save();
+
             } else {
                 $auth = $identity->auth;
             }
@@ -121,6 +122,8 @@ class OAuthController extends HookController {
     }
 
     protected function fixOauthStrategiesCallback($opauth, $query_params) {
+        $options = Input::get('options', array());
+
         //
         // FIXME:
         // ----
@@ -131,7 +134,6 @@ class OAuthController extends HookController {
         //
         // Also AppMiddleware#decode_query_string must be cleaned up because of this.
         //
-
         foreach($opauth->env['Strategy'] as $name => $configs) {
             // append query_params to every strategy callback
 
@@ -141,8 +143,12 @@ class OAuthController extends HookController {
                 $opauth->env['Strategy'][$name]['state'] = urlencode(substr($query_params, 1));
 
             } else if ($name == 'Facebook') {
-                $opauth->env['Strategy'][$name]['scope'] = 'email';
                 $opauth->env['Strategy'][$name]['redirect_uri'] = '{complete_url_to_strategy}int_callback' . $query_params;
+                $opauth->env['Strategy'][$name]['scope'] = 'email';
+
+                if (isset($options['scope'])) {
+                    $opauth->env['Strategy'][$name]['scope'] .= ',' . $options['scope'];
+                }
 
             } else {
                 $opauth->env['Strategy'][$name]['redirect_uri'] = '{complete_url_to_strategy}int_callback' . $query_params;
@@ -152,7 +158,7 @@ class OAuthController extends HookController {
     }
 
     protected function getQueryParams() {
-        $keep_query_keys = array_filter(array('X-App-Id', 'X-App-Key'), function($param) {
+        $keep_query_keys = array_filter(array('X-App-Id', 'X-App-Key', 'options'), function($param) {
             return Request::get($param);
         });
         $keep_query_values = array_map(function($param) {
