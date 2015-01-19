@@ -138,7 +138,7 @@ class CollectionDelegator implements IteratorAggregate
         $model = $this->create_new($attributes);
         $model->save();
 
-        // Eager load related on create
+        // TODO: dry with 'queryEagerLoadRelations'
         $eagerLoads = $this->query->getEagerLoads();
         if (count($eagerLoads) > 0)
         {
@@ -263,12 +263,12 @@ class CollectionDelegator implements IteratorAggregate
     }
 
 
-	/**
-	 * Set the relationships that should be eager loaded.
-	 *
-	 * @param  mixed  $relations
-	 * @return $this
-	 */
+    /**
+     * Set the relationships that should be eager loaded.
+     *
+     * @param  mixed  $relations
+     * @return $this
+     */
     public function join($relations)
     {
         $this->query->with(func_get_args());
@@ -398,6 +398,22 @@ class CollectionDelegator implements IteratorAggregate
         } else {
             return $mixed;
         }
+    }
+
+    public static function queryEagerLoadRelations($model, $joins)
+    {
+        $query = $model->newQuery();
+        $query->with($joins);
+
+        // Eager load related on create
+        $eagerLoads = $query->getEagerLoads();
+        if (count($eagerLoads) > 0)
+        {
+            $relations = $query->eagerLoadRelations(array($model));
+            $model = $relations[0];
+        }
+
+        return $model;
     }
 
 }

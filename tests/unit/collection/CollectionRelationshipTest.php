@@ -3,6 +3,7 @@
 use Hook\Model\App as App;
 use Hook\Database\Schema as Schema;
 use Hook\Database\Relationship as Relationship;
+use Hook\Database\CollectionDelegator as CollectionDelegator;
 use Hook\Cache\Cache as Cache;
 
 class CollectionRelationshipTest extends TestCase
@@ -40,15 +41,16 @@ class CollectionRelationshipTest extends TestCase
             'name' => "Programming PHP",
             'author_id' => $author->_id
         ));
-        $this->assertFalse(isset($book_data['author']), "shouldn't eager load related data by default");
+        $this->assertFalse(isset($book['author']), "shouldn't eager load related data by default");
 
-        // create with eager loading
-        $book_with_author = App::collection('books')->join('author')->create(array(
+        $eager_loaded_book = CollectionDelegator::queryEagerLoadRelations($book, array('author'));
+        $this->assertTrue($eager_loaded_book['author']['name'] == "Rasmus Lerdorf", "should eager load related data");
+
+        $book_with_author = App::collection('books')->join("author")->create(array(
             'name' => "Programming PHP",
             'author_id' => $author->_id
         ));
-        $book_data = $book_with_author->toArray();
-        $this->assertTrue($book_data['author']['name'] == "Rasmus Lerdorf", "should eager load related data");
+        $this->assertTrue($book_with_author['author']['name'] == "Rasmus Lerdorf", "should eager load related data");
 
         // teams / matches
         Schema\Builder::migrate(App::collection('matches')->getModel(), array(

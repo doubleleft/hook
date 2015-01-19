@@ -4,6 +4,8 @@ use Hook\Model;
 use Hook\Http\Input;
 use Hook\Http\Response;
 
+use Hook\Database\CollectionDelegator;
+
 class CollectionController extends HookController {
 
     public function index($name) {
@@ -88,14 +90,22 @@ class CollectionController extends HookController {
     // POST /collection/:name
     //
     public function store($name) {
+        $collection = Model\App::collection($name);
+
         $method = (Input::get('f')) ? 'firstOrCreate' : 'create_new';
-        $model = call_user_func(array(Model\App::collection($name), $method), static::getData());
+        $model = call_user_func(array($collection, $method), static::getData());
 
         if ($model->isModified() && !$model->save()) {
             throw new ForbiddenException("Can't save '{$model->getName()}'.");
         }
 
-        return $model;
+        // TODO: DRY with 'index' method
+        // with - eager load relationships
+        if ($with = Input::get('with')) {
+            return CollectionDelegator::queryEagerLoadRelations($model, $with);
+        } else {
+            return $model;
+        }
     }
 
     //
