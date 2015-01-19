@@ -138,6 +138,14 @@ class CollectionDelegator implements IteratorAggregate
         $model = $this->create_new($attributes);
         $model->save();
 
+        // Eager load related on create
+        $eagerLoads = $this->query->getEagerLoads();
+        if (count($eagerLoads) > 0)
+        {
+            $relations = $this->query->eagerLoadRelations(array($model));
+            $model = $relations[0];
+        }
+
         return $model;
     }
 
@@ -355,10 +363,17 @@ class CollectionDelegator implements IteratorAggregate
 
     /**
      * getQueryBuilder
-     * @return \Illuminate\Database\Eloquent\Builder | \Illuminate\Database\Query\Builder
+     * @return \Illuminate\Database\Query\Builder
      */
     public function getQueryBuilder() {
-        return $this->query;
+        $query = $this->query;
+
+        if ($query instanceof \Illuminate\Database\Eloquent\Builder)
+        {
+            $query = $query->getQuery();
+        }
+
+        return $query;
     }
 
     /**

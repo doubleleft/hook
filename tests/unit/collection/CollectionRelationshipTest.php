@@ -2,6 +2,7 @@
 
 use Hook\Model\App as App;
 use Hook\Database\Schema as Schema;
+use Hook\Database\Relationship as Relationship;
 use Hook\Cache\Cache as Cache;
 
 class CollectionRelationshipTest extends TestCase
@@ -34,10 +35,20 @@ class CollectionRelationshipTest extends TestCase
         $author->contacts()->create(array('name' => "Kevin Tatroe"));
         $author->contacts()->create(array('name' => "Peter MacIntyre"));
 
-        App::collection('books')->create(array(
+        // default create
+        $book = App::collection('books')->create(array(
             'name' => "Programming PHP",
             'author_id' => $author->_id
         ));
+        $this->assertFalse(isset($book_data['author']), "shouldn't eager load related data by default");
+
+        // create with eager loading
+        $book_with_author = App::collection('books')->join('author')->create(array(
+            'name' => "Programming PHP",
+            'author_id' => $author->_id
+        ));
+        $book_data = $book_with_author->toArray();
+        $this->assertTrue($book_data['author']['name'] == "Rasmus Lerdorf", "should eager load related data");
 
         // teams / matches
         Schema\Builder::migrate(App::collection('matches')->getModel(), array(
@@ -72,12 +83,12 @@ class CollectionRelationshipTest extends TestCase
     public function testBooksAndAuthors()
     {
         $books = App::collection('books')->join('author')->toArray();
-        $this->assertTrue(count($books) == 1);
+        $this->assertTrue(count($books) == 2);
         $this->assertTrue($books[0]['name'] == "Programming PHP");
         $this->assertTrue($books[0]['author']['name'] == "Rasmus Lerdorf");
 
         $books_author_contacts = App::collection('books')->join('author.contacts')->toArray();
-        $this->assertTrue(count($books_author_contacts) == 1);
+        $this->assertTrue(count($books_author_contacts) == 2);
         $this->assertTrue($books_author_contacts[0]['name'] == "Programming PHP");
         $this->assertTrue($books_author_contacts[0]['author']['name'] == "Rasmus Lerdorf");
         $this->assertTrue(count($books_author_contacts[0]['author']['contacts']) == 2);
@@ -87,7 +98,7 @@ class CollectionRelationshipTest extends TestCase
         $authors_books_contacts = App::collection('author')->join('books', 'contacts')->toArray();
         $this->assertTrue(count($authors_books_contacts) == 1);
         $this->assertTrue($authors_books_contacts[0]['name'] == "Rasmus Lerdorf");
-        $this->assertTrue(count($authors_books_contacts[0]['books']) == 1);
+        $this->assertTrue(count($authors_books_contacts[0]['books']) == 2);
         $this->assertTrue($authors_books_contacts[0]['books'][0]['name'] == "Programming PHP");
         $this->assertTrue(count($authors_books_contacts[0]['contacts']) == 2);
         $this->assertTrue(gettype($authors_books_contacts[0]['contacts'][0]['name']) == 'string');
