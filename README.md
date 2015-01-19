@@ -6,9 +6,9 @@ Welcome to hook
 [![Build status](https://travis-ci.org/doubleleft/hook.svg?branch=master)](https://travis-ci.org/doubleleft/hook)
 [![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/doubleleft/hook?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-hook is a extendable multitenant Back-end as a Service (BaaS) that provides
-data persistance, authentication, real-time communication and much more to
-create the back-end of your web or mobile application.
+hook is a RESTful, extendable Backend as a Service that provides instant backend
+to develop sites and apps faster, with dead-simple integration for iOS, Android,
+JavaScript and more.
 
 It follows the same principles from [nobackend](http://nobackend.org/), [hoodie.js](https://github.com/hoodiehq/hoodie.js) and [Parse](http://parse.com)
 
@@ -70,8 +70,8 @@ Reduce the gap between backend and frontend development:
 - [Corona SDK](https://github.com/doubleleft/hook-corona-sdk) (_docs missing_)
 - [PHP](https://github.com/doubleleft/hook-php) ([docs](http://doubleleft.github.io/hook-php))
 - [Ruby](https://github.com/doubleleft/hook-ruby) ([docs](http://doubleleft.github.io/hook-ruby/))
-- Java/Android (soon)
-- ObjectiveC/iOS (soon)
+- Java / Android (soon)
+- iOS / OSX (soon)
 - C++ (soon)
 
 License
