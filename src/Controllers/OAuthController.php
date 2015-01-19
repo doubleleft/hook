@@ -26,6 +26,10 @@ class OAuthController extends HookController {
            </html>';
     }
 
+    protected function relay_frame_close() {
+        return '<!DOCTYPE html><html><script>window.close();</script></html>';
+    }
+
     public function auth($strategy=null, $callback=null) {
         $query_params = $this->getQueryParams();
 
@@ -33,7 +37,8 @@ class OAuthController extends HookController {
             $opauth = unserialize(base64_decode($_POST['opauth']));
 
             if (isset($opauth['error'])) {
-                throw new UnauthorizedException($opauth['error']['raw']);
+                // throw new UnauthorizedException($opauth['error']['code']);
+                return $this->relay_frame_close();
             }
 
             $opauth_data = $opauth['auth'];
