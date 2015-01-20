@@ -51,7 +51,7 @@ How to use
 Use the following command to create a new application from the commandine.
 
 ```
-hook app:new my-app --endpoint http://localhost/hook/public/index.php/
+hook app:new my-app --endpoint http://localhost:4665
 ```
 
 It will output access keys to use in the front-end. Checkout this example using
