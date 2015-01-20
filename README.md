@@ -66,13 +66,14 @@ Front-end Integration
 Reduce the gap between backend and frontend development:
 
 - [JavaScript](https://github.com/doubleleft/hook-javascript) ([docs](http://doubleleft.github.io/hook-javascript))
-- [C# / Unity3D](https://github.com/doubleleft/hook-csharp) (_docs missing_)
-- [Corona SDK](https://github.com/doubleleft/hook-corona-sdk) (_docs missing_)
+- [C# / Unity3D](https://github.com/doubleleft/hook-csharp)
+- [Corona SDK](https://github.com/doubleleft/hook-corona-sdk)
+- [iOS / OSX](https://github.com/doubleleft/hook-swift)
+- [Java / Android](https://github.com/doubleleft/hook-android)
+- [C++](https://github.com/doubleleft/hook-cpp)
 - [PHP](https://github.com/doubleleft/hook-php) ([docs](http://doubleleft.github.io/hook-php))
 - [Ruby](https://github.com/doubleleft/hook-ruby) ([docs](http://doubleleft.github.io/hook-ruby/))
-- Java / Android (soon)
-- iOS / OSX (soon)
-- C++ (soon)
+- [Flash / ActionScript 3.0](https://github.com/doubleleft/hook-as3)
 
 License
 ---
