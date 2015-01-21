@@ -64,13 +64,18 @@ class OAuthController extends HookController {
                     if (!$auth->_id) {
                         $auth->setTrustedAction(true);
                         $auth->fill($opauth_data['info']);
-                        $auth->save();
                     }
 
                 } else {
                     // creating auth entry without email
-                    $auth = Auth::create($opauth_data['info']);
+                    $auth = new Auth();
+                    $auth->fill($opauth_data['info']);
                 }
+
+                // set visible provider_id on auth row.
+                // such as 'facebook_id', 'google_id', etc.
+                $auth->setAttribute($identity->provider . '_id', $identity->uid);
+                $auth->save();
 
                 $identity->auth_id = $auth->_id;
                 $identity->save();
