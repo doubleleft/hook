@@ -22,8 +22,8 @@ class Auth extends Collection
     protected $dates = array(self::FORGOT_PASSWORD_EXPIRATION_FIELD);
 
     // protect from mass-assignment.
-    protected $guarded = array('password_salt', 'forgot_password_token', 'forgot_password_expiration', 'deleted_at'); // 'email', 'password',
-    protected $hidden = array('password', 'password_salt', 'forgot_password_token', 'forgot_password_expiration', 'deleted_at');
+    protected $guarded = array('role', 'password_salt', 'forgot_password_token', 'forgot_password_expiration', 'deleted_at'); // 'email', 'password',
+    protected $hidden = array('role', 'password', 'password_salt', 'forgot_password_token', 'forgot_password_expiration', 'deleted_at');
 
     // force a trusted action?
     // - currently only used on resetPassword method
