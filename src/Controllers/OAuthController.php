@@ -62,7 +62,6 @@ class OAuthController extends HookController {
 
                     // If is a new user, fill and save with auth data
                     if (!$auth->_id) {
-                        $auth->setTrustedAction(true);
                         $auth->fill($opauth_data['info']);
                     }
 
@@ -74,6 +73,7 @@ class OAuthController extends HookController {
 
                 // set visible provider_id on auth row.
                 // such as 'facebook_id', 'google_id', etc.
+                $auth->setTrustedAction(true);
                 $auth->setAttribute($identity->provider . '_id', $identity->uid);
                 $auth->save();
 
