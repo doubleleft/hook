@@ -48,10 +48,16 @@ machine.
 How to use
 ---
 
-Use the following command to create a new application from the commandine.
+Run the server locally:
 
 ```
-hook app:new my-app --endpoint http://localhost:4665
+hook server
+```
+
+Create a new application from the commandine:
+
+```
+hook app:new my-app --endpoint http://0.0.0.0:4665
 ```
 
 It will output access keys to use in the front-end. Checkout this example using
