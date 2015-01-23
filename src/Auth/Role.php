@@ -37,7 +37,7 @@ class Role {
         $collection_name = $instance->getCollectioName($model);
 
         $instance->token = AuthToken::current();
-        $role = $instance->getConfig($collection_name, 'crud') ?: $instance->getConfig($collection_name, $action);
+        $role = $instance->getConfig($collection_name, $action);
 
         if (in_array($role, $instance->builtInRoles)) {
             return call_user_func_array(array($instance, 'check' . ucfirst($role)), array($model));
@@ -71,7 +71,20 @@ class Role {
 
     protected function getConfig($collection_name, $action)
     {
-        return Config::get('security.collections.' . $collection_name . '.' . $action, $this->defaults[$action]);
+        $role = null;
+
+        $security = Config::get('security.collections.' . $collection_name, array());
+        if (isset($security[$action])) {
+            $role = $security[$action];
+
+        } else if (isset($security['crud'])) {
+            $role = $security['crud'];
+
+        } else {
+            $role = $this->defaults[$action];
+        }
+
+        return $role ?: "all";
     }
 
     protected function getCollectioName($model)
