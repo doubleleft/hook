@@ -2,6 +2,8 @@
 
 use Hook\Model\App as App;
 use Hook\Database\Schema as Schema;
+use Hook\Database\Relationship as Relationship;
+use Hook\Database\CollectionDelegator as CollectionDelegator;
 use Hook\Cache\Cache as Cache;
 
 class CollectionRelationshipTest extends TestCase
@@ -34,10 +36,21 @@ class CollectionRelationshipTest extends TestCase
         $author->contacts()->create(array('name' => "Kevin Tatroe"));
         $author->contacts()->create(array('name' => "Peter MacIntyre"));
 
-        App::collection('books')->create(array(
+        // default create
+        $book = App::collection('books')->create(array(
             'name' => "Programming PHP",
             'author_id' => $author->_id
         ));
+        $this->assertFalse(isset($book['author']), "shouldn't eager load related data by default");
+
+        $eager_loaded_book = CollectionDelegator::queryEagerLoadRelations($book, array('author'));
+        $this->assertTrue($eager_loaded_book['author']['name'] == "Rasmus Lerdorf", "should eager load related data");
+
+        $book_with_author = App::collection('books')->join("author")->create(array(
+            'name' => "Programming PHP",
+            'author_id' => $author->_id
+        ));
+        $this->assertTrue($book_with_author['author']['name'] == "Rasmus Lerdorf", "should eager load related data");
 
         // teams / matches
         Schema\Builder::migrate(App::collection('matches')->getModel(), array(
@@ -71,23 +84,23 @@ class CollectionRelationshipTest extends TestCase
 
     public function testBooksAndAuthors()
     {
-        $books = App::collection('books')->with('author')->toArray();
-        $this->assertTrue(count($books) == 1);
+        $books = App::collection('books')->join('author')->toArray();
+        $this->assertTrue(count($books) == 2);
         $this->assertTrue($books[0]['name'] == "Programming PHP");
         $this->assertTrue($books[0]['author']['name'] == "Rasmus Lerdorf");
 
-        $books_author_contacts = App::collection('books')->with('author.contacts')->toArray();
-        $this->assertTrue(count($books_author_contacts) == 1);
+        $books_author_contacts = App::collection('books')->join('author.contacts')->toArray();
+        $this->assertTrue(count($books_author_contacts) == 2);
         $this->assertTrue($books_author_contacts[0]['name'] == "Programming PHP");
         $this->assertTrue($books_author_contacts[0]['author']['name'] == "Rasmus Lerdorf");
         $this->assertTrue(count($books_author_contacts[0]['author']['contacts']) == 2);
         $this->assertTrue(gettype($books_author_contacts[0]['author']['contacts'][0]['name']) == 'string');
         $this->assertTrue(gettype($books_author_contacts[0]['author']['contacts'][1]['name']) == 'string');
 
-        $authors_books_contacts = App::collection('author')->with('books', 'contacts')->toArray();
+        $authors_books_contacts = App::collection('author')->join('books', 'contacts')->toArray();
         $this->assertTrue(count($authors_books_contacts) == 1);
         $this->assertTrue($authors_books_contacts[0]['name'] == "Rasmus Lerdorf");
-        $this->assertTrue(count($authors_books_contacts[0]['books']) == 1);
+        $this->assertTrue(count($authors_books_contacts[0]['books']) == 2);
         $this->assertTrue($authors_books_contacts[0]['books'][0]['name'] == "Programming PHP");
         $this->assertTrue(count($authors_books_contacts[0]['contacts']) == 2);
         $this->assertTrue(gettype($authors_books_contacts[0]['contacts'][0]['name']) == 'string');
@@ -101,7 +114,7 @@ class CollectionRelationshipTest extends TestCase
         $this->assertTrue(isset($matches[0]['team_1']) == false);
         $this->assertTrue(isset($matches[0]['team_2']) == false);
 
-        $matches = App::collection('matches')->with('team_1', 'team_2')->toArray();
+        $matches = App::collection('matches')->join('team_1', 'team_2')->toArray();
         $this->assertTrue(count($matches) == 2);
         $this->assertTrue($matches[0]['team_1']['name'] == "Brazil");
         $this->assertTrue($matches[0]['team_2']['name'] == "Germany");
@@ -126,7 +139,7 @@ class CollectionRelationshipTest extends TestCase
         // retrieve recent-created matches with relationships
         $matches = App::collection('matches')
             ->where('_id', '>=', $match_1->_id)
-            ->with('team_1', 'team_2')
+            ->join('team_1', 'team_2')
             ->toArray();
         $this->assertTrue($matches[0]['team_1']['name'] == "One");
         $this->assertTrue($matches[0]['team_2']['name'] == "Two");
@@ -145,7 +158,7 @@ class CollectionRelationshipTest extends TestCase
             )
         ));
 
-        $authors_and_contacts = App::collection('authors')->with('contacts')->toArray();
+        $authors_and_contacts = App::collection('authors')->join('contacts')->toArray();
         $this->assertTrue(count($authors_and_contacts) == 2);
         $this->assertTrue(count($authors_and_contacts[0]['contacts']) == 2);
         $this->assertTrue(count($authors_and_contacts[1]['contacts']) == 5);

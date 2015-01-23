@@ -69,6 +69,11 @@ class Auth extends Collection
         return $this->hasMany('Hook\Model\AuthIdentity', 'auth_id');
     }
 
+    public function setTrustedAction($bool)
+    {
+        $this->isTrustedAction = $bool;
+    }
+
     /**
      * generateToken
      * @return AuthToken
@@ -145,8 +150,9 @@ class Auth extends Collection
 
     public function beforeSave()
     {
-        if ($this->_id && !$this->isTrustedAction && !$this->isUpdateAllowed()) {
-            throw new ForbiddenException();
+        // $this->_id &&
+        if (!$this->isTrustedAction && !$this->isUpdateAllowed()) {
+            throw new ForbiddenException("not_allowed");
         }
 
         // Update password

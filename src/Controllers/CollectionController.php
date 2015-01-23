@@ -2,6 +2,9 @@
 
 use Hook\Model;
 use Hook\Http\Input;
+use Hook\Http\Response;
+
+use Hook\Database\CollectionDelegator;
 
 class CollectionController extends HookController {
 
@@ -32,14 +35,23 @@ class CollectionController extends HookController {
             }
         }
 
-        // limit / offset
-        if ($offset = Input::get('offset')) {
-            $query = $query->skip($offset);
+        $offset = Input::get('offset');
+        $limit = Input::get('limit');
+
+        //
+        // Append total rows if performing a pagination
+        //
+        // FIXME: We should use more elegant solution here with headers:
+        // 'Range', 'Accept-Ranges' and 'Content-Range'
+        //
+        if ($limit !== NULL && $offset !== NULL) {
+            Response::header('Access-Control-Expose-Headers', 'X-Total-Count');
+            Response::header('X-Total-Count', $query->count());
         }
 
-        if ($limit = Input::get('limit')) {
-            $query = $query->take($limit);
-        }
+        // limit / offset
+        if ($limit) { $query = $query->take($limit); }
+        if ($offset) { $query = $query->skip($offset); }
 
         // remember / caching
         if ($remember = Input::get('remember')) {
@@ -78,14 +90,22 @@ class CollectionController extends HookController {
     // POST /collection/:name
     //
     public function store($name) {
+        $collection = Model\App::collection($name);
+
         $method = (Input::get('f')) ? 'firstOrCreate' : 'create_new';
-        $model = call_user_func(array(Model\App::collection($name), $method), static::getData());
+        $model = call_user_func(array($collection, $method), static::getData());
 
         if ($model->isModified() && !$model->save()) {
             throw new ForbiddenException("Can't save '{$model->getName()}'.");
         }
 
-        return $model;
+        // TODO: DRY with 'index' method
+        // with - eager load relationships
+        if ($with = Input::get('with')) {
+            return CollectionDelegator::queryEagerLoadRelations($model, $with);
+        } else {
+            return $model;
+        }
     }
 
     //

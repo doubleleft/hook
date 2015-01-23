@@ -138,6 +138,14 @@ class CollectionDelegator implements IteratorAggregate
         $model = $this->create_new($attributes);
         $model->save();
 
+        // TODO: dry with 'queryEagerLoadRelations'
+        $eagerLoads = $this->query->getEagerLoads();
+        if (count($eagerLoads) > 0)
+        {
+            $relations = $this->query->eagerLoadRelations(array($model));
+            $model = $relations[0];
+        }
+
         return $model;
     }
 
@@ -254,6 +262,21 @@ class CollectionDelegator implements IteratorAggregate
         return $this;
     }
 
+
+    /**
+     * Set the relationships that should be eager loaded.
+     *
+     * @param  mixed  $relations
+     * @return $this
+     */
+    public function join($relations)
+    {
+        $this->query->with(func_get_args());
+
+        return $this;
+    }
+
+
     /**
      * Chunk the results of the query.
      *
@@ -340,10 +363,17 @@ class CollectionDelegator implements IteratorAggregate
 
     /**
      * getQueryBuilder
-     * @return \Illuminate\Database\Eloquent\Builder | \Illuminate\Database\Query\Builder
+     * @return \Illuminate\Database\Query\Builder
      */
     public function getQueryBuilder() {
-        return $this->query;
+        $query = $this->query;
+
+        if ($query instanceof \Illuminate\Database\Eloquent\Builder)
+        {
+            $query = $query->getQuery();
+        }
+
+        return $query;
     }
 
     /**
@@ -368,6 +398,22 @@ class CollectionDelegator implements IteratorAggregate
         } else {
             return $mixed;
         }
+    }
+
+    public static function queryEagerLoadRelations($model, $joins)
+    {
+        $query = $model->newQuery();
+        $query->with($joins);
+
+        // Eager load related on create
+        $eagerLoads = $query->getEagerLoads();
+        if (count($eagerLoads) > 0)
+        {
+            $relations = $query->eagerLoadRelations(array($model));
+            $model = $relations[0];
+        }
+
+        return $model;
     }
 
 }

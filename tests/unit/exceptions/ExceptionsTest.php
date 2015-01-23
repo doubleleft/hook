@@ -37,4 +37,13 @@ class ExceptionsTest extends TestCase
         $this->assertTrue($service_unavailable->getMessage() == "service_unavailable");
     }
 
+    /**
+     * @expectedException Hook\Exceptions\UnauthorizedException
+     * @expectedExceptionMessage message
+     */
+    public function testDataTypes()
+    {
+        throw new E\UnauthorizedException("message");
+    }
+
 }

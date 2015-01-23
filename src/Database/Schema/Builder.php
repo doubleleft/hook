@@ -156,9 +156,6 @@ class Builder
                     $unique = array_remove($attribute, 'unique') || $index == 'unique';
                     $required = array_remove($attribute, 'required');
 
-                    // spatial indexes are NOT NULL by default
-                    $nullable = !$required && ($type !== 'point');
-
                     // Skip default fields
                     $ignore_fields = array('created_at', 'updated_at', 'deleted_at');
                     if (in_array($field_name, $ignore_fields)) {
@@ -184,6 +181,9 @@ class Builder
                         $required = true;
                         $column->default($default);
                     }
+
+                    // spatial indexes are NOT NULL by default
+                    $nullable = !$required && ($type !== 'point');
 
                     // columns are nullable unless specified as 'required'
                     if ($nullable) { $column->nullable(); }
