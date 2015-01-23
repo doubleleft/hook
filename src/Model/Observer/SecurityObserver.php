@@ -31,7 +31,7 @@ class SecurityObserver
 
     public function updating_multiple($query, $values)
     {
-        if (!Role::isAllowed($model, 'update')) {
+        if (!Role::isAllowed($query->getModel(), 'update')) {
             throw new NotAllowedException();
         }
     }
@@ -45,7 +45,7 @@ class SecurityObserver
 
     public function deleting_multiple($query)
     {
-        if (!Role::isAllowed($model, 'delete')) {
+        if (!Role::isAllowed($query->getModel(), 'delete')) {
             throw new NotAllowedException();
         }
     }
