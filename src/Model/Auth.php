@@ -22,7 +22,7 @@ class Auth extends Collection
     protected $dates = array(self::FORGOT_PASSWORD_EXPIRATION_FIELD);
 
     // protect from mass-assignment.
-    protected $guarded = array('role', 'password_salt', 'forgot_password_token', 'forgot_password_expiration', 'deleted_at'); // 'email', 'password',
+    protected $guarded = array('password_salt', 'forgot_password_token', 'forgot_password_expiration', 'deleted_at'); // 'email', 'password',
     protected $hidden = array('role', 'password', 'password_salt', 'forgot_password_token', 'forgot_password_expiration', 'deleted_at');
 
     // force a trusted action?
@@ -152,6 +152,11 @@ class Auth extends Collection
 
     public function beforeSave()
     {
+        // don't allow to change 'role' when is not a trusted action
+        if ($this->_id && $this->isDirty('role') && (!$this->isTrustedAction || !$this->isUpdateAllowed())) {
+            $this->role = $this->original['role'];
+        }
+
         // $this->_id &&
         if (!$this->isTrustedAction && !$this->isUpdateAllowed()) {
             throw new ForbiddenException("not_allowed");
