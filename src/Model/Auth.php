@@ -138,7 +138,9 @@ class Auth extends Collection
         $auth_token = $this->generateToken();
         AuthToken::setCurrent($auth_token);
 
+        $current_auth_token = AuthToken::current();
         $data = $this->toArray();
+
         $data['token'] = $auth_token->toArray();
 
         return $data;
@@ -160,6 +162,7 @@ class Auth extends Collection
             $this->password_salt = sha1(uniqid(rand(), true));
             $this->password = static::password_hash($this->password, $this->password_salt);
         }
+
         parent::beforeSave();
     }
 

@@ -15,7 +15,9 @@ class AuthToken extends Model
     protected static $_current = null;
 
     public $timestamps = false;
+
     protected $dates = array('expire_at');
+    protected $hidden = array('auth');
 
     public static function boot()
     {

@@ -34,8 +34,10 @@ class Role {
         }
 
         $instance = static::getInstance();
+        $collection_name = $instance->getCollectioName($model);
+
         $instance->token = AuthToken::current();
-        $role = $instance->getConfig($model, 'crud') ?: $instance->getConfig($model, $action);
+        $role = $instance->getConfig($collection_name, 'crud') ?: $instance->getConfig($collection_name, $action);
 
         if (in_array($role, $instance->builtInRoles)) {
             return call_user_func_array(array($instance, 'check' . ucfirst($role)), array($model));
@@ -57,21 +59,22 @@ class Role {
 
     protected function checkOwner($model)
     {
+        $auth_id_field = ($this->getCollectioName($model) == 'auths') ? '_id' : 'auth_id';
         return ($this->token &&
-            isset($model['auth_id']) &&
-            $model['auth_id'] == $this->token->auth_id);
+            isset($model[$auth_id_field]) &&
+            $model[$auth_id_field] == $this->token->auth_id);
     }
 
     protected function checkRole($role) {
         return ($this->token && $this->token->role == $role);
     }
 
-    protected function getConfig($model, $action)
+    protected function getConfig($collection_name, $action)
     {
-        return Config::get('security.collections.' . $this->getTableName($model) . '.' . $action, $this->defaults[$action]);
+        return Config::get('security.collections.' . $collection_name . '.' . $action, $this->defaults[$action]);
     }
 
-    protected function getTableName($model)
+    protected function getCollectioName($model)
     {
         return is_string($model) ? str_plural($model) : $model->getTable();
     }
