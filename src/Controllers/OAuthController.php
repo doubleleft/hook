@@ -155,6 +155,7 @@ class OAuthController extends HookController {
             } else if ($name == 'Facebook') {
                 $opauth->env['Strategy'][$name]['redirect_uri'] = '{complete_url_to_strategy}int_callback' . $query_params;
                 $opauth->env['Strategy'][$name]['scope'] = 'email';
+                $opauth->env['Strategy'][$name]['display'] = 'popup';
 
                 if (isset($options['scope'])) {
                     $opauth->env['Strategy'][$name]['scope'] .= ',' . $options['scope'];
