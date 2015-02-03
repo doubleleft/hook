@@ -177,7 +177,7 @@ class Builder
                     }
 
                     // apply default value
-                    if ($default) {
+                    if ($default !== NULL) {
                         $required = true;
                         $column->default($default);
                     }
