@@ -1,8 +1,8 @@
-<?php
-namespace Hook\Model;
+<?php namespace Hook\Model;
 
-use Hook\Database\CollectionDelegator as CollectionDelegator;
-use Hook\Application\Context as Context;
+use Hook\Database\CollectionDelegator;
+use Hook\Application\Context;
+use Hook\Http\Router;
 
 /**
  * App
@@ -36,6 +36,25 @@ class App extends Model
     public static function collection($name)
     {
         return new CollectionDelegator($name, static::currentId());
+    }
+
+    /**
+     * url
+     * @static
+     * @param  string                       $segments segments
+     * @param  array                        $options options
+     * @return Database\CollectionDelegator
+     */
+    public static function url($segments, $options = array())
+    {
+        $request = Router::getInstance()->request;
+
+        $options['X-App-Id'] = Context::getKey()->app_id;
+        $options['X-App-Key'] = Context::getKey()->key;
+
+        $segments .= '?' . http_build_query($options);
+
+        return $request->getUrl() . $request->getScriptName() . '/' . $segments;
     }
 
     public function keys()
