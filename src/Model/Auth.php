@@ -23,7 +23,7 @@ class Auth extends Collection
 
     // protect from mass-assignment.
     protected $guarded = array('password_salt', 'forgot_password_token', 'forgot_password_expiration', 'deleted_at'); // 'email', 'password',
-    protected $hidden = array('role', 'password', 'password_salt', 'forgot_password_token', 'forgot_password_expiration', 'deleted_at');
+    protected $hidden = array('email', 'password', 'password_salt', 'role', 'forgot_password_token', 'forgot_password_expiration', 'deleted_at');
 
     // force a trusted action?
     // - currently only used on resetPassword method
@@ -120,10 +120,11 @@ class Auth extends Collection
     {
         $arr = parent::toArray();
 
-        // only display email for the logged user
+        // only display email and role for authenticated user
         $auth_token = AuthToken::current();
-        if (!$auth_token || $auth_token->auth_id != $this->_id) {
-            unset($arr['email']);
+        if ($auth_token && $auth_token->auth_id == $this->_id) {
+            $arr['email'] = $this->getAttribute('email');
+            $arr['role'] = $this->getAttribute('role');
         }
 
         return $arr;
