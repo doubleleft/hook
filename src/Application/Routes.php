@@ -73,6 +73,7 @@ class Routes {
         $app->get($path . 'apps/modules', 'Hook\\Controllers\\ApplicationController:modules');
         $app->get($path . 'apps/schema', 'Hook\\Controllers\\ApplicationController:schema');
         $app->post($path . 'apps/schema', 'Hook\\Controllers\\ApplicationController:upload_schema');
+        $app->post($path . 'apps/evaluate', 'Hook\\Controllers\\ApplicationController:evaluate');
 
         $app->notFound(function () use ($app) {
             echo json_encode(array('error' => 'not_found'));

