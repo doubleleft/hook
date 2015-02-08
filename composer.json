@@ -13,6 +13,7 @@
   },
   "require": {
     "php": ">=5.4.0",
+    "ext-mbstring": "*",
     "composer/composer": "1.0.0-alpha9",
     "endel/Slim": "dev-master",
     "doctrine/dbal" : "2.*",
