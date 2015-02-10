@@ -20,9 +20,9 @@ if (isset($db_config['uri']))
     $db_config['charset'] = 'utf8';
     $db_config['driver'] = $parts['scheme'];
     $db_config['host'] = $parts['host'];
-    $db_config['username'] = $parts['user'];
-    $db_config['password'] = $parts['pass'];
-    $db_config['database'] = substr($parts['path'], 1);
+    if (isset($parts['user'])) $db_config['username'] = $parts['user'];
+    if (isset($parts['pass'])) $db_config['password'] = $parts['pass'];
+    if (isset($parts['path'])) $db_config['database'] = substr($parts['path'], 1);
 }
 
 // ------------------

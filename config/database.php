@@ -2,13 +2,15 @@
 
 return array(
     // Database URI
-    // 'uri' => getenv('CLEARDB_DATABASE_URL'),
+    'uri' => getenv('CLEARDB_DATABASE_URL')
+        // use sqlite as default
+        ?: 'sqlite://../../shared/database.sqlite?prefix=',
 
-    // SQLite
-    // -------
-    'driver'   => 'sqlite',
-    'database' => __DIR__ . '/../shared/database.sqlite',
-    'prefix'   => '',
+    // // SQLite
+    // // -------
+    // 'driver'   => 'sqlite',
+    // 'database' => __DIR__ . '/../shared/database.sqlite',
+    // 'prefix'   => '',
 
     // // MySQL
     // // -------
