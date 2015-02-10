@@ -1,13 +1,14 @@
 <?php
 
 return array(
-    'uri' => getenv('CLEARDB_DATABASE_URL'),
+    // Database URI
+    // 'uri' => getenv('CLEARDB_DATABASE_URL'),
 
-    // // SQLite
-    // // -------
-    // 'driver'   => 'sqlite',
-    // 'database' => __DIR__ . '/../shared/database.sqlite',
-    // 'prefix'   => '',
+    // SQLite
+    // -------
+    'driver'   => 'sqlite',
+    'database' => __DIR__ . '/../shared/database.sqlite',
+    'prefix'   => '',
 
     // // MySQL
     // // -------
@@ -35,6 +36,6 @@ return array(
     // 'port'     => 27017,
     // // 'username' => 'username',
     // // 'password' => 'password',
-    // 'database' => 'dl_api'
+    // 'database' => 'hook'
 
 );
