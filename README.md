@@ -1,6 +1,6 @@
 <img align="right" src="https://github.com/doubleleft/hook/blob/master/logo.png?raw=true" alt="hook" />
 
-Welcome to hook [![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy?template=https%3A%2F%2Fgithub.com%2Fdoubleleft%2Fhook%2Ftree%2Fheroku-deploy-button)
+Welcome to hook [![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy?template=https%3A%2F%2Fgithub.com%2Fdoubleleft%2Fhook%2Ftree%2Fmaster)
 ===
 
 [![Build status](https://travis-ci.org/doubleleft/hook.svg?branch=master)](https://travis-ci.org/doubleleft/hook)
