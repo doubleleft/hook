@@ -1,12 +1,13 @@
 <?php
 
 return array(
+    'uri' => getenv('CLEARDB_DATABASE_URL'),
 
-    // SQLite
-    // -------
-    'driver'   => 'sqlite',
-    'database' => __DIR__ . '/../shared/database.sqlite',
-    'prefix'   => '',
+    // // SQLite
+    // // -------
+    // 'driver'   => 'sqlite',
+    // 'database' => __DIR__ . '/../shared/database.sqlite',
+    // 'prefix'   => '',
 
     // // MySQL
     // // -------

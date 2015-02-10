@@ -6,6 +6,25 @@ $db_config = Router::config('database');
 $container = new Illuminate\Container\Container();
 $event_dispatcher = new Illuminate\Events\Dispatcher($container);
 
+//
+// Parse Database URI
+// Example: mysql://username:password@hostname.com/database?options=1
+//
+if (isset($db_config['uri']))
+{
+    $parts = parse_url($db_config['uri']);
+    if (isset($parts['query'])) {
+        parse_str($parts['query'], $db_config);
+    }
+    $db_config['collation'] = 'utf8_general_ci';
+    $db_config['charset'] = 'utf8';
+    $db_config['driver'] = $parts['scheme'];
+    $db_config['host'] = $parts['host'];
+    $db_config['username'] = $parts['user'];
+    $db_config['password'] = $parts['pass'];
+    $db_config['database'] = substr($parts['path'], 1);
+}
+
 // ------------------
 // MongoDB connection
 // ------------------
