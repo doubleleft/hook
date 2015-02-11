@@ -1,8 +1,16 @@
 <?php
 namespace Hook\Database;
 
+use Hook\Exceptions\NotImplementedException;
+
 use Hook\Model\App as App;
 use Hook\Database\Schema\Cache as Cache;
+
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 
 /**
  * Relationship
@@ -60,32 +68,34 @@ class Relationship
             eval("class {$related_klass} extends {$related_model_class} { protected \$table = '{$related_table}'; }");
         }
 
-        // FIXME:
-        // - the first instance of related class has the wrong table_name reference.
-        // - the second instance, used inside relationship methods, became ok after this.
-        $instance = new $related_klass;
-        unset($instance);
+        // FIXME: refactoring
+        // force table name on related query instance.
+        $related_instance = new $related_klass;
+        $related_instance->getModel()->setTable($related_table);
+        $related_query = $related_instance->getModel()->newQuery();
 
         switch ($relation_type) {
         case "belongs_to":
-            // belongsTo($related, $foreignKey = null, $otherKey = null, $relation = null)
-            return $model->belongsTo($related_klass, $foreign_key, '_id', $field);
+            // $model->belongsTo($related_klass, $foreign_key, '_id', $field);
+            return new BelongsTo($related_query, $model, $foreign_key, '_id', $field);
 
         case "belongs_to_many":
-            // belongsToMany($related, $table = null, $foreignKey = null, $otherKey = null, $relation = null)
-            return $model->belongsToMany($related_klass, $related_table, $foreign_key, '_id', $field);
+            // $model->belongsToMany($related_klass, $related_table, $foreign_key, '_id', $field);
+            return new BelongsToMany($related_query, $model, $related_table, $foreign_key, '_id', $field);
 
         case "has_many":
             // hasMany($related, $foreignKey = null, $localKey = null)
-            return $model->hasMany($related_klass, $model_table . '_id', '_id');
+            // $model->hasMany($related_klass, $model_table . '_id', '_id');
+            return new HasMany($related_query, $model, $model_table . '_id', '_id');
 
         case "has_one":
             // hasOne($related, $foreignKey = null, $localKey = null)
-            return $model->hasOne($related_klass, $model_table . '_id', '_id');
+            // $model->hasOne($related_klass, $model_table . '_id', '_id');
+            return new HasOne($related_query, $model, $model_table . '_id', '_id');
 
         case "has_many_through":
             // hasManyThrough('Post', 'User', 'country_id', 'user_id');
-            return $model->hasManyThrough($related_klass, $foreign_key, '_id');
+            return new NotImplementedException("has_many_through not implemented.");
         }
 
         return null;
