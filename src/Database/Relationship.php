@@ -48,15 +48,23 @@ class Relationship
         $foreign_key = $field . '_id';
 
         // define relation model
-        $related_klass = "Related" . ucfirst( str_singular( camel_case( $related_collection->getTable() ) ) );
+        $related_klass = "Related" .
+            ucfirst( str_singular( camel_case( $model_table ) ) ) .
+            ucfirst( str_singular( camel_case( $related_collection->getTable() ) ) );
 
-        // TODO: refactoring
+        // FIXME:
         // eval is evil. But it's necessary here since Eloquent\Model
         // will try to instantiate the 'related class' without constructor params.
         if (!class_exists($related_klass)) {
             $related_model_class = get_class($related_model);
             eval("class {$related_klass} extends {$related_model_class} { protected \$table = '{$related_table}'; }");
         }
+
+        // FIXME:
+        // - the first instance of related class has the wrong table_name reference.
+        // - the second instance, used inside relationship methods, became ok after this.
+        $instance = new $related_klass;
+        unset($instance);
 
         switch ($relation_type) {
         case "belongs_to":
