@@ -65,6 +65,9 @@ class CollectionDelegator implements IteratorAggregate
         if ($is_collection) {
             $query = Collection::from($name);
         } else {
+            // FIXME:
+            // workaround due wrong table_name reference.
+            // similar problem on Hook\Database\Relationship#getRelationInstance
             $tmp_query = call_user_func(array(static::$custom_collections[$name], 'query'));
             $tmp_query->getModel()->setTable($name);
             $query = $tmp_query->getModel()->newQuery();
