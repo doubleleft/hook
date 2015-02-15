@@ -207,27 +207,29 @@ class CollectionDelegator implements IteratorAggregate
     public function filter($filters = null)
     {
         if ($filters) {
-            foreach ($filters as $where) {
-                // Use 'and' as default boolean method
-                if (!isset($where[3])) { $where[3] = 'and'; }
+            $this->query->where(function($query) use ($filters) {
+                foreach ($filters as $where) {
+                    // Use 'and' as default boolean method
+                    if (!isset($where[3])) { $where[3] = 'and'; }
 
-                // Sugar for 'IN' operations
-                if ($where[1] == '=' && gettype($where[2]) == 'array') {
-                    $where[1] = 'in';
+                    // Sugar for 'IN' operations
+                    if ($where[1] == '=' && gettype($where[2]) == 'array') {
+                        $where[1] = 'in';
 
-                } else if ($where[1] == '!=' && $where[2] == null) {
-                    // Workaround to support whereNotNull
-                    $where[1] = 'not_null';
-                    $where[2] = 'and';
+                    } else if ($where[1] == '!=' && $where[2] == null) {
+                        // Workaround to support whereNotNull
+                        $where[1] = 'not_null';
+                        $where[2] = 'and';
+                    }
+
+                    if (preg_match('/^[a-z_]+$/', $where[1]) !== 0 && strtolower($where[1]) !== 'like') {
+                        $method = 'where' . ucfirst(\Illuminate\Support\Str::camel($where[1]));
+                        $query->{$method}($where[0], $where[2], $where[3]);
+                    } else {
+                        $query->where($where[0], $where[1], $where[2], $where[3]);
+                    }
                 }
-
-                if (preg_match('/^[a-z_]+$/', $where[1]) !== 0 && strtolower($where[1]) !== 'like') {
-                    $method = 'where' . ucfirst(\Illuminate\Support\Str::camel($where[1]));
-                    $this->query->{$method}($where[0], $where[2], $where[3]);
-                } else {
-                    $this->query->where($where[0], $where[1], $where[2], $where[3]);
-                }
-            }
+            });
         }
 
         return $this;
