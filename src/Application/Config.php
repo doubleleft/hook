@@ -20,6 +20,7 @@ class Config
     }
 
     public static function deploy($configs = array()) {
+        static::pluralizeCollections($configs);
         $success = false;
         $config_file = static::getConfigPath();
         $previous = file_exists($config_file) ? require($config_file) : array();
@@ -28,6 +29,15 @@ class Config
             $success = true;
         }
         return $success;
+    }
+
+    protected static function pluralizeCollections(&$configs) {
+        if (isset($configs['security']) && isset($configs['security']['collections'])) {
+            foreach($configs['security']['collections'] as $collection => $config) {
+                unset($configs['security']['collections'][$collection]);
+                $configs['security']['collections'][str_plural($collection)] = $config;
+            }
+        }
     }
 
     public static function __callStatic($method, $arguments) {
