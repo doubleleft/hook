@@ -55,9 +55,10 @@ class RoleTest extends TestCase {
     {
         $this->setConfig(App::collection('restricted_content')->getTable(), 'read', 'owner');
 
-        App::collection('restricted_content')->create(array('name' => "Read exception"));
-        App::collection('restricted_content')->first()->toArray();
-        var_dump(App::collection('restricted_content')->first()->toArray());
+        $row = App::collection('restricted_content')->create(array('name' => "Read exception"))->toArray();
+        $this->assertTrue( is_array($row) );
+
+        App::collection('restricted_content')->where('name', "Read exception")->first()->toArray();
     }
 
     public function testOwnerReadSuccess()

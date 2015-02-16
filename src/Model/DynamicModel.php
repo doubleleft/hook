@@ -44,11 +44,11 @@ class DynamicModel extends Model
         if (!isset(static::$securityObserver)) {
             static::$securityObserver = new SecurityObserver();
             $className = get_class(static::$securityObserver);
-            static::registerModelEvent('creating', $className.'@creating');
-            static::registerModelEvent('updating', $className.'@updating');
-            static::registerModelEvent('updating_multiple', $className.'@updating_multiple');
-            static::registerModelEvent('deleting', $className.'@deleting');
-            static::registerModelEvent('deleting_multiple', $className.'@deleting_multiple');
+            static::registerModelEvent('creating', array(static::$securityObserver, 'creating'));
+            static::registerModelEvent('updating', array(static::$securityObserver, 'updating'));
+            static::registerModelEvent('updating_multiple', array(static::$securityObserver, 'updating_multiple'));
+            static::registerModelEvent('deleting', array(static::$securityObserver, 'deleting'));
+            static::registerModelEvent('deleting_multiple', array(static::$securityObserver, 'deleting_multiple'));
         }
     }
 
