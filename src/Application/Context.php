@@ -93,8 +93,8 @@ class Context
         $connection = \DLModel::getConnectionResolver()->connection();
         static::setTablePrefix($connection->getTablePrefix() . $prefix);
 
-        // set cache prefix
-        Cache::getManager()->setPrefix($prefix);
+        // // set cache prefix
+        // Cache::getManager()->setPrefix($prefix);
     }
 
     /**

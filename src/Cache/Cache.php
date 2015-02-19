@@ -4,6 +4,10 @@ use Hook\Encryption\Encrypter;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Cache\CacheManager;
 
+class ConfigContainer extends \ArrayObject {
+    public function bound() { return false; }
+}
+
 /**
  * Cache - Proxy class to Illuminate\Cache\StoreInterface
  * @see \Illuminate\Cache\StoreInterface
@@ -44,15 +48,19 @@ class Cache
                     'db' => \DLModel::getConnectionResolver(),
                     'encrypter' => Encrypter::getInstance(),
                     'config' => array(
-                        'cache.driver' => 'database',
-                        'cache.connection' => 'default',
-                        'cache.table' => 'cache',
-                        'cache.prefix' => ''
+                        'cache.prefix' => '',
+                        'cache.default' => 'database',
+                        'cache.stores.database' => array(
+                            'driver' => 'database',
+                            'connection' => 'default',
+                            'table' => 'cache',
+                        )
                     )
                 );
             }
+            $container = new ConfigContainer($config);
 
-            static::$manager = new CacheManager($config);
+            static::$manager = new CacheManager($container);
         }
         return static::$manager;
     }
@@ -65,7 +73,7 @@ class Cache
     protected static function getCacheDriver()
     {
         $driver = \Slim\Slim::getInstance()->config('cache');
-        return static::getManager($driver)->driver($driver);;
+        return static::getManager($driver)->driver($driver);
     }
 
 }
