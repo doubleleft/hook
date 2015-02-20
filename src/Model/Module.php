@@ -220,6 +220,7 @@ class Module extends Model
             // Expose handy aliases for modules
             //
             $aliases = '';
+            $aliases.= 'use Hook\Application\Context;';
             $aliases.= 'use Hook\Model\Module;';
             $aliases.= 'use Hook\Model\File;';
             $aliases.= 'use Hook\Model\Auth;';

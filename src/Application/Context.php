@@ -12,6 +12,27 @@ use Hook\Http\Router;
 class Context
 {
     protected static $app_key;
+    protected static $isTrustedAction = false;
+
+    /**
+     * isTrusted
+     *
+     * @return bool
+     */
+    public static function isTrusted() {
+        return static::$isTrustedAction;
+    }
+
+    /**
+     * setTrusted
+     *
+     * @param bool $trusted
+     *
+     * @return string
+     */
+    public static function setTrusted($trusted = true) {
+        static::$isTrustedAction = $trusted;
+    }
 
     /**
      * config

@@ -3,6 +3,7 @@
 use Hook\Model\AppKey;
 use Hook\Model\AuthToken;
 use Hook\Application\Config;
+use Hook\Application\Context;
 
 class Role {
     protected static $instance;
@@ -29,7 +30,7 @@ class Role {
     public static function isAllowed($model, $action)
     {
         // commandline always have full-access
-        if (AppKey::current()->isCommandline()) {
+        if (Context::isTrusted() || AppKey::current()->isCommandline()) {
             return true;
         }
 

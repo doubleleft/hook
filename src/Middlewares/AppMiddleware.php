@@ -115,12 +115,20 @@ class AppMiddleware extends Slim\Middleware
                 // // Register session handler
                 // Session\Handler::register(Config::get('session.handler', 'database'));
 
-                // Compile all route modules
-                if ($custom_routes = Module::where('type', Module::TYPE_ROUTE)->get()) {
-                    foreach ($custom_routes as $custom_route) {
-                        $custom_route->compile();
-                    }
+                // Query and compile route module if found
+                $route_module_name = strtolower($app->request->getMethod()) . '_' . substr($app->request->getPathInfo(), 1) . '.php';
+                $custom_route = Module::where('type', Module::TYPE_ROUTE)->
+                    where('name', $route_module_name)->
+                    first();
+
+                if ($custom_route) {
+                    // Flag request as "trusted".
+                    Context::setTrusted(true);
+
+                    // "Compile" the route to be available for the router
+                    $custom_route->compile();
                 }
+
             } else if (!\Hook\Controllers\ApplicationController::isRootOperation()) {
                 $app->response->setStatus(403);
                 $app->response->setBody(json_encode(array('error' => "Invalid credentials.")));
