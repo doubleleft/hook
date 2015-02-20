@@ -44,6 +44,9 @@ return array(
         'Router' => 'Hook\\Http\\Router',
 
         // Utils
-        'Mail' => 'Hook\\Mailer\\Mail'
+        'Mail' => 'Hook\\Mailer\\Mail',
+
+        // Illuminate
+        'DB' => 'Illuminate\\Database\\Capsule\\Manager',
     )
 );

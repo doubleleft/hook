@@ -32,6 +32,15 @@ if ($db_config['driver'] == 'mongodb') {
     $connection = new Jenssegers\Mongodb\Connection($db_config);
     class_alias('\Jenssegers\Mongodb\Model', 'DLModel');
 
+    $resolver = new \Illuminate\Database\ConnectionResolver(array('default' => $connection));
+    $resolver->addConnection('app', $connection);
+    $resolver->setDefaultConnection('default');
+
+    DLModel::setConnectionResolver($resolver);
+    DLModel::setEventDispatcher($event_dispatcher);
+
+    $connection->setEventDispatcher($event_dispatcher);
+
 } else {
 
     //
@@ -41,13 +50,16 @@ if ($db_config['driver'] == 'mongodb') {
         touch($db_config['database']);
     }
 
-    // -------------
-    // SQL connection
-    // --------------
-    $connFactory = new \Illuminate\Database\Connectors\ConnectionFactory($container);
-    $connection = $connFactory->make($db_config);
+    $capsule = new Illuminate\Database\Capsule\Manager;
 
-    $connection->setFetchMode(PDO::FETCH_CLASS);
+    $capsule->addConnection($db_config);
+    $capsule->setFetchMode(PDO::FETCH_CLASS);
+    $capsule->setEventDispatcher($event_dispatcher);
+
+    $capsule->setAsGlobal();
+    $capsule->bootEloquent();
+
+    $connection = $capsule->connection();
     class_alias('\Illuminate\Database\Eloquent\Model', 'DLModel');
 }
 
@@ -58,16 +70,8 @@ if ($db_config['driver'] == 'mongodb') {
 //
 \Carbon\Carbon::setToStringFormat('Y-m-d\TH:i:sP');
 
-$resolver = new \Illuminate\Database\ConnectionResolver(array('default' => $connection));
-$resolver->addConnection('app', $connection);
-$resolver->setDefaultConnection('default');
-
-DLModel::setConnectionResolver($resolver);
-DLModel::setEventDispatcher($event_dispatcher);
-
 // Setup paginator
 $connection->setPaginator(new Hook\Pagination\Environment());
-$connection->setEventDispatcher($event_dispatcher);
 
 // Setup Schema Grammar
 // $connection->setSchemaGrammar();

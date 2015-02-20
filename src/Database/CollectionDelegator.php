@@ -5,6 +5,8 @@ use Hook\Model\App;
 use Hook\Model\Collection;
 use Hook\Exceptions\UnauthorizedException;
 
+use Illuminate\Database\Capsule\Manager as DB;
+
 use ArrayIterator;
 use IteratorAggregate;
 
@@ -354,6 +356,16 @@ class CollectionDelegator implements IteratorAggregate
     public function toJson($columns=array('*'))
     {
         return $this->query->get($columns)->toJson();
+    }
+
+    /**
+     * Get the table/collection name in the database, with prefix.
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        return DB::connection()->getTablePrefix() . $this->name;
     }
 
     protected function fireEvent($event, $payload)

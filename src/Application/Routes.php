@@ -86,10 +86,6 @@ class Routes {
             echo json_encode(array('error' => $e->getMessage()));
         });
 
-        $app->hook('slim.before.dispatch', function() use ($app) {
-            file_put_contents('php://stdout', "Hey!");
-        });
-
         return $app;
     }
 

@@ -1,5 +1,6 @@
 <?php
 
+use Hook\Model\App;
 use Hook\Http\Router;
 
 /**
@@ -85,6 +86,19 @@ function rmdir_r($dir) {
         (is_dir("$dir/$file")) ? rmdir_r("$dir/$file") : unlink("$dir/$file");
     }
     return rmdir($dir);
+}
+
+/**
+ * App shortchut functions
+ */
+
+/**
+ * collection
+ * @return string
+ */
+function collection($name)
+{
+    return App::collection($name);
 }
 
 /**
