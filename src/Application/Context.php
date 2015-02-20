@@ -20,7 +20,9 @@ class Context
      * @return bool
      */
     public static function isTrusted() {
-        return static::$isTrustedAction;
+        return static::getKey()->isServer() ||
+            static::getKey()->isCommandline() ||
+            static::$isTrustedAction;
     }
 
     /**

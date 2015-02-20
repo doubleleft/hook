@@ -122,7 +122,7 @@ class Auth extends Collection
 
         // only display email and role for authenticated user
         $auth_token = AuthToken::current();
-        if ($auth_token && $auth_token->auth_id == $this->_id) {
+        if (($auth_token && $auth_token->auth_id == $this->_id) || Context::isTrusted()) {
             $arr['email'] = $this->getAttribute('email');
             $arr['role'] = $this->getAttribute('role');
         }
@@ -180,9 +180,8 @@ class Auth extends Collection
         // - Is using 'commandline' context.
         // - Authenticated user is updating it's own data
         //
-        return Context::getKey()->isServer() ||
-            Context::getKey()->isCommandline() ||
-            $this->isAuthenticated();
+
+        return Context::isTrusted() || $this->isAuthenticated();
     }
 
     protected function isAuthenticated()  {

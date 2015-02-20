@@ -30,7 +30,7 @@ class Role {
     public static function isAllowed($model, $action)
     {
         // commandline always have full-access
-        if (Context::isTrusted() || AppKey::current()->isCommandline()) {
+        if (Context::isTrusted()) {
             return true;
         }
 
