@@ -56,7 +56,7 @@ class Builder
         $cached_attributes = array_map(function($item) { return $item['name']; }, isset($table_schema['attributes']) ? $table_schema['attributes'] : array());
 
         $config = array(
-            'dynamic' => true,
+            'lock_attributes' => false,
             'attributes' => array()
         );
 
