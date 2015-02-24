@@ -253,17 +253,17 @@ class Builder
     }
 
     protected static function sanitizeConfig(&$config) {
-        // sanitize / normalize relationship definitions
-        if (isset($config['relationships'])) {
-            foreach($config['relationships'] as $relation => $fields) {
-                $config['relationships'][$relation] = Relation::sanitize($relation, $fields);
-            }
-        } else {
+        if (!isset($config['relationships'])) {
             $config['relationships'] = array();
         }
 
         if (!isset($config['attributes'])) {
             $config['attributes'] = array();
+        }
+
+        // sanitize relationship definitions
+        foreach($config['relationships'] as $relation => $fields) {
+            $config['relationships'][$relation] = Relation::sanitize($relation, $fields);
         }
 
         return $config;
