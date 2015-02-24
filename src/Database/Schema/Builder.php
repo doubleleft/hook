@@ -113,25 +113,12 @@ class Builder
         });
 
         $table = $model->getTable();
+        $table_schema = Cache::get($table);
         $table_prefix = Context::getPrefix();
+        $config = static::sanitizeConfig($config);
 
         $is_creating = (!$builder->hasTable($table));
         $method = ($is_creating) ? 'create' : 'table';
-
-        $table_schema = Cache::get($table);
-
-        // sanitize / normalize relationship definitions
-        if (isset($config['relationships'])) {
-            foreach($config['relationships'] as $relation => $fields) {
-                $config['relationships'][$relation] = Relation::sanitize($relation, $fields);
-            }
-        } else {
-            $config['relationships'] = array();
-        }
-
-        if (!isset($config['attributes'])) {
-            $config['attributes'] = array();
-        }
 
         if (!empty($config['attributes']) || !empty($config['relationships'])) {
             $migrate = function ($t) use (&$table, &$table_prefix, &$builder, &$is_creating, &$table_schema, $config, &$result) {
@@ -139,6 +126,8 @@ class Builder
                     $t->increments('_id'); // primary key
                     $t->timestamps();      // created_at / updated_at field
                     $t->softDeletes();     // deleted_at field
+                    $table_columns = array();
+
                 } else {
                     $table_columns = $builder->getColumnListing($table);
                 }
@@ -163,9 +152,13 @@ class Builder
                     }
 
                     // Skip if column already exists
-                    if (!$is_creating && in_array($field_name, array_map('strtolower', $table_columns))) {
+                    // TODO: deprecate strtolower
+                    if (in_array($field_name, array_map('strtolower', $table_columns))) {
                         continue;
                     }
+
+                    // include field_name to list of collection columns
+                    array_push($table_columns, $field_name);
 
                     if (count($attribute) > 0) {
                         // the remaining attributes on field definition are
@@ -209,8 +202,13 @@ class Builder
                         foreach ($fields as $field => $collection) {
                             $foreign_field = $field . '_id';
 
+                            //
                             // skip if field already exists
-                            if ($builder->hasColumn($table, $foreign_field)) {
+                            //
+                            // TODO: if already defined, use it as a foreign key.
+                            // https://github.com/doubleleft/hook/issues/130
+                            //
+                            if (in_array($foreign_field, array_map('strtolower', $table_columns))) {
                                 continue;
                             }
 
@@ -252,6 +250,23 @@ class Builder
         $connection_klass = str_replace('Illuminate\\Database', '', $connection_klass);
         $connection_klass = 'Hook\\Database\\Schema\\Grammars' . str_replace('Connection', 'Grammar', $connection_klass);
         return new $connection_klass;
+    }
+
+    protected static function sanitizeConfig(&$config) {
+        // sanitize / normalize relationship definitions
+        if (isset($config['relationships'])) {
+            foreach($config['relationships'] as $relation => $fields) {
+                $config['relationships'][$relation] = Relation::sanitize($relation, $fields);
+            }
+        } else {
+            $config['relationships'] = array();
+        }
+
+        if (!isset($config['attributes'])) {
+            $config['attributes'] = array();
+        }
+
+        return $config;
     }
 
     public static function __callStatic($method, $args)

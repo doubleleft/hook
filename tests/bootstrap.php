@@ -9,12 +9,16 @@ $_SERVER['SERVER_NAME'] = 'localhost';
 $_SERVER['SERVER_PORT'] = '80';
 
 $db_driver = getenv('DB_DRIVER') ?: 'sqlite';
+$db_config = require(__DIR__ . "/configs/{$db_driver}.php");
 
 $app = require __DIR__ . '/../src/Hook.php';
 Hook\Http\Router::setInstance($app);
 
-$app->config('database', require(__DIR__ . "/configs/{$db_driver}.php"));
+$app->config('database', $db_config);
 $app->config('paths', require(__DIR__ . '/../config/paths.php'));
+
+// remove previous database for a fresh test
+if ($db_driver == 'sqlite') { @unlink($db_config['database']); }
 
 require __DIR__ . '/../src/bootstrap/connection.php';
 Hook\Http\Router::setInstance($app);
