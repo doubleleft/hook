@@ -53,14 +53,16 @@ class ResponseTypeMiddleware extends Slim\Middleware
 
     protected function handleErrorRespone($e, $app)
     {
-        $message = $e->getMessage();
+        $message = (isset($e->errorInfo) && is_array($e->errorInfo))
+            ? end($e->errorInfo) // PDOException, get safe message without SQL statements
+            : $e->getMessage();  // Exception
         $trace = $e->getTraceAsString();
 
-        $app->log->info("Error: '{$message}'");
+        $app->log->info("Error: '" . $e->getMessage() . "'");
         $app->log->info($trace);
 
         try {
-            file_put_contents('php://stderr', "[[ hook: error ]] " . $message . PHP_EOL . $trace . PHP_EOL);
+            file_put_contents('php://stderr', "[[ hook: error ]] " . $e->getMessage() . PHP_EOL . $trace . PHP_EOL);
         } catch (Exception $e) {
             // echo $message . "<br />";
             // echo nl2br($trace);
@@ -74,8 +76,7 @@ class ResponseTypeMiddleware extends Slim\Middleware
 
         return array(
             'error' => $message,
-            'code' => $code,
-            'trace' => $trace
+            'code' => $code
         );
     }
 
