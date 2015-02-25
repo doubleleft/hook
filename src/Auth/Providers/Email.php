@@ -1,8 +1,9 @@
 <?php
 namespace Hook\Auth\Providers;
 
-use Hook\Model\Auth as Auth;
-use Hook\Model\Module as Module;
+use Hook\Model\Auth;
+use Hook\Model\Module;
+use Hook\Application\Context;
 
 use Hook\Exceptions;
 use Hook\Application\Config as Config;
@@ -65,8 +66,11 @@ class Email extends Base
             $data['subject'] = 'Forgot your password?';
         }
 
-        $body_data = $user->generateForgotPasswordToken()->toArray();
-        $body_data['token'] = $user->getAttribute(Auth::FORGOT_PASSWORD_FIELD);
+        $body_data = Context::unsafe(function() use (&$user) {
+            $array = $user->generateForgotPasswordToken()->toArray();
+            $array['token'] = $user->getAttribute(Auth::FORGOT_PASSWORD_FIELD);
+            return $array;
+        });
 
         $template = isset($data['template']) ? $data['template'] : self::TEMPLATE_FORGOT_PASSWORD;
 

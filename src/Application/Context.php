@@ -37,6 +37,19 @@ class Context
     }
 
     /**
+     * Run function in unsafe context.
+     *
+     * @return mixed
+     */
+    public static function unsafe($func) {
+        static::setTrusted(true);
+        $value = $func();
+
+        static::setTrusted(false);
+        return $value;
+    }
+
+    /**
      * config
      *
      * @param mixed $name
