@@ -91,11 +91,11 @@ class Builder
      * migrate
      *
      * @param Hook\Model\Collection $model
-     * @param array $config
+     * @param array $collection_config
      *
      * @return bool
      */
-    public static function migrate($model, $config)
+    public static function migrate($model, $collection_config)
     {
         $result = false;
         $connection = $model->getConnectionResolver()->connection();
@@ -115,13 +115,12 @@ class Builder
         $table = $model->getTable();
         $table_schema = Cache::get($table);
         $table_prefix = Context::getPrefix();
-        $config = static::sanitizeConfig($table, $config);
+        $collection_config = static::sanitizeConfig($table, $collection_config);
 
-        $is_creating = (!$builder->hasTable($table));
-        $method = ($is_creating) ? 'create' : 'table';
+        if (!empty($collection_config['attributes']) || !empty($collection_config['relationships'])) {
+            $migrate = function ($t) use (&$table, &$table_prefix, &$builder, &$is_creating, &$table_schema, $collection_config, &$result) {
+                $is_creating = (!$builder->hasTable($table));
 
-        if (!empty($config['attributes']) || !empty($config['relationships'])) {
-            $migrate = function ($t) use (&$table, &$table_prefix, &$builder, &$is_creating, &$table_schema, $config, &$result) {
                 if ($is_creating) {
                     $t->increments('_id'); // primary key
                     $t->timestamps();      // created_at / updated_at field
@@ -132,7 +131,7 @@ class Builder
                     $table_columns = $builder->getColumnListing($table);
                 }
 
-                foreach($config['attributes'] as $attribute) {
+                foreach($collection_config['attributes'] as $attribute) {
                     if (!isset($attribute['name'])) {
                         throw new MethodFailureException('invalid_schema');
                     }
@@ -162,7 +161,7 @@ class Builder
 
                     if (count($attribute) > 0) {
                         // the remaining attributes on field definition are
-                        // the data-type related config, such as 'length',
+                        // the data-type related collection_config, such as 'length',
                         // 'allowed', 'total', 'places', etc.
                         $column = $t->newColumn($type, $field_name, $attribute);
                     } else {
@@ -196,30 +195,37 @@ class Builder
                     }
                 }
 
-                foreach($config['relationships'] as $relation => $fields) {
+                // onDelete / onUpdate actions
+                $actions = array(
+                    'restrict' => "RESTRICT",
+                    'cascade' => "CASCADE",
+                    'none' => "NO ACTION",
+                    'null' => "SET NULL",
+                    'default' => "SET DEFAULT"
+                );
+
+                foreach($collection_config['relationships'] as $relation => $fields) {
                     // only create field on belongs_to relationships
                     if ($relation == "belongs_to") {
-                        foreach ($fields as $field => $collection) {
-                            $foreign_field = $field . '_id';
-
+                        foreach ($fields as $field => $config) {
                             //
-                            // skip if field already exists
+                            // create 'foreign_key' column on collection.
                             //
-                            // TODO: if already defined, use it as a foreign key.
-                            // https://github.com/doubleleft/hook/issues/130
-                            //
-                            if (in_array($foreign_field, array_map('strtolower', $table_columns))) {
-                                continue;
-                            }
-
                             // maybe 'collection' table isn't created here.
                             // TODO: create related table before referencing foreign key.
-                            $column = $t->unsignedInteger($foreign_field)->index();
-                            $column->nullable();
+                            //
+                            if (!in_array($config['foreign_key'], array_map('strtolower', $table_columns))) {
+                                file_put_contents('php://stdout', $config['foreign_key']);
+                                $column = $t->unsignedInteger($config['foreign_key']);
+                                $column->nullable();
+                            }
 
-                            // $t->foreign($foreign_field)
-                            //     ->references('_id')
-                            //     ->on($table_prefix . $collection);
+                            // create foreign key on database
+                            $t->foreign($config['foreign_key'])
+                                ->references($config['primary_key'])
+                                ->on($table_prefix . $config['collection'])
+                                ->onDelete($actions[$config['on_delete']])
+                                ->onUpdate($actions[$config['on_update']]);
                         }
                     }
                 }
@@ -231,11 +237,12 @@ class Builder
 
             };
 
+            $method = ($is_creating) ? 'create' : 'table';
             call_user_func(array($builder, $method), $table_prefix . $table, $migrate);
         }
 
         // Cache table schema for further reference
-        $table_schema = array_merge_recursive($table_schema, $config);
+        $table_schema = array_merge_recursive($table_schema, $collection_config);
         Cache::forever($table, $table_schema);
 
         $app_collections = Cache::get('app_collections');
