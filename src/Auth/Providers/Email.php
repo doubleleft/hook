@@ -99,6 +99,9 @@ class Email extends Base
         $data[Auth::FORGOT_PASSWORD_FIELD] = $data['token'];
         $user = $this->find(Auth::FORGOT_PASSWORD_FIELD, $data);
 
+        // Set trusted context to update auths row
+        Context::setTrusted(true);
+
         if ($user && $user->resetPassword($data['password'])) {
             return array('success' => true);
         } else {
