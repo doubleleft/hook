@@ -8,7 +8,7 @@ class RelationTest extends TestCase
     public function testSingle()
     {
         $config_0 = $this->parse("belongs_to: author");
-        $fields_0 = Relation::sanitize(key($config_0), current($config_0));
+        $fields_0 = Relation::sanitize('dummy_collection', key($config_0), current($config_0));
         $this->assertTrue($fields_0 == array(
             'author' => array(
                 'collection' => 'authors',
@@ -25,7 +25,7 @@ belongs_to:
   - author
 EOF
 );
-        $fields_1 = Relation::sanitize(key($config_1), current($config_1));
+        $fields_1 = Relation::sanitize('dummy_collection', key($config_1), current($config_1));
         $this->assertTrue($fields_1 == array(
             'author' => array(
                 'collection' => 'authors',
@@ -37,7 +37,7 @@ EOF
             )
         ));
 
-        $fields_2 = Relation::sanitize('belongs_to', array('authors'));
+        $fields_2 = Relation::sanitize('dummy_collection', 'belongs_to', array('authors'));
         $this->assertTrue($fields_2 == array(
             'author' => array(
                 'collection' => 'authors',
@@ -49,7 +49,7 @@ EOF
             )
         ));
 
-        $fields_3 = Relation::sanitize('belongs_to', array('authors', 'publishers'));
+        $fields_3 = Relation::sanitize('dummy_collection', 'belongs_to', array('authors', 'publishers'));
         $this->assertTrue($fields_3 == array(
             'author' => array(
                 'collection' => 'authors',
@@ -69,11 +69,11 @@ EOF
             )
         ));
 
-        $fields_5 = Relation::sanitize('has_many', array('author'));
+        $fields_5 = Relation::sanitize('dummy_collection', 'has_many', array('author'));
         $this->assertTrue($fields_5 == array(
             'authors' => array(
                 'collection' => 'authors',
-                'foreign_key' => 'author_id',
+                'foreign_key' => 'dummy_collection_id',
                 'primary_key' => '_id'
             )
         ));
@@ -91,7 +91,7 @@ belongs_to:
 EOF
 );
 
-        $fields_1 = Relation::sanitize(key($belongs_to1), current($belongs_to1));
+        $fields_1 = Relation::sanitize('dummy_collection', key($belongs_to1), current($belongs_to1));
         $this->assertTrue($fields_1 == array(
             'author' => array(
                 'collection'=> 'auths',
@@ -112,7 +112,7 @@ belongs_to:
 EOF
 );
 
-        $fields_2 = Relation::sanitize(key($belongs_to2), current($belongs_to2));
+        $fields_2 = Relation::sanitize('dummy_collection', key($belongs_to2), current($belongs_to2));
         $this->assertTrue($fields_2 == array(
             'creator' => array(
                 'collection'=> 'auths',
@@ -143,11 +143,11 @@ has_many:
 EOF
 );
 
-        $fields_1 = Relation::sanitize(key($belongs_to1), current($belongs_to1));
+        $fields_1 = Relation::sanitize('dummy_collection', key($belongs_to1), current($belongs_to1));
         $this->assertTrue($fields_1 == array(
             'authors' => array(
                 'collection'=> 'auths',
-                'foreign_key' => 'author_id',
+                'foreign_key' => 'dummy_collection_id',
                 'primary_key' => '_id',
             )
         ));
@@ -161,16 +161,16 @@ has_many:
 EOF
 );
 
-        $fields_2 = Relation::sanitize(key($belongs_to2), current($belongs_to2));
+        $fields_2 = Relation::sanitize('dummy_collection', key($belongs_to2), current($belongs_to2));
         $this->assertTrue($fields_2 == array(
             'creators' => array(
-                'collection'=> 'auth',
-                'foreign_key' => 'creator_id',
+                'collection'=> 'auths',
+                'foreign_key' => 'dummy_collection_id',
                 'primary_key' => '_id'
             ),
             'authors' => array(
-                'collection'=> 'auth',
-                'foreign_key' => 'author_id',
+                'collection'=> 'auths',
+                'foreign_key' => 'dummy_collection_id',
                 'primary_key' => '_id'
             )
         ));

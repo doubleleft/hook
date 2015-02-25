@@ -25,13 +25,10 @@ class Relationship
         if (isset($schema['relationships'])) {
             // TODO: refactoring.
             // change the way to store relationships to prevent excessive loops
-            foreach($schema['relationships'] as $relation => $fields) {
-                foreach($fields as $field => $collection) {
-                    if ($field == $relation_name || $collection == $relation_name) {
-                        // TODO: '$collection' should be always a string
-                        $related_collection_name = (is_array($collection)) ? $collection[0] : $collection;
-                        $related_collection = App::collection($related_collection_name);
-                        return static::getRelationInstance($model, $related_collection, $relation, $field);
+            foreach($schema['relationships'] as $relation_type => $fields) {
+                foreach($fields as $field => $config) {
+                    if ($field == $relation_name || $config['collection'] == $relation_name) {
+                        return static::getRelationInstance($model, $relation_type, $field, $config);
                     }
                 }
             }
@@ -48,17 +45,20 @@ class Relationship
      *
      * @return \Illuminate\Database\Eloquent\Relations\Relation
      */
-    public static function getRelationInstance($model, $related_collection, $relation_type, $field) {
+    public static function getRelationInstance($model, $relation_type, $field, $config) {
+        $related_collection = App::collection($config['collection']);
         $model_table = str_singular($model->getTable());
 
         $related_model = $related_collection->getModel();
         $related_table = $related_model->getTable();
-        $foreign_key = $field . '_id';
+
+        $primary_key = $config['primary_key'];
+        $foreign_key = $config['foreign_key'];
 
         // define relation model
         $related_klass = "Related" .
-            ucfirst( str_singular( camel_case( $model_table ) ) ) .
-            ucfirst( str_singular( camel_case( $related_collection->getTable() ) ) );
+            ucfirst( str_singular( camel_case( $field ) ) ) .
+            ucfirst( str_singular( camel_case( $config['collection'] ) ) );
 
         // FIXME:
         // eval is evil. But it's necessary here since Eloquent\Model
@@ -77,21 +77,21 @@ class Relationship
         switch ($relation_type) {
         case "belongs_to":
             // $model->belongsTo($related_klass, $foreign_key, '_id', $field);
-            return new BelongsTo($related_query, $model, $foreign_key, '_id', $field);
+            return new BelongsTo($related_query, $model, $foreign_key, $primary_key, $field);
 
         case "belongs_to_many":
             // $model->belongsToMany($related_klass, $related_table, $foreign_key, '_id', $field);
-            return new BelongsToMany($related_query, $model, $related_table, $foreign_key, '_id', $field);
+            return new BelongsToMany($related_query, $model, $related_table, $foreign_key, $primary_key, $field);
 
         case "has_many":
             // hasMany($related, $foreignKey = null, $localKey = null)
             // $model->hasMany($related_klass, $model_table . '_id', '_id');
-            return new HasMany($related_query, $model, $model_table . '_id', '_id');
+            return new HasMany($related_query, $model, $foreign_key, $primary_key);
 
         case "has_one":
             // hasOne($related, $foreignKey = null, $localKey = null)
             // $model->hasOne($related_klass, $model_table . '_id', '_id');
-            return new HasOne($related_query, $model, $model_table . '_id', '_id');
+            return new HasOne($related_query, $model, $foreign_key, $primary_key);
 
         case "has_many_through":
             // hasManyThrough('Post', 'User', 'country_id', 'user_id');

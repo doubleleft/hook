@@ -115,7 +115,7 @@ class Builder
         $table = $model->getTable();
         $table_schema = Cache::get($table);
         $table_prefix = Context::getPrefix();
-        $config = static::sanitizeConfig($config);
+        $config = static::sanitizeConfig($table, $config);
 
         $is_creating = (!$builder->hasTable($table));
         $method = ($is_creating) ? 'create' : 'table';
@@ -252,7 +252,7 @@ class Builder
         return new $connection_klass;
     }
 
-    protected static function sanitizeConfig(&$config) {
+    protected static function sanitizeConfig($collection_name, &$config) {
         if (!isset($config['relationships'])) {
             $config['relationships'] = array();
         }
@@ -263,7 +263,7 @@ class Builder
 
         // sanitize relationship definitions
         foreach($config['relationships'] as $relation => $fields) {
-            $config['relationships'][$relation] = Relation::sanitize($relation, $fields);
+            $config['relationships'][$relation] = Relation::sanitize($collection_name, $relation, $fields);
         }
 
         return $config;

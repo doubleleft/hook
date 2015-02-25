@@ -54,7 +54,18 @@ class CollectionRelationshipTest extends TestCase
 
         // teams / matches
         Schema\Builder::migrate(App::collection('matches')->getModel(), array(
-            'relationships' => array('belongs_to' => array('team_1' => 'teams', 'team_2' => 'teams'))
+            'relationships' => array('belongs_to' => array(
+                array(
+                    'house' => array(
+                        'collection' => 'teams'
+                    ),
+                ),
+                array(
+                    'guest' => array(
+                        'collection' => 'teams'
+                    )
+                )
+            ))
         ));
         Schema\Builder::migrate(App::collection('teams')->getModel(), array(
             'relationships' => array('has_many' => 'matches')
@@ -70,14 +81,14 @@ class CollectionRelationshipTest extends TestCase
 
         App::collection('matches')->create(array(
             'name' => "Brazil vs Germany",
-            'team_1_id' => $brazil->_id,
-            'team_2_id' => $germany->_id,
+            'house_id' => $brazil->_id,
+            'guest_id' => $germany->_id,
         ));
 
         App::collection('matches')->create(array(
             'name' => "Argentina vs Netherlands",
-            'team_1_id' => $argentina->_id,
-            'team_2_id' => $netherlands->_id,
+            'house_id' => $argentina->_id,
+            'guest_id' => $netherlands->_id,
         ));
 
     }
@@ -111,40 +122,40 @@ class CollectionRelationshipTest extends TestCase
     {
         $matches = App::collection('matches')->toArray();
         $this->assertTrue(count($matches) == 2);
-        $this->assertTrue(isset($matches[0]['team_1']) == false);
-        $this->assertTrue(isset($matches[0]['team_2']) == false);
+        $this->assertTrue(isset($matches[0]['house']) == false);
+        $this->assertTrue(isset($matches[0]['guest']) == false);
 
-        $matches = App::collection('matches')->join('team_1', 'team_2')->toArray();
+        $matches = App::collection('matches')->join('house', 'guest')->toArray();
         $this->assertTrue(count($matches) == 2);
-        $this->assertTrue($matches[0]['team_1']['name'] == "Brazil");
-        $this->assertTrue($matches[0]['team_2']['name'] == "Germany");
+        $this->assertTrue($matches[0]['house']['name'] == "Brazil");
+        $this->assertTrue($matches[0]['guest']['name'] == "Germany");
     }
 
     public function testDirectAssociation()
     {
         $match_1 = App::collection('matches')->create(array(
             'name' => "Team one VS Team two",
-            'team_1' => array('name' => "One"),
-            'team_2' => array('name' => "Two")
+            'house' => array('name' => "One"),
+            'guest' => array('name' => "Two")
         ));
 
         $three = App::collection('teams')->create(array('name' => "Three"));
         $four = App::collection('teams')->create(array('name' => "Four"));
         $match_2 = App::collection('matches')->create(array(
             'name' => "Team three VS Team four",
-            'team_1' => $three,
-            'team_2' => $four
+            'house' => $three,
+            'guest' => $four
         ));
 
         // retrieve recent-created matches with relationships
         $matches = App::collection('matches')
             ->where('_id', '>=', $match_1->_id)
-            ->join('team_1', 'team_2')
+            ->join('house', 'guest')
             ->toArray();
-        $this->assertTrue($matches[0]['team_1']['name'] == "One");
-        $this->assertTrue($matches[0]['team_2']['name'] == "Two");
-        $this->assertTrue($matches[1]['team_1']['name'] == "Three");
-        $this->assertTrue($matches[1]['team_2']['name'] == "Four");
+        $this->assertTrue($matches[0]['house']['name'] == "One");
+        $this->assertTrue($matches[0]['guest']['name'] == "Two");
+        $this->assertTrue($matches[1]['house']['name'] == "Three");
+        $this->assertTrue($matches[1]['guest']['name'] == "Four");
 
         // from related direction
         App::collection('authors')->create(array(
