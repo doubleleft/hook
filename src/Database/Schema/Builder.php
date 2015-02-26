@@ -117,10 +117,10 @@ class Builder
         $table_prefix = Context::getPrefix();
         $collection_config = static::sanitizeConfig($table, $collection_config);
 
+        $is_creating = (!$builder->hasTable($table));
+
         if (!empty($collection_config['attributes']) || !empty($collection_config['relationships'])) {
             $migrate = function ($t) use (&$table, &$table_prefix, &$builder, &$is_creating, &$table_schema, $collection_config, &$result) {
-                $is_creating = (!$builder->hasTable($table));
-
                 if ($is_creating) {
                     $t->increments('_id'); // primary key
                     $t->timestamps();      // created_at / updated_at field
@@ -208,16 +208,20 @@ class Builder
                     // only create field on belongs_to relationships
                     if ($relation == "belongs_to") {
                         foreach ($fields as $field => $config) {
-                            //
                             // create 'foreign_key' column on collection.
-                            //
-                            // maybe 'collection' table isn't created here.
-                            // TODO: create related table before referencing foreign key.
-                            //
                             if (!in_array($config['foreign_key'], array_map('strtolower', $table_columns))) {
-                                file_put_contents('php://stdout', $config['foreign_key']);
                                 $column = $t->unsignedInteger($config['foreign_key']);
                                 $column->nullable();
+                            }
+
+                            // create collection if it doesn't exists
+                            // TODO: dry with 'is_creating' on 'migrate' function
+                            if (!$builder->hasTable($config['collection'])) {
+                                $builder->create($table_prefix . $config['collection'], function($t) {
+                                    $t->increments('_id'); // primary key
+                                    $t->timestamps();      // created_at / updated_at field
+                                    $t->softDeletes();     // deleted_at field
+                                });
                             }
 
                             // create foreign key on database
