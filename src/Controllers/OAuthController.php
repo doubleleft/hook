@@ -75,12 +75,7 @@ class OAuthController extends HookController {
                 // such as 'facebook_id', 'google_id', etc.
                 $auth->setTrustedAction(true);
                 $auth->setAttribute($identity->provider . '_id', $identity->uid);
-
-                // save auth in unsafe context.
-                // a possible Auth update will occur here.
-                Context::unsafe(function() use (&$auth) {
-                    $auth->save();
-                });
+                $auth->save();
 
                 $identity->auth_id = $auth->_id;
                 $identity->save();
