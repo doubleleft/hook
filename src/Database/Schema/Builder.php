@@ -11,13 +11,27 @@ use Hook\Exceptions\MethodFailureException;
  */
 class Builder
 {
+    protected static $instance;
+
+    /**
+     * Get schema builder instance.
+     *
+     * @static
+     * @return bool
+     */
+    public static function getInstance() {
+        if (!static::$instance) {
+            static::$instance = new static;
+        }
+        return static::$instance;
+    }
 
     /**
      * isSupported
      *
      * @return bool
      */
-    public static function isSupported() {
+    public function isSupported() {
         $connection = \DLModel::getConnectionResolver()->connection();
         return !is_null($connection->getPdo());
     }
@@ -27,7 +41,7 @@ class Builder
      *
      * @return array
      */
-    public static function dump() {
+    public function dump() {
         $schema = array();
 
         foreach(Cache::get('app_collections') as $collection) {
@@ -43,7 +57,7 @@ class Builder
      * @param Hook\Model\Collection $model
      * @param mixed $attributes
      */
-    public static function dynamic($model, &$attributes = null)
+    public function dynamic($model, &$attributes = null)
     {
         // dynamic migration is not allowed when attributes are locked explicitly
         $table_schema = Cache::get($model->getTable());
@@ -81,7 +95,7 @@ class Builder
         }
 
         if (count($config['attributes']) > 0) {
-            return static::migrate($model, $config);
+            return $this->migrate($model, $config);
         } else {
             return false;
         }
@@ -95,7 +109,7 @@ class Builder
      *
      * @return bool
      */
-    public static function migrate($model, $collection_config)
+    public function migrate($model, $collection_config)
     {
         $result = false;
         $connection = $model->getConnectionResolver()->connection();
@@ -104,7 +118,7 @@ class Builder
         if (!$connection->getPdo()) { return; }
 
         // Get modified Schema\Grammar for hook features.
-        $connection->setSchemaGrammar(static::getSchemaGrammar($connection));
+        $connection->setSchemaGrammar($this->getSchemaGrammar($connection));
 
         // Set custom blueprint resolver
         $builder = $connection->getSchemaBuilder();
@@ -115,20 +129,18 @@ class Builder
         $table = $model->getTable();
         $table_schema = Cache::get($table);
         $table_prefix = Context::getPrefix();
-        $collection_config = static::sanitizeConfig($table, $collection_config);
+        $collection_config = $this->sanitizeConfig($table, $collection_config);
 
         $is_creating = (!$builder->hasTable($table));
 
         if (!empty($collection_config['attributes']) || !empty($collection_config['relationships'])) {
             $migrate = function ($t) use (&$table, &$table_prefix, &$builder, &$is_creating, &$table_schema, $collection_config, &$result) {
-                if ($is_creating) {
-                    $t->increments('_id'); // primary key
-                    $t->timestamps();      // created_at / updated_at field
-                    $t->softDeletes();     // deleted_at field
-                    $table_columns = array();
+                $table_columns = array('created_at', 'updated_at', 'deleted_at');
 
+                if ($is_creating) {
+                    $this->createCollection($t);
                 } else {
-                    $table_columns = $builder->getColumnListing($table);
+                    $table_columns = array_merge($table_columns, $builder->getColumnListing($table));
                 }
 
                 foreach($collection_config['attributes'] as $attribute) {
@@ -143,12 +155,6 @@ class Builder
                     $index = array_remove($attribute, 'index');
                     $unique = array_remove($attribute, 'unique') || $index == 'unique';
                     $required = array_remove($attribute, 'required');
-
-                    // Skip default fields
-                    $ignore_fields = array('created_at', 'updated_at', 'deleted_at');
-                    if (in_array($field_name, $ignore_fields)) {
-                        continue;
-                    }
 
                     // Skip if column already exists
                     // TODO: deprecate strtolower
@@ -181,7 +187,7 @@ class Builder
                     if ($nullable) { $column->nullable(); }
 
                     if ($index == 'spatial') {
-                        // apply geospatial index, only MyISQL
+                        // apply geospatial index, only MyISAM
                         $t->spatialIndex($field_name);
                     } else if ($index && !$unique) {
                         // apply index if specified
@@ -215,12 +221,9 @@ class Builder
                             }
 
                             // create collection if it doesn't exists
-                            // TODO: dry with 'is_creating' on 'migrate' function
                             if (!$builder->hasTable($config['collection'])) {
                                 $builder->create($table_prefix . $config['collection'], function($t) {
-                                    $t->increments('_id'); // primary key
-                                    $t->timestamps();      // created_at / updated_at field
-                                    $t->softDeletes();     // deleted_at field
+                                    $this->createCollection($t);
                                 });
                             }
 
@@ -241,8 +244,15 @@ class Builder
 
             };
 
-            $method = ($is_creating) ? 'create' : 'table';
-            call_user_func(array($builder, $method), $table_prefix . $table, $migrate);
+            if ($is_creating) {
+                // CREATE TABLE statement
+                $builder->create($table_prefix . $table, $migrate);
+
+            } else {
+                // ALTER TABLE statement.
+                $builder->table($table_prefix . $table, $migrate);
+            }
+
         }
 
         // Cache table schema for further reference
@@ -255,7 +265,14 @@ class Builder
         return $result;
     }
 
-    protected static function getSchemaGrammar($connection)
+    protected function createCollection($blueprint)
+    {
+        $blueprint->increments('_id'); // primary key
+        $blueprint->timestamps();      // created_at / updated_at field
+        $blueprint->softDeletes();     // deleted_at field
+    }
+
+    protected function getSchemaGrammar($connection)
     {
         $connection_klass = get_class($connection);
         $connection_klass = str_replace('Illuminate\\Database', '', $connection_klass);
@@ -263,7 +280,7 @@ class Builder
         return new $connection_klass;
     }
 
-    protected static function sanitizeConfig($collection_name, &$config) {
+    protected function sanitizeConfig($collection_name, &$config) {
         if (!isset($config['relationships'])) {
             $config['relationships'] = array();
         }
@@ -278,13 +295,6 @@ class Builder
         }
 
         return $config;
-    }
-
-    public static function __callStatic($method, $args)
-    {
-        $connection = \DLModel::getConnectionResolver()->connection();
-        $builder = $connection->getSchemaBuilder();
-        return call_user_func_array(array($builder, $method), $args);
     }
 
 }

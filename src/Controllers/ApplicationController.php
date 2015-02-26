@@ -110,7 +110,7 @@ class ApplicationController extends HookController {
         // Migrate and keep schema cache
         $collections_migrated = 0;
         foreach(Input::get('schema', array()) as $collection => $config) {
-            if (Schema\Builder::migrate(Model\App::collection($collection)->getModel(), $config)) {
+            if (Schema\Builder::getInstance()->migrate(Model\App::collection($collection)->getModel(), $config)) {
                 $collections_migrated += 1;
             }
         }
@@ -143,14 +143,14 @@ class ApplicationController extends HookController {
     }
 
     public function schema() {
-        return Schema\Builder::dump();
+        return Schema\Builder::getInstance()->dump();
     }
 
     public function upload_schema() {
         $schema = Input::get();
 
         foreach($schema as $collection => $config) {
-            Schema\Builder::migrate(Model\App::collection($collection)->getModel(), $config);
+            Schema\Builder::getInstance()->migrate(Model\App::collection($collection)->getModel(), $config);
         }
 
         return array('success' => true);
