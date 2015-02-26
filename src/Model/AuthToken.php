@@ -64,7 +64,12 @@ class AuthToken extends Model
     public function beforeCreate()
     {
         // cache Auth role for this token
-        $this->role = $this->auth->role;
+        //
+        // TODO: use auth() relationship.
+        // Due the same problem at Auth::current(), it was needed to use
+        // App::collection here
+        //
+        $this->role = App::collection('auth')->where('_id', $this->auth_id)->first()->role;
         $this->created_at = Carbon::now();
         $this->expire_at = Carbon::now()->addHours(static::EXPIRATION_HOURS);
         $this->token = sha1(uniqid(rand(), true));
