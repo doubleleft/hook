@@ -81,7 +81,7 @@ class DynamicModel extends Model
         // create beforeSave related objects
         $this->createRelatedFields('beforeSave');
 
-        Schema\Builder::dynamic($this, $this->attributes);
+        Schema\Builder::getInstance()->dynamic($this, $this->attributes);
     }
 
     public function afterSave()
@@ -150,7 +150,7 @@ class DynamicModel extends Model
                     }
 
 
-                } else if (Schema\Builder::isSupported()) {
+                } else if (Schema\Builder::getInstance()->isSupported()) {
                     // no relationship with field name found.
                     // probably it's a programming issue. throw an exception.
                     throw new BadRequestException("nested objects not supported.");
