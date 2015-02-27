@@ -227,12 +227,17 @@ class Builder
                                 });
                             }
 
-                            // create foreign key on database
-                            $t->foreign($config['foreign_key'])
-                                ->references($config['primary_key'])
-                                ->on($table_prefix . $config['collection'])
-                                ->onDelete($actions[$config['on_delete']])
-                                ->onUpdate($actions[$config['on_update']]);
+                            // //
+                            // // create foreign key on database
+                            // //
+                            // // TODO: list foreign keys already defined before
+                            // // trying to create it.
+                            // //
+                            // $t->foreign($config['foreign_key'])
+                            //     ->references($config['primary_key'])
+                            //     ->on($table_prefix . $config['collection'])
+                            //     ->onDelete($actions[$config['on_delete']])
+                            //     ->onUpdate($actions[$config['on_update']]);
                         }
                     }
                 }
