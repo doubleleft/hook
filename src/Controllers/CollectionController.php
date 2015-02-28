@@ -3,6 +3,7 @@
 use Hook\Model;
 use Hook\Http\Input;
 use Hook\Http\Response;
+use Hook\Http\Request;
 
 use Hook\Database\CollectionDelegator;
 
@@ -152,7 +153,12 @@ class CollectionController extends HookController {
     }
 
     public static function getData() {
-        $data = Input::get('d', Input::get('data', Input::get()));
+        // TODO: refactoring
+        if (Request::isPost()) {
+            $data = Request::post('d', Request::post('data', Request::post()));
+        } else {
+            $data = Input::get('d', Input::get('data', Input::get()));
+        }
 
         $attached_files = array();
 
