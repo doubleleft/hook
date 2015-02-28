@@ -27,7 +27,7 @@ class Auth extends Collection
 
     // force a trusted action?
     // - currently only used on resetPassword method
-    protected $isTrustedAction = false;
+    public $isTrustedAction = false;
 
     static $_current = null;
 
