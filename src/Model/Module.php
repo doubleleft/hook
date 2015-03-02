@@ -2,6 +2,7 @@
 namespace Hook\Model;
 
 use Slim;
+use Hook\View\Template;
 
 use Hook\Exceptions;
 
@@ -259,23 +260,13 @@ class Module extends Model
             }
 
         } elseif ($extension === '.html') {
-            $template = $this->code;
+            $template = new Template(array(
+                'filename' => $name,
+                'code' => $this->code,
+                'updated_at' => $this->updated_at
+            ));
 
-            // always use array for options
-            if (gettype($options)==='object') {
-                $options = $options->toArray();
-            }
-
-            foreach ($options as $field => $value) {
-                //
-                // Please consider migrating it to mustache, for more complex templates:
-                // https://github.com/bobthecow/mustache.php
-                //
-                if (gettype($value)==="object") { continue; }
-                $template = preg_replace('/{{'.$field.'}}/', $value, $template);
-            }
-
-            return $template;
+            return $template->render($options);
         }
 
     }

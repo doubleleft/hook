@@ -23,6 +23,7 @@
     "illuminate/encryption": "4.1.*",
     "patchwork/utf8": "~1.2",
     "swiftmailer/swiftmailer": "5.0.*",
+    "zordius/lightncandy": "~0.19",
     "jenssegers/mongodb": "1.3.*",
     "guzzlehttp/guzzle": "4.2.*",
     "cboden/Ratchet": "0.3.*",
