@@ -216,7 +216,10 @@ class Module extends Model
         $extension = '.' . pathinfo($this->name, PATHINFO_EXTENSION);
         $name = basename($this->name, $extension);
 
-        if ($extension === ".php") {
+        if ($this->type == static::TYPE_OBSERVER ||
+            $this->type == static::TYPE_CHANNEL ||
+            $this->type == static::TYPE_ROUTE) {
+
             //
             // Expose handy aliases for modules
             //
@@ -229,11 +232,6 @@ class Module extends Model
             $aliases.= 'use Hook\Model\Collection;';
             $aliases.= 'use Hook\Cache\Cache;';
             $aliases.= 'use Hook\Logger\Logger;';
-
-            // $aliases.= 'use Hook\Http\Input;';
-            // $aliases.= 'use Hook\Http\Request;';
-            // $aliases = 'use Hook\Mailer\Mail;';
-            // $aliases.= 'use Hook\Model\App;';
 
             if ($this->type == self::TYPE_OBSERVER || $this->type == self::TYPE_CHANNEL) {
                 // Prevent name conflict by using unique class names for custom modules
@@ -259,12 +257,20 @@ class Module extends Model
                 }
             }
 
-        } elseif ($extension === '.html') {
-            $template = new Template(array(
-                'filename' => $name,
-                'code' => $this->code,
-                'updated_at' => $this->updated_at
-            ));
+        } elseif ($this->type == static::TYPE_TEMPLATE) {
+            $template = new Template();
+
+            if (substr($this->code, '<?php') === 0) {
+                $template->setCompiledCode($this->code);
+
+            } else {
+                $template->compile($this->code);
+
+                // TODO: cache template renderer
+                // // cache template renderer compiled code.
+                // $this->setAttribute('code', $template->getCompiledCode());
+                // $this->save();
+            }
 
             return $template->render($options);
         }
@@ -275,7 +281,6 @@ class Module extends Model
     {
         $extension = pathinfo($this->name, PATHINFO_EXTENSION);
         $code = $this->attributes['code'];
-
         return ($extension==="php") ? substr($code, 5) : $code;
     }
 

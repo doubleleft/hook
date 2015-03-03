@@ -3,6 +3,7 @@ $app = require __DIR__ . '/Hook.php';
 
 $app->config('database', require(__DIR__ . '/../config/database.php'));
 $app->config('paths', require(__DIR__ . '/../config/paths.php'));
+$app->config("view", new Hook\View\Template());
 
 Hook\Http\Router::setInstance($app);
 
