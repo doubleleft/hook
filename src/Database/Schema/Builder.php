@@ -111,6 +111,8 @@ class Builder
      */
     public function migrate($model, $collection_config)
     {
+        $that = $this;
+
         $result = false;
         $connection = $model->getConnectionResolver()->connection();
 
@@ -134,11 +136,11 @@ class Builder
         $is_creating = (!$builder->hasTable($table));
 
         if (!empty($collection_config['attributes']) || !empty($collection_config['relationships'])) {
-            $migrate = function ($t) use (&$table, &$table_prefix, &$builder, &$is_creating, &$table_schema, $collection_config, &$result) {
+            $migrate = function ($t) use ($that, &$table, &$table_prefix, &$builder, &$is_creating, &$table_schema, $collection_config, &$result) {
                 $table_columns = array('created_at', 'updated_at', 'deleted_at');
 
                 if ($is_creating) {
-                    $this->createCollection($t);
+                    $that->createCollection($t);
                 } else {
                     $table_columns = array_merge($table_columns, $builder->getColumnListing($table));
                 }
@@ -222,8 +224,8 @@ class Builder
 
                             // create collection if it doesn't exists
                             if (!$builder->hasTable($config['collection'])) {
-                                $builder->create($table_prefix . $config['collection'], function($t) {
-                                    $this->createCollection($t);
+                                $builder->create($table_prefix . $config['collection'], function($t) use ($that) {
+                                    $that->createCollection($t);
                                 });
                             }
 
@@ -270,7 +272,7 @@ class Builder
         return $result;
     }
 
-    protected function createCollection($blueprint)
+    public function createCollection($blueprint)
     {
         $blueprint->increments('_id'); // primary key
         $blueprint->timestamps();      // created_at / updated_at field
