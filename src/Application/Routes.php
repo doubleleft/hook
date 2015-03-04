@@ -38,7 +38,11 @@ class Routes {
 
         // Auth
         $app->get($path . 'auth', 'Hook\\Controllers\\AuthController:show');
-        $app->post($path . 'auth/:provider(/:method)', 'Hook\\Controllers\\AuthController:execute');
+        $app->post($path . 'auth/email', 'Hook\\Controllers\\AuthController:register');
+        $app->post($path . 'auth/email/login', 'Hook\\Controllers\\AuthController:login');
+        $app->post($path . 'auth/email/forgotPassword', 'Hook\\Controllers\\AuthController:forgotPassword');
+        $app->post($path . 'auth/email/resetPassword', 'Hook\\Controllers\\AuthController:resetPassword');
+        $app->post($path . 'auth/update', 'Hook\\Controllers\\AuthController:update');
 
         // OAuth
         $app->get($path . 'oauth/relay_frame', 'Hook\\Controllers\\OAuthController:relay_frame');
