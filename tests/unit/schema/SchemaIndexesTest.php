@@ -17,7 +17,7 @@ class SchemaIndexesTest extends TestCase
     {
         Cache::flush();
 
-        Schema\Builder::migrate(App::collection('auths')->getModel(), array(
+        Schema\Builder::getInstance()->migrate(App::collection('auths')->getModel(), array(
             'attributes' => array(
                 array(
                     'name' => 'lucky_number_id',

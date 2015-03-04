@@ -16,13 +16,13 @@ class CollectionRelationshipTest extends TestCase
         Cache::flush();
 
         // books / authors / contacts
-        Schema\Builder::migrate(App::collection('contacts')->getModel(), array(
+        Schema\Builder::getInstance()->migrate(App::collection('contacts')->getModel(), array(
             'relationships' => array('belongs_to' => 'author')
         ));
-        Schema\Builder::migrate(App::collection('authors')->getModel(), array(
+        Schema\Builder::getInstance()->migrate(App::collection('authors')->getModel(), array(
             'relationships' => array('has_many' => array('books', 'contacts'))
         ));
-        Schema\Builder::migrate(App::collection('books')->getModel(), array(
+        Schema\Builder::getInstance()->migrate(App::collection('books')->getModel(), array(
             'relationships' => array('belongs_to' => array('author'))
         ));
 
@@ -53,7 +53,7 @@ class CollectionRelationshipTest extends TestCase
         $this->assertTrue($book_with_author['author']['name'] == "Rasmus Lerdorf", "should eager load related data");
 
         // teams / matches
-        Schema\Builder::migrate(App::collection('matches')->getModel(), array(
+        Schema\Builder::getInstance()->migrate(App::collection('matches')->getModel(), array(
             'relationships' => array('belongs_to' => array(
                 array(
                     'house' => array(
@@ -67,7 +67,7 @@ class CollectionRelationshipTest extends TestCase
                 )
             ))
         ));
-        Schema\Builder::migrate(App::collection('teams')->getModel(), array(
+        Schema\Builder::getInstance()->migrate(App::collection('teams')->getModel(), array(
             'relationships' => array('has_many' => 'matches')
         ));
 
