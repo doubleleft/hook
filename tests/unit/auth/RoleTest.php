@@ -2,6 +2,7 @@
 
 use Hook\Auth\Role;
 use Hook\Model\App;
+use Hook\Model\Auth;
 use Hook\Model\AuthToken;
 use Hook\Model\AppKey;
 use Hook\Application\Config;
@@ -45,6 +46,19 @@ class RoleTest extends TestCase {
 
         $this->assertFalse( Role::isAllowed('collection_name', 'delete') );
         $this->assertFalse( Role::isAllowed(App::collection('collection_name'), 'delete') );
+    }
+
+    public function testAuth()
+    {
+        $auth = new Auth();
+
+        $this->assertFalse( Role::isAllowed($auth, 'update') );
+        $this->assertFalse( Role::isAllowed($auth, 'delete') );
+
+        $auth->setTrustedAction(true);
+
+        $this->assertTrue( Role::isAllowed($auth, 'update') );
+        $this->assertTrue( Role::isAllowed($auth, 'delete') );
     }
 
     /**

@@ -26,8 +26,7 @@ class Auth extends Collection
     protected $hidden = array('email', 'password', 'password_salt', 'role', 'forgot_password_token', 'forgot_password_expiration', 'deleted_at');
 
     // force a trusted action?
-    // - currently only used on resetPassword method
-    public $isTrustedAction = false;
+    protected $_isTrustedAction = false;
 
     static $_current = null;
 
@@ -71,7 +70,16 @@ class Auth extends Collection
 
     public function setTrustedAction($bool)
     {
-        $this->isTrustedAction = $bool;
+        $this->_isTrustedAction = $bool;
+    }
+
+    /**
+     * Is performing a trusted action?
+     * @return bool
+     */
+    public function isTrustedAction()
+    {
+        return $this->_isTrustedAction;
     }
 
     /**
@@ -87,7 +95,7 @@ class Auth extends Collection
     {
         $this->setAttribute(self::FORGOT_PASSWORD_FIELD, sha1(uniqid(rand(), true)));
         $this->setAttribute(self::FORGOT_PASSWORD_EXPIRATION_FIELD, time() + self::FORGOT_PASSWORD_EXPIRATION_TIME);
-        $this->isTrustedAction = true;
+        $this->setTrustedAction(true);
         $this->save();
 
         return $this;
@@ -104,7 +112,7 @@ class Auth extends Collection
         if (!$this->isForgotPasswordTokenExpired()) {
             $this->password = $newPassword;
             $this->setAttribute(self::FORGOT_PASSWORD_EXPIRATION_FIELD, time()); // expire token
-            $this->isTrustedAction = true;
+            $this->setTrustedAction(true);
             $success = $this->save();
         }
 
@@ -154,12 +162,12 @@ class Auth extends Collection
     public function beforeSave()
     {
         // don't allow to change 'role' when is not a trusted action
-        if ($this->_id && $this->isDirty('role') && (!$this->isTrustedAction || !$this->isUpdateAllowed())) {
+        if ($this->_id && $this->isDirty('role') && (!$this->isTrustedAction() || !$this->isUpdateAllowed())) {
             $this->role = $this->original['role'];
         }
 
         // $this->_id &&
-        if (!$this->isTrustedAction && !$this->isUpdateAllowed()) {
+        if (!$this->isTrustedAction() && !$this->isUpdateAllowed()) {
             throw new ForbiddenException("not_allowed");
         }
 

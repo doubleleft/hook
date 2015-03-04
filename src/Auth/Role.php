@@ -1,5 +1,6 @@
 <?php namespace Hook\Auth;
 
+use Hook\Model\Auth;
 use Hook\Model\AppKey;
 use Hook\Model\AuthToken;
 use Hook\Application\Config;
@@ -30,7 +31,7 @@ class Role {
     public static function isAllowed($model, $action)
     {
         // commandline always have full-access
-        if (Context::isTrusted() || (isset($model->isTrustedAction) && $model->isTrustedAction)) {
+        if (Context::isTrusted() || ($model instanceof Auth && $model->isTrustedAction())) {
             return true;
         }
 
