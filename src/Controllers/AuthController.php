@@ -50,6 +50,9 @@ class AuthController extends HookController {
             if ($auth->password != Auth::password_hash($data['password'], $auth->password_salt)) {
                 throw new Exceptions\ForbiddenException("password_invalid");
             }
+
+            $auth->setTrustedAction(true);
+
             return $auth->dataWithToken();
 
         } else {
