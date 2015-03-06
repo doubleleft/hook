@@ -56,11 +56,6 @@ class Mail
 
     protected static function getTransport($params = array())
     {
-        // Validate SMTP params
-        if ($params['driver'] == 'smtp' && (!isset($params['username']) || !isset($params['password']))) {
-            throw new Exception("'mail.username' and 'mail.password' configs are required when using 'smtp' driver;");
-        }
-
         $transport_klass = '\Swift_'.ucfirst(strtolower($params['driver'])).'Transport';
         $transport = call_user_func(array($transport_klass, 'newInstance'));
         unset($params['driver']);
