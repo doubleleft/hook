@@ -1,9 +1,13 @@
 <?php
 namespace Hook\Database;
 
+use Hook\Auth\Role;
+
 use Hook\Model\App;
 use Hook\Model\Collection;
+
 use Hook\Exceptions\UnauthorizedException;
+use Hook\Exceptions\NotAllowedException;
 
 use Illuminate\Database\Capsule\Manager as DB;
 
@@ -333,6 +337,13 @@ class CollectionDelegator implements IteratorAggregate
             $this->query->setModel(new Collection(array('table_name' => $this->name)));
         } elseif ($this->query instanceof \Illuminate\Database\Query\Builder) {
             $this->query->from($this->name);
+        }
+
+        // Check 'read' access before running the query.
+        // - for 'owner' role each entry need to be checked on results.
+        $role = Role::getInstance()->getConfig($this->name, 'read');
+        if ($role !== 'owner' && !Role::isAllowed($this->name, 'read')) {
+            throw new NotAllowedException();
         }
 
         return $this->__call('get', func_get_args());

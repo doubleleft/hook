@@ -54,24 +54,7 @@ class Role {
         return $this->defaults;
     }
 
-    protected function checkAll($model)
-    {
-        return true;
-    }
-
-    protected function checkOwner($model)
-    {
-        $auth_id_field = ($this->getCollectioName($model) == 'auths') ? '_id' : 'auth_id';
-        return ($this->token &&
-            isset($model[$auth_id_field]) &&
-            $model[$auth_id_field] == $this->token->auth_id);
-    }
-
-    protected function checkRole($role) {
-        return ($this->token && $this->token->role == $role);
-    }
-
-    protected function getConfig($collection_name, $action)
+    public function getConfig($collection_name, $action)
     {
         $role = null;
 
@@ -87,6 +70,23 @@ class Role {
         }
 
         return $role ?: "all";
+    }
+
+    protected function checkAll($model)
+    {
+        return true;
+    }
+
+    protected function checkOwner($model)
+    {
+        $auth_id_field = ($this->getCollectioName($model) == 'auths') ? '_id' : 'auth_id';
+        return ($this->token &&
+            isset($model[$auth_id_field]) &&
+            $model[$auth_id_field] == $this->token->auth_id);
+    }
+
+    protected function checkRole($role) {
+        return ($this->token && $this->token->role == $role);
     }
 
     protected function getCollectioName($model)
