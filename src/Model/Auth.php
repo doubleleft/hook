@@ -1,5 +1,4 @@
-<?php
-namespace Hook\Model;
+<?php namespace Hook\Model;
 
 use Hook\Application\Context;
 use Hook\Application\Config;
@@ -34,6 +33,8 @@ class Auth extends Collection
     {
         static::$lastTableName = 'auths';
         parent::boot();
+
+        static::deleted(function($model) { $model->afterDelete(); });
     }
 
     /**
@@ -161,12 +162,11 @@ class Auth extends Collection
 
     public function beforeSave()
     {
-        // don't allow to change 'role' when is not a trusted action
-        if ($this->_id && $this->isDirty('role') && (!$this->isTrustedAction() || !$this->isUpdateAllowed())) {
-            $this->role = $this->original['role'];
+        // Only a trusted context can change the 'role' attribute
+        if ($this->isDirty('role') && (!Context::isTrusted() || !$this->isUpdateAllowed())) {
+            $this->role = (isset($this->original['role'])) ? $this->original['role'] : null;
         }
 
-        // $this->_id &&
         if (!$this->isTrustedAction() && !$this->isUpdateAllowed()) {
             throw new ForbiddenException("not_allowed");
         }
@@ -178,6 +178,12 @@ class Auth extends Collection
         }
 
         parent::beforeSave();
+    }
+
+    public function afterDelete()
+    {
+        // Remove auth identities related to this entry.
+        AuthIdentity::where('auth_id', $this->_id)->delete();
     }
 
     protected function isUpdateAllowed() {
