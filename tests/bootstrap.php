@@ -16,6 +16,7 @@ Hook\Http\Router::setInstance($app);
 
 $app->config('database', $db_config);
 $app->config('paths', require(__DIR__ . '/../config/paths.php'));
+$app->config("view", new \Hook\View\View());
 
 // remove previous database for a fresh test
 if ($db_driver == 'sqlite') { @unlink($db_config['database']); }

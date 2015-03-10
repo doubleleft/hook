@@ -2,8 +2,8 @@
 namespace Hook\Model;
 
 use Slim;
-
 use Hook\Exceptions;
+use Hook\Http\Router;
 
 // ModuleCompiler: include module from filesystem
 // TODO refactor me
@@ -212,10 +212,15 @@ class Module extends Model
      */
     public function compile($options=array())
     {
+        $app = Slim\Slim::getInstance();
+
         $extension = '.' . pathinfo($this->name, PATHINFO_EXTENSION);
         $name = basename($this->name, $extension);
 
-        if ($extension === ".php") {
+        if ($this->type == static::TYPE_OBSERVER ||
+            $this->type == static::TYPE_CHANNEL ||
+            $this->type == static::TYPE_ROUTE) {
+
             //
             // Expose handy aliases for modules
             //
@@ -228,11 +233,6 @@ class Module extends Model
             $aliases.= 'use Hook\Model\Collection;';
             $aliases.= 'use Hook\Cache\Cache;';
             $aliases.= 'use Hook\Logger\Logger;';
-
-            // $aliases.= 'use Hook\Http\Input;';
-            // $aliases.= 'use Hook\Http\Request;';
-            // $aliases = 'use Hook\Mailer\Mail;';
-            // $aliases.= 'use Hook\Model\App;';
 
             if ($this->type == self::TYPE_OBSERVER || $this->type == self::TYPE_CHANNEL) {
                 // Prevent name conflict by using unique class names for custom modules
@@ -247,7 +247,6 @@ class Module extends Model
                 }
 
             } elseif ($this->type == self::TYPE_ROUTE) {
-                $app = Slim\Slim::getInstance();
                 try {
                     eval($aliases . $this->code);
                 } catch (\Exception $e) {
@@ -258,24 +257,9 @@ class Module extends Model
                 }
             }
 
-        } elseif ($extension === '.html') {
-            $template = $this->code;
-
-            // always use array for options
-            if (gettype($options)==='object') {
-                $options = $options->toArray();
-            }
-
-            foreach ($options as $field => $value) {
-                //
-                // Please consider migrating it to mustache, for more complex templates:
-                // https://github.com/bobthecow/mustache.php
-                //
-                if (gettype($value)==="object") { continue; }
-                $template = preg_replace('/{{'.$field.'}}/', $value, $template);
-            }
-
-            return $template;
+        } elseif ($this->type == static::TYPE_TEMPLATE) {
+            $app->view->setTemplateString($this->code);
+            return $app->view->render($this->name, $options);
         }
 
     }
@@ -284,7 +268,6 @@ class Module extends Model
     {
         $extension = pathinfo($this->name, PATHINFO_EXTENSION);
         $code = $this->attributes['code'];
-
         return ($extension==="php") ? substr($code, 5) : $code;
     }
 

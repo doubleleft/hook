@@ -16,10 +16,10 @@ class Mail
      * @example Send email using SMTP
      *
      *     Mail::send(array(
-     *         'to' => "somebody@gmail.com",
-     *         'to' => "somebody@gmail.com",
-     *         'to' => "somebody@gmail.com",
-     *         'to' => "somebody@gmail.com"
+     *         'to' => "to@email.com",
+     *         'from' => "from@email.com",
+     *         'body' => "Email body",
+     *         'subject' => "Your email subject"
      *     ));
      *
      * @param array $options
