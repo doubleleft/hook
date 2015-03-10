@@ -32,6 +32,13 @@ class View extends \Slim\View
     public $context;
     public $yield_blocks;
 
+    /**
+     * template_string
+     *
+     * @var string
+     */
+    protected $template_string;
+
     protected $extensions = array('.hbs', '.handlebars', '.mustache', '.html');
     protected $directories = array();
 
@@ -44,10 +51,15 @@ class View extends \Slim\View
         $this->block_helpers = new \Slim\Helper\Set($this->getBlockHelpers());
     }
 
+    public function setTemplateString($string) {
+        $this->template_string = $string;
+    }
+
     public function setTemplatesDirectory($directory) {
         array_push($this->directories, $directory);
         return $this;
     }
+
 
     public function render($name, $data = array()) {
         $php = LightnCandy::compile($this->getTemplate($name), array(
@@ -66,15 +78,21 @@ class View extends \Slim\View
     }
 
     protected function getTemplate($name) {
-        foreach ($this->directories as $dir) {
-            foreach ($this->extensions as $ext) {
-                $path = $dir . DIRECTORY_SEPARATOR . ltrim($name . $ext, DIRECTORY_SEPARATOR);
-                if (file_exists($path)) {
-                    return file_get_contents($path);
-                }
-            }
+        if (is_null($this->template_string)) {
+            $this->setTemplateString( Module::template($template)->getCode() );
         }
-        throw new NotFoundException("Template not found.");
+
+        return $this->template_string;
+
+        // foreach ($this->directories as $dir) {
+        //     foreach ($this->extensions as $ext) {
+        //         $path = $dir . DIRECTORY_SEPARATOR . ltrim($name . $ext, DIRECTORY_SEPARATOR);
+        //         if (file_exists($path)) {
+        //             return file_get_contents($path);
+        //         }
+        //     }
+        // }
+        // throw new NotFoundException("Template not found.");
     }
 
     protected function getHelpers() {
@@ -99,17 +117,18 @@ class View extends \Slim\View
             'input' => 'Hook\\View\\Helper::input',
             'select' => 'Hook\\View\\Helper::select',
 
-            // integer helpers
+            // data helpers
             'count' => 'Hook\\View\\Helper::count',
+            'config' => 'Hook\\View\\Helper::config',
 
             // miscelaneous
             'paginate' => 'Hook\\View\\Helper::paginate'
         );
 
-        $helper_files = glob(Router::config('templates.helpers_path') . '/*');
-        foreach($helper_files as $helper) {
-            $helpers = array_merge($helpers, require($helper));
-        }
+        // $helper_files = glob(Router::config('templates.helpers_path') . '/*');
+        // foreach($helper_files as $helper) {
+        //     $helpers = array_merge($helpers, require($helper));
+        // }
 
         return $helpers;
     }

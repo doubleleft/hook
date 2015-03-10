@@ -115,11 +115,15 @@ class Helper {
     }
 
     //
-    // Integer helpers
+    // Data helpers
     //
 
     public static function count($args) {
         return count($args[0]);
+    }
+
+    public static function config($args) {
+        return \Hook\Application\Config::get($args[0]);
     }
 
     //

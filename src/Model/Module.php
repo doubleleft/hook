@@ -2,9 +2,8 @@
 namespace Hook\Model;
 
 use Slim;
-use Hook\View\Template;
-
 use Hook\Exceptions;
+use Hook\Http\Router;
 
 // ModuleCompiler: include module from filesystem
 // TODO refactor me
@@ -213,6 +212,8 @@ class Module extends Model
      */
     public function compile($options=array())
     {
+        $app = Slim\Slim::getInstance();
+
         $extension = '.' . pathinfo($this->name, PATHINFO_EXTENSION);
         $name = basename($this->name, $extension);
 
@@ -246,7 +247,6 @@ class Module extends Model
                 }
 
             } elseif ($this->type == self::TYPE_ROUTE) {
-                $app = Slim\Slim::getInstance();
                 try {
                     eval($aliases . $this->code);
                 } catch (\Exception $e) {
@@ -258,21 +258,8 @@ class Module extends Model
             }
 
         } elseif ($this->type == static::TYPE_TEMPLATE) {
-            $template = new Template();
-
-            if (substr($this->code, '<?php') === 0) {
-                $template->setCompiledCode($this->code);
-
-            } else {
-                $template->compile($this->code);
-
-                // TODO: cache template renderer
-                // // cache template renderer compiled code.
-                // $this->setAttribute('code', $template->getCompiledCode());
-                // $this->save();
-            }
-
-            return $template->render($options);
+            $app->view->setTemplateString($this->code);
+            return $app->view->render($this->name, $options);
         }
 
     }
