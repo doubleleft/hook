@@ -48,7 +48,7 @@ class OAuthController extends HookController {
                 'uid' => $opauth_data['uid'],
             ));
 
-            if (!$identity->auth_id) {
+            if (!$identity->auth_id || $identity->auth == NULL) {
                 // cleanup nested infos before registering it
                 foreach($opauth_data['info'] as $key => $value) {
                     if (is_array($value)) {

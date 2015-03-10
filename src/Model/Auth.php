@@ -33,8 +33,6 @@ class Auth extends Collection
     {
         static::$lastTableName = 'auths';
         parent::boot();
-
-        static::deleted(function($model) { $model->afterDelete(); });
     }
 
     /**
@@ -178,12 +176,6 @@ class Auth extends Collection
         }
 
         parent::beforeSave();
-    }
-
-    public function afterDelete()
-    {
-        // Remove auth identities related to this entry.
-        AuthIdentity::where('auth_id', $this->_id)->delete();
     }
 
     protected function isUpdateAllowed() {
