@@ -117,8 +117,10 @@ class AppMiddleware extends Slim\Middleware
 
                 // Query and compile route module if found
                 $route_module_name = strtolower($app->request->getMethod()) . '_' . substr($app->request->getPathInfo(), 1) . '.php';
+                $alternate_route_module_name = 'any_' . substr($app->request->getPathInfo(), 1) . '.php';
                 $custom_route = Module::where('type', Module::TYPE_ROUTE)->
                     where('name', $route_module_name)->
+                    orWhere('name', $alternate_route_module_name)->
                     first();
 
                 if ($custom_route) {
