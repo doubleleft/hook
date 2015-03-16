@@ -49,7 +49,11 @@ class Helper {
 
     public static function link_to($args, $attributes) {
         $text = (isset($args[1])) ? $args[1] : $args[0];
-        return array('<a href="/'.$args[0].'"' . html_attributes($attributes) . '>' . $text . '</a>', 'raw');
+
+        $app_key = \Hook\Application\Context::getKey();
+        $public_url = public_url($args[0]) . '?X-App-Id=' . $app_key->app_id . '&X-App-Key=' . $app_key->key;
+
+        return array('<a href="'. $public_url .'"' . html_attributes($attributes) . '>' . $text . '</a>', 'raw');
     }
 
     public static function stylesheet($args, $attributes) {
