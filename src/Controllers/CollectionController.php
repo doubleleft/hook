@@ -1,5 +1,7 @@
 <?php namespace Hook\Controllers;
 
+use Hook\Application\Context;
+
 use Hook\Model;
 use Hook\Http\Input;
 use Hook\Http\Response;
@@ -148,8 +150,21 @@ class CollectionController extends HookController {
 
     public function delete($name, $_id = null) {
         $collection = Model\App::collection($name);
-        $query = ($_id) ? $collection->find($_id) : $collection->filter(Input::get('q'));
-        return array('success' => $query->delete());
+        $success = false;
+
+        // trusted context:
+        // run a real truncate statement if performing a delete
+        if (Context::isTrusted() && $_id == null && count(Input::get('q')) == 0) {
+            $success = $collection->truncate();
+
+        } else {
+            // untrusted context:
+            // remove a single row, or the items from a filter in
+            $query = ($_id) ? $collection->find($_id) : $collection->filter(Input::get('q'));
+            $success = $query->delete();
+        }
+
+        return array('success' => $success);
     }
 
     public static function getData() {

@@ -9,6 +9,8 @@ use Hook\Model\Collection;
 use Hook\Exceptions\UnauthorizedException;
 use Hook\Exceptions\NotAllowedException;
 
+use Hook\Application\Context;
+
 use Illuminate\Database\Capsule\Manager as DB;
 
 use ArrayIterator;
@@ -124,16 +126,22 @@ class CollectionDelegator implements IteratorAggregate
      */
     public function create_new(array $attributes = array())
     {
+        $instance = null;
+
         if (!$this->is_collection) {
-            $klass = self::$custom_collections[$this->name];
-
-            return new $klass($attributes);
-
+            $instance = new self::$custom_collections[$this->name]();
         } else {
-            $attributes['table_name'] = $this->name;
-
-            return new Collection($attributes);
+            $instance = new Collection(array('table_name' => $this->name));
         }
+
+        $instance->fill($attributes);
+
+        // Fill '_id' if it's provided and in a trusted context
+        if (isset($attributes['_id']) && Context::isTrusted()) {
+            $instance->_id = $attributes['_id'];
+        }
+
+        return $instance;
     }
 
     /**
