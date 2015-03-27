@@ -1,7 +1,6 @@
 <?php namespace Hook\View;
 
 use Hook\Http\Router;
-use Hook\View\Helper;
 
 class BlockHelper {
 
@@ -25,7 +24,7 @@ class BlockHelper {
             array_push($args, PHP_EOL.$options['fn']());
         }
 
-        return Helper::link_to($args, $options['hash']);
+        return Hook\View\Helper::link_to($args, $options['hash']);
     }
 
     //
