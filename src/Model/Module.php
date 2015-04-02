@@ -259,6 +259,15 @@ class Module extends Model
 
         } elseif ($this->type == static::TYPE_TEMPLATE) {
             $app->view->setTemplateString($this->code);
+
+            // Expose app_key to compiled templates.
+            // Mainly used to generate server-side routes when
+            // `Hook\View\Helper::link_to` isn't capable to handle it
+            //
+            // TODO: remove this after implementing issue #131
+            // (https://github.com/doubleleft/hook/issues/131)
+            $options['app_key'] = \Hook\Application\Context::getKey();
+
             return $app->view->render($this->name, $options);
         }
 
