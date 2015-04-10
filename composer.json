@@ -15,7 +15,7 @@
     "php": ">=5.4.0",
     "ext-mbstring": "*",
     "composer/composer": "1.0.0-alpha9",
-    "endel/Slim": "dev-master",
+    "slim/slim": "dev-develop",
     "doctrine/dbal" : "2.*",
     "illuminate/database": "4.1.*",
     "illuminate/config": "4.1.*",
