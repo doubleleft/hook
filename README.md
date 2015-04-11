@@ -13,12 +13,13 @@ JavaScript and more.
 
 It follows the same principles from [nobackend](http://nobackend.org/), [hoodie.js](https://github.com/hoodiehq/hoodie.js) and [Parse](http://parse.com)
 
-**Requirements**: PHP 5.4+, or [PHP 5.3](https://github.com/doubleleft/hook/wiki/Deploying-on-PHP-5.3).
+**Requirements**: PHP 5.4+, or [PHP
+5.3](http://doubleleft.github.io/hook-userguide/More/Deployment/#deploying-on-php-53).
 
 - [Features](#features)
 - [Installation](#installation)
 - [How to use](#how-to-use)
-- [Documentation](https://github.com/doubleleft/hook/wiki)
+- [Documentation](http://doubleleft.github.io/hook-userguide/)
 - [Front-end integration](#front-end-integration)
 
 Features
@@ -27,9 +28,11 @@ Features
 - Multitenancy (same instance may be used for many apps)
 - User authentication (register, login, reset password)
 - Data persistance through `collections`
-- Data storage through [many providers](https://github.com/doubleleft/hook/wiki/Storage-providers)
+- Data storage through [many
+  providers](http://doubleleft.github.io/hook-userguide/The-Basics/Configuration/#storage-providers)
 - Real-time communication through [WAMP](http://wamp.ws) subprotocol (WebSockets).
-- [Package management](https://github.com/doubleleft/hook/wiki/Composer-dependencies) through composer
+- [Package
+  management](http://doubleleft.github.io/hook-userguide/The-Basics/Configuration/#composer-packages) through composer
 
 Installation
 ---
@@ -64,7 +67,7 @@ hook app:new my-app --endpoint http://0.0.0.0:4665
 It will output access keys to use in the front-end. Checkout this example using
 [JavaScript](https://github.com/doubleleft/hook-javascript#how-to-use) frontend.
 
-Take a look at the [documentation](https://github.com/doubleleft/hook/wiki) for
+Take a look at the [documentation](http://doubleleft.github.io/hook-userguide/) for
 more details.
 
 Front-end Integration
