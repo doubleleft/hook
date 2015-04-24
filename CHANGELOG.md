@@ -4,6 +4,7 @@ changelog
 v0.3.0
 ---
 
+- fix auto-migrating on `update` / `update_multiple` calls
 - `auth.token_expiration` in `config.yaml`
 
 v0.2.0:

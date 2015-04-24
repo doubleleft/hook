@@ -2,44 +2,25 @@
 
 use Hook\Model\App as App;
 
-class Book extends Hook\Model\Collection {
-    protected $table = 'books';
-
-    function author() {
-        return $this->belongsTo('Author');
-    }
-};
-
-class Author extends Hook\Model\Collection {
-    protected $table = 'authors';
-};
-
 class CollectionTest extends TestCase
 {
 
     public function testCreate()
     {
-        // $author = App::collection('authors')->create(array(
-        //     'name' => "Endel " . uniqid()
-        // ));
-        //
-        // $book = App::collection('books')->create(array(
-        //     'name' => "My book " . uniqid(),
-        //     'author_id' => $author->_id
-        // ));
+        $my_item = App::collection('my_items')->create(array('name' => "One"));
+        $this->assertTrue($my_item['name'] == "One");
 
-        // App::collection('books')->with('author')->each(function($row) {
-        //     var_dump($row->toArray());
-        // });
+        $my_item_2 = App::collection('my_items')->create(array('name' => "Two"));
+        $this->assertTrue($my_item_2['name'] == "Two");
+    }
 
-        // App::collection('testing')->each(function($row) {
-        //     var_dump($row);
-        // });
+    public function testUpdateMultiple() {
+        $my_item = App::collection('my_items')->create(array('name' => "Three"));
+        $this->assertTrue($my_item['name'] == "Three");
 
-        // App::collection('testing')->each(function($row) {
-        //     var_dump($row);
-        // });
-
+        App::collection('my_items')->update(array('ignore_me' => null, 'create_me' => 10));
+        $my_item = App::collection('my_items')->first();
+        $this->assertTrue($my_item->create_me == 10);
     }
 
 }

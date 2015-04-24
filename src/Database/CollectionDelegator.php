@@ -174,6 +174,9 @@ class CollectionDelegator implements IteratorAggregate
      */
     public function update(array $values)
     {
+        // migrate the collection, if needed
+        Schema\Builder::getInstance()->dynamic($this->query->getModel(), $values);
+
         $allowed = $this->fireEvent('updating_multiple', array($this, $values));
 
         if ($allowed === false) {
