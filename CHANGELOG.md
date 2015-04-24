@@ -1,5 +1,10 @@
-dl-api changelog
+changelog
 ===
+
+v0.3.0
+---
+
+- `auth.token_expiration` in `config.yaml`
 
 v0.2.0:
 ---
