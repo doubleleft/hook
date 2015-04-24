@@ -78,6 +78,11 @@ class ApplicationController extends HookController {
         return array('text' => $content);
     }
 
+    public function keys() {
+        Context::setTablePrefix('');
+        return Model\AppKey::where('app_id', Context::getAppId())->get();
+    }
+
     public function tasks() {
         return Model\ScheduledTask::all()->toArray();
     }
@@ -135,7 +140,7 @@ class ApplicationController extends HookController {
     }
 
     public function configs() {
-        return Model\AppConfig::all();
+        return Config::getValues();
     }
 
     public function modules() {

@@ -74,6 +74,7 @@ class Routes {
         $app->get($path . 'apps/deploy', 'Hook\\Controllers\\ApplicationController:dump_deploy');
         $app->post($path . 'apps/deploy', 'Hook\\Controllers\\ApplicationController:deploy');
         $app->get($path . 'apps/configs', 'Hook\\Controllers\\ApplicationController:configs');
+        $app->get($path . 'apps/keys', 'Hook\\Controllers\\ApplicationController:keys');
         $app->get($path . 'apps/modules', 'Hook\\Controllers\\ApplicationController:modules');
         $app->get($path . 'apps/schema', 'Hook\\Controllers\\ApplicationController:schema');
         $app->post($path . 'apps/schema', 'Hook\\Controllers\\ApplicationController:upload_schema');
