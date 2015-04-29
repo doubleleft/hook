@@ -34,7 +34,7 @@ class LogMiddleware extends Slim\Middleware
             $query = str_replace(array('%', '?'), array('%%', '%s'), $query);
             $query = vsprintf($query, $bindings);
 
-            $app->log->info($query);
+            \Logger::debug($query);
         });
 
         if (!$app->request->isOptions() && $app_key) {

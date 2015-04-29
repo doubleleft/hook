@@ -45,6 +45,7 @@ return array(
 
         // Utils
         'Mail' => 'Hook\\Mailer\\Mail',
+        'Logger' => 'Hook\\Logger\\Logger',
 
         // Illuminate
         'DB' => 'Illuminate\\Database\\Capsule\\Manager',

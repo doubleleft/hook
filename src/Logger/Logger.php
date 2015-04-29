@@ -13,19 +13,19 @@ class Logger {
     }
 
     public static function error($message) {
-        return Router::getInstance()->log->error(to_json($message));
+        return Router::getInstance()->log->error("[ERROR] " . to_json($message));
     }
 
     public static function debug($message) {
-        return Router::getInstance()->log->debug(to_json($message));
+        return Router::getInstance()->log->debug("[DEBUG] " . to_json($message));
     }
 
     public static function warn($message) {
-        return Router::getInstance()->log->warn(to_json($message));
+        return Router::getInstance()->log->warn("[WARN] " . to_json($message));
     }
 
     public static function notice($message) {
-        return Router::getInstance()->log->notice(to_json($message));
+        return Router::getInstance()->log->notice("[NOTICE] " . to_json($message));
     }
 
 }
