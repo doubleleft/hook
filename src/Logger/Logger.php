@@ -9,7 +9,7 @@ class Logger {
     }
 
     public static function info($message) {
-        return Router::getInstance()->log->info(to_json($message));
+        return Router::getInstance()->log->info("[INFO] " . to_json($message));
     }
 
     public static function error($message) {
