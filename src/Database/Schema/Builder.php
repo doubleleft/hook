@@ -262,8 +262,15 @@ class Builder
 
         }
 
-        // Cache table schema for further reference
+        // merge previous schema with new one.
+        // keep the newest lock_attributes configuration
+        $lock_attributes = (isset($collection_config['lock_attributes']))
+            ? $collection_config['lock_attributes']
+            : (isset($table_schema['lock_attributes'])) ? $table_schema['lock_attributes'] : false;
         $table_schema = array_merge_recursive($table_schema, $collection_config);
+        $table_schema['lock_attributes'] = $lock_attributes;
+
+        // Cache table schema for further reference
         Cache::forever($table, $table_schema);
 
         $app_collections = Cache::get('app_collections');

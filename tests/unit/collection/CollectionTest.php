@@ -14,6 +14,15 @@ class CollectionTest extends TestCase
         $this->assertTrue($my_item_2['name'] == "Two");
     }
 
+    public function testMigrateOnCreate() {
+        $my_item = App::collection('my_items')->create(array('name' => "First"));
+        $this->assertTrue($my_item['name'] == "First");
+
+        $my_item_2 = App::collection('my_items')->create(array('name' => "Second", 'new_field' => 0));
+        $this->assertTrue($my_item_2['name'] == "Second");
+        $this->assertTrue($my_item_2['new_field'] == 0);
+    }
+
     public function testUpdateMultiple() {
         $my_item = App::collection('my_items')->create(array('name' => "Three"));
         $this->assertTrue($my_item['name'] == "Three");
