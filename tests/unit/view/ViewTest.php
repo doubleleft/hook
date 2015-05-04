@@ -20,6 +20,9 @@ class ViewTest extends TestCase
         Config::set('repository.author', 'doubleleft');
         $string = Module::template("{{ config 'repository.url' }} by {{config 'repository.author'}}.")->compile();
         $this->assertTrue($string == "https://github.com/doubleleft/hook by doubleleft.");
+
+        $string = Module::template("{{ public_url }}")->compile();
+        $this->assertTrue($string == "http://localhost/");
     }
 
 }

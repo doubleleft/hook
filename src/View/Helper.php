@@ -47,6 +47,11 @@ class Helper {
     // URL helpers
     //
 
+    public static function public_url($args, $attributes) {
+        $segments = (isset($args[0])) ? $args[0] : '';
+        return array(public_url($segments), 'raw');
+    }
+
     public static function link_to($args, $attributes) {
         $text = (isset($args[1])) ? $args[1] : $args[0];
 

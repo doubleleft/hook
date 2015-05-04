@@ -7,6 +7,7 @@ $_SERVER['REMOTE_ADDR'] = '127.0.0.1';
 $_SERVER['REQUEST_URI'] = '';
 $_SERVER['SERVER_NAME'] = 'localhost';
 $_SERVER['SERVER_PORT'] = '80';
+$_SERVER['SCRIPT_NAME'] = '/';
 
 $db_driver = getenv('DB_DRIVER') ?: 'sqlite';
 $db_config = require(__DIR__ . "/configs/{$db_driver}.php");

@@ -109,6 +109,7 @@ class View extends \Slim\View
             'snake_case' => 'Hook\\View\\Helper::snake_case',
 
             // url helpers
+            'public_url' => 'Hook\\View\\Helper::public_url',
             'link_to' => 'Hook\\View\\Helper::link_to',
             'stylesheet' => 'Hook\\View\\Helper::stylesheet',
             'javascript' => 'Hook\\View\\Helper::javascript',
