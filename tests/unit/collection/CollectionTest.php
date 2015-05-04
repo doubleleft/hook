@@ -23,4 +23,16 @@ class CollectionTest extends TestCase
         $this->assertTrue($my_item->create_me == 10);
     }
 
+    public function testCache() {
+        App::collection('my_items')->create(array('name' => "Cached"));
+        $first_item = App::collection('my_items')->where('name', "Cached")->remember(10)->get();
+        $this->assertTrue($first_item[0]->name == "Cached");
+
+        App::collection('my_items')->update(array('name' => "Not cached!"));
+
+        $first_item = App::collection('my_items')->where('name', "Cached")->remember(10)->get();
+        $this->assertTrue($first_item[0]->name == "Cached");
+
+    }
+
 }
