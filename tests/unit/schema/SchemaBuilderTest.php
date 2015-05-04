@@ -63,7 +63,6 @@ class SchemaBuilderTest extends TestCase
         $dump = Schema\Builder::getInstance()->dump();
         $this->assertTrue(count($dump['schemas']['attributes']) == 5);
         $this->assertTrue($dump['schemas']['attributes'] == $attributes);
-
     }
 
 }

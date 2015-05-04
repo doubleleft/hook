@@ -95,7 +95,7 @@ class Builder
         }
 
         if (count($config['attributes']) > 0) {
-            return $this->migrate($model, $config);
+            return $this->migrate($model, $config, true);
         } else {
             return false;
         }
@@ -109,7 +109,7 @@ class Builder
      *
      * @return bool
      */
-    public function migrate($model, $collection_config)
+    public function migrate($model, $collection_config, $is_dynamic = false)
     {
         $that = $this;
 
@@ -131,7 +131,7 @@ class Builder
         $table = $model->getTable();
         $table_schema = Cache::get($table);
         $table_prefix = Context::getPrefix();
-        $collection_config = $this->sanitizeConfig($table, $collection_config);
+        $collection_config = $this->sanitizeConfigs($table, $collection_config, $is_dynamic);
 
         $is_creating = (!$builder->hasTable($table));
 
@@ -146,6 +146,7 @@ class Builder
                 }
 
                 foreach($collection_config['attributes'] as $attribute) {
+
                     if (!isset($attribute['name'])) {
                         throw new MethodFailureException('invalid_schema');
                     }
@@ -212,6 +213,10 @@ class Builder
                     'default' => "SET DEFAULT"
                 );
 
+                if (!isset($collection_config['relationships'])) {
+                    $collection_config['relationships'] = array();
+                }
+
                 foreach($collection_config['relationships'] as $relation => $fields) {
                     // only create field on belongs_to relationships
                     if ($relation == "belongs_to") {
@@ -263,12 +268,7 @@ class Builder
         }
 
         // merge previous schema with new one.
-        // keep the newest lock_attributes configuration
-        $lock_attributes = (isset($collection_config['lock_attributes']))
-            ? $collection_config['lock_attributes']
-            : (isset($table_schema['lock_attributes'])) ? $table_schema['lock_attributes'] : false;
-        $table_schema = array_merge_recursive($table_schema, $collection_config);
-        $table_schema['lock_attributes'] = $lock_attributes;
+        $table_schema = $this->mergeSchema($table_schema, $collection_config, $is_dynamic);
 
         // Cache table schema for further reference
         Cache::forever($table, $table_schema);
@@ -294,14 +294,71 @@ class Builder
         return new $connection_klass;
     }
 
-    protected function sanitizeConfig($collection_name, &$config) {
-        if (!isset($config['relationships'])) {
-            $config['relationships'] = array();
+    protected function mergeSchema($table_schema, $collection_config, $is_dynamic = false) {
+        if (!isset($table_schema['attributes'])) { $table_schema['attributes'] = array(); }
+        if (!isset($table_schema['relationships'])) { $table_schema['relationships'] = array(); }
+
+        $map_name = function($attribute) { return $attribute['name']; };
+
+        $previous_attribute_names = array_map($map_name, $table_schema['attributes']);
+        $new_attribute_names = array_map($map_name, $collection_config['attributes']);
+
+        // keep lock_attributes state
+        $lock_attributes = (isset($collection_config['lock_attributes']))
+            ? $collection_config['lock_attributes']
+            : (isset($table_schema['lock_attributes'])) ? $table_schema['lock_attributes'] : false;
+
+        // add new attributes to table_schema
+        if (isset($collection_config['attributes'])) {
+            foreach ($collection_config['attributes'] as $new_attribute) {
+                $existing_key = array_search($new_attribute['name'], $previous_attribute_names);
+                // update existing attribute definition
+                if ($existing_key !== false) {
+                    $table_schema['attributes'][$existing_key] = $new_attribute;
+                } else {
+                    // add new attribute definition
+                    array_push($table_schema['attributes'], $new_attribute);
+                }
+            }
         }
 
+        // add new relationships to table_schema
+        if (isset($collection_config['relationships'])) {
+            $table_schema['relationships'] = $collection_config['relationships'];
+        }
+
+        //
+        // remove attributes when doing a full migration
+        //
+        if (!$is_dynamic) {
+            $attributes_to_remove = array_diff($previous_attribute_names, $new_attribute_names);
+            foreach($attributes_to_remove as $attribute_to_remove)  {
+                $index = array_search($attribute_to_remove, $previous_attribute_names);
+                unset($table_schema['attributes'][$index]);
+            }
+            // normalize array keys
+            $table_schema['attributes'] = array_values($table_schema['attributes']);
+        }
+
+        $table_schema['lock_attributes'] = $lock_attributes;
+
+        return $table_schema;
+    }
+
+    protected function sanitizeConfigs($collection_name, &$config, $is_dynamic = false) {
         if (!isset($config['attributes'])) {
             $config['attributes'] = array();
         }
+
+        if (!$is_dynamic) {
+            $this->sanitizeRelationships($collection_name, $config);
+        }
+
+        return $config;
+    }
+
+    protected function sanitizeRelationships($collection_name, &$config) {
+        if (!isset($config['relationships'])) { $config['relationships'] = array(); }
 
         // sanitize relationship definitions
         foreach($config['relationships'] as $relation => $fields) {
