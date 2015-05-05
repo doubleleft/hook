@@ -306,7 +306,7 @@ class Builder
         // keep lock_attributes state
         $lock_attributes = (isset($collection_config['lock_attributes']))
             ? $collection_config['lock_attributes']
-            : (isset($table_schema['lock_attributes'])) ? $table_schema['lock_attributes'] : false;
+            : ((isset($table_schema['lock_attributes'])) ? $table_schema['lock_attributes'] : false);
 
         // add new attributes to table_schema
         if (isset($collection_config['attributes'])) {
