@@ -75,27 +75,17 @@ class Relationship
 
         switch ($relation_type) {
         case "belongs_to":
-            // $model->belongsTo($related_klass, $foreign_key, '_id', $field);
             return new BelongsTo($related_query, $model, $foreign_key, $primary_key, $field);
 
         case "belongs_to_many":
             return new BelongsToMany($related_query, $model, $related_table, $foreign_key, $primary_key, $field);
 
         case "has_many":
-            // hasMany($related, $foreignKey = null, $localKey = null)
-            // $model->hasMany($related_klass, $model_table . '_id', '_id');
-
             if (isset($config['through'])) {
                 $through = App::collection($config['through'])->getModel();
-
-                file_put_contents('php://stdout', $through->getTable() . "\n");
-                file_put_contents('php://stdout', $through->getQualifiedKeyName() . "\n");
-                file_put_contents('php://stdout', $model->getTable() . "\n");
-                file_put_contents('php://stdout', $model->getQualifiedKeyName() . "\n");
-
-                //          __construct(Builder $query, Model $farParent, Model $parent, $firstKey, $secondKey)
-                // return new HasManyThrough(with(new $related)->newQuery(), $this, $through, $firstKey, $secondKey);
-                return new HasManyThrough($related_query, $model, $through, 'book_id', 'author_id');
+                $first_key = $foreign_key;
+                $second_key = (isset($config['far_key'])) ? $config['far_key'] : str_singular($config['collection']) . '_id';
+                return new HasManyThrough($related_query, $model, $through, $first_key, $second_key);
 
             } else {
                 return new HasMany($related_query, $model, $foreign_key, $primary_key);
