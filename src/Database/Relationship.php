@@ -1,5 +1,4 @@
-<?php
-namespace Hook\Database;
+<?php namespace Hook\Database;
 
 use Hook\Exceptions\NotImplementedException;
 
@@ -10,7 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\HasManyThrough;
+use Hook\Database\Relations\HasManyThrough;
 
 /**
  * Relationship
@@ -58,7 +57,7 @@ class Relationship
         // define relation model
         $related_klass = "Related" .
             ucfirst( str_singular( camel_case( $field ) ) ) .
-            ucfirst( str_singular( camel_case( $config['collection'] ) ) );
+            ucfirst( str_singular( camel_case( $related_table ) ) );
 
         // FIXME:
         // eval is evil. But it's necessary here since Eloquent\Model
@@ -80,22 +79,36 @@ class Relationship
             return new BelongsTo($related_query, $model, $foreign_key, $primary_key, $field);
 
         case "belongs_to_many":
-            // $model->belongsToMany($related_klass, $related_table, $foreign_key, '_id', $field);
             return new BelongsToMany($related_query, $model, $related_table, $foreign_key, $primary_key, $field);
 
         case "has_many":
             // hasMany($related, $foreignKey = null, $localKey = null)
             // $model->hasMany($related_klass, $model_table . '_id', '_id');
-            return new HasMany($related_query, $model, $foreign_key, $primary_key);
+
+            if (isset($config['through'])) {
+                $through = App::collection($config['through'])->getModel();
+
+                file_put_contents('php://stdout', $through->getTable() . "\n");
+                file_put_contents('php://stdout', $through->getQualifiedKeyName() . "\n");
+                file_put_contents('php://stdout', $model->getTable() . "\n");
+                file_put_contents('php://stdout', $model->getQualifiedKeyName() . "\n");
+
+                //          __construct(Builder $query, Model $farParent, Model $parent, $firstKey, $secondKey)
+                // return new HasManyThrough(with(new $related)->newQuery(), $this, $through, $firstKey, $secondKey);
+                return new HasManyThrough($related_query, $model, $through, 'book_id', 'author_id');
+
+            } else {
+                return new HasMany($related_query, $model, $foreign_key, $primary_key);
+            }
 
         case "has_one":
             // hasOne($related, $foreignKey = null, $localKey = null)
             // $model->hasOne($related_klass, $model_table . '_id', '_id');
             return new HasOne($related_query, $model, $foreign_key, $primary_key);
 
-        case "has_many_through":
-            // hasManyThrough('Post', 'User', 'country_id', 'user_id');
-            return new NotImplementedException("has_many_through not implemented.");
+        default:
+            return new NotImplementedException("'{$relation_type}' is not implemented. Please use 'belongs_to', 'has_many' or 'belongs_to_many'.");
+
         }
 
         return null;
