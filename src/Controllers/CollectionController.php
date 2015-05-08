@@ -69,12 +69,16 @@ class CollectionController extends HookController {
         if ($aggr = Input::get('aggr')) {
             // Aggregate 'max'/'min'/'avg'/'sum' methods
             if (isset($aggr['field'])) {
-                return $query->{$aggr['method']}($aggr['field']);
+                $aggregate = $query->{$aggr['method']}($aggr['field']);
 
             } else {
                 // Aggregate 'count'
-                return $query->{$aggr['method']}();
+                $aggregate = $query->{$aggr['method']}();
             }
+
+            Response::header('Content-type', 'application/json');
+            Response::setBody( to_json($aggregate) );
+            return true;
 
         } elseif ($paginate = Input::get('p')) {
             // Apply pagination
