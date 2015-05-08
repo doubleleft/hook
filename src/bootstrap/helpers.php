@@ -32,9 +32,7 @@ function unparse_url($parsed_url) {
 }
 
 function to_json($data) {
-    if (is_string($data)) {
-        $json = $data;
-    } else if (method_exists($data, 'toJson')) {
+    if (method_exists($data, 'toJson')) {
         $json = $data->toJson();
     } else {
         $json = json_encode($data);
