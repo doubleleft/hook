@@ -17,7 +17,7 @@ class ResponseTypeMiddleware extends Slim\Middleware
             $response = $this->next->call();
 
             // Only set body automatically if it wasn't set manually
-            if (!$app->response->getBody()) {
+            if ($app->response->getBody() === null) {
                 $this->autoContentType($response);
             }
 
