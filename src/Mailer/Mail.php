@@ -2,7 +2,12 @@
 namespace Hook\Mailer;
 
 use Hook\Application\Config;
-use Hook\Model\App as App;
+use Hook\Model\Module as Module;
+use Hook\View\MailHelper;
+
+use Swift_Mailer;
+use Swift_Message;
+use Swift_Attachment;
 
 /**
  * Mail delivery class
@@ -10,6 +15,7 @@ use Hook\Model\App as App;
  */
 class Mail
 {
+
     /**
      * send
      *
@@ -54,6 +60,50 @@ class Mail
         return static::sendMessage($transport, $options);
     }
 
+    /**
+     * Create a new Message.
+     *
+     * @param string $template_body path or data to be attached
+     * @param string $options
+     *
+     * @return Swift_Mime_Attachment
+     */
+    public static function message($template_body = null, $options = array()) {
+        $message = new Message();
+
+        if (preg_match('/^[a-zA-Z_-\.]+$/', $template_or_body) &&
+            ($template = Module::template($template_body))) {
+
+            MailHelper::setMessage($message);
+            $message->body($template->compile($options));
+
+        } else {
+            $message->body($template_body);
+        }
+
+        return $message;
+    }
+
+    /**
+     * Create a new Attachment.
+     *
+     * @param string|Swift_OutputByteStream $path_or_data   path or data to be attached
+     * @param string                        $filename
+     * @param string                        $contentType
+     *
+     * @return Swift_Mime_Attachment
+     */
+    public static function attachment($path_or_data = null, $filename = null, $contentType = null) {
+        $from_path = realpath($path_or_data);
+        if ($from_path) {
+            $attachment = Swift_Attachment::fromPath($path_or_data, $contentType);
+            $attachment->setFilename($filename);
+        } else {
+            $attachment = Swift_Attachment::newInstance($path_or_data, $filename, $contentType);
+        }
+        return $attachment;
+    }
+
     protected static function getTransport($params = array())
     {
         $transport_klass = '\Swift_'.ucfirst(strtolower($params['driver'])).'Transport';
@@ -88,8 +138,8 @@ class Mail
             $options['contentType'] = 'text/html';
         }
 
-        $mailer = \Swift_Mailer::newInstance($transport);
-        $message = \Swift_Message::newInstance($options['subject'])
+        $mailer = Swift_Mailer::newInstance($transport);
+        $message = Swift_Message::newInstance($options['subject'])
             ->setFrom($options['from'])
             ->setTo($options['to'])
             ->setContentType($options['contentType'])
