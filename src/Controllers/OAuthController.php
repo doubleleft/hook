@@ -86,6 +86,11 @@ class OAuthController extends HookController {
 
             $data = $auth->dataWithToken();
 
+            // output oauth credentials on authentication request
+            if (isset($opauth_data['credentials'])) {
+                $data['credentials'] = $opauth_data['credentials'];
+            }
+
             if (Context::getKey()->isBrowser()) {
                 $js_origin = "window.opener.location.protocol + '//' + window.opener.location.hostname + (window.opener.location.port ? ':' + window.opener.location.port: '')";
 
