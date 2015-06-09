@@ -58,7 +58,7 @@ class OAuthController extends HookController {
 
                 // register new auth
                 if (isset($opauth_data['info']['email'])) {
-                    $auth = Auth::firstOrNew(array('email' => $opauth_data['info']['email']));
+                    $auth = Auth::current() ?: Auth::firstOrNew(array('email' => $opauth_data['info']['email']));
 
                     // If is a new user, fill and save with auth data
                     if (!$auth->_id) {
@@ -67,7 +67,7 @@ class OAuthController extends HookController {
 
                 } else {
                     // creating auth entry without email
-                    $auth = new Auth();
+                    $auth = Auth::current() ?: new Auth();
                     $auth->fill($opauth_data['info']);
                 }
 
@@ -174,7 +174,7 @@ class OAuthController extends HookController {
     }
 
     protected function getQueryParams() {
-        $keep_query_keys = array_filter(array('X-App-Id', 'X-App-Key', 'options'), function($param) {
+        $keep_query_keys = array_filter(array('X-App-Id', 'X-App-Key', 'X-Auth-Token', 'options'), function($param) {
             return Request::get($param);
         });
         $keep_query_values = array_map(function($param) {
