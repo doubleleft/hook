@@ -60,14 +60,13 @@ class OAuthController extends HookController {
                 if (isset($opauth_data['info']['email'])) {
                     $auth = Auth::current() ?: Auth::firstOrNew(array('email' => $opauth_data['info']['email']));
 
-                    // If is a new user, fill and save with auth data
-                    if (!$auth->_id) {
-                        $auth->fill($opauth_data['info']);
-                    }
-
                 } else {
                     // creating auth entry without email
                     $auth = Auth::current() ?: new Auth();
+                }
+
+                // If is a new user, fill and save with auth data
+                if (!$auth->_id) {
                     $auth->fill($opauth_data['info']);
                 }
 
