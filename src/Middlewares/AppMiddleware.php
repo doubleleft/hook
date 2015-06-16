@@ -133,7 +133,7 @@ class AppMiddleware extends Slim\Middleware
 
             } else if (!\Hook\Controllers\ApplicationController::isRootOperation()) {
                 $app->response->setStatus(403);
-                $app->response->setBody(json_encode(array('error' => "Invalid credentials.")));
+                $app->response->setBody(json_encode(array('error' => "Your IP Address is not allowed to perform this operation.")));
 
                 return;
             }
