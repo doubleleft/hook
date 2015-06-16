@@ -155,6 +155,23 @@ class Message
         return $this;
     }
 
-    public function attach(/)
+    public function attach($path_or_data = null, $filename = null, $contentType = null) {
+        if ($path_or_data instanceof \Swift_Mime_MimeEntity) {
+            $this->message->attach($path_or_data);
+        } else {
+
+            $attachment = Mail::attachment($path_or_data, $filename, $contentType);
+            $this->message->attach($attachment);
+        }
+
+        return $this;
+    }
+
+    //
+    // Method not implemented in the proxy, let's call proxied instance method
+    //
+    public function __call($method, $arguments) {
+        return call_user_func_array(array($this->message, $method), $arguments);
+    }
 
 }

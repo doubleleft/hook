@@ -1,5 +1,7 @@
 <?php namespace Hook\View;
 
+use Swift_Image;
+
 class MailHelper {
     static $message;
 
@@ -11,8 +13,8 @@ class MailHelper {
     // Mail helpers
     //
 
-    public static function img_embed($args, $attributes) {
-        $cid = \Hook\View\MailHelper::embed($args, $options['hash']);
+    public static function embed_img($args, $attributes) {
+        $cid = \Hook\View\MailHelper::embed($args);
 
         if (!isset($attributes['alt'])) {
             $attributes['alt'] = '';

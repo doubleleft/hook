@@ -1,5 +1,4 @@
-<?php
-namespace Hook\Mailer;
+<?php namespace Hook\Mailer;
 
 use Hook\Application\Config;
 use Hook\Model\Module as Module;
@@ -70,16 +69,10 @@ class Mail
      */
     public static function message($template_body = null, $options = array()) {
         $message = new Message();
+        MailHelper::setMessage($message);
 
-        if (preg_match('/^[a-zA-Z_-\.]+$/', $template_or_body) &&
-            ($template = Module::template($template_body))) {
-
-            MailHelper::setMessage($message);
-            $message->body($template->compile($options));
-
-        } else {
-            $message->body($template_body);
-        }
+        $template = Module::template($template_body);
+        $message->body($template->compile($options));
 
         return $message;
     }
