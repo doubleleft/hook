@@ -9,18 +9,46 @@ use Swift_Message;
  */
 class Message
 {
-    public function __construct() {
+    public function __construct($options = array()) {
         $this->message = new Swift_Message();
+
+        if (!empty($options)) {
+            foreach ($options as $method => $argument) {
+                call_user_func_array(array($this, $method), array($argument));
+            }
+        }
+    }
+
+    /**
+     * Get original swiftmailer message instance
+     *
+     * @return Swift_Message
+     */
+    public function getOriginal() {
+        return $this->message;
     }
 
     /**
      * Set the body content of this entity as a string.
      *
      * @param string $body
-     * @param string $contentType optional
+     * @param string $contentType optional (default: 'text/html')
      */
-    public function body($body, $contentType = null) {
+    public function body($body, $contentType = 'text/html') {
         $this->message->setBody($body, $contentType);
+
+        return $this;
+    }
+
+    /**
+     * Set the Content-type of this entity.
+     *
+     * @param string $type
+     *
+     * @return Message
+     */
+    public function contentType($type) {
+        $this->message->setContentType($type);
 
         return $this;
     }
@@ -29,6 +57,8 @@ class Message
      * Set the subject of the message.
      *
      * @param string $subject
+     *
+     * @return Message
      */
     public function subject($subject) {
         $this->message->setSubject($subject);
@@ -40,6 +70,8 @@ class Message
      * Set the origination date of the message as a UNIX timestamp.
      *
      * @param integer $date
+     *
+     * @return Message
      */
     public function date($date) {
         $this->message->setDate($date);
@@ -51,6 +83,8 @@ class Message
      * Set the return-path (bounce-detect) address.
      *
      * @param string $address
+     *
+     * @return Message
      */
     public function returnPath($address) {
         $this->message->setReturnPath($address);
@@ -74,6 +108,8 @@ class Message
      *
      * @param mixed  $addresses
      * @param string $name      optional
+     *
+     * @return Message
      */
     public function from($addresses, $name = null) {
         $this->message->setFrom($addresses, $name);
@@ -95,6 +131,8 @@ class Message
      *
      * @param mixed  $addresses
      * @param string $name      optional
+     *
+     * @return Message
      */
     public function replyTo($addresses, $name = null) {
         $this->message->setReplyTo($addresses, $name);
@@ -114,6 +152,8 @@ class Message
      *
      * @param mixed  $addresses
      * @param string $name      optional
+     *
+     * @return Message
      */
     public function to($addresses, $name = null) {
         $this->message->setTo($addresses, $name);
@@ -130,6 +170,8 @@ class Message
      *
      * @param mixed  $addresses
      * @param string $name      optional
+     *
+     * @return Message
      */
     public function cc($addresses, $name = null) {
         $this->message->setCc($addresses, $name);
@@ -149,22 +191,42 @@ class Message
      *
      * @param mixed  $addresses
      * @param string $name      optional
+     *
+     * @return Message
      */
     public function bcc($addresses, $name = null) {
         $this->message->setBcc($addresses, $name);
         return $this;
     }
 
-    public function attach($path_or_data = null, $filename = null, $contentType = null) {
-        if ($path_or_data instanceof \Swift_Mime_MimeEntity) {
-            $this->message->attach($path_or_data);
+    /**
+     * Attach a {@link Swift_Mime_MimeEntity} such as an Attachment or MimePart.
+     *
+     * @param Swift_Mime_MimeEntity|string $path_or_entity
+     * @param string $filename
+     * @param string $contentType
+     *
+     * @return Message
+     */
+    public function attach($path_or_entity = null, $filename = null, $contentType = null) {
+        if ($path_or_entity instanceof \Swift_Mime_MimeEntity) {
+            $this->message->attach($path_or_entity);
         } else {
 
-            $attachment = Mail::attachment($path_or_data, $filename, $contentType);
+            $attachment = Mail::attachment($path_or_entity, $filename, $contentType);
             $this->message->attach($attachment);
         }
 
         return $this;
+    }
+
+    /**
+     * Send the message using
+     *
+     * @param boolean $sent
+     */
+    public function send() {
+        return Mail::send($this);
     }
 
     //

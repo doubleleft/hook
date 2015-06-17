@@ -1,7 +1,5 @@
 <?php use Hook\Mailer\Mail;
 
-use Swift_Attachment;
-
 class MailTest extends TestCase
 {
 
@@ -26,6 +24,14 @@ class MailTest extends TestCase
 
         $attached_children = $message->getChildren();
         $this->assertTrue(count($attached_children) == 2);
+    }
+
+    public function testSendArray() {
+        $sent = Mail::send(array(
+            'to' => 'edreyer@doubleleft.com',
+            'body' => "Testing",
+            'from' => 'edreyer@doubleleft.com'
+        ));
     }
 
 }

@@ -14,6 +14,8 @@ use Swift_Attachment;
  */
 class Mail
 {
+    // Cached Mailer instance
+    protected static $_mailer;
 
     /**
      * send
@@ -29,34 +31,13 @@ class Mail
      *
      * @param array $options
      */
-    public static function send($options = array())
+    public static function send($message)
     {
-        $params = array();
-        $allowed_configs = array('driver', 'host', 'port', 'encryption', 'username', 'password');
-
-        foreach(Config::get('mail', array()) as $name => $value) {
-            if (in_array($name, $allowed_configs)) {
-                $params[$name] = $value;
-            }
+        if (is_array($message)) {
+            $message = new Message($message);
         }
 
-        // set 'mail' as default driver
-        if (!isset($params['driver'])) {
-            $params['driver'] = 'mail';
-        } else {
-
-            $preset_file = __DIR__ . '/presets/' . $params['driver'] . '.php';
-            if (file_exists($preset_file)) {
-                $preset_params = require($preset_file);
-                unset($params['driver']);
-
-                // allow to overwrite default preset settings with custom configs
-                $params = array_merge($preset_params, $params);
-            }
-        }
-
-        $transport = static::getTransport($params);
-        return static::sendMessage($transport, $options);
+        return static::getMailer()->send($message->getOriginal());
     }
 
     /**
@@ -97,8 +78,41 @@ class Mail
         return $attachment;
     }
 
-    protected static function getTransport($params = array())
+    public static function getMailer()
     {
+        if (!static::$_mailer) {
+            static::$_mailer = Swift_Mailer::newInstance(static::getTransport());
+        }
+
+        return static::$_mailer;
+    }
+
+    public static function getTransport()
+    {
+        $params = array();
+        $allowed_configs = array('driver', 'host', 'port', 'encryption', 'username', 'password');
+
+        foreach(Config::get('mail', array()) as $name => $value) {
+            if (in_array($name, $allowed_configs)) {
+                $params[$name] = $value;
+            }
+        }
+
+        // set 'mail' as default driver
+        if (!isset($params['driver'])) {
+            $params['driver'] = 'mail';
+        } else {
+
+            $preset_file = __DIR__ . '/presets/' . $params['driver'] . '.php';
+            if (file_exists($preset_file)) {
+                $preset_params = require($preset_file);
+                unset($params['driver']);
+
+                // allow to overwrite default preset settings with custom configs
+                $params = array_merge($preset_params, $params);
+            }
+        }
+
         $transport_klass = '\Swift_'.ucfirst(strtolower($params['driver'])).'Transport';
         $transport = call_user_func(array($transport_klass, 'newInstance'));
         unset($params['driver']);
@@ -109,36 +123,6 @@ class Mail
         }
 
         return $transport;
-    }
-
-    protected static function sendMessage($transport, $options)
-    {
-        // Validate options
-        if (!isset($options['to'])) {
-            throw new \Exception(__CLASS__ . "::".__METHOD__.": 'to' option is required.");
-        }
-
-        if (!isset($options['body'])) {
-            throw new \Exception(__CLASS__ . "::".__METHOD__.": 'body' option is required.");
-        }
-
-        if (!isset($options['from'])) {
-            throw new \Exception(__CLASS__ . "::".__METHOD__.": 'from' option is required.");
-        }
-
-        // Use text/html as default content-type
-        if (!isset($options['contentType'])) {
-            $options['contentType'] = 'text/html';
-        }
-
-        $mailer = Swift_Mailer::newInstance($transport);
-        $message = Swift_Message::newInstance($options['subject'])
-            ->setFrom($options['from'])
-            ->setTo($options['to'])
-            ->setContentType($options['contentType'])
-            ->setBody($options['body']);
-
-        return $mailer->send($message);
     }
 
 }
