@@ -27,11 +27,12 @@ class MailTest extends TestCase
     }
 
     public function testSendArray() {
-        $sent = Mail::send(array(
-            'to' => 'edreyer@doubleleft.com',
-            'body' => "Testing",
-            'from' => 'edreyer@doubleleft.com'
-        ));
+        // Mail::send(array(
+        //     'to' => 'edreyer@doubleleft.com',
+        //     'subject' => "hook mail",
+        //     'body' => "Testing",
+        //     'from' => 'edreyer@doubleleft.com'
+        // ));
     }
 
 }
