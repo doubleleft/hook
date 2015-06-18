@@ -52,8 +52,10 @@ class Mail
         $message = new Message();
         MailHelper::setMessage($message);
 
-        $template = Module::template($template_body);
-        $message->body($template->compile($options));
+        if ($template_body) {
+            $template = Module::template($template_body);
+            $message->body($template->compile($options));
+        }
 
         return $message;
     }

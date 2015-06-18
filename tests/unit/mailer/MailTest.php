@@ -26,6 +26,45 @@ class MailTest extends TestCase
         $this->assertTrue(count($attached_children) == 2);
     }
 
+    public function testMethods()
+    {
+        $message = Mail::message();
+
+        $message->body('body');
+        $this->assertTrue($message->getBody() == 'body');
+
+        $message->contentType('text/html');
+        $this->assertTrue($message->getContentType() == 'text/html');
+
+        $message->subject('subject');
+        $this->assertTrue($message->getSubject() == 'subject');
+
+        $date = time();
+        $message->date($date);
+        $this->assertTrue($message->getDate() == $date);
+
+        $message->returnPath('return@doubleleft.com');
+        $this->assertTrue($message->getReturnPath() == 'return@doubleleft.com');
+
+        $message->from('from@email.com');
+        $this->assertTrue($message->getFrom() == array("from@email.com" => NULL));
+
+        $message->from('from@email.com', "From");
+        $this->assertTrue($message->getFrom() == array("from@email.com" => "From"));
+
+        $message->replyTo('reply@doubleleft.com');
+        $this->assertTrue($message->getReplyTo() == array('reply@doubleleft.com' => NULL));
+
+        $message->to('edreyer@doubleleft.com');
+        $this->assertTrue($message->getTo() == array('edreyer@doubleleft.com' => NULL));
+
+        $message->cc('cc@doubleleft.com');
+        $this->assertTrue($message->getCc() == array('cc@doubleleft.com' => NULL));
+
+        $message->bcc('bcc@doubleleft.com');
+        $this->assertTrue($message->getBcc() == array('bcc@doubleleft.com' => NULL));
+    }
+
     public function testSendArray() {
         // Mail::send(array(
         //     'to' => 'edreyer@doubleleft.com',
