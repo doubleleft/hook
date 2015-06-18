@@ -6,6 +6,8 @@ use Hook\Exceptions\NotFoundException;
 use LightnCandy;
 use LCRun3;
 
+use Hook\Model\Module;
+
 use SplStack;
 
 class View extends \Slim\View
@@ -79,7 +81,7 @@ class View extends \Slim\View
 
     protected function getTemplate($name) {
         if (is_null($this->template_string)) {
-            $this->setTemplateString( Module::template($template)->getCode() );
+            $this->setTemplateString( Module::template($name)->getCode() );
         }
 
         return $this->template_string;

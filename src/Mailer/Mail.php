@@ -1,8 +1,12 @@
-<?php
-namespace Hook\Mailer;
+<?php namespace Hook\Mailer;
 
 use Hook\Application\Config;
-use Hook\Model\App as App;
+use Hook\Model\Module as Module;
+use Hook\View\MailHelper;
+
+use Swift_Mailer;
+use Swift_Message;
+use Swift_Attachment;
 
 /**
  * Mail delivery class
@@ -10,6 +14,9 @@ use Hook\Model\App as App;
  */
 class Mail
 {
+    // Cached Mailer instance
+    protected static $_mailer;
+
     /**
      * send
      *
@@ -24,7 +31,65 @@ class Mail
      *
      * @param array $options
      */
-    public static function send($options = array())
+    public static function send($message)
+    {
+        if (is_array($message)) {
+            $message = new Message($message);
+        }
+
+        return static::getMailer()->send($message->getOriginal());
+    }
+
+    /**
+     * Create a new Message.
+     *
+     * @param string $template_body path or data to be attached
+     * @param string $options
+     *
+     * @return Swift_Mime_Attachment
+     */
+    public static function message($template_body = null, $options = array()) {
+        $message = new Message();
+        MailHelper::setMessage($message);
+
+        if ($template_body) {
+            $template = Module::template($template_body);
+            $message->body($template->compile($options));
+        }
+
+        return $message;
+    }
+
+    /**
+     * Create a new Attachment.
+     *
+     * @param string|Swift_OutputByteStream $path_or_data   path or data to be attached
+     * @param string                        $filename
+     * @param string                        $contentType
+     *
+     * @return Swift_Mime_Attachment
+     */
+    public static function attachment($path_or_data = null, $filename = null, $contentType = null) {
+        $from_path = realpath($path_or_data);
+        if ($from_path) {
+            $attachment = Swift_Attachment::fromPath($path_or_data, $contentType);
+            $attachment->setFilename($filename);
+        } else {
+            $attachment = Swift_Attachment::newInstance($path_or_data, $filename, $contentType);
+        }
+        return $attachment;
+    }
+
+    public static function getMailer()
+    {
+        if (!static::$_mailer) {
+            static::$_mailer = Swift_Mailer::newInstance(static::getTransport());
+        }
+
+        return static::$_mailer;
+    }
+
+    public static function getTransport()
     {
         $params = array();
         $allowed_configs = array('driver', 'host', 'port', 'encryption', 'username', 'password');
@@ -50,12 +115,6 @@ class Mail
             }
         }
 
-        $transport = static::getTransport($params);
-        return static::sendMessage($transport, $options);
-    }
-
-    protected static function getTransport($params = array())
-    {
         $transport_klass = '\Swift_'.ucfirst(strtolower($params['driver'])).'Transport';
         $transport = call_user_func(array($transport_klass, 'newInstance'));
         unset($params['driver']);
@@ -66,36 +125,6 @@ class Mail
         }
 
         return $transport;
-    }
-
-    protected static function sendMessage($transport, $options)
-    {
-        // Validate options
-        if (!isset($options['to'])) {
-            throw new \Exception(__CLASS__ . "::".__METHOD__.": 'to' option is required.");
-        }
-
-        if (!isset($options['body'])) {
-            throw new \Exception(__CLASS__ . "::".__METHOD__.": 'body' option is required.");
-        }
-
-        if (!isset($options['from'])) {
-            throw new \Exception(__CLASS__ . "::".__METHOD__.": 'from' option is required.");
-        }
-
-        // Use text/html as default content-type
-        if (!isset($options['contentType'])) {
-            $options['contentType'] = 'text/html';
-        }
-
-        $mailer = \Swift_Mailer::newInstance($transport);
-        $message = \Swift_Message::newInstance($options['subject'])
-            ->setFrom($options['from'])
-            ->setTo($options['to'])
-            ->setContentType($options['contentType'])
-            ->setBody($options['body']);
-
-        return $mailer->send($message);
     }
 
 }
