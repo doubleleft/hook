@@ -124,6 +124,10 @@ class View extends \Slim\View
             'count' => 'Hook\\View\\Helper::count',
             'config' => 'Hook\\View\\Helper::config',
 
+            // email helpers
+            'embed_img' => 'Hook\\View\\MailHelper::embed_img',
+            'embed' => 'Hook\\View\\MailHelper::embed',
+
             // miscelaneous
             'paginate' => 'Hook\\View\\Helper::paginate'
         );
