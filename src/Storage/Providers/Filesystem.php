@@ -24,7 +24,7 @@ class Filesystem extends Base
     }
 
     public function realpath($file) {
-        return storage_dir(true) . $file->name;
+        return realpath( storage_dir(true) . $file->name );
     }
 
 }
