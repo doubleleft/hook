@@ -22,7 +22,7 @@ class MailHelper {
     public static function embed($args, $attributes = null) {
         $image = \Swift_Image::fromPath($args[0]);
 
-        $cid = static::$message->embed($image);
+        $cid = \Hook\View\MailHelper::$message->embed($image);
 
         return $cid;
     }
