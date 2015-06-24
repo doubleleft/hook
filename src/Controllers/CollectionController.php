@@ -60,7 +60,8 @@ class CollectionController extends HookController {
 
         // remember / caching
         if ($remember = Input::get('remember')) {
-            $query = $query->remember($remember);
+            throw new NotImplementedException('remember/cache not implemented');
+            // $query = $query->remember($remember);
         }
 
         // with - eager load relationships

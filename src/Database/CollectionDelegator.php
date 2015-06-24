@@ -81,6 +81,7 @@ class CollectionDelegator implements IteratorAggregate
             $query = $tmp_query->getModel()->newQuery();
         }
 
+        $this->remember = null;
         $this->name = $name;
         $this->is_collection = $is_collection;
         $this->query = $query;
@@ -358,6 +359,11 @@ class CollectionDelegator implements IteratorAggregate
         }
 
         return $this->__call('get', func_get_args());
+    }
+
+    public function remember($minutes)
+    {
+        $this->remember = $minutes;
     }
 
     /**
