@@ -2,44 +2,41 @@
 
 use Hook\Model\App as App;
 
-class Book extends Hook\Model\Collection {
-    protected $table = 'books';
-
-    function author() {
-        return $this->belongsTo('Author');
-    }
-};
-
-class Author extends Hook\Model\Collection {
-    protected $table = 'authors';
-};
-
 class CollectionTest extends TestCase
 {
 
     public function testCreate()
     {
-        // $author = App::collection('authors')->create(array(
-        //     'name' => "Endel " . uniqid()
+        $item = App::collection('names')->create(array(
+            'name' => "Endel",
+            'number' => 10,
+            'double' => 9.99
+        ));
+        $this->assertTrue($item->name == "Endel");
+        $this->assertTrue($item->number == 10);
+        $this->assertTrue($item->double == 9.99);
+
+        $row = App::collection('names')->sort('created_at', -1)->first();
+        $this->assertTrue($row->name == "Endel");
+        $this->assertTrue($row->number == 10);
+        $this->assertTrue($row->double == 9.99);
+    }
+
+    public function testBulkCreate() {
+        // $items = App::collection('names')->create(array(
+        //     array(
+        //         'name' => "Bulk 1",
+        //         'number' => 1,
+        //         'double' => 1.1
+        //     ),
+        //     array(
+        //         'name' => "Bulk 2",
+        //         'number' => 2,
+        //         'double' => 2.2
+        //     )
         // ));
         //
-        // $book = App::collection('books')->create(array(
-        //     'name' => "My book " . uniqid(),
-        //     'author_id' => $author->_id
-        // ));
-
-        // App::collection('books')->with('author')->each(function($row) {
-        //     var_dump($row->toArray());
-        // });
-
-        // App::collection('testing')->each(function($row) {
-        //     var_dump($row);
-        // });
-
-        // App::collection('testing')->each(function($row) {
-        //     var_dump($row);
-        // });
-
+        // $this->assertTrue(count($items) == 2);
     }
 
 }
