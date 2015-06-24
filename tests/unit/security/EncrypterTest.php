@@ -1,6 +1,6 @@
 <?php
 
-use Hook\Encryption\Encrypter as Encrypter;
+use Hook\Security\Encryption\Encrypter as Encrypter;
 
 class EncrypterTest extends TestCase
 {

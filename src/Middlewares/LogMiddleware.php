@@ -34,7 +34,7 @@ class LogMiddleware extends Slim\Middleware
             $query = str_replace(array('%', '?'), array('%%', '%s'), $query);
             $query = vsprintf($query, $bindings);
 
-            $app->log->info($query);
+            \Logger::debug($query);
         });
 
         if (!$app->request->isOptions() && $app_key) {
@@ -44,7 +44,7 @@ class LogMiddleware extends Slim\Middleware
 
             // disable log if storage directory doesn't exists.
             // maybe we're on a readonly filesystem
-            $app->log->setEnabled(file_exists($log_file));
+            $app->log->setEnabled(is_writable($log_file));
 
             if (strpos($app->request->getPath(), "/apps/") === false) {
                 $app->log->info($app->request->getIp() . ' - [' . date('d-m-Y H:i:s') . '] ' . $app->request->getMethod() . ' ' . $app->request->getResourceUri());

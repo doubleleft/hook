@@ -13,6 +13,42 @@ use Hook\Cache\Cache;
 class Context
 {
     protected static $app_key;
+    protected static $isTrustedAction = false;
+
+    /**
+     * isTrusted
+     *
+     * @return bool
+     */
+    public static function isTrusted() {
+        return static::getKey()->isServer() ||
+            static::getKey()->isCommandline() ||
+            static::$isTrustedAction;
+    }
+
+    /**
+     * setTrusted
+     *
+     * @param bool $trusted
+     *
+     * @return string
+     */
+    public static function setTrusted($trusted = true) {
+        static::$isTrustedAction = $trusted;
+    }
+
+    /**
+     * Run function in unsafe context.
+     *
+     * @return mixed
+     */
+    public static function unsafe($func) {
+        static::setTrusted(true);
+        $value = $func();
+
+        static::setTrusted(false);
+        return $value;
+    }
 
     /**
      * config

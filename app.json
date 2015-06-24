@@ -1,0 +1,10 @@
+{
+  "name": "hook",
+  "logo": "https://github.com/doubleleft/hook/blob/master/logo.png?raw=true",
+  "description": "A RESTful and extendable Backend as a Service that provides instant backend to develop sites and apps faster.",
+  "website": "http://hook-platform.org/",
+  "repository": "https://github.com/doubleleft/hook",
+  "success_url": "/",
+  "keywords": [ "productivity", "backend as a service", "rest", "baas", "php" ],
+  "addons": [ "cleardb" ]
+}

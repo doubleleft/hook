@@ -1,6 +1,6 @@
-# dl-api Contribution Guide
+# hook Contribution Guide
 
-This page contains guidelines for contributing to dl-api.
+This page contains guidelines for contributing to hook.
 
 ## Pull Requests
 
@@ -10,11 +10,11 @@ Pull requests for bugs may be sent without creating any proposal issue. If you b
 
 ### Feature Requests
 
-If you have an idea for a new feature you would like to see added to dl-api, you may create an issue on Github with `[Request]` in the title. The feature request will then be reviewed by a core contributor.
+If you have an idea for a new feature you would like to see added to hook, you may create an issue on Github with `[Request]` in the title. The feature request will then be reviewed by a core contributor.
 
 ## Coding Guidelines
 
-dl-api follows the [PSR-0](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-0.md) and [PSR-1](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-1-basic-coding-standard.md) coding standards. In addition to these standards, below is a list of other coding standards that should be followed:
+hook follows the [PSR-0](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-0.md) and [PSR-1](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-1-basic-coding-standard.md) coding standards. In addition to these standards, below is a list of other coding standards that should be followed:
 
 - Use [editorconfig](http://editorconfig.org/) to keep same indentation.
 - Namespace declarations should be on the same line as `<?php`.

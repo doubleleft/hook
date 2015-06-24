@@ -1,4 +1,4 @@
-<?php namespace Hook\Encryption;
+<?php namespace Hook\Security\Encryption;
 
 use Hook\Application\Context;
 

@@ -1,5 +1,4 @@
-<?php
-namespace Hook\Model;
+<?php namespace Hook\Model;
 
 use Hook\Application\Context;
 use Hook\Application\Config;
@@ -23,11 +22,10 @@ class Auth extends Collection
 
     // protect from mass-assignment.
     protected $guarded = array('password_salt', 'forgot_password_token', 'forgot_password_expiration', 'deleted_at'); // 'email', 'password',
-    protected $hidden = array('password', 'password_salt', 'forgot_password_token', 'forgot_password_expiration', 'deleted_at');
+    protected $hidden = array('email', 'password', 'password_salt', 'role', 'forgot_password_token', 'forgot_password_expiration', 'deleted_at');
 
     // force a trusted action?
-    // - currently only used on resetPassword method
-    protected $isTrustedAction = false;
+    protected $_isTrustedAction = false;
 
     static $_current = null;
 
@@ -69,6 +67,20 @@ class Auth extends Collection
         return $this->hasMany('Hook\Model\AuthIdentity', 'auth_id');
     }
 
+    public function setTrustedAction($bool)
+    {
+        $this->_isTrustedAction = $bool;
+    }
+
+    /**
+     * Is performing a trusted action?
+     * @return bool
+     */
+    public function isTrustedAction()
+    {
+        return $this->_isTrustedAction;
+    }
+
     /**
      * generateToken
      * @return AuthToken
@@ -82,7 +94,7 @@ class Auth extends Collection
     {
         $this->setAttribute(self::FORGOT_PASSWORD_FIELD, sha1(uniqid(rand(), true)));
         $this->setAttribute(self::FORGOT_PASSWORD_EXPIRATION_FIELD, time() + self::FORGOT_PASSWORD_EXPIRATION_TIME);
-        $this->isTrustedAction = true;
+        $this->setTrustedAction(true);
         $this->save();
 
         return $this;
@@ -99,7 +111,7 @@ class Auth extends Collection
         if (!$this->isForgotPasswordTokenExpired()) {
             $this->password = $newPassword;
             $this->setAttribute(self::FORGOT_PASSWORD_EXPIRATION_FIELD, time()); // expire token
-            $this->isTrustedAction = true;
+            $this->setTrustedAction(true);
             $success = $this->save();
         }
 
@@ -115,10 +127,11 @@ class Auth extends Collection
     {
         $arr = parent::toArray();
 
-        // only display email for the logged user
+        // only display email and role for authenticated user
         $auth_token = AuthToken::current();
-        if (!$auth_token || $auth_token->auth_id != $this->_id) {
-            unset($arr['email']);
+        if (($auth_token && $auth_token->auth_id == $this->_id) || Context::isTrusted()) {
+            $arr['email'] = $this->getAttribute('email');
+            $arr['role'] = $this->getAttribute('role');
         }
 
         return $arr;
@@ -133,7 +146,9 @@ class Auth extends Collection
         $auth_token = $this->generateToken();
         AuthToken::setCurrent($auth_token);
 
+        $current_auth_token = AuthToken::current();
         $data = $this->toArray();
+
         $data['token'] = $auth_token->toArray();
 
         return $data;
@@ -145,7 +160,12 @@ class Auth extends Collection
 
     public function beforeSave()
     {
-        if ($this->_id && !$this->isTrustedAction && !$this->isUpdateAllowed()) {
+        // Only a trusted context can change the 'role' attribute
+        if ($this->isDirty('role') && (!Context::isTrusted() || !$this->isUpdateAllowed())) {
+            $this->role = (isset($this->original['role'])) ? $this->original['role'] : null;
+        }
+
+        if (!$this->isTrustedAction() && !$this->isUpdateAllowed()) {
             throw new ForbiddenException("not_allowed");
         }
 
@@ -154,6 +174,7 @@ class Auth extends Collection
             $this->password_salt = sha1(uniqid(rand(), true));
             $this->password = static::password_hash($this->password, $this->password_salt);
         }
+
         parent::beforeSave();
     }
 
@@ -165,9 +186,8 @@ class Auth extends Collection
         // - Is using 'commandline' context.
         // - Authenticated user is updating it's own data
         //
-        return Context::getKey()->isServer() ||
-            Context::getKey()->isCommandline() ||
-            $this->isAuthenticated();
+
+        return Context::isTrusted() || $this->isAuthenticated();
     }
 
     protected function isAuthenticated()  {

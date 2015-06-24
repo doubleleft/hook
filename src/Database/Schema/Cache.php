@@ -5,20 +5,25 @@ class ConfigContainer extends \ArrayObject {
 }
 
 use Hook\Cache\Cache as Store;
-use Hook\Encryption\Encrypter as Encrypter;
+use Hook\Security\Encryption\Encrypter as Encrypter;
 
 use Illuminate\Cache\CacheManager;
 
 class Cache
 {
     protected static $store;
+    protected static $local = array();
 
     public static function forever($collection, $value) {
+        static::$local[ $collection ] = $value;
         return static::getStore()->forever($collection, $value);
     }
 
     public static function get($collection) {
-        return static::getStore()->get($collection) ?: array();
+        if (!isset(static::$local[ $collection ])) {
+            static::$local[ $collection ] = static::getStore()->get($collection) ?: array();
+        }
+        return static::$local[ $collection ];
     }
 
     public static function getStore() {

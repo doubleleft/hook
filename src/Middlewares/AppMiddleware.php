@@ -40,6 +40,17 @@ class AppMiddleware extends Slim\Middleware
                 $query_data = json_decode(urldecode($query[1]), true) ?: array();
             }
 
+            //
+            // FIXME:
+            // workaround for using opauth/google provider on OAuthController.
+            // See OAuthController#fixOauthStrategiesCallback method.
+            //
+
+            if (isset($query_params['state'])) {
+                parse_str(urldecode($query_params['state']), $state);
+                $query_params = array_merge($query_params, $state);
+            }
+
             // Parse remaining regular string variables
             $query_data = array_merge($query_data, $query_params);
 
@@ -104,12 +115,22 @@ class AppMiddleware extends Slim\Middleware
                 // // Register session handler
                 // Session\Handler::register(Config::get('session.handler', 'database'));
 
-                // Compile all route modules
-                if ($custom_routes = Module::where('type', Module::TYPE_ROUTE)->get()) {
-                    foreach ($custom_routes as $custom_route) {
-                        $custom_route->compile();
-                    }
+                // Query and compile route module if found
+                $route_module_name = strtolower($app->request->getMethod()) . '_' . substr($app->request->getPathInfo(), 1) . '.php';
+                $alternate_route_module_name = 'any_' . substr($app->request->getPathInfo(), 1) . '.php';
+                $custom_route = Module::where('type', Module::TYPE_ROUTE)->
+                    where('name', $route_module_name)->
+                    orWhere('name', $alternate_route_module_name)->
+                    first();
+
+                if ($custom_route) {
+                    // Flag request as "trusted".
+                    Context::setTrusted(true);
+
+                    // "Compile" the route to be available for the router
+                    $custom_route->compile();
                 }
+
             } else if (!\Hook\Controllers\ApplicationController::isRootOperation()) {
                 $app->response->setStatus(403);
                 $app->response->setBody(json_encode(array('error' => "Invalid credentials.")));

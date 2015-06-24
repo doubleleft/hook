@@ -1,9 +1,17 @@
 <?php
 namespace Hook\Database;
 
+use Hook\Auth\Role;
+
 use Hook\Model\App;
 use Hook\Model\Collection;
+
 use Hook\Exceptions\UnauthorizedException;
+use Hook\Exceptions\NotAllowedException;
+
+use Hook\Application\Context;
+
+use Illuminate\Database\Capsule\Manager as DB;
 
 use ArrayIterator;
 use IteratorAggregate;
@@ -58,13 +66,16 @@ class CollectionDelegator implements IteratorAggregate
         $is_collection = (!isset(static::$custom_collections[$name]));
 
         // protected collections
-        if ($name == 'modules' || $name == '__sessions') {
-            throw new UnauthorizedException('not_authorized');
+        if ($name == 'modules' || $name == '__sessions' || $name == 'auth_identities') {
+            throw new UnauthorizedException();
         }
 
         if ($is_collection) {
             $query = Collection::from($name);
         } else {
+            // FIXME:
+            // workaround due wrong table_name reference.
+            // similar problem on Hook\Database\Relationship#getRelationInstance
             $tmp_query = call_user_func(array(static::$custom_collections[$name], 'query'));
             $tmp_query->getModel()->setTable($name);
             $query = $tmp_query->getModel()->newQuery();
@@ -115,16 +126,22 @@ class CollectionDelegator implements IteratorAggregate
      */
     public function create_new(array $attributes = array())
     {
+        $instance = null;
+
         if (!$this->is_collection) {
-            $klass = self::$custom_collections[$this->name];
-
-            return new $klass($attributes);
-
+            $instance = new self::$custom_collections[$this->name]();
         } else {
-            $attributes['table_name'] = $this->name;
-
-            return new Collection($attributes);
+            $instance = new Collection(array('table_name' => $this->name));
         }
+
+        $instance->fill($attributes);
+
+        // Fill '_id' if it's provided and in a trusted context
+        if (isset($attributes['_id']) && Context::isTrusted()) {
+            $instance->_id = $attributes['_id'];
+        }
+
+        return $instance;
     }
 
     /**
@@ -138,6 +155,14 @@ class CollectionDelegator implements IteratorAggregate
         $model = $this->create_new($attributes);
         $model->save();
 
+        // TODO: dry with 'queryEagerLoadRelations'
+        $eagerLoads = $this->query->getEagerLoads();
+        if (count($eagerLoads) > 0)
+        {
+            $relations = $this->query->eagerLoadRelations(array($model));
+            $model = $relations[0];
+        }
+
         return $model;
     }
 
@@ -149,6 +174,9 @@ class CollectionDelegator implements IteratorAggregate
      */
     public function update(array $values)
     {
+        // migrate the collection, if needed
+        Schema\Builder::getInstance()->dynamic($this->query->getModel(), $values);
+
         $allowed = $this->fireEvent('updating_multiple', array($this, $values));
 
         if ($allowed === false) {
@@ -199,27 +227,29 @@ class CollectionDelegator implements IteratorAggregate
     public function filter($filters = null)
     {
         if ($filters) {
-            foreach ($filters as $where) {
-                // Use 'and' as default boolean method
-                if (!isset($where[3])) { $where[3] = 'and'; }
+            $this->query->where(function($query) use ($filters) {
+                foreach ($filters as $where) {
+                    // Use 'and' as default boolean method
+                    if (!isset($where[3])) { $where[3] = 'and'; }
 
-                // Sugar for 'IN' operations
-                if ($where[1] == '=' && gettype($where[2]) == 'array') {
-                    $where[1] = 'in';
+                    // Sugar for 'IN' operations
+                    if ($where[1] == '=' && gettype($where[2]) == 'array') {
+                        $where[1] = 'in';
 
-                } else if ($where[1] == '!=' && $where[2] == null) {
-                    // Workaround to support whereNotNull
-                    $where[1] = 'not_null';
-                    $where[2] = 'and';
+                    } else if ($where[1] == '!=' && $where[2] == null) {
+                        // Workaround to support whereNotNull
+                        $where[1] = 'not_null';
+                        $where[2] = 'and';
+                    }
+
+                    if (preg_match('/^[a-z_]+$/', $where[1]) !== 0 && strtolower($where[1]) !== 'like') {
+                        $method = 'where' . ucfirst(\Illuminate\Support\Str::camel($where[1]));
+                        $query->{$method}($where[0], $where[2], $where[3]);
+                    } else {
+                        $query->where($where[0], $where[1], $where[2], $where[3]);
+                    }
                 }
-
-                if (preg_match('/^[a-z_]+$/', $where[1]) !== 0 && strtolower($where[1]) !== 'like') {
-                    $method = 'where' . ucfirst(\Illuminate\Support\Str::camel($where[1]));
-                    $this->query->{$method}($where[0], $where[2], $where[3]);
-                } else {
-                    $this->query->where($where[0], $where[1], $where[2], $where[3]);
-                }
-            }
+            });
         }
 
         return $this;
@@ -253,6 +283,21 @@ class CollectionDelegator implements IteratorAggregate
 
         return $this;
     }
+
+
+    /**
+     * Set the relationships that should be eager loaded.
+     *
+     * @param  mixed  $relations
+     * @return $this
+     */
+    public function join($relations)
+    {
+        $this->query->with(func_get_args());
+
+        return $this;
+    }
+
 
     /**
      * Chunk the results of the query.
@@ -305,6 +350,13 @@ class CollectionDelegator implements IteratorAggregate
             $this->query->from($this->name);
         }
 
+        // Check 'read' access before running the query.
+        // - for 'owner' role each entry need to be checked on results.
+        $role = Role::getInstance()->getConfig($this->name, 'read');
+        if ($role !== 'owner' && !Role::isAllowed($this->name, 'read')) {
+            throw new NotAllowedException();
+        }
+
         return $this->__call('get', func_get_args());
     }
 
@@ -328,6 +380,16 @@ class CollectionDelegator implements IteratorAggregate
         return $this->query->get($columns)->toJson();
     }
 
+    /**
+     * Get the table/collection name in the database, with prefix.
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        return DB::connection()->getTablePrefix() . $this->name;
+    }
+
     protected function fireEvent($event, $payload)
     {
         $dispatcher = Collection::getEventDispatcher();
@@ -340,10 +402,17 @@ class CollectionDelegator implements IteratorAggregate
 
     /**
      * getQueryBuilder
-     * @return \Illuminate\Database\Eloquent\Builder | \Illuminate\Database\Query\Builder
+     * @return \Illuminate\Database\Query\Builder
      */
     public function getQueryBuilder() {
-        return $this->query;
+        $query = $this->query;
+
+        if ($query instanceof \Illuminate\Database\Eloquent\Builder)
+        {
+            $query = $query->getQuery();
+        }
+
+        return $query;
     }
 
     /**
@@ -368,6 +437,22 @@ class CollectionDelegator implements IteratorAggregate
         } else {
             return $mixed;
         }
+    }
+
+    public static function queryEagerLoadRelations($model, $joins)
+    {
+        $query = $model->newQuery();
+        $query->with($joins);
+
+        // Eager load related on create
+        $eagerLoads = $query->getEagerLoads();
+        if (count($eagerLoads) > 0)
+        {
+            $relations = $query->eagerLoadRelations(array($model));
+            $model = $relations[0];
+        }
+
+        return $model;
     }
 
 }

@@ -1,6 +1,6 @@
 <?php namespace Hook\Cache;
 
-use Hook\Encryption\Encrypter;
+use Hook\Security\Encryption\Encrypter;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Cache\CacheManager;
 

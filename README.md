@@ -1,21 +1,25 @@
-Welcome to hook
+<img align="right" src="https://github.com/doubleleft/hook/blob/master/logo.png?raw=true" alt="hook" />
+
+Welcome to hook [![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy?template=https%3A%2F%2Fgithub.com%2Fdoubleleft%2Fhook%2Ftree%2Fmaster)
 ===
 
 [![Build status](https://travis-ci.org/doubleleft/hook.svg?branch=master)](https://travis-ci.org/doubleleft/hook)
 [![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/doubleleft/hook?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-hook is a extendable multitenant Back-end as a Service (BaaS) that provides
-data persistance, authentication, real-time communication and much more to
-create the back-end of your web or mobile application.
+
+hook is a RESTful, extendable Backend as a Service that provides instant backend
+to develop sites and apps faster, with dead-simple integration for iOS, Android,
+JavaScript and more.
 
 It follows the same principles from [nobackend](http://nobackend.org/), [hoodie.js](https://github.com/hoodiehq/hoodie.js) and [Parse](http://parse.com)
 
-**Requirements**: PHP 5.4+
+**Requirements**: PHP 5.4+, or [PHP
+5.3](http://doubleleft.github.io/hook-userguide/More/Deployment/#deploying-on-php-53).
 
 - [Features](#features)
 - [Installation](#installation)
 - [How to use](#how-to-use)
-- [Documentation](https://github.com/doubleleft/hook/wiki)
+- [Documentation](http://doubleleft.github.io/hook-userguide/)
 - [Front-end integration](#front-end-integration)
 
 Features
@@ -24,9 +28,11 @@ Features
 - Multitenancy (same instance may be used for many apps)
 - User authentication (register, login, reset password)
 - Data persistance through `collections`
-- Data storage through [many providers](https://github.com/doubleleft/hook/wiki/Storage-providers)
+- Data storage through [many
+  providers](http://doubleleft.github.io/hook-userguide/The-Basics/Configuration/#storage-providers)
 - Real-time communication through [WAMP](http://wamp.ws) subprotocol (WebSockets).
-- [Package management](https://github.com/doubleleft/hook/wiki/Composer-dependencies) through composer
+- [Package
+  management](http://doubleleft.github.io/hook-userguide/The-Basics/Configuration/#composer-packages) through composer
 
 Installation
 ---
@@ -46,16 +52,22 @@ machine.
 How to use
 ---
 
-Use the following command to create a new application from the commandine.
+Run the server locally:
 
 ```
-hook app:new my-app --endpoint http://localhost/hook/public/index.php/
+hook server
+```
+
+Create a new application from the commandine:
+
+```
+hook app:new my-app --endpoint http://0.0.0.0:4665
 ```
 
 It will output access keys to use in the front-end. Checkout this example using
 [JavaScript](https://github.com/doubleleft/hook-javascript#how-to-use) frontend.
 
-Take a look at the [documentation](https://github.com/doubleleft/hook/wiki) for
+Take a look at the [documentation](http://doubleleft.github.io/hook-userguide/) for
 more details.
 
 Front-end Integration
@@ -64,12 +76,14 @@ Front-end Integration
 Reduce the gap between backend and frontend development:
 
 - [JavaScript](https://github.com/doubleleft/hook-javascript) ([docs](http://doubleleft.github.io/hook-javascript))
-- [C# / Unity3D](https://github.com/doubleleft/hook-csharp) (_docs missing_)
+- [C# / Unity3D](https://github.com/doubleleft/hook-csharp)
+- [Corona SDK](https://github.com/doubleleft/hook-corona-sdk)
+- [iOS / OSX](https://github.com/doubleleft/hook-swift)
+- [Java / Android](https://github.com/doubleleft/hook-android)
+- [C++](https://github.com/doubleleft/hook-cpp)
 - [PHP](https://github.com/doubleleft/hook-php) ([docs](http://doubleleft.github.io/hook-php))
 - [Ruby](https://github.com/doubleleft/hook-ruby) ([docs](http://doubleleft.github.io/hook-ruby/))
-- Java/Android (soon)
-- ObjectiveC/iOS (soon)
-- C++ (soon)
+- [Flash / ActionScript 3.0](https://github.com/doubleleft/hook-as3)
 
 License
 ---

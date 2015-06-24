@@ -38,6 +38,8 @@ class HookController {
      */
     protected function render($template, $data = array()) {
         Router::getInstance()->render($template, $data);
+        $response = ob_get_contents();
+        return ob_get_clean();
     }
 
 }

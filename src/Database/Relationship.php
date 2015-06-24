@@ -1,8 +1,15 @@
-<?php
-namespace Hook\Database;
+<?php namespace Hook\Database;
+
+use Hook\Exceptions\NotImplementedException;
 
 use Hook\Model\App as App;
 use Hook\Database\Schema\Cache as Cache;
+
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Hook\Database\Relations\HasManyThrough;
 
 /**
  * Relationship
@@ -17,13 +24,10 @@ class Relationship
         if (isset($schema['relationships'])) {
             // TODO: refactoring.
             // change the way to store relationships to prevent excessive loops
-            foreach($schema['relationships'] as $relation => $fields) {
-                foreach($fields as $field => $collection) {
-                    if ($field == $relation_name || $collection == $relation_name) {
-                        // TODO: '$collection' should be always a string
-                        $related_collection_name = (is_array($collection)) ? $collection[0] : $collection;
-                        $related_collection = App::collection($related_collection_name);
-                        return static::getRelationInstance($model, $related_collection, $relation, $field);
+            foreach($schema['relationships'] as $relation_type => $fields) {
+                foreach($fields as $field => $config) {
+                    if ($field == $relation_name || $config['collection'] == $relation_name) {
+                        return static::getRelationInstance($model, $relation_type, $field, $config);
                     }
                 }
             }
@@ -40,17 +44,22 @@ class Relationship
      *
      * @return \Illuminate\Database\Eloquent\Relations\Relation
      */
-    public static function getRelationInstance($model, $related_collection, $relation_type, $field) {
+    public static function getRelationInstance($model, $relation_type, $field, $config) {
+        $related_collection = App::collection($config['collection']);
         $model_table = str_singular($model->getTable());
 
         $related_model = $related_collection->getModel();
         $related_table = $related_model->getTable();
-        $foreign_key = $field . '_id';
+
+        $primary_key = $config['primary_key'];
+        $foreign_key = $config['foreign_key'];
 
         // define relation model
-        $related_klass = "Related" . ucfirst( str_singular( camel_case( $related_collection->getTable() ) ) );
+        $related_klass = "Related" .
+            ucfirst( str_singular( camel_case( $field ) ) ) .
+            ucfirst( str_singular( camel_case( $related_table ) ) );
 
-        // TODO: refactoring
+        // FIXME:
         // eval is evil. But it's necessary here since Eloquent\Model
         // will try to instantiate the 'related class' without constructor params.
         if (!class_exists($related_klass)) {
@@ -58,26 +67,38 @@ class Relationship
             eval("class {$related_klass} extends {$related_model_class} { protected \$table = '{$related_table}'; }");
         }
 
+        // FIXME: refactoring
+        // force table name on related query instance.
+        $related_instance = new $related_klass;
+        $related_instance->getModel()->setTable($related_table);
+        $related_query = $related_instance->getModel()->newQuery();
+
         switch ($relation_type) {
         case "belongs_to":
-            // belongsTo($related, $foreignKey = null, $otherKey = null, $relation = null)
-            return $model->belongsTo($related_klass, $foreign_key, '_id', $field);
+            return new BelongsTo($related_query, $model, $foreign_key, $primary_key, $field);
 
         case "belongs_to_many":
-            // belongsToMany($related, $table = null, $foreignKey = null, $otherKey = null, $relation = null)
-            return $model->belongsToMany($related_klass, $related_table, $foreign_key, '_id', $field);
+            return new BelongsToMany($related_query, $model, $related_table, $foreign_key, $primary_key, $field);
 
         case "has_many":
-            // hasMany($related, $foreignKey = null, $localKey = null)
-            return $model->hasMany($related_klass, $model_table . '_id', '_id');
+            if (isset($config['through'])) {
+                $through = App::collection($config['through'])->getModel();
+                $first_key = $foreign_key;
+                $second_key = (isset($config['far_key'])) ? $config['far_key'] : str_singular($config['collection']) . '_id';
+                return new HasManyThrough($related_query, $model, $through, $first_key, $second_key);
+
+            } else {
+                return new HasMany($related_query, $model, $foreign_key, $primary_key);
+            }
 
         case "has_one":
             // hasOne($related, $foreignKey = null, $localKey = null)
-            return $model->hasOne($related_klass, $model_table . '_id', '_id');
+            // $model->hasOne($related_klass, $model_table . '_id', '_id');
+            return new HasOne($related_query, $model, $foreign_key, $primary_key);
 
-        case "has_many_through":
-            // hasManyThrough('Post', 'User', 'country_id', 'user_id');
-            return $model->hasManyThrough($related_klass, $foreign_key, '_id');
+        default:
+            return new NotImplementedException("'{$relation_type}' is not implemented. Please use 'belongs_to', 'has_many' or 'belongs_to_many'.");
+
         }
 
         return null;

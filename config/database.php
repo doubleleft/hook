@@ -1,12 +1,16 @@
 <?php
 
 return array(
+    // Database URI
+    'uri' => getenv('CLEARDB_DATABASE_URL')
+        // use sqlite as default
+        ?: 'sqlite://../../shared/database.sqlite?prefix=',
 
-    // SQLite
-    // -------
-    'driver'   => 'sqlite',
-    'database' => __DIR__ . '/../shared/database.sqlite',
-    'prefix'   => '',
+    // // SQLite
+    // // -------
+    // 'driver'   => 'sqlite',
+    // 'database' => __DIR__ . '/../shared/database.sqlite',
+    // 'prefix'   => '',
 
     // // MySQL
     // // -------
@@ -14,7 +18,7 @@ return array(
     // 'host'     => '127.0.0.1',
     // 'username' => 'root',
     // 'password' => '',
-    // 'database' => 'dlapi',
+    // 'database' => 'hook',
     // 'collation' => 'utf8_general_ci',
     // 'charset' => 'utf8'
 
@@ -25,7 +29,7 @@ return array(
     // 'username' => 'postgres',
     // 'charset' => 'utf-8',
     // 'password' => '',
-    // 'database' => 'dlapi',
+    // 'database' => 'hook',
 
     // // MongoDB
     // // -------
@@ -34,6 +38,6 @@ return array(
     // 'port'     => 27017,
     // // 'username' => 'username',
     // // 'password' => 'password',
-    // 'database' => 'dl_api'
+    // 'database' => 'hook'
 
 );

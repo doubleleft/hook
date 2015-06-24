@@ -1,6 +1,8 @@
 <?php
 namespace Hook\Model;
 
+use Hook\Model\Observer\SecurityObserver;
+
 use Hook\Database\Schema as Schema;
 use Hook\Database\Relationship as Relationship;
 use Hook\Exceptions\BadRequestException as BadRequestException;
@@ -12,6 +14,7 @@ use Hook\Exceptions\BadRequestException as BadRequestException;
 class DynamicModel extends Model
 {
     protected static $booted = array();
+    protected static $securityObserver;
 
     protected $guarded = array('created_at');
 
@@ -36,15 +39,32 @@ class DynamicModel extends Model
             static::saved(function ($model) { $model->afterSave(); });
             static::creating(function ($model) { $model->beforeCreate(); });
         }
+
+        // register security observer
+        if (!isset(static::$securityObserver)) {
+            static::$securityObserver = new SecurityObserver();
+            $className = get_class(static::$securityObserver);
+            static::registerModelEvent('creating', array(static::$securityObserver, 'creating'));
+            static::registerModelEvent('updating', array(static::$securityObserver, 'updating'));
+            static::registerModelEvent('updating_multiple', array(static::$securityObserver, 'updating_multiple'));
+            static::registerModelEvent('deleting', array(static::$securityObserver, 'deleting'));
+            static::registerModelEvent('deleting_multiple', array(static::$securityObserver, 'deleting_multiple'));
+        }
     }
 
     /**
      * isModified
+     * @deprecated use isDirty instead
      * @return bool
      */
     public function isModified()
     {
-        return count($this->getDirty()) > 0;
+        return $this->isDirty();
+    }
+
+    public function toArray()
+    {
+        return static::$securityObserver->toArray($this, parent::toArray());
     }
 
     //
@@ -61,7 +81,7 @@ class DynamicModel extends Model
         // create beforeSave related objects
         $this->createRelatedFields('beforeSave');
 
-        Schema\Builder::dynamic($this, $this->attributes);
+        Schema\Builder::getInstance()->dynamic($this, $this->attributes);
     }
 
     public function afterSave()
@@ -130,7 +150,7 @@ class DynamicModel extends Model
                     }
 
 
-                } else if (Schema\Builder::isSupported()) {
+                } else if (Schema\Builder::getInstance()->isSupported()) {
                     // no relationship with field name found.
                     // probably it's a programming issue. throw an exception.
                     throw new BadRequestException("nested objects not supported.");

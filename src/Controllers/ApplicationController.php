@@ -78,6 +78,11 @@ class ApplicationController extends HookController {
         return array('text' => $content);
     }
 
+    public function keys() {
+        Context::setTablePrefix('');
+        return Model\AppKey::where('app_id', Context::getAppId())->get();
+    }
+
     public function tasks() {
         return Model\ScheduledTask::all()->toArray();
     }
@@ -110,7 +115,7 @@ class ApplicationController extends HookController {
         // Migrate and keep schema cache
         $collections_migrated = 0;
         foreach(Input::get('schema', array()) as $collection => $config) {
-            if (Schema\Builder::migrate(Model\App::collection($collection)->getModel(), $config)) {
+            if (Schema\Builder::getInstance()->migrate(Model\App::collection($collection)->getModel(), $config)) {
                 $collections_migrated += 1;
             }
         }
@@ -135,7 +140,7 @@ class ApplicationController extends HookController {
     }
 
     public function configs() {
-        return Model\AppConfig::all();
+        return Config::getValues();
     }
 
     public function modules() {
@@ -143,17 +148,21 @@ class ApplicationController extends HookController {
     }
 
     public function schema() {
-        return Schema\Builder::dump();
+        return Schema\Builder::getInstance()->dump();
     }
 
     public function upload_schema() {
         $schema = Input::get();
 
         foreach($schema as $collection => $config) {
-            Schema\Builder::migrate(Model\App::collection($collection)->getModel(), $config);
+            Schema\Builder::getInstance()->migrate(Model\App::collection($collection)->getModel(), $config);
         }
 
         return array('success' => true);
+    }
+
+    public function evaluate() {
+        return eval(Input::get('code'));
     }
 
     public function delete() {

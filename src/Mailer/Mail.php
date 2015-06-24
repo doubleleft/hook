@@ -16,10 +16,10 @@ class Mail
      * @example Send email using SMTP
      *
      *     Mail::send(array(
-     *         'to' => "somebody@gmail.com",
-     *         'to' => "somebody@gmail.com",
-     *         'to' => "somebody@gmail.com",
-     *         'to' => "somebody@gmail.com"
+     *         'to' => "to@email.com",
+     *         'from' => "from@email.com",
+     *         'body' => "Email body",
+     *         'subject' => "Your email subject"
      *     ));
      *
      * @param array $options
@@ -56,11 +56,6 @@ class Mail
 
     protected static function getTransport($params = array())
     {
-        // Validate SMTP params
-        if ($params['driver'] == 'smtp' && (!isset($params['username']) || !isset($params['password']))) {
-            throw new Exception("'mail.username' and 'mail.password' configs are required when using 'smtp' driver;");
-        }
-
         $transport_klass = '\Swift_'.ucfirst(strtolower($params['driver'])).'Transport';
         $transport = call_user_func(array($transport_klass, 'newInstance'));
         unset($params['driver']);

@@ -7,13 +7,20 @@ $_SERVER['REMOTE_ADDR'] = '127.0.0.1';
 $_SERVER['REQUEST_URI'] = '';
 $_SERVER['SERVER_NAME'] = 'localhost';
 $_SERVER['SERVER_PORT'] = '80';
+$_SERVER['SCRIPT_NAME'] = '/';
 
 $db_driver = getenv('DB_DRIVER') ?: 'sqlite';
+$db_config = require(__DIR__ . "/configs/{$db_driver}.php");
 
 $app = require __DIR__ . '/../src/Hook.php';
+Hook\Http\Router::setInstance($app);
 
-$app->config('database', require(__DIR__ . "/configs/{$db_driver}.php"));
+$app->config('database', $db_config);
 $app->config('paths', require(__DIR__ . '/../config/paths.php'));
+$app->config("view", new \Hook\View\View());
+
+// remove previous database for a fresh test
+if ($db_driver == 'sqlite') { @unlink($db_config['database']); }
 
 require __DIR__ . '/../src/bootstrap/connection.php';
 Hook\Http\Router::setInstance($app);

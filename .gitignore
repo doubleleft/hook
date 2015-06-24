@@ -3,3 +3,5 @@
 node_modules
 vendor
 documentation
+public/storage
+shared/database.sqlite

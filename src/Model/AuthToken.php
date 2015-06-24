@@ -1,5 +1,6 @@
-<?php
-namespace Hook\Model;
+<?php namespace Hook\Model;
+
+use Hook\Application\Config;
 
 use Hook\Http\Request;
 use Hook\Http\Input;
@@ -11,12 +12,14 @@ use \Carbon\Carbon;
  */
 class AuthToken extends Model
 {
-    const EXPIRATION_HOURS = 24; // hours
+    const DEFAULT_TOKEN_EXPIRATION = 24; // in hours
 
     protected static $_current = null;
 
     public $timestamps = false;
+
     protected $dates = array('expire_at');
+    protected $hidden = array('auth');
 
     public static function boot()
     {
@@ -62,10 +65,18 @@ class AuthToken extends Model
 
     public function beforeCreate()
     {
+        // cache Auth role for this token
+        //
+        // TODO: use auth() relationship.
+        // Due the same problem at Auth::current(), it was needed to use
+        // App::collection here
+        //
+        $this->role = App::collection('auth')->where('_id', $this->auth_id)->first()->role;
         $this->created_at = Carbon::now();
-        $this->expire_at = Carbon::now()->addHours(static::EXPIRATION_HOURS);
+
+        $token_expiration = Config::get('auth.token_expiration', static::DEFAULT_TOKEN_EXPIRATION);
+        $this->expire_at = Carbon::now()->addHours($token_expiration);
         $this->token = sha1(uniqid(rand(), true));
-        // $this->level = 1;
     }
 
 }

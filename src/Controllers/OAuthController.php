@@ -7,7 +7,9 @@ use Hook\Application\Config;
 use Hook\Model\Auth;
 use Hook\Model\AuthIdentity;
 
+use Hook\Http\Request;
 use Hook\Http\Response;
+use Hook\Http\Input;
 
 use Opauth;
 
@@ -24,6 +26,10 @@ class OAuthController extends HookController {
            </html>';
     }
 
+    protected function relay_frame_close() {
+        return '<!DOCTYPE html><html><script>window.close();</script></html>';
+    }
+
     public function auth($strategy=null, $callback=null) {
         $query_params = $this->getQueryParams();
 
@@ -31,28 +37,49 @@ class OAuthController extends HookController {
             $opauth = unserialize(base64_decode($_POST['opauth']));
 
             if (isset($opauth['error'])) {
-                throw new UnauthorizedException($opauth['error']['raw']);
+                // throw new UnauthorizedException($opauth['error']['code']);
+                return $this->relay_frame_close();
             }
 
-            $auth = $opauth['auth'];
+            $opauth_data = $opauth['auth'];
 
             $identity = AuthIdentity::firstOrNew(array(
-                'provider' => strtolower($auth['provider']),
-                'uid' => $auth['uid'],
+                'provider' => strtolower($opauth_data['provider']),
+                'uid' => $opauth_data['uid'],
             ));
 
-            if (!$identity->auth_id) {
+            if (!$identity->auth_id || $identity->auth == NULL) {
                 // cleanup nested infos before registering it
-                foreach($auth['info'] as $key => $value) {
+                foreach($opauth_data['info'] as $key => $value) {
                     if (is_array($value)) {
-                        unset($auth['info'][$key]);
+                        unset($opauth_data['info'][$key]);
                     }
                 }
 
                 // register new auth
-                $auth = Auth::create($auth['info']);
+                if (isset($opauth_data['info']['email'])) {
+                    $auth = Auth::firstOrNew(array('email' => $opauth_data['info']['email']));
+
+                    // If is a new user, fill and save with auth data
+                    if (!$auth->_id) {
+                        $auth->fill($opauth_data['info']);
+                    }
+
+                } else {
+                    // creating auth entry without email
+                    $auth = new Auth();
+                    $auth->fill($opauth_data['info']);
+                }
+
+                // set visible provider_id on auth row.
+                // such as 'facebook_id', 'google_id', etc.
+                $auth->setTrustedAction(true);
+                $auth->setAttribute($identity->provider . '_id', $identity->uid);
+                $auth->save();
+
                 $identity->auth_id = $auth->_id;
                 $identity->save();
+
             } else {
                 $auth = $identity->auth;
             }
@@ -105,18 +132,49 @@ class OAuthController extends HookController {
     }
 
     protected function fixOauthStrategiesCallback($opauth, $query_params) {
-        // append query_params to every strategy callback
+        $options = Input::get('options', array());
+
+        //
+        // FIXME:
+        // ----
+        //
+        // What a workaround here, huh?
+        // I think we should remove opauth/opauth and implement it our own with
+        // Guzzle.
+        //
+        // Also AppMiddleware#decode_query_string must be cleaned up because of this.
+        //
         foreach($opauth->env['Strategy'] as $name => $configs) {
-            $opauth->env['Strategy'][$name]['redirect_uri'] = '{complete_url_to_strategy}int_callback' . $query_params;
-            $opauth->env['Strategy'][$name]['oauth_callback'] = '{complete_url_to_strategy}oauth_callback' . $query_params;
+            // append query_params to every strategy callback
+
+            if ($name == 'Google') {
+                // Google doesn't accept additional query params on their callback URL. That's sad.
+                $opauth->env['Strategy'][$name]['redirect_uri'] = '{complete_url_to_strategy}oauth2callback'; //. $query_params;
+                $opauth->env['Strategy'][$name]['state'] = urlencode(substr($query_params, 1));
+
+            } else if ($name == 'Facebook') {
+                $opauth->env['Strategy'][$name]['redirect_uri'] = '{complete_url_to_strategy}int_callback' . $query_params;
+                $opauth->env['Strategy'][$name]['scope'] = 'email';
+                $opauth->env['Strategy'][$name]['display'] = 'popup';
+
+                if (isset($options['scope'])) {
+                    $opauth->env['Strategy'][$name]['scope'] .= ',' . $options['scope'];
+                }
+
+            } else {
+                $opauth->env['Strategy'][$name]['redirect_uri'] = '{complete_url_to_strategy}int_callback' . $query_params;
+                $opauth->env['Strategy'][$name]['oauth_callback'] = '{complete_url_to_strategy}oauth_callback' . $query_params;
+            }
         }
     }
 
     protected function getQueryParams() {
-        $keep_query_keys = array_filter(array('X-App-Id', 'X-App-Key'), function($param) {
-            return isset($_GET[$param]);
+        $keep_query_keys = array_filter(array('X-App-Id', 'X-App-Key', 'options'), function($param) {
+            return Request::get($param);
         });
-        $keep_query_values = array_map(function($param) { return $_GET[$param]; }, $keep_query_keys);
+        $keep_query_values = array_map(function($param) {
+            return Request::get($param);
+        }, $keep_query_keys);
         return '?' . http_build_query(array_combine($keep_query_keys, $keep_query_values));
     }
 
