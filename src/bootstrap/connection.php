@@ -45,7 +45,6 @@ DLModel::setConnectionResolver($resolver);
 DLModel::setEventDispatcher($event_dispatcher);
 
 // Setup paginator
-// $connection->setPaginator(new Hook\Pagination\Environment());
 $connection->setEventDispatcher($event_dispatcher);
 
 // Setup Schema Grammar

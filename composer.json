@@ -14,14 +14,14 @@
   "require": {
     "php": ">=5.3.0",
     "composer/composer": "dev-master",
-    "slim/Slim": "dev-master",
+    "endel/Slim": "dev-master",
     "doctrine/dbal" : "2.*",
-    "illuminate/database": "5.0.*",
-    "illuminate/config": "5.0.*",
-    "illuminate/cache": "5.0.*",
-    "illuminate/encryption": "5.0.*",
-    "illuminate/events": "~5.0@dev",
-    "swiftmailer/swiftmailer": "5.0.*",
+    "illuminate/database": "5.1.*",
+    "illuminate/config": "5.1.*",
+    "illuminate/cache": "5.1.*",
+    "illuminate/encryption": "5.1.*",
+    "illuminate/events": "5.1.*",
+    "swiftmailer/swiftmailer": "5.1.*",
     "guzzlehttp/guzzle": "4.2.*",
     "cboden/Ratchet": "0.3.*",
     "react/socket": "0.4.*",
@@ -35,10 +35,6 @@
     "opauth/twitter": "dev-master",
     "opauth/facebook": "dev-master"
   },
-  "repositories": [{
-      "type": "vcs",
-      "url": "http://github.com/endel/Slim"
-  }],
   "scripts": {
     "post-install-cmd": [ ]
   },

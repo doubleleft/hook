@@ -3,6 +3,8 @@
 use Hook\Model;
 use Hook\Http\Input;
 
+use Hook\Exceptions\NotImplementedException;
+
 class CollectionController extends HookController {
 
     public function index($name) {
@@ -62,8 +64,7 @@ class CollectionController extends HookController {
             }
 
         } elseif ($paginate = Input::get('p')) {
-            // Apply pagination
-            return $query->paginate($paginate);
+            throw new NotImplementedException('Pagination not implemented. use limit/offset.');
 
         } elseif (Input::get('f')) {
             // First

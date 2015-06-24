@@ -151,6 +151,11 @@ class Builder
                     $field_name = strtolower(array_remove($attribute, 'name'));
                     $type = camel_case(array_remove($attribute, 'type') ?: 'string');
 
+                    // fix core PHP to database types.
+                    if ($type == 'double') {
+                        $type = 'float';
+                    }
+
                     $default = array_remove($attribute, 'default');
                     $index = array_remove($attribute, 'index');
                     $unique = array_remove($attribute, 'unique') || $index === 'unique';

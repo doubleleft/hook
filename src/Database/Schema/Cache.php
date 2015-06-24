@@ -1,5 +1,9 @@
 <?php namespace Hook\Database\Schema;
 
+class ConfigContainer extends \ArrayObject {
+    public function bound() { return false; }
+}
+
 use Hook\Cache\Cache as Store;
 use Hook\Encryption\Encrypter as Encrypter;
 
@@ -19,16 +23,21 @@ class Cache
 
     public static function getStore() {
         if (!static::$store) {
-            $manager = new CacheManager(array(
-                'encrypter' => Encrypter::getInstance(),
+            $manager = new CacheManager(new ConfigContainer(array(
                 'db' => \DLModel::getConnectionResolver(),
+                'encrypter' => Encrypter::getInstance(),
                 'config' => array(
                     'cache.driver' => 'database',
-                    'cache.connection' => 'default',
-                    'cache.table' => 'cache',
-                    'cache.prefix' => 'schema_'
+                    'cache.prefix' => 'schema_',
+                    // 'cache.connection' => 'default',
+                    // 'cache.table' => 'cache',
+                    'cache.stores.database' => array(
+                        'driver' => 'database',
+                        'connection' => 'default',
+                        'table' => 'cache',
+                    )
                 )
-            ));
+            )));
             static::$store = $manager->driver('database')->getStore();
         }
         return static::$store;

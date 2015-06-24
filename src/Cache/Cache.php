@@ -48,8 +48,8 @@ class Cache
                     'db' => \DLModel::getConnectionResolver(),
                     'encrypter' => Encrypter::getInstance(),
                     'config' => array(
-                        'cache.prefix' => '',
                         'cache.default' => 'database',
+                        'cache.prefix' => '',
                         'cache.stores.database' => array(
                             'driver' => 'database',
                             'connection' => 'default',
