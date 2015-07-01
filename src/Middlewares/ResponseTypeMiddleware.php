@@ -41,9 +41,7 @@ class ResponseTypeMiddleware extends Slim\Middleware
             $body = $data;
         } else {
             $content_type = 'application/json';
-            file_put_contents('php://stdout', "json_encode: data => " . json_encode($data) . "\n");
             $body = to_json($data);
-            file_put_contents('php://stdout', "body => " . $body . "\n");
         }
 
         // only set content-type if it wans't set manually.

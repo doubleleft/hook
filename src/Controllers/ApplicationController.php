@@ -109,8 +109,8 @@ class ApplicationController extends HookController {
         $configs = Input::get('config', array());
         $configs['security'] = Input::get('security', array());
 
-        // Flush cache on deployment
-        Cache\Cache::flush();
+        // // Flush cache on deployment
+        // Cache\Cache::flush();
 
         // Migrate and keep schema cache
         $collections_migrated = 0;

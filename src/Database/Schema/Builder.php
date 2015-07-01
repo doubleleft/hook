@@ -23,6 +23,7 @@ class Builder
         if (!static::$instance) {
             static::$instance = new static;
         }
+
         return static::$instance;
     }
 
@@ -133,10 +134,22 @@ class Builder
         $table_prefix = Context::getPrefix();
         $collection_config = $this->sanitizeConfigs($table, $collection_config, $is_dynamic);
 
+        //
+        // register unsupported ENUM as a doctrine supported type
+        // related issue: https://github.com/laravel/framework/issues/1186
+        //
+        // $connection->getDoctrineSchemaManager()
+        //     ->getDatabasePlatform()
+        //     ->registerDoctrineTypeMapping('enum', 'blob');
+
+        if (isset($table_schema['attributes'])) {
+            file_put_contents('php://stdout', 'cached schema: ' . json_encode($table_schema['attributes']) . "\n");
+        }
+
         $is_creating = (!$builder->hasTable($table));
 
         if (!empty($collection_config['attributes']) || !empty($collection_config['relationships'])) {
-            $migrate = function ($t) use ($that, &$table, &$table_prefix, &$builder, &$is_creating, &$table_schema, $collection_config, &$result) {
+            $migrate = function ($t) use ($that, &$table, &$table_prefix, &$builder, &$is_creating, &$table_schema, $collection_config, &$result, &$connection) {
                 $table_columns = array('created_at', 'updated_at', 'deleted_at');
 
                 if ($is_creating) {
@@ -154,9 +167,22 @@ class Builder
                     $field_name = strtolower(array_remove($attribute, 'name'));
                     $type = camel_case(array_remove($attribute, 'type') ?: 'string');
 
+                    $previous_attribute_definition = null;
+                    if (isset($table_schema['attributes'])) {
+                        $previous_attribute_definition = current(array_filter($table_schema['attributes'], function ($column) use (&$field_name) {
+                            return ($column['name'] === $field_name);
+                        }));
+                    }
+
+
                     // fix core PHP to database types.
-                    if ($type == 'double') {
-                        $type = 'float';
+                    if ($type == 'double') { $type = 'float'; }
+
+                    // fix ENUM reference in order to doctrine migrations to work
+                    if ($type == 'enum' ||
+                        ($previous_attribute_definition && $previous_attribute_definition['type'] == 'enum')) {
+                        $allowed = (isset($attribute['allowed'])) ? $attribute['allowed'] : null;
+                        $this->registerEnumDoctrineType($table, $field_name, $allowed);
                     }
 
                     $default = array_remove($attribute, 'default');
@@ -164,16 +190,19 @@ class Builder
                     $unique = array_remove($attribute, 'unique') || $index === 'unique';
                     $required = array_remove($attribute, 'required');
 
-                    // Skip if column already exists
-                    // TODO: deprecate strtolower
-                    if (in_array($field_name, array_map('strtolower', $table_columns))) {
+                    // Skip if column already exists and haven't changed
+                    if (isset($previous_attribute_definition['type']) && $previous_attribute_definition['type'] === $type) {
+                        file_put_contents('php://stdout', 'skip '. $field_name . "\n");
                         continue;
                     }
 
                     $column_exists = (!$is_creating && in_array($field_name, array_map('strtolower', $table_columns)));
+                    file_put_contents('php://stdout', 'column exists? \''. $field_name . '\' => ' . (($column_exists) ? 'YES' : 'NO') . "\n");
 
                     // include field_name to list of collection columns
                     array_push($table_columns, $field_name);
+
+                    file_put_contents('php://stdout', 'will create new column? '. ((count($attribute) > 0) ? "Yes!" : "No!") . "\n");
 
                     if (count($attribute) > 0) {
                         // the remaining attributes on field definition are
@@ -197,7 +226,7 @@ class Builder
                     if ($nullable) { $column->nullable(); }
 
                     // apply change if column already exists (MODIFY statement)
-                    if ($column_exists) { $column->change(); }
+                    if ($column_exists) { file_put_contents('php://stdout', "change the column!\n"); $column->change(); }
 
                     if ($index == 'spatial') {
                         // apply geospatial index, only MyISAM
@@ -376,6 +405,34 @@ class Builder
         }
 
         return $config;
+    }
+
+    protected function registerEnumDoctrineType($table, $field_name, $allowed = array()) {
+        //
+        // WORKAROUND:
+        // register unsupported ENUM as a doctrine supported type
+        // related issue: https://github.com/laravel/framework/issues/1186
+        //
+        $enum_klass_name = 'Enum' . ucfirst($table) . ucfirst($field_name);
+
+        if (!$allowed || empty($allowed)) {
+            throw new MethodFailureException('Missing "allowed" values for ENUM type: ' . $table . '#' . $field_name . '.');
+        }
+
+        $allowed_json = json_encode($attribute['allowed']);
+        eval('class ' . $enum_klass_name . ' extends Hook\\Database\\Types\\EnumType {
+                protected $name = \'enum' . $field_name . '\';
+                protected $values = array('.substr($allowed_json, 1, strlen($allowed_json) - 2).');
+        }');
+
+        $type_method = 'addType';
+        if (\Doctrine\DBAL\Types\Type::hasType('enum')) {
+            $type_method = 'overrideType';
+        }
+
+        call_user_func_array(array('\\Doctrine\\DBAL\\Types\\Type', $type_method), array('enum', $enum_klass_name));
+
+        return $enum_klass_name
     }
 
 }
