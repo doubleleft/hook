@@ -134,18 +134,6 @@ class Builder
         $table_prefix = Context::getPrefix();
         $collection_config = $this->sanitizeConfigs($table, $collection_config, $is_dynamic);
 
-        //
-        // register unsupported ENUM as a doctrine supported type
-        // related issue: https://github.com/laravel/framework/issues/1186
-        //
-        // $connection->getDoctrineSchemaManager()
-        //     ->getDatabasePlatform()
-        //     ->registerDoctrineTypeMapping('enum', 'blob');
-
-        if (isset($table_schema['attributes'])) {
-            file_put_contents('php://stdout', 'cached schema: ' . json_encode($table_schema['attributes']) . "\n");
-        }
-
         $is_creating = (!$builder->hasTable($table));
 
         if (!empty($collection_config['attributes']) || !empty($collection_config['relationships'])) {
@@ -174,14 +162,16 @@ class Builder
                         }));
                     }
 
-
                     // fix core PHP to database types.
                     if ($type == 'double') { $type = 'float'; }
 
                     // fix ENUM reference in order to doctrine migrations to work
-                    if ($type == 'enum' ||
-                        ($previous_attribute_definition && $previous_attribute_definition['type'] == 'enum')) {
+                    if ($type == 'enum') {
                         $allowed = (isset($attribute['allowed'])) ? $attribute['allowed'] : null;
+                        $this->registerEnumDoctrineType($table, $field_name, $allowed);
+
+                    } else if ($previous_attribute_definition && $previous_attribute_definition['type'] == 'enum') {
+                        $allowed = (isset($previous_attribute_definition['allowed'])) ? $previous_attribute_definition['allowed'] : null;
                         $this->registerEnumDoctrineType($table, $field_name, $allowed);
                     }
 
@@ -192,23 +182,20 @@ class Builder
 
                     // Skip if column already exists and haven't changed
                     if (isset($previous_attribute_definition['type']) && $previous_attribute_definition['type'] === $type) {
-                        file_put_contents('php://stdout', 'skip '. $field_name . "\n");
                         continue;
                     }
 
                     $column_exists = (!$is_creating && in_array($field_name, array_map('strtolower', $table_columns)));
-                    file_put_contents('php://stdout', 'column exists? \''. $field_name . '\' => ' . (($column_exists) ? 'YES' : 'NO') . "\n");
 
                     // include field_name to list of collection columns
                     array_push($table_columns, $field_name);
-
-                    file_put_contents('php://stdout', 'will create new column? '. ((count($attribute) > 0) ? "Yes!" : "No!") . "\n");
 
                     if (count($attribute) > 0) {
                         // the remaining attributes on field definition are
                         // the data-type related collection_config, such as 'length',
                         // 'allowed', 'total', 'places', etc.
                         $column = $t->newColumn($type, $field_name, $attribute);
+
                     } else {
                         $column = $t->{$type}($field_name);
                     }
@@ -226,7 +213,7 @@ class Builder
                     if ($nullable) { $column->nullable(); }
 
                     // apply change if column already exists (MODIFY statement)
-                    if ($column_exists) { file_put_contents('php://stdout', "change the column!\n"); $column->change(); }
+                    if ($column_exists) { $column->change(); }
 
                     if ($index == 'spatial') {
                         // apply geospatial index, only MyISAM
@@ -419,9 +406,10 @@ class Builder
             throw new MethodFailureException('Missing "allowed" values for ENUM type: ' . $table . '#' . $field_name . '.');
         }
 
-        $allowed_json = json_encode($attribute['allowed']);
+        $allowed_json = json_encode($allowed);
+        $enum_name = 'enum'; // . $field_name;
         eval('class ' . $enum_klass_name . ' extends Hook\\Database\\Types\\EnumType {
-                protected $name = \'enum' . $field_name . '\';
+                protected $name = \'' . $enum_name. '\';
                 protected $values = array('.substr($allowed_json, 1, strlen($allowed_json) - 2).');
         }');
 
@@ -432,7 +420,18 @@ class Builder
 
         call_user_func_array(array('\\Doctrine\\DBAL\\Types\\Type', $type_method), array('enum', $enum_klass_name));
 
-        return $enum_klass_name
+        //
+        // WORKAROUND:
+        // Need to register 'enum' on AbstractPlatform with anything different
+        // than the real type, in order find diffs via:
+        // `Illuminate\Database\Schema\Grammars\Grammar#compileChange`
+        //
+        $connection = \DLModel::getConnectionResolver()->connection();
+        $connection->getDoctrineSchemaManager()
+            ->getDatabasePlatform()
+            ->registerDoctrineTypeMapping('enum', 'blob');
+
+        return $enum_klass_name;
     }
 
 }
