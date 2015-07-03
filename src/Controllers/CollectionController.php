@@ -120,7 +120,7 @@ class CollectionController extends HookController {
     //
     public function put($name, $_id = null) {
         $collection = Model\App::collection($name);
-        $query = ($_id) ? $collection->where('_id', $_id) : $collection->filter(Input::get('q'));
+        $query = ($_id) ? $collection->find($_id) : $collection->filter(Input::get('q'));
 
         if ($operation = Input::get('op')) {
             // Operations: increment/decrement
@@ -131,7 +131,7 @@ class CollectionController extends HookController {
             $affected = $query->update(static::getData());
             return array(
                 'success' => is_int($affected) && $affected > 0,
-                'affected' => $affected
+                'affected' => (int) $affected
             );
         }
     }
