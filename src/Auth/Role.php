@@ -103,6 +103,10 @@ class Role {
             $model[$auth_id_field] == $this->token->auth_id);
     }
 
+    protected function checkTrusted () {
+        return static::isTrusted();
+    }
+
     protected function checkRole($role) {
         return ($this->token && $this->token->role == $role);
     }
