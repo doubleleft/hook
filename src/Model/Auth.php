@@ -1,5 +1,7 @@
 <?php namespace Hook\Model;
 
+use Hook\Auth\Role;
+
 use Hook\Application\Context;
 use Hook\Application\Config;
 use Hook\Exceptions\ForbiddenException;
@@ -129,7 +131,7 @@ class Auth extends Collection
 
         // only display email and role for authenticated user
         $auth_token = AuthToken::current();
-        if (($auth_token && $auth_token->auth_id == $this->_id) || Context::isTrusted()) {
+        if (($auth_token && $auth_token->auth_id == $this->_id) || Context::isTrusted() || Role::isTrusted()) {
             $arr['email'] = $this->getAttribute('email');
             $arr['role'] = $this->getAttribute('role');
         }
@@ -161,7 +163,7 @@ class Auth extends Collection
     public function beforeSave()
     {
         // Only a trusted context can change the 'role' attribute
-        if ($this->isDirty('role') && (!Context::isTrusted() || !$this->isUpdateAllowed())) {
+        if ($this->isDirty('role') && (!Context::isTrusted() && !Role::isTrusted())) {
             $this->role = (isset($this->original['role'])) ? $this->original['role'] : null;
         }
 
@@ -187,7 +189,7 @@ class Auth extends Collection
         // - Authenticated user is updating it's own data
         //
 
-        return Context::isTrusted() || $this->isAuthenticated();
+        return Context::isTrusted() || Role::isAllowed($this, 'update') || $this->isAuthenticated();
     }
 
     protected function isAuthenticated()  {

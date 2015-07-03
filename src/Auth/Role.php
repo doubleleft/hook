@@ -7,9 +7,10 @@ use Hook\Application\Config;
 use Hook\Application\Context;
 
 class Role {
+    const TRUSTED = 'trusted';
     protected static $instance;
 
-    protected $builtInRoles = array('all', 'owner');
+    protected $builtInRoles = array('all', 'owner', Role::TRUSTED);
     protected $defaults = array(
         'crud' => null,
         'create' => 'all',
@@ -28,6 +29,11 @@ class Role {
         return static::$instance;
     }
 
+    public static function isTrusted() {
+        $auth_token = AuthToken::current();
+        return $auth_token && $auth_token->role == Role::TRUSTED;
+    }
+
     public static function isAllowed($model, $action)
     {
         // commandline always have full-access
@@ -35,18 +41,30 @@ class Role {
             return true;
         }
 
+        $is_allowed = false;
+
         $instance = static::getInstance();
         $collection_name = $instance->getCollectioName($model);
 
         $instance->token = AuthToken::current();
-        $role = $instance->getConfig($collection_name, $action);
+        $roles = $instance->getConfig($collection_name, $action);
 
-        if (in_array($role, $instance->builtInRoles)) {
-            return call_user_func_array(array($instance, 'check' . ucfirst($role)), array($model));
+        // Ensure array type for roles
+        if (!is_array($roles)) { $roles = array($roles); }
 
-        } else {
-            return $instance->checkRole($role);
+        foreach($roles as $role) {
+            // At least one of the configured roles must match
+            if ($is_allowed) break;
+
+            if (in_array($role, $instance->builtInRoles)) {
+                $is_allowed = call_user_func_array(array($instance, 'check' . ucfirst($role)), array($model));
+
+            } else {
+                $is_allowed = $instance->checkRole($role);
+            }
         }
+
+        return $is_allowed;
     }
 
     public function getDefaultConfig()
