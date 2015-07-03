@@ -128,10 +128,10 @@ class CollectionController extends HookController {
         } else {
 
             // Perform raw update
-            $affected = $query->update(static::getData());
+            $affected = (int) $query->update(static::getData());
             return array(
-                'success' => is_int($affected) && $affected > 0,
-                'affected' => (int) $affected
+                'success' => $affected > 0,
+                'affected' => $affected
             );
         }
     }
