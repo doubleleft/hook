@@ -376,6 +376,17 @@ class Builder
             $config['attributes'] = array();
         }
 
+        //
+        // ignore built-in fields if defined on schema.yaml
+        //
+        // - created_at
+        // - updated_at
+        // - deleted_at
+        //
+        $config['attributes'] = array_filter($config['attributes'], function($attribute) {
+            return !(in_array($attribute['name'], array('created_at', 'updated_at', 'deleted_at')));
+        });
+
         if (!$is_dynamic) {
             $this->sanitizeRelationships($collection_name, $config);
         }
