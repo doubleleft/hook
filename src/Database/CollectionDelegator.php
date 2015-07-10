@@ -6,8 +6,7 @@ use Hook\Auth\Role;
 use Hook\Model\App;
 use Hook\Model\Collection;
 
-use Hook\Exceptions\UnauthorizedException;
-use Hook\Exceptions\NotAllowedException;
+use Hook\Exceptions\ForbiddenException;
 
 use Hook\Application\Context;
 
@@ -54,6 +53,13 @@ class CollectionDelegator implements IteratorAggregate
     );
 
     /**
+     * private_collections - list of collections which are not exposed via
+     * collection API
+     * @var array
+     */
+    static $private_collections = array( 'modules', 'auth_identities' ); // 'channel_messages'
+
+    /**
      * Create a new CollectionDelegator instance.
      *
      * @param string                            $name
@@ -65,9 +71,9 @@ class CollectionDelegator implements IteratorAggregate
         $name = str_plural($name);
         $is_collection = (!isset(static::$custom_collections[$name]));
 
-        // protected collections
-        if ($name == 'modules' || $name == '__sessions' || $name == 'auth_identities') {
-            throw new UnauthorizedException();
+        // prevent access on private collections
+        if (in_array($name, static::$private_collections)) {
+            throw new ForbiddenException();
         }
 
         if ($is_collection) {
@@ -354,7 +360,7 @@ class CollectionDelegator implements IteratorAggregate
         // - for 'owner' role each entry need to be checked on results.
         $role = Role::getInstance()->getConfig($this->name, 'read');
         if ($role !== 'owner' && !Role::isAllowed($this->name, 'read')) {
-            throw new NotAllowedException();
+            throw new ForbiddenException();
         }
 
         return $this->__call('get', func_get_args());
