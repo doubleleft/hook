@@ -180,6 +180,12 @@ class Builder
                     $unique = array_remove($attribute, 'unique') || $index === 'unique';
                     $required = array_remove($attribute, 'required');
 
+                    //
+                    // TODO: dropping indexes is not working yet
+                    //
+                    // // Remove indexes, if needed
+                    // $this->dropIndex($table, $table_prefix, $t, $previous_attribute_definition, $index, $unique);
+
                     // Skip if column already exists and haven't changed
                     if (isset($previous_attribute_definition['type']) && $previous_attribute_definition['type'] === $type) {
                         continue;
@@ -369,6 +375,40 @@ class Builder
         $table_schema['lock_attributes'] = $lock_attributes;
 
         return $table_schema;
+    }
+
+    /**
+     * Drop index from field if necessary.
+     *
+     * Compare previous attribute definition with new ones and drop necessary
+     * indexes.
+     *
+     * @param   string    $table_name
+     * @param   Blueprint $blueprint
+     * @param   array     $previous_attribute_definition
+     * @param   string    $index new index type
+     * @param   boolean   $is_unique is a unique index?
+     *
+     * @return bool
+     */
+    protected function dropIndex(&$table_name, &$table_prefix, &$blueprint, $previous_attribute_definition = null, $index = null, $is_unique = false) {
+        if (!$previous_attribute_definition) {
+            return;
+        }
+
+        // drop unique
+        if (!$is_unique && (
+                (isset($previous_attribute_definition['index']) && $previous_attribute_definition['index'] == 'unique') ||
+                (isset($previous_attribute_definition['unique']) && $previous_attribute_definition['unique'] == true))
+        ) {
+            // drop unique index
+            $blueprint->dropUnique($table_prefix . $table_name . '_' . $previous_attribute_definition['name'] . '_unique');
+        }
+
+        if (!$index && (isset($previous_attribute_definition['index']) && $previous_attribute_definition['index'] !== 'unique')) {
+            // drop basic index
+            $blueprint->dropIndex($table_prefix . $table_name . '_' . $previous_attribute_definition['name'] . '_index');
+        }
     }
 
     protected function sanitizeConfigs($collection_name, &$config, $is_dynamic = false) {
