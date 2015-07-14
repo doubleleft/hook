@@ -53,6 +53,14 @@ class AuthController extends HookController {
 
             $auth->setTrustedAction(true);
 
+            //
+            // Handle login with custom method.
+            //
+            $observer = Auth::getObserver();
+            if ($observer && method_exists($observer, 'login') && !$observer->login($auth)) {
+                throw new Exceptions\ForbiddenException();
+            }
+
             return $auth->dataWithToken();
 
         } else {

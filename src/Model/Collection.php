@@ -54,7 +54,8 @@ class Collection extends DynamicModel
      * @param string $name
      * @return Class | null
      */
-    public static function getObserver($table) {
+    public static function getObserver($table = null) {
+        if (!$table) { $table = static::$lastTableName; }
         return (isset(static::$observers[$table]) && static::$observers[$table]) ? static::$observers[$table] : null;
     }
 
