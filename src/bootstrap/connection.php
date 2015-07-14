@@ -68,6 +68,8 @@ if ($db_config['driver'] == 'mongodb') {
 // Use a string representing an RFC2822 or ISO 8601 date
 // http://tools.ietf.org/html/rfc2822#page-14
 //
+// Same format is applied on Hook\Model\Model#serializeDate method
+//
 \Carbon\Carbon::setToStringFormat('Y-m-d\TH:i:sP');
 
 // Setup paginator
