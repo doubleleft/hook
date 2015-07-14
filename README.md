@@ -1,11 +1,11 @@
 <img align="right" src="https://github.com/doubleleft/hook/blob/master/logo.png?raw=true" alt="hook" />
 
-Welcome to hook [![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy?template=https%3A%2F%2Fgithub.com%2Fdoubleleft%2Fhook%2Ftree%2Fmaster)
+Welcome to hook
 ===
 
+<a href="https://heroku.com/deploy?template=https%3A%2F%2Fgithub.com%2Fdoubleleft%2Fhook%2Ftree%2Fmaster"><img src="https://www.herokucdn.com/deploy/button.png" height="20" ></a>
 [![Build status](https://travis-ci.org/doubleleft/hook.svg?branch=master)](https://travis-ci.org/doubleleft/hook)
 [![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/doubleleft/hook?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-
 
 hook is a RESTful, extendable Backend as a Service that provides instant backend
 to develop sites and apps faster, with dead-simple integration for iOS, Android,
