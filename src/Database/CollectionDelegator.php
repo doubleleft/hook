@@ -1,5 +1,4 @@
-<?php
-namespace Hook\Database;
+<?php namespace Hook\Database;
 
 use Hook\Auth\Role;
 
@@ -7,9 +6,9 @@ use Hook\Model\App;
 use Hook\Model\Collection;
 
 use Hook\Exceptions\ForbiddenException;
-
 use Hook\Application\Context;
 
+use Illuminate\Support\Collection as IlluminateCollection;
 use Illuminate\Database\Capsule\Manager as DB;
 
 use ArrayIterator;
@@ -158,6 +157,13 @@ class CollectionDelegator implements IteratorAggregate
      */
     public function create(array $attributes)
     {
+        // Is this a bulk create?
+        if (array_values($attributes) == $attributes) {
+            $that = $this;
+            $collection = new IlluminateCollection($attributes);
+            return $collection->map(function($attrs) use ($that) { return $that->create($attrs); });
+        }
+
         $model = $this->create_new($attributes);
         $model->save();
 

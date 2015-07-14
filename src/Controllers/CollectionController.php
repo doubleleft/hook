@@ -99,12 +99,8 @@ class CollectionController extends HookController {
     public function store($name) {
         $collection = Model\App::collection($name);
 
-        $method = (Input::get('f')) ? 'firstOrCreate' : 'create_new';
+        $method = (Input::get('f')) ? 'firstOrCreate' : 'create';
         $model = call_user_func(array($collection, $method), static::getData());
-
-        if ($model->isModified() && !$model->save()) {
-            throw new ForbiddenException("Can't save '{$model->getName()}'.");
-        }
 
         // TODO: DRY with 'index' method
         // with - eager load relationships

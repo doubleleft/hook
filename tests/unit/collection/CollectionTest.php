@@ -44,4 +44,15 @@ class CollectionTest extends TestCase
 
     }
 
+    public function testBulkCreate() {
+        $models = App::collection('my_items')->create(array(
+            array('name' => "One"),
+            array('name' => "Two"),
+            array('name' => "Three")
+        ));
+        $this->assertTrue($models[0]->name == "One");
+        $this->assertTrue($models[1]->name == "Two");
+        $this->assertTrue($models[2]->name == "Three");
+    }
+
 }
