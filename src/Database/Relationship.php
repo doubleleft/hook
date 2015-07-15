@@ -73,8 +73,6 @@ class Relationship
         $related_instance->getModel()->setTable($related_table);
         $related_query = $related_instance->getModel()->newQuery();
 
-        file_put_contents('php://stdout', "relation type: {$relation_type}\n");
-
         switch ($relation_type) {
         case "belongs_to":
             return new BelongsTo($related_query, $model, $foreign_key, $primary_key, $field);

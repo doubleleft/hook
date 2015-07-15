@@ -170,7 +170,7 @@ class Builder
                         $allowed = (isset($attribute['allowed'])) ? $attribute['allowed'] : null;
                         $this->registerEnumDoctrineType($table, $field_name, $allowed);
 
-                    } else if ($previous_attribute_definition && $previous_attribute_definition['type'] == 'enum') {
+                    } else if (isset($previous_attribute_definition['type']) && $previous_attribute_definition['type'] == 'enum') {
                         $allowed = (isset($previous_attribute_definition['allowed'])) ? $previous_attribute_definition['allowed'] : null;
                         $this->registerEnumDoctrineType($table, $field_name, $allowed);
                     }
