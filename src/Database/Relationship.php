@@ -73,6 +73,8 @@ class Relationship
         $related_instance->getModel()->setTable($related_table);
         $related_query = $related_instance->getModel()->newQuery();
 
+        file_put_contents('php://stdout', "relation type: {$relation_type}\n");
+
         switch ($relation_type) {
         case "belongs_to":
             return new BelongsTo($related_query, $model, $foreign_key, $primary_key, $field);
@@ -85,7 +87,8 @@ class Relationship
                 $through = App::collection($config['through'])->getModel();
                 $first_key = $foreign_key;
                 $second_key = (isset($config['far_key'])) ? $config['far_key'] : str_singular($config['collection']) . '_id';
-                return new HasManyThrough($related_query, $model, $through, $first_key, $second_key);
+                $local_key = (isset($config['local_key'])) ? $config['local_key'] : '_id';
+                return new HasManyThrough($related_query, $model, $through, $first_key, $second_key, $local_key);
 
             } else {
                 return new HasMany($related_query, $model, $foreign_key, $primary_key);

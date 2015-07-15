@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Builder as EloquentBuilder;
 class HasManyThrough extends EloquentHasManyThrough
 {
 
-    protected function getQualifiedParentKeyName()
+    public function getQualifiedParentKeyName()
     {
         // return $this->parent->getQualifiedKeyName();
         return $this->parent->getTable().'.'.$this->secondKey;
@@ -21,13 +21,5 @@ class HasManyThrough extends EloquentHasManyThrough
 
         $query->join($this->parent->getTable(), $this->getQualifiedParentKeyName(), '=', $foreignKey);
     }
-
-    // public function get($columns = array('*'))
-    // {
-    //     $r = parent::get($columns);
-    //     file_put_contents('php://stdout', $r->toJson() . "\n");
-    //     file_put_contents('php://stdout', get_class($r[0]) . "\n");
-    //     return $r;
-    // }
 
 }
