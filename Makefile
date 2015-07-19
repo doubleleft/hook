@@ -30,7 +30,7 @@ endif
 	@echo "Finished"
 
 test:
-	./vendor/bin/phpunit --configuration ./tests/phpunit.xml
+	./vendor/bin/phpunit --configuration ./tests/phpunit.xml --testsuite unit
 	# DB_DRIVER=mysql ./vendor/bin/phpunit --configuration ./tests/phpunit.xml
 	# DB_DRIVER=postgres ./vendor/bin/phpunit --configuration ./tests/phpunit.xml
 	# DB_DRIVER=sqlite ./vendor/bin/phpunit --configuration ./tests/phpunit.xml

@@ -1,5 +1,4 @@
-<?php
-namespace Hook\Database;
+<?php namespace Hook\Database;
 
 use Hook\Exceptions\NotImplementedException;
 
@@ -10,7 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\HasManyThrough;
+use Hook\Database\Relations\HasManyThrough;
 
 /**
  * Relationship
@@ -58,7 +57,7 @@ class Relationship
         // define relation model
         $related_klass = "Related" .
             ucfirst( str_singular( camel_case( $field ) ) ) .
-            ucfirst( str_singular( camel_case( $config['collection'] ) ) );
+            ucfirst( str_singular( camel_case( $related_table ) ) );
 
         // FIXME:
         // eval is evil. But it's necessary here since Eloquent\Model
@@ -76,26 +75,31 @@ class Relationship
 
         switch ($relation_type) {
         case "belongs_to":
-            // $model->belongsTo($related_klass, $foreign_key, '_id', $field);
             return new BelongsTo($related_query, $model, $foreign_key, $primary_key, $field);
 
         case "belongs_to_many":
-            // $model->belongsToMany($related_klass, $related_table, $foreign_key, '_id', $field);
             return new BelongsToMany($related_query, $model, $related_table, $foreign_key, $primary_key, $field);
 
         case "has_many":
-            // hasMany($related, $foreignKey = null, $localKey = null)
-            // $model->hasMany($related_klass, $model_table . '_id', '_id');
-            return new HasMany($related_query, $model, $foreign_key, $primary_key);
+            if (isset($config['through'])) {
+                $through = App::collection($config['through'])->getModel();
+                $first_key = $foreign_key;
+                $second_key = (isset($config['far_key'])) ? $config['far_key'] : str_singular($config['collection']) . '_id';
+                $local_key = (isset($config['local_key'])) ? $config['local_key'] : '_id';
+                return new HasManyThrough($related_query, $model, $through, $first_key, $second_key, $local_key);
+
+            } else {
+                return new HasMany($related_query, $model, $foreign_key, $primary_key);
+            }
 
         case "has_one":
             // hasOne($related, $foreignKey = null, $localKey = null)
             // $model->hasOne($related_klass, $model_table . '_id', '_id');
             return new HasOne($related_query, $model, $foreign_key, $primary_key);
 
-        case "has_many_through":
-            // hasManyThrough('Post', 'User', 'country_id', 'user_id');
-            return new NotImplementedException("has_many_through not implemented.");
+        default:
+            return new NotImplementedException("'{$relation_type}' is not implemented. Please use 'belongs_to', 'has_many' or 'belongs_to_many'.");
+
         }
 
         return null;

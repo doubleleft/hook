@@ -169,12 +169,12 @@ class CollectionRelationshipTest extends TestCase
             )
         ));
 
-        $this->markTestIncomplete("This feature doesn't work yet.");
+        $authors_and_contacts = App::collection('authors')->join('contacts')->toArray();
+        $this->assertTrue(count($authors_and_contacts) == 2);
+        $this->assertTrue(count($authors_and_contacts[0]['contacts']) == 2);
 
-        // $authors_and_contacts = App::collection('authors')->join('contacts')->toArray();
-        // $this->assertTrue(count($authors_and_contacts) == 2);
-        // $this->assertTrue(count($authors_and_contacts[0]['contacts']) == 2);
-        // $this->assertTrue(count($authors_and_contacts[1]['contacts']) == 5);
+        $this->markTestIncomplete("This feature doesn't work yet.");
+        $this->assertTrue(count($authors_and_contacts[1]['contacts']) == 5);
     }
 
 }

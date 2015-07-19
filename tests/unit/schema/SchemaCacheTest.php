@@ -54,6 +54,7 @@ class SchemaCacheTest extends TestCase
                 array('name' => "second"),
             ),
         ));
+
         $this->assertTrue( SchemaCache::get('schema_caches') == array(
             'attributes' => array(
                 array("name" => "first"),

@@ -68,42 +68,15 @@ if ($db_config['driver'] == 'mongodb') {
 // Use a string representing an RFC2822 or ISO 8601 date
 // http://tools.ietf.org/html/rfc2822#page-14
 //
+// Same format is applied on Hook\Model\Model#serializeDate method
+//
 \Carbon\Carbon::setToStringFormat('Y-m-d\TH:i:sP');
 
 // Setup paginator
-$connection->setPaginator(new Hook\Pagination\Environment());
+$connection->setEventDispatcher($event_dispatcher);
 
 // Setup Schema Grammar
 // $connection->setSchemaGrammar();
-
-// Setup cache manager
-$connection->setCacheManager(function () {
-    $cache_driver = Router::config('cache');
-
-    if ($cache_driver == "filesystem") {
-        $config = array(
-            'files' => new \Illuminate\Filesystem\Filesystem(),
-            'config' => array(
-                'cache.driver' => 'file',
-                'cache.path' => storage_dir() . '/cache'
-            )
-        );
-
-    } else if ($cache_driver == "database") {
-        $config = array(
-            'db' => \DLModel::getConnectionResolver(),
-            'encrypter' => Hook\Security\Encryption\Encrypter::getInstance(),
-            'config' => array(
-                'cache.driver' => 'database',
-                'cache.connection' => 'default',
-                'cache.table' => 'cache',
-                'cache.prefix' => ''
-            )
-        );
-    }
-
-    return new Illuminate\Cache\CacheManager($config);
-});
 
 //
 // TODO: Create `hook migrate` command.

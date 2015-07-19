@@ -1,13 +1,11 @@
-<?php
-
-use Hook\Application\Config;
+<?php use Hook\Application\Config;
 
 class ConfigDeployTest extends TestCase
 {
 
     public function testConfigDeploy()
     {
-        Config::deploy(array(
+        $deployed = Config::deploy(array(
             'something' => array(
                 'very' => array(
                     'deep' => array(
@@ -22,13 +20,11 @@ class ConfigDeployTest extends TestCase
             )
         ));
 
-        // TODO: these tests are not passing on Travis. (locally it's OK)
-        //
-        // $this->assertEquals(Config::get('something.very.deep.here'), 'value');
-        // $this->assertEquals(Config::get('something.very.nice'), 6);
-        // $this->assertEquals(Config::get('another'), '10');
-        // $this->assertEquals(Config::get('hello.there'), 'hey!');
+        $this->assertTrue($deployed);
+        $this->assertEquals(Config::get('something.very.deep.here'), 'value');
+        $this->assertEquals(Config::get('something.very.nice'), 6);
+        $this->assertEquals(Config::get('another'), '10');
+        $this->assertEquals(Config::get('hello.there'), 'hey!');
     }
 
 }
-

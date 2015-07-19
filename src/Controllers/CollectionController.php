@@ -9,6 +9,8 @@ use Hook\Http\Request;
 
 use Hook\Database\CollectionDelegator;
 
+use Hook\Exceptions\NotImplementedException;
+
 class CollectionController extends HookController {
 
     public function index($name) {
@@ -58,7 +60,8 @@ class CollectionController extends HookController {
 
         // remember / caching
         if ($remember = Input::get('remember')) {
-            $query = $query->remember($remember);
+            throw new NotImplementedException('remember/cache not implemented');
+            // $query = $query->remember($remember);
         }
 
         // with - eager load relationships
@@ -81,8 +84,7 @@ class CollectionController extends HookController {
             return true;
 
         } elseif ($paginate = Input::get('p')) {
-            // Apply pagination
-            return $query->paginate($paginate);
+            throw new NotImplementedException('Pagination not implemented. use limit/offset.');
 
         } elseif (Input::get('f')) {
             // First
