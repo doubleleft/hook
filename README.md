@@ -11,16 +11,14 @@ hook is a RESTful, extendable Backend as a Service that provides instant backend
 to develop sites and apps faster, with dead-simple integration for iOS, Android,
 JavaScript and more.
 
-It follows the same principles from [nobackend](http://nobackend.org/), [hoodie.js](https://github.com/hoodiehq/hoodie.js) and [Parse](http://parse.com)
-
-**Requirements**: PHP 5.4+, or [PHP
+**Requirements**: PHP 5.5+, or [PHP
 5.3](http://doubleleft.github.io/hook-userguide/More/Deployment/#deploying-on-php-53).
 
 - [Features](#features)
 - [Installation](#installation)
 - [How to use](#how-to-use)
 - [Documentation](http://doubleleft.github.io/hook-userguide/)
-- [Front-end integration](#front-end-integration)
+- [Examples](https://github.com/doubleleft/hook-examples)
 
 Features
 ---

@@ -117,9 +117,12 @@ function collection($name)
 /**
  * String functions
  */
-function str_slug($title, $separator = '-') {
-    // requires "patchwork/utf8"
-    return \Illuminate\Support\Str::slug($title, $separator);
+if (!function_exists('str_slug'))
+{
+    function str_slug($title, $separator = '-') {
+        // requires "patchwork/utf8"
+        return \Illuminate\Support\Str::slug($title, $separator);
+    }
 }
 
 /**
