@@ -7,7 +7,7 @@ class ConfigDeployTest extends TestCase
 
     public function testConfigDeploy()
     {
-        Config::deploy(array(
+        $deployed = Config::deploy(array(
             'something' => array(
                 'very' => array(
                     'deep' => array(
@@ -22,6 +22,7 @@ class ConfigDeployTest extends TestCase
             )
         ));
 
+        $this->assertTrue($deployed);
         $this->assertEquals(Config::get('something.very.deep.here'), 'value');
         $this->assertEquals(Config::get('something.very.nice'), 6);
         $this->assertEquals(Config::get('another'), '10');

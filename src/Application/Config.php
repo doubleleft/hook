@@ -27,6 +27,7 @@ class Config
         if ($configs != $previous) {
             file_put_contents($config_file, '<?php return ' .var_export($configs, true) . ';');
             $success = true;
+            static::getInstance()->setValues($configs);
         }
         return $success;
     }
