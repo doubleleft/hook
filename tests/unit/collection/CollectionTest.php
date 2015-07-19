@@ -45,23 +45,6 @@ class CollectionTest extends TestCase
     }
 
     public function testBulkCreate() {
-        // $items = App::collection('names')->create(array(
-        //     array(
-        //         'name' => "Bulk 1",
-        //         'number' => 1,
-        //         'double' => 1.1
-        //     ),
-        //     array(
-        //         'name' => "Bulk 2",
-        //         'number' => 2,
-        //         'double' => 2.2
-        //     )
-        // ));
-        //
-        // $this->assertTrue(count($items) == 2);
-    }
-
-    public function testBulkCreate() {
         $models = App::collection('my_items')->create(array(
             array('name' => "One"),
             array('name' => "Two"),
