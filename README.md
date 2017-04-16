@@ -2,6 +2,7 @@
 
 Welcome to hook
 ===
+[![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/doubleleft/hook?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 <a href="https://heroku.com/deploy?template=https%3A%2F%2Fgithub.com%2Fdoubleleft%2Fhook%2Ftree%2Fmaster"><img src="https://www.herokucdn.com/deploy/button.png" height="20" ></a>
 [![Build status](https://travis-ci.org/doubleleft/hook.svg?branch=master)](https://travis-ci.org/doubleleft/hook)
